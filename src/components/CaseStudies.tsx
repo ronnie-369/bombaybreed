@@ -6,9 +6,13 @@ import { Button } from '@/components/ui/button';
 interface CaseStudy {
   id: number;
   name: string;
-  location: string;
-  quote: string;
-  story: string;
+  type: string;
+  duration: string;
+  impact: string;
+  brief: string;
+  challenge: string;
+  solution: string;
+  result: string;
   image: string;
 }
 
@@ -16,27 +20,39 @@ const CaseStudies = () => {
   const cases: CaseStudy[] = [
     {
       id: 1,
-      name: "Midnight",
-      location: "San Francisco, CA",
-      quote: "A panther at heart, a lap cat by choice.",
-      story: "Midnight was adopted by the Johnson family in 2019. Initially shy, he quickly became the heart of the home, bonding especially with their daughter Emma who has autism. His gentle presence has had a remarkable impact on Emma's communication skills.",
-      image: "https://images.unsplash.com/photo-1586042091284-bd35c8c1d917"
+      name: "Microsoft India",
+      type: "Strategic Consulting",
+      duration: "4 months",
+      impact: "$15M impact",
+      brief: "Identify 25 ISV (Independent Software Vendor) clients of Microsoft India to increase revenue for the PSU division.",
+      challenge: "MSFT had over 27,000 ISVs onboard and no systematic way to identify the right 25 targets.",
+      solution: "Created an elaborate matrix to determine a recommendation engine that streamlined the selection from 27,000 companies down to 25 top ISVs.",
+      result: "Targeted approach to strategic pathways into GOI sectoral focus, leading to $15 million revenue uptick for Microsoft Azure cloud.",
+      image: "https://images.unsplash.com/photo-1573164713988-8665fc963095"
     },
     {
       id: 2,
-      name: "Luna",
-      location: "Boston, MA",
-      quote: "Elegance and playfulness in perfect harmony.",
-      story: "Luna joined Sarah's apartment after her previous owner passed away. Despite being 7 years old, Luna adapted quickly to her new environment and has become known in the building as the cat who greets visitors at the door with a friendly chirp.",
-      image: "https://images.unsplash.com/photo-1592194996308-7b43878e84a6"
+      name: "Shoppers Stop",
+      type: "Strategic Consulting",
+      duration: "1 month",
+      impact: "80% growth",
+      brief: "\"All our physical stores are shut down and our online presence is not e-commerce ready. Help.\"",
+      challenge: "Shoppersstop.com was both unattractive and non-supportive of full e-commerce, unable to compete with Myntra and Ajio.",
+      solution: "Identified growing demand for comfort wear during COVID lockdowns and built a dedicated storefront for tops, bottoms, and loungewear.",
+      result: "Reversed 10% revenue decline by achieving 80% growth in online shopping with INR 67 Lacs revenue in Q1 2020.",
+      image: "https://images.unsplash.com/photo-1573164574001-518897fd0e8d"
     },
     {
       id: 3,
-      name: "Shadow",
-      location: "Austin, TX",
-      quote: "The therapy cat nobody knew they needed.",
-      story: "Shadow works as a therapy cat at a senior living facility, where his calm demeanor and affectionate nature have made him a favorite among residents. Research has shown that his visits coincide with improved mood and decreased anxiety among patients.",
-      image: "https://images.unsplash.com/photo-1556582305-528bffcf7af0"
+      name: "ProClime",
+      type: "Head of Marketing",
+      duration: "Ongoing",
+      impact: "300K+ engagement",
+      brief: "Make climate action conversational and accessible to the general public.",
+      challenge: "Climate action is typically presented in opaque, dense, and technical language that alienates the average person.",
+      solution: "Created engaging conversations about climate with key stakeholders: governments, bureaucrats, media outlets, scientists, and academicians.",
+      result: "YouTube engagement: 300,000+ likes, Campaign felicitated at IIT Rourkee, Showcased to the Minister of Environment, Featured track played to A.R. Rahman",
+      image: "https://images.unsplash.com/photo-1497435334941-8c899ee9e8e9"
     }
   ];
 
@@ -46,9 +62,9 @@ const CaseStudies = () => {
     <section id="cases" className="py-20 px-4 md:px-8 bg-white">
       <div className="container mx-auto">
         <div className="text-center max-w-3xl mx-auto mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">Success Stories</h2>
+          <h2 className="text-3xl md:text-4xl font-bold mb-4">Success Stories That Define Us</h2>
           <p className="text-lg text-foreground/80">
-            Real stories of Bombay cats and the families they've transformed.
+            A proven track record of delivering impactful results for leading brands across various sectors.
           </p>
         </div>
 
@@ -63,17 +79,24 @@ const CaseStudies = () => {
                   : 'bg-bombay-subtle hover:bg-bombay-subtle/70'
               }`}
             >
-              <h3 className="text-xl font-semibold mb-1">{caseItem.name}</h3>
-              <p className={`${
-                activeCase.id === caseItem.id ? 'text-white/80' : 'text-foreground/70'
-              }`}>
-                {caseItem.location}
-              </p>
+              <div className="flex justify-between items-start">
+                <div>
+                  <span className="text-sm font-medium block mb-1">{String(caseItem.id).padStart(2, '0')}</span>
+                  <h3 className="text-xl font-semibold mb-1">{caseItem.name}</h3>
+                </div>
+                <div className={`text-right ${
+                  activeCase.id === caseItem.id ? 'text-white/80' : 'text-foreground/70'
+                }`}>
+                  <p className="text-sm">{caseItem.type}</p>
+                  <p className="text-sm">{caseItem.duration}</p>
+                  <p className="font-medium">{caseItem.impact}</p>
+                </div>
+              </div>
               <div className="mt-4 flex justify-between items-center">
                 <span className={`text-sm ${
                   activeCase.id === caseItem.id ? 'text-white/90' : 'text-foreground/60'
                 }`}>
-                  Read story
+                  View case
                 </span>
                 <ArrowRight className={`h-4 w-4 ${
                   activeCase.id === caseItem.id ? 'text-white' : 'text-bombay'
@@ -97,11 +120,30 @@ const CaseStudies = () => {
                 <div className="bg-white inline-flex p-3 rounded-full mb-6">
                   <Quote className="h-6 w-6 text-bombay" />
                 </div>
-                <h3 className="text-2xl md:text-3xl font-medium mb-4">{activeCase.quote}</h3>
-                <p className="text-foreground/80 mb-8">{activeCase.story}</p>
+                <h3 className="text-2xl md:text-3xl font-medium mb-4">{activeCase.name}</h3>
+                
+                <div className="space-y-4 mb-6">
+                  <div>
+                    <h4 className="font-medium text-bombay">Brief:</h4>
+                    <p className="text-foreground/80">{activeCase.brief}</p>
+                  </div>
+                  <div>
+                    <h4 className="font-medium text-bombay">Challenge:</h4>
+                    <p className="text-foreground/80">{activeCase.challenge}</p>
+                  </div>
+                  <div>
+                    <h4 className="font-medium text-bombay">Solution:</h4>
+                    <p className="text-foreground/80">{activeCase.solution}</p>
+                  </div>
+                  <div>
+                    <h4 className="font-medium text-bombay">Result:</h4>
+                    <p className="text-foreground/80">{activeCase.result}</p>
+                  </div>
+                </div>
+                
                 <div>
                   <Button className="bg-bombay hover:bg-bombay-light text-white">
-                    Read Full Story
+                    Read Full Case Study
                   </Button>
                 </div>
               </div>

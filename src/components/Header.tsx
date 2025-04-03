@@ -15,26 +15,38 @@ const Header = () => {
       <div className="container mx-auto px-4 md:px-6 py-4 flex items-center justify-between">
         <div className="flex items-center">
           <a href="/" className="text-2xl font-bold text-bombay">
-            BombayBreed
+            BOMBAY BREED
           </a>
+          <span className="hidden md:block text-xs text-bombay-light ml-2 mt-2">
+            Strategic Communications<br />Advisory Services
+          </span>
         </div>
 
         {/* Desktop Navigation */}
         <nav className="hidden md:flex items-center space-x-8">
-          <a href="#about" className="text-foreground/80 hover:text-bombay transition-colors">
-            About
+          <a href="#services" className="text-foreground/80 hover:text-bombay transition-colors">
+            Services
           </a>
-          <a href="#characteristics" className="text-foreground/80 hover:text-bombay transition-colors">
-            Characteristics
+          <a href="#expertise" className="text-foreground/80 hover:text-bombay transition-colors">
+            Expertise
           </a>
           <a href="#cases" className="text-foreground/80 hover:text-bombay transition-colors">
             Case Studies
           </a>
-          <a href="#contact" className="text-foreground/80 hover:text-bombay transition-colors">
-            Contact
+          <a href="#about" className="text-foreground/80 hover:text-bombay transition-colors">
+            About
           </a>
+          <div className="flex space-x-4">
+            <a href="https://blog.bombaybreed.com" target="_blank" rel="noopener noreferrer" className="text-foreground/80 hover:text-bombay transition-colors">
+              Blog
+            </a>
+            <span className="text-foreground/40">|</span>
+            <a href="https://linkedin.com/in/theresa-ronnie" target="_blank" rel="noopener noreferrer" className="text-foreground/80 hover:text-bombay transition-colors">
+              LinkedIn
+            </a>
+          </div>
           <Button className="bg-bombay hover:bg-bombay-light text-white">
-            Adopt Now
+            Contact Us
           </Button>
         </nav>
 
@@ -53,18 +65,18 @@ const Header = () => {
         <div className="md:hidden bg-white shadow-md absolute top-full left-0 right-0 z-40 animate-fade-in">
           <div className="container mx-auto px-4 py-4 flex flex-col space-y-4">
             <a 
-              href="#about" 
+              href="#services" 
               className="text-foreground/80 hover:text-bombay transition-colors py-2"
               onClick={toggleMenu}
             >
-              About
+              Services
             </a>
             <a 
-              href="#characteristics" 
+              href="#expertise" 
               className="text-foreground/80 hover:text-bombay transition-colors py-2"
               onClick={toggleMenu}
             >
-              Characteristics
+              Expertise
             </a>
             <a 
               href="#cases" 
@@ -74,17 +86,26 @@ const Header = () => {
               Case Studies
             </a>
             <a 
-              href="#contact" 
+              href="#about" 
               className="text-foreground/80 hover:text-bombay transition-colors py-2"
               onClick={toggleMenu}
             >
-              Contact
+              About
             </a>
+            <div className="flex space-x-4 py-2">
+              <a href="https://blog.bombaybreed.com" target="_blank" rel="noopener noreferrer" className="text-foreground/80 hover:text-bombay transition-colors">
+                Blog
+              </a>
+              <span className="text-foreground/40">|</span>
+              <a href="https://linkedin.com/in/theresa-ronnie" target="_blank" rel="noopener noreferrer" className="text-foreground/80 hover:text-bombay transition-colors">
+                LinkedIn
+              </a>
+            </div>
             <Button 
               className="bg-bombay hover:bg-bombay-light text-white w-full"
               onClick={toggleMenu}
             >
-              Adopt Now
+              Contact Us
             </Button>
           </div>
         </div>

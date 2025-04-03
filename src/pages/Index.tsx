@@ -2,9 +2,12 @@
 import React from 'react';
 import Header from '@/components/Header';
 import Hero from '@/components/Hero';
-import About from '@/components/About';
-import Characteristics from '@/components/Characteristics';
+import Services from '@/components/Services';
+import Expertise from '@/components/Expertise';
 import CaseStudies from '@/components/CaseStudies';
+import Value from '@/components/Value';
+import About from '@/components/About';
+import Endorsements from '@/components/Endorsements';
 import Contact from '@/components/Contact';
 
 const Index = () => {
@@ -12,9 +15,12 @@ const Index = () => {
     <div className="min-h-screen bg-bombay-background">
       <Header />
       <Hero />
-      <About />
-      <Characteristics />
+      <Services />
+      <Expertise />
       <CaseStudies />
+      <Value />
+      <About />
+      <Endorsements />
       <Contact />
     </div>
   );

@@ -54,11 +54,11 @@ export default {
 					foreground: 'hsl(var(--card-foreground))'
 				},
 				bombay: {
-					DEFAULT: '#000000',
-					light: '#3A3A3A',
-					background: '#F9F7F5',
-					accent: '#D3A375',
-					subtle: '#F1F0FB'
+					DEFAULT: '#134e4a', // A teal-like color for sustainability
+					light: '#0f766e',
+					background: '#f8fafc',
+					accent: '#14b8a6',
+					subtle: '#f0fdfa'
 				},
 				sidebar: {
 					DEFAULT: 'hsl(var(--sidebar-background))',

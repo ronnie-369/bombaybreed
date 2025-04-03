@@ -5,33 +5,33 @@
 
 @layer base {
   :root {
-    --background: 30 30% 98%;
-    --foreground: 20 10% 5%;
+    --background: 210 40% 98%;
+    --foreground: 215 25% 27%;
 
     --card: 0 0% 100%;
-    --card-foreground: 20 10% 5%;
+    --card-foreground: 215 25% 27%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 20 10% 5%;
+    --popover-foreground: 215 25% 27%;
 
-    --primary: 20 10% 5%;
-    --primary-foreground: 60 30% 96%;
+    --primary: 183 70% 25%;
+    --primary-foreground: 210 40% 98%;
 
-    --secondary: 30 20% 94%;
-    --secondary-foreground: 20 10% 5%;
+    --secondary: 177 77% 95%;
+    --secondary-foreground: 183 70% 25%;
 
-    --muted: 30 20% 94%;
-    --muted-foreground: 25 5% 45%;
+    --muted: 177 77% 95%;
+    --muted-foreground: 215 25% 40%;
 
-    --accent: 30 30% 82%;
-    --accent-foreground: 20 10% 5%;
+    --accent: 181 59% 45%;
+    --accent-foreground: 210 40% 98%;
 
     --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 60 30% 96%;
+    --destructive-foreground: 210 40% 98%;
 
-    --border: 20 10% 85%;
-    --input: 20 10% 85%;
-    --ring: 24 5.7% 82.9%;
+    --border: 214 32% 91%;
+    --input: 214 32% 91%;
+    --ring: 183 70% 25%;
 
     --radius: 0.5rem;
   }
@@ -69,5 +69,31 @@
 @layer components {
   .glass-card {
     @apply bg-white/70 backdrop-blur-md border border-white/80 shadow-sm;
+  }
+  
+  .feature-card {
+    @apply p-6 rounded-xl bg-white shadow-sm border border-gray-100 hover:shadow-md transition-all duration-300;
+  }
+  
+  .sustainability-gradient {
+    @apply bg-gradient-to-r from-teal-700 via-teal-600 to-teal-500 text-white;
+  }
+  
+  .section-title {
+    @apply text-3xl md:text-4xl font-bold mb-4;
+  }
+  
+  .section-description {
+    @apply text-lg text-foreground/80 max-w-3xl mx-auto;
+  }
+}
+
+@layer utilities {
+  .content-auto {
+    content-visibility: auto;
+  }
+  
+  .focus-ring {
+    @apply focus:outline-none focus:ring-2 focus:ring-bombay focus:ring-offset-2;
   }
 }
