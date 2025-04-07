@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { MapPin, Phone, Mail, Linkedin, Twitter } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -17,7 +16,6 @@ import {
 import * as z from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
 
-// Define form validation schema
 const formSchema = z.object({
   name: z.string().min(2, { message: 'Name must be at least 2 characters' }),
   email: z.string().email({ message: 'Please enter a valid email address' }),
@@ -42,9 +40,6 @@ const Contact = () => {
 
   const onSubmit = (data: FormValues) => {
     console.log('Form data submitted:', data);
-    
-    // Here you would typically send the data to a server or API
-    // For now, we'll just log it and show a success message
     
     toast({
       title: "Message sent successfully!",
@@ -79,10 +74,9 @@ const Contact = () => {
             </div>
             
             <div className="flex space-x-4">
-              <a href="https://linkedin.com/in/theresa-ronnie" target="_blank" rel="noopener noreferrer" className="bg-white/10 hover:bg-white/20 p-3 rounded-full transition-colors">
+              <a href="https://www.linkedin.com/in/theresaronnie/" target="_blank" rel="noopener noreferrer" className="bg-white/10 hover:bg-white/20 p-3 rounded-full transition-colors">
                 <Linkedin className="h-5 w-5" />
               </a>
-              
             </div>
             
             <div className="mt-12">

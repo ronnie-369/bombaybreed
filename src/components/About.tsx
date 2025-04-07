@@ -1,6 +1,7 @@
 import React from 'react';
 import { Check, Award, Star, LinkedinIcon } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+
 const About = () => {
   const expertise = ["Proven Expertise", "Strategic Insighting", "Data-Led Approach", "Risk Management", "Stakeholder Engagement", "Innovation in Communication", "Tracking Compliance & Standards", "Cross-Functional Collaboration", "Long-term Vision"];
   const experience = [{
@@ -41,12 +42,11 @@ const About = () => {
             
             <div className="flex flex-col sm:flex-row items-center gap-4 mb-8">
               <Button asChild className="flex items-center space-x-2 bg-[#0077B5] hover:bg-[#0077B5]/80">
-                <a href="https://linkedin.com/in/theresa-ronnie" target="_blank" rel="noopener noreferrer">
+                <a href="https://www.linkedin.com/in/theresaronnie/" target="_blank" rel="noopener noreferrer">
                   <LinkedinIcon className="h-5 w-5 mr-2" />
                   <span>Connect on LinkedIn</span>
                 </a>
               </Button>
-              
             </div>
             
             <div>
