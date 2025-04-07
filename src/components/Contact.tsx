@@ -74,9 +74,7 @@ const Contact = () => {
             
             <div className="mt-12">
               <h3 className="text-xl font-semibold mb-4">Basic Consulting Retainer for the CMO</h3>
-              <p className="text-white/80 mb-4">
-                Call to find out more about our consulting services tailored for CMOs.
-              </p>
+              
               
             </div>
           </div>
