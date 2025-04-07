@@ -50,6 +50,14 @@ const Contact = () => {
   return (
     <footer id="contact" className="bg-bombay text-white">
       <div className="container mx-auto max-w-7xl px-4 py-12 md:py-16">
+        <div className="flex justify-center mb-10">
+          <img 
+            src="/lovable-uploads/e60b1171-45a4-482e-be0f-6c57a632c07e.png"
+            alt="Bombay Breed Logo" 
+            className="h-16"
+          />
+        </div>
+        
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 md:gap-16">
           <div className="space-y-8">
             <div>

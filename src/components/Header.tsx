@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import { Menu, X } from 'lucide-react';
 import { Button } from "@/components/ui/button";
@@ -13,12 +14,16 @@ const Header = () => {
     <header className="fixed w-full bg-white/80 backdrop-blur-md z-50 shadow-sm">
       <div className="container mx-auto px-4 md:px-6 py-4 flex items-center justify-between">
         <div className="flex items-center">
-          <a href="/" className="text-2xl font-bold text-bombay">
-            BOMBAY BREED
+          <a href="/" className="flex items-center">
+            <img 
+              src="/lovable-uploads/e60b1171-45a4-482e-be0f-6c57a632c07e.png"
+              alt="Bombay Breed Logo" 
+              className="h-10 md:h-12"
+            />
+            <span className="hidden md:block text-xs text-bombay-light ml-2 mt-2">
+              Strategic Communications<br />Advisory Services
+            </span>
           </a>
-          <span className="hidden md:block text-xs text-bombay-light ml-2 mt-2">
-            Strategic Communications<br />Advisory Services
-          </span>
         </div>
 
         <nav className="hidden md:flex items-center space-x-8">
@@ -44,12 +49,12 @@ const Header = () => {
               Blog
             </a>
             <span className="text-foreground/40">|</span>
-            <a href="https://linkedin.com/in/theresa-ronnie" target="_blank" rel="noopener noreferrer" className="text-foreground/80 hover:text-bombay transition-colors">
+            <a href="https://www.linkedin.com/in/theresaronnie/" target="_blank" rel="noopener noreferrer" className="text-foreground/80 hover:text-bombay transition-colors">
               LinkedIn
             </a>
           </div>
           <Button className="bg-bombay hover:bg-bombay-light text-white">
-            Contact Us
+            <a href="#contact">Contact Us</a>
           </Button>
         </nav>
 
@@ -103,7 +108,7 @@ const Header = () => {
                 Blog
               </a>
               <span className="text-foreground/40">|</span>
-              <a href="https://linkedin.com/in/theresa-ronnie" target="_blank" rel="noopener noreferrer" className="text-foreground/80 hover:text-bombay transition-colors">
+              <a href="https://www.linkedin.com/in/theresaronnie/" target="_blank" rel="noopener noreferrer" className="text-foreground/80 hover:text-bombay transition-colors">
                 LinkedIn
               </a>
             </div>
@@ -111,7 +116,7 @@ const Header = () => {
               className="bg-bombay hover:bg-bombay-light text-white w-full"
               onClick={toggleMenu}
             >
-              Contact Us
+              <a href="#contact">Contact Us</a>
             </Button>
           </div>
         </div>
