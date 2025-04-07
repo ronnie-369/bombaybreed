@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { MapPin, Phone, Mail, Linkedin, Twitter } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -8,6 +9,7 @@ import { useToast } from '@/hooks/use-toast';
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
 import * as z from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
+
 const formSchema = z.object({
   name: z.string().min(2, {
     message: 'Name must be at least 2 characters'
@@ -20,11 +22,12 @@ const formSchema = z.object({
     message: 'Message must be at least 5 characters'
   })
 });
+
 type FormValues = z.infer<typeof formSchema>;
+
 const Contact = () => {
-  const {
-    toast
-  } = useToast();
+  const { toast } = useToast();
+  
   const form = useForm<FormValues>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -34,6 +37,7 @@ const Contact = () => {
       message: ''
     }
   });
+
   const onSubmit = (data: FormValues) => {
     console.log('Form data submitted:', data);
     toast({
@@ -42,16 +46,20 @@ const Contact = () => {
     });
     form.reset();
   };
-  return <footer id="contact" className="bg-bombay text-white">
-      <div className="container mx-auto">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 py-16 px-4 md:px-8">
-          <div>
-            <h2 className="text-3xl font-bold mb-6">Contact</h2>
-            <p className="mb-8 text-white/80 max-w-md">
-              We need to stay on the right side of Climate Action. Because, the children.
-            </p>
+
+  return (
+    <footer id="contact" className="bg-bombay text-white">
+      <div className="container mx-auto max-w-7xl px-4 py-12 md:py-16">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 md:gap-16">
+          <div className="space-y-8">
+            <div>
+              <h2 className="text-3xl font-bold mb-4">Contact</h2>
+              <p className="mb-6 text-white/80 max-w-md">
+                We need to stay on the right side of Climate Action. Because, the children.
+              </p>
+            </div>
             
-            <div className="space-y-4 mb-8">
+            <div className="space-y-4">
               <div className="flex items-center">
                 <Phone className="h-5 w-5 mr-3 text-bombay-accent" />
                 <span>+91-9916090806</span>
@@ -72,14 +80,12 @@ const Contact = () => {
               </a>
             </div>
             
-            <div className="mt-12">
-              <h3 className="text-xl font-semibold mb-4">Basic Consulting Retainer for the CMO</h3>
-              
-              
+            <div>
+              <h3 className="text-xl font-semibold mb-3">Basic Consulting Retainer for the CMO</h3>
             </div>
           </div>
           
-          <div className="bg-white/10 rounded-2xl p-6 md:p-8">
+          <div className="bg-white/10 rounded-2xl p-6 md:p-8 h-fit">
             <h3 className="text-xl font-semibold mb-6">Send us a message</h3>
             <Form {...form}>
               <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
@@ -129,15 +135,16 @@ const Contact = () => {
           </div>
         </div>
         
-        <div className="border-t border-white/20 py-6 px-4 md:px-8 flex flex-col md:flex-row justify-between items-center text-white/60 text-sm">
+        <div className="border-t border-white/20 mt-12 py-6 flex flex-col md:flex-row justify-between items-center text-white/60 text-sm">
           <p>© {new Date().getFullYear()} Bombay Breed. All rights reserved.</p>
           <div className="flex space-x-6 mt-4 md:mt-0">
             <a href="https://theclimatedesk.substack.com/" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">Blog</a>
-            <a href="https://linkedin.com/in/theresa-ronnie" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">LinkedIn</a>
-            
+            <a href="https://www.linkedin.com/in/theresaronnie/" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">LinkedIn</a>
           </div>
         </div>
       </div>
-    </footer>;
+    </footer>
+  );
 };
+
 export default Contact;
