@@ -1,9 +1,7 @@
-
 import React from 'react';
 import { MapPin, Phone, Mail, Linkedin, Twitter } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
-
 const Contact = () => {
   return <footer id="contact" className="bg-bombay text-white">
       <div className="container mx-auto">
@@ -33,9 +31,7 @@ const Contact = () => {
               <a href="https://linkedin.com/in/theresa-ronnie" target="_blank" rel="noopener noreferrer" className="bg-white/10 hover:bg-white/20 p-3 rounded-full transition-colors">
                 <Linkedin className="h-5 w-5" />
               </a>
-              <a href="#" className="bg-white/10 hover:bg-white/20 p-3 rounded-full transition-colors">
-                <Twitter className="h-5 w-5" />
-              </a>
+              
             </div>
             
             <div className="mt-12">
@@ -78,14 +74,7 @@ const Contact = () => {
         <div className="border-t border-white/20 py-6 px-4 md:px-8 flex flex-col md:flex-row justify-between items-center text-white/60 text-sm">
           <p>© {new Date().getFullYear()} Bombay Breed. All rights reserved.</p>
           <div className="flex space-x-6 mt-4 md:mt-0">
-            <a 
-              href="https://theclimatedesk.substack.com/" 
-              target="_blank" 
-              rel="noopener noreferrer" 
-              className="hover:text-white transition-colors"
-            >
-              Blog
-            </a>
+            <a href="https://blog.bombaybreed.com" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">Blog</a>
             <a href="https://linkedin.com/in/theresa-ronnie" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">LinkedIn</a>
             <a href="#" className="hover:text-white transition-colors">Latest Campaign</a>
           </div>
@@ -94,4 +83,3 @@ const Contact = () => {
     </footer>;
 };
 export default Contact;
-
