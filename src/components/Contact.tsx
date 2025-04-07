@@ -1,12 +1,9 @@
-
 import React from 'react';
 import { MapPin, Phone, Mail, Linkedin, Twitter } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
-
 const Contact = () => {
-  return (
-    <footer id="contact" className="bg-bombay text-white">
+  return <footer id="contact" className="bg-bombay text-white">
       <div className="container mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 py-16 px-4 md:px-8">
           <div>
@@ -44,9 +41,7 @@ const Contact = () => {
               <p className="text-white/80 mb-4">
                 Call to find out more about our consulting services tailored for CMOs.
               </p>
-              <Button className="bg-white text-bombay hover:bg-bombay-accent hover:text-white transition-colors">
-                Schedule a Call
-              </Button>
+              
             </div>
           </div>
           
@@ -56,38 +51,20 @@ const Contact = () => {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div>
                   <label htmlFor="name" className="block text-sm mb-1">Name</label>
-                  <Input 
-                    id="name" 
-                    placeholder="Your name" 
-                    className="bg-white/5 border-white/20 placeholder:text-white/50 focus:border-bombay-accent" 
-                  />
+                  <Input id="name" placeholder="Your name" className="bg-white/5 border-white/20 placeholder:text-white/50 focus:border-bombay-accent" />
                 </div>
                 <div>
                   <label htmlFor="email" className="block text-sm mb-1">Email</label>
-                  <Input 
-                    id="email" 
-                    type="email" 
-                    placeholder="Your email" 
-                    className="bg-white/5 border-white/20 placeholder:text-white/50 focus:border-bombay-accent" 
-                  />
+                  <Input id="email" type="email" placeholder="Your email" className="bg-white/5 border-white/20 placeholder:text-white/50 focus:border-bombay-accent" />
                 </div>
               </div>
               <div>
                 <label htmlFor="company" className="block text-sm mb-1">Company</label>
-                <Input 
-                  id="company" 
-                  placeholder="Your company" 
-                  className="bg-white/5 border-white/20 placeholder:text-white/50 focus:border-bombay-accent" 
-                />
+                <Input id="company" placeholder="Your company" className="bg-white/5 border-white/20 placeholder:text-white/50 focus:border-bombay-accent" />
               </div>
               <div>
                 <label htmlFor="message" className="block text-sm mb-1">Message</label>
-                <textarea 
-                  id="message" 
-                  rows={4} 
-                  className="w-full rounded-md bg-white/5 border border-white/20 placeholder:text-white/50 focus:border-bombay-accent p-2"
-                  placeholder="Your message"
-                ></textarea>
+                <textarea id="message" rows={4} className="w-full rounded-md bg-white/5 border border-white/20 placeholder:text-white/50 focus:border-bombay-accent p-2" placeholder="Your message"></textarea>
               </div>
               <Button className="bg-white text-bombay hover:bg-bombay-accent hover:text-white transition-colors w-full">
                 Send Message
@@ -105,8 +82,6 @@ const Contact = () => {
           </div>
         </div>
       </div>
-    </footer>
-  );
+    </footer>;
 };
-
 export default Contact;
