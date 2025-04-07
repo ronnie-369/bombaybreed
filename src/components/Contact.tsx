@@ -5,50 +5,43 @@ import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { useForm } from 'react-hook-form';
 import { useToast } from '@/hooks/use-toast';
-import {
-  Form,
-  FormControl,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from '@/components/ui/form';
+import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
 import * as z from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
-
 const formSchema = z.object({
-  name: z.string().min(2, { message: 'Name must be at least 2 characters' }),
-  email: z.string().email({ message: 'Please enter a valid email address' }),
+  name: z.string().min(2, {
+    message: 'Name must be at least 2 characters'
+  }),
+  email: z.string().email({
+    message: 'Please enter a valid email address'
+  }),
   company: z.string().optional(),
-  message: z.string().min(5, { message: 'Message must be at least 5 characters' }),
+  message: z.string().min(5, {
+    message: 'Message must be at least 5 characters'
+  })
 });
-
 type FormValues = z.infer<typeof formSchema>;
-
 const Contact = () => {
-  const { toast } = useToast();
-  
+  const {
+    toast
+  } = useToast();
   const form = useForm<FormValues>({
     resolver: zodResolver(formSchema),
     defaultValues: {
       name: '',
       email: '',
       company: '',
-      message: '',
-    },
+      message: ''
+    }
   });
-
   const onSubmit = (data: FormValues) => {
     console.log('Form data submitted:', data);
-    
     toast({
       title: "Message sent successfully!",
-      description: "We'll get back to you as soon as possible.",
+      description: "We'll get back to you as soon as possible."
     });
-    
     form.reset();
   };
-
   return <footer id="contact" className="bg-bombay text-white">
       <div className="container mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 py-16 px-4 md:px-8">
@@ -93,77 +86,43 @@ const Contact = () => {
             <Form {...form}>
               <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  <FormField
-                    control={form.control}
-                    name="name"
-                    render={({ field }) => (
-                      <FormItem>
+                  <FormField control={form.control} name="name" render={({
+                  field
+                }) => <FormItem>
                         <FormLabel className="text-sm mb-1">Name</FormLabel>
                         <FormControl>
-                          <Input
-                            placeholder="Your name"
-                            className="bg-white/5 border-white/20 placeholder:text-white/50 focus:border-bombay-accent"
-                            {...field}
-                          />
+                          <Input placeholder="Your name" className="bg-white/5 border-white/20 placeholder:text-white/50 focus:border-bombay-accent" {...field} />
                         </FormControl>
                         <FormMessage className="text-xs text-red-300" />
-                      </FormItem>
-                    )}
-                  />
-                  <FormField
-                    control={form.control}
-                    name="email"
-                    render={({ field }) => (
-                      <FormItem>
+                      </FormItem>} />
+                  <FormField control={form.control} name="email" render={({
+                  field
+                }) => <FormItem>
                         <FormLabel className="text-sm mb-1">Email</FormLabel>
                         <FormControl>
-                          <Input
-                            type="email"
-                            placeholder="Your email"
-                            className="bg-white/5 border-white/20 placeholder:text-white/50 focus:border-bombay-accent"
-                            {...field}
-                          />
+                          <Input type="email" placeholder="Your email" className="bg-white/5 border-white/20 placeholder:text-white/50 focus:border-bombay-accent" {...field} />
                         </FormControl>
                         <FormMessage className="text-xs text-red-300" />
-                      </FormItem>
-                    )}
-                  />
+                      </FormItem>} />
                 </div>
-                <FormField
-                  control={form.control}
-                  name="company"
-                  render={({ field }) => (
-                    <FormItem>
+                <FormField control={form.control} name="company" render={({
+                field
+              }) => <FormItem>
                       <FormLabel className="text-sm mb-1">Company</FormLabel>
                       <FormControl>
-                        <Input
-                          placeholder="Your company"
-                          className="bg-white/5 border-white/20 placeholder:text-white/50 focus:border-bombay-accent"
-                          {...field}
-                        />
+                        <Input placeholder="Your company" className="bg-white/5 border-white/20 placeholder:text-white/50 focus:border-bombay-accent" {...field} />
                       </FormControl>
                       <FormMessage className="text-xs text-red-300" />
-                    </FormItem>
-                  )}
-                />
-                <FormField
-                  control={form.control}
-                  name="message"
-                  render={({ field }) => (
-                    <FormItem>
+                    </FormItem>} />
+                <FormField control={form.control} name="message" render={({
+                field
+              }) => <FormItem>
                       <FormLabel className="text-sm mb-1">Message</FormLabel>
                       <FormControl>
-                        <Textarea
-                          rows={4}
-                          className="w-full rounded-md bg-white/5 border border-white/20 placeholder:text-white/50 focus:border-bombay-accent p-2"
-                          placeholder="Your message"
-                          {...field}
-                        />
+                        <Textarea rows={4} className="w-full rounded-md bg-white/5 border border-white/20 placeholder:text-white/50 focus:border-bombay-accent p-2" placeholder="Your message" {...field} />
                       </FormControl>
                       <FormMessage className="text-xs text-red-300" />
-                    </FormItem>
-                  )}
-                />
+                    </FormItem>} />
                 <Button type="submit" className="bg-white text-bombay hover:bg-bombay-accent hover:text-white transition-colors w-full">
                   Send Message
                 </Button>
@@ -177,7 +136,7 @@ const Contact = () => {
           <div className="flex space-x-6 mt-4 md:mt-0">
             <a href="https://theclimatedesk.substack.com/" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">Blog</a>
             <a href="https://linkedin.com/in/theresa-ronnie" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">LinkedIn</a>
-            <a href="#" className="hover:text-white transition-colors">Latest Campaign</a>
+            
           </div>
         </div>
       </div>
