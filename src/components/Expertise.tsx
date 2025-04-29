@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { Check, AlertCircle, Box } from 'lucide-react';
+import { Check, Info, Package, Users, Target, BarChart } from 'lucide-react';
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
 const Expertise = () => {
@@ -51,14 +51,14 @@ const Expertise = () => {
           {/* Complexities Section */}
           <div className="bg-white rounded-2xl shadow-sm p-6 md:p-8">
             <h3 className="text-xl font-semibold mb-6 flex items-center">
-              <AlertCircle className="h-5 w-5 mr-2 text-bombay" />
+              <Package className="h-5 w-5 mr-2 text-bombay" />
               Complexities
             </h3>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               {complexities.map((item, index) => (
                 <Card key={index} className="border-bombay-subtle/20 hover:shadow-md transition-all">
                   <CardContent className="p-4 flex items-center">
-                    <Box className="h-4 w-4 text-bombay mr-2 shrink-0" />
+                    <Package className="h-4 w-4 text-bombay mr-2 shrink-0" />
                     <span className="text-sm">{item}</span>
                   </CardContent>
                 </Card>
@@ -69,7 +69,7 @@ const Expertise = () => {
           {/* Stakeholders Section */}
           <div className="bg-white rounded-2xl shadow-sm p-6 md:p-8">
             <h3 className="text-xl font-semibold mb-6 flex items-center">
-              <AlertCircle className="h-5 w-5 mr-2 text-bombay" />
+              <Users className="h-5 w-5 mr-2 text-bombay" />
               Stakeholders
             </h3>
             <div className="space-y-6">
@@ -92,7 +92,7 @@ const Expertise = () => {
                   {stakeholders.external.map((item, index) => (
                     <Card key={index} className="border-bombay-subtle/20 hover:shadow-md transition-all">
                       <CardContent className="p-3 flex items-center">
-                        <Check className="h-4 w-4 text-bombay mr-2 shrink-0" />
+                        <Users className="h-4 w-4 text-bombay mr-2 shrink-0" />
                         <span className="text-sm">{item}</span>
                       </CardContent>
                     </Card>
@@ -105,7 +105,7 @@ const Expertise = () => {
           {/* Market Dynamics Section */}
           <div className="bg-white rounded-2xl shadow-sm p-6 md:p-8">
             <h3 className="text-xl font-semibold mb-6 flex items-center">
-              <AlertCircle className="h-5 w-5 mr-2 text-bombay" />
+              <Target className="h-5 w-5 mr-2 text-bombay" />
               Market Dynamics
             </h3>
             <p className="mb-4 text-foreground/80 text-sm">
@@ -115,7 +115,7 @@ const Expertise = () => {
               {stakeholders.dynamics.map((item, index) => (
                 <Card key={index} className="border-bombay-subtle/20 hover:shadow-md transition-all">
                   <CardContent className="p-3 flex items-center">
-                    <Check className="h-4 w-4 text-bombay mr-2 shrink-0" />
+                    <BarChart className="h-4 w-4 text-bombay mr-2 shrink-0" />
                     <span className="text-sm">{item}</span>
                   </CardContent>
                 </Card>
