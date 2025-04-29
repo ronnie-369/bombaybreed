@@ -1,11 +1,8 @@
-
 import React from 'react';
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from 'lucide-react';
-
 const Hero = () => {
-  return (
-    <section className="pt-28 pb-16 md:pt-40 md:pb-24 px-4 md:px-8 bg-gradient-to-b from-bombay-background to-white overflow-hidden">
+  return <section className="pt-28 pb-16 md:pt-40 md:pb-24 px-4 md:px-8 bg-gradient-to-b from-bombay-background to-white overflow-hidden">
       <div className="container mx-auto">
         <div className="flex flex-col md:flex-row items-center gap-8 md:gap-16">
           <div className="md:w-1/2 space-y-6 text-center md:text-left">
@@ -35,11 +32,7 @@ const Hero = () => {
             <div className="absolute -inset-4 bg-gradient-to-br from-bombay-accent/20 to-bombay-subtle/40 rounded-full blur-3xl"></div>
             <div className="relative">
               <div className="aspect-square w-full max-w-md mx-auto overflow-hidden rounded-3xl shadow-xl">
-                <img 
-                  src="https://images.unsplash.com/photo-1551836022-4c4c79ecde51" 
-                  alt="Sustainability Communications" 
-                  className="w-full h-full object-cover"
-                />
+                <img alt="Sustainability Communications" className="w-full h-full object-cover" src="/lovable-uploads/44d63597-9200-4941-8375-9a5a0aa338fe.png" />
               </div>
               <div className="absolute -bottom-6 -right-6 bg-white/90 backdrop-blur-sm p-4 rounded-2xl shadow-lg max-w-xs">
                 <p className="text-sm font-medium text-bombay">
@@ -50,8 +43,6 @@ const Hero = () => {
           </div>
         </div>
       </div>
-    </section>
-  );
+    </section>;
 };
-
 export default Hero;
