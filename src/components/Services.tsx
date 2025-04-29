@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { Shield, Zap, Trophy, Rocket, Star, ShieldCheck } from 'lucide-react';
 
@@ -17,7 +18,7 @@ const ServiceCard = ({
         </div>
         <div>
           <h3 className="text-xl font-semibold mb-2">{title}</h3>
-          <p className="text-foreground/70">{description}</p>
+          <p className="text-foreground/70 text-[0.9em]">{description}</p>
         </div>
       </div>
     </div>;
