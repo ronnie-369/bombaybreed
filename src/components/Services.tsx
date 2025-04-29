@@ -1,5 +1,6 @@
 import React from 'react';
-import { Award, MessageCircle, Users, TrendingUp, Database, AlertTriangle } from 'lucide-react';
+import { Shield, Zap, Trophy, Rocket, Star, ShieldCheck } from 'lucide-react';
+
 const ServiceCard = ({
   icon: Icon,
   title,
@@ -21,29 +22,30 @@ const ServiceCard = ({
       </div>
     </div>;
 };
+
 const Services = () => {
   const services = [{
-    icon: MessageCircle,
+    icon: Zap,
     title: "Strategic Communications",
     description: "Expert guidance in translating sustainability initiatives into clear, compelling narratives."
   }, {
-    icon: Award,
+    icon: Trophy,
     title: "Reputation Management",
     description: "Advisory on brand reputation management, fostering trust and loyalty among stakeholders."
   }, {
-    icon: Users,
+    icon: Star,
     title: "Stakeholder Engagement",
     description: "Tailored messaging to engage diverse audiences internally and externally."
   }, {
-    icon: TrendingUp,
+    icon: Rocket,
     title: "Measurable Impact",
     description: "Establish metrics that demonstrate the effectiveness of your sustainability communications."
   }, {
-    icon: Database,
+    icon: Shield,
     title: "Data and Metrics",
     description: "Transform complex sustainability data into compelling narratives and reports."
   }, {
-    icon: AlertTriangle,
+    icon: ShieldCheck,
     title: "Crisis Management",
     description: "Prepare and respond to sustainability-related challenges with strategic communications."
   }];
@@ -60,4 +62,5 @@ const Services = () => {
       </div>
     </section>;
 };
+
 export default Services;
