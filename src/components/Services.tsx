@@ -57,7 +57,7 @@ const Services = () => {
       <div className="container mx-auto">
         <div className="text-center max-w-3xl mx-auto mb-16">
           <h2 className="text-3xl md:text-4xl font-bold mb-4">What the CMO Needs</h2>
-          <p className="text-lg text-foreground/80">
+          <p className="text-lg text-foreground/80 font-bold">
             In today's business environment, ESG and sustainability communication is non-negotiable. 
             We provide the expertise you need to communicate effectively.
           </p>
