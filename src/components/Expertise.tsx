@@ -72,33 +72,18 @@ const Expertise = () => {
               <Users className="h-5 w-5 mr-2 text-bombay" />
               Stakeholders
             </h3>
-            <div className="space-y-6">
-              <div>
-                <h4 className="font-medium mb-3">Internal Stakeholders</h4>
-                <div className="grid grid-cols-1 gap-3">
-                  {stakeholders.internal.map((item, index) => (
-                    <Card key={index} className="border-bombay-subtle/20 hover:shadow-md transition-all">
-                      <CardContent className="p-3 flex items-center">
-                        <Check className="h-4 w-4 text-bombay mr-2 shrink-0" />
-                        <span className="text-sm">{item}</span>
-                      </CardContent>
-                    </Card>
-                  ))}
-                </div>
-              </div>
-              <div>
-                <h4 className="font-medium mb-3">External Stakeholders</h4>
-                <div className="grid grid-cols-1 gap-3">
-                  {stakeholders.external.map((item, index) => (
-                    <Card key={index} className="border-bombay-subtle/20 hover:shadow-md transition-all">
-                      <CardContent className="p-3 flex items-center">
-                        <Users className="h-4 w-4 text-bombay mr-2 shrink-0" />
-                        <span className="text-sm">{item}</span>
-                      </CardContent>
-                    </Card>
-                  ))}
-                </div>
-              </div>
+            <p className="mb-4 text-foreground/80 text-sm">
+              Effective communication with diverse stakeholder groups requires tailored strategies and messaging.
+            </p>
+            <div className="grid grid-cols-1 gap-3">
+              {[...stakeholders.internal, ...stakeholders.external].map((item, index) => (
+                <Card key={index} className="border-bombay-subtle/20 hover:shadow-md transition-all">
+                  <CardContent className="p-3 flex items-center">
+                    <Users className="h-4 w-4 text-bombay mr-2 shrink-0" />
+                    <span className="text-sm">{item}</span>
+                  </CardContent>
+                </Card>
+              ))}
             </div>
           </div>
           
