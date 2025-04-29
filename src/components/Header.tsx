@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { Menu, X } from 'lucide-react';
 import { Button } from "@/components/ui/button";
@@ -19,17 +18,10 @@ const Header = () => {
           <a href="/" className="flex items-center">
             <img 
               src="/lovable-uploads/e3db2d3c-99b5-412e-a31f-127be1e22543.png" 
-              alt="BOMBAY BREED" 
-              className="h-8 md:h-10"
+              alt="BOMBAY BREED - Strategic Communications Advisory Services" 
+              className="h-10 md:h-12"
             />
           </a>
-          <div className="hidden md:block ml-2 mt-1">
-            <img 
-              src="/lovable-uploads/44d63597-9200-4941-8375-9a5a0aa338fe.png" 
-              alt="Strategic Communications Advisory Services" 
-              className="h-6 object-contain"
-            />
-          </div>
         </div>
 
         <nav className="hidden md:flex items-center space-x-8">
