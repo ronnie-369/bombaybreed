@@ -2,6 +2,9 @@
 import React from 'react';
 import { Check, Info, Package, Users, Target, BarChart } from 'lucide-react';
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import { Toggle, toggleVariants } from "@/components/ui/toggle";
+import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
 
 const Expertise = () => {
   const complexities = [
@@ -75,14 +78,17 @@ const Expertise = () => {
             <p className="mb-4 text-foreground/80 text-sm">
               Effective communication with diverse stakeholder groups requires tailored strategies and messaging.
             </p>
-            <div className="grid grid-cols-1 gap-3">
+            <div className="grid grid-cols-2 sm:grid-cols-2 gap-2">
               {[...stakeholders.internal, ...stakeholders.external].map((item, index) => (
-                <Card key={index} className="border-bombay-subtle/20 hover:shadow-md transition-all">
-                  <CardContent className="p-3 flex items-center">
-                    <Users className="h-4 w-4 text-bombay mr-2 shrink-0" />
-                    <span className="text-sm">{item}</span>
-                  </CardContent>
-                </Card>
+                <Toggle 
+                  key={index} 
+                  variant="outline" 
+                  className="h-auto py-2 px-3 justify-start gap-2 data-[state=on]:bg-bombay-subtle data-[state=on]:text-bombay border-bombay-subtle/30 animate-fade-in"
+                  style={{ animationDelay: `${index * 50}ms` }}
+                >
+                  <Users className="h-3.5 w-3.5 text-bombay shrink-0" />
+                  <span className="text-xs truncate">{item}</span>
+                </Toggle>
               ))}
             </div>
           </div>
