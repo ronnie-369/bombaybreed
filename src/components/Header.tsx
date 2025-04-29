@@ -2,9 +2,11 @@
 import React, { useState } from 'react';
 import { Menu, X } from 'lucide-react';
 import { Button } from "@/components/ui/button";
+import { useIsMobile } from '@/hooks/use-mobile';
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const isMobile = useIsMobile();
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -21,9 +23,13 @@ const Header = () => {
               className="h-8 md:h-10"
             />
           </a>
-          <span className="hidden md:block text-xs text-bombay-light ml-2 mt-2">
-            Strategic Communications<br />Advisory Services
-          </span>
+          <div className="hidden md:block ml-2 mt-1">
+            <img 
+              src="/lovable-uploads/44d63597-9200-4941-8375-9a5a0aa338fe.png" 
+              alt="Strategic Communications Advisory Services" 
+              className="h-6 object-contain"
+            />
+          </div>
         </div>
 
         <nav className="hidden md:flex items-center space-x-8">
