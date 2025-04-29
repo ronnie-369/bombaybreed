@@ -35,7 +35,7 @@ const Hero = () => {
               <div className="aspect-square w-full max-w-md mx-auto overflow-hidden rounded-3xl shadow-xl">
                 <img 
                   alt="Sustainability Communications" 
-                  className="w-full h-full object-contain" 
+                  className="w-full h-full object-cover object-center scale-90" 
                   src="/lovable-uploads/44d63597-9200-4941-8375-9a5a0aa338fe.png" 
                 />
               </div>
