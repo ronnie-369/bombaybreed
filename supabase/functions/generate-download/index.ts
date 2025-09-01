@@ -65,15 +65,37 @@ const handler = async (req: Request): Promise<Response> => {
       );
     }
 
+    // List files in the Reports bucket to debug what's available
+    console.log('Checking available files in Reports bucket...');
+    const { data: filesList, error: listError } = await supabase.storage
+      .from('Reports')
+      .list();
+
+    if (listError) {
+      console.error('Error listing files in Reports bucket:', listError);
+    } else {
+      console.log('Available files in Reports bucket:', filesList?.map(f => f.name));
+    }
+
     // Generate signed URL for the report (valid for 1 hour)
+    console.log(`Attempting to create signed URL for file: ${fileName}`);
     const { data: signedUrlData, error: urlError } = await supabase.storage
       .from('Reports')
       .createSignedUrl(fileName, 3600); // 1 hour expiry
 
     if (urlError || !signedUrlData) {
-      console.error('Failed to generate signed URL:', urlError);
+      console.error('Failed to generate signed URL:', {
+        error: urlError,
+        fileName: fileName,
+        reportTitle: reportTitle,
+        availableFiles: filesList?.map(f => f.name) || 'Could not retrieve file list'
+      });
       return new Response(
-        JSON.stringify({ error: 'Failed to generate download link' }),
+        JSON.stringify({ 
+          error: 'Failed to generate download link', 
+          details: urlError?.message || 'Unknown error',
+          requestedFile: fileName
+        }),
         { 
           status: 500, 
           headers: { 'Content-Type': 'application/json', ...corsHeaders } 
