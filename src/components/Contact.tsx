@@ -38,13 +38,52 @@ const Contact = () => {
     }
   });
 
-  const onSubmit = (data: FormValues) => {
-    console.log('Form data submitted:', data);
-    toast({
-      title: "Message sent successfully!",
-      description: "We'll get back to you as soon as possible."
-    });
-    form.reset();
+  const onSubmit = async (data: FormValues) => {
+    try {
+      // Sanitize input data
+      const sanitizedData = {
+        name: data.name.trim(),
+        email: data.email.trim().toLowerCase(),
+        company: data.company?.trim() || '',
+        message: data.message.trim()
+      };
+
+      // Import Supabase client
+      const { supabase } = await import("@/integrations/supabase/client");
+      
+      // Save to contact inquiries table
+      const { error } = await supabase
+        .from('contact_inquiries')
+        .insert({
+          name: sanitizedData.name,
+          email: sanitizedData.email,
+          company: sanitizedData.company,
+          message: sanitizedData.message,
+        });
+
+      if (error) {
+        console.error('Contact form submission error:', error);
+        toast({
+          title: "Message failed to send",
+          description: "Please try again later.",
+          variant: "destructive",
+        });
+      } else {
+        console.log('Contact form data saved:', sanitizedData);
+        toast({
+          title: "Message sent successfully!",
+          description: "We'll get back to you as soon as possible."
+        });
+        form.reset();
+      }
+    } catch (error) {
+      console.error('Contact form submission error:', error);
+      toast({
+        title: "Message failed to send",
+        description: "Please try again later.",
+        variant: "destructive",
+      });
+    }
   };
 
   return (

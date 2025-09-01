@@ -37,12 +37,41 @@ const LeadCaptureForm: React.FC<LeadCaptureFormProps> = ({
     
     try {
       // Save lead to database
+      // Sanitize input data
+      const sanitizedData = {
+        email: formData.email.trim().toLowerCase(),
+        phone: formData.phone.trim().replace(/\s+/g, ''), // Remove spaces
+        consent: formData.consent
+      };
+
+      // Additional validation
+      const emailRegex = /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/;
+      if (!emailRegex.test(sanitizedData.email)) {
+        toast({
+          title: 'Invalid email format',
+          description: 'Please enter a valid email address.',
+          variant: 'destructive',
+        });
+        return;
+      }
+
+      // Basic phone validation (should contain numbers)
+      const phoneRegex = /^\+?[\d\s-()]{7,}$/;
+      if (!phoneRegex.test(formData.phone)) {
+        toast({
+          title: 'Invalid phone format',
+          description: 'Please enter a valid phone number.',
+          variant: 'destructive',
+        });
+        return;
+      }
+
       const { data: leadData, error: leadError } = await supabase
         .from('leads')
         .insert({
-          email: formData.email,
-          phone: formData.phone,
-          marketing_consent: formData.consent,
+          email: sanitizedData.email,
+          phone: sanitizedData.phone,
+          marketing_consent: sanitizedData.consent,
           report_requested: reportTitle
         })
         .select()

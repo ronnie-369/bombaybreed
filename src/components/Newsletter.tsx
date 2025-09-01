@@ -15,15 +15,65 @@ const Newsletter = () => {
 
     setIsLoading(true);
     
-    // Simulate subscription process
-    setTimeout(() => {
+    try {
+      // Sanitize and validate email
+      const sanitizedEmail = email.trim().toLowerCase();
+      
+      // Basic email validation
+      const emailRegex = /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/;
+      if (!emailRegex.test(sanitizedEmail)) {
+        toast({
+          title: "Invalid email",
+          description: "Please enter a valid email address.",
+          variant: "destructive",
+        });
+        setIsLoading(false);
+        return;
+      }
+
+      // Import Supabase client
+      const { supabase } = await import("@/integrations/supabase/client");
+      
+      // Save to newsletter subscribers table
+      const { error } = await supabase
+        .from('newsletter_subscribers')
+        .insert({
+          email: sanitizedEmail,
+        });
+
+      if (error) {
+        console.error('Newsletter subscription error:', error);
+        
+        // Handle duplicate email error
+        if (error.code === '23505') {
+          toast({
+            title: "Already subscribed!",
+            description: "This email is already subscribed to our newsletter.",
+          });
+        } else {
+          toast({
+            title: "Subscription failed",
+            description: "Please try again later.",
+            variant: "destructive",
+          });
+        }
+      } else {
+        toast({
+          title: "Subscription successful!",
+          description: "You'll receive updates from The Climate Desk.",
+        });
+        setEmail('');
+      }
+    } catch (error) {
+      console.error('Newsletter subscription error:', error);
       toast({
-        title: "Subscription successful!",
-        description: "You'll receive updates from The Climate Desk.",
+        title: "Subscription failed",
+        description: "Please try again later.",
+        variant: "destructive",
       });
-      setEmail('');
+    } finally {
       setIsLoading(false);
-    }, 1000);
+    }
   };
 
   return (
