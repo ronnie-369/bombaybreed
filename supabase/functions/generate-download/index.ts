@@ -25,10 +25,22 @@ const handler = async (req: Request): Promise<Response> => {
   }
 
   try {
-    const supabase = createClient(
-      'https://zjiwmdrtuhsrymsuvpfb.supabase.co',
-      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InpqaXdtZHJ0dWhzcnltc3V2cGZiIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTY3Mzk3NzYsImV4cCI6MjA3MjMxNTc3Nn0.6D8BOkjFNNbEzKqAgElZvS8Ki8hezTqjpQpBk-og6do'
-    );
+    // Use environment variables instead of hardcoded credentials
+    const supabaseUrl = Deno.env.get('SUPABASE_URL');
+    const supabaseAnonKey = Deno.env.get('SUPABASE_ANON_KEY');
+    
+    if (!supabaseUrl || !supabaseAnonKey) {
+      console.error('Missing required environment variables: SUPABASE_URL or SUPABASE_ANON_KEY');
+      return new Response(
+        JSON.stringify({ error: 'Server configuration error' }),
+        { 
+          status: 500, 
+          headers: { 'Content-Type': 'application/json', ...corsHeaders } 
+        }
+      );
+    }
+
+    const supabase = createClient(supabaseUrl, supabaseAnonKey);
 
     const { leadId, reportTitle }: DownloadRequest = await req.json();
 
