@@ -253,6 +253,14 @@ const CarbonPlaybook = () => {
         </div>
       </section>
 
+      {/* Author Attribution */}
+      <section className="py-8 px-4 md:px-8 bg-white">
+        <div className="container mx-auto text-center">
+          <p className="text-sm text-foreground/60">
+            <span className="font-medium">Theresa Ronnie</span> - Strategic communications advisory for the emerging Indian carbon market
+          </p>
+        </div>
+      </section>
 
       {/* Lead Capture */}
       <section className="py-20 px-4 md:px-8 bg-gradient-to-b from-bombay-background to-white">
