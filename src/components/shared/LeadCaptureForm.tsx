@@ -6,6 +6,7 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Download, Mail, Phone, CheckCircle } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
+import { supabase } from '@/integrations/supabase/client';
 
 interface LeadCaptureFormProps {
   reportTitle: string;
@@ -25,6 +26,7 @@ const LeadCaptureForm: React.FC<LeadCaptureFormProps> = ({
   });
   const [isLoading, setIsLoading] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [downloadUrl, setDownloadUrl] = useState<string>('');
   const { toast } = useToast();
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -33,16 +35,56 @@ const LeadCaptureForm: React.FC<LeadCaptureFormProps> = ({
 
     setIsLoading(true);
     
-    // Simulate form submission
-    setTimeout(() => {
+    try {
+      // Save lead to database
+      const { data: leadData, error: leadError } = await supabase
+        .from('leads')
+        .insert({
+          email: formData.email,
+          phone: formData.phone,
+          marketing_consent: formData.consent,
+          report_requested: reportTitle
+        })
+        .select()
+        .single();
+
+      if (leadError) throw leadError;
+
+      // Generate download URL via Edge Function
+      const { data, error } = await supabase.functions.invoke('generate-download', {
+        body: { 
+          leadId: leadData.id,
+          reportTitle: reportTitle 
+        }
+      });
+
+      if (error) throw error;
+
+      // Track the download in database
+      await supabase
+        .from('report_downloads')
+        .insert({
+          lead_id: leadData.id,
+          report_name: reportTitle
+        });
+
+      setDownloadUrl(data.downloadUrl);
       setIsSubmitted(true);
-      setIsLoading(false);
       toast({
         title: "Success!",
-        description: "Your download link has been sent to your email.",
+        description: "Your report is ready for download.",
       });
       onSuccess?.();
-    }, 1500);
+    } catch (error) {
+      console.error('Error submitting form:', error);
+      toast({
+        title: "Error",
+        description: "Something went wrong. Please try again.",
+        variant: "destructive"
+      });
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   const handleInputChange = (field: string, value: string | boolean) => {
@@ -61,11 +103,11 @@ const LeadCaptureForm: React.FC<LeadCaptureFormProps> = ({
             Check your email for the download link to access "{reportTitle}".
           </p>
           <Button 
-            onClick={() => window.location.href = 'mailto:'}
+            onClick={() => window.open(downloadUrl, '_blank')}
             className="bg-green-600 hover:bg-green-700 text-white"
           >
-            <Mail className="mr-2 h-4 w-4" />
-            Open Email
+            <Download className="mr-2 h-4 w-4" />
+            Download Report
           </Button>
         </CardContent>
       </Card>

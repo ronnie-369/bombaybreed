@@ -14,7 +14,65 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      leads: {
+        Row: {
+          created_at: string
+          email: string
+          id: string
+          marketing_consent: boolean
+          phone: string
+          report_requested: string
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          email: string
+          id?: string
+          marketing_consent?: boolean
+          phone: string
+          report_requested: string
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          email?: string
+          id?: string
+          marketing_consent?: boolean
+          phone?: string
+          report_requested?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      report_downloads: {
+        Row: {
+          downloaded_at: string
+          id: string
+          lead_id: string
+          report_name: string
+        }
+        Insert: {
+          downloaded_at?: string
+          id?: string
+          lead_id: string
+          report_name: string
+        }
+        Update: {
+          downloaded_at?: string
+          id?: string
+          lead_id?: string
+          report_name?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "report_downloads_lead_id_fkey"
+            columns: ["lead_id"]
+            isOneToOne: false
+            referencedRelation: "leads"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
     }
     Views: {
       [_ in never]: never
