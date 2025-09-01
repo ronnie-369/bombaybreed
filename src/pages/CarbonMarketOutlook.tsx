@@ -246,7 +246,7 @@ const CarbonMarketOutlook = () => {
           </div>
           
           <LeadCaptureForm
-            reportTitle="India Carbon Market Outlook"
+            reportTitle="India Carbon Market Outlook 2025-2030: An Investor's Deep Dive"
             reportDescription="Complete investor's guide to India's $1.4B carbon market opportunity with financial models and risk analysis (2025-2030)"
           />
         </div>

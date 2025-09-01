@@ -231,7 +231,7 @@ const GreenJobsReport = () => {
           </div>
           
           <LeadCaptureForm
-            reportTitle="Green Jobs in India Report"
+            reportTitle="Green Jobs in India: Workforce and Investment Outlook 2025-2030"
             reportDescription="Complete workforce & investment outlook for India's green economy transformation (2025-2030)"
           />
         </div>
