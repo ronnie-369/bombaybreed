@@ -25,12 +25,12 @@ const handler = async (req: Request): Promise<Response> => {
   }
 
   try {
-    // Use environment variables instead of hardcoded credentials
+    // Use service role key for database operations that require elevated permissions
     const supabaseUrl = Deno.env.get('SUPABASE_URL');
-    const supabaseAnonKey = Deno.env.get('SUPABASE_ANON_KEY');
+    const supabaseServiceKey = Deno.env.get('SUPABASE_SERVICE_ROLE_KEY');
     
-    if (!supabaseUrl || !supabaseAnonKey) {
-      console.error('Missing required environment variables: SUPABASE_URL or SUPABASE_ANON_KEY');
+    if (!supabaseUrl || !supabaseServiceKey) {
+      console.error('Missing required environment variables: SUPABASE_URL or SUPABASE_SERVICE_ROLE_KEY');
       return new Response(
         JSON.stringify({ error: 'Server configuration error' }),
         { 
@@ -40,7 +40,7 @@ const handler = async (req: Request): Promise<Response> => {
       );
     }
 
-    const supabase = createClient(supabaseUrl, supabaseAnonKey);
+    const supabase = createClient(supabaseUrl, supabaseServiceKey);
 
     const { leadId, reportTitle }: DownloadRequest = await req.json();
 
