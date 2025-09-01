@@ -4,6 +4,9 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Index from "./pages/Index";
+import GreenJobsReport from "./pages/GreenJobsReport";
+import CarbonMarketOutlook from "./pages/CarbonMarketOutlook";
+import CarbonPlaybook from "./pages/CarbonPlaybook";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -16,6 +19,9 @@ const App = () => (
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Index />} />
+          <Route path="/green-jobs-report" element={<GreenJobsReport />} />
+          <Route path="/carbon-market-outlook" element={<CarbonMarketOutlook />} />
+          <Route path="/carbon-playbook" element={<CarbonPlaybook />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
