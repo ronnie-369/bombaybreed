@@ -253,30 +253,6 @@ const CarbonPlaybook = () => {
         </div>
       </section>
 
-      {/* Author Bio */}
-      <section className="py-20 px-4 md:px-8 bg-white">
-        <div className="container mx-auto">
-          <Card className="max-w-4xl mx-auto">
-            <CardContent className="p-8">
-              <div className="flex flex-col md:flex-row items-center gap-8">
-                <div className="w-32 h-32 bg-gradient-to-br from-purple-600 to-indigo-600 rounded-full flex items-center justify-center text-white text-2xl font-bold">
-                  TR
-                </div>
-                <div className="flex-1 text-center md:text-left">
-                  <h3 className="text-2xl font-bold mb-2">Theresa Ronnie</h3>
-                  <p className="text-purple-700 font-semibold mb-4">Carbon Policy & International Climate Law Expert</p>
-                  <p className="text-foreground/80 leading-relaxed">
-                    Former policy advisor to the Ministry of Environment with expertise in international climate negotiations 
-                    and carbon market development. Theresa has contributed to India's NDC implementation strategy and has 
-                    been part of technical working groups developing CCTS regulations. Her policy analysis combines legal 
-                    expertise with practical implementation experience across government and multilateral institutions.
-                  </p>
-                </div>
-              </div>
-            </CardContent>
-          </Card>
-        </div>
-      </section>
 
       {/* Lead Capture */}
       <section className="py-20 px-4 md:px-8 bg-gradient-to-b from-bombay-background to-white">

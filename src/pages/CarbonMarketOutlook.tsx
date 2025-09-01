@@ -210,30 +210,6 @@ const CarbonMarketOutlook = () => {
         </div>
       </section>
 
-      {/* Author Bio */}
-      <section className="py-20 px-4 md:px-8 bg-gradient-to-b from-bombay-background to-white">
-        <div className="container mx-auto">
-          <Card className="max-w-4xl mx-auto">
-            <CardContent className="p-8">
-              <div className="flex flex-col md:flex-row items-center gap-8">
-                <div className="w-32 h-32 bg-gradient-to-br from-blue-600 to-cyan-600 rounded-full flex items-center justify-center text-white text-2xl font-bold">
-                  TR
-                </div>
-                <div className="flex-1 text-center md:text-left">
-                  <h3 className="text-2xl font-bold mb-2">Theresa Ronnie</h3>
-                  <p className="text-blue-700 font-semibold mb-4">Carbon Markets & Climate Finance Expert</p>
-                  <p className="text-foreground/80 leading-relaxed">
-                    Former investment banker turned sustainability strategist, Theresa has structured over $2B in 
-                    green finance transactions. She advises institutional investors on carbon market strategies and 
-                    has been instrumental in developing India's voluntary carbon market frameworks. Her analysis 
-                    combines deep financial expertise with on-ground market intelligence.
-                  </p>
-                </div>
-              </div>
-            </CardContent>
-          </Card>
-        </div>
-      </section>
 
       {/* Lead Capture */}
       <section className="py-20 px-4 md:px-8 bg-white">

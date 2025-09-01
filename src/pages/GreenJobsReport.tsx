@@ -195,30 +195,6 @@ const GreenJobsReport = () => {
         </div>
       </section>
 
-      {/* Author Bio */}
-      <section className="py-20 px-4 md:px-8 bg-gradient-to-b from-bombay-background to-white">
-        <div className="container mx-auto">
-          <Card className="max-w-4xl mx-auto">
-            <CardContent className="p-8">
-              <div className="flex flex-col md:flex-row items-center gap-8">
-                <div className="w-32 h-32 bg-gradient-to-br from-teal-600 to-emerald-600 rounded-full flex items-center justify-center text-white text-2xl font-bold">
-                  TR
-                </div>
-                <div className="flex-1 text-center md:text-left">
-                  <h3 className="text-2xl font-bold mb-2">Theresa Ronnie</h3>
-                  <p className="text-bombay font-semibold mb-4">Strategic Communications & Sustainability Advisor</p>
-                  <p className="text-foreground/80 leading-relaxed">
-                    With over a decade of experience in sustainability communications and workforce development, 
-                    Theresa has advised Fortune 500 companies, government agencies, and international organizations 
-                    on green transition strategies. Her research has been featured in leading policy journals and 
-                    has influenced workforce development policies across South Asia.
-                  </p>
-                </div>
-              </div>
-            </CardContent>
-          </Card>
-        </div>
-      </section>
 
       {/* Lead Capture */}
       <section className="py-20 px-4 md:px-8 bg-white">
