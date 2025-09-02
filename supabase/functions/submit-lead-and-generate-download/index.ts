@@ -53,37 +53,69 @@ serve(async (req: Request) => {
     // Generate signed URL with normalization and mapping
     console.log(`Generating signed URL for file: ${reportTitle}`);
 
+    // Map report titles to actual filenames in storage
     const FILE_MAP: Record<string, string> = {
-      "Green Jobs in India: Workforce and Investment Outlook 2025-2030": "green-jobs-report.pdf",
-      "Green Jobs Report.pdf": "green-jobs-report.pdf",
-      "India Carbon Market Outlook 2025-2030: An Investor's Deep Dive": "carbon-market-outlook.pdf",
-      "India's Carbon Playbook": "carbon-playbook.pdf",
+      "Green Jobs in India: Workforce and Investment Outlook 2025-2030": "Green-Jobs-in-India-Workforce-and-Investment-Outlook-2025-2030 (1).pdf",
+      "Green Jobs Report.pdf": "Green-Jobs-in-India-Workforce-and-Investment-Outlook-2025-2030 (1).pdf",
+      "India Carbon Market Outlook 2025-2030: An Investor's Deep Dive": "India-Carbon-Market-Outlook-2025-2030-An-Investors-Deep-Dive.pdf",
+      "India's Carbon Playbook": "Indias-Carbon-Playbook (1).pdf",
     };
 
     const ensurePdf = (s: string) => (s.toLowerCase().endsWith(".pdf") ? s : `${s}.pdf`);
     const slugify = (s: string) =>
       s
         .toLowerCase()
-        .replace(/[\'’]/g, "")
+        .replace(/[\'']/g, "")
         .replace(/[^a-z0-9]+/g, "-")
         .replace(/^-+|-+$/g, "");
 
-    const mapped = FILE_MAP[reportTitle] ?? undefined;
-    const slug = slugify(reportTitle);
-    const candidates = Array.from(
-      new Set(
-        [
-          reportTitle,
-          ensurePdf(reportTitle),
-          mapped,
-          mapped ? ensurePdf(mapped) : undefined,
-          `${slug}.pdf`,
-          slug,
-          reportTitle.replace(/\s+/g, "-"),
-          ensurePdf(reportTitle.replace(/\s+/g, "-").toLowerCase()),
-        ].filter(Boolean) as string[]
-      )
-    );
+    // Generate comprehensive filename variations
+    const generateVariations = (title: string) => {
+      const variations = [];
+      
+      // Priority 1: Mapped actual filename
+      const mapped = FILE_MAP[title];
+      if (mapped) {
+        variations.push(mapped);
+      }
+      
+      // Priority 2: Direct title variations
+      variations.push(title);
+      variations.push(ensurePdf(title));
+      
+      // Priority 3: Title with hyphens instead of spaces
+      const hyphenated = title.replace(/\s+/g, "-");
+      variations.push(hyphenated);
+      variations.push(ensurePdf(hyphenated));
+      
+      // Priority 4: Variations with " (1)" suffix (common duplicate naming)
+      variations.push(`${title} (1)`);
+      variations.push(ensurePdf(`${title} (1)`));
+      variations.push(`${hyphenated} (1)`);
+      variations.push(ensurePdf(`${hyphenated} (1)`));
+      
+      // Priority 5: Apostrophe variations (India's vs Indias)
+      if (title.includes("'")) {
+        const noApostrophe = title.replace(/'/g, "");
+        variations.push(noApostrophe);
+        variations.push(ensurePdf(noApostrophe));
+        variations.push(`${noApostrophe.replace(/\s+/g, "-")} (1)`);
+        variations.push(ensurePdf(`${noApostrophe.replace(/\s+/g, "-")} (1)`));
+      }
+      
+      // Priority 6: URL encoded versions
+      variations.push(encodeURIComponent(title));
+      variations.push(encodeURIComponent(ensurePdf(title)));
+      
+      // Priority 7: Slugified versions (fallback)
+      const slug = slugify(title);
+      variations.push(slug);
+      variations.push(ensurePdf(slug));
+      
+      return variations;
+    };
+
+    const candidates = Array.from(new Set(generateVariations(reportTitle).filter(Boolean)));
 
     console.log("Trying storage keys:", candidates);
 
