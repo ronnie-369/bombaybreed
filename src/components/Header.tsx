@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Menu, X } from 'lucide-react';
 import { Button } from "@/components/ui/button";
 import { useIsMobile } from '@/hooks/use-mobile';
+import Logo from '@/components/ui/Logo';
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const isMobile = useIsMobile();
@@ -12,7 +13,11 @@ const Header = () => {
       <div className="container mx-auto px-4 md:px-6 py-4 flex items-center justify-between">
         <div className="flex items-center">
           <a href="/" className="flex items-center">
-            <img alt="BOMBAY BREED - Strategic Communications Advisory Services" className="h-10 md:h-12" src="/lovable-uploads/d5904f9c-d840-441f-aa69-0165e2d86aa6.png" />
+            <Logo 
+              src="/lovable-uploads/d5904f9c-d840-441f-aa69-0165e2d86aa6.png"
+              alt="BOMBAY BREED - Strategic Communications Advisory Services"
+              className="h-10 md:h-12"
+            />
           </a>
         </div>
 
