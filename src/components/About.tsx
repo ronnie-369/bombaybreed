@@ -22,8 +22,8 @@ const About = () => {
     years: "22 years"
   }];
 
-  // Use environment variable for image or fallback to placeholder
-  const portraitUrl = import.meta.env.VITE_PORTRAIT_URL || "/public/lovable-uploads/placeholder-portrait.jpg";
+  // Use environment variable for image or fallback to uploaded portrait
+  const portraitUrl = import.meta.env.VITE_PORTRAIT_URL || "/lovable-uploads/76901386-d547-4a2e-b06b-2b2f1420a922.png";
 
   return (
     <section id="about" className="section-padding bg-background">
