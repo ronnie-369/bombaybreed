@@ -44,6 +44,45 @@ export type Database = {
         }
         Relationships: []
       }
+      contact_submissions: {
+        Row: {
+          company_name: string | null
+          created_at: string
+          designation: string | null
+          email: string
+          id: string
+          marketing_consent: boolean
+          name: string
+          phone: string | null
+          report_requested: string
+          updated_at: string
+        }
+        Insert: {
+          company_name?: string | null
+          created_at?: string
+          designation?: string | null
+          email: string
+          id?: string
+          marketing_consent?: boolean
+          name: string
+          phone?: string | null
+          report_requested: string
+          updated_at?: string
+        }
+        Update: {
+          company_name?: string | null
+          created_at?: string
+          designation?: string | null
+          email?: string
+          id?: string
+          marketing_consent?: boolean
+          name?: string
+          phone?: string | null
+          report_requested?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
       leads: {
         Row: {
           created_at: string

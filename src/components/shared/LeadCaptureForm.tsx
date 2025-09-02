@@ -20,9 +20,12 @@ const LeadCaptureForm: React.FC<LeadCaptureFormProps> = ({
   onSuccess 
 }) => {
   const [formData, setFormData] = useState({
+    name: '',
     email: '',
+    designation: '',
+    company_name: '',
     phone: '',
-    consent: false
+    consent: true // Pre-selected as requested
   });
   const [isLoading, setIsLoading] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
@@ -31,20 +34,22 @@ const LeadCaptureForm: React.FC<LeadCaptureFormProps> = ({
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!formData.email || !formData.phone || !formData.consent) return;
+    if (!formData.name || !formData.email || !formData.consent) return;
 
     setIsLoading(true);
     
     try {
-      // Save lead to database
       // Sanitize input data
       const sanitizedData = {
+        name: formData.name.trim(),
         email: formData.email.trim().toLowerCase(),
+        designation: formData.designation.trim(),
+        company_name: formData.company_name.trim(),
         phone: formData.phone.trim().replace(/\s+/g, ''), // Remove spaces
         consent: formData.consent
       };
 
-      // Additional validation
+      // Email validation
       const emailRegex = /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/;
       if (!emailRegex.test(sanitizedData.email)) {
         toast({
@@ -55,34 +60,39 @@ const LeadCaptureForm: React.FC<LeadCaptureFormProps> = ({
         return;
       }
 
-      // Basic phone validation (should contain numbers)
-      const phoneRegex = /^\+?[\d\s-()]{7,}$/;
-      if (!phoneRegex.test(formData.phone)) {
-        toast({
-          title: 'Invalid phone format',
-          description: 'Please enter a valid phone number.',
-          variant: 'destructive',
-        });
-        return;
+      // Optional phone validation (only if provided)
+      if (sanitizedData.phone && sanitizedData.phone.length > 0) {
+        const phoneRegex = /^\+?[\d\s-()]{7,}$/;
+        if (!phoneRegex.test(formData.phone)) {
+          toast({
+            title: 'Invalid phone format',  
+            description: 'Please enter a valid phone number.',
+            variant: 'destructive',
+          });
+          return;
+        }
       }
 
-      const { data: leadData, error: leadError } = await supabase
-        .from('leads')
+      const { data: submissionData, error: submissionError } = await supabase
+        .from('contact_submissions')
         .insert({
+          name: sanitizedData.name,
           email: sanitizedData.email,
-          phone: sanitizedData.phone,
+          designation: sanitizedData.designation || null,
+          company_name: sanitizedData.company_name || null,
+          phone: sanitizedData.phone || null,
           marketing_consent: sanitizedData.consent,
           report_requested: reportTitle
         })
         .select()
         .single();
 
-      if (leadError) throw leadError;
+      if (submissionError) throw submissionError;
 
       // Generate download URL via Edge Function
       const { data, error } = await supabase.functions.invoke('generate-download', {
         body: { 
-          leadId: leadData.id,
+          leadId: submissionData.id,
           reportTitle: reportTitle 
         }
       });
@@ -93,7 +103,7 @@ const LeadCaptureForm: React.FC<LeadCaptureFormProps> = ({
       await supabase
         .from('report_downloads')
         .insert({
-          lead_id: leadData.id,
+          lead_id: submissionData.id,
           report_name: reportTitle
         });
 
@@ -155,13 +165,28 @@ const LeadCaptureForm: React.FC<LeadCaptureFormProps> = ({
       <CardContent>
         <form onSubmit={handleSubmit} className="space-y-4">
           <div className="space-y-2">
+            <Label htmlFor="name" className="text-sm font-medium">
+              Full Name *
+            </Label>
+            <Input
+              id="name"
+              type="text"
+              placeholder="John Doe"
+              value={formData.name}
+              onChange={(e) => handleInputChange('name', e.target.value)}
+              required
+              className="focus:ring-bombay focus:border-bombay"
+            />
+          </div>
+
+          <div className="space-y-2">
             <Label htmlFor="email" className="text-sm font-medium">
               Email Address *
             </Label>
             <Input
               id="email"
               type="email"
-              placeholder="your.email@company.com"
+              placeholder="john@company.com"
               value={formData.email}
               onChange={(e) => handleInputChange('email', e.target.value)}
               required
@@ -170,8 +195,36 @@ const LeadCaptureForm: React.FC<LeadCaptureFormProps> = ({
           </div>
 
           <div className="space-y-2">
+            <Label htmlFor="designation" className="text-sm font-medium">
+              Designation
+            </Label>
+            <Input
+              id="designation"
+              type="text"
+              placeholder="Sustainability Manager"
+              value={formData.designation}
+              onChange={(e) => handleInputChange('designation', e.target.value)}
+              className="focus:ring-bombay focus:border-bombay"
+            />
+          </div>
+
+          <div className="space-y-2">
+            <Label htmlFor="company_name" className="text-sm font-medium">
+              Company Name
+            </Label>
+            <Input
+              id="company_name"
+              type="text"
+              placeholder="Company Ltd."
+              value={formData.company_name}
+              onChange={(e) => handleInputChange('company_name', e.target.value)}
+              className="focus:ring-bombay focus:border-bombay"
+            />
+          </div>
+
+          <div className="space-y-2">
             <Label htmlFor="phone" className="text-sm font-medium">
-              Phone Number *
+              Phone Number
             </Label>
             <Input
               id="phone"
@@ -179,7 +232,6 @@ const LeadCaptureForm: React.FC<LeadCaptureFormProps> = ({
               placeholder="+91 98765 43210"
               value={formData.phone}
               onChange={(e) => handleInputChange('phone', e.target.value)}
-              required
               className="focus:ring-bombay focus:border-bombay"
             />
           </div>
@@ -198,7 +250,7 @@ const LeadCaptureForm: React.FC<LeadCaptureFormProps> = ({
 
           <Button
             type="submit"
-            disabled={isLoading || !formData.email || !formData.phone || !formData.consent}
+            disabled={isLoading || !formData.name || !formData.email || !formData.consent}
             className="w-full bg-bombay hover:bg-bombay-light text-white py-3 mt-6"
           >
             {isLoading ? (
