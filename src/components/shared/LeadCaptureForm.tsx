@@ -122,7 +122,7 @@ const LeadCaptureForm: React.FC<LeadCaptureFormProps> = ({
             Report Sent Successfully!
           </h3>
           <p className="text-green-700 mb-4">
-            Check your email for the download link to access "{reportTitle}".
+            Your download is ready! Access "{reportTitle}" using the button below.
           </p>
           <Button 
             onClick={() => window.open(downloadUrl, '_blank')}

@@ -8,9 +8,14 @@ const corsHeaders = {
 };
 
 const REPORT_FILES = {
+  // Short titles (legacy)
   'Green Jobs Report': 'green-jobs-india-report.pdf',
   'Carbon Market Outlook': 'carbon-market-outlook-2024.pdf',
   'Carbon Playbook': 'carbon-playbook-guide.pdf',
+  // Full titles used by pages
+  'Green Jobs in India: Workforce and Investment Outlook 2025-2030': 'green-jobs-india-report.pdf',
+  'India Carbon Market Outlook 2025-2030: An Investor\'s Deep Dive': 'carbon-market-outlook-2024.pdf',
+  'India\'s Carbon Playbook': 'carbon-playbook-guide.pdf',
 };
 
 interface SubmitLeadRequest {
@@ -74,13 +79,13 @@ serve(async (req) => {
     const { data: leadData, error: insertError } = await supabase
       .from('contact_submissions')
       .insert({
-        name: name.trim(),
-        email: email.trim().toLowerCase(),
-        designation: designation?.trim() || null,
-        company_name: company_name?.trim() || null,
-        phone: phone?.trim() || null,
+        name: name,
+        email: email,
+        designation: designation || null,
+        company_name: company_name || null,
+        phone: phone || null,
         marketing_consent,
-        report_requested: reportTitle.trim(),
+        report_requested: reportTitle,
       })
       .select()
       .single();
