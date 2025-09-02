@@ -34,7 +34,7 @@ serve(async (req: Request) => {
     // Insert lead
     const { data: inserted, error: insertError } = await supabase
       .from("contact_submissions")
-      .insert([{ name, email, designation, company_name, phone, marketing_consent }])
+      .insert([{ name, email, designation, company_name, phone, marketing_consent, report_requested: reportTitle }])
       .select("id")
       .single();
 
