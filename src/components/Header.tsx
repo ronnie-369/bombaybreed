@@ -6,8 +6,19 @@ import Logo from '@/components/ui/Logo';
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const isMobile = useIsMobile();
+  
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
+  };
+
+  const scrollToContact = () => {
+    const contactSection = document.getElementById('contact');
+    if (contactSection) {
+      contactSection.scrollIntoView({ behavior: 'smooth' });
+    }
+    if (isMenuOpen) {
+      setIsMenuOpen(false);
+    }
   };
   return <header className="fixed w-full bg-white/80 backdrop-blur-md z-50 shadow-sm">
       <div className="container mx-auto px-4 md:px-6 py-4 flex items-center justify-between">
@@ -43,7 +54,7 @@ const Header = () => {
               LinkedIn
             </a>
           </div>
-          <Button variant="gradient" className="px-6">
+          <Button variant="gradient" className="px-6" onClick={scrollToContact}>
             Contact Us
           </Button>
         </nav>
@@ -76,7 +87,7 @@ const Header = () => {
                 LinkedIn
               </a>
             </div>
-            <Button variant="gradient" className="w-full px-6" onClick={toggleMenu}>
+            <Button variant="gradient" className="w-full px-6" onClick={scrollToContact}>
               Contact Us
             </Button>
           </div>
