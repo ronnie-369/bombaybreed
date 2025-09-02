@@ -173,8 +173,13 @@ const Contact = () => {
                       </FormControl>
                       <FormMessage className="text-xs text-red-300" />
                     </FormItem>} />
-                <Button type="submit" variant="gradient" className="w-full font-semibold">
-                  Send Message
+                <Button 
+                  type="submit" 
+                  variant="gradient" 
+                  className="w-full font-semibold"
+                  disabled={form.formState.isSubmitting}
+                >
+                  {form.formState.isSubmitting ? 'Sending...' : 'Send Message'}
                 </Button>
               </form>
             </Form>
