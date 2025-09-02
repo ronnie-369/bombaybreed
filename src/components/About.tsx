@@ -13,7 +13,7 @@ const About = () => {
     years: "11 years"
   }, {
     area: "Climate Marketing",
-    years: "1.5 years"
+    years: "2 years"
   }, {
     area: "Motherhood",
     years: "13 years"
