@@ -126,8 +126,13 @@ const Contact = () => {
               </a>
             </div>
             
-            <div className="glass-card bg-white/10 p-6 rounded-xl">
-              <h3 className="text-xl font-display font-semibold mb-3">Executive Advisory Retainer for the CXO Suite starting as low as INR 30,000 pm</h3>
+            <div className="relative border-l-4 border-accent bg-white/5 p-6 rounded-r-xl">
+              <div className="absolute top-2 right-2 text-accent/60 text-xs font-medium uppercase tracking-wide">
+                Pricing
+              </div>
+              <h3 className="text-lg font-display font-semibold text-white leading-relaxed">
+                Executive Advisory Retainer for the CXO Suite starting as low as <span className="text-accent font-bold">INR 30,000 pm</span>
+              </h3>
             </div>
           </div>
           
