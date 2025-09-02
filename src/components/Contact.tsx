@@ -9,6 +9,7 @@ import { useToast } from '@/hooks/use-toast';
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
 import * as z from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
+import { useInView } from '@/hooks/use-in-view';
 
 const formSchema = z.object({
   name: z.string().min(2, {
@@ -27,6 +28,7 @@ type FormValues = z.infer<typeof formSchema>;
 
 const Contact = () => {
   const { toast } = useToast();
+  const { ref: pricingRef, isInView: pricingInView } = useInView();
   
   const form = useForm<FormValues>({
     resolver: zodResolver(formSchema),
@@ -126,12 +128,12 @@ const Contact = () => {
               </a>
             </div>
             
-            <div className="relative border-l-4 border-accent bg-white/5 p-6 rounded-r-xl">
-              <div className="absolute top-2 right-2 text-accent/60 text-xs font-medium uppercase tracking-wide">
+            <div ref={pricingRef} className="relative border-l-4 border-accent bg-white/5 p-6 rounded-r-xl">
+              <div className="absolute top-2 right-2 text-accent/60 text-xs font-medium uppercase tracking-wide shine-text">
                 Pricing
               </div>
               <h3 className="text-lg font-display font-semibold text-white leading-relaxed">
-                Executive Advisory Retainer for the CXO Suite starting as low as <span className="text-accent font-bold">INR 30,000 pm</span>
+                Executive Advisory Retainer for the CXO Suite starting as low as <span className={`text-accent font-bold glow-pill ${pricingInView ? 'active' : ''}`}>INR 30,000 pm</span>
               </h3>
             </div>
           </div>

@@ -1,8 +1,11 @@
 
 import React from 'react';
 import { BadgeCheck } from 'lucide-react';
+import { useInView } from '@/hooks/use-in-view';
 
 const Value = () => {
+  const { ref: glowRef, isInView: glowInView } = useInView();
+  
   const benefits = [
     "Accelerate Compliance and Disclosure Readiness",
     "Strengthen Investor Confidence and Capital Access",
@@ -49,8 +52,8 @@ const Value = () => {
                     As the climate action landscape evolves with demanding targets and complex objectives, businesses must exhibit integrity, agility, and strategic foresight in their sustainability reporting to maintain a competitive edge.
                   </p>
                 </div>
-                <div className="mt-8 text-center">
-                  <div className="inline-block bg-gradient-to-r from-primary to-accent text-white font-medium px-6 py-3 rounded-full shadow-sm">
+                <div className="mt-8 text-center" ref={glowRef}>
+                  <div className={`inline-block bg-gradient-to-r from-primary to-accent text-white font-medium px-6 py-3 rounded-full shadow-sm glow-card ${glowInView ? 'active' : ''}`}>
                     Effective sustainability communication is a strategic advantage
                   </div>
                 </div>

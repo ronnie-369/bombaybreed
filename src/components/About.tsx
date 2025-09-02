@@ -47,7 +47,7 @@ const About = () => {
 
             <div className="space-y-6 max-w-none">
               <p className="text-body text-foreground/80">
-                Theresa has been a steady yet dynamic influence with CEOs and CXOs (CFOs, COOs, CSOs) for over a decade. She has led advertising agencies, consulted with KPMG India, worked with the senior leadership at Microsoft India, before shifting her focus to Climate Action.
+                Theresa has been a steady yet dynamic influence with CEOs and CXOs (CFOs, COOs, CSOs, CMOs) for over a decade. She has led advertising agencies, consulted with KPMG India, worked with the senior leadership at Microsoft India, before shifting her focus to Climate Action.
               </p>
               
               <p className="text-body text-foreground/80">
