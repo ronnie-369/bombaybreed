@@ -129,11 +129,11 @@ const Contact = () => {
             </div>
             
             <div ref={pricingRef} className="relative border-l-4 border-accent bg-white/5 p-6 rounded-r-xl">
-              <div className="absolute top-2 right-2 text-accent/60 text-xs font-medium uppercase tracking-wide shine-text">
+              <div className="absolute top-2 right-2 text-white font-medium uppercase tracking-wide shine-text">
                 Pricing
               </div>
-              <h3 className="text-lg font-display font-semibold text-white leading-relaxed">
-                Executive Advisory Retainer for the CXO Suite starting as low as <span className={`text-accent font-bold glow-pill ${pricingInView ? 'active' : ''}`}>INR 30,000 pm</span>
+              <h3 className="text-lg font-display font-semibold text-white drop-shadow-lg leading-relaxed">
+                Executive Advisory Retainer for the CXO Suite starting as low as <span className={`text-white font-bold glow-pill ${pricingInView ? 'active' : ''}`}>INR 30,000 pm</span>
               </h3>
             </div>
           </div>
