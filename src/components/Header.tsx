@@ -14,7 +14,7 @@ const Header = () => {
         <div className="flex items-center">
           <a href="/" className="flex items-center">
             <Logo 
-              src="/lovable-uploads/cf9483a4-330e-4730-a41d-eb977510304c.png"
+              src="/lovable-uploads/d154fe5b-5dc7-48e1-ae7b-30fb4291f03c.png"
               alt="BOMBAY BREED - Strategic Communications Advisory Services"
               className="h-10 md:h-12"
             />
