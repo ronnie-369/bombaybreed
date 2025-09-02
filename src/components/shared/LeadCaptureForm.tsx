@@ -34,92 +34,75 @@ const LeadCaptureForm: React.FC<LeadCaptureFormProps> = ({
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!formData.name || !formData.email || !formData.consent) return;
+    if (!formData.name || !formData.email || !formData.consent) {
+      toast({
+        variant: "destructive",
+        title: "Error",
+        description: "Please fill in all required fields and give consent for marketing communications.",
+      });
+      return;
+    }
+
+    // Validate email format
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(formData.email)) {
+      toast({
+        variant: "destructive",
+        title: "Error",
+        description: "Please enter a valid email address.",
+      });
+      return;
+    }
 
     setIsLoading(true);
-    
+
     try {
-      // Sanitize input data
-      const sanitizedData = {
-        name: formData.name.trim(),
-        email: formData.email.trim().toLowerCase(),
-        designation: formData.designation.trim(),
-        company_name: formData.company_name.trim(),
-        phone: formData.phone.trim().replace(/\s+/g, ''), // Remove spaces
-        consent: formData.consent
-      };
+      console.log('Submitting lead and generating download...');
 
-      // Email validation
-      const emailRegex = /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/;
-      if (!emailRegex.test(sanitizedData.email)) {
-        toast({
-          title: 'Invalid email format',
-          description: 'Please enter a valid email address.',
-          variant: 'destructive',
-        });
-        return;
+      // Use the new consolidated edge function
+      const { data: result, error } = await supabase.functions.invoke(
+        'submit-lead-and-generate-download',
+        {
+          body: {
+            name: formData.name,
+            email: formData.email,
+            designation: formData.designation || null,
+            company_name: formData.company_name || null,
+            phone: formData.phone || null,
+            marketing_consent: formData.consent,
+            reportTitle: reportTitle,
+          }
+        }
+      );
+
+      if (error) {
+        console.error('Error in submit-lead-and-generate-download:', error);
+        throw new Error('Failed to submit information');
       }
 
-      // Optional phone validation (only if provided)
-      if (sanitizedData.phone && sanitizedData.phone.length > 0) {
-        const phoneRegex = /^\+?[\d\s-()]{7,}$/;
-        if (!phoneRegex.test(formData.phone)) {
-          toast({
-            title: 'Invalid phone format',  
-            description: 'Please enter a valid phone number.',
-            variant: 'destructive',
-          });
-          return;
-        }
+      console.log('Submit lead response:', result);
+
+      if (!result?.success || !result?.downloadUrl) {
+        throw new Error('Failed to generate download link');
       }
 
-      const { data: submissionData, error: submissionError } = await supabase
-        .from('contact_submissions')
-        .insert({
-          name: sanitizedData.name,
-          email: sanitizedData.email,
-          designation: sanitizedData.designation || null,
-          company_name: sanitizedData.company_name || null,
-          phone: sanitizedData.phone || null,
-          marketing_consent: sanitizedData.consent,
-          report_requested: reportTitle
-        })
-        .select()
-        .single();
-
-      if (submissionError) throw submissionError;
-
-      // Generate download URL via Edge Function
-      const { data, error } = await supabase.functions.invoke('generate-download', {
-        body: { 
-          leadId: submissionData.id,
-          reportTitle: reportTitle 
-        }
-      });
-
-      if (error) throw error;
-
-      // Track the download in database
-      await supabase
-        .from('report_downloads')
-        .insert({
-          lead_id: submissionData.id,
-          report_name: reportTitle
-        });
-
-      setDownloadUrl(data.downloadUrl);
+      setDownloadUrl(result.downloadUrl);
       setIsSubmitted(true);
+      
       toast({
         title: "Success!",
-        description: "Your report is ready for download.",
+        description: "Your information has been submitted. You can now download the report.",
       });
-      onSuccess?.();
+
+      if (onSuccess) {
+        onSuccess();
+      }
     } catch (error) {
-      console.error('Error submitting form:', error);
+      console.error('Form submission error:', error);
       toast({
+        variant: "destructive",
         title: "Error",
-        description: "Something went wrong. Please try again.",
-        variant: "destructive"
+        description: error instanceof Error ? error.message : "An unexpected error occurred. Please try again.",
       });
     } finally {
       setIsLoading(false);
