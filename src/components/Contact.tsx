@@ -72,6 +72,27 @@ const Contact = () => {
         });
       } else {
         console.log('Contact form data saved:', sanitizedData);
+        
+        // Send email notification in background (doesn't block user experience)
+        try {
+          const { error: emailError } = await supabase.functions.invoke('send-contact-email', {
+            body: {
+              ...sanitizedData,
+              submitted_at: new Date().toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' })
+            }
+          });
+          
+          if (emailError) {
+            console.error('Email notification error:', emailError);
+            // Don't show error to user - data is still saved
+          } else {
+            console.log('Email notification sent successfully');
+          }
+        } catch (emailErr) {
+          console.error('Email function invocation error:', emailErr);
+          // Don't show error to user - data is still saved
+        }
+        
         toast({
           title: "Message sent successfully!",
           description: "We'll get back to you as soon as possible."

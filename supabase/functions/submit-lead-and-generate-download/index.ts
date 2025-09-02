@@ -1,9 +1,12 @@
 import { serve } from "https://deno.land/std@0.181.0/http/server.ts";
 import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
+import { Resend } from "npm:resend@4.0.0";
 
 const supabaseUrl = Deno.env.get("SUPABASE_URL")!;
 const serviceRoleKey = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!;
+const resendApiKey = Deno.env.get("RESEND_API_KEY")!;
 const supabase = createClient(supabaseUrl, serviceRoleKey);
+const resend = new Resend(resendApiKey);
 
 serve(async (req: Request) => {
   if (req.method === "OPTIONS") {
@@ -184,6 +187,51 @@ serve(async (req: Request) => {
       console.error("Download log error:", downloadError);
       // Don't fail request for logging error
     }
+
+    // Send email notification in background (doesn't delay response)
+    const sendEmailNotification = async () => {
+      try {
+        console.log('Sending report lead email notification...');
+        
+        const emailContent = `
+          <h2>New Report Request</h2>
+          <p><strong>Report:</strong> ${reportTitle}</p>
+          
+          <h3>Lead Details:</h3>
+          <p><strong>Name:</strong> ${name}</p>
+          <p><strong>Email:</strong> ${email}</p>
+          <p><strong>Company:</strong> ${company_name || 'Not provided'}</p>
+          <p><strong>Designation:</strong> ${designation || 'Not provided'}</p>
+          <p><strong>Phone:</strong> ${phone || 'Not provided'}</p>
+          <p><strong>Marketing Consent:</strong> ${marketing_consent ? 'Yes' : 'No'}</p>
+          <p><strong>Submitted:</strong> ${new Date().toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' })}</p>
+          
+          <hr style="margin: 20px 0;">
+          <p style="color: #666; font-size: 12px;">
+            Lead ID: ${leadId}<br>
+            This lead has been automatically saved to your Supabase database.
+          </p>
+        `;
+
+        const { error: emailError } = await resend.emails.send({
+          from: 'Nexo Circle <onboarding@resend.dev>',
+          to: ['ronnie@nexocircle.com'],
+          subject: `New report request: ${reportTitle} — ${name}`,
+          html: emailContent,
+        });
+
+        if (emailError) {
+          console.error('Report lead email error:', emailError);
+        } else {
+          console.log('Report lead email sent successfully');
+        }
+      } catch (emailErr) {
+        console.error('Report lead email notification failed:', emailErr);
+      }
+    };
+
+    // Schedule email to be sent in background
+    EdgeRuntime.waitUntil(sendEmailNotification());
 
     return new Response(JSON.stringify({ 
       downloadUrl, 
