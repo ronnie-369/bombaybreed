@@ -44,7 +44,7 @@ const handler = async (req: Request): Promise<Response> => {
 
     const { leadId, reportTitle }: DownloadRequest = await req.json();
 
-    console.log(`Generating download for lead ${leadId}, report: ${reportTitle}`);
+    console.log('Processing download request');
 
     // Verify the lead exists
     const { data: lead, error: leadError } = await supabase
@@ -77,17 +77,7 @@ const handler = async (req: Request): Promise<Response> => {
       );
     }
 
-    // List files in the Reports bucket to debug what's available
-    console.log('Checking available files in Reports bucket...');
-    const { data: filesList, error: listError } = await supabase.storage
-      .from('Reports')
-      .list();
-
-    if (listError) {
-      console.error('Error listing files in Reports bucket:', listError);
-    } else {
-      console.log('Available files in Reports bucket:', filesList?.map(f => f.name));
-    }
+    // Removed file enumeration for security
 
     // Generate signed URL for the report (valid for 1 hour)
     console.log(`Attempting to create signed URL for file: ${fileName}`);
@@ -96,17 +86,10 @@ const handler = async (req: Request): Promise<Response> => {
       .createSignedUrl(fileName, 3600); // 1 hour expiry
 
     if (urlError || !signedUrlData) {
-      console.error('Failed to generate signed URL:', {
-        error: urlError,
-        fileName: fileName,
-        reportTitle: reportTitle,
-        availableFiles: filesList?.map(f => f.name) || 'Could not retrieve file list'
-      });
+      console.error('Failed to generate signed URL');
       return new Response(
         JSON.stringify({ 
-          error: 'Failed to generate download link', 
-          details: urlError?.message || 'Unknown error',
-          requestedFile: fileName
+          error: 'Failed to generate download link'
         }),
         { 
           status: 500, 
@@ -115,7 +98,7 @@ const handler = async (req: Request): Promise<Response> => {
       );
     }
 
-    console.log('Successfully generated download URL for:', fileName);
+    console.log('Download URL generated successfully');
 
     return new Response(
       JSON.stringify({ 

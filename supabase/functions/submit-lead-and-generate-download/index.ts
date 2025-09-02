@@ -30,7 +30,23 @@ serve(async (req: Request) => {
       form_type = 'download_report_form',
     } = body;
 
-    console.log('Processing lead submission:', { name, email, reportTitle });
+    // Validate required fields and email format
+    if (!name?.trim() || !email?.trim() || !reportTitle?.trim()) {
+      return new Response(JSON.stringify({ error: "Missing required fields" }), {
+        status: 400,
+        headers: { "Content-Type": "application/json", "Access-Control-Allow-Origin": "*" },
+      });
+    }
+
+    const emailRegex = /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/;
+    if (!emailRegex.test(email)) {
+      return new Response(JSON.stringify({ error: "Invalid email format" }), {
+        status: 400,
+        headers: { "Content-Type": "application/json", "Access-Control-Allow-Origin": "*" },
+      });
+    }
+
+    console.log('Processing lead submission for report:', reportTitle);
 
     // Insert lead
     const { data: inserted, error: insertError } = await supabase
@@ -48,7 +64,7 @@ serve(async (req: Request) => {
     }
 
     const leadId = inserted.id;
-    console.log('Lead inserted with ID:', leadId);
+    console.log('Lead inserted successfully');
 
     // Generate signed URL with normalization and mapping
     console.log(`Generating signed URL for file: ${reportTitle}`);
@@ -117,7 +133,7 @@ serve(async (req: Request) => {
 
     const candidates = Array.from(new Set(generateVariations(reportTitle).filter(Boolean)));
 
-    console.log("Trying storage keys:", candidates);
+    console.log("Attempting file resolution for report");
 
     let signedUrl: { signedUrl: string } | null = null;
     let lastError: any = null;
@@ -135,9 +151,9 @@ serve(async (req: Request) => {
     }
 
     if (!signedUrl) {
-      console.error("Signed URL generation failed. Tried keys:", candidates, "Last error:", lastError);
+      console.error("Report file not found in storage");
       return new Response(
-        JSON.stringify({ error: "Object not found", tried: candidates }),
+        JSON.stringify({ error: "Report file not available" }),
         {
           status: 404,
           headers: {
