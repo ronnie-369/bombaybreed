@@ -64,7 +64,16 @@ const About = () => {
             <div className="relative">
               <div className="absolute inset-0 bg-gradient-to-tr from-bombay-accent/30 to-bombay-subtle/40 rounded-3xl transform rotate-3 scale-105"></div>
               <div className="relative rounded-3xl overflow-hidden shadow-lg">
-                <img src="https://images.unsplash.com/photo-1573497491208-6b1acb260507" alt="Theresa Ronnie" className="w-full h-full object-cover" />
+                <video 
+                  src="/path-to-your-video.mp4" 
+                  className="w-full h-full object-cover" 
+                  autoPlay 
+                  muted 
+                  loop 
+                  playsInline
+                >
+                  Your browser does not support the video tag.
+                </video>
               </div>
               <div className="absolute -bottom-6 right-8 bg-white p-4 rounded-xl shadow-md max-w-xs">
                 <p className="text-sm font-medium">
