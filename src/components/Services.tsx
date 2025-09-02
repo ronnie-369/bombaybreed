@@ -19,7 +19,7 @@ const ServiceCard = ({
         </div>
         <div>
           <h3 className="text-xl font-semibold mb-2">{title}</h3>
-          <p className="text-foreground/70 text-sm leading-relaxed">{description}</p>
+          <p className="text-note text-foreground/70">{description}</p>
         </div>
       </div>
     </div>

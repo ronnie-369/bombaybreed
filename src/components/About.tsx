@@ -40,21 +40,21 @@ const About = () => {
               
               <div className="w-24 h-1 bg-gradient-to-r from-primary to-accent"></div>
               
-              <p className="text-xl md:text-2xl text-muted-foreground leading-relaxed">
+              <p className="text-lede text-muted-foreground">
                 Strategic leadership across sustainability, communications, and business transformation
               </p>
             </div>
 
-            <div className="prose prose-lg prose-gray max-w-none">
-              <p className="text-lg leading-relaxed text-foreground/80">
+            <div className="space-y-6 max-w-none">
+              <p className="text-body text-foreground/80">
                 Theresa has been a steady yet dynamic influence with CEOs and CXOs (CFOs, COOs, CSOs) for over a decade. She has led advertising agencies, consulted with KPMG India, worked with the senior leadership at Microsoft India, before shifting her focus to Climate Action.
               </p>
               
-              <p className="text-lg leading-relaxed text-foreground/80">
+              <p className="text-body text-foreground/80">
                 Possessing an easy-going yet highly professional demeanour, Theresa is heavy on impact to bottomline and hard on effectiveness metrics. She is a student of climate sciences, mythology, behaviour studies, socio-economics, business movements, cultural trends and an active investor in the stock market.
               </p>
               
-              <p className="text-lg leading-relaxed text-foreground/80">
+              <p className="text-body text-foreground/80">
                 A mother, writer, futurist, philosopher, social scientist and free spirit, Theresa believes that businesses can build for sustainability and convert it to their competitive advantage.
               </p>
             </div>
@@ -96,7 +96,7 @@ const About = () => {
               
               {/* Quote Bubble */}
               <div className="absolute -bottom-6 -left-6 bg-card p-6 rounded-2xl shadow-lg border max-w-sm animate-fade-in">
-                <p className="text-sm font-medium text-card-foreground italic">
+                <p className="text-note font-medium text-card-foreground italic">
                   "If we don't get it right now, we are not going to be able to retain what we have..."
                 </p>
                 <div className="w-3 h-3 bg-card transform rotate-45 absolute -top-1.5 left-8 border-l border-t"></div>

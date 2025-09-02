@@ -84,7 +84,20 @@
   }
   
   .section-description {
-    @apply text-lg text-foreground/80 max-w-3xl mx-auto;
+    @apply text-body text-foreground/80 max-w-3xl mx-auto;
+  }
+  
+  /* Standardized Typography */
+  .text-body {
+    @apply text-base md:text-lg leading-relaxed;
+  }
+  
+  .text-lede {
+    @apply text-lg md:text-xl leading-relaxed;
+  }
+  
+  .text-note {
+    @apply text-sm leading-relaxed;
   }
   
   .gradient-accent {

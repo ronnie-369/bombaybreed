@@ -17,7 +17,7 @@ const Value = () => {
           <div>
             <h2 className="section-title gradient-accent">Why CXOs Choose Bombay Breed</h2>
             <div className="w-16 h-1 bg-gradient-to-r from-primary to-accent rounded-full mb-6"></div>
-            <p className="text-lg text-foreground/80 mb-8 leading-relaxed">
+            <p className="text-body text-foreground/80 mb-8">
               Global companies with Indian operations trust us to align their sustainability communications with international expectations while navigating local regulatory landscapes.
             </p>
             
@@ -27,7 +27,7 @@ const Value = () => {
                   <div className="bg-gradient-to-r from-primary to-accent p-2 rounded-full mr-3 shadow-sm">
                     <BadgeCheck className="h-5 w-5 text-white" />
                   </div>
-                  <span className="text-lg font-medium">{benefit}</span>
+                  <span className="text-body font-medium">{benefit}</span>
                 </div>
               ))}
             </div>
@@ -38,7 +38,7 @@ const Value = () => {
             <div className="relative">
               <div className="glass-card rounded-3xl overflow-hidden shadow-xl p-8 hover-scale">
                 <h3 className="text-2xl font-display font-bold mb-6 gradient-accent">The Imperative of Sustainability</h3>
-                <div className="space-y-4 text-foreground/80 leading-relaxed">
+                <div className="space-y-4 text-body text-foreground/80">
                   <p>
                     In today's business environment, ESG and therefore sustainability is non-negotiable. Stakeholders expect transparency and accountability, necessitating a robust approach to communicate your sustainability initiatives effectively.
                   </p>
