@@ -57,43 +57,34 @@ const LeadCaptureForm: React.FC<LeadCaptureFormProps> = ({
     setIsLoading(true);
 
     try {
-      console.log('Submitting lead data...');
+      console.log('Submitting lead data and generating download URL...');
 
-      // Map report titles to public URLs
-      const reportUrlMapping: Record<string, string> = {
-        'Green Jobs in India: Workforce and Investment Outlook 2025-2030': 'https://zjiwmdrtuhsrymsuvpfb.supabase.co/storage/v1/object/public/Reports/Green-Jobs-in-India-Workforce-and-Investment-Outlook-2025-2030%20(1).pdf',
-        'India Carbon Market Outlook 2025-2030: An Investor\'s Deep Dive': 'https://zjiwmdrtuhsrymsuvpfb.supabase.co/storage/v1/object/public/Reports/India-Carbon-Market-Outlook-2025-2030-An-Investors-Deep-Dive.pdf',
-        'India\'s Carbon Playbook': 'https://zjiwmdrtuhsrymsuvpfb.supabase.co/storage/v1/object/public/Reports/Indias-Carbon-Playbook%20(1).pdf'
-      };
-
-      const publicDownloadUrl = reportUrlMapping[reportTitle];
-      
-      if (!publicDownloadUrl) {
-        throw new Error('Report not available for download');
-      }
-
-      // Submit lead data to contact_submissions table
-      const { error } = await supabase
-        .from('contact_submissions')
-        .insert({
+      // Call the Edge Function to submit lead and generate signed URL
+      const { data: functionResult, error: functionError } = await supabase.functions.invoke('submit-lead-and-generate-download', {
+        body: {
           name: formData.name,
           email: formData.email,
           designation: formData.designation,
           company_name: formData.company_name,
           phone: formData.phone,
           marketing_consent: formData.consent,
-          report_requested: reportTitle,
+          reportTitle: reportTitle,
           form_type: 'download_report_form'
-        });
+        }
+      });
 
-      if (error) {
-        console.error('Error submitting lead data:', error);
-        throw new Error('Failed to submit information');
+      if (functionError) {
+        console.error('Function error:', functionError);
+        throw new Error('Failed to process request');
       }
 
-      console.log('Lead data submitted successfully');
+      if (!functionResult?.downloadUrl) {
+        console.error('No download URL received:', functionResult);
+        throw new Error('Failed to generate download link');
+      }
 
-      setDownloadUrl(publicDownloadUrl);
+      console.log('Lead submitted and download URL generated successfully');
+      setDownloadUrl(functionResult.downloadUrl);
       setIsSubmitted(true);
       
       toast({
@@ -131,13 +122,27 @@ const LeadCaptureForm: React.FC<LeadCaptureFormProps> = ({
           <p className="text-green-700 mb-4">
             Your download is ready! Access "{reportTitle}" using the button below.
           </p>
-          <Button 
-            onClick={() => window.open(downloadUrl, '_blank')}
-            className="bg-green-600 hover:bg-green-700 text-white"
-          >
-            <Download className="mr-2 h-4 w-4" />
-            Download Report
-          </Button>
+          <div className="space-y-3">
+            <a 
+              href={downloadUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center justify-center px-4 py-2 bg-green-600 hover:bg-green-700 text-white rounded-md font-medium transition-colors"
+            >
+              <Download className="mr-2 h-4 w-4" />
+              Download Report
+            </a>
+            <p className="text-xs text-green-600">
+              If the download doesn't start automatically, {' '}
+              <a 
+                href={downloadUrl}
+                download
+                className="underline hover:text-green-800"
+              >
+                click here for direct download
+              </a>
+            </p>
+          </div>
         </CardContent>
       </Card>
     );
