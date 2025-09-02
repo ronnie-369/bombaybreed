@@ -1,9 +1,10 @@
 import React from 'react';
-import { Check, Award, Star, LinkedinIcon } from 'lucide-react';
+import { Check, LinkedinIcon } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
 const About = () => {
   const expertise = ["Proven Expertise", "Strategic Insighting", "Data-Led Approach", "Risk Management", "Stakeholder Engagement", "Innovation in Communication", "Tracking Compliance & Standards", "Cross-Functional Collaboration", "Long-term Vision"];
+  
   const experience = [{
     area: "Integrated Strategic Communications & Brand Stewardship",
     years: "18 years"
@@ -20,80 +21,123 @@ const About = () => {
     area: "Creative Expression",
     years: "22 years"
   }];
-  return <section id="about" className="py-20 px-4 md:px-8 bg-white">
-      <div className="container mx-auto">
-        <div className="text-center max-w-3xl mx-auto mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">A Strong History of C-suite Advisory</h2>
-        </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-          <div className="order-2 md:order-1">
-            <p className="text-lg text-foreground/80 mb-6">
-              Theresa has been a steady yet dynamic influence with CEOs and CXOs (CFOs, COOs, CSOs) for over a decade. She has led advertising agencies, consulted with KPMG India, worked with the senior leadership at Microsoft India, before shifting her focus to Climate Action.
-            </p>
+  // Use environment variable for image or fallback to placeholder
+  const portraitUrl = import.meta.env.VITE_PORTRAIT_URL || "/public/lovable-uploads/placeholder-portrait.jpg";
+
+  return (
+    <section id="about" className="section-padding bg-background">
+      <div className="container mx-auto">
+        {/* Editorial Hero Section */}
+        <div className="grid grid-cols-1 lg:grid-cols-5 gap-16 items-start mb-24">
+          {/* Left Column - Content */}
+          <div className="lg:col-span-3 space-y-8">
+            <div className="space-y-6">
+              <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold leading-tight">
+                A Strong History of{' '}
+                <span className="text-gradient">C-suite Advisory</span>
+              </h1>
+              
+              <div className="w-24 h-1 bg-gradient-to-r from-primary to-accent"></div>
+              
+              <p className="text-xl md:text-2xl text-muted-foreground leading-relaxed">
+                Strategic leadership across sustainability, communications, and business transformation
+              </p>
+            </div>
+
+            <div className="prose prose-lg prose-gray max-w-none">
+              <p className="text-lg leading-relaxed text-foreground/80">
+                Theresa has been a steady yet dynamic influence with CEOs and CXOs (CFOs, COOs, CSOs) for over a decade. She has led advertising agencies, consulted with KPMG India, worked with the senior leadership at Microsoft India, before shifting her focus to Climate Action.
+              </p>
+              
+              <p className="text-lg leading-relaxed text-foreground/80">
+                Possessing an easy-going yet highly professional demeanour, Theresa is heavy on impact to bottomline and hard on effectiveness metrics. She is a student of climate sciences, mythology, behaviour studies, socio-economics, business movements, cultural trends and an active investor in the stock market.
+              </p>
+              
+              <p className="text-lg leading-relaxed text-foreground/80">
+                A mother, writer, futurist, philosopher, social scientist and free spirit, Theresa believes that businesses can build for sustainability and convert it to their competitive advantage.
+              </p>
+            </div>
             
-            <p className="text-lg text-foreground/80 mb-6">
-              Possessing an easy-going yet highly professional demeanour, Theresa is heavy on impact to bottomline and hard on effectiveness metrics. She is a student of climate sciences, mythology, behaviour studies, socio-economics, business movements, cultural trends and an active investor in the stock market.
-            </p>
-            
-            <p className="text-lg text-foreground/80 mb-8">
-              A mother, writer, futurist, philosopher, social scientist and free spirit, Theresa believes that businesses can build for sustainability and convert it to their competitive advantage.
-            </p>
-            
-            <div className="flex flex-col sm:flex-row items-center gap-4 mb-8">
-              <Button asChild className="flex items-center space-x-2 bg-[#0077B5] hover:bg-[#0077B5]/80">
-                <a href="https://www.linkedin.com/in/theresaronnie/" target="_blank" rel="noopener noreferrer">
-                  <LinkedinIcon className="h-5 w-5 mr-2" />
+            <div className="pt-4">
+              <Button asChild size="lg" className="bg-[#0077B5] hover:bg-[#0077B5]/90 text-white">
+                <a href="https://www.linkedin.com/in/theresaronnie/" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-3">
+                  <LinkedinIcon className="h-5 w-5" />
                   <span>Connect on LinkedIn</span>
                 </a>
               </Button>
             </div>
-            
-            <div>
-              <h3 className="text-xl font-bold mb-4">Experience</h3>
-              <div className="space-y-3">
-                {experience.map((item, index) => <div key={index} className="flex justify-between items-center border-b border-gray-100 pb-2">
-                    <span className="font-medium">{item.area}</span>
-                    <span className="text-bombay">{item.years}</span>
-                  </div>)}
-              </div>
-            </div>
           </div>
 
-          <div className="order-1 md:order-2">
-            <div className="relative">
-              <div className="absolute inset-0 bg-gradient-to-tr from-bombay-accent/30 to-bombay-subtle/40 rounded-3xl transform rotate-3 scale-105"></div>
-              <div className="relative rounded-3xl overflow-hidden shadow-lg">
-                <video 
-                  src="/path-to-your-video.mp4" 
-                  className="w-full h-full object-cover" 
-                  autoPlay 
-                  muted 
-                  loop 
-                  playsInline
-                >
-                  Your browser does not support the video tag.
-                </video>
+          {/* Right Column - Portrait */}
+          <div className="lg:col-span-2">
+            <div className="relative group">
+              {/* Background Elements */}
+              <div className="absolute -inset-4 bg-gradient-to-br from-primary/20 via-accent/10 to-secondary/30 rounded-3xl blur-2xl"></div>
+              <div className="absolute -top-8 -right-8 w-32 h-32 bg-gradient-to-br from-accent/30 to-primary/20 rounded-full blur-3xl"></div>
+              
+              {/* Main Portrait Container */}
+              <div className="relative bg-white rounded-2xl overflow-hidden shadow-2xl">
+                <div className="aspect-[4/5] relative">
+                  <img 
+                    src={portraitUrl}
+                    alt="Theresa Ronnie - Sustainability Communications Expert"
+                    className="w-full h-full object-cover object-center"
+                    onError={(e) => {
+                      // Fallback to a placeholder if image fails to load
+                      e.currentTarget.src = "/public/lovable-uploads/placeholder-portrait.jpg";
+                    }}
+                  />
+                  
+                  {/* Overlay gradient for depth */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/10 via-transparent to-transparent"></div>
+                </div>
               </div>
-              <div className="absolute -bottom-6 right-8 bg-white p-4 rounded-xl shadow-md max-w-xs">
-                <p className="text-sm font-medium">
+              
+              {/* Quote Bubble */}
+              <div className="absolute -bottom-6 -left-6 bg-card p-6 rounded-2xl shadow-lg border max-w-sm animate-fade-in">
+                <p className="text-sm font-medium text-card-foreground italic">
                   "High value, high impact engagement for sustainability communications excellence"
                 </p>
-              </div>
-            </div>
-            
-            <div className="mt-16">
-              <h3 className="text-xl font-bold mb-4">The X Factor</h3>
-              <div className="grid grid-cols-2 gap-3">
-                {expertise.map((item, index) => <div key={index} className="flex items-start">
-                    <Check className="h-5 w-5 text-bombay mr-2 shrink-0 mt-0.5" />
-                    <span>{item}</span>
-                  </div>)}
+                <div className="w-3 h-3 bg-card transform rotate-45 absolute -top-1.5 left-8 border-l border-t"></div>
               </div>
             </div>
           </div>
         </div>
+
+        {/* Experience & Expertise Grid */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
+          {/* Experience Section */}
+          <div className="space-y-6">
+            <h3 className="section-title text-2xl">Experience</h3>
+            <div className="space-y-4">
+              {experience.map((item, index) => (
+                <div key={index} className="flex justify-between items-center py-4 border-b border-border/50 hover:border-border transition-colors">
+                  <span className="font-medium text-foreground pr-4">{item.area}</span>
+                  <span className="text-primary font-semibold whitespace-nowrap">{item.years}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* The X Factor Section */}
+          <div className="space-y-6">
+            <h3 className="section-title text-2xl">The X Factor</h3>
+            <div className="grid grid-cols-1 gap-4">
+              {expertise.map((item, index) => (
+                <div key={index} className="flex items-start gap-3 group">
+                  <div className="mt-1 p-1 rounded-full bg-primary/10 group-hover:bg-primary/20 transition-colors">
+                    <Check className="h-4 w-4 text-primary shrink-0" />
+                  </div>
+                  <span className="text-foreground group-hover:text-primary transition-colors">{item}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
       </div>
-    </section>;
+    </section>
+  );
 };
+
 export default About;
