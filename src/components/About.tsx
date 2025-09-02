@@ -5,7 +5,7 @@ import { Button } from '@/components/ui/button';
 const About = () => {
   const expertise = ["Proven Expertise", "Strategic Insighting", "Data-Led Approach", "Risk Management", "Stakeholder Engagement", "Innovation in Communication", "Tracking Compliance & Standards", "Cross-Functional Collaboration", "Long-term Vision"];
   const experience = [{
-    area: "Integrated Marketing Communications & Brand Stewardship",
+    area: "Integrated Strategic Communications & Brand Stewardship",
     years: "18 years"
   }, {
     area: "C-Suite Management & Strategic Business Leadership",
@@ -29,7 +29,7 @@ const About = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
           <div className="order-2 md:order-1">
             <p className="text-lg text-foreground/80 mb-6">
-              Theresa has been a steady yet dynamic influence with CEOs and CMOs for over a decade. She has led advertising agencies, consulted with KPMG India, worked with the senior leadership at Microsoft India, before shifting her focus to Climate Action.
+              Theresa has been a steady yet dynamic influence with CEOs and CXOs (CFOs, COOs, CSOs) for over a decade. She has led advertising agencies, consulted with KPMG India, worked with the senior leadership at Microsoft India, before shifting her focus to Climate Action.
             </p>
             
             <p className="text-lg text-foreground/80 mb-6">

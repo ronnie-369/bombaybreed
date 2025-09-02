@@ -4,10 +4,10 @@ import { BadgeCheck } from 'lucide-react';
 
 const Value = () => {
   const benefits = [
-    "Enhanced Brand Reputation",
-    "Attract Better Investment",
-    "Strategic Alignment",
-    "Market Positioning"
+    "Accelerate Compliance and Disclosure Readiness",
+    "Strengthen Investor Confidence and Capital Access",
+    "Align Global Strategy with Local Execution",
+    "Mitigate Regulatory and Reputational Risk"
   ];
 
   return (
@@ -15,9 +15,9 @@ const Value = () => {
       <div className="container mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           <div>
-            <h2 className="text-3xl md:text-4xl font-bold mb-6">Why Should You Sign Up?</h2>
+            <h2 className="text-3xl md:text-4xl font-bold mb-6">Why CXOs Choose Bombay Breed</h2>
             <p className="text-lg text-foreground/80 mb-8">
-              Effectively articulate your sustainability narrative, build stakeholder trust & drive long-term value in an increasingly accountability-led market.
+              Global companies with Indian operations trust us to align their sustainability communications with international expectations while navigating local regulatory landscapes.
             </p>
             
             <div className="space-y-4">

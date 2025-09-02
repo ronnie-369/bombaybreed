@@ -27,34 +27,34 @@ const ServiceCard = ({
 const Services = () => {
   const services = [{
     icon: Zap,
-    title: "Strategic Communications",
-    description: "Expert guidance in translating sustainability initiatives into clear, compelling narratives."
+    title: "Disclosure & Reporting Alignment",
+    description: "Bridge global standards (CSRD, SEC Climate Rules) with Indian frameworks (BRSR, CCTS) for seamless compliance."
   }, {
     icon: Trophy,
-    title: "Reputation Management",
-    description: "Advisory on brand reputation management, fostering trust and loyalty among stakeholders."
+    title: "Executive Risk Management",
+    description: "Strategic advisory on sustainability risk communication to protect organizational reputation and stakeholder confidence."
   }, {
     icon: Star,
-    title: "Stakeholder Engagement",
-    description: "Tailored messaging to engage diverse audiences internally and externally."
+    title: "Multi-Stakeholder Orchestration",
+    description: "Coordinate messaging across investors, regulators, boards, and operational teams for consistent sustainability narrative."
   }, {
     icon: Rocket,
-    title: "Measurable Impact",
-    description: "Establish metrics that demonstrate the effectiveness of your sustainability communications."
+    title: "Performance Translation",
+    description: "Convert complex ESG metrics into executive-ready insights that drive strategic decision-making."
   }, {
     icon: Shield,
-    title: "Data and Metrics",
-    description: "Transform complex sustainability data into compelling narratives and reports."
+    title: "Integrated Reporting Strategy",
+    description: "Develop comprehensive sustainability communication frameworks that satisfy both global and local requirements."
   }, {
     icon: ShieldCheck,
-    title: "Crisis Management",
-    description: "Prepare and respond to sustainability-related challenges with strategic communications."
+    title: "Regulatory Response Readiness",
+    description: "Prepare executive teams for sustainability-related regulatory inquiries and stakeholder challenges."
   }];
   return <section id="services" className="py-20 px-4 md:px-8 bg-white">
       <div className="container mx-auto">
         <div className="text-center max-w-3xl mx-auto mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">What the CMO Needs</h2>
-          <p className="text-foreground/80 text-base font-medium">In today's business environment, ESG & sustainability communication is non-negotiable. We provide the expertise you need to communicate effectively.</p>
+          <h2 className="text-3xl md:text-4xl font-bold mb-4">What the CXO Suite Needs</h2>
+          <p className="text-foreground/80 text-base font-medium">Global companies with Indian operations need strategic sustainability communications that align with international standards while building for India. We provide the expertise to bridge this gap.</p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">

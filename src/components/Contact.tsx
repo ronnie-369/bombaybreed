@@ -120,7 +120,7 @@ const Contact = () => {
             </div>
             
             <div>
-              <h3 className="text-xl font-semibold mb-3">Basic Consulting Retainer for the CMO</h3>
+              <h3 className="text-xl font-semibold mb-3">Executive Advisory Retainer for the CXO Suite</h3>
             </div>
           </div>
           

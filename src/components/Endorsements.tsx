@@ -51,30 +51,23 @@ const Endorsements = () => {
       <div className="container mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
           <div>
-            <h2 className="text-3xl md:text-4xl font-bold mb-8">Endorsed by</h2>
+            <h2 className="text-3xl md:text-4xl font-bold mb-8">Trusted by Leaders</h2>
             
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
-              <div>
-                <h3 className="text-xl font-semibold mb-4 flex items-center">
-                  <Star className="h-5 w-5 mr-2 text-bombay-accent" />
-                  CMOs of:
-                </h3>
+            <div className="mb-8">
+              <h3 className="text-xl font-semibold mb-4 flex items-center">
+                <Star className="h-5 w-5 mr-2 text-bombay-accent" />
+                CXO leaders at:
+              </h3>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-2">
                 <ul className="space-y-2">
-                  {cmos.map((company, index) => (
+                  {[...cmos.slice(0, Math.ceil(cmos.length / 2)), ...ceos.slice(0, Math.ceil(ceos.length / 2))].map((company, index) => (
                     <li key={index} className="text-foreground/80">
                       {company}
                     </li>
                   ))}
                 </ul>
-              </div>
-              
-              <div>
-                <h3 className="text-xl font-semibold mb-4 flex items-center">
-                  <Star className="h-5 w-5 mr-2 text-bombay-accent" />
-                  CEOs of:
-                </h3>
                 <ul className="space-y-2">
-                  {ceos.map((company, index) => (
+                  {[...cmos.slice(Math.ceil(cmos.length / 2)), ...ceos.slice(Math.ceil(ceos.length / 2))].map((company, index) => (
                     <li key={index} className="text-foreground/80">
                       {company}
                     </li>

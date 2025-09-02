@@ -20,23 +20,25 @@ const Expertise = () => {
   const stakeholders = {
     internal: [
       "Executive Leadership",
-      "Marketing Team",
+      "CFO/Finance Team",
+      "COO/Operations",
+      "CSO/Sustainability Office",
       "Corporate Communications",
-      "Finance Department",
       "Product Development/R&D"
     ],
     external: [
-      "Customers",
-      "Investors",
+      "Investors & Analysts",
+      "Board of Directors",
       "Regulators and Policymakers",
-      "Suppliers",
+      "Customers",
+      "Suppliers & Partners",
       "Community and NGOs"
     ],
     dynamics: [
-      "Reputation Risks",
-      "Stakeholder Communication",
-      "KPIs and Metrics",
-      "Data Sources"
+      "CSRD & SEC Climate Rules",
+      "BRSR & CCTS Compliance",
+      "Investor ESG Expectations",
+      "Regulatory Scrutiny"
     ]
   };
 
@@ -100,7 +102,7 @@ const Expertise = () => {
               Market Dynamics
             </h3>
             <p className="mb-4 text-foreground/80 text-sm">
-              Governance frameworks and regulatory standards are continuously evolving, creating a challenging landscape for companies to navigate effectively.
+              Global regulatory frameworks like CSRD and SEC Climate Rules require alignment with Indian standards (BRSR, CCTS) for effective cross-border compliance.
             </p>
             <div className="grid grid-cols-1 gap-3">
               {stakeholders.dynamics.map((item, index) => (

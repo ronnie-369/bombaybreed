@@ -15,7 +15,7 @@ const Header = () => {
           <a href="/" className="flex items-center">
             <Logo 
               src="/lovable-uploads/d154fe5b-5dc7-48e1-ae7b-30fb4291f03c.png"
-              alt="BOMBAY BREED - Strategic Communications Advisory Services"
+              alt="BOMBAY BREED – Strategic Sustainability Communications Advisory"
               className="h-10 md:h-12"
             />
           </a>
