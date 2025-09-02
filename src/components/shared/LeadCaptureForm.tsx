@@ -59,18 +59,26 @@ const LeadCaptureForm: React.FC<LeadCaptureFormProps> = ({
     try {
       console.log('Submitting lead and generating download...');
 
-      // Use the new consolidated edge function
-      const { data: result, error } = await supabase.functions.invoke(
+      // Map report titles to PDF filenames
+      const reportMapping: Record<string, string> = {
+        'Green Jobs in India: Workforce and Investment Outlook 2025-2030': 'Green Jobs Report.pdf',
+        'India Carbon Market Outlook 2025-2030: An Investor\'s Deep Dive': 'Carbon Market Outlook.pdf',
+        'India\'s Carbon Playbook': 'Carbon Playbook.pdf'
+      };
+
+      const pdfFilename = reportMapping[reportTitle] || reportTitle;
+
+      const { data, error } = await supabase.functions.invoke(
         'submit-lead-and-generate-download',
         {
           body: {
             name: formData.name,
             email: formData.email,
-            designation: formData.designation || null,
-            company_name: formData.company_name || null,
-            phone: formData.phone || null,
+            designation: formData.designation,
+            company_name: formData.company_name,
+            phone: formData.phone,
             marketing_consent: formData.consent,
-            reportTitle: reportTitle,
+            reportTitle: pdfFilename,
           }
         }
       );
@@ -80,13 +88,13 @@ const LeadCaptureForm: React.FC<LeadCaptureFormProps> = ({
         throw new Error('Failed to submit information');
       }
 
-      console.log('Submit lead response:', result);
+      console.log('Submit lead response:', data);
 
-      if (!result?.success || !result?.downloadUrl) {
+      if (!data?.downloadUrl) {
         throw new Error('Failed to generate download link');
       }
 
-      setDownloadUrl(result.downloadUrl);
+      setDownloadUrl(data.downloadUrl);
       setIsSubmitted(true);
       
       toast({
