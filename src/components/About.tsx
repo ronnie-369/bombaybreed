@@ -97,7 +97,7 @@ const About = () => {
               {/* Quote Bubble */}
               <div className="absolute -bottom-6 -left-6 bg-card p-6 rounded-2xl shadow-lg border max-w-sm animate-fade-in">
                 <p className="text-sm font-medium text-card-foreground italic">
-                  "High value, high impact engagement for sustainability communications excellence"
+                  "If we don't get it right now, we are not going to be able to retain what we have been taking for granted"
                 </p>
                 <div className="w-3 h-3 bg-card transform rotate-45 absolute -top-1.5 left-8 border-l border-t"></div>
               </div>
