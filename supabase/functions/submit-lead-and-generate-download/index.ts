@@ -27,6 +27,7 @@ serve(async (req: Request) => {
       phone,
       marketing_consent,
       reportTitle,
+      form_type = 'download_report_form',
     } = body;
 
     console.log('Processing lead submission:', { name, email, reportTitle });
@@ -34,7 +35,7 @@ serve(async (req: Request) => {
     // Insert lead
     const { data: inserted, error: insertError } = await supabase
       .from("contact_submissions")
-      .insert([{ name, email, designation, company_name, phone, marketing_consent, report_requested: reportTitle }])
+      .insert([{ name, email, designation, company_name, phone, marketing_consent, report_requested: reportTitle, form_type }])
       .select("id")
       .single();
 

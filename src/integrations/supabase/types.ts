@@ -50,6 +50,7 @@ export type Database = {
           created_at: string
           designation: string | null
           email: string
+          form_type: string
           id: string
           marketing_consent: boolean
           name: string
@@ -62,6 +63,7 @@ export type Database = {
           created_at?: string
           designation?: string | null
           email: string
+          form_type?: string
           id?: string
           marketing_consent?: boolean
           name: string
@@ -74,6 +76,7 @@ export type Database = {
           created_at?: string
           designation?: string | null
           email?: string
+          form_type?: string
           id?: string
           marketing_consent?: boolean
           name?: string
