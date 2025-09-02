@@ -22,28 +22,28 @@ const Header = () => {
         </div>
 
         <nav className="hidden md:flex items-center space-x-8">
-          <a href="#services" className="text-foreground/80 hover:text-bombay transition-colors">
+          <a href="#services" className="text-foreground/80 hover:text-bombay story-link transition-colors">
             Services
           </a>
-          <a href="#expertise" className="text-foreground/80 hover:text-bombay transition-colors">
+          <a href="#expertise" className="text-foreground/80 hover:text-bombay story-link transition-colors">
             Expertise
           </a>
-          <a href="#cases" className="text-foreground/80 hover:text-bombay transition-colors">
+          <a href="#cases" className="text-foreground/80 hover:text-bombay story-link transition-colors">
             Case Studies
           </a>
-          <a href="#about" className="text-foreground/80 hover:text-bombay transition-colors">
+          <a href="#about" className="text-foreground/80 hover:text-bombay story-link transition-colors">
             About
           </a>
           <div className="flex space-x-4">
-            <a href="https://theclimatedesk.substack.com/" target="_blank" rel="noopener noreferrer" className="text-foreground/80 hover:text-bombay transition-colors">
+            <a href="https://theclimatedesk.substack.com/" target="_blank" rel="noopener noreferrer" className="text-foreground/80 hover:text-bombay story-link transition-colors">
               Blog
             </a>
             <span className="text-foreground/40">|</span>
-            <a href="https://linkedin.com/in/theresa-ronnie" target="_blank" rel="noopener noreferrer" className="text-foreground/80 hover:text-bombay transition-colors">
+            <a href="https://linkedin.com/in/theresa-ronnie" target="_blank" rel="noopener noreferrer" className="text-foreground/80 hover:text-bombay story-link transition-colors">
               LinkedIn
             </a>
           </div>
-          <Button className="bg-bombay hover:bg-bombay-light text-white">
+          <Button variant="gradient" className="px-6">
             Contact Us
           </Button>
         </nav>
@@ -76,7 +76,7 @@ const Header = () => {
                 LinkedIn
               </a>
             </div>
-            <Button className="bg-bombay hover:bg-bombay-light text-white w-full" onClick={toggleMenu}>
+            <Button variant="gradient" className="w-full px-6" onClick={toggleMenu}>
               Contact Us
             </Button>
           </div>

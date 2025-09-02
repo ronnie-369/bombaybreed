@@ -49,17 +49,27 @@ const CaseStudies = () => {
     image: "https://images.unsplash.com/photo-1497435334941-8c899ee9e8e9"
   }];
   const [activeCase, setActiveCase] = useState<CaseStudy>(cases[0]);
-  return <section id="cases" className="py-20 px-4 md:px-8 bg-white">
+  return (
+    <section id="cases" className="py-20 px-4 md:px-8 bg-white animate-fade-in">
       <div className="container mx-auto">
         <div className="text-center max-w-3xl mx-auto mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">Success Stories That Define Us</h2>
-          <p className="text-lg text-foreground/80">
+          <h2 className="section-title gradient-accent">Success Stories That Define Us</h2>
+          <p className="section-description">
             A proven track record of delivering impactful results for leading brands across various sectors.
           </p>
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 md:gap-8">
-          {cases.map(caseItem => <button key={caseItem.id} onClick={() => setActiveCase(caseItem)} className={`text-left p-6 rounded-2xl transition-all ${activeCase.id === caseItem.id ? 'bg-bombay text-white' : 'bg-bombay-subtle hover:bg-bombay-subtle/70'}`}>
+          {cases.map(caseItem => (
+            <button 
+              key={caseItem.id} 
+              onClick={() => setActiveCase(caseItem)} 
+              className={`text-left p-6 rounded-2xl transition-all hover-scale ${
+                activeCase.id === caseItem.id 
+                  ? 'bg-gradient-to-r from-primary to-accent text-white shadow-lg' 
+                  : 'glass-card hover:shadow-md'
+              }`}
+            >
               <div className="flex justify-between items-start">
                 <div>
                   <span className="text-sm font-medium block mb-1">{String(caseItem.id).padStart(2, '0')}</span>
@@ -75,50 +85,53 @@ const CaseStudies = () => {
                 <span className={`text-sm ${activeCase.id === caseItem.id ? 'text-white/90' : 'text-foreground/60'}`}>
                   View case
                 </span>
-                <ArrowRight className={`h-4 w-4 ${activeCase.id === caseItem.id ? 'text-white' : 'text-bombay'}`} />
+                <ArrowRight className={`h-4 w-4 ${activeCase.id === caseItem.id ? 'text-white' : 'text-primary'}`} />
               </div>
-            </button>)}
+            </button>
+          ))}
         </div>
 
         <div className="mt-12 md:mt-16">
-          <div className="bg-bombay-subtle/30 rounded-3xl overflow-hidden">
+          <div className="glass-card rounded-3xl overflow-hidden">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
               <div className="h-full">
-                <img src={activeCase.image} alt={activeCase.name} className="w-full h-full object-cover" />
+                <img 
+                  src={activeCase.image} 
+                  alt={`${activeCase.name} case study`} 
+                  className="w-full h-full object-cover"
+                  loading="lazy"
+                />
               </div>
               <div className="p-8 md:p-12 flex flex-col justify-center">
-                <div className="bg-white inline-flex p-3 rounded-full mb-6">
-                  <Quote className="h-6 w-6 text-bombay" />
+                <div className="bg-gradient-to-r from-primary to-accent inline-flex p-3 rounded-full mb-6 shadow-sm">
+                  <Quote className="h-6 w-6 text-white" />
                 </div>
-                <h3 className="text-2xl md:text-3xl font-medium mb-4">{activeCase.name}</h3>
+                <h3 className="text-2xl md:text-3xl font-display font-medium mb-4">{activeCase.name}</h3>
                 
                 <div className="space-y-4 mb-6">
                   <div>
-                    <h4 className="font-medium text-bombay">Brief:</h4>
+                    <h4 className="font-medium text-primary">Brief:</h4>
                     <p className="text-foreground/80">{activeCase.brief}</p>
                   </div>
                   <div>
-                    <h4 className="font-medium text-bombay">Challenge:</h4>
+                    <h4 className="font-medium text-primary">Challenge:</h4>
                     <p className="text-foreground/80">{activeCase.challenge}</p>
                   </div>
                   <div>
-                    <h4 className="font-medium text-bombay">Solution:</h4>
+                    <h4 className="font-medium text-primary">Solution:</h4>
                     <p className="text-foreground/80">{activeCase.solution}</p>
                   </div>
                   <div>
-                    <h4 className="font-medium text-bombay">Result:</h4>
+                    <h4 className="font-medium text-primary">Result:</h4>
                     <p className="text-foreground/80">{activeCase.result}</p>
                   </div>
-                </div>
-                
-                <div>
-                  
                 </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-    </section>;
+    </section>
+  );
 };
 export default CaseStudies;

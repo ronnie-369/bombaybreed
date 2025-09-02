@@ -50,13 +50,13 @@ const ReportTeasers = () => {
   ];
 
   return (
-    <section className="py-20 px-4 md:px-8 bg-gradient-to-b from-white to-bombay-background">
+    <section className="py-20 px-4 md:px-8 bg-gradient-to-b from-white to-bombay-background animate-fade-in">
       <div className="container mx-auto">
         <div className="text-center max-w-4xl mx-auto mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">
+          <h2 className="section-title gradient-accent">
             India's Green Economy Reports 2025–2030
           </h2>
-          <p className="text-lg text-foreground/80">
+          <p className="section-description">
             Workforce. Carbon Markets. Policy Playbook. Three deep dives shaping India's climate future.
           </p>
         </div>
@@ -65,12 +65,12 @@ const ReportTeasers = () => {
           {reports.map((report) => {
             const IconComponent = report.icon;
             return (
-              <Card key={report.id} className="group hover:shadow-lg transition-all duration-300 border-0 bg-white/70 backdrop-blur-sm">
+              <Card key={report.id} className="glass-card group hover-scale border-0 animate-fade-in">
                 <CardHeader className="text-center pb-4">
-                  <div className={`w-16 h-16 mx-auto mb-4 rounded-full bg-gradient-to-br ${report.color} flex items-center justify-center`}>
+                  <div className={`w-16 h-16 mx-auto mb-4 rounded-full bg-gradient-to-br ${report.color} flex items-center justify-center shadow-lg`}>
                     <IconComponent className="h-8 w-8 text-white" />
                   </div>
-                  <CardTitle className="text-xl font-semibold">
+                  <CardTitle className="text-xl font-display font-semibold">
                     {report.title}
                   </CardTitle>
                   <CardDescription className="text-sm text-foreground/60">
@@ -81,15 +81,15 @@ const ReportTeasers = () => {
                   <ul className="space-y-2">
                     {report.bullets.map((bullet, index) => (
                       <li key={index} className="flex items-start text-sm">
-                        <span className="w-1.5 h-1.5 bg-bombay rounded-full mt-2 mr-2 flex-shrink-0"></span>
+                        <span className="w-1.5 h-1.5 bg-primary rounded-full mt-2 mr-2 flex-shrink-0"></span>
                         <span className="text-foreground/80">{bullet}</span>
                       </li>
                     ))}
                   </ul>
                   <Button 
                     onClick={() => navigate(report.route)}
-                    variant="outline" 
-                    className="w-full border-bombay text-bombay hover:bg-bombay hover:text-white group-hover:bg-bombay group-hover:text-white transition-all"
+                    variant="gradient" 
+                    className="w-full"
                   >
                     Learn More
                     <ArrowRight className="ml-2 h-4 w-4" />

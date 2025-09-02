@@ -77,12 +77,14 @@ const Newsletter = () => {
   };
 
   return (
-    <section className="py-20 px-4 md:px-8 bg-gradient-to-r from-bombay to-bombay-light">
+    <section className="py-20 px-4 md:px-8 bg-gradient-to-r from-primary to-accent animate-fade-in">
       <div className="container mx-auto text-center">
         <div className="max-w-2xl mx-auto">
           <div className="mb-6">
-            <Mail className="h-12 w-12 text-white mx-auto mb-4" />
-            <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
+            <div className="bg-white/20 backdrop-blur-sm p-4 rounded-full w-fit mx-auto mb-4">
+              <Mail className="h-12 w-12 text-white" />
+            </div>
+            <h2 className="text-3xl md:text-4xl font-display font-bold text-white mb-4">
               Subscribe to The Climate Desk
             </h2>
             <p className="text-white/90 text-lg">
@@ -90,23 +92,26 @@ const Newsletter = () => {
             </p>
           </div>
           
-          <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
-            <Input
-              type="email"
-              placeholder="Enter your email address"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              className="bg-white/10 border-white/20 text-white placeholder:text-white/70 focus:border-white"
-              required
-            />
-            <Button 
-              type="submit" 
-              disabled={isLoading}
-              className="bg-white text-bombay hover:bg-white/90 font-medium px-8"
-            >
-              {isLoading ? 'Subscribing...' : 'Subscribe'}
-            </Button>
-          </form>
+          <div className="glass-card rounded-2xl p-6 max-w-md mx-auto">
+            <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-4">
+              <Input
+                type="email"
+                placeholder="Enter your email address"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                className="bg-white/50 border-white/30 text-foreground placeholder:text-foreground/70 focus:border-primary focus:bg-white/80"
+                required
+              />
+              <Button 
+                type="submit" 
+                disabled={isLoading}
+                variant="gradient"
+                className="font-medium px-8"
+              >
+                {isLoading ? 'Subscribing...' : 'Subscribe'}
+              </Button>
+            </form>
+          </div>
           
           <p className="text-white/70 text-sm mt-4">
             Join 2,500+ sustainability professionals. Unsubscribe anytime.

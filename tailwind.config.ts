@@ -115,7 +115,8 @@ export default {
 				'slide-in': 'slide-in-right 0.6s ease-out'
 			},
 			fontFamily: {
-				sans: ['SF Pro Display', 'system-ui', 'sans-serif'],
+				sans: ['Inter', 'system-ui', 'sans-serif'],
+				display: ['Playfair Display', 'serif'],
 				serif: ['Georgia', 'serif']
 			}
 		}

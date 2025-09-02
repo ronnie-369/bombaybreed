@@ -57,20 +57,21 @@ const ReportsCarousel = () => {
               <CarouselItem key={report.id}>
                 <div className="flex flex-col md:flex-row items-center gap-8 md:gap-16">
                   <div className="md:w-1/2 space-y-6 text-center md:text-left">
-                    <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight">
+                    <h1 className="text-4xl md:text-5xl lg:text-6xl font-display font-bold leading-tight animate-fade-in">
                       <span className="text-gradient">{report.title}</span>
                       <br />
                       <span className={`bg-gradient-to-r ${report.gradient} bg-clip-text text-transparent`}>
                         {report.subtitle}
                       </span>
                     </h1>
-                    <p className="text-lg md:text-xl text-foreground/80 max-w-lg">
+                    <p className="text-lg md:text-xl text-foreground/80 max-w-lg animate-fade-in">
                       {report.description}
                     </p>
-                    <div className="pt-4">
+                    <div className="pt-4 animate-fade-in">
                       <Button 
                         onClick={() => navigate(report.route)}
-                        className="bg-bombay hover:bg-bombay-light text-white px-8 py-6 rounded-full text-lg"
+                        variant="gradient"
+                        className="px-8 py-6 text-lg"
                       >
                         {report.cta}
                         <ArrowRight className="ml-2 h-5 w-5" />
@@ -85,6 +86,7 @@ const ReportsCarousel = () => {
                           alt={report.title}
                           className="w-full h-full object-cover object-center scale-90" 
                           src={report.image}
+                          loading="lazy"
                         />
                       </div>
                     </div>

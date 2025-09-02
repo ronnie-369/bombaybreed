@@ -87,45 +87,52 @@ const Contact = () => {
   };
 
   return (
-    <footer id="contact" className="bg-bombay text-white">
+    <footer id="contact" className="bg-gradient-to-b from-primary to-accent text-white animate-fade-in">
+      <div className="w-full h-1 bg-gradient-to-r from-accent to-primary"></div>
       <div className="container mx-auto max-w-7xl px-4 py-12 md:py-16">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 md:gap-16">
           <div className="space-y-8">
             <div>
-              <h2 className="text-3xl font-bold mb-4">Contact</h2>
-              <p className="mb-6 text-white/80 max-w-md">
+              <h2 className="text-3xl font-display font-bold mb-4">Contact</h2>
+              <p className="mb-6 text-white/80 max-w-md leading-relaxed">
                 We need to stay on the right side of Climate Action. Because, the children.
               </p>
             </div>
             
             <div className="space-y-4">
               <div className="flex items-center">
-                <Phone className="h-5 w-5 mr-3 text-bombay-accent" />
+                <div className="bg-white/20 p-2 rounded-full mr-3">
+                  <Phone className="h-5 w-5 text-white" />
+                </div>
                 <span>+91-9916090806</span>
               </div>
               <div className="flex items-center">
-                <MapPin className="h-5 w-5 mr-3 text-bombay-accent" />
+                <div className="bg-white/20 p-2 rounded-full mr-3">
+                  <MapPin className="h-5 w-5 text-white" />
+                </div>
                 <span>Malleshwaram, Bangalore</span>
               </div>
               <div className="flex items-center">
-                <Mail className="h-5 w-5 mr-3 text-bombay-accent" />
-                <a href="mailto:ronnie@bombaybreed.com" className="hover:underline">ronnie@bombaybreed.com</a>
+                <div className="bg-white/20 p-2 rounded-full mr-3">
+                  <Mail className="h-5 w-5 text-white" />
+                </div>
+                <a href="mailto:ronnie@bombaybreed.com" className="story-link hover:text-white/80">ronnie@bombaybreed.com</a>
               </div>
             </div>
             
             <div className="flex space-x-4">
-              <a href="https://www.linkedin.com/in/theresaronnie/" target="_blank" rel="noopener noreferrer" className="bg-white/10 hover:bg-white/20 p-3 rounded-full transition-colors">
+              <a href="https://www.linkedin.com/in/theresaronnie/" target="_blank" rel="noopener noreferrer" className="glass-card bg-white/10 hover:bg-white/20 p-3 rounded-full hover-scale">
                 <Linkedin className="h-5 w-5" />
               </a>
             </div>
             
-            <div>
-              <h3 className="text-xl font-semibold mb-3">Executive Advisory Retainer for the CXO Suite starting as low as INR 30,000 pm</h3>
+            <div className="glass-card bg-white/10 p-6 rounded-xl">
+              <h3 className="text-xl font-display font-semibold mb-3">Executive Advisory Retainer for the CXO Suite starting as low as INR 30,000 pm</h3>
             </div>
           </div>
           
-          <div className="bg-white/10 rounded-2xl p-6 md:p-8 h-fit">
-            <h3 className="text-xl font-semibold mb-6">Send us a message</h3>
+          <div className="glass-card bg-white/10 rounded-2xl p-6 md:p-8 h-fit hover-scale">
+            <h3 className="text-xl font-display font-semibold mb-6">Send us a message</h3>
             <Form {...form}>
               <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -134,7 +141,7 @@ const Contact = () => {
                 }) => <FormItem>
                         <FormLabel className="text-sm mb-1">Name</FormLabel>
                         <FormControl>
-                          <Input placeholder="Your name" className="bg-white/5 border-white/20 placeholder:text-white/50 focus:border-bombay-accent" {...field} />
+                          <Input placeholder="Your name" className="bg-white/10 border-white/30 placeholder:text-white/60 focus:border-white focus:bg-white/20" {...field} />
                         </FormControl>
                         <FormMessage className="text-xs text-red-300" />
                       </FormItem>} />
@@ -143,7 +150,7 @@ const Contact = () => {
                 }) => <FormItem>
                         <FormLabel className="text-sm mb-1">Email</FormLabel>
                         <FormControl>
-                          <Input type="email" placeholder="Your email" className="bg-white/5 border-white/20 placeholder:text-white/50 focus:border-bombay-accent" {...field} />
+                          <Input type="email" placeholder="Your email" className="bg-white/10 border-white/30 placeholder:text-white/60 focus:border-white focus:bg-white/20" {...field} />
                         </FormControl>
                         <FormMessage className="text-xs text-red-300" />
                       </FormItem>} />
@@ -153,7 +160,7 @@ const Contact = () => {
               }) => <FormItem>
                       <FormLabel className="text-sm mb-1">Company</FormLabel>
                       <FormControl>
-                        <Input placeholder="Your company" className="bg-white/5 border-white/20 placeholder:text-white/50 focus:border-bombay-accent" {...field} />
+                        <Input placeholder="Your company" className="bg-white/10 border-white/30 placeholder:text-white/60 focus:border-white focus:bg-white/20" {...field} />
                       </FormControl>
                       <FormMessage className="text-xs text-red-300" />
                     </FormItem>} />
@@ -162,11 +169,11 @@ const Contact = () => {
               }) => <FormItem>
                       <FormLabel className="text-sm mb-1">Message</FormLabel>
                       <FormControl>
-                        <Textarea rows={4} className="w-full rounded-md bg-white/5 border border-white/20 placeholder:text-white/50 focus:border-bombay-accent p-2" placeholder="Your message" {...field} />
+                        <Textarea rows={4} className="w-full rounded-md bg-white/10 border border-white/30 placeholder:text-white/60 focus:border-white focus:bg-white/20 p-2" placeholder="Your message" {...field} />
                       </FormControl>
                       <FormMessage className="text-xs text-red-300" />
                     </FormItem>} />
-                <Button type="submit" className="bg-white text-bombay hover:bg-bombay-accent hover:text-white transition-colors w-full">
+                <Button type="submit" variant="gradient" className="w-full font-semibold">
                   Send Message
                 </Button>
               </form>
@@ -177,8 +184,8 @@ const Contact = () => {
         <div className="border-t border-white/20 mt-12 py-6 flex flex-col md:flex-row justify-between items-center text-white/60 text-sm">
           <p>© {new Date().getFullYear()} Bombay Breed. All rights reserved.</p>
           <div className="flex space-x-6 mt-4 md:mt-0">
-            <a href="https://theclimatedesk.substack.com/" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">Blog</a>
-            <a href="https://www.linkedin.com/in/theresaronnie/" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">LinkedIn</a>
+            <a href="https://theclimatedesk.substack.com/" target="_blank" rel="noopener noreferrer" className="story-link hover:text-white transition-colors">Blog</a>
+            <a href="https://www.linkedin.com/in/theresaronnie/" target="_blank" rel="noopener noreferrer" className="story-link hover:text-white transition-colors">LinkedIn</a>
           </div>
         </div>
       </div>
