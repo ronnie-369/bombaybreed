@@ -105,7 +105,7 @@ const Contact = () => {
               </div>
               <div className="flex items-center">
                 <MapPin className="h-5 w-5 mr-3 text-bombay-accent" />
-                <span>Cooke Town, Bangalore</span>
+                <span>Malleshwaram, Bangalore</span>
               </div>
               <div className="flex items-center">
                 <Mail className="h-5 w-5 mr-3 text-bombay-accent" />
@@ -120,7 +120,7 @@ const Contact = () => {
             </div>
             
             <div>
-              <h3 className="text-xl font-semibold mb-3">Executive Advisory Retainer for the CXO Suite</h3>
+              <h3 className="text-xl font-semibold mb-3">Executive Advisory Retainer for the CXO Suite starting as low as INR 30,000 pm</h3>
             </div>
           </div>
           
