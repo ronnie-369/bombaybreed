@@ -50,18 +50,70 @@ serve(async (req: Request) => {
     const leadId = inserted.id;
     console.log('Lead inserted with ID:', leadId);
 
-    // Generate signed URL
+    // Generate signed URL with normalization and mapping
     console.log(`Generating signed URL for file: ${reportTitle}`);
-    const { data: signedUrl, error: urlError } = await supabase.storage
-      .from("Reports")
-      .createSignedUrl(reportTitle, 60 * 60);
 
-    if (urlError) {
-      console.error("Signed URL error:", urlError);
-      return new Response(JSON.stringify({ error: urlError.message }), {
-        status: 500,
-        headers: { "Content-Type": "application/json", "Access-Control-Allow-Origin": "*" },
-      });
+    const FILE_MAP: Record<string, string> = {
+      "Green Jobs in India: Workforce and Investment Outlook 2025-2030": "green-jobs-report.pdf",
+      "Green Jobs Report.pdf": "green-jobs-report.pdf",
+      "India Carbon Market Outlook 2025-2030: An Investor's Deep Dive": "carbon-market-outlook.pdf",
+      "India's Carbon Playbook": "carbon-playbook.pdf",
+    };
+
+    const ensurePdf = (s: string) => (s.toLowerCase().endsWith(".pdf") ? s : `${s}.pdf`);
+    const slugify = (s: string) =>
+      s
+        .toLowerCase()
+        .replace(/[\'’]/g, "")
+        .replace(/[^a-z0-9]+/g, "-")
+        .replace(/^-+|-+$/g, "");
+
+    const mapped = FILE_MAP[reportTitle] ?? undefined;
+    const slug = slugify(reportTitle);
+    const candidates = Array.from(
+      new Set(
+        [
+          reportTitle,
+          ensurePdf(reportTitle),
+          mapped,
+          mapped ? ensurePdf(mapped) : undefined,
+          `${slug}.pdf`,
+          slug,
+          reportTitle.replace(/\s+/g, "-"),
+          ensurePdf(reportTitle.replace(/\s+/g, "-").toLowerCase()),
+        ].filter(Boolean) as string[]
+      )
+    );
+
+    console.log("Trying storage keys:", candidates);
+
+    let signedUrl: { signedUrl: string } | null = null;
+    let lastError: any = null;
+
+    for (const key of candidates) {
+      const { data, error } = await supabase.storage
+        .from("Reports")
+        .createSignedUrl(key, 60 * 60);
+      if (!error && data?.signedUrl) {
+        signedUrl = data;
+        console.log("Signed URL generated with key:", key);
+        break;
+      }
+      lastError = error;
+    }
+
+    if (!signedUrl) {
+      console.error("Signed URL generation failed. Tried keys:", candidates, "Last error:", lastError);
+      return new Response(
+        JSON.stringify({ error: "Object not found", tried: candidates }),
+        {
+          status: 404,
+          headers: {
+            "Content-Type": "application/json",
+            "Access-Control-Allow-Origin": "*",
+          },
+        }
+      );
     }
 
     console.log('Signed URL generated successfully');
