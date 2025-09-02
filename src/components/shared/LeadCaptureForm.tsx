@@ -4,7 +4,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Download, Mail, Phone, CheckCircle } from 'lucide-react';
+import { Download, Mail, Phone, CheckCircle, ExternalLink, Copy } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 import { supabase } from '@/integrations/supabase/client';
 
@@ -30,6 +30,7 @@ const LeadCaptureForm: React.FC<LeadCaptureFormProps> = ({
   const [isLoading, setIsLoading] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [downloadUrl, setDownloadUrl] = useState<string>('');
+  const [fileName, setFileName] = useState<string>('');
   const { toast } = useToast();
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -85,6 +86,7 @@ const LeadCaptureForm: React.FC<LeadCaptureFormProps> = ({
 
       console.log('Lead submitted and download URL generated successfully');
       setDownloadUrl(functionResult.downloadUrl);
+      setFileName(functionResult.fileName || reportTitle);
       setIsSubmitted(true);
       
       toast({
@@ -111,6 +113,36 @@ const LeadCaptureForm: React.FC<LeadCaptureFormProps> = ({
     setFormData(prev => ({ ...prev, [field]: value }));
   };
 
+  const downloadFile = async () => {
+    try {
+      const response = await fetch(downloadUrl);
+      const blob = await response.blob();
+      const url = window.URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = fileName;
+      document.body.appendChild(a);
+      a.click();
+      window.URL.revokeObjectURL(url);
+      document.body.removeChild(a);
+    } catch (error) {
+      console.error('Download failed:', error);
+      toast({
+        variant: "destructive",
+        title: "Download Failed",
+        description: "Please try using the 'Open in new tab' option instead.",
+      });
+    }
+  };
+
+  const copyLink = () => {
+    navigator.clipboard.writeText(downloadUrl);
+    toast({
+      title: "Link Copied",
+      description: "Download link copied to clipboard.",
+    });
+  };
+
   if (isSubmitted) {
     return (
       <Card className="w-full max-w-lg mx-auto bg-gradient-to-br from-green-50 to-emerald-50 border-green-200">
@@ -123,24 +155,37 @@ const LeadCaptureForm: React.FC<LeadCaptureFormProps> = ({
             Your download is ready! Access "{reportTitle}" using the button below.
           </p>
           <div className="space-y-3">
-            <a 
-              href={downloadUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center justify-center px-4 py-2 bg-green-600 hover:bg-green-700 text-white rounded-md font-medium transition-colors"
+            <Button 
+              onClick={downloadFile}
+              className="w-full bg-green-600 hover:bg-green-700 text-white"
             >
               <Download className="mr-2 h-4 w-4" />
               Download Report
-            </a>
-            <p className="text-xs text-green-600">
-              If the download doesn't start automatically, {' '}
-              <a 
-                href={downloadUrl}
-                download
-                className="underline hover:text-green-800"
+            </Button>
+            
+            <div className="flex gap-2">
+              <Button 
+                variant="outline" 
+                size="sm" 
+                onClick={() => window.open(downloadUrl, '_blank')}
+                className="flex-1"
               >
-                click here for direct download
-              </a>
+                <ExternalLink className="mr-2 h-3 w-3" />
+                Open in New Tab
+              </Button>
+              <Button 
+                variant="outline" 
+                size="sm" 
+                onClick={copyLink}
+                className="flex-1"
+              >
+                <Copy className="mr-2 h-3 w-3" />
+                Copy Link
+              </Button>
+            </div>
+            
+            <p className="text-xs text-green-600 text-center">
+              Multiple download options available if one doesn't work
             </p>
           </div>
         </CardContent>

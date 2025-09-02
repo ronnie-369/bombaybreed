@@ -150,6 +150,15 @@ serve(async (req: Request) => {
 
     console.log('Signed URL generated successfully');
 
+    // Extract filename and add download parameter
+    const urlParts = signedUrl.signedUrl.split('?');
+    const baseUrl = urlParts[0];
+    const fileName = baseUrl.split('/').pop() || reportTitle;
+    const downloadUrl = `${signedUrl.signedUrl}&download=${encodeURIComponent(fileName)}`;
+    
+    // Calculate expiry time (1 hour from now)
+    const expiresAt = new Date(Date.now() + 60 * 60 * 1000).toISOString();
+
     // Log download
     const { error: downloadError } = await supabase
       .from("report_downloads")
@@ -160,7 +169,11 @@ serve(async (req: Request) => {
       // Don't fail request for logging error
     }
 
-    return new Response(JSON.stringify({ downloadUrl: signedUrl.signedUrl }), {
+    return new Response(JSON.stringify({ 
+      downloadUrl, 
+      fileName,
+      expiresAt 
+    }), {
       status: 200,
       headers: { "Content-Type": "application/json", "Access-Control-Allow-Origin": "*" },
     });
