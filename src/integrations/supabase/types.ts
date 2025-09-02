@@ -119,6 +119,7 @@ export type Database = {
           id: string
           is_active: boolean
           subscribed_at: string
+          unsubscribe_token: string | null
           unsubscribed_at: string | null
           updated_at: string
         }
@@ -127,6 +128,7 @@ export type Database = {
           id?: string
           is_active?: boolean
           subscribed_at?: string
+          unsubscribe_token?: string | null
           unsubscribed_at?: string | null
           updated_at?: string
         }
@@ -135,6 +137,7 @@ export type Database = {
           id?: string
           is_active?: boolean
           subscribed_at?: string
+          unsubscribe_token?: string | null
           unsubscribed_at?: string | null
           updated_at?: string
         }
@@ -174,7 +177,10 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
-      [_ in never]: never
+      unsubscribe_newsletter: {
+        Args: { token: string }
+        Returns: Json
+      }
     }
     Enums: {
       [_ in never]: never
