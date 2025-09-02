@@ -1,10 +1,10 @@
-import "https://deno.land/x/xhr@0.1.0/mod.ts";
-import { serve } from "https://deno.land/std@0.168.0/http/server.ts";
+import { serve } from "https://deno.land/std@0.181.0/http/server.ts";
 import { createClient } from 'https://esm.sh/@supabase/supabase-js@2';
 
 const corsHeaders = {
   'Access-Control-Allow-Origin': '*',
   'Access-Control-Allow-Headers': 'authorization, x-client-info, apikey, content-type',
+  'Access-Control-Allow-Methods': 'POST, OPTIONS',
 };
 
 const REPORT_FILES = {
@@ -28,38 +28,31 @@ interface SubmitLeadRequest {
   reportTitle: string;
 }
 
-serve(async (req) => {
-  // Handle CORS preflight requests
-  if (req.method === 'OPTIONS') {
-    return new Response(null, { headers: corsHeaders });
+serve(async (req: Request) => {
+  // Handle CORS preflight
+  if (req.method === "OPTIONS") {
+    return new Response("ok", { headers: corsHeaders });
   }
 
   try {
-    console.log('Processing lead submission request');
+    const supabaseUrl = Deno.env.get("SUPABASE_URL")!;
+    const serviceRoleKey = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!;
 
-    // Initialize Supabase client with service role key for full access
-    const supabaseUrl = Deno.env.get('SUPABASE_URL')!;
-    const supabaseServiceKey = Deno.env.get('SUPABASE_SERVICE_ROLE_KEY')!;
-    
-    const supabase = createClient(supabaseUrl, supabaseServiceKey);
+    // Use service role to bypass RLS
+    const supabase = createClient(supabaseUrl, serviceRoleKey);
 
-    // Parse request body
-    const body: SubmitLeadRequest = await req.json();
-    console.log('Request body:', body);
+    const body = await req.json();
+    const {
+      name,
+      email,
+      designation,
+      company_name,
+      phone,
+      marketing_consent,
+      reportTitle,
+    } = body;
 
-    const { name, email, designation, company_name, phone, marketing_consent, reportTitle } = body;
-
-    // Validate required fields
-    if (!name || !email || !reportTitle || marketing_consent === undefined) {
-      console.error('Missing required fields:', { name: !!name, email: !!email, reportTitle: !!reportTitle, marketing_consent });
-      return new Response(
-        JSON.stringify({ error: 'Missing required fields' }),
-        { 
-          status: 400, 
-          headers: { ...corsHeaders, 'Content-Type': 'application/json' } 
-        }
-      );
-    }
+    console.log('Processing lead submission:', { name, email, reportTitle });
 
     // Get the correct file name from the mapping
     const fileName = REPORT_FILES[reportTitle as keyof typeof REPORT_FILES];
@@ -74,89 +67,94 @@ serve(async (req) => {
       );
     }
 
-    // Step 1: Insert lead into contact_submissions table
-    console.log('Inserting lead into contact_submissions table');
-    const { data: leadData, error: insertError } = await supabase
-      .from('contact_submissions')
-      .insert({
-        name: name,
-        email: email,
-        designation: designation || null,
-        company_name: company_name || null,
-        phone: phone || null,
-        marketing_consent,
-        report_requested: reportTitle,
-      })
-      .select()
+    // 1. Insert into contact_submissions
+    const { data: inserted, error: insertError } = await supabase
+      .from("contact_submissions")
+      .insert([
+        {
+          name,
+          email,
+          designation,
+          company_name,
+          phone,
+          marketing_consent,
+          report_requested: reportTitle,
+        },
+      ])
+      .select("id") // we want the inserted ID
       .single();
 
     if (insertError) {
-      console.error('Error inserting lead:', insertError);
+      console.error("Insert error:", insertError);
       return new Response(
-        JSON.stringify({ error: 'Failed to save lead information' }),
-        { 
-          status: 500, 
-          headers: { ...corsHeaders, 'Content-Type': 'application/json' } 
-        }
+        JSON.stringify({ error: "Insert failed", details: insertError.message }),
+        {
+          status: 500,
+          headers: { ...corsHeaders, "Content-Type": "application/json" },
+        },
       );
     }
 
-    console.log('Lead inserted successfully:', leadData);
+    const leadId = inserted.id;
+    console.log('Lead inserted with ID:', leadId);
 
-    // Step 2: Generate signed URL for the report
+    // 2. Generate signed URL for the report
     console.log(`Generating signed URL for file: ${fileName}`);
-    const { data: signedUrlData, error: urlError } = await supabase.storage
-      .from('Reports')
-      .createSignedUrl(fileName, 3600); // 1 hour expiry
+    const { data: signedUrl, error: urlError } = await supabase.storage
+      .from("Reports")
+      .createSignedUrl(fileName, 60 * 60); // 1-hour expiry
 
     if (urlError) {
-      console.error('Error generating signed URL:', urlError);
+      console.error("Signed URL error:", urlError);
       return new Response(
-        JSON.stringify({ error: 'Failed to generate download link' }),
-        { 
-          status: 500, 
-          headers: { ...corsHeaders, 'Content-Type': 'application/json' } 
-        }
+        JSON.stringify({
+          error: "Failed to generate download link",
+          details: urlError.message,
+        }),
+        {
+          status: 500,
+          headers: { ...corsHeaders, "Content-Type": "application/json" },
+        },
       );
     }
 
     console.log('Signed URL generated successfully');
 
-    // Step 3: Record the download
-    console.log('Recording download in report_downloads table');
+    // 3. Insert into report_downloads
     const { error: downloadError } = await supabase
-      .from('report_downloads')
-      .insert({
-        lead_id: leadData.id,
-        report_name: reportTitle,
-      });
+      .from("report_downloads")
+      .insert([
+        {
+          lead_id: leadId,
+          report_name: reportTitle,
+        },
+      ]);
 
     if (downloadError) {
-      console.error('Error recording download:', downloadError);
-      // Don't fail the request for this, just log it
+      console.error("Download insert error:", downloadError);
+      // Not fatal — user can still get download
     }
 
-    console.log('Lead submission and download generation completed successfully');
-
+    // 4. Return success + signed URL
     return new Response(
       JSON.stringify({ 
         success: true,
-        downloadUrl: signedUrlData.signedUrl,
-        leadId: leadData.id
+        downloadUrl: signedUrl.signedUrl,
+        leadId: leadId
       }),
-      { 
-        headers: { ...corsHeaders, 'Content-Type': 'application/json' } 
+      {
+        status: 200,
+        headers: { ...corsHeaders, "Content-Type": "application/json" },
       }
     );
-
-  } catch (error) {
-    console.error('Unexpected error in submit-lead-and-generate-download:', error);
+  } catch (err) {
+    console.error("Unexpected error:", err);
     return new Response(
-      JSON.stringify({ error: 'Internal server error' }),
-      { 
-        status: 500, 
-        headers: { ...corsHeaders, 'Content-Type': 'application/json' } 
-      }
+      JSON.stringify({ error: "Unexpected server error", details: String(err) }),
+      {
+        status: 500,
+        headers: { ...corsHeaders, "Content-Type": "application/json" },
+      },
     );
   }
 });
