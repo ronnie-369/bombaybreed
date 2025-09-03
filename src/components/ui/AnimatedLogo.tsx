@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { supabase } from '@/integrations/supabase/client';
+import Logo from '@/components/ui/Logo';
 
 interface AnimatedLogoProps {
   className?: string;
@@ -31,38 +32,37 @@ const AnimatedLogo: React.FC<AnimatedLogoProps> = ({
       if (prefersReducedMotion) return;
 
       try {
-        // Try common video file names
-        const possibleNames = ['pounces for ball.mp4', 'pounces for ball.webm'];
-        
-        for (const fileName of possibleNames) {
-          const { data, error } = await supabase.storage
-            .from('brand assets')
-            .createSignedUrl(fileName, 3600); // 1 hour expiry
-
-          if (data?.signedUrl && !error) {
-            setVideoUrl(data.signedUrl);
-            return;
-          }
-        }
-
-        // If specific files not found, list bucket contents
+        // List all files in brand assets bucket
         const { data: files } = await supabase.storage
           .from('brand assets')
           .list();
 
         if (files) {
-          const videoFile = files.find(file => 
-            file.name.toLowerCase().includes('pounces') && 
-            /\.(mp4|webm|mov|m4v)$/i.test(file.name)
+          // Prioritize WebM files (especially with alpha) then MP4
+          const videoFiles = files.filter(file => 
+            (file.name.toLowerCase().includes('pounce') || file.name.toLowerCase().includes('logo')) && 
+            /\.(webm|mp4|mov|m4v)$/i.test(file.name)
           );
 
-          if (videoFile) {
-            const { data } = await supabase.storage
-              .from('brand assets')
-              .createSignedUrl(videoFile.name, 3600);
+          // Sort by preference: WebM first (for transparency), then MP4
+          videoFiles.sort((a, b) => {
+            const aIsWebM = a.name.toLowerCase().endsWith('.webm');
+            const bIsWebM = b.name.toLowerCase().endsWith('.webm');
+            
+            if (aIsWebM && !bIsWebM) return -1;
+            if (!aIsWebM && bIsWebM) return 1;
+            return 0;
+          });
 
-            if (data?.signedUrl) {
+          // Try each video file until one works
+          for (const videoFile of videoFiles) {
+            const { data, error } = await supabase.storage
+              .from('brand assets')
+              .createSignedUrl(videoFile.name, 3600); // 1 hour expiry
+
+            if (data?.signedUrl && !error) {
               setVideoUrl(data.signedUrl);
+              return;
             }
           }
         }
@@ -78,10 +78,11 @@ const AnimatedLogo: React.FC<AnimatedLogoProps> = ({
   // Use static logo if reduced motion is preferred, error occurred, or no video URL
   if (prefersReducedMotion || hasError || !videoUrl) {
     return (
-      <img
+      <Logo
         src={fallbackSrc}
         alt={alt}
         className={className}
+        fallbackSrc={fallbackSrc}
       />
     );
   }
@@ -89,7 +90,8 @@ const AnimatedLogo: React.FC<AnimatedLogoProps> = ({
   return (
     <video
       src={videoUrl}
-      className={className}
+      className={`${className} bg-transparent`}
+      style={{ backgroundColor: 'transparent' }}
       autoPlay
       loop
       muted
