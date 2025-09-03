@@ -33,7 +33,7 @@ const About = () => {
           {/* Left Column - Content */}
           <div className="lg:col-span-3 space-y-8">
             <div className="space-y-6">
-              <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold leading-tight">
+              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight">
                 A Strong History of{' '}
                 <span className="text-gradient">C-suite Advisory</span>
               </h1>

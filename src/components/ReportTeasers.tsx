@@ -70,7 +70,7 @@ const ReportTeasers = () => {
                   <div className={`w-16 h-16 mx-auto mb-4 rounded-full bg-gradient-to-br ${report.color} flex items-center justify-center shadow-lg`}>
                     <IconComponent className="h-8 w-8 text-white" />
                   </div>
-                  <CardTitle className="text-xl font-display font-semibold">
+                  <CardTitle className="text-xl font-sans font-semibold">
                     {report.title}
                   </CardTitle>
                   <CardDescription className="text-sm text-foreground/60">

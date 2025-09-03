@@ -80,7 +80,7 @@
   }
   
   .section-title {
-    @apply text-3xl md:text-4xl font-display font-bold mb-4;
+    @apply text-3xl md:text-4xl font-sans font-bold mb-4;
   }
   
   .section-description {
