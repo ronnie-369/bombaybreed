@@ -139,7 +139,7 @@ const StakeholderEcosystemWheel = () => {
                 <circle
                   cx={centerX}
                   cy={centerY}
-                  r="50"
+                  r="58"
                   className="fill-primary/10 stroke-primary stroke-2"
                 />
                 <text
@@ -161,12 +161,13 @@ const StakeholderEcosystemWheel = () => {
 
                 {/* Leader lines to labels */}
                 {[...leftLabels, ...rightLabels].map(({ stakeholder, pos, labelX, labelY }) => {
+                  if (hoveredStakeholder !== stakeholder.id) return null;
                   return (
-                    <g key={`line-${stakeholder.id}`}>
+                    <g key={`line-${stakeholder.id}`} className="animate-fade-in">
                       {renderLeaderLine(
                         { x: pos.x, y: pos.y },
                         { x: labelX, y: labelY },
-                        hoveredStakeholder === stakeholder.id
+                        true
                       )}
                     </g>
                   );
@@ -208,6 +209,7 @@ const StakeholderEcosystemWheel = () => {
                         onMouseLeave={() => setHoveredStakeholder(null)}
                         onFocus={() => setHoveredStakeholder(stakeholder.id)}
                         onBlur={() => setHoveredStakeholder(null)}
+                        onClick={() => setHoveredStakeholder(stakeholder.id)}
                         onKeyDown={(e) => {
                           if (e.code === 'Enter' || e.code === 'Space') {
                             setHoveredStakeholder(stakeholder.id);
@@ -237,12 +239,11 @@ const StakeholderEcosystemWheel = () => {
               {/* Absolutely positioned labels */}
               {leftLabels.map(({ stakeholder, labelX, labelY }) => {
                 const isHovered = hoveredStakeholder === stakeholder.id;
+                if (!isHovered) return null;
                 return (
                   <div
                     key={`left-${stakeholder.id}`}
-                    className={`absolute transition-all duration-300 cursor-pointer ${
-                      isHovered ? 'scale-105' : ''
-                    }`}
+                    className="absolute transition-all duration-300 cursor-pointer scale-105 animate-fade-in"
                     style={{
                       left: `${labelX}px`,
                       top: `${labelY}px`,
@@ -271,12 +272,11 @@ const StakeholderEcosystemWheel = () => {
               
               {rightLabels.map(({ stakeholder, labelX, labelY }) => {
                 const isHovered = hoveredStakeholder === stakeholder.id;
+                if (!isHovered) return null;
                 return (
                   <div
                     key={`right-${stakeholder.id}`}
-                    className={`absolute transition-all duration-300 cursor-pointer ${
-                      isHovered ? 'scale-105' : ''
-                    }`}
+                    className="absolute transition-all duration-300 cursor-pointer scale-105 animate-fade-in"
                     style={{
                       left: `${labelX}px`,
                       top: `${labelY}px`,

@@ -54,7 +54,7 @@ const ReportTeasers = () => {
       <div className="container mx-auto">
         <div className="text-center max-w-4xl mx-auto mb-16">
           <h2 className="section-title gradient-accent">
-            India's Green Economy Reports 2025–2030
+            India's Green Economy Report 2025–2030
           </h2>
           <p className="section-description">
             Workforce. Carbon Markets. Policy Playbook. Three deep dives shaping India's climate future.
