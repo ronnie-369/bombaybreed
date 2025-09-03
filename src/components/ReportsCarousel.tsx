@@ -56,9 +56,11 @@ const ReportsCarousel = () => {
       <div className="container mx-auto">
         <Carousel 
           className="w-full"
+          opts={{ loop: true }}
           plugins={[
             Autoplay({
               delay: 5000,
+              stopOnInteraction: false,
             }),
           ]}
         >
