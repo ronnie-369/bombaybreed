@@ -8,16 +8,16 @@ const resendApiKey = Deno.env.get("RESEND_API_KEY")!;
 const supabase = createClient(supabaseUrl, serviceRoleKey);
 const resend = new Resend(resendApiKey);
 
+const corsHeaders = {
+  'Access-Control-Allow-Origin': 'https://zjiwmdrtuhsrymsuvpfb.lovableproject.com',
+  'Access-Control-Allow-Headers': 'authorization, x-client-info, apikey, content-type',
+  'Access-Control-Allow-Methods': 'POST, OPTIONS',
+  'Access-Control-Max-Age': '86400',
+};
+
 serve(async (req: Request) => {
   if (req.method === "OPTIONS") {
-    return new Response("ok", {
-      headers: {
-        "Access-Control-Allow-Origin": "*",
-        "Access-Control-Allow-Headers":
-          "authorization, x-client-info, apikey, content-type",
-        "Access-Control-Allow-Methods": "POST, OPTIONS",
-      },
-    });
+    return new Response("ok", { headers: corsHeaders });
   }
 
   try {
@@ -33,28 +33,46 @@ serve(async (req: Request) => {
       form_type = 'download_report_form',
     } = body;
 
-    // Validate required fields and email format
+    // Validate required fields
     if (!name?.trim() || !email?.trim() || !reportTitle?.trim()) {
       return new Response(JSON.stringify({ error: "Missing required fields" }), {
         status: 400,
-        headers: { "Content-Type": "application/json", "Access-Control-Allow-Origin": "*" },
+        headers: { "Content-Type": "application/json", ...corsHeaders },
       });
     }
 
+    // Validate email format
     const emailRegex = /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/;
     if (!emailRegex.test(email)) {
       return new Response(JSON.stringify({ error: "Invalid email format" }), {
         status: 400,
-        headers: { "Content-Type": "application/json", "Access-Control-Allow-Origin": "*" },
+        headers: { "Content-Type": "application/json", ...corsHeaders },
       });
     }
 
+    // Sanitize inputs to prevent XSS and injection attacks
+    const sanitizedName = name.trim().substring(0, 100);
+    const sanitizedEmail = email.trim().toLowerCase().substring(0, 255);
+    const sanitizedDesignation = designation?.trim().substring(0, 100) || null;
+    const sanitizedCompany = company_name?.trim().substring(0, 100) || null;
+    const sanitizedPhone = phone?.trim().substring(0, 20) || null;
+    const sanitizedReportTitle = reportTitle.trim().substring(0, 255);
+
     console.log('Processing lead submission for report:', reportTitle);
 
-    // Insert lead
+    // Insert lead with sanitized data
     const { data: inserted, error: insertError } = await supabase
       .from("contact_submissions")
-      .insert([{ name, email, designation, company_name, phone, marketing_consent, report_requested: reportTitle, form_type }])
+      .insert([{ 
+        name: sanitizedName, 
+        email: sanitizedEmail, 
+        designation: sanitizedDesignation, 
+        company_name: sanitizedCompany, 
+        phone: sanitizedPhone, 
+        marketing_consent, 
+        report_requested: sanitizedReportTitle, 
+        form_type 
+      }])
       .select("id")
       .single();
 
@@ -62,7 +80,7 @@ serve(async (req: Request) => {
       console.error("Insert error:", insertError);
       return new Response(JSON.stringify({ error: insertError.message }), {
         status: 500,
-        headers: { "Content-Type": "application/json", "Access-Control-Allow-Origin": "*" },
+        headers: { "Content-Type": "application/json", ...corsHeaders },
       });
     }
 
@@ -162,7 +180,7 @@ serve(async (req: Request) => {
           status: 404,
           headers: {
             "Content-Type": "application/json",
-            "Access-Control-Allow-Origin": "*",
+            ...corsHeaders,
           },
         }
       );
@@ -194,16 +212,30 @@ serve(async (req: Request) => {
       try {
         console.log('Sending report lead email notification...');
         
+        // HTML escape function to prevent XSS
+        const escapeHtml = (text: string) => {
+          return text.replace(/[<>&"']/g, (match) => {
+            switch (match) {
+              case '<': return '&lt;';
+              case '>': return '&gt;';
+              case '&': return '&amp;';
+              case '"': return '&quot;';
+              case "'": return '&#x27;';
+              default: return match;
+            }
+          });
+        };
+
         const emailContent = `
           <h2>New Report Request</h2>
-          <p><strong>Report:</strong> ${reportTitle}</p>
+          <p><strong>Report:</strong> ${escapeHtml(sanitizedReportTitle)}</p>
           
           <h3>Lead Details:</h3>
-          <p><strong>Name:</strong> ${name}</p>
-          <p><strong>Email:</strong> ${email}</p>
-          <p><strong>Company:</strong> ${company_name || 'Not provided'}</p>
-          <p><strong>Designation:</strong> ${designation || 'Not provided'}</p>
-          <p><strong>Phone:</strong> ${phone || 'Not provided'}</p>
+          <p><strong>Name:</strong> ${escapeHtml(sanitizedName)}</p>
+          <p><strong>Email:</strong> ${escapeHtml(sanitizedEmail)}</p>
+          <p><strong>Company:</strong> ${escapeHtml(sanitizedCompany || 'Not provided')}</p>
+          <p><strong>Designation:</strong> ${escapeHtml(sanitizedDesignation || 'Not provided')}</p>
+          <p><strong>Phone:</strong> ${escapeHtml(sanitizedPhone || 'Not provided')}</p>
           <p><strong>Marketing Consent:</strong> ${marketing_consent ? 'Yes' : 'No'}</p>
           <p><strong>Submitted:</strong> ${new Date().toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' })}</p>
           
@@ -217,7 +249,7 @@ serve(async (req: Request) => {
         const { error: emailError } = await resend.emails.send({
           from: 'Nexo Circle <onboarding@resend.dev>',
           to: ['ronnie@nexocircle.com'],
-          subject: `New report request: ${reportTitle} — ${name}`,
+          subject: `New report request: ${escapeHtml(sanitizedReportTitle)} — ${escapeHtml(sanitizedName)}`,
           html: emailContent,
         });
 
@@ -240,13 +272,13 @@ serve(async (req: Request) => {
       expiresAt 
     }), {
       status: 200,
-      headers: { "Content-Type": "application/json", "Access-Control-Allow-Origin": "*" },
+      headers: { "Content-Type": "application/json", ...corsHeaders },
     });
   } catch (err) {
     console.error("Unexpected error:", err);
     return new Response(JSON.stringify({ error: String(err) }), {
       status: 500,
-      headers: { "Content-Type": "application/json", "Access-Control-Allow-Origin": "*" },
+      headers: { "Content-Type": "application/json", ...corsHeaders },
     });
   }
 });

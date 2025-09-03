@@ -5,9 +5,10 @@ const resendApiKey = Deno.env.get("RESEND_API_KEY")!;
 const resend = new Resend(resendApiKey);
 
 const corsHeaders = {
-  'Access-Control-Allow-Origin': '*',
+  'Access-Control-Allow-Origin': 'https://zjiwmdrtuhsrymsuvpfb.lovableproject.com',
   'Access-Control-Allow-Headers': 'authorization, x-client-info, apikey, content-type',
   'Access-Control-Allow-Methods': 'POST, OPTIONS',
+  'Access-Control-Max-Age': '86400',
 };
 
 serve(async (req: Request) => {
@@ -41,19 +42,48 @@ serve(async (req: Request) => {
       );
     }
 
+    // Validate email format
+    const emailRegex = /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/;
+    if (!emailRegex.test(email)) {
+      return new Response(JSON.stringify({ error: 'Invalid email format' }), {
+        status: 400,
+        headers: { 'Content-Type': 'application/json', ...corsHeaders }
+      });
+    }
+    
+    // Sanitize inputs to prevent XSS and injection attacks
+    const sanitizedName = name.trim().substring(0, 100);
+    const sanitizedEmail = email.trim().toLowerCase().substring(0, 255);
+    const sanitizedCompany = company?.trim().substring(0, 100) || 'Not provided';
+    const sanitizedMessage = message.trim().substring(0, 2000);
+
     console.log('Sending contact inquiry email notification...');
+
+    // HTML escape function to prevent XSS
+    const escapeHtml = (text: string) => {
+      return text.replace(/[<>&"']/g, (match) => {
+        switch (match) {
+          case '<': return '&lt;';
+          case '>': return '&gt;';
+          case '&': return '&amp;';
+          case '"': return '&quot;';
+          case "'": return '&#x27;';
+          default: return match;
+        }
+      });
+    };
 
     const emailContent = `
       <h2>New Website Message</h2>
       
       <h3>Contact Details:</h3>
-      <p><strong>Name:</strong> ${name}</p>
-      <p><strong>Email:</strong> ${email}</p>
-      <p><strong>Company:</strong> ${company || 'Not provided'}</p>
+      <p><strong>Name:</strong> ${escapeHtml(sanitizedName)}</p>
+      <p><strong>Email:</strong> ${escapeHtml(sanitizedEmail)}</p>
+      <p><strong>Company:</strong> ${escapeHtml(sanitizedCompany)}</p>
       
       <h3>Message:</h3>
       <div style="background-color: #f5f5f5; padding: 15px; border-left: 4px solid #007acc; margin: 15px 0;">
-        ${message.replace(/\n/g, '<br>')}
+        ${escapeHtml(sanitizedMessage).replace(/\n/g, '<br>')}
       </div>
       
       <hr style="margin: 20px 0;">
@@ -66,7 +96,7 @@ serve(async (req: Request) => {
     const { error: emailError } = await resend.emails.send({
       from: 'Nexo Circle <onboarding@resend.dev>',
       to: ['ronnie@nexocircle.com'],
-      subject: `New website message — ${name}`,
+      subject: `New website message — ${escapeHtml(sanitizedName)}`,
       html: emailContent,
     });
 
