@@ -12,6 +12,8 @@ const StakeholderEcosystemWheel = () => {
       name: 'Executive Leadership', 
       icon: Users, 
       color: 'hsl(var(--primary))',
+      challenge: 'Articulating climate vision that drives results without seeming reactive',
+      advisory: 'Strategic climate narrative development and leadership positioning',
       description: 'We help CEOs and leadership teams articulate a compelling climate vision that drives organizational alignment, attracts top talent, and positions the company as an industry leader in sustainability transformation.'
     },
     { 
@@ -19,6 +21,8 @@ const StakeholderEcosystemWheel = () => {
       name: 'CFO/Finance Teams', 
       icon: DollarSign, 
       color: 'hsl(142 76% 36%)',
+      challenge: 'Demonstrating climate investment ROI amid short-term cost pressures',
+      advisory: 'Financial storytelling for climate investments and risk mitigation',
       description: 'We translate climate initiatives into financial narratives that demonstrate ROI, risk mitigation, and long-term value creation, helping CFOs communicate the business case for sustainability investments to stakeholders.'
     },
     { 
@@ -26,6 +30,8 @@ const StakeholderEcosystemWheel = () => {
       name: 'COO/Operations', 
       icon: Settings, 
       color: 'hsl(221 83% 53%)',
+      challenge: 'Balancing operational efficiency with ambitious climate targets',
+      advisory: 'Operational excellence messaging that showcases climate innovation',
       description: 'We develop messaging strategies that showcase operational efficiency gains, supply chain resilience, and process innovations, helping COOs communicate how climate initiatives drive operational excellence and competitive advantage.'
     },
     { 
@@ -33,6 +39,8 @@ const StakeholderEcosystemWheel = () => {
       name: 'CSO/Sustainability', 
       icon: Heart, 
       color: 'hsl(160 84% 39%)',
+      challenge: 'Translating complex climate data into compelling business cases',
+      advisory: 'Data-driven sustainability narrative and stakeholder engagement',
       description: 'We help sustainability leaders translate complex climate data into compelling narratives that secure internal buy-in, demonstrate impact to external stakeholders, and position sustainability as a core business strategy.'
     },
     { 
@@ -40,6 +48,8 @@ const StakeholderEcosystemWheel = () => {
       name: 'Corporate Communications', 
       icon: MessageSquare, 
       color: 'hsl(262 83% 58%)',
+      challenge: 'Avoiding greenwashing while communicating climate progress authentically',
+      advisory: 'Science-based messaging and authentic climate communication',
       description: 'We partner with communications teams to develop authentic, science-based messaging that avoids greenwashing risks, builds stakeholder trust, and effectively communicates climate progress and commitments across all channels.'
     },
     { 
@@ -47,6 +57,8 @@ const StakeholderEcosystemWheel = () => {
       name: 'Product Development', 
       icon: Lightbulb, 
       color: 'hsl(25 95% 53%)',
+      challenge: 'Communicating sustainability features as compelling value propositions',
+      advisory: 'Product innovation messaging and market differentiation strategies',
       description: 'We help product teams communicate how climate considerations drive innovation, create customer value, and differentiate products in the market, turning sustainability features into compelling value propositions.'
     },
     { 
@@ -54,6 +66,8 @@ const StakeholderEcosystemWheel = () => {
       name: 'Investors & Analysts', 
       icon: TrendingUp, 
       color: 'hsl(239 84% 67%)',
+      challenge: 'Proving climate resilience translates to long-term financial performance',
+      advisory: 'Investment-grade climate resilience and ESG positioning',
       description: 'We craft investor communications that demonstrate climate resilience, future-readiness, and long-term value creation, helping companies attract ESG-focused investors and improve access to green capital.'
     },
     { 
@@ -61,6 +75,8 @@ const StakeholderEcosystemWheel = () => {
       name: 'Board of Directors', 
       icon: Shield, 
       color: 'hsl(0 84% 60%)',
+      challenge: 'Understanding climate risks and opportunities for governance oversight',
+      advisory: 'Board-ready climate risk assessment and strategic guidance',
       description: 'We prepare board-ready materials that clearly articulate climate risks, opportunities, and strategic responses, enabling directors to make informed decisions and fulfill their governance responsibilities on climate matters.'
     },
     { 
@@ -68,6 +84,8 @@ const StakeholderEcosystemWheel = () => {
       name: 'Regulators & Policy Makers', 
       icon: Scale, 
       color: 'hsl(215 25% 27%)',
+      challenge: 'Meeting evolving compliance requirements while maintaining competitiveness',
+      advisory: 'Regulatory engagement and compliance communication strategies',
       description: 'We help organizations engage constructively with regulators by communicating climate commitments, progress, and compliance efforts in ways that build regulatory trust and influence policy development.'
     },
     { 
@@ -75,6 +93,8 @@ const StakeholderEcosystemWheel = () => {
       name: 'Customers', 
       icon: ShoppingCart, 
       color: 'hsl(330 81% 60%)',
+      challenge: 'Meeting rising sustainability expectations without premium pricing barriers',
+      advisory: 'Customer-facing sustainability messaging and value communication',
       description: 'We develop customer-facing climate narratives that build brand loyalty, justify premium pricing, and meet growing consumer demand for sustainable products and transparent environmental practices.'
     },
     { 
@@ -82,6 +102,8 @@ const StakeholderEcosystemWheel = () => {
       name: 'Suppliers & Partners', 
       icon: Truck, 
       color: 'hsl(45 93% 47%)',
+      challenge: 'Engaging supply chain partners on climate without disrupting relationships',
+      advisory: 'Supply chain engagement and collaborative sustainability messaging',
       description: 'We facilitate clear communication of climate expectations, support supplier engagement on sustainability initiatives, and help build collaborative partnerships that strengthen the entire value chain\'s climate performance.'
     },
     { 
@@ -89,6 +111,8 @@ const StakeholderEcosystemWheel = () => {
       name: 'Community & NGOs', 
       icon: Users, 
       color: 'hsl(173 80% 40%)',
+      challenge: 'Building authentic community trust around climate impact and benefits',
+      advisory: 'Community engagement and stakeholder relationship building',
       description: 'We help organizations engage authentically with local communities and NGOs, building trust through transparent communication about climate impacts, community benefits, and collaborative environmental stewardship.'
     },
   ];
@@ -216,19 +240,27 @@ const StakeholderEcosystemWheel = () => {
                 />
                 <text
                   x={centerX}
-                  y={centerY - 8}
+                  y={centerY - 16}
                   textAnchor="middle"
-                  className="fill-primary font-semibold text-sm"
+                  className="fill-primary font-semibold text-xs"
                 >
                   Strategic
                 </text>
                 <text
                   x={centerX}
-                  y={centerY + 8}
+                  y={centerY}
                   textAnchor="middle"
-                  className="fill-primary font-semibold text-sm"
+                  className="fill-primary font-semibold text-xs"
                 >
                   Communications
+                </text>
+                <text
+                  x={centerX}
+                  y={centerY + 16}
+                  textAnchor="middle"
+                  className="fill-primary font-semibold text-xs"
+                >
+                  Advisory
                 </text>
 
                 {/* Leader lines to labels */}
@@ -313,7 +345,7 @@ const StakeholderEcosystemWheel = () => {
                 const isHovered = hoveredStakeholder === stakeholder.id;
                 if (!isHovered) return null;
                 return (
-                  <div
+                   <div
                     key={`left-${stakeholder.id}`}
                     className="absolute transition-all duration-300 cursor-pointer scale-105 animate-fade-in"
                     style={{
@@ -333,11 +365,16 @@ const StakeholderEcosystemWheel = () => {
                       }
                     }}
                   >
-                    <span className={`inline-block px-3 py-2 rounded-full bg-white shadow-sm border text-sm font-medium transition-all duration-300 ${
-                      isHovered ? 'text-primary border-primary/20 shadow-md' : 'text-foreground/80 border-muted'
-                    }`}>
-                      {stakeholder.name}
-                    </span>
+                    <div className="flex flex-col items-end space-y-1">
+                      <span className={`inline-block px-3 py-2 rounded-full bg-white shadow-sm border text-sm font-medium transition-all duration-300 ${
+                        isHovered ? 'text-primary border-primary/20 shadow-md' : 'text-foreground/80 border-muted'
+                      }`}>
+                        {stakeholder.name}
+                      </span>
+                      <div className="px-2 py-1 bg-muted/90 rounded text-xs text-muted-foreground max-w-xs text-right">
+                        {stakeholder.challenge}
+                      </div>
+                    </div>
                   </div>
                 );
               })}
@@ -366,11 +403,16 @@ const StakeholderEcosystemWheel = () => {
                       }
                     }}
                   >
-                    <span className={`inline-block px-3 py-2 rounded-full bg-white shadow-sm border text-sm font-medium transition-all duration-300 ${
-                      isHovered ? 'text-primary border-primary/20 shadow-md' : 'text-foreground/80 border-muted'
-                    }`}>
-                      {stakeholder.name}
-                    </span>
+                    <div className="flex flex-col items-start space-y-1">
+                      <span className={`inline-block px-3 py-2 rounded-full bg-white shadow-sm border text-sm font-medium transition-all duration-300 ${
+                        isHovered ? 'text-primary border-primary/20 shadow-md' : 'text-foreground/80 border-muted'
+                      }`}>
+                        {stakeholder.name}
+                      </span>
+                      <div className="px-2 py-1 bg-muted/90 rounded text-xs text-muted-foreground max-w-xs">
+                        {stakeholder.challenge}
+                      </div>
+                    </div>
                   </div>
                 );
               })}
@@ -380,10 +422,8 @@ const StakeholderEcosystemWheel = () => {
           {/* Selected stakeholder details */}
           {hoveredStakeholder && (
             <div className="mt-8 p-6 bg-white rounded-xl shadow-sm border animate-fade-in">
-              <div className="flex items-center justify-center space-x-3 mb-3">
-                <div className={`p-2 rounded-full bg-gradient-to-r ${
-                  stakeholders.find(s => s.id === hoveredStakeholder)?.color
-                }`}>
+              <div className="flex items-center justify-center space-x-3 mb-4">
+                <div className={`p-2 rounded-full`} style={{ backgroundColor: stakeholders.find(s => s.id === hoveredStakeholder)?.color }}>
                   {React.createElement(
                     stakeholders.find(s => s.id === hoveredStakeholder)?.icon || Users,
                     { className: "h-5 w-5 text-white" }
@@ -393,9 +433,28 @@ const StakeholderEcosystemWheel = () => {
                   {stakeholders.find(s => s.id === hoveredStakeholder)?.name}
                 </h3>
               </div>
-              <p className="text-muted-foreground">
-                Strategic communication approach tailored for this stakeholder group's unique needs and priorities.
-              </p>
+              
+              <div className="space-y-3">
+                <div>
+                  <h4 className="text-sm font-semibold text-primary mb-1">Key Challenge:</h4>
+                  <p className="text-sm text-muted-foreground">
+                    {stakeholders.find(s => s.id === hoveredStakeholder)?.challenge}
+                  </p>
+                </div>
+                
+                <div>
+                  <h4 className="text-sm font-semibold text-primary mb-1">Our Advisory Focus:</h4>
+                  <p className="text-sm text-muted-foreground">
+                    {stakeholders.find(s => s.id === hoveredStakeholder)?.advisory}
+                  </p>
+                </div>
+                
+                <div className="pt-2 border-t border-muted/50">
+                  <p className="text-sm text-muted-foreground">
+                    {stakeholders.find(s => s.id === hoveredStakeholder)?.description}
+                  </p>
+                </div>
+              </div>
             </div>
           )}
 
