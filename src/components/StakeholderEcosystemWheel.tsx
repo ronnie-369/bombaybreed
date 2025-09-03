@@ -58,9 +58,8 @@ const StakeholderEcosystemWheel = () => {
 
     stakeholders.forEach((stakeholder, index) => {
       const pos = getStakeholderPosition(index, stakeholders.length);
-      const normalizedAngle = pos.angle + Math.PI / 2; // Normalize to 0-2π
-      
-      if (normalizedAngle >= -Math.PI / 2 && normalizedAngle <= Math.PI / 2) {
+      // Use cos(angle) >= 0 for proper left/right split
+      if (Math.cos(pos.angle) >= 0) {
         rightColumn.push({ stakeholder, index, pos });
       } else {
         leftColumn.push({ stakeholder, index, pos });
@@ -74,7 +73,27 @@ const StakeholderEcosystemWheel = () => {
     return { leftColumn, rightColumn };
   };
 
-  const { leftColumn, rightColumn } = getColumnLayout();
+  const getColumnLabelPositions = () => {
+    const { leftColumn, rightColumn } = getColumnLayout();
+    const padding = 60;
+    const availableHeight = dimensions.height - 2 * padding;
+    
+    const leftLabels = leftColumn.map((item, index) => ({
+      ...item,
+      labelX: 24,
+      labelY: padding + (availableHeight / Math.max(leftColumn.length - 1, 1)) * index
+    }));
+    
+    const rightLabels = rightColumn.map((item, index) => ({
+      ...item,
+      labelX: dimensions.width - 24,
+      labelY: padding + (availableHeight / Math.max(rightColumn.length - 1, 1)) * index
+    }));
+    
+    return { leftLabels, rightLabels };
+  };
+
+  const { leftLabels, rightLabels } = getColumnLabelPositions();
 
   const renderLeaderLine = (nodePos: { x: number, y: number }, labelPos: { x: number, y: number }, isHovered: boolean) => {
     const midX = (nodePos.x + labelPos.x) / 2;
@@ -141,15 +160,15 @@ const StakeholderEcosystemWheel = () => {
                 </text>
 
                 {/* Leader lines to labels */}
-                {[...leftColumn, ...rightColumn].map(({ stakeholder, pos }) => {
-                  const isLeft = leftColumn.some(item => item.stakeholder.id === stakeholder.id);
-                  const labelX = isLeft ? 40 : dimensions.width - 40;
-                  const labelY = pos.y;
-                  
-                  return renderLeaderLine(
-                    { x: pos.x, y: pos.y },
-                    { x: labelX, y: labelY },
-                    hoveredStakeholder === stakeholder.id
+                {[...leftLabels, ...rightLabels].map(({ stakeholder, pos, labelX, labelY }) => {
+                  return (
+                    <g key={`line-${stakeholder.id}`}>
+                      {renderLeaderLine(
+                        { x: pos.x, y: pos.y },
+                        { x: labelX, y: labelY },
+                        hoveredStakeholder === stakeholder.id
+                      )}
+                    </g>
                   );
                 })}
 
@@ -215,69 +234,74 @@ const StakeholderEcosystemWheel = () => {
                 })}
               </svg>
 
-              {/* Left column labels */}
-              <div className="absolute left-0 top-0 h-full flex flex-col justify-center space-y-4">
-                {leftColumn.map(({ stakeholder }, columnIndex) => {
-                  const isHovered = hoveredStakeholder === stakeholder.id;
-                  return (
-                    <div
-                      key={`left-${stakeholder.id}`}
-                      className={`text-right transition-all duration-300 cursor-pointer ${
-                        isHovered ? 'scale-105' : ''
-                      }`}
-                      tabIndex={0}
-                      role="button"
-                      onMouseEnter={() => setHoveredStakeholder(stakeholder.id)}
-                      onMouseLeave={() => setHoveredStakeholder(null)}
-                      onFocus={() => setHoveredStakeholder(stakeholder.id)}
-                      onBlur={() => setHoveredStakeholder(null)}
-                      onKeyDown={(e) => {
-                        if (e.code === 'Enter' || e.code === 'Space') {
-                          setHoveredStakeholder(stakeholder.id);
-                        }
-                      }}
-                    >
-                      <span className={`inline-block px-3 py-2 rounded-full bg-white shadow-sm border text-sm font-medium transition-all duration-300 ${
-                        isHovered ? 'text-primary border-primary/20 shadow-md' : 'text-foreground/80 border-muted'
-                      }`}>
-                        {stakeholder.name}
-                      </span>
-                    </div>
-                  );
-                })}
-              </div>
-
-              {/* Right column labels */}
-              <div className="absolute right-0 top-0 h-full flex flex-col justify-center space-y-4">
-                {rightColumn.map(({ stakeholder }, columnIndex) => {
-                  const isHovered = hoveredStakeholder === stakeholder.id;
-                  return (
-                    <div
-                      key={`right-${stakeholder.id}`}
-                      className={`text-left transition-all duration-300 cursor-pointer ${
-                        isHovered ? 'scale-105' : ''
-                      }`}
-                      tabIndex={0}
-                      role="button"
-                      onMouseEnter={() => setHoveredStakeholder(stakeholder.id)}
-                      onMouseLeave={() => setHoveredStakeholder(null)}
-                      onFocus={() => setHoveredStakeholder(stakeholder.id)}
-                      onBlur={() => setHoveredStakeholder(null)}
-                      onKeyDown={(e) => {
-                        if (e.code === 'Enter' || e.code === 'Space') {
-                          setHoveredStakeholder(stakeholder.id);
-                        }
-                      }}
-                    >
-                      <span className={`inline-block px-3 py-2 rounded-full bg-white shadow-sm border text-sm font-medium transition-all duration-300 ${
-                        isHovered ? 'text-primary border-primary/20 shadow-md' : 'text-foreground/80 border-muted'
-                      }`}>
-                        {stakeholder.name}
-                      </span>
-                    </div>
-                  );
-                })}
-              </div>
+              {/* Absolutely positioned labels */}
+              {leftLabels.map(({ stakeholder, labelX, labelY }) => {
+                const isHovered = hoveredStakeholder === stakeholder.id;
+                return (
+                  <div
+                    key={`left-${stakeholder.id}`}
+                    className={`absolute transition-all duration-300 cursor-pointer ${
+                      isHovered ? 'scale-105' : ''
+                    }`}
+                    style={{
+                      left: `${labelX}px`,
+                      top: `${labelY}px`,
+                      transform: 'translate(-100%, -50%)'
+                    }}
+                    tabIndex={0}
+                    role="button"
+                    onMouseEnter={() => setHoveredStakeholder(stakeholder.id)}
+                    onMouseLeave={() => setHoveredStakeholder(null)}
+                    onFocus={() => setHoveredStakeholder(stakeholder.id)}
+                    onBlur={() => setHoveredStakeholder(null)}
+                    onKeyDown={(e) => {
+                      if (e.code === 'Enter' || e.code === 'Space') {
+                        setHoveredStakeholder(stakeholder.id);
+                      }
+                    }}
+                  >
+                    <span className={`inline-block px-3 py-2 rounded-full bg-white shadow-sm border text-sm font-medium transition-all duration-300 ${
+                      isHovered ? 'text-primary border-primary/20 shadow-md' : 'text-foreground/80 border-muted'
+                    }`}>
+                      {stakeholder.name}
+                    </span>
+                  </div>
+                );
+              })}
+              
+              {rightLabels.map(({ stakeholder, labelX, labelY }) => {
+                const isHovered = hoveredStakeholder === stakeholder.id;
+                return (
+                  <div
+                    key={`right-${stakeholder.id}`}
+                    className={`absolute transition-all duration-300 cursor-pointer ${
+                      isHovered ? 'scale-105' : ''
+                    }`}
+                    style={{
+                      left: `${labelX}px`,
+                      top: `${labelY}px`,
+                      transform: 'translate(0%, -50%)'
+                    }}
+                    tabIndex={0}
+                    role="button"
+                    onMouseEnter={() => setHoveredStakeholder(stakeholder.id)}
+                    onMouseLeave={() => setHoveredStakeholder(null)}
+                    onFocus={() => setHoveredStakeholder(stakeholder.id)}
+                    onBlur={() => setHoveredStakeholder(null)}
+                    onKeyDown={(e) => {
+                      if (e.code === 'Enter' || e.code === 'Space') {
+                        setHoveredStakeholder(stakeholder.id);
+                      }
+                    }}
+                  >
+                    <span className={`inline-block px-3 py-2 rounded-full bg-white shadow-sm border text-sm font-medium transition-all duration-300 ${
+                      isHovered ? 'text-primary border-primary/20 shadow-md' : 'text-foreground/80 border-muted'
+                    }`}>
+                      {stakeholder.name}
+                    </span>
+                  </div>
+                );
+              })}
             </div>
           </div>
 
