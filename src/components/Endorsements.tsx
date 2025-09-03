@@ -1,8 +1,13 @@
 
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Star, Building2 } from 'lucide-react';
+import { preloadLogos } from '@/utils/storage-logos';
+import Logo from '@/components/ui/Logo';
 
 const Endorsements = () => {
+  const [logos, setLogos] = useState<Map<string, string | null>>(new Map());
+  const [isLoading, setIsLoading] = useState(true);
+
   const cmos = [
     "Volkswagen Malaysia Bhd",
     "PETRONAS",
@@ -46,6 +51,23 @@ const Endorsements = () => {
     }
   ];
 
+  // Load logos on component mount
+  useEffect(() => {
+    const loadLogos = async () => {
+      try {
+        const allCompanies = [...cmos, ...ceos];
+        const logoMap = await preloadLogos(allCompanies);
+        setLogos(logoMap);
+      } catch (error) {
+        console.error('Error loading logos:', error);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    loadLogos();
+  }, []);
+
   return (
     <section className="py-20 px-4 md:px-8 bg-gradient-to-b from-white to-bombay-subtle/20">
       <div className="container mx-auto">
@@ -66,8 +88,17 @@ const Endorsements = () => {
                     style={{animationDelay: `${index * 50}ms`}}
                   >
                     <div className="flex items-center space-x-3">
-                      <div className="bg-gradient-to-r from-primary to-accent p-2 rounded-full">
-                        <Building2 className="h-4 w-4 text-white" />
+                      <div className="flex-shrink-0 w-8 h-8 rounded bg-white/50 p-1 flex items-center justify-center">
+                        {logos.get(company) ? (
+                          <Logo 
+                            src={logos.get(company)!} 
+                            alt={`${company} logo`}
+                            className="w-full h-full object-contain"
+                            fallbackSrc=""
+                          />
+                        ) : (
+                          <Building2 className="h-4 w-4 text-muted-foreground" />
+                        )}
                       </div>
                       <span className="text-foreground/90 font-medium text-sm group-hover:text-primary transition-colors duration-300">
                         {company}
