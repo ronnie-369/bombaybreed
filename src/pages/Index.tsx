@@ -3,6 +3,7 @@ import React from 'react';
 import Header from '@/components/Header';
 import ReportsCarousel from '@/components/ReportsCarousel';
 import ReportTeasers from '@/components/ReportTeasers';
+import ComplianceToCredibilitySection from '@/components/ComplianceToCredibilitySection';
 import Services from '@/components/Services';
 import Expertise from '@/components/Expertise';
 import CaseStudies from '@/components/CaseStudies';
@@ -18,6 +19,7 @@ const Index = () => {
       <Header />
       <ReportsCarousel />
       <ReportTeasers />
+      <ComplianceToCredibilitySection />
       <Services />
       <Expertise />
       <CaseStudies />
