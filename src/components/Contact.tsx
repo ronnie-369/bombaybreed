@@ -153,7 +153,7 @@ const Contact = () => {
               <div className="absolute top-2 right-2 text-white font-medium uppercase tracking-wide shine-text">
                 Pricing
               </div>
-              <h3 className="text-lg font-sans font-semibold text-white drop-shadow-lg leading-relaxed">
+              <h3 className="text-lg font-sans font-semibold text-white drop-shadow-lg leading-relaxed mt-4">
                 Talk to me about your Executive Advisory Retainer from as low as <span className={`text-white font-bold glow-pill ${pricingInView ? 'active' : ''}`}>INR 30,000 pm +gst</span>.
               </h3>
             </div>
