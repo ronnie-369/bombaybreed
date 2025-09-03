@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { Star, Building2 } from 'lucide-react';
 import { preloadLogos } from '@/utils/storage-logos';
 import Logo from '@/components/ui/Logo';
+import { Skeleton } from '@/components/ui/skeleton';
 
 const Endorsements = () => {
   const [logos, setLogos] = useState<Map<string, string | null>>(new Map());
@@ -89,7 +90,9 @@ const Endorsements = () => {
                   >
                     <div className="flex items-center space-x-3">
                       <div className="flex-shrink-0 w-8 h-8 rounded bg-white/50 p-1 flex items-center justify-center">
-                        {logos.get(company) ? (
+                        {isLoading ? (
+                          <Skeleton className="w-full h-full rounded" />
+                        ) : logos.get(company) ? (
                           <Logo 
                             src={logos.get(company)!} 
                             alt={`${company} logo`}
