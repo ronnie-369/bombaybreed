@@ -75,7 +75,7 @@ const GreenJobsReport = () => {
             The definitive analysis of India's green workforce transformation, investment patterns, and skills ecosystem development.
           </p>
           <div className="flex flex-wrap justify-center gap-4 text-sm">
-            <span className="bg-white/20 px-4 py-2 rounded-full">130+ Pages</span>
+            <span className="bg-white/20 px-4 py-2 rounded-full">September 2025</span>
             <span className="bg-white/20 px-4 py-2 rounded-full">50+ Data Points</span>
             <span className="bg-white/20 px-4 py-2 rounded-full">Industry Interviews</span>
           </div>

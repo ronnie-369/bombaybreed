@@ -25,7 +25,7 @@ const ComplianceToCredibility = () => {
             How Indian businesses can turn carbon compliance into trust, market access, and leadership.
           </p>
           <div className="flex flex-wrap justify-center gap-4 text-sm">
-            <span className="bg-white/20 px-4 py-2 rounded-full">85+ Pages</span>
+            <span className="bg-white/20 px-4 py-2 rounded-full">September 2025</span>
             <span className="bg-white/20 px-4 py-2 rounded-full">CXO Frameworks</span>
             <span className="bg-white/20 px-4 py-2 rounded-full">Case Studies</span>
           </div>

@@ -79,7 +79,7 @@ const CarbonPlaybook = () => {
             Strategic policy guide covering PAT lessons, CCTS implementation roadmap, and India's Article 6 opportunity framework.
           </p>
           <div className="flex flex-wrap justify-center gap-4 text-sm">
-            <span className="bg-white/20 px-4 py-2 rounded-full">95+ Pages</span>
+            <span className="bg-white/20 px-4 py-2 rounded-full">September 2025</span>
             <span className="bg-white/20 px-4 py-2 rounded-full">Policy Timeline</span>
             <span className="bg-white/20 px-4 py-2 rounded-full">Implementation Guide</span>
           </div>
