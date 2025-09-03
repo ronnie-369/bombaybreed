@@ -198,7 +198,7 @@ const StakeholderEcosystemWheel = () => {
     return (
       <path
         d={`M ${nodePos.x},${nodePos.y} Q ${midX},${midY} ${labelPos.x},${labelPos.y}`}
-        className={`stroke-2 transition-all duration-300 fill-none ${
+        className={`stroke-1 transition-all duration-300 fill-none ${
           isHovered ? 'stroke-primary opacity-100' : 'stroke-muted-foreground/30'
         }`}
         strokeLinecap="round"
