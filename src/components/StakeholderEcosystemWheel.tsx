@@ -7,18 +7,90 @@ const StakeholderEcosystemWheel = () => {
   const containerRef = useRef<HTMLDivElement>(null);
 
   const stakeholders = [
-    { id: 'executive', name: 'Executive Leadership', icon: Users, color: 'hsl(var(--primary))' },
-    { id: 'cfo', name: 'CFO/Finance Teams', icon: DollarSign, color: 'hsl(142 76% 36%)' },
-    { id: 'coo', name: 'COO/Operations', icon: Settings, color: 'hsl(221 83% 53%)' },
-    { id: 'cso', name: 'CSO/Sustainability', icon: Heart, color: 'hsl(160 84% 39%)' },
-    { id: 'communications', name: 'Corporate Communications', icon: MessageSquare, color: 'hsl(262 83% 58%)' },
-    { id: 'product', name: 'Product Development', icon: Lightbulb, color: 'hsl(25 95% 53%)' },
-    { id: 'investors', name: 'Investors & Analysts', icon: TrendingUp, color: 'hsl(239 84% 67%)' },
-    { id: 'board', name: 'Board of Directors', icon: Shield, color: 'hsl(0 84% 60%)' },
-    { id: 'regulators', name: 'Regulators & Policy Makers', icon: Scale, color: 'hsl(215 25% 27%)' },
-    { id: 'customers', name: 'Customers', icon: ShoppingCart, color: 'hsl(330 81% 60%)' },
-    { id: 'suppliers', name: 'Suppliers & Partners', icon: Truck, color: 'hsl(45 93% 47%)' },
-    { id: 'community', name: 'Community & NGOs', icon: Users, color: 'hsl(173 80% 40%)' },
+    { 
+      id: 'executive', 
+      name: 'Executive Leadership', 
+      icon: Users, 
+      color: 'hsl(var(--primary))',
+      description: 'We help CEOs and leadership teams articulate a compelling climate vision that drives organizational alignment, attracts top talent, and positions the company as an industry leader in sustainability transformation.'
+    },
+    { 
+      id: 'cfo', 
+      name: 'CFO/Finance Teams', 
+      icon: DollarSign, 
+      color: 'hsl(142 76% 36%)',
+      description: 'We translate climate initiatives into financial narratives that demonstrate ROI, risk mitigation, and long-term value creation, helping CFOs communicate the business case for sustainability investments to stakeholders.'
+    },
+    { 
+      id: 'coo', 
+      name: 'COO/Operations', 
+      icon: Settings, 
+      color: 'hsl(221 83% 53%)',
+      description: 'We develop messaging strategies that showcase operational efficiency gains, supply chain resilience, and process innovations, helping COOs communicate how climate initiatives drive operational excellence and competitive advantage.'
+    },
+    { 
+      id: 'cso', 
+      name: 'CSO/Sustainability', 
+      icon: Heart, 
+      color: 'hsl(160 84% 39%)',
+      description: 'We help sustainability leaders translate complex climate data into compelling narratives that secure internal buy-in, demonstrate impact to external stakeholders, and position sustainability as a core business strategy.'
+    },
+    { 
+      id: 'communications', 
+      name: 'Corporate Communications', 
+      icon: MessageSquare, 
+      color: 'hsl(262 83% 58%)',
+      description: 'We partner with communications teams to develop authentic, science-based messaging that avoids greenwashing risks, builds stakeholder trust, and effectively communicates climate progress and commitments across all channels.'
+    },
+    { 
+      id: 'product', 
+      name: 'Product Development', 
+      icon: Lightbulb, 
+      color: 'hsl(25 95% 53%)',
+      description: 'We help product teams communicate how climate considerations drive innovation, create customer value, and differentiate products in the market, turning sustainability features into compelling value propositions.'
+    },
+    { 
+      id: 'investors', 
+      name: 'Investors & Analysts', 
+      icon: TrendingUp, 
+      color: 'hsl(239 84% 67%)',
+      description: 'We craft investor communications that demonstrate climate resilience, future-readiness, and long-term value creation, helping companies attract ESG-focused investors and improve access to green capital.'
+    },
+    { 
+      id: 'board', 
+      name: 'Board of Directors', 
+      icon: Shield, 
+      color: 'hsl(0 84% 60%)',
+      description: 'We prepare board-ready materials that clearly articulate climate risks, opportunities, and strategic responses, enabling directors to make informed decisions and fulfill their governance responsibilities on climate matters.'
+    },
+    { 
+      id: 'regulators', 
+      name: 'Regulators & Policy Makers', 
+      icon: Scale, 
+      color: 'hsl(215 25% 27%)',
+      description: 'We help organizations engage constructively with regulators by communicating climate commitments, progress, and compliance efforts in ways that build regulatory trust and influence policy development.'
+    },
+    { 
+      id: 'customers', 
+      name: 'Customers', 
+      icon: ShoppingCart, 
+      color: 'hsl(330 81% 60%)',
+      description: 'We develop customer-facing climate narratives that build brand loyalty, justify premium pricing, and meet growing consumer demand for sustainable products and transparent environmental practices.'
+    },
+    { 
+      id: 'suppliers', 
+      name: 'Suppliers & Partners', 
+      icon: Truck, 
+      color: 'hsl(45 93% 47%)',
+      description: 'We facilitate clear communication of climate expectations, support supplier engagement on sustainability initiatives, and help build collaborative partnerships that strengthen the entire value chain\'s climate performance.'
+    },
+    { 
+      id: 'community', 
+      name: 'Community & NGOs', 
+      icon: Users, 
+      color: 'hsl(173 80% 40%)',
+      description: 'We help organizations engage authentically with local communities and NGOs, building trust through transparent communication about climate impacts, community benefits, and collaborative environmental stewardship.'
+    },
   ];
 
   // Responsive sizing based on container
