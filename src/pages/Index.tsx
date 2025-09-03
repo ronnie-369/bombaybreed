@@ -9,6 +9,7 @@ import Expertise from '@/components/Expertise';
 import CaseStudies from '@/components/CaseStudies';
 import Value from '@/components/Value';
 import About from '@/components/About';
+import StakeholderEcosystemWheel from '@/components/StakeholderEcosystemWheel';
 import Endorsements from '@/components/Endorsements';
 import Newsletter from '@/components/Newsletter';
 import Contact from '@/components/Contact';
@@ -25,6 +26,7 @@ const Index = () => {
       <CaseStudies />
       <Value />
       <About />
+      <StakeholderEcosystemWheel />
       <Endorsements />
       <Newsletter />
       <Contact />
