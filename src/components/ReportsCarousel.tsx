@@ -38,6 +38,16 @@ const ReportsCarousel = () => {
       route: '/carbon-playbook',
       image: '/lovable-uploads/44d63597-9200-4941-8375-9a5a0aa338fe.png',
       gradient: 'from-purple-700 to-indigo-600'
+    },
+    {
+      id: 'compliance-credibility',
+      title: 'From Compliance to Credibility',
+      subtitle: 'A CXO Guide to CCTS & CBAM',
+      description: 'India\'s carbon economy is here. CBAM and CCTS are reshaping trade. This playbook shows how to turn compliance into competitive advantage.',
+      cta: 'Download the Guide',
+      route: '/compliance-to-credibility',
+      image: '/lovable-uploads/d154fe5b-5dc7-48e1-ae7b-30fb4291f03c.png',
+      gradient: 'from-orange-700 to-amber-600'
     }
   ];
 
