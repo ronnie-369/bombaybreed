@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { Star } from 'lucide-react';
+import { Star, Building2 } from 'lucide-react';
 
 const Endorsements = () => {
   const cmos = [
@@ -58,21 +58,23 @@ const Endorsements = () => {
                 <Star className="h-5 w-5 mr-2 text-bombay-accent" />
                 CXO leaders at:
               </h3>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-2">
-                <ul className="space-y-2">
-                  {[...cmos.slice(0, Math.ceil(cmos.length / 2)), ...ceos.slice(0, Math.ceil(ceos.length / 2))].map((company, index) => (
-                    <li key={index} className="text-foreground/80">
-                      {company}
-                    </li>
-                  ))}
-                </ul>
-                <ul className="space-y-2">
-                  {[...cmos.slice(Math.ceil(cmos.length / 2)), ...ceos.slice(Math.ceil(ceos.length / 2))].map((company, index) => (
-                    <li key={index} className="text-foreground/80">
-                      {company}
-                    </li>
-                  ))}
-                </ul>
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                {[...cmos, ...ceos].map((company, index) => (
+                  <div 
+                    key={index} 
+                    className="group bg-white rounded-lg p-4 shadow-sm hover:shadow-md transition-all duration-300 hover-scale animate-fade-in"
+                    style={{animationDelay: `${index * 50}ms`}}
+                  >
+                    <div className="flex items-center space-x-3">
+                      <div className="bg-gradient-to-r from-primary to-accent p-2 rounded-full">
+                        <Building2 className="h-4 w-4 text-white" />
+                      </div>
+                      <span className="text-foreground/90 font-medium text-sm group-hover:text-primary transition-colors duration-300">
+                        {company}
+                      </span>
+                    </div>
+                  </div>
+                ))}
               </div>
             </div>
           </div>

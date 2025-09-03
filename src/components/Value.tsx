@@ -2,6 +2,7 @@
 import React from 'react';
 import { BadgeCheck } from 'lucide-react';
 import { useInView } from '@/hooks/use-in-view';
+import { Link } from 'react-router-dom';
 
 const Value = () => {
   const { ref: glowRef, isInView: glowInView } = useInView();
@@ -18,7 +19,7 @@ const Value = () => {
       <div className="container mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           <div>
-            <h2 className="section-title gradient-accent">Why CXOs Choose Bombay Breed</h2>
+            <h2 className="section-title gradient-accent">Why CXOs Choose <span className="whitespace-nowrap">Bombay Breed</span></h2>
             <div className="w-16 h-1 bg-gradient-to-r from-primary to-accent rounded-full mb-6"></div>
             <p className="text-body text-foreground/80 mb-8">
               Global companies with Indian operations trust us to align their sustainability communications with international expectations while navigating local regulatory landscapes.
@@ -53,9 +54,12 @@ const Value = () => {
                   </p>
                 </div>
                 <div className="mt-8 text-center" ref={glowRef}>
-                  <div className={`inline-block bg-gradient-to-r from-primary to-accent text-white font-medium px-6 py-3 rounded-full shadow-sm glow-card ${glowInView ? 'active' : ''}`}>
+                  <Link 
+                    to="/compliance-to-credibility"
+                    className={`inline-block bg-gradient-to-r from-primary to-accent text-white font-medium px-6 py-3 rounded-full shadow-sm glow-card hover-scale transition-all duration-300 ${glowInView ? 'active' : ''}`}
+                  >
                     Effective sustainability communication is a strategic advantage
-                  </div>
+                  </Link>
                 </div>
               </div>
             </div>
