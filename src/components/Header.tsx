@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Menu, X } from 'lucide-react';
 import { Button } from "@/components/ui/button";
 import { useIsMobile } from '@/hooks/use-mobile';
-import Logo from '@/components/ui/Logo';
+import AnimatedLogo from '@/components/ui/AnimatedLogo';
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const isMobile = useIsMobile();
@@ -24,10 +24,10 @@ const Header = () => {
       <div className="container mx-auto px-4 md:px-6 py-4 flex items-center justify-between">
         <div className="flex items-center">
           <a href="/" className="flex items-center">
-            <Logo 
-              src="/lovable-uploads/d154fe5b-5dc7-48e1-ae7b-30fb4291f03c.png"
+            <AnimatedLogo 
               alt="BOMBAY BREED – Strategic Sustainability Communications Advisory"
               className="h-10 md:h-12"
+              fallbackSrc="/lovable-uploads/d154fe5b-5dc7-48e1-ae7b-30fb4291f03c.png"
             />
           </a>
         </div>
