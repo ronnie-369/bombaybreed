@@ -1,6 +1,9 @@
 import React from 'react';
 import Header from '@/components/Header';
 import LeadCaptureForm from '@/components/shared/LeadCaptureForm';
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import { Shield, TrendingUp, Target, Users, Globe, BookOpen } from 'lucide-react';
 
 const ComplianceToCredibility = () => {
   return (
@@ -8,139 +11,212 @@ const ComplianceToCredibility = () => {
       <Header />
       
       {/* Hero Section */}
-      <section className="pt-28 pb-16 md:pt-40 md:pb-24 px-4 md:px-8">
-        <div className="container mx-auto max-w-4xl text-center">
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-display font-bold leading-tight mb-6">
-            <span className="text-gradient">From Compliance to Credibility:</span>
+      <section className="pt-28 pb-16 md:pt-40 md:pb-24 px-4 md:px-8 bg-gradient-to-br from-slate-800 via-slate-700 to-black text-white">
+        <div className="container mx-auto text-center">
+          <Badge className="mb-6 bg-white/20 text-white border-white/30 px-4 py-2">
+            CXO Strategic Guide
+          </Badge>
+          <h1 className="text-4xl md:text-6xl font-bold mb-6 leading-tight">
+            From Compliance to Credibility
             <br />
-            <span className="bg-gradient-to-r from-orange-700 to-amber-600 bg-clip-text text-transparent">
-              A CXO Guide to CCTS & CBAM
-            </span>
+            <span className="text-slate-300">CCTS & CBAM Guide</span>
           </h1>
-          <p className="text-lg md:text-xl text-foreground/80 max-w-3xl mx-auto">
+          <p className="text-xl md:text-2xl mb-8 text-slate-200 max-w-3xl mx-auto">
             How Indian businesses can turn carbon compliance into trust, market access, and leadership.
+          </p>
+          <div className="flex flex-wrap justify-center gap-4 text-sm">
+            <span className="bg-white/20 px-4 py-2 rounded-full">85+ Pages</span>
+            <span className="bg-white/20 px-4 py-2 rounded-full">CXO Frameworks</span>
+            <span className="bg-white/20 px-4 py-2 rounded-full">Case Studies</span>
+          </div>
+        </div>
+      </section>
+
+      {/* Key Insights */}
+      <section className="py-20 px-4 md:px-8 bg-white">
+        <div className="container mx-auto">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">Strategic Intelligence</h2>
+            <p className="text-lg text-foreground/80 max-w-3xl mx-auto">
+              The twin forces of India's CCTS and Europe's CBAM are rewriting the rules of global trade. 
+              Transform compliance from burden to competitive advantage.
+            </p>
+          </div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            {[
+              {
+                icon: Shield,
+                title: "Regulatory Shifts Decoded",
+                description: "Deep dive into CCTS and CBAM regulations with sector-specific exposure analysis for Indian exporters."
+              },
+              {
+                icon: TrendingUp,
+                title: "Compliance-Grade Communication",
+                description: "How strategic storytelling differs from traditional sustainability claims in the new regulatory environment."
+              },
+              {
+                icon: Target,
+                title: "CXO Action Framework",
+                description: "Immediate steps to safeguard exports, investors, and reputation while building credibility."
+              },
+              {
+                icon: Globe,
+                title: "Market Access Strategy",
+                description: "Turn carbon compliance into trust, market differentiation, and sustainable competitive advantage."
+              }
+            ].map((insight, index) => {
+              const IconComponent = insight.icon;
+              return (
+                <Card key={index} className="border-l-4 border-l-slate-600 hover:shadow-lg transition-shadow">
+                  <CardHeader className="pb-3">
+                    <div className="flex items-center gap-3">
+                      <div className="p-2 bg-slate-100 rounded-lg">
+                        <IconComponent className="h-6 w-6 text-slate-600" />
+                      </div>
+                      <CardTitle className="text-xl">{insight.title}</CardTitle>
+                    </div>
+                  </CardHeader>
+                  <CardContent>
+                    <p className="text-foreground/80">{insight.description}</p>
+                  </CardContent>
+                </Card>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
+      {/* Case Studies & Frameworks */}
+      <section className="py-20 px-4 md:px-8 bg-gradient-to-b from-bombay-background to-white">
+        <div className="container mx-auto">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">Real-World Applications</h2>
+            <p className="text-lg text-foreground/80 max-w-3xl mx-auto">
+              Sector-specific analysis and case studies showing how leading Indian companies are turning compliance into competitive advantage.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            {[
+              {
+                sector: "Steel & Manufacturing",
+                companies: ["Tata Steel", "JSW Steel"],
+                challenges: ["CBAM exposure", "Carbon intensity reporting", "Supply chain transparency"],
+                frameworks: "Emission disclosure protocols"
+              },
+              {
+                sector: "Textiles & Chemicals",
+                companies: ["Aditya Birla Group", "Reliance Industries"],
+                challenges: ["Scope 3 emissions", "Supplier compliance", "Brand reputation"],
+                frameworks: "Credible communication strategies"
+              },
+              {
+                sector: "Automotive",
+                companies: ["Maruti Suzuki", "Mahindra Group"],
+                challenges: ["EU export requirements", "Battery supply chains", "Lifecycle assessments"],
+                frameworks: "Stakeholder engagement models"
+              },
+              {
+                sector: "Power & Energy",
+                companies: ["NTPC", "Adani Green"],
+                challenges: ["CCTS participation", "Carbon credit monetization", "Regulatory alignment"],
+                frameworks: "Market positioning tactics"
+              }
+            ].map((study, index) => (
+              <Card key={index} className="hover:shadow-lg transition-shadow">
+                <CardHeader>
+                  <CardTitle className="text-xl text-slate-700">{study.sector}</CardTitle>
+                  <CardDescription className="text-sm font-medium">
+                    Featured: {study.companies.join(", ")}
+                  </CardDescription>
+                </CardHeader>
+                <CardContent className="space-y-4">
+                  <div>
+                    <h4 className="font-medium mb-2 text-sm text-foreground/70">Key Challenges</h4>
+                    <ul className="space-y-1">
+                      {study.challenges.map((challenge, challengeIndex) => (
+                        <li key={challengeIndex} className="flex items-center text-sm">
+                          <span className="w-1.5 h-1.5 bg-slate-500 rounded-full mr-2"></span>
+                          {challenge}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                  <div className="pt-2 border-t border-gray-100">
+                    <p className="text-sm text-foreground/60">
+                      <span className="font-medium">Framework:</span> {study.frameworks}
+                    </p>
+                  </div>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Essential for Leaders */}
+      <section className="py-20 px-4 md:px-8 bg-white">
+        <div className="container mx-auto">
+          <h2 className="text-3xl md:text-4xl font-bold text-center mb-16">Essential for Industry Leaders</h2>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            {[
+              {
+                title: "CXOs & Senior Leaders",
+                value: "Strategic frameworks for turning compliance into competitive advantage across steel, chemicals, textiles, and automotive sectors.",
+                icon: "👔"
+              },
+              {
+                title: "Communications Teams",
+                value: "Credible storytelling frameworks that balance regulatory disclosure with brand differentiation.",
+                icon: "📢"
+              },
+              {
+                title: "Export-Focused Companies", 
+                value: "EU market access strategies, CBAM compliance roadmaps, and stakeholder communication protocols.",
+                icon: "🌍"
+              },
+              {
+                title: "Sustainability Leaders",
+                value: "CCTS participation strategies, carbon credit monetization, and ESG communication excellence.",
+                icon: "🌱"
+              }
+            ].map((item, index) => (
+              <Card key={index} className="text-center hover:shadow-lg transition-shadow">
+                <CardContent className="p-6">
+                  <div className="text-4xl mb-4">{item.icon}</div>
+                  <h3 className="text-lg font-semibold mb-3 text-slate-700">{item.title}</h3>
+                  <p className="text-sm text-foreground/80">{item.value}</p>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Author Attribution */}
+      <section className="py-8 px-4 md:px-8 bg-white">
+        <div className="container mx-auto text-center">
+          <p className="text-sm text-foreground/60">
+            <span className="font-medium">Theresa Ronnie</span> - Strategic communications advisory for the emerging Indian carbon market
           </p>
         </div>
       </section>
 
-      {/* Why This Guide Matters */}
-      <section className="py-16 px-4 md:px-8 bg-gradient-to-b from-white to-bombay-background">
-        <div className="container mx-auto max-w-4xl">
-          <h2 className="section-title text-center mb-12">Why this guide matters</h2>
-          <div className="prose prose-lg max-w-none text-foreground/80">
-            <p className="text-lg leading-relaxed mb-6">
-              The twin forces of India's Carbon Credit Trading Scheme (CCTS) and Europe's Carbon Border 
-              Adjustment Mechanism (CBAM) are rewriting the rules of global trade. For CXOs, the question 
-              is no longer if compliance matters — but how you communicate it.
-            </p>
-            <p className="text-lg leading-relaxed">
-              This guide equips leaders with frameworks, strategies, and actionable steps to transform 
-              carbon compliance into credibility and competitive advantage.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      {/* What You'll Learn */}
-      <section className="py-16 px-4 md:px-8">
-        <div className="container mx-auto max-w-4xl">
-          <h2 className="section-title text-center mb-12">What you'll learn inside</h2>
-          <div className="grid md:grid-cols-2 gap-8">
-            <ul className="space-y-4 text-foreground/80">
-              <li className="flex items-start gap-3">
-                <span className="text-orange-600 font-bold text-lg">•</span>
-                <span>The regulatory shifts redefining Indian exports</span>
-              </li>
-              <li className="flex items-start gap-3">
-                <span className="text-orange-600 font-bold text-lg">•</span>
-                <span>Sector-specific exposure and case studies (Tata Steel, Aditya Birla Textiles, Maruti Suzuki)</span>
-              </li>
-              <li className="flex items-start gap-3">
-                <span className="text-orange-600 font-bold text-lg">•</span>
-                <span>How compliance-grade communication differs from yesterday's sustainability claims</span>
-              </li>
-            </ul>
-            <ul className="space-y-4 text-foreground/80">
-              <li className="flex items-start gap-3">
-                <span className="text-orange-600 font-bold text-lg">•</span>
-                <span>Why strategic storytelling is now infrastructure, not just PR</span>
-              </li>
-              <li className="flex items-start gap-3">
-                <span className="text-orange-600 font-bold text-lg">•</span>
-                <span>The immediate CXO action checklist to safeguard exports, investors, and reputation</span>
-              </li>
-              <li className="flex items-start gap-3">
-                <span className="text-orange-600 font-bold text-lg">•</span>
-                <span>How AI + creativity can balance disclosure with differentiation</span>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </section>
-
-      {/* Target Audience */}
-      <section className="py-16 px-4 md:px-8 bg-gradient-to-b from-bombay-background to-white">
-        <div className="container mx-auto max-w-4xl">
-          <h2 className="section-title text-center mb-12">Who should read this guide</h2>
-          <div className="grid md:grid-cols-3 gap-8">
-            <div className="text-center">
-              <div className="w-16 h-16 bg-gradient-to-r from-orange-700 to-amber-600 rounded-full flex items-center justify-center mx-auto mb-4">
-                <span className="text-white font-bold text-xl">C</span>
-              </div>
-              <p className="text-foreground/80">
-                CXOs and senior leaders in steel, aluminium, cement, fertilizers, textiles, chemicals, and auto
-              </p>
-            </div>
-            <div className="text-center">
-              <div className="w-16 h-16 bg-gradient-to-r from-orange-700 to-amber-600 rounded-full flex items-center justify-center mx-auto mb-4">
-                <span className="text-white font-bold text-xl">S</span>
-              </div>
-              <p className="text-foreground/80">
-                Communications & sustainability leaders navigating CBAM/CCTS
-              </p>
-            </div>
-            <div className="text-center">
-              <div className="w-16 h-16 bg-gradient-to-r from-orange-700 to-amber-600 rounded-full flex items-center justify-center mx-auto mb-4">
-                <span className="text-white font-bold text-xl">E</span>
-              </div>
-              <p className="text-foreground/80">
-                Export-focused companies seeking EU market access
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* About the Author */}
-      <section className="py-16 px-4 md:px-8">
-        <div className="container mx-auto max-w-4xl">
-          <h2 className="section-title text-center mb-12">About the Author</h2>
-          <div className="bg-white rounded-2xl p-8 shadow-lg border border-border/20">
-            <div className="text-center">
-              <h3 className="text-2xl font-bold text-foreground mb-4">Theresa Ronnie</h3>
-              <p className="text-lg text-foreground/80 leading-relaxed">
-                Theresa Ronnie is the founder of Bombay Breed Consulting, a strategic communications firm 
-                helping Indian businesses navigate the carbon economy. With over 20 years in brand strategy 
-                and storytelling, she now focuses on transforming compliance data into credible, 
-                market-leading narratives.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Lead Capture Form */}
-      <section className="py-16 px-4 md:px-8 bg-gradient-to-b from-white to-bombay-background">
-        <div className="container mx-auto max-w-2xl">
+      {/* Lead Capture */}
+      <section className="py-20 px-4 md:px-8 bg-gradient-to-b from-bombay-background to-white">
+        <div className="container mx-auto">
           <div className="text-center mb-12">
-            <h2 className="section-title mb-4">Download the Guide</h2>
-            <p className="text-lg text-foreground/80">
-              Turn compliance from burden to advantage.
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">Download the Strategic Guide</h2>
+            <p className="text-lg text-foreground/80 max-w-2xl mx-auto">
+              Join 400+ CXOs who've downloaded this comprehensive compliance-to-credibility framework.
             </p>
           </div>
-          <LeadCaptureForm 
+          
+          <LeadCaptureForm
             reportTitle="From Compliance to Credibility: A CXO Guide to CCTS & CBAM"
-            reportDescription="Get actionable frameworks to transform carbon compliance into competitive advantage"
+            reportDescription="Strategic frameworks to transform carbon compliance into competitive advantage and market leadership"
           />
         </div>
       </section>
