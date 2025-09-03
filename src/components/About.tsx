@@ -46,15 +46,15 @@ const About = () => {
             </div>
 
             <div className="space-y-6 max-w-none">
-              <p className="text-body text-foreground/80">
+              <p className="text-sm md:text-base text-foreground/80">
                 Theresa has been a steady yet dynamic influence with CEOs and CXOs (CFOs, COOs, CSOs, CMOs) for over a decade. She has led advertising agencies, consulted with KPMG India, worked with the senior leadership at Microsoft India, before shifting her focus to Climate Action.
               </p>
               
-              <p className="text-body text-foreground/80">
+              <p className="text-sm md:text-base text-foreground/80">
                 Possessing an easy-going yet highly professional demeanour, Theresa is heavy on impact to bottomline and hard on effectiveness metrics. She is a student of climate sciences, mythology, behaviour studies, socio-economics, business movements, cultural trends and an active investor in the stock market.
               </p>
               
-              <p className="text-body text-foreground/80">
+              <p className="text-sm md:text-base text-foreground/80">
                 A mother, writer, futurist, philosopher, social scientist and free spirit, Theresa believes that businesses can build for sustainability and convert it to their competitive advantage.
               </p>
             </div>
