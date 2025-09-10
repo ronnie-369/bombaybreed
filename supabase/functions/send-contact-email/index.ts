@@ -22,6 +22,7 @@ const isOriginAllowed = (origin: string | null): boolean => {
   try {
     const { hostname, protocol } = new URL(origin);
     if (hostname.endsWith('.lovableproject.com')) return true;
+    if (hostname.endsWith('.bombaybreed.com') || hostname === 'bombaybreed.com') return true;
     if (hostname === 'localhost' && (protocol === 'http:' || protocol === 'https:')) return true;
   } catch (_) {
     // ignore parse errors
