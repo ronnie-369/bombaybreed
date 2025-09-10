@@ -8,14 +8,37 @@ const resendApiKey = Deno.env.get("RESEND_API_KEY")!;
 const supabase = createClient(supabaseUrl, serviceRoleKey);
 const resend = new Resend(resendApiKey);
 
-const corsHeaders = {
-  'Access-Control-Allow-Origin': '*',
-  'Access-Control-Allow-Headers': 'authorization, x-client-info, apikey, content-type',
-  'Access-Control-Allow-Methods': 'POST, OPTIONS',
-  'Access-Control-Max-Age': '86400',
+// Dynamic CORS based on allowed origins
+const getAllowedOrigins = (): string[] => {
+  const allowedOrigins = Deno.env.get('ALLOWED_ORIGINS');
+  if (allowedOrigins) {
+    return allowedOrigins.split(',').map(origin => origin.trim());
+  }
+  // Default allowed origins for staging and development
+  return [
+    'https://zjiwmdrtuhsrymsuvpfb.lovableproject.com',
+    'http://localhost:5173',
+    'http://localhost:3000'
+  ];
+};
+
+const getCorsHeaders = (origin: string | null): Record<string, string> => {
+  const allowedOrigins = getAllowedOrigins();
+  const isAllowed = origin && allowedOrigins.includes(origin);
+  
+  return {
+    'Access-Control-Allow-Origin': isAllowed ? origin : allowedOrigins[0],
+    'Access-Control-Allow-Headers': 'authorization, x-client-info, apikey, content-type',
+    'Access-Control-Allow-Methods': 'POST, OPTIONS',
+    'Access-Control-Max-Age': '86400',
+    'Access-Control-Allow-Credentials': 'true',
+  };
 };
 
 serve(async (req: Request) => {
+  const origin = req.headers.get('origin');
+  const corsHeaders = getCorsHeaders(origin);
+  
   if (req.method === "OPTIONS") {
     return new Response(null, { headers: corsHeaders });
   }
