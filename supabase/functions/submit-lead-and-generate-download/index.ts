@@ -304,8 +304,10 @@ serve(async (req: Request) => {
       }
     };
 
-    // Schedule email to be sent in background
-    EdgeRuntime.waitUntil(sendEmailNotification());
+    // Send email notification asynchronously (don't block response)
+    sendEmailNotification().catch(error => {
+      console.error('Report lead email error:', error);
+    });
 
     return new Response(JSON.stringify({ 
       downloadUrl, 

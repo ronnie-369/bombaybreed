@@ -120,23 +120,28 @@ const LeadCaptureForm: React.FC<LeadCaptureFormProps> = ({
   };
 
   const downloadFile = async () => {
+    if (!downloadUrl) return;
+    
     try {
       const response = await fetch(downloadUrl);
+      if (!response.ok) throw new Error('Download failed');
+      
       const blob = await response.blob();
       const url = window.URL.createObjectURL(blob);
       const a = document.createElement('a');
       a.href = url;
-      a.download = fileName;
+      a.download = fileName || 'report.pdf';
       document.body.appendChild(a);
       a.click();
-      window.URL.revokeObjectURL(url);
       document.body.removeChild(a);
+      window.URL.revokeObjectURL(url);
     } catch (error) {
-      console.error('Download failed:', error);
+      console.error('Download failed, using fallback:', error);
+      // Fallback: Open in new tab if download fails
+      window.open(downloadUrl, '_blank');
       toast({
-        variant: "destructive",
-        title: "Download Failed",
-        description: "Please try using the 'Open in new tab' option instead.",
+        title: "Download Started",
+        description: "Report opened in new tab. Save the file from your browser.",
       });
     }
   };

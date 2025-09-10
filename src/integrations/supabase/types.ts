@@ -167,10 +167,10 @@ export type Database = {
         }
         Relationships: [
           {
-            foreignKeyName: "report_downloads_lead_id_fkey"
+            foreignKeyName: "report_downloads_submission_id_fkey"
             columns: ["lead_id"]
             isOneToOne: false
-            referencedRelation: "leads"
+            referencedRelation: "contact_submissions"
             referencedColumns: ["id"]
           },
         ]
