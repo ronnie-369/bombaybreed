@@ -76,7 +76,13 @@ const LeadCaptureForm: React.FC<LeadCaptureFormProps> = ({
 
       if (functionError) {
         console.error('Function error:', functionError);
-        throw new Error('Failed to process request');
+        throw new Error(functionError.message || 'Failed to process request');
+      }
+
+      // Check if the function returned an error in the response
+      if (functionResult?.error) {
+        console.error('Function returned error:', functionResult.error);
+        throw new Error(functionResult.error);
       }
 
       if (!functionResult?.downloadUrl) {
