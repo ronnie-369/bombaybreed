@@ -108,32 +108,60 @@ const About = () => {
 
         {/* The Name Section */}
         <div className="mb-24">
-          <div className="max-w-4xl mx-auto">
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 items-center">
-              {/* Cat Image */}
-              <div className="md:col-span-1 flex justify-center">
-                <div className="relative">
-                  <div className="w-32 h-32 rounded-full overflow-hidden shadow-lg border-4 border-white">
+          <div className="grid grid-cols-1 lg:grid-cols-5 gap-16 items-start">
+            {/* Left Column - Content */}
+            <div className="lg:col-span-3 space-y-8">
+              <div className="space-y-6">
+                <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight">
+                  Why{' '}
+                  <span className="text-gradient">Bombay Breed</span>?
+                </h1>
+                
+                <div className="w-24 h-1 bg-gradient-to-r from-primary to-accent"></div>
+                
+                <p className="text-lede text-muted-foreground">
+                  A tribute to an unlikely guardian and a reminder that true strength can come in unexpected forms
+                </p>
+              </div>
+
+              <div className="space-y-6 max-w-none">
+                <p className="text-sm md:text-base text-foreground/80">
+                  The name comes from a cat. A Bombay Breed that once adopted me and my yet-to-be-born child. For the months leading up to his birth—and through his first steps into the world—this cat was our quiet guardian. Watchful. Protective. Steady. And then, one day, it left. Off to roam the world, leaving behind its imprint of resilience and fierce loyalty.
+                </p>
+                
+                <p className="text-sm md:text-base text-foreground/80 font-medium text-primary">
+                  Bombay Breed Consulting carries that same spirit. Rooted. Protective of what matters. Restless in pursuit of what's next. A tribute to that unlikely guardian—and a reminder that true strength can come in unexpected forms.
+                </p>
+              </div>
+            </div>
+
+            {/* Right Column - Logo */}
+            <div className="lg:col-span-2">
+              <div className="relative group">
+                {/* Background Elements */}
+                <div className="absolute -inset-4 bg-gradient-to-br from-primary/20 via-accent/10 to-secondary/30 rounded-3xl blur-2xl"></div>
+                <div className="absolute -top-8 -right-8 w-32 h-32 bg-gradient-to-br from-accent/30 to-primary/20 rounded-full blur-3xl"></div>
+                
+                {/* Main Logo Container */}
+                <div className="relative bg-white rounded-2xl overflow-hidden shadow-2xl">
+                  <div className="aspect-square relative p-8">
                     <img 
                       src={bombayBreedLogo}
                       alt="Bombay Breed Consulting logo"
                       className="w-full h-full object-contain"
                     />
+                    
+                    {/* Overlay gradient for depth */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/5 via-transparent to-transparent"></div>
                   </div>
-                  <div className="absolute -inset-2 bg-gradient-to-br from-primary/20 to-accent/20 rounded-full blur-xl -z-10"></div>
                 </div>
-              </div>
-              
-              {/* Content */}
-              <div className="md:col-span-2 space-y-4">
-                <h3 className="section-title text-2xl">Why "Bombay Breed"?</h3>
-                <div className="space-y-3 text-foreground/80">
-                  <p className="text-sm md:text-base leading-relaxed">
-                    The name comes from a cat. A Bombay Breed that once adopted me and my yet-to-be-born child. For the months leading up to his birth—and through his first steps into the world—this cat was our quiet guardian. Watchful. Protective. Steady. And then, one day, it left. Off to roam the world, leaving behind its imprint of resilience and fierce loyalty.
+                
+                {/* Quote Bubble */}
+                <div className="absolute -bottom-6 -left-6 bg-card p-6 rounded-2xl shadow-lg border max-w-sm animate-fade-in">
+                  <p className="text-note font-medium text-card-foreground italic">
+                    "Rooted. Protective of what matters. Restless in pursuit of what's next."
                   </p>
-                  <p className="text-sm md:text-base leading-relaxed font-medium text-primary">
-                    Bombay Breed Consulting carries that same spirit. Rooted. Protective of what matters. Restless in pursuit of what's next. A tribute to that unlikely guardian—and a reminder that true strength can come in unexpected forms.
-                  </p>
+                  <div className="w-3 h-3 bg-card transform rotate-45 absolute -top-1.5 left-8 border-l border-t"></div>
                 </div>
               </div>
             </div>
