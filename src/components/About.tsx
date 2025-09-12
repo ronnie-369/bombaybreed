@@ -144,11 +144,11 @@ const About = () => {
                 
                 {/* Main Logo Container */}
                 <div className="relative bg-white rounded-2xl overflow-hidden shadow-2xl">
-                  <div className="aspect-square relative p-8">
+                  <div className="aspect-square relative">
                     <img 
                       src={bombayBreedLogo}
                       alt="Bombay Breed Consulting logo"
-                      className="w-full h-full object-contain"
+                      className="w-full h-full object-cover"
                     />
                     
                     {/* Overlay gradient for depth */}
