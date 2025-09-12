@@ -1,7 +1,7 @@
 import React from 'react';
 import { Check, LinkedinIcon } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import bombayBreedLogo from '@/assets/bombay-breed-logo.png';
+
 
 const About = () => {
   const expertise = ["Proven Expertise", "Strategic Insighting", "Data-Led Approach", "Risk Management", "Stakeholder Engagement", "Innovation in Communication", "Tracking Compliance & Standards", "Cross-Functional Collaboration", "Long-term Vision"];
@@ -120,8 +120,8 @@ const About = () => {
                 <div className="relative bg-white rounded-2xl overflow-hidden shadow-2xl">
                   <div className="aspect-square relative">
                     <img 
-                      src={bombayBreedLogo}
-                      alt="Bombay Breed Consulting logo"
+                      src="https://zjiwmdrtuhsrymsuvpfb.supabase.co/storage/v1/object/public/brand%20assets/466784065_10159926171046216_7796875165911313074_n.jpg"
+                      alt="Bombay Breed Consulting"
                       className="w-full h-full object-cover"
                     />
                     
