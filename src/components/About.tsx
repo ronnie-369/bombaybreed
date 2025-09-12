@@ -1,7 +1,7 @@
 import React from 'react';
 import { Check, LinkedinIcon } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import bombayCatImage from '@/assets/bombay-cat.jpg';
+import bombayBreedLogo from '@/assets/bombay-breed-logo.png';
 
 const About = () => {
   const expertise = ["Proven Expertise", "Strategic Insighting", "Data-Led Approach", "Risk Management", "Stakeholder Engagement", "Innovation in Communication", "Tracking Compliance & Standards", "Cross-Functional Collaboration", "Long-term Vision"];
@@ -115,9 +115,9 @@ const About = () => {
                 <div className="relative">
                   <div className="w-32 h-32 rounded-full overflow-hidden shadow-lg border-4 border-white">
                     <img 
-                      src={bombayCatImage}
-                      alt="Bombay Breed cat that inspired the company name"
-                      className="w-full h-full object-cover"
+                      src={bombayBreedLogo}
+                      alt="Bombay Breed Consulting logo"
+                      className="w-full h-full object-contain"
                     />
                   </div>
                   <div className="absolute -inset-2 bg-gradient-to-br from-primary/20 to-accent/20 rounded-full blur-xl -z-10"></div>
