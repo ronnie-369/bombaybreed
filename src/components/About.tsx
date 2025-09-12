@@ -108,9 +108,9 @@ const About = () => {
 
         {/* The Name Section */}
         <div className="mb-24">
-          <div className="grid grid-cols-1 lg:grid-cols-5 gap-16 items-start">
+            <div className="grid grid-cols-1 lg:grid-cols-5 gap-16 items-start">
             {/* Left Column - Logo */}
-            <div className="lg:col-span-2">
+            <div className="lg:col-span-3">
               <div className="relative group">
                 {/* Background Elements */}
                 <div className="absolute -inset-4 bg-gradient-to-br from-primary/20 via-accent/10 to-secondary/30 rounded-3xl blur-2xl"></div>
@@ -141,7 +141,7 @@ const About = () => {
             </div>
 
             {/* Right Column - Content */}
-            <div className="lg:col-span-3 space-y-8">
+            <div className="lg:col-span-2 space-y-8">
               <div className="space-y-6">
                 <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight">
                   Why{' '}
