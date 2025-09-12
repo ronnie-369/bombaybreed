@@ -109,7 +109,38 @@ const About = () => {
         {/* The Name Section */}
         <div className="mb-24">
           <div className="grid grid-cols-1 lg:grid-cols-5 gap-16 items-start">
-            {/* Left Column - Content */}
+            {/* Left Column - Logo */}
+            <div className="lg:col-span-2">
+              <div className="relative group">
+                {/* Background Elements */}
+                <div className="absolute -inset-4 bg-gradient-to-br from-primary/20 via-accent/10 to-secondary/30 rounded-3xl blur-2xl"></div>
+                <div className="absolute -top-8 -right-8 w-32 h-32 bg-gradient-to-br from-accent/30 to-primary/20 rounded-full blur-3xl"></div>
+                
+                {/* Main Logo Container */}
+                <div className="relative bg-white rounded-2xl overflow-hidden shadow-2xl">
+                  <div className="aspect-square relative">
+                    <img 
+                      src={bombayBreedLogo}
+                      alt="Bombay Breed Consulting logo"
+                      className="w-full h-full object-cover"
+                    />
+                    
+                    {/* Overlay gradient for depth */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/5 via-transparent to-transparent"></div>
+                  </div>
+                </div>
+                
+                {/* Quote Bubble */}
+                <div className="absolute -bottom-6 -right-6 bg-card p-6 rounded-2xl shadow-lg border max-w-sm animate-fade-in">
+                  <p className="text-note font-medium text-card-foreground italic">
+                    "Rooted. Protective of what matters. Restless in pursuit of what's next."
+                  </p>
+                  <div className="w-3 h-3 bg-card transform rotate-45 absolute -top-1.5 right-8 border-r border-t"></div>
+                </div>
+              </div>
+            </div>
+
+            {/* Right Column - Content */}
             <div className="lg:col-span-3 space-y-8">
               <div className="space-y-6">
                 <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight">
@@ -132,37 +163,6 @@ const About = () => {
                 <p className="text-sm md:text-base text-foreground/80 font-medium text-primary">
                   Bombay Breed Consulting carries that same spirit. Rooted. Protective of what matters. Restless in pursuit of what's next. A tribute to that unlikely guardian—and a reminder that true strength can come in unexpected forms.
                 </p>
-              </div>
-            </div>
-
-            {/* Right Column - Logo */}
-            <div className="lg:col-span-2">
-              <div className="relative group">
-                {/* Background Elements */}
-                <div className="absolute -inset-4 bg-gradient-to-br from-primary/20 via-accent/10 to-secondary/30 rounded-3xl blur-2xl"></div>
-                <div className="absolute -top-8 -right-8 w-32 h-32 bg-gradient-to-br from-accent/30 to-primary/20 rounded-full blur-3xl"></div>
-                
-                {/* Main Logo Container */}
-                <div className="relative bg-white rounded-2xl overflow-hidden shadow-2xl">
-                  <div className="aspect-square relative">
-                    <img 
-                      src={bombayBreedLogo}
-                      alt="Bombay Breed Consulting logo"
-                      className="w-full h-full object-cover"
-                    />
-                    
-                    {/* Overlay gradient for depth */}
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/5 via-transparent to-transparent"></div>
-                  </div>
-                </div>
-                
-                {/* Quote Bubble */}
-                <div className="absolute -bottom-6 -left-6 bg-card p-6 rounded-2xl shadow-lg border max-w-sm animate-fade-in">
-                  <p className="text-note font-medium text-card-foreground italic">
-                    "Rooted. Protective of what matters. Restless in pursuit of what's next."
-                  </p>
-                  <div className="w-3 h-3 bg-card transform rotate-45 absolute -top-1.5 left-8 border-l border-t"></div>
-                </div>
               </div>
             </div>
           </div>
