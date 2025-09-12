@@ -1,6 +1,7 @@
 import React from 'react';
 import { Check, LinkedinIcon } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import bombayCatImage from '@/assets/bombay-cat.jpg';
 
 const About = () => {
   const expertise = ["Proven Expertise", "Strategic Insighting", "Data-Led Approach", "Risk Management", "Stakeholder Engagement", "Innovation in Communication", "Tracking Compliance & Standards", "Cross-Functional Collaboration", "Long-term Vision"];
@@ -100,6 +101,43 @@ const About = () => {
                   "If we don't get it right now, we are not going to be able to retain what we have..."
                 </p>
                 <div className="w-3 h-3 bg-card transform rotate-45 absolute -top-1.5 left-8 border-l border-t"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* The Name Section */}
+        <div className="mb-24">
+          <div className="max-w-4xl mx-auto">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 items-center">
+              {/* Cat Image */}
+              <div className="md:col-span-1 flex justify-center">
+                <div className="relative">
+                  <div className="w-32 h-32 rounded-full overflow-hidden shadow-lg border-4 border-white">
+                    <img 
+                      src={bombayCatImage}
+                      alt="Bombay Breed cat that inspired the company name"
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+                  <div className="absolute -inset-2 bg-gradient-to-br from-primary/20 to-accent/20 rounded-full blur-xl -z-10"></div>
+                </div>
+              </div>
+              
+              {/* Content */}
+              <div className="md:col-span-2 space-y-4">
+                <h3 className="section-title text-2xl">The Name</h3>
+                <div className="space-y-3 text-foreground/80">
+                  <p className="text-sm md:text-base leading-relaxed">
+                    Bombay Breed Consulting takes its name from a remarkable guardian—a Bombay Breed cat that arrived during a pivotal chapter of my life. This feline protector appeared before my son's birth and remained steadfast through his early years, embodying the qualities we bring to every client engagement.
+                  </p>
+                  <p className="text-sm md:text-base leading-relaxed">
+                    Like that devoted guardian, we provide unwavering protection for your sustainability initiatives, strategic stewardship during critical transitions, and the independence to navigate complex business landscapes. When the mission was complete, our feline mentor departed—a reminder that true partnership means knowing when to lead, when to support, and when to step back.
+                  </p>
+                  <p className="text-sm md:text-base leading-relaxed font-medium text-primary">
+                    This is our tribute to guardianship, independence, and purposeful partnership.
+                  </p>
+                </div>
               </div>
             </div>
           </div>
