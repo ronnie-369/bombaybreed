@@ -144,8 +144,8 @@ const About = () => {
             <div className="lg:col-span-2 space-y-8">
               <div className="space-y-6">
                 <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight">
-                  Why{' '}
-                  <span className="text-gradient">Bombay Breed</span>?
+                  What's{' '}
+                  <span className="text-gradient">in a name</span>?
                 </h1>
                 
                 <div className="w-24 h-1 bg-gradient-to-r from-primary to-accent"></div>
