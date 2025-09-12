@@ -133,7 +133,7 @@ const About = () => {
                 {/* Quote Bubble */}
                 <div className="absolute -bottom-6 -right-6 bg-card p-6 rounded-2xl shadow-lg border max-w-sm animate-fade-in">
                   <p className="text-note font-medium text-card-foreground italic">
-                    "Rooted. Protective of what matters. Restless in pursuit of what's next."
+                    "Bombay Breed Consulting is a salute to the silent protectors of nature."
                   </p>
                   <div className="w-3 h-3 bg-card transform rotate-45 absolute -top-1.5 right-8 border-r border-t"></div>
                 </div>
