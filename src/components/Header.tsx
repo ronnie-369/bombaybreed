@@ -32,12 +32,17 @@ const Header = () => {
     <header className="fixed w-full bg-white/80 backdrop-blur-md z-50 shadow-sm">
       <div className="container mx-auto px-4 md:px-6 py-4 flex items-center justify-between">
         <div className="flex items-center">
-          <Link to="/" className="flex items-center bg-transparent">
+          <Link to="/" className="flex items-center gap-3 bg-transparent">
             <AnimatedLogo 
               alt="BOMBAY BREED – Strategic Sustainability Communications Advisory"
               className="h-10 md:h-12 block bg-transparent"
               fallbackSrc="/lovable-uploads/d154fe5b-5dc7-48e1-ae7b-30fb4291f03c.png"
             />
+            <div className="hidden sm:block">
+              <h1 className="text-xl md:text-2xl font-bold text-foreground">
+                BOMBAY BREED
+              </h1>
+            </div>
           </Link>
         </div>
 
