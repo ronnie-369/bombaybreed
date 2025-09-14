@@ -86,7 +86,7 @@ const ReportsCarousel = () => {
                         {report.subtitle}
                       </span>
                     </h1>
-                    <p className="text-lg md:text-xl text-foreground/80 w-full sm:max-w-sm md:max-w-md lg:max-w-lg xl:max-w-xl animate-fade-in break-words hyphens-auto leading-relaxed">
+                    <p className="text-sm sm:text-base md:text-lg lg:text-xl text-foreground/80 w-full sm:max-w-sm md:max-w-md lg:max-w-lg xl:max-w-xl animate-fade-in break-words hyphens-auto leading-relaxed">
                       {report.description}
                     </p>
                     <div className="pt-4 animate-fade-in">
