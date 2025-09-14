@@ -52,7 +52,7 @@ const ReportsCarousel = () => {
   ];
 
   return (
-    <section className="pt-28 pb-16 md:pt-40 md:pb-24 px-4 md:px-8 bg-gradient-to-b from-bombay-background to-white overflow-hidden">
+    <section className="pt-28 pb-16 md:pt-40 md:pb-24 px-6 md:px-8 bg-gradient-to-b from-bombay-background to-white overflow-hidden">
       <div className="container mx-auto">
         <Carousel 
           className="w-full"
@@ -69,7 +69,7 @@ const ReportsCarousel = () => {
               <CarouselItem key={report.id}>
                 <div className="flex flex-col md:flex-row items-center gap-8 md:gap-16">
                   <div className="md:w-1/2 space-y-6 text-center md:text-left">
-                    <h1 className="text-4xl md:text-5xl lg:text-6xl font-display font-bold leading-tight animate-fade-in">
+                    <h1 className="text-2xl sm:text-3xl md:text-5xl lg:text-6xl font-display font-bold leading-tight animate-fade-in break-words">
                       <span className="text-gradient">{report.title}</span>
                       <br />
                       <span className={`bg-gradient-to-r ${report.gradient} bg-clip-text text-transparent`}>
