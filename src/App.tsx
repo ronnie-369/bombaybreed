@@ -9,6 +9,7 @@ import GreenJobsReport from "./pages/GreenJobsReport";
 import CarbonMarketOutlook from "./pages/CarbonMarketOutlook";
 import CarbonPlaybook from "./pages/CarbonPlaybook";
 import ComplianceToCredibility from "./pages/ComplianceToCredibility";
+import EnergyTransitionPlaybook from "./pages/EnergyTransitionPlaybook";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -26,6 +27,7 @@ const App = () => (
           <Route path="/carbon-market-outlook" element={<CarbonMarketOutlook />} />
           <Route path="/carbon-playbook" element={<CarbonPlaybook />} />
           <Route path="/compliance-to-credibility" element={<ComplianceToCredibility />} />
+          <Route path="/energy-transition-playbook" element={<EnergyTransitionPlaybook />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>

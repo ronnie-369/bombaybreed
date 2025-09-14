@@ -48,6 +48,16 @@ const ReportsCarousel = () => {
       route: '/compliance-to-credibility',
       image: '/lovable-uploads/44d63597-9200-4941-8375-9a5a0aa338fe.png',
       gradient: 'from-slate-800 to-black'
+    },
+    {
+      id: 'energy-transition-playbook',
+      title: 'The Energy Transition',
+      subtitle: 'Playbook for India',
+      description: 'Strategic frameworks and implementation pathways for India\'s clean energy transformation.',
+      cta: 'Download the Playbook',
+      route: '/energy-transition-playbook',
+      image: '/lovable-uploads/44d63597-9200-4941-8375-9a5a0aa338fe.png',
+      gradient: 'from-orange-700 to-red-600'
     }
   ];
 

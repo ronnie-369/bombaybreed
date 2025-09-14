@@ -139,6 +139,7 @@ serve(async (req: Request) => {
       "India Carbon Market Outlook 2025-2030: An Investor's Deep Dive": "India-Carbon-Market-Outlook-2025-2030-An-Investors-Deep-Dive.pdf",
       "India's Carbon Playbook": "Indias-Carbon-Playbook (1).pdf",
       "From Compliance to Credibility: A CXO Guide to CCTS & CBAM": "From-Compliance-to-Credibility-A-CXO-Guide-to-CCTS-and-CBAM.pdf",
+      "The Energy Transition Playbook for India": "The-Energy-Transition-Playbook-for-India (2).pdf",
     };
 
     const ensurePdf = (s: string) => (s.toLowerCase().endsWith(".pdf") ? s : `${s}.pdf`);
