@@ -10,34 +10,14 @@ const ReportsCarousel = () => {
   
   const reports = [
     {
-      id: 'green-jobs',
-      title: 'Green Jobs in India',
-      subtitle: '1 Million by 2030',
-      description: 'Workforce & Investment Outlook 2025–2030',
-      cta: 'Download Workforce Report',
-      route: '/green-jobs-report',
+      id: 'energy-transition-playbook',
+      title: 'The Energy Transition',
+      subtitle: 'Playbook for India',
+      description: 'Strategic frameworks and implementation pathways for India\'s clean energy transformation.',
+      cta: 'Download the Playbook',
+      route: '/energy-transition-playbook',
       image: '/lovable-uploads/44d63597-9200-4941-8375-9a5a0aa338fe.png',
-      gradient: 'from-teal-700 to-emerald-600'
-    },
-    {
-      id: 'carbon-market',
-      title: "India's Carbon Market", 
-      subtitle: '$1.4B Opportunity',
-      description: 'An Investor\'s Deep Dive 2025–2030',
-      cta: 'Download Investor Outlook',
-      route: '/carbon-market-outlook',
-      image: '/lovable-uploads/e3db2d3c-99b5-412e-a31f-127be1e22543.png',
-      gradient: 'from-blue-700 to-cyan-600'
-    },
-    {
-      id: 'carbon-playbook',
-      title: "India's Carbon Playbook",
-      subtitle: 'CCTS & Article 6',
-      description: 'PAT Lessons, CCTS Rules & Article 6 Opportunity',
-      cta: 'Download Policy Guide',
-      route: '/carbon-playbook',
-      image: '/lovable-uploads/44d63597-9200-4941-8375-9a5a0aa338fe.png',
-      gradient: 'from-purple-700 to-indigo-600'
+      gradient: 'from-orange-700 to-red-600'
     },
     {
       id: 'compliance-credibility',
@@ -50,14 +30,34 @@ const ReportsCarousel = () => {
       gradient: 'from-slate-800 to-black'
     },
     {
-      id: 'energy-transition-playbook',
-      title: 'The Energy Transition',
-      subtitle: 'Playbook for India',
-      description: 'Strategic frameworks and implementation pathways for India\'s clean energy transformation.',
-      cta: 'Download the Playbook',
-      route: '/energy-transition-playbook',
+      id: 'carbon-playbook',
+      title: "India's Carbon Playbook",
+      subtitle: 'CCTS & Article 6',
+      description: 'PAT Lessons, CCTS Rules & Article 6 Opportunity',
+      cta: 'Download Policy Guide',
+      route: '/carbon-playbook',
       image: '/lovable-uploads/44d63597-9200-4941-8375-9a5a0aa338fe.png',
-      gradient: 'from-orange-700 to-red-600'
+      gradient: 'from-purple-700 to-indigo-600'
+    },
+    {
+      id: 'carbon-market',
+      title: "India's Carbon Market", 
+      subtitle: '$1.4B Opportunity',
+      description: 'An Investor\'s Deep Dive 2025–2030',
+      cta: 'Download Investor Outlook',
+      route: '/carbon-market-outlook',
+      image: '/lovable-uploads/e3db2d3c-99b5-412e-a31f-127be1e22543.png',
+      gradient: 'from-blue-700 to-cyan-600'
+    },
+    {
+      id: 'green-jobs',
+      title: 'Green Jobs in India',
+      subtitle: '1 Million by 2030',
+      description: 'Workforce & Investment Outlook 2025–2030',
+      cta: 'Download Workforce Report',
+      route: '/green-jobs-report',
+      image: '/lovable-uploads/44d63597-9200-4941-8375-9a5a0aa338fe.png',
+      gradient: 'from-teal-700 to-emerald-600'
     }
   ];
 
