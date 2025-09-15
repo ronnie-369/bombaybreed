@@ -48,7 +48,7 @@ const CaseStudies = () => {
     result: "YouTube engagement: 300,000+ likes, Campaign felicitated at IIT Rourkee, Showcased to the Minister of Environment, Featured track played to A.R. Rahman",
     image: "https://images.unsplash.com/photo-1497435334941-8c899ee9e8e9"
   }];
-  const [activeCase, setActiveCase] = useState<CaseStudy>(cases[0]);
+  const [activeCase, setActiveCase] = useState<CaseStudy>(cases[cases.length - 1]);
   return (
     <section id="cases" className="py-20 px-4 md:px-8 bg-white animate-fade-in">
       <div className="container mx-auto">
