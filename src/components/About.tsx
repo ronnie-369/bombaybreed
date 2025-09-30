@@ -206,11 +206,11 @@ const About = () => {
             <div className="space-y-4">
               <Button asChild variant="outline" size="lg" className="w-full sm:w-auto">
                 <a 
-                  href="https://zjiwmdrtuhsrymsuvpfb.supabase.co/storage/v1/object/sign/Reports/The-Energy-Transition-Playbook-for-India%20(2).pdf?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV83ZjY0YjIzNy1hM2RlLTQ3NjctOGZiMC0yYjY1MjE4YjRkODkiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJSZXBvcnRzL1RoZS1FbmVyZ3ktVHJhbnNpdGlvbi1QbGF5Ym9vay1mb3ItSW5kaWEgKDIpLnBkZiIsImlhdCI6MTc1OTI0OTE0NywiZXhwIjoyMDc0NjA5MTQ3fQ.ci1W69kLH_OWtXtyKmaNbGBwHc46MK4ikMQWRf-3l6w"
+                  href="https://zjiwmdrtuhsrymsuvpfb.supabase.co/storage/v1/object/sign/Reports/growth%20rooms%20.pdf?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV83ZjY0YjIzNy1hM2RlLTQ3NjctOGZiMC0yYjY1MjE4YjRkODkiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJSZXBvcnRzL2dyb3d0aCByb29tcyAucGRmIiwiaWF0IjoxNzU5MjQ5NDYwLCJleHAiOjIwNzQ2MDk0NjB9.w4Gyi6D21wCMXhNQbNOJgaoPIaRR1WQ3Z7wUl-xK_IY"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  The Energy Transition Playbook for India
+                  Growth Rooms Report
                 </a>
               </Button>
             </div>
