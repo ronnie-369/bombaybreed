@@ -198,6 +198,24 @@ const About = () => {
             </div>
           </div>
         </div>
+
+        {/* Resources Section */}
+        <div className="mt-16 pt-16 border-t border-border/50">
+          <div className="space-y-6">
+            <h3 className="section-title text-2xl">Resources</h3>
+            <div className="space-y-4">
+              <Button asChild variant="outline" size="lg" className="w-full sm:w-auto">
+                <a 
+                  href="https://zjiwmdrtuhsrymsuvpfb.supabase.co/storage/v1/object/sign/Reports/The-Energy-Transition-Playbook-for-India%20(2).pdf?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV83ZjY0YjIzNy1hM2RlLTQ3NjctOGZiMC0yYjY1MjE4YjRkODkiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJSZXBvcnRzL1RoZS1FbmVyZ3ktVHJhbnNpdGlvbi1QbGF5Ym9vay1mb3ItSW5kaWEgKDIpLnBkZiIsImlhdCI6MTc1OTI0OTE0NywiZXhwIjoyMDc0NjA5MTQ3fQ.ci1W69kLH_OWtXtyKmaNbGBwHc46MK4ikMQWRf-3l6w"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  The Energy Transition Playbook for India
+                </a>
+              </Button>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
   );
