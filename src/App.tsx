@@ -11,6 +11,7 @@ import CarbonPlaybook from "./pages/CarbonPlaybook";
 import ComplianceToCredibility from "./pages/ComplianceToCredibility";
 import EnergyTransitionPlaybook from "./pages/EnergyTransitionPlaybook";
 import GrowthRooms from "./pages/GrowthRooms";
+import PrivacyPolicy from "./pages/PrivacyPolicy";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -30,6 +31,7 @@ const App = () => (
           <Route path="/compliance-to-credibility" element={<ComplianceToCredibility />} />
           <Route path="/energy-transition-playbook" element={<EnergyTransitionPlaybook />} />
           <Route path="/growth-rooms" element={<GrowthRooms />} />
+          <Route path="/privacy-policy" element={<PrivacyPolicy />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>

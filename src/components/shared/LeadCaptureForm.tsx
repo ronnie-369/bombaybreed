@@ -295,7 +295,7 @@ const LeadCaptureForm: React.FC<LeadCaptureFormProps> = ({
               className="mt-1"
             />
             <Label htmlFor="consent" className="text-sm leading-relaxed cursor-pointer">
-              I agree to receive communications about sustainability insights, reports, and updates from BombayBreed. I understand I can unsubscribe at any time.
+              I agree to receive communications about sustainability insights, reports, and updates from BombayBreed. I understand I can unsubscribe at any time. See our <a href="/privacy-policy" className="text-primary hover:underline">Privacy Policy</a>.
             </Label>
           </div>
 
@@ -315,7 +315,7 @@ const LeadCaptureForm: React.FC<LeadCaptureFormProps> = ({
           </Button>
 
           <p className="text-xs text-foreground/60 text-center mt-4">
-            Your information is secure and will only be used to send you the report and related sustainability insights.
+            Your information is secure and will only be used to send you the report and related sustainability insights. Read our <a href="/privacy-policy" className="text-primary hover:underline">Privacy Policy</a>.
           </p>
         </form>
       </CardContent>

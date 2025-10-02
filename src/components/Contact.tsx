@@ -219,6 +219,7 @@ const Contact = () => {
           <div className="flex space-x-6 mt-4 md:mt-0">
             <a href="https://theclimatedesk.substack.com/" target="_blank" rel="noopener noreferrer" className="story-link hover:text-white transition-colors">Blog</a>
             <a href="https://www.linkedin.com/in/theresaronnie/" target="_blank" rel="noopener noreferrer" className="story-link hover:text-white transition-colors">LinkedIn</a>
+            <a href="/privacy-policy" className="story-link hover:text-white transition-colors">Privacy Policy</a>
           </div>
         </div>
       </div>
