@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
-import { hasUserConsented, setConsentPreference } from "@/utils/cookieConsent";
+import { hasUserConsented, setConsentPreference, updateGoogleConsent } from "@/utils/cookieConsent";
 import { X } from "lucide-react";
 
 const CookieBanner = () => {
@@ -16,11 +16,13 @@ const CookieBanner = () => {
 
   const handleAccept = () => {
     setConsentPreference(true);
+    updateGoogleConsent(true);
     setIsVisible(false);
   };
 
   const handleClose = () => {
     setConsentPreference(false);
+    updateGoogleConsent(false);
     setIsVisible(false);
   };
 

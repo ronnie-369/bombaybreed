@@ -42,6 +42,28 @@
     <meta name="twitter:creator" content="@theresaronnie" />
     <meta name="twitter:site" content="@bombaybreed" />
     
+    <!-- Google tag (gtag.js) with Consent Mode V2 -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-3YDT4DB6P7"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      
+      // Set default consent to 'denied' as a placeholder
+      gtag('consent', 'default', {
+        'analytics_storage': 'denied',
+        'ad_storage': 'denied',
+        'ad_user_data': 'denied',
+        'ad_personalization': 'denied',
+        'wait_for_update': 500
+      });
+      
+      gtag('js', new Date());
+      gtag('config', 'G-3YDT4DB6P7', {
+        'anonymize_ip': true,
+        'cookie_flags': 'SameSite=None;Secure'
+      });
+    </script>
+    
     <!-- Preconnect for Performance -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
