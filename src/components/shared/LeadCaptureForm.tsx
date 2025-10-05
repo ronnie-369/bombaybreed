@@ -58,8 +58,6 @@ const LeadCaptureForm: React.FC<LeadCaptureFormProps> = ({
     setIsLoading(true);
 
     try {
-      console.log('Submitting lead data and generating download URL...');
-
       // Call the Edge Function to submit lead and generate signed URL
       const { data: functionResult, error: functionError } = await supabase.functions.invoke('submit-lead-and-generate-download', {
         body: {
@@ -90,7 +88,6 @@ const LeadCaptureForm: React.FC<LeadCaptureFormProps> = ({
         throw new Error('Failed to generate download link');
       }
 
-      console.log('Lead submitted and download URL generated successfully');
       setDownloadUrl(functionResult.downloadUrl);
       setFileName(functionResult.fileName || reportTitle);
       setIsSubmitted(true);
