@@ -2,6 +2,7 @@
 import React from 'react';
 import Header from '@/components/Header';
 import ReportsCarousel from '@/components/ReportsCarousel';
+import BlogCarousel from '@/components/BlogCarousel';
 import ReportTeasers from '@/components/ReportTeasers';
 import ComplianceToCredibilitySection from '@/components/ComplianceToCredibilitySection';
 import Services from '@/components/Services';
@@ -19,6 +20,7 @@ const Index = () => {
     <div className="min-h-screen bg-bombay-background">
       <Header />
       <ReportsCarousel />
+      <BlogCarousel />
       <ReportTeasers />
       <ComplianceToCredibilitySection />
       <Services />

@@ -1,0 +1,160 @@
+import React from 'react';
+import { Button } from "@/components/ui/button";
+import { ArrowRight, ExternalLink } from 'lucide-react';
+import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
+import Autoplay from 'embla-carousel-autoplay';
+
+const BlogCarousel = () => {
+  const blogPosts = [
+    {
+      id: 'circular-business-models',
+      title: 'Why Circular Business Models Keep Failing',
+      subtitle: '(and How to Fix Them)',
+      insight: "We've heard the promise before: circular business models can unlock new revenue, reduce risk, and cut emissions. But implementation keeps failing. Here's why—and how to scale them right.",
+      date: 'Oct 2, 2025',
+      url: 'https://theclimatedesk.substack.com/p/how-circular-business-models-fail',
+      image: 'https://images.unsplash.com/photo-1571377160222-7b1043110482?w=800&auto=format&fit=crop',
+      gradient: 'from-emerald-600 to-teal-600'
+    },
+    {
+      id: 'carbon-credits',
+      title: "Everyone Wants India's Carbon Credits",
+      subtitle: 'Few Want the Truth',
+      insight: "India's carbon credit market is attracting global attention, but the reality behind the hype reveals systemic challenges that need urgent addressing.",
+      date: 'Sep 15, 2025',
+      url: 'https://theclimatedesk.substack.com/p/everyone-wants-indias-carbon-credits',
+      image: 'https://images.unsplash.com/photo-1512759925926-28b2607d28fe?w=800&auto=format&fit=crop',
+      gradient: 'from-blue-600 to-indigo-600'
+    },
+    {
+      id: 'carbon-sequestration',
+      title: 'Unlock the Potential in Carbon Sequestration',
+      subtitle: 'Join Our Free Webinar',
+      insight: 'Discover breakthrough strategies for scaling carbon sequestration projects and creating high-quality carbon credits that drive real climate impact.',
+      date: 'Oct 3, 2025',
+      url: 'https://theclimatedesk.substack.com/p/what-will-it-take-to-create-high',
+      image: 'https://substackcdn.com/image/fetch/w_800,h_600,c_fill,f_auto,q_auto:good/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F11cce985-6213-4548-bc0c-013569608030_1518x1600.jpeg',
+      gradient: 'from-green-600 to-emerald-600'
+    },
+    {
+      id: 'energy-gdp',
+      title: 'We Need Energy to Drive the GDP',
+      subtitle: 'This decade holds the clues to our GDP growth',
+      insight: "India's energy transition is not just an environmental imperative—it's the key to unlocking sustainable economic growth this decade.",
+      date: 'Sep 14, 2025',
+      url: 'https://theclimatedesk.substack.com/p/the-world-is-watching-indias-energy',
+      image: 'https://substackcdn.com/image/fetch/w_800,h_600,c_fill,f_auto,q_auto:good/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F4fc920e7-74df-4d70-95e0-14f73369265a_2528x870.png',
+      gradient: 'from-orange-600 to-red-600'
+    },
+    {
+      id: 'communications-problem',
+      title: "Carbon Markets Don't Have a Communications Problem",
+      subtitle: 'Contrary to Popular Belief',
+      insight: 'The global carbon market is often accused of being "too complex." But the real issue isn\'t communication—it\'s structural design and trust.',
+      date: 'Sep 13, 2025',
+      url: 'https://theclimatedesk.substack.com/p/if-you-really-think-about-it',
+      image: 'https://substackcdn.com/image/fetch/w_800,h_600,c_fill,f_auto,q_auto:good/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F4eb2c4ca-c7f4-4bdc-845d-1eee52c81129_1200x1600.jpeg',
+      gradient: 'from-purple-600 to-pink-600'
+    }
+  ];
+
+  return (
+    <section className="py-16 md:py-24 px-6 md:px-8 bg-gradient-to-b from-white to-bombay-background/30">
+      <div className="container mx-auto">
+        <div className="text-center mb-12">
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-display font-bold mb-4">
+            <span className="text-gradient">Latest from</span>
+            <br />
+            <span className="bg-gradient-to-r from-emerald-600 to-teal-600 bg-clip-text text-transparent">
+              The Climate Desk
+            </span>
+          </h2>
+          <p className="text-lg text-foreground/70 max-w-2xl mx-auto">
+            Insights, analysis, and deep dives into India's climate economy
+          </p>
+        </div>
+
+        <Carousel 
+          className="w-full"
+          opts={{ loop: true }}
+          plugins={[
+            Autoplay({
+              delay: 6000,
+              stopOnInteraction: true,
+            }),
+          ]}
+        >
+          <CarouselContent>
+            {blogPosts.map((post) => (
+              <CarouselItem key={post.id}>
+                <div className="flex flex-col md:flex-row items-center gap-8 md:gap-16 py-8">
+                  <div className="md:w-1/2 space-y-6 text-center md:text-left">
+                    <div className="space-y-2">
+                      <p className="text-sm font-medium text-foreground/60 uppercase tracking-wider">
+                        {post.date}
+                      </p>
+                      <h3 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-display font-bold leading-tight">
+                        <span className={`bg-gradient-to-r ${post.gradient} bg-clip-text text-transparent`}>
+                          {post.title}
+                        </span>
+                        {post.subtitle && (
+                          <>
+                            <br />
+                            <span className="text-foreground/80 text-xl md:text-2xl lg:text-3xl">
+                              {post.subtitle}
+                            </span>
+                          </>
+                        )}
+                      </h3>
+                    </div>
+                    <p className="text-sm sm:text-base md:text-lg text-foreground/70 leading-relaxed max-w-xl">
+                      {post.insight}
+                    </p>
+                    <div className="pt-4">
+                      <Button 
+                        onClick={() => window.open(post.url, '_blank', 'noopener,noreferrer')}
+                        variant="gradient"
+                        className="px-8 py-6 text-lg"
+                      >
+                        Read Full Article
+                        <ExternalLink className="ml-2 h-5 w-5" />
+                      </Button>
+                    </div>
+                  </div>
+                  <div className="md:w-1/2 mt-8 md:mt-0 relative">
+                    <div className={`absolute -inset-4 bg-gradient-to-br ${post.gradient} opacity-20 rounded-full blur-3xl`}></div>
+                    <div className="relative">
+                      <div className="aspect-[4/3] w-full max-w-lg mx-auto overflow-hidden rounded-2xl shadow-2xl">
+                        <img 
+                          alt={post.title}
+                          className="w-full h-full object-cover hover:scale-105 transition-transform duration-500" 
+                          src={post.image}
+                          loading="lazy"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </CarouselItem>
+            ))}
+          </CarouselContent>
+          <CarouselPrevious className="left-4" />
+          <CarouselNext className="right-4" />
+        </Carousel>
+
+        <div className="text-center mt-12">
+          <Button
+            onClick={() => window.open('https://theclimatedesk.substack.com/', '_blank', 'noopener,noreferrer')}
+            variant="outline"
+            className="px-6 py-3"
+          >
+            View All Articles
+            <ArrowRight className="ml-2 h-4 w-4" />
+          </Button>
+        </div>
+      </div>
+    </section>
+  );
+};
+
+export default BlogCarousel;
