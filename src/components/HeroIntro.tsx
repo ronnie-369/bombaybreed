@@ -8,7 +8,7 @@ const HeroIntro = () => {
           Welcome to Bombay Breed Consulting
         </h1>
         <p className="text-lg md:text-xl text-bombay-charcoal/80 leading-relaxed animate-fade-in" style={{ animationDelay: '0.2s' }}>
-          A strong history of C-suite advisory, Bombay Breed Consulting is the quiet leadership brand leaders depend on. India's only strategic carbon communications advisory and consulting firm.
+          A strong history of C-suite advisory, Bombay Breed Consulting is the quiet leadership brand leaders depend on. We are India's only strategic carbon communications advisory and consulting firm.
         </p>
       </div>
     </section>
