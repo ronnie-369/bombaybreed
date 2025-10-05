@@ -1,6 +1,7 @@
 
 import React from 'react';
 import Header from '@/components/Header';
+import HeroIntro from '@/components/HeroIntro';
 import ReportsCarousel from '@/components/ReportsCarousel';
 import ReportTeasers from '@/components/ReportTeasers';
 import ComplianceToCredibilitySection from '@/components/ComplianceToCredibilitySection';
@@ -18,6 +19,7 @@ const Index = () => {
   return (
     <div className="min-h-screen bg-bombay-background">
       <Header />
+      <HeroIntro />
       <ReportsCarousel />
       <ReportTeasers />
       <ComplianceToCredibilitySection />
