@@ -64,7 +64,7 @@ const Header = () => {
               Blog
             </a>
             <span className="text-foreground/40">|</span>
-            <a href="https://linkedin.com/in/theresa-ronnie" target="_blank" rel="noopener noreferrer" className="text-foreground/80 hover:text-bombay story-link transition-colors">
+            <a href="https://www.linkedin.com/in/theresaronnie/" target="_blank" rel="noopener noreferrer" className="text-foreground/80 hover:text-bombay story-link transition-colors">
               LinkedIn
             </a>
           </div>
@@ -106,7 +106,7 @@ const Header = () => {
                 Blog
               </a>
               <span className="text-foreground/40">|</span>
-              <a href="https://linkedin.com/in/theresa-ronnie" target="_blank" rel="noopener noreferrer" className="text-foreground/80 hover:text-bombay transition-colors">
+              <a href="https://www.linkedin.com/in/theresaronnie/" target="_blank" rel="noopener noreferrer" className="text-foreground/80 hover:text-bombay transition-colors">
                 LinkedIn
               </a>
             </div>
