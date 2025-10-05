@@ -34,7 +34,7 @@ const About = () => {
           {/* Left Column - Content */}
           <div className="lg:col-span-3 space-y-8">
             <div className="space-y-6">
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight">
+              <h1 className="text-4xl md:text-5xl lg:text-6xl font-heading font-bold leading-tight">
                 A Strong History of{' '}
                 <span className="text-gradient">C-suite Advisory</span>
               </h1>
@@ -142,8 +142,8 @@ const About = () => {
 
             {/* Right Column - Content */}
             <div className="lg:col-span-2 space-y-8">
-              <div className="space-y-6">
-                <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight">
+            <div className="space-y-6">
+                <h1 className="text-4xl md:text-5xl lg:text-6xl font-heading font-bold leading-tight">
                   What's{' '}
                   <span className="text-gradient">in a name</span>?
                 </h1>
@@ -172,7 +172,7 @@ const About = () => {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
           {/* Experience Section */}
           <div className="space-y-6">
-            <h3 className="section-title text-2xl">Experience</h3>
+            <h3 className="section-title text-2xl font-heading">Experience</h3>
             <div className="space-y-4">
               {experience.map((item, index) => (
                 <div key={index} className="flex justify-between items-center py-4 border-b border-border/50 hover:border-border transition-colors">
@@ -185,7 +185,7 @@ const About = () => {
 
           {/* The X Factor Section */}
           <div className="space-y-6">
-            <h3 className="section-title text-2xl">The X Factor</h3>
+            <h3 className="section-title text-2xl font-heading">The X Factor</h3>
             <div className="grid grid-cols-1 gap-4">
               {expertise.map((item, index) => (
                 <div key={index} className="flex items-start gap-3 group">
@@ -202,7 +202,7 @@ const About = () => {
         {/* Resources Section */}
         <div className="mt-16 pt-16 border-t border-border/50">
           <div className="space-y-6">
-            <h3 className="section-title text-2xl">Resources</h3>
+            <h3 className="section-title text-2xl font-heading">Resources</h3>
             <div className="space-y-4">
               <Button asChild variant="outline" size="lg" className="w-full sm:w-auto">
                 <a 

@@ -112,7 +112,7 @@ const Contact = () => {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 md:gap-16">
           <div className="space-y-8">
             <div>
-              <h2 className="text-3xl font-sans font-bold mb-4">Contact</h2>
+              <h2 className="text-3xl font-heading font-bold mb-4">Contact</h2>
               <p className="mb-6 text-white/80 max-w-md leading-relaxed">
                 We need to stay on the right side of Climate Action. Because, the children.
               </p>
@@ -149,14 +149,14 @@ const Contact = () => {
               <div className="absolute top-2 right-2 text-white font-medium uppercase tracking-wide shine-text">
                 Pricing
               </div>
-              <h3 className="text-lg font-sans font-semibold text-white drop-shadow-lg leading-relaxed mt-4">
+              <h3 className="text-lg font-heading font-semibold text-white drop-shadow-lg leading-relaxed mt-4">
                 Talk to me about your Executive Advisory Retainer from as low as <span className={`text-white font-bold glow-pill ${pricingInView ? 'active' : ''}`}>INR 30,000 pm +gst</span>.
               </h3>
             </div>
           </div>
           
           <div className="glass-card bg-white/10 rounded-2xl p-6 md:p-8 h-fit hover-scale">
-            <h3 className="text-xl font-sans font-semibold mb-6">Send us a message</h3>
+            <h3 className="text-xl font-heading font-semibold mb-6">Send us a message</h3>
             <Form {...form}>
               <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">

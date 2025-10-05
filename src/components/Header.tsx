@@ -39,7 +39,7 @@ const Header = () => {
               fallbackSrc="/lovable-uploads/d154fe5b-5dc7-48e1-ae7b-30fb4291f03c.png"
             />
             <div className="hidden sm:block">
-              <h1 className="text-xl md:text-2xl font-bold text-foreground">
+              <h1 className="text-xl md:text-2xl font-heading font-bold text-foreground">
                 BOMBAY BREED
               </h1>
             </div>

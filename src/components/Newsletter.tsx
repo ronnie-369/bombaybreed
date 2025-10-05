@@ -84,7 +84,7 @@ const Newsletter = () => {
             <div className="bg-white/20 backdrop-blur-sm p-4 rounded-full w-fit mx-auto mb-4">
               <Mail className="h-12 w-12 text-white" />
             </div>
-            <h2 className="text-3xl md:text-4xl font-display font-bold text-white mb-4">
+            <h2 className="text-3xl md:text-4xl font-heading font-bold text-white mb-4">
               Subscribe to The Climate Desk
             </h2>
             <p className="text-white/90 text-lg">

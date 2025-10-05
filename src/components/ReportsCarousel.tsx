@@ -137,7 +137,7 @@ const ReportsCarousel = () => {
                         Latest from The Climate Desk • {item.date}
                       </p>
                     )}
-                    <h1 className="text-2xl sm:text-3xl md:text-5xl lg:text-6xl font-display font-bold leading-tight animate-fade-in break-words">
+                    <h1 className="text-2xl sm:text-3xl md:text-5xl lg:text-6xl font-heading font-bold leading-tight animate-fade-in break-words">
                       <span className="text-gradient">{item.title}</span>
                       <br />
                       <span className={`bg-gradient-to-r ${item.gradient} bg-clip-text text-transparent`}>

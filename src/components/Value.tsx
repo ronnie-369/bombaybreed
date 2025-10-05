@@ -41,7 +41,7 @@ const Value = () => {
             <div className="absolute -inset-4 bg-gradient-to-tr from-primary/20 to-accent/20 rounded-3xl transform rotate-3 scale-105 blur-xl"></div>
             <div className="relative">
               <div className="glass-card rounded-3xl overflow-hidden shadow-xl p-8 hover-scale">
-                <h3 className="text-2xl font-sans font-bold mb-6 gradient-accent">The Imperative of Sustainability</h3>
+                <h3 className="text-2xl font-heading font-bold mb-6 gradient-accent">The Imperative of Sustainability</h3>
                 <div className="space-y-4 text-body text-foreground/80">
                   <p>
                     In today's business environment, ESG and therefore sustainability is non-negotiable. Stakeholders expect transparency and accountability, necessitating a robust approach to communicate your sustainability initiatives effectively.

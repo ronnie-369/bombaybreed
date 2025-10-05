@@ -73,7 +73,7 @@ const CaseStudies = () => {
               <div className="flex justify-between items-start">
                 <div>
                   <span className="text-sm font-medium block mb-1">{String(caseItem.id).padStart(2, '0')}</span>
-                  <h3 className="text-xl font-sans font-semibold mb-1">{caseItem.name}</h3>
+                  <h3 className="text-xl font-heading font-semibold mb-1">{caseItem.name}</h3>
                 </div>
                 <div className={`text-right ${activeCase.id === caseItem.id ? 'text-white/80' : 'text-foreground/70'}`}>
                   <p className="text-sm">{caseItem.type}</p>
@@ -106,7 +106,7 @@ const CaseStudies = () => {
                 <div className="bg-gradient-to-r from-primary to-accent inline-flex p-3 rounded-full mb-6 shadow-sm">
                   <Quote className="h-6 w-6 text-white" />
                 </div>
-                <h3 className="text-2xl md:text-3xl font-sans font-medium mb-4">{activeCase.name}</h3>
+                <h3 className="text-2xl md:text-3xl font-heading font-medium mb-4">{activeCase.name}</h3>
                 
                 <div className="space-y-4 mb-6">
                   <div>

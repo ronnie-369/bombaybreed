@@ -74,10 +74,10 @@ const Endorsements = () => {
       <div className="container mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
           <div>
-            <h2 className="text-3xl md:text-4xl font-bold mb-8">Trusted by Leaders</h2>
+            <h2 className="text-3xl md:text-4xl font-heading font-bold mb-8">Trusted by Leaders</h2>
             
             <div className="mb-8">
-              <h3 className="text-xl font-semibold mb-4 flex items-center">
+              <h3 className="text-xl font-heading font-semibold mb-4 flex items-center">
                 <Star className="h-5 w-5 mr-2 text-bombay-accent" />
                 CXO leaders at:
               </h3>
@@ -114,7 +114,7 @@ const Endorsements = () => {
           </div>
           
           <div>
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">The Right Expertise</h2>
+            <h2 className="text-3xl md:text-4xl font-heading font-bold mb-4">The Right Expertise</h2>
             <p className="text-lg mb-6">
               For Sustainability Strategic Communications
             </p>
@@ -122,7 +122,7 @@ const Endorsements = () => {
             <div className="space-y-6">
               {expertisePoints.map((point, index) => (
                 <div key={index} className="bg-white rounded-xl p-5 shadow-sm">
-                  <h3 className="text-lg font-semibold mb-2">{point.title}</h3>
+                  <h3 className="text-lg font-heading font-semibold mb-2">{point.title}</h3>
                   <p className="text-foreground/80">{point.description}</p>
                 </div>
               ))}

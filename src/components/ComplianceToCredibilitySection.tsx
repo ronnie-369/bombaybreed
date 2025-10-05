@@ -25,7 +25,7 @@ const ComplianceToCredibilitySection = () => {
               <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-gradient-to-br from-slate-700 to-slate-900 flex items-center justify-center shadow-lg">
                 <Shield className="h-8 w-8 text-white" />
               </div>
-              <CardTitle className="text-xl font-sans font-semibold">
+              <CardTitle className="text-xl font-heading font-semibold">
                 From Compliance to Credibility
               </CardTitle>
               <CardDescription className="text-sm text-foreground/60">

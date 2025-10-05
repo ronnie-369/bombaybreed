@@ -55,7 +55,7 @@ const Expertise = () => {
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           {/* Complexities Section */}
           <div className="glass-card rounded-2xl p-6 md:p-8 hover-scale">
-            <h3 className="text-xl font-semibold mb-6 flex items-center">
+            <h3 className="text-xl font-heading font-semibold mb-6 flex items-center">
               <div className="bg-gradient-to-r from-primary to-accent p-2 rounded-full mr-3">
                 <Package className="h-5 w-5 text-white" />
               </div>
@@ -75,7 +75,7 @@ const Expertise = () => {
           
           {/* Stakeholders Section */}
           <div className="glass-card rounded-2xl p-6 md:p-8 hover-scale">
-            <h3 className="text-xl font-semibold mb-6 flex items-center">
+            <h3 className="text-xl font-heading font-semibold mb-6 flex items-center">
               <div className="bg-gradient-to-r from-primary to-accent p-2 rounded-full mr-3">
                 <Users className="h-5 w-5 text-white" />
               </div>
@@ -101,7 +101,7 @@ const Expertise = () => {
           
           {/* Market Dynamics Section */}
           <div className="glass-card rounded-2xl p-6 md:p-8 hover-scale">
-            <h3 className="text-xl font-semibold mb-6 flex items-center">
+            <h3 className="text-xl font-heading font-semibold mb-6 flex items-center">
               <div className="bg-gradient-to-r from-primary to-accent p-2 rounded-full mr-3">
                 <Target className="h-5 w-5 text-white" />
               </div>
