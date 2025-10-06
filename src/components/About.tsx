@@ -172,7 +172,9 @@ const About = () => {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
           {/* Experience Section */}
           <div className="space-y-6">
-            <h3 className="section-title text-2xl font-heading">Experience</h3>
+            <h2 className="text-4xl md:text-5xl lg:text-6xl font-heading font-bold leading-tight">
+              <span className="text-gradient">Experience</span>
+            </h2>
             <div className="space-y-4">
               {experience.map((item, index) => (
                 <div key={index} className="flex justify-between items-center py-4 border-b border-border/50 hover:border-border transition-colors">
@@ -185,7 +187,9 @@ const About = () => {
 
           {/* The X Factor Section */}
           <div className="space-y-6">
-            <h3 className="section-title text-2xl font-heading">The X Factor</h3>
+            <h2 className="text-4xl md:text-5xl lg:text-6xl font-heading font-bold leading-tight">
+              <span className="text-gradient">The X Factor</span>
+            </h2>
             <div className="grid grid-cols-1 gap-4">
               {expertise.map((item, index) => (
                 <div key={index} className="flex items-start gap-3 group">
