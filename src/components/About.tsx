@@ -47,15 +47,15 @@ const About = () => {
             </div>
 
             <div className="space-y-6 max-w-none">
-              <p className="text-sm md:text-base text-foreground/80">
+              <p className="text-body text-foreground/80">
                 Theresa has been a steady yet dynamic influence with CEOs and CXOs (CFOs, COOs, CSOs, CMOs) for over a decade. She has led advertising agencies, consulted with KPMG India, worked with the senior leadership at Microsoft India, before shifting her focus to Climate Action.
               </p>
               
-              <p className="text-sm md:text-base text-foreground/80">
+              <p className="text-body text-foreground/80">
                 Possessing an easy-going yet highly professional demeanour, Theresa is heavy on impact to bottomline and hard on effectiveness metrics. She is a student of climate sciences, mythology, behaviour studies, socio-economics, business movements, cultural trends and an active investor in the stock market.
               </p>
               
-              <p className="text-sm md:text-base text-foreground/80">
+              <p className="text-body text-foreground/80">
                 A mother, writer, futurist, philosopher, social scientist and free spirit, Theresa believes that businesses can build for sustainability and convert it to their competitive advantage.
               </p>
             </div>
@@ -156,11 +156,11 @@ const About = () => {
               </div>
 
               <div className="space-y-6 max-w-none">
-                <p className="text-sm md:text-base text-foreground/80">
+                <p className="text-body text-foreground/80">
                   The name comes from a cat. A Bombay Breed that once adopted me and my yet-to-be-born child. For the months leading up to his birth—and through his first steps into the world—this cat was our quiet guardian. Watchful. Protective. Steady. And then, one day, it left. Off to roam the world, leaving behind its imprint of resilience and fierce loyalty.
                 </p>
                 
-                <p className="text-sm md:text-base text-foreground/80 font-medium text-primary">
+                <p className="text-body text-foreground/80 font-medium text-primary">
                   Bombay Breed Consulting carries that same spirit. Rooted. Protective of what matters. Restless in pursuit of what's next. A tribute to that unlikely guardian—and a reminder that true strength can come in unexpected forms.
                 </p>
               </div>

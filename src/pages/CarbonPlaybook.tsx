@@ -70,12 +70,12 @@ const CarbonPlaybook = () => {
           <Badge className="mb-6 bg-white/20 text-white border-white/30 px-4 py-2">
             Policy Analysis & Implementation Guide
           </Badge>
-          <h1 className="text-4xl md:text-6xl font-bold mb-6 leading-tight">
+          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight">
             India's Carbon Playbook
             <br />
             <span className="text-indigo-200">CCTS & Article 6</span>
           </h1>
-          <p className="text-xl md:text-2xl mb-8 text-purple-100 max-w-3xl mx-auto">
+          <p className="text-lede mb-8 text-purple-100 max-w-3xl mx-auto">
             Strategic policy guide covering PAT lessons, CCTS implementation roadmap, and India's Article 6 opportunity framework.
           </p>
           <div className="flex flex-wrap justify-center gap-4 text-sm">
@@ -91,7 +91,7 @@ const CarbonPlaybook = () => {
         <div className="container mx-auto">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold mb-4">Policy Intelligence</h2>
-            <p className="text-lg text-foreground/80 max-w-3xl mx-auto">
+            <p className="text-body text-foreground/80 max-w-3xl mx-auto">
               Deep analysis of India's carbon policy evolution, regulatory frameworks, and international cooperation mechanisms.
             </p>
           </div>
@@ -110,7 +110,7 @@ const CarbonPlaybook = () => {
                     </div>
                   </CardHeader>
                   <CardContent>
-                    <p className="text-foreground/80">{insight.description}</p>
+                    <p className="text-foreground/80 text-card">{insight.description}</p>
                   </CardContent>
                 </Card>
               );
@@ -124,7 +124,7 @@ const CarbonPlaybook = () => {
         <div className="container mx-auto">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold mb-4">Regulatory Framework Analysis</h2>
-            <p className="text-lg text-foreground/80 max-w-3xl mx-auto">
+            <p className="text-body text-foreground/80 max-w-3xl mx-auto">
               Comprehensive breakdown of India's carbon policy architecture, implementation status, and future development roadmap.
             </p>
           </div>
@@ -156,7 +156,7 @@ const CarbonPlaybook = () => {
                     <h4 className="font-medium mb-2 text-sm text-foreground/70">Key Policy Lessons</h4>
                     <ul className="space-y-1">
                       {framework.keyLessons.map((lesson, lessonIndex) => (
-                        <li key={lessonIndex} className="flex items-center text-sm">
+                        <li key={lessonIndex} className="flex items-center text-card">
                           <span className="w-1.5 h-1.5 bg-purple-500 rounded-full mr-2"></span>
                           {lesson}
                         </li>
@@ -206,8 +206,8 @@ const CarbonPlaybook = () => {
               <Card key={index} className="text-center hover:shadow-lg transition-shadow">
                 <CardContent className="p-6">
                   <div className="text-4xl mb-4">{item.icon}</div>
-                  <h3 className="text-lg font-semibold mb-3 text-purple-700">{item.title}</h3>
-                  <p className="text-sm text-foreground/80">{item.value}</p>
+                  <h3 className="text-body font-semibold mb-3 text-purple-700">{item.title}</h3>
+                  <p className="text-card text-foreground/80">{item.value}</p>
                 </CardContent>
               </Card>
             ))}
@@ -220,7 +220,7 @@ const CarbonPlaybook = () => {
         <div className="container mx-auto">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold mb-4">CCTS in Plain English</h2>
-            <p className="text-lg text-foreground/80 max-w-3xl mx-auto">
+            <p className="text-body text-foreground/80 max-w-3xl mx-auto">
               Breaking down complex carbon market regulations into actionable insights for policy implementation.
             </p>
           </div>
@@ -245,7 +245,7 @@ const CarbonPlaybook = () => {
                   <CardTitle className="text-lg text-purple-700">{item.title}</CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <p className="text-foreground/80 text-sm">{item.content}</p>
+                  <p className="text-foreground/80 text-card">{item.content}</p>
                 </CardContent>
               </Card>
             ))}
@@ -267,7 +267,7 @@ const CarbonPlaybook = () => {
         <div className="container mx-auto">
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-bold mb-4">Download the Policy Guide</h2>
-            <p className="text-lg text-foreground/80 max-w-2xl mx-auto">
+            <p className="text-body text-foreground/80 max-w-2xl mx-auto">
               Join 600+ policy professionals accessing India's most comprehensive carbon policy analysis.
             </p>
           </div>

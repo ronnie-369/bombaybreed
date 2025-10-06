@@ -66,7 +66,7 @@ const Expertise = () => {
                 <Card key={index} className="border-border/20 hover:shadow-md transition-all">
                   <CardContent className="p-4 flex items-center">
                     <Package className="h-4 w-4 text-primary mr-2 shrink-0" />
-                    <span className="text-sm">{item}</span>
+                    <span className="text-card">{item}</span>
                   </CardContent>
                 </Card>
               ))}
@@ -81,7 +81,7 @@ const Expertise = () => {
               </div>
               Stakeholders
             </h3>
-            <p className="mb-4 text-foreground/80 text-sm">
+            <p className="mb-4 text-foreground/80 text-card">
               Effective communication with diverse stakeholder groups requires tailored strategies and messaging.
             </p>
             <div className="grid grid-cols-2 sm:grid-cols-2 gap-2">
@@ -93,7 +93,7 @@ const Expertise = () => {
                   style={{ animationDelay: `${index * 50}ms` }}
                 >
                   <Users className="h-3.5 w-3.5 text-primary shrink-0" />
-                  <span className="text-xs truncate">{item}</span>
+                  <span className="text-note truncate">{item}</span>
                 </Toggle>
               ))}
             </div>
@@ -107,7 +107,7 @@ const Expertise = () => {
               </div>
               Market Dynamics
             </h3>
-            <p className="mb-4 text-foreground/80 text-sm">
+            <p className="mb-4 text-foreground/80 text-card">
               Global regulatory frameworks like CSRD and SEC Climate Rules require alignment with Indian standards.
             </p>
             <div className="grid grid-cols-1 gap-3">
@@ -115,7 +115,7 @@ const Expertise = () => {
                 <Card key={index} className="border-border/20 hover:shadow-md transition-all">
                   <CardContent className="p-3 flex items-center">
                     <BarChart className="h-4 w-4 text-primary mr-2 shrink-0" />
-                    <span className="text-sm">{item}</span>
+                    <span className="text-card">{item}</span>
                   </CardContent>
                 </Card>
               ))}
@@ -124,7 +124,7 @@ const Expertise = () => {
         </div>
         
         <div className="mt-12 text-center">
-          <div className="inline-block glass-card rounded-lg px-6 py-3 text-lg font-medium gradient-accent">
+          <div className="inline-block glass-card rounded-lg px-6 py-3 text-body font-medium gradient-accent">
             This is precisely where a Sustainability Communications Strategic Advisor adds significant value
           </div>
         </div>

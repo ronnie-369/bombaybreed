@@ -103,7 +103,7 @@ const Endorsements = () => {
                           <Building2 className="h-4 w-4 text-muted-foreground" />
                         )}
                       </div>
-                      <span className="text-foreground/90 font-medium text-sm group-hover:text-primary transition-colors duration-300">
+                      <span className="text-foreground/90 font-medium text-card group-hover:text-primary transition-colors duration-300">
                         {company}
                       </span>
                     </div>
@@ -115,15 +115,15 @@ const Endorsements = () => {
           
           <div>
             <h2 className="text-3xl md:text-4xl font-heading font-bold mb-4">The Right Expertise</h2>
-            <p className="text-lg mb-6">
+            <p className="text-body mb-6">
               For Sustainability Strategic Communications
             </p>
             
             <div className="space-y-6">
               {expertisePoints.map((point, index) => (
                 <div key={index} className="bg-white rounded-xl p-5 shadow-sm">
-                  <h3 className="text-lg font-heading font-semibold mb-2">{point.title}</h3>
-                  <p className="text-foreground/80">{point.description}</p>
+                  <h3 className="text-body font-heading font-semibold mb-2">{point.title}</h3>
+                  <p className="text-foreground/80 text-card">{point.description}</p>
                 </div>
               ))}
             </div>

@@ -77,12 +77,12 @@ const CaseStudies = () => {
                 </div>
                 <div className={`text-right ${activeCase.id === caseItem.id ? 'text-white/80' : 'text-foreground/70'}`}>
                   <p className="text-sm">{caseItem.type}</p>
-                  <p className="text-sm">{caseItem.duration}</p>
+                  <p className="text-note">{caseItem.duration}</p>
                   <p className="font-medium">{caseItem.impact}</p>
                 </div>
               </div>
               <div className="mt-4 flex justify-between items-center">
-                <span className={`text-sm ${activeCase.id === caseItem.id ? 'text-white/90' : 'text-foreground/60'}`}>
+                <span className={`text-note ${activeCase.id === caseItem.id ? 'text-white/90' : 'text-foreground/60'}`}>
                   View case
                 </span>
                 <ArrowRight className={`h-4 w-4 ${activeCase.id === caseItem.id ? 'text-white' : 'text-primary'}`} />
@@ -110,20 +110,20 @@ const CaseStudies = () => {
                 
                 <div className="space-y-4 mb-6">
                   <div>
-                    <h4 className="font-medium text-primary">Brief:</h4>
-                    <p className="text-foreground/80">{activeCase.brief}</p>
+                    <h4 className="font-medium text-primary text-card">Brief:</h4>
+                    <p className="text-foreground/80 text-card">{activeCase.brief}</p>
                   </div>
                   <div>
-                    <h4 className="font-medium text-primary">Challenge:</h4>
-                    <p className="text-foreground/80">{activeCase.challenge}</p>
+                    <h4 className="font-medium text-primary text-card">Challenge:</h4>
+                    <p className="text-foreground/80 text-card">{activeCase.challenge}</p>
                   </div>
                   <div>
-                    <h4 className="font-medium text-primary">Solution:</h4>
-                    <p className="text-foreground/80">{activeCase.solution}</p>
+                    <h4 className="font-medium text-primary text-card">Solution:</h4>
+                    <p className="text-foreground/80 text-card">{activeCase.solution}</p>
                   </div>
                   <div>
-                    <h4 className="font-medium text-primary">Result:</h4>
-                    <p className="text-foreground/80">{activeCase.result}</p>
+                    <h4 className="font-medium text-primary text-card">Result:</h4>
+                    <p className="text-foreground/80 text-card">{activeCase.result}</p>
                   </div>
                 </div>
               </div>

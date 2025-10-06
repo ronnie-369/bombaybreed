@@ -66,12 +66,12 @@ const GreenJobsReport = () => {
           <Badge className="mb-6 bg-white/20 text-white border-white/30 px-4 py-2">
             Workforce Outlook 2025–2030
           </Badge>
-          <h1 className="text-4xl md:text-6xl font-bold mb-6 leading-tight">
+          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight">
             Green Jobs in India
             <br />
             <span className="text-emerald-200">1 Million by 2030</span>
           </h1>
-          <p className="text-xl md:text-2xl mb-8 text-teal-100 max-w-3xl mx-auto">
+          <p className="text-lede mb-8 text-teal-100 max-w-3xl mx-auto">
             The definitive analysis of India's green workforce transformation, investment patterns, and skills ecosystem development.
           </p>
           <div className="flex flex-wrap justify-center gap-4 text-sm">
@@ -87,7 +87,7 @@ const GreenJobsReport = () => {
         <div className="container mx-auto">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold mb-4">What You'll Discover</h2>
-            <p className="text-lg text-foreground/80 max-w-3xl mx-auto">
+            <p className="text-body text-foreground/80 max-w-3xl mx-auto">
               Deep insights into India's green workforce transformation backed by comprehensive research and industry analysis.
             </p>
           </div>
@@ -106,7 +106,7 @@ const GreenJobsReport = () => {
                     </div>
                   </CardHeader>
                   <CardContent>
-                    <p className="text-foreground/80">{discovery.description}</p>
+                    <p className="text-foreground/80 text-card">{discovery.description}</p>
                   </CardContent>
                 </Card>
               );
@@ -146,8 +146,8 @@ const GreenJobsReport = () => {
               <Card key={index} className="text-center hover:shadow-lg transition-shadow">
                 <CardContent className="p-6">
                   <div className="text-4xl mb-4">{item.icon}</div>
-                  <h3 className="text-lg font-semibold mb-3 text-bombay">{item.audience}</h3>
-                  <p className="text-sm text-foreground/80">{item.value}</p>
+                  <h3 className="text-body font-semibold mb-3 text-bombay">{item.audience}</h3>
+                  <p className="text-card text-foreground/80">{item.value}</p>
                 </CardContent>
               </Card>
             ))}
@@ -160,7 +160,7 @@ const GreenJobsReport = () => {
         <div className="container mx-auto">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold mb-4">Green Job Archetypes</h2>
-            <p className="text-lg text-foreground/80 max-w-3xl mx-auto">
+            <p className="text-body text-foreground/80 max-w-3xl mx-auto">
               Detailed breakdown of emerging roles, compensation ranges, and growth trajectories across India's green economy.
             </p>
           </div>
@@ -182,7 +182,7 @@ const GreenJobsReport = () => {
                 <CardContent>
                   <ul className="space-y-2">
                     {category.roles.map((role, roleIndex) => (
-                      <li key={roleIndex} className="flex items-center text-sm">
+                      <li key={roleIndex} className="flex items-center text-card">
                         <span className="w-2 h-2 bg-teal-500 rounded-full mr-3"></span>
                         {role}
                       </li>
@@ -209,7 +209,7 @@ const GreenJobsReport = () => {
         <div className="container mx-auto">
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-bold mb-4">Get Your Copy Now</h2>
-            <p className="text-lg text-foreground/80 max-w-2xl mx-auto">
+            <p className="text-body text-foreground/80 max-w-2xl mx-auto">
               Join 1,200+ professionals who've downloaded this comprehensive workforce analysis.
             </p>
           </div>

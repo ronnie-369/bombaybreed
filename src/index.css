@@ -87,17 +87,37 @@
     @apply text-body text-foreground/80 max-w-3xl mx-auto;
   }
   
-  /* Standardized Typography */
-  .text-body {
-    @apply text-base md:text-lg leading-relaxed;
-  }
+  /* === Standardized Typography Scale === */
+  /* Hero Headings: Use for main page titles */
+  /* text-4xl md:text-5xl lg:text-6xl */
   
+  /* Section Titles: Use for main section headings (H2) */
+  /* text-3xl md:text-4xl */
+  
+  /* Subsection Titles: Use for subsection headings (H3) */
+  /* text-2xl md:text-3xl */
+  
+  /* Card Titles: Use for card and component titles */
+  /* text-xl md:text-2xl */
+  
+  /* Lead Paragraphs: Large intro text */
   .text-lede {
     @apply text-lg md:text-xl leading-relaxed;
   }
   
+  /* Body Text: Standard paragraph text */
+  .text-body {
+    @apply text-base md:text-lg leading-relaxed;
+  }
+  
+  /* Small Text: Captions, labels, metadata */
   .text-note {
     @apply text-sm leading-relaxed;
+  }
+  
+  /* Card Content: Text inside cards */
+  .text-card {
+    @apply text-sm md:text-base leading-relaxed;
   }
   
   .gradient-accent {

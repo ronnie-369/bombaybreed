@@ -70,12 +70,12 @@ const CarbonMarketOutlook = () => {
           <Badge className="mb-6 bg-white/20 text-white border-white/30 px-4 py-2">
             Investor's Deep Dive 2025–2030
           </Badge>
-          <h1 className="text-4xl md:text-6xl font-bold mb-6 leading-tight">
+          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight">
             India Carbon Market Outlook
             <br />
             <span className="text-cyan-200">$1.4B Opportunity</span>
           </h1>
-          <p className="text-xl md:text-2xl mb-8 text-blue-100 max-w-3xl mx-auto">
+          <p className="text-lede mb-8 text-blue-100 max-w-3xl mx-auto">
             Comprehensive analysis of India's carbon markets, investment flows, and regulatory landscape for institutional investors.
           </p>
           <div className="flex flex-wrap justify-center gap-4 text-sm">
@@ -91,7 +91,7 @@ const CarbonMarketOutlook = () => {
         <div className="container mx-auto">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold mb-4">Market Intelligence</h2>
-            <p className="text-lg text-foreground/80 max-w-3xl mx-auto">
+            <p className="text-body text-foreground/80 max-w-3xl mx-auto">
               Data-driven insights into India's carbon market evolution, pricing dynamics, and institutional investment opportunities.
             </p>
           </div>
@@ -110,7 +110,7 @@ const CarbonMarketOutlook = () => {
                     </div>
                   </CardHeader>
                   <CardContent>
-                    <p className="text-foreground/80">{insight.description}</p>
+                    <p className="text-foreground/80 text-card">{insight.description}</p>
                   </CardContent>
                 </Card>
               );
@@ -124,7 +124,7 @@ const CarbonMarketOutlook = () => {
         <div className="container mx-auto">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold mb-4">Investment Sectors Analysis</h2>
-            <p className="text-lg text-foreground/80 max-w-3xl mx-auto">
+            <p className="text-body text-foreground/80 max-w-3xl mx-auto">
               Sector-wise breakdown with market sizing, growth projections, and risk-return profiles for strategic investment decisions.
             </p>
           </div>
@@ -161,7 +161,7 @@ const CarbonMarketOutlook = () => {
                     <h4 className="font-medium mb-2 text-sm text-foreground/70">Key Growth Drivers</h4>
                     <ul className="space-y-1">
                       {sector.keyDrivers.map((driver, driverIndex) => (
-                        <li key={driverIndex} className="flex items-center text-sm">
+                        <li key={driverIndex} className="flex items-center text-card">
                           <span className="w-1.5 h-1.5 bg-blue-500 rounded-full mr-2"></span>
                           {driver}
                         </li>
@@ -201,8 +201,8 @@ const CarbonMarketOutlook = () => {
               <Card key={index} className="text-center hover:shadow-lg transition-shadow">
                 <CardContent className="p-6">
                   <div className="text-5xl mb-4">{item.icon}</div>
-                  <h3 className="text-lg font-semibold mb-3 text-blue-700">{item.title}</h3>
-                  <p className="text-sm text-foreground/80">{item.value}</p>
+                  <h3 className="text-body font-semibold mb-3 text-blue-700">{item.title}</h3>
+                  <p className="text-card text-foreground/80">{item.value}</p>
                 </CardContent>
               </Card>
             ))}
@@ -224,7 +224,7 @@ const CarbonMarketOutlook = () => {
         <div className="container mx-auto">
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-bold mb-4">Access the Full Analysis</h2>
-            <p className="text-lg text-foreground/80 max-w-2xl mx-auto">
+            <p className="text-body text-foreground/80 max-w-2xl mx-auto">
               Join 800+ institutional investors accessing our comprehensive carbon market intelligence.
             </p>
           </div>

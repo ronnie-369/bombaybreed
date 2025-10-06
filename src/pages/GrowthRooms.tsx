@@ -39,12 +39,12 @@ const GrowthRooms = () => {
           <Badge className="mb-6 bg-white/20 text-white border-white/30 px-4 py-2">
             Growth Assessment Framework
           </Badge>
-          <h1 className="text-4xl md:text-6xl font-bold mb-6 leading-tight">
+          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight">
             Growth Rooms
             <br />
             <span className="text-primary-foreground/80">Accelerate Through Collaboration</span>
           </h1>
-          <p className="text-xl md:text-2xl mb-8 text-white/90 max-w-3xl mx-auto">
+          <p className="text-lede mb-8 text-white/90 max-w-3xl mx-auto">
             Discover how collaborative business ecosystems drive exponential growth through strategic partnerships and shared knowledge.
           </p>
         </div>
@@ -55,7 +55,7 @@ const GrowthRooms = () => {
         <div className="container mx-auto">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold mb-4">What You'll Learn</h2>
-            <p className="text-lg text-foreground/80 max-w-3xl mx-auto">
+            <p className="text-body text-foreground/80 max-w-3xl mx-auto">
               Insights into building and leveraging collaborative growth ecosystems for your business.
             </p>
           </div>
@@ -72,7 +72,7 @@ const GrowthRooms = () => {
                       </div>
                       <div>
                         <h3 className="text-xl font-semibold mb-2">{learning.title}</h3>
-                        <p className="text-foreground/80">{learning.description}</p>
+                        <p className="text-foreground/80 text-card">{learning.description}</p>
                       </div>
                     </div>
                   </CardContent>
@@ -114,8 +114,8 @@ const GrowthRooms = () => {
               <Card key={index} className="text-center hover:shadow-lg transition-shadow">
                 <CardContent className="p-6">
                   <div className="text-4xl mb-4">{item.icon}</div>
-                  <h3 className="text-lg font-semibold mb-3 text-primary">{item.audience}</h3>
-                  <p className="text-sm text-foreground/80">{item.value}</p>
+                  <h3 className="text-body font-semibold mb-3 text-primary">{item.audience}</h3>
+                  <p className="text-card text-foreground/80">{item.value}</p>
                 </CardContent>
               </Card>
             ))}
@@ -128,7 +128,7 @@ const GrowthRooms = () => {
         <div className="container mx-auto">
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-bold mb-4">Download Growth Rooms Report</h2>
-            <p className="text-lg text-foreground/80 max-w-2xl mx-auto">
+            <p className="text-body text-foreground/80 max-w-2xl mx-auto">
               Get instant access to the complete Growth Rooms framework and assessment guide.
             </p>
           </div>

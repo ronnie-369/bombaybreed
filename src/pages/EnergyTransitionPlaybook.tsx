@@ -66,12 +66,12 @@ const EnergyTransitionPlaybook = () => {
           <Badge className="mb-6 bg-white/20 text-white border-white/30 px-4 py-2">
             Strategic Implementation Guide
           </Badge>
-          <h1 className="text-4xl md:text-6xl font-bold mb-6 leading-tight">
+          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight">
             The Energy Transition
             <br />
             <span className="text-orange-200">Playbook for India</span>
           </h1>
-          <p className="text-xl md:text-2xl mb-8 text-orange-100 max-w-3xl mx-auto">
+          <p className="text-lede mb-8 text-orange-100 max-w-3xl mx-auto">
             Comprehensive strategic frameworks and implementation pathways for India's clean energy transformation and industrial decarbonization.
           </p>
           <div className="flex flex-wrap justify-center gap-4 text-sm">
@@ -87,7 +87,7 @@ const EnergyTransitionPlaybook = () => {
         <div className="container mx-auto">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold mb-4">What You'll Discover</h2>
-            <p className="text-lg text-foreground/80 max-w-3xl mx-auto">
+            <p className="text-body text-foreground/80 max-w-3xl mx-auto">
               Strategic insights and actionable frameworks for navigating India's energy transition with confidence and clarity.
             </p>
           </div>
@@ -106,7 +106,7 @@ const EnergyTransitionPlaybook = () => {
                     </div>
                   </CardHeader>
                   <CardContent>
-                    <p className="text-foreground/80">{discovery.description}</p>
+                    <p className="text-foreground/80 text-card">{discovery.description}</p>
                   </CardContent>
                 </Card>
               );
@@ -146,8 +146,8 @@ const EnergyTransitionPlaybook = () => {
               <Card key={index} className="text-center hover:shadow-lg transition-shadow">
                 <CardContent className="p-6">
                   <div className="text-4xl mb-4">{item.icon}</div>
-                  <h3 className="text-lg font-semibold mb-3 text-bombay">{item.audience}</h3>
-                  <p className="text-sm text-foreground/80">{item.value}</p>
+                  <h3 className="text-body font-semibold mb-3 text-bombay">{item.audience}</h3>
+                  <p className="text-card text-foreground/80">{item.value}</p>
                 </CardContent>
               </Card>
             ))}
@@ -160,7 +160,7 @@ const EnergyTransitionPlaybook = () => {
         <div className="container mx-auto">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold mb-4">Strategic Frameworks</h2>
-            <p className="text-lg text-foreground/80 max-w-3xl mx-auto">
+            <p className="text-body text-foreground/80 max-w-3xl mx-auto">
               Comprehensive implementation frameworks covering policy, technology, finance, and industrial transformation.
             </p>
           </div>
@@ -182,7 +182,7 @@ const EnergyTransitionPlaybook = () => {
                 <CardContent>
                   <ul className="space-y-2">
                     {framework.frameworks.map((item, itemIndex) => (
-                      <li key={itemIndex} className="flex items-center text-sm">
+                      <li key={itemIndex} className="flex items-center text-card">
                         <span className="w-2 h-2 bg-orange-500 rounded-full mr-3"></span>
                         {item}
                       </li>
@@ -209,7 +209,7 @@ const EnergyTransitionPlaybook = () => {
         <div className="container mx-auto">
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-bold mb-4">Get Your Copy Now</h2>
-            <p className="text-lg text-foreground/80 max-w-2xl mx-auto">
+            <p className="text-body text-foreground/80 max-w-2xl mx-auto">
               Join energy leaders and policymakers who are using this playbook to drive India's clean energy transformation.
             </p>
           </div>

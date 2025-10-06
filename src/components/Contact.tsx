@@ -113,7 +113,7 @@ const Contact = () => {
           <div className="space-y-8">
             <div>
               <h2 className="text-3xl font-heading font-bold mb-4">Contact</h2>
-              <p className="mb-6 text-white/80 max-w-md leading-relaxed">
+              <p className="mb-6 text-white/80 max-w-md leading-relaxed text-body">
                 We need to stay on the right side of Climate Action. Because, the children.
               </p>
             </div>
@@ -149,7 +149,7 @@ const Contact = () => {
               <div className="absolute top-2 right-2 text-white font-medium uppercase tracking-wide shine-text">
                 Pricing
               </div>
-              <h3 className="text-lg font-heading font-semibold text-white drop-shadow-lg leading-relaxed mt-4">
+              <h3 className="text-body font-heading font-semibold text-white drop-shadow-lg leading-relaxed mt-4">
                 Talk to me about your Executive Advisory Retainer from as low as <span className={`text-white font-bold glow-pill ${pricingInView ? 'active' : ''}`}>INR 30,000 pm +gst</span>.
               </h3>
             </div>
@@ -162,40 +162,40 @@ const Contact = () => {
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <FormField control={form.control} name="name" render={({
                   field
-                }) => <FormItem>
-                        <FormLabel className="text-sm mb-1">Name</FormLabel>
+                 }) => <FormItem>
+                        <FormLabel className="text-note mb-1">Name</FormLabel>
                         <FormControl>
                           <Input placeholder="Your name" className="bg-white/10 border-white/30 placeholder:text-white/60 focus:border-white focus:bg-white/20" {...field} />
                         </FormControl>
-                        <FormMessage className="text-xs text-red-300" />
+                        <FormMessage className="text-note text-red-300" />
                       </FormItem>} />
                   <FormField control={form.control} name="email" render={({
                   field
                 }) => <FormItem>
-                        <FormLabel className="text-sm mb-1">Email</FormLabel>
+                        <FormLabel className="text-note mb-1">Email</FormLabel>
                         <FormControl>
                           <Input type="email" placeholder="Your email" className="bg-white/10 border-white/30 placeholder:text-white/60 focus:border-white focus:bg-white/20" {...field} />
                         </FormControl>
-                        <FormMessage className="text-xs text-red-300" />
+                        <FormMessage className="text-note text-red-300" />
                       </FormItem>} />
                 </div>
                 <FormField control={form.control} name="company" render={({
                 field
               }) => <FormItem>
-                      <FormLabel className="text-sm mb-1">Company</FormLabel>
+                      <FormLabel className="text-note mb-1">Company</FormLabel>
                       <FormControl>
                         <Input placeholder="Your company" className="bg-white/10 border-white/30 placeholder:text-white/60 focus:border-white focus:bg-white/20" {...field} />
                       </FormControl>
-                      <FormMessage className="text-xs text-red-300" />
+                      <FormMessage className="text-note text-red-300" />
                     </FormItem>} />
                 <FormField control={form.control} name="message" render={({
                 field
               }) => <FormItem>
-                      <FormLabel className="text-sm mb-1">Message</FormLabel>
+                      <FormLabel className="text-note mb-1">Message</FormLabel>
                       <FormControl>
                         <Textarea rows={4} className="w-full rounded-md bg-white/10 border border-white/30 placeholder:text-white/60 focus:border-white focus:bg-white/20 p-2" placeholder="Your message" {...field} />
                       </FormControl>
-                      <FormMessage className="text-xs text-red-300" />
+                      <FormMessage className="text-note text-red-300" />
                     </FormItem>} />
                 <Button 
                   type="submit" 

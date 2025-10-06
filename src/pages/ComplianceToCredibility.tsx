@@ -16,12 +16,12 @@ const ComplianceToCredibility = () => {
           <Badge className="mb-6 bg-white/20 text-white border-white/30 px-4 py-2">
             CXO Strategic Guide
           </Badge>
-          <h1 className="text-4xl md:text-6xl font-bold mb-6 leading-tight">
+          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight">
             From Compliance to Credibility
             <br />
             <span className="text-slate-300">CCTS & CBAM Guide</span>
           </h1>
-          <p className="text-xl md:text-2xl mb-8 text-slate-200 max-w-3xl mx-auto">
+          <p className="text-lede mb-8 text-slate-200 max-w-3xl mx-auto">
             How Indian businesses can turn carbon compliance into trust, market access, and leadership.
           </p>
           <div className="flex flex-wrap justify-center gap-4 text-sm">
@@ -37,7 +37,7 @@ const ComplianceToCredibility = () => {
         <div className="container mx-auto">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold mb-4">Strategic Intelligence</h2>
-            <p className="text-lg text-foreground/80 max-w-3xl mx-auto">
+            <p className="text-body text-foreground/80 max-w-3xl mx-auto">
               The twin forces of India's CCTS and Europe's CBAM are rewriting the rules of global trade. 
               Transform compliance from burden to competitive advantage.
             </p>
@@ -78,7 +78,7 @@ const ComplianceToCredibility = () => {
                     </div>
                   </CardHeader>
                   <CardContent>
-                    <p className="text-foreground/80">{insight.description}</p>
+                    <p className="text-foreground/80 text-card">{insight.description}</p>
                   </CardContent>
                 </Card>
               );
@@ -92,7 +92,7 @@ const ComplianceToCredibility = () => {
         <div className="container mx-auto">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold mb-4">Real-World Applications</h2>
-            <p className="text-lg text-foreground/80 max-w-3xl mx-auto">
+            <p className="text-body text-foreground/80 max-w-3xl mx-auto">
               Sector-specific analysis and case studies showing how leading Indian companies are turning compliance into competitive advantage.
             </p>
           </div>
@@ -136,7 +136,7 @@ const ComplianceToCredibility = () => {
                     <h4 className="font-medium mb-2 text-sm text-foreground/70">Key Challenges</h4>
                     <ul className="space-y-1">
                       {study.challenges.map((challenge, challengeIndex) => (
-                        <li key={challengeIndex} className="flex items-center text-sm">
+                        <li key={challengeIndex} className="flex items-center text-card">
                           <span className="w-1.5 h-1.5 bg-slate-500 rounded-full mr-2"></span>
                           {challenge}
                         </li>
@@ -186,8 +186,8 @@ const ComplianceToCredibility = () => {
               <Card key={index} className="text-center hover:shadow-lg transition-shadow">
                 <CardContent className="p-6">
                   <div className="text-4xl mb-4">{item.icon}</div>
-                  <h3 className="text-lg font-semibold mb-3 text-slate-700">{item.title}</h3>
-                  <p className="text-sm text-foreground/80">{item.value}</p>
+                  <h3 className="text-body font-semibold mb-3 text-slate-700">{item.title}</h3>
+                  <p className="text-card text-foreground/80">{item.value}</p>
                 </CardContent>
               </Card>
             ))}
@@ -209,7 +209,7 @@ const ComplianceToCredibility = () => {
         <div className="container mx-auto">
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-bold mb-4">Download the Strategic Guide</h2>
-            <p className="text-lg text-foreground/80 max-w-2xl mx-auto">
+            <p className="text-body text-foreground/80 max-w-2xl mx-auto">
               Join 400+ CXOs who've downloaded this comprehensive compliance-to-credibility framework.
             </p>
           </div>
