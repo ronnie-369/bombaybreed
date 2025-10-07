@@ -2,7 +2,7 @@ import React from 'react';
 
 const HeroIntro = () => {
   return (
-    <section className="pt-32 md:pt-40 pb-16 bg-gradient-to-b from-background to-bombay-background/30">
+    <section className="pt-32 md:pt-40 pb-4 bg-gradient-to-b from-background to-bombay-background/30">
       <div className="container mx-auto px-4 max-w-6xl">
         <div className="text-center max-w-4xl mx-auto mb-16">
           <h2 className="section-title gradient-accent">

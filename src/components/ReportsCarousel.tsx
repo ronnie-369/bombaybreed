@@ -115,7 +115,7 @@ const ReportsCarousel = () => {
   ];
 
   return (
-    <section className="pt-28 pb-16 md:pt-40 md:pb-24 px-6 md:px-8 bg-gradient-to-b from-bombay-background to-white overflow-hidden">
+    <section className="pt-8 pb-16 md:pt-12 md:pb-24 px-6 md:px-8 bg-gradient-to-b from-bombay-background to-white overflow-hidden">
       <div className="container mx-auto">
         <Carousel 
           className="w-full"
