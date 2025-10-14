@@ -116,7 +116,8 @@ export default {
 			},
 		fontFamily: {
 			sans: ['Inter', 'system-ui', 'sans-serif'],
-			heading: ['DM Sans', 'Inter', 'sans-serif'],
+			heading: ['Outfit', 'Inter', 'sans-serif'],
+			logo: ['Orbitron', 'Outfit', 'sans-serif'],
 			serif: ['Georgia', 'serif']
 		}
 		}
