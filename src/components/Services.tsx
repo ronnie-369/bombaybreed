@@ -30,39 +30,31 @@ const Services = () => {
   const services = [{
     icon: Zap,
     title: "Disclosure & Reporting Alignment",
-    description: "Bridge global standards (CSRD, SEC Climate Rules) with Indian frameworks (BRSR, CCTS) for seamless compliance."
+    description: "Align global and Indian frameworks seamlessly."
   }, {
     icon: Trophy,
     title: "Executive Risk Management",
-    description: "Strategic advisory on sustainability risk communication to protect organizational reputation and stakeholder confidence."
+    description: "Protect reputation through strategic risk communication."
   }, {
     icon: Star,
     title: "Multi-Stakeholder Orchestration",
-    description: "Coordinate messaging across investors, regulators, boards, and operational teams for consistent sustainability narrative."
+    description: "Coordinate messaging across all key stakeholder groups."
   }, {
     icon: Rocket,
     title: "Performance Translation",
-    description: "Convert complex ESG metrics into executive-ready insights that drive strategic decision-making."
-  }, {
-    icon: Shield,
-    title: "Integrated Reporting Strategy",
-    description: "Develop comprehensive sustainability communication frameworks that satisfy both global and local requirements."
-  }, {
-    icon: ShieldCheck,
-    title: "Regulatory Response Readiness",
-    description: "Prepare executive teams for sustainability-related regulatory inquiries and stakeholder challenges."
+    description: "Transform ESG metrics into executive insights."
   }];
   return (
-    <section id="services" className="py-20 px-4 md:px-8 bg-white animate-fade-in">
-      <div className="container mx-auto">
-        <div className="text-center max-w-3xl mx-auto mb-16">
+    <section id="services" className="py-28 px-4 md:px-8 bg-white animate-fade-in">
+      <div className="container mx-auto max-w-5xl">
+        <div className="text-center max-w-3xl mx-auto mb-20">
           <h2 className="section-title gradient-accent">What the CXO Suite Needs</h2>
           <p className="section-description">
-            Global companies with Indian operations need strategic sustainability communications that align with international standards while building for India.
+            Strategic sustainability communications that align international standards with Indian operations.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
           {services.map((service, index) => (
             <ServiceCard 
               key={index} 

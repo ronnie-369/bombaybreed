@@ -70,7 +70,7 @@ const Endorsements = () => {
   }, []);
 
   return (
-    <section className="py-20 px-4 md:px-8 bg-gradient-to-b from-white to-bombay-subtle/20">
+    <section className="py-28 px-4 md:px-8 bg-gradient-to-b from-white to-bombay-subtle/20">
       <div className="container mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
           <div>
@@ -83,11 +83,11 @@ const Endorsements = () => {
                 <Star className="h-5 w-5 mr-2 text-bombay-accent" />
                 CXO leaders at:
               </h3>
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                {[...cmos, ...ceos].map((company, index) => (
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 max-w-2xl">
+                {[...cmos, ...ceos].slice(0, 8).map((company, index) => (
                   <div 
                     key={index} 
-                    className="group bg-white rounded-lg p-4 shadow-sm hover:shadow-md transition-all duration-300 hover-scale animate-fade-in"
+                    className="group bg-white rounded-lg p-4 shadow-sm hover:shadow-md transition-all duration-300 animate-fade-in"
                     style={{animationDelay: `${index * 50}ms`}}
                   >
                     <div className="flex items-center space-x-3">
@@ -123,11 +123,11 @@ const Endorsements = () => {
               For Sustainability Strategic Communications
             </p>
             
-            <div className="space-y-6">
+            <div className="space-y-5">
               {expertisePoints.map((point, index) => (
-                <div key={index} className="bg-white rounded-xl p-5 shadow-sm">
-                  <h3 className="text-body font-heading font-semibold mb-2">{point.title}</h3>
-                  <p className="text-foreground/80 text-card">{point.description}</p>
+                <div key={index} className="bg-white rounded-xl p-6 shadow-sm">
+                  <h3 className="text-lg font-heading font-semibold mb-2">{point.title}</h3>
+                  <p className="text-foreground/80">{point.description}</p>
                 </div>
               ))}
             </div>
