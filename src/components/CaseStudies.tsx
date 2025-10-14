@@ -46,7 +46,7 @@ const CaseStudies = () => {
     challenge: "Climate action remains opaque, technical, and distant for everyday people. It lives in policy papers, boardrooms, and scientific journals — not in everyday conversations. If we can't make it relatable, we can't build the mass awareness and action we desperately need.",
     solution: "India celebrates 1 Independence Day. But 1.55 lakh species call this land home. Every bird, insect, fish, mammal, and plant depends on the same earth we do. When we talk about climate action, we're talking about them too — and about us. Let's make it personal.",
     result: "YouTube engagement: 300,000+ likes, Campaign felicitated at IIT Rourkee, Showcased to the Minister of Environment, Featured track played to A.R. Rahman",
-    image: "https://images.unsplash.com/photo-1497435334941-8c899ee9e8e9"
+    image: "/lovable-uploads/pexels-veeterzy-38136.jpg"
   }];
   const [activeCase, setActiveCase] = useState<CaseStudy>(cases[cases.length - 1]);
   return (
