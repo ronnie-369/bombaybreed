@@ -79,7 +79,7 @@ const Endorsements = () => {
             </h2>
             
             <div className="mb-8">
-              <h3 className="text-xl font-heading font-semibold mb-4 flex items-center">
+              <h3 className="text-lg font-heading font-semibold mb-4 flex items-center">
                 <Star className="h-5 w-5 mr-2 text-bombay-accent" />
                 CXO leaders at:
               </h3>

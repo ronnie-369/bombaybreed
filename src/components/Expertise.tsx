@@ -55,7 +55,7 @@ const Expertise = () => {
         <div className="grid grid-cols-1 gap-10">
           {/* Stakeholders Section */}
           <div className="glass-card rounded-2xl p-8">
-            <h3 className="text-2xl font-heading font-semibold mb-4 flex items-center">
+            <h3 className="text-xl font-heading font-semibold mb-4 flex items-center">
               <div className="bg-gradient-to-r from-primary to-accent p-2 rounded-full mr-3">
                 <Users className="h-5 w-5 text-white" />
               </div>
@@ -79,7 +79,7 @@ const Expertise = () => {
           
           {/* Market Dynamics Section */}
           <div className="glass-card rounded-2xl p-8">
-            <h3 className="text-2xl font-heading font-semibold mb-4 flex items-center">
+            <h3 className="text-xl font-heading font-semibold mb-4 flex items-center">
               <div className="bg-gradient-to-r from-primary to-accent p-2 rounded-full mr-3">
                 <Target className="h-5 w-5 text-white" />
               </div>
