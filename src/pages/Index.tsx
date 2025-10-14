@@ -3,7 +3,6 @@ import React from 'react';
 import Header from '@/components/Header';
 import HeroIntro from '@/components/HeroIntro';
 import ReportsCarousel from '@/components/ReportsCarousel';
-import ReportTeasers from '@/components/ReportTeasers';
 import ComplianceToCredibilitySection from '@/components/ComplianceToCredibilitySection';
 import Services from '@/components/Services';
 import Expertise from '@/components/Expertise';
@@ -21,7 +20,6 @@ const Index = () => {
       <Header />
       <HeroIntro />
       <ReportsCarousel />
-      <ReportTeasers />
       <ComplianceToCredibilitySection />
       <Services />
       <Expertise />
