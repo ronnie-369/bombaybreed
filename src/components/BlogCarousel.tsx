@@ -88,13 +88,24 @@ const BlogCarousel = () => {
             {blogPosts.map((post) => (
               <CarouselItem key={post.id}>
                 <div className="flex flex-col md:flex-row items-center gap-8 md:gap-16 py-8">
-                  <div className="md:w-1/2 space-y-8 text-center md:text-left">
+                  <div className="md:w-1/2 space-y-4 md:space-y-6 text-center md:text-left">
                     <h3 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-heading font-bold leading-tight">
                       <span className={`bg-gradient-to-r ${post.gradient} bg-clip-text text-transparent`}>
                         {post.title}
                       </span>
+                      {post.subtitle && (
+                        <>
+                          <br className="hidden md:block" />
+                          <span className="hidden md:inline text-foreground/80 text-xl md:text-2xl lg:text-3xl">
+                            {post.subtitle}
+                          </span>
+                        </>
+                      )}
                     </h3>
-                    <Button 
+                    <p className="hidden md:block text-sm sm:text-base md:text-lg text-foreground/70 leading-relaxed max-w-xl">
+                      {post.insight}
+                    </p>
+                    <Button
                       onClick={() => window.open(post.url, '_blank', 'noopener,noreferrer')}
                       variant="gradient"
                       className="px-8 py-6 text-lg"
