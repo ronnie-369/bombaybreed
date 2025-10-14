@@ -35,9 +35,11 @@ const Expertise = () => {
       "Community and NGOs"
     ],
     dynamics: [
-      "CSRD & SEC Climate Rules",
-      "BRSR & CCTS Compliance",
-      "Investor ESG Expectations",
+      "CSRD (Corporate Sustainability Reporting Directive) & SEC (Securities and Exchange Commission) Climate Rules",
+      "BRSR (Business Responsibility and Sustainability Reporting) & CCTS (Carbon Credit Trading Scheme) Compliance",
+      "CBAM (Carbon Border Adjustment Mechanism)",
+      "JCM (Joint Crediting Mechanism)",
+      "Investor ESG (Environmental, Social, and Governance) Expectations",
       "Regulatory Scrutiny"
     ]
   };
