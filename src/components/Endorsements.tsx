@@ -119,7 +119,7 @@ const Endorsements = () => {
             <h2 className="text-4xl md:text-5xl lg:text-6xl font-heading font-bold leading-tight mb-4">
               <span className="text-gradient">The Right Expertise</span>
             </h2>
-            <p className="text-body mb-6">
+            <p className="text-body-sm mb-6">
               For Sustainability Strategic Communications
             </p>
             
@@ -127,7 +127,7 @@ const Endorsements = () => {
               {expertisePoints.map((point, index) => (
                 <div key={index} className="bg-white rounded-xl p-6 shadow-sm">
                   <h3 className="text-lg font-heading font-semibold mb-2">{point.title}</h3>
-                  <p className="text-foreground/80">{point.description}</p>
+                  <p className="text-body-sm text-foreground/80">{point.description}</p>
                 </div>
               ))}
             </div>

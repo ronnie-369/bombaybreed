@@ -110,6 +110,11 @@
     @apply text-base md:text-lg leading-relaxed;
   }
   
+  /* Smaller Body Text: For dense content sections */
+  .text-body-sm {
+    @apply text-sm md:text-base leading-relaxed;
+  }
+  
   /* Small Text: Captions, labels, metadata */
   .text-note {
     @apply text-sm leading-relaxed;
