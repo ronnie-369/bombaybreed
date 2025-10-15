@@ -35,7 +35,7 @@ const Header = () => {
           <Link to="/" className="flex items-center gap-2 bg-transparent">
             <AnimatedLogo 
               alt="BOMBAY BREED – Strategic Sustainability Communications Advisory"
-              className="h-10 md:h-12 block bg-transparent"
+              className="h-10 md:h-12 block bg-transparent object-cover scale-150 -mx-3"
               fallbackSrc="/lovable-uploads/d154fe5b-5dc7-48e1-ae7b-30fb4291f03c.png"
             />
             <div className="hidden sm:block">
