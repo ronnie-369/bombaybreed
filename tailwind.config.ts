@@ -117,7 +117,7 @@ export default {
 		fontFamily: {
 			sans: ['Inter', 'system-ui', 'sans-serif'],
 			heading: ['Outfit', 'Inter', 'sans-serif'],
-			logo: ['Orbitron', 'Outfit', 'sans-serif'],
+			logo: ['Red Hat Display', 'Inter', 'sans-serif'],
 			serif: ['Georgia', 'serif']
 		}
 		}
