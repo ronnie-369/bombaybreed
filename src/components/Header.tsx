@@ -32,7 +32,7 @@ const Header = () => {
     <header className="fixed w-full bg-white/80 backdrop-blur-md z-50 shadow-sm">
       <div className="container mx-auto px-4 md:px-6 py-4 flex items-center justify-between">
         <div className="flex items-center">
-          <Link to="/" className="flex items-center gap-3 bg-transparent">
+          <Link to="/" className="flex items-center gap-2 bg-transparent">
             <AnimatedLogo 
               alt="BOMBAY BREED – Strategic Sustainability Communications Advisory"
               className="h-10 md:h-12 block bg-transparent"
