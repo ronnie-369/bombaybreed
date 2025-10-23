@@ -61,7 +61,7 @@ const Header = () => {
           </Link>
           <div className="flex space-x-4">
             <a href="https://theclimatedesk.substack.com/" target="_blank" rel="noopener noreferrer" className="text-foreground/80 hover:text-bombay story-link transition-colors">
-              Climate Desk
+              Blog
             </a>
             <span className="text-foreground/40">|</span>
             <a href="https://www.linkedin.com/in/theresaronnie/" target="_blank" rel="noopener noreferrer" className="text-foreground/80 hover:text-bombay story-link transition-colors">
@@ -103,7 +103,7 @@ const Header = () => {
             </Link>
             <div className="flex space-x-4 py-2">
               <a href="https://theclimatedesk.substack.com/" target="_blank" rel="noopener noreferrer" className="text-foreground/80 hover:text-bombay transition-colors">
-                Climate Desk
+                Blog
               </a>
               <span className="text-foreground/40">|</span>
               <a href="https://www.linkedin.com/in/theresaronnie/" target="_blank" rel="noopener noreferrer" className="text-foreground/80 hover:text-bombay transition-colors">
