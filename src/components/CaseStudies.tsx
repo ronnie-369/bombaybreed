@@ -57,7 +57,7 @@ const CaseStudies = () => {
         <div className="text-center max-w-3xl mx-auto mb-16">
           <h2 className="section-title gradient-accent">Success Stories That Define Us</h2>
           <p className="section-description">
-            A proven track record of delivering impactful results for leading brands across various sectors.
+            A proven track record of delivering impactful results for leading brands across various sectors
           </p>
         </div>
 

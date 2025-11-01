@@ -15,7 +15,7 @@ const ComplianceToCredibilitySection = () => {
             Featured CXO Guide
           </h2>
           <p className="section-description">
-            Strategic frameworks to transform carbon compliance into competitive advantage.
+            Strategic frameworks to transform carbon compliance into competitive advantage
           </p>
         </div>
 

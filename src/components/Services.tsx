@@ -50,7 +50,7 @@ const Services = () => {
         <div className="text-center max-w-3xl mx-auto mb-20">
           <h2 className="section-title gradient-accent">What the CXO Suite Needs</h2>
           <p className="section-description">
-            Strategic sustainability communications that align international standards with Indian operations.
+            Strategic sustainability communications that align international standards with Indian operations
           </p>
         </div>
 

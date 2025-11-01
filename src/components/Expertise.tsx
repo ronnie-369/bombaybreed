@@ -50,7 +50,7 @@ const Expertise = () => {
         <div className="text-center max-w-3xl mx-auto mb-20">
           <h2 className="section-title gradient-accent">The Complexity of Sustainability Communications</h2>
           <p className="section-description">
-            Strategic expertise across stakeholders, regulations, and market dynamics.
+            Strategic expertise across stakeholders, regulations, and market dynamics
           </p>
         </div>
 
@@ -64,7 +64,7 @@ const Expertise = () => {
               Key Stakeholders
             </h3>
             <p className="mb-6 text-foreground/80">
-              Effective sustainability communications require coordinating diverse groups with distinct priorities.
+              Effective sustainability communications require coordinating diverse groups with distinct priorities
             </p>
             <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
               {[...stakeholders.internal, ...stakeholders.external].map((item, index) => (
@@ -88,7 +88,7 @@ const Expertise = () => {
               Regulatory Landscape
             </h3>
             <p className="mb-6 text-foreground/80">
-              Navigate global frameworks alongside Indian compliance requirements.
+              Navigate global frameworks alongside Indian compliance requirements
             </p>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               {stakeholders.dynamics.map((item, index) => (
