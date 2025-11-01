@@ -116,7 +116,7 @@ const About = () => {
         <div className="mb-24">
             <div className="grid grid-cols-1 lg:grid-cols-5 gap-16 items-start">
             {/* Left Column - Logo */}
-            <div className="lg:col-span-3">
+            <div className="lg:col-span-2">
               <div className="relative group">
                 {/* Background Elements */}
                 <div className="absolute -inset-4 bg-gradient-to-br from-primary/20 via-accent/10 to-secondary/30 rounded-3xl blur-2xl"></div>
@@ -124,7 +124,7 @@ const About = () => {
                 
                 {/* Main Logo Container */}
                 <div className="relative bg-white rounded-2xl overflow-hidden shadow-2xl">
-                  <div className="aspect-square relative">
+                  <div className="aspect-[3/4] relative">
                     <img 
                       src="https://zjiwmdrtuhsrymsuvpfb.supabase.co/storage/v1/object/public/brand%20assets/466784065_10159926171046216_7796875165911313074_n.jpg"
                       alt="Bombay Breed Consulting"
@@ -147,7 +147,7 @@ const About = () => {
             </div>
 
             {/* Right Column - Content */}
-            <div className="lg:col-span-2 space-y-8">
+            <div className="lg:col-span-3 space-y-8">
             <div className="space-y-6">
                 <h1 className="text-4xl md:text-5xl lg:text-6xl font-heading font-bold leading-tight">
                   What's{' '}
@@ -163,15 +163,11 @@ const About = () => {
 
               <div className="space-y-6 max-w-none">
                 <p className="text-body-sm text-foreground/80">
-                  The name comes from a cat. A Bombay Breed known for its natural curiosity, intelligence, and remarkable trainability. This particular cat adopted me and my yet-to-be-born child—choosing us, protecting us, staying watchful through those uncertain months leading up to his birth and through his first steps into the world.
-                </p>
-                
-                <p className="text-body-sm text-foreground/80">
-                  Like the breed itself, this cat embodied a rare combination of fierce independence and deep loyalty. Curious, adaptable, always learning. And then, one day, it left—off to explore the world, its purpose fulfilled, leaving behind lessons in resilience and quiet strength.
+                  Named after a Bombay Breed cat that adopted me and my unborn child—staying watchful through uncertain months, protective through first steps, then leaving once its purpose was fulfilled. Like the breed, this consulting practice embodies natural curiosity, remarkable adaptability, and fierce protectiveness.
                 </p>
 
                 <p className="text-body-sm text-foreground/80 font-medium text-primary">
-                  Bombay Breed Consulting carries forward that same spirit. Curious by nature. Adaptable in approach. Fiercely protective of what matters—your reputation, your stakeholders, your future. We stay close during critical transitions, solve complex challenges with intelligence and agility, and help you navigate change with confidence. A tribute to an unlikely guardian—and a reminder that the best partnerships are built on trust, curiosity, and the courage to adapt.
+                  We stay close during critical transitions, solve complex challenges with intelligence and agility, and fiercely protect what matters—your reputation, your stakeholders, your future.
                 </p>
               </div>
             </div>
