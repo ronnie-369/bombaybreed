@@ -220,78 +220,119 @@ const About = () => {
               <span className="text-gradient">The X Factor</span>
             </AccordionTrigger>
             <AccordionContent>
-            {/* Flow Diagram */}
-            <div className="space-y-6 overflow-x-auto mt-8">
-              {/* Top Row - Main Process Flow */}
-              <div className="flex items-center justify-start md:justify-center gap-2 md:gap-3 text-center min-w-max px-4">
-                <div className="flex flex-col items-center gap-2">
-                  <span className="text-sm md:text-base lg:text-lg font-semibold text-foreground whitespace-nowrap">Insight</span>
+              {/* Flow Diagram */}
+              <div className="space-y-8 py-8">
+                {/* Top Row - Main Process Boxes */}
+                <div className="flex items-center justify-center gap-4 md:gap-6 flex-wrap px-4">
+                  <div className="flex flex-col items-center gap-3">
+                    <div className="border-2 border-foreground rounded-xl px-6 py-3 bg-background">
+                      <span className="text-sm md:text-base font-bold text-foreground whitespace-nowrap">INSIGHT</span>
+                    </div>
+                    <div className="w-px h-8 bg-foreground/30"></div>
+                  </div>
+                  
+                  <div className="flex flex-col items-center gap-3">
+                    <div className="border-2 border-foreground rounded-xl px-6 py-3 bg-background">
+                      <span className="text-sm md:text-base font-bold text-foreground whitespace-nowrap">STRATEGY</span>
+                    </div>
+                    <div className="w-px h-8 bg-foreground/30"></div>
+                  </div>
+                  
+                  <div className="flex flex-col items-center gap-3">
+                    <div className="border-2 border-foreground rounded-xl px-6 py-3 bg-background">
+                      <span className="text-sm md:text-base font-bold text-foreground whitespace-nowrap">INNOVATION</span>
+                    </div>
+                    <div className="w-px h-8 bg-foreground/30"></div>
+                  </div>
+                  
+                  <div className="flex flex-col items-center gap-3">
+                    <div className="border-2 border-foreground rounded-xl px-6 py-3 bg-background">
+                      <span className="text-sm md:text-base font-bold text-foreground whitespace-nowrap">EXECUTION</span>
+                    </div>
+                    <div className="w-px h-8 bg-foreground/30"></div>
+                  </div>
+                  
+                  <div className="flex flex-col items-center gap-3">
+                    <div className="border-2 border-foreground rounded-xl px-6 py-3 bg-background">
+                      <span className="text-sm md:text-base font-bold text-foreground whitespace-nowrap">GOVERNANCE</span>
+                    </div>
+                    <div className="w-px h-8 bg-foreground/30"></div>
+                  </div>
+                  
+                  <div className="flex flex-col items-center gap-3">
+                    <div className="border-2 border-foreground rounded-xl px-6 py-3 bg-background">
+                      <span className="text-sm md:text-base font-bold text-foreground whitespace-nowrap">IMPACT</span>
+                    </div>
+                    <div className="w-px h-8 bg-foreground/30"></div>
+                  </div>
                 </div>
-                <ArrowRight className="h-4 w-4 md:h-5 md:w-5 text-primary shrink-0" />
                 
-                <div className="flex flex-col items-center gap-2">
-                  <span className="text-sm md:text-base lg:text-lg font-semibold text-foreground whitespace-nowrap">Strategy</span>
+                {/* Middle Row - Chevron Flow with Methodology */}
+                <div className="relative overflow-x-auto px-4">
+                  <div className="flex items-center justify-center gap-0 min-w-max mx-auto">
+                    {/* Chevron 1 */}
+                    <div className="relative flex items-center justify-center border-2 border-foreground bg-background px-6 py-4 min-w-[140px] md:min-w-[180px]"
+                         style={{clipPath: 'polygon(0 0, calc(100% - 20px) 0, 100% 50%, calc(100% - 20px) 100%, 0 100%, 20px 50%)'}}>
+                      <span className="text-xs md:text-sm font-semibold text-foreground text-center whitespace-nowrap">Strategic<br/>Thinking</span>
+                    </div>
+                    
+                    {/* Chevron 2 */}
+                    <div className="relative flex items-center justify-center border-2 border-l-0 border-foreground bg-background px-6 py-4 min-w-[140px] md:min-w-[180px] -ml-5"
+                         style={{clipPath: 'polygon(0 0, calc(100% - 20px) 0, 100% 50%, calc(100% - 20px) 100%, 0 100%, 20px 50%)'}}>
+                      <span className="text-xs md:text-sm font-semibold text-foreground text-center whitespace-nowrap">Proven<br/>Expertise</span>
+                    </div>
+                    
+                    {/* Chevron 3 */}
+                    <div className="relative flex items-center justify-center border-2 border-l-0 border-foreground bg-background px-6 py-4 min-w-[140px] md:min-w-[180px] -ml-5"
+                         style={{clipPath: 'polygon(0 0, calc(100% - 20px) 0, 100% 50%, calc(100% - 20px) 100%, 0 100%, 20px 50%)'}}>
+                      <span className="text-xs md:text-sm font-semibold text-foreground text-center whitespace-nowrap">Communicati-<br/>on Innovation</span>
+                    </div>
+                    
+                    {/* Chevron 4 */}
+                    <div className="relative flex items-center justify-center border-2 border-l-0 border-foreground bg-background px-6 py-4 min-w-[140px] md:min-w-[180px] -ml-5"
+                         style={{clipPath: 'polygon(0 0, calc(100% - 20px) 0, 100% 50%, calc(100% - 20px) 100%, 0 100%, 20px 50%)'}}>
+                      <span className="text-xs md:text-sm font-semibold text-foreground text-center whitespace-nowrap">Compliance<br/>& Risk</span>
+                    </div>
+                    
+                    {/* Final Arrow */}
+                    <div className="relative flex items-center justify-center border-2 border-l-0 border-foreground bg-background px-4 py-4 w-[60px] md:w-[80px] -ml-5"
+                         style={{clipPath: 'polygon(0 0, 60% 0, 100% 50%, 60% 100%, 0 100%, 20px 50%)'}}>
+                      <ArrowRight className="h-5 w-5 text-foreground ml-2" />
+                    </div>
+                  </div>
                 </div>
-                <ArrowRight className="h-4 w-4 md:h-5 md:w-5 text-primary shrink-0" />
                 
-                <div className="flex flex-col items-center gap-2">
-                  <span className="text-sm md:text-base lg:text-lg font-semibold text-foreground whitespace-nowrap">Innovation</span>
-                </div>
-                <ArrowRight className="h-4 w-4 md:h-5 md:w-5 text-primary shrink-0" />
-                
-                <div className="flex flex-col items-center gap-2">
-                  <span className="text-sm md:text-base lg:text-lg font-semibold text-foreground whitespace-nowrap">Execution</span>
-                </div>
-                <ArrowRight className="h-4 w-4 md:h-5 md:w-5 text-primary shrink-0" />
-                
-                <div className="flex flex-col items-center gap-2">
-                  <span className="text-sm md:text-base lg:text-lg font-semibold text-foreground whitespace-nowrap">Governance</span>
-                </div>
-                <ArrowRight className="h-4 w-4 md:h-5 md:w-5 text-primary shrink-0" />
-                
-                <div className="flex flex-col items-center gap-2">
-                  <span className="text-sm md:text-base lg:text-lg font-semibold text-foreground whitespace-nowrap">Impact</span>
+                {/* Bottom Row - Supporting Elements with Connections */}
+                <div className="flex items-start justify-center gap-4 md:gap-8 flex-wrap px-4">
+                  <div className="flex flex-col items-center gap-2">
+                    <div className="w-px h-6 bg-foreground/30"></div>
+                    <span className="text-xs md:text-sm text-muted-foreground text-center whitespace-nowrap">Strategic<br/>Thinking</span>
+                  </div>
+                  
+                  <div className="flex flex-col items-center gap-2">
+                    <div className="w-px h-6 bg-foreground/30"></div>
+                    <span className="text-xs md:text-sm text-muted-foreground text-center whitespace-nowrap">Proven<br/>Expertise</span>
+                  </div>
+                  
+                  <div className="flex flex-col items-center gap-2">
+                    <div className="w-px h-6 bg-foreground/30"></div>
+                    <div className="text-xs md:text-sm text-muted-foreground text-center">
+                      <div>• Cross-Func Collab</div>
+                      <div>• Stakeholder Trust</div>
+                    </div>
+                  </div>
+                  
+                  <div className="flex flex-col items-center gap-2">
+                    <div className="w-px h-6 bg-foreground/30"></div>
+                    <span className="text-xs md:text-sm text-muted-foreground text-center whitespace-nowrap">Compliance<br/>& Risk</span>
+                  </div>
+                  
+                  <div className="flex flex-col items-center gap-2">
+                    <div className="w-px h-6 bg-foreground/30"></div>
+                    <span className="text-xs md:text-sm text-muted-foreground text-center whitespace-nowrap">Long-term<br/>Vision</span>
+                  </div>
                 </div>
               </div>
-              
-              {/* Second Row - Descriptions */}
-              <div className="grid grid-cols-3 md:grid-cols-6 gap-3 md:gap-4 text-center px-4">
-                <div className="flex flex-col items-center gap-1">
-                  <span className="text-xs md:text-sm text-muted-foreground">Strategic</span>
-                  <span className="text-xs md:text-sm text-muted-foreground">Thinking</span>
-                </div>
-                
-                <div className="flex flex-col items-center gap-1">
-                  <span className="text-xs md:text-sm text-muted-foreground">Proven</span>
-                  <span className="text-xs md:text-sm text-muted-foreground">Expertise</span>
-                </div>
-                
-                <div className="flex flex-col items-center gap-1">
-                  <span className="text-xs md:text-sm text-muted-foreground">Communication</span>
-                  <span className="text-xs md:text-sm text-muted-foreground">Innovation</span>
-                </div>
-                
-                <div className="flex flex-col items-center gap-1">
-                  <span className="text-xs md:text-sm text-muted-foreground">Cross-Func</span>
-                  <span className="text-xs md:text-sm text-muted-foreground">Collab</span>
-                </div>
-                
-                <div className="flex flex-col items-center gap-1">
-                  <span className="text-xs md:text-sm text-muted-foreground">Compliance</span>
-                  <span className="text-xs md:text-sm text-muted-foreground">& Risk</span>
-                </div>
-                
-                <div className="flex flex-col items-center gap-1">
-                  <span className="text-xs md:text-sm text-muted-foreground">Long-term</span>
-                  <span className="text-xs md:text-sm text-muted-foreground">Vision</span>
-                </div>
-              </div>
-              
-              {/* Bottom - Stakeholder Trust */}
-              <div className="flex justify-center pt-2">
-                <span className="text-sm md:text-base font-semibold text-primary">Stakeholder Trust</span>
-              </div>
-            </div>
             </AccordionContent>
           </AccordionItem>
         </Accordion>
