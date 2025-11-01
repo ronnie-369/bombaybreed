@@ -81,8 +81,8 @@ const Index = () => {
               name="Carbon & Energy"
               title="Strategic Climate Communications"
               handle="saahilmehta"
-              status="Available for Consultation"
-              contactText="Get in Touch"
+              status="Science, policy, communications."
+              contactText="Learn More"
               showUserInfo={true}
               enableTilt={true}
               enableMobileTilt={false}

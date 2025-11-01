@@ -314,12 +314,32 @@
   font-weight: 500;
   color: rgba(255, 255, 255, 0.9);
   line-height: 1;
+  transition: all 0.3s ease;
+}
+
+.pc-card:hover .pc-handle,
+.pc-card.active .pc-handle {
+  color: #1a1a1a;
+  text-shadow: 
+    0 0 10px rgba(255, 255, 255, 0.8),
+    0 0 20px rgba(255, 255, 255, 0.5),
+    0.5px 0.5px 0 rgba(255, 255, 255, 0.7);
 }
 
 .pc-status {
   font-size: 14px;
   color: rgba(255, 255, 255, 0.7);
   line-height: 1;
+  transition: all 0.3s ease;
+}
+
+.pc-card:hover .pc-status,
+.pc-card.active .pc-status {
+  color: #2a2a2a;
+  text-shadow: 
+    0 0 10px rgba(255, 255, 255, 0.8),
+    0 0 20px rgba(255, 255, 255, 0.5),
+    0.5px 0.5px 0 rgba(255, 255, 255, 0.7);
 }
 
 .pc-contact-btn {
@@ -338,6 +358,20 @@
   border-color: rgba(255, 255, 255, 0.4);
   transform: translateY(-1px);
   transition: all 0.2s ease;
+}
+
+.pc-card:hover .pc-contact-btn,
+.pc-card.active .pc-contact-btn {
+  color: #1a1a1a;
+  border-color: rgba(255, 255, 255, 0.3);
+  text-shadow: 
+    0 0 8px rgba(255, 255, 255, 0.7),
+    0 0 15px rgba(255, 255, 255, 0.4);
+}
+
+.pc-card:hover .pc-contact-btn:hover,
+.pc-card.active .pc-contact-btn:hover {
+  border-color: rgba(255, 255, 255, 0.5);
 }
 
 .pc-content {
