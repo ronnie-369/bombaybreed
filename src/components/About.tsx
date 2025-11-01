@@ -125,7 +125,7 @@ const About = () => {
         <Accordion type="single" collapsible className="mb-24">
           <AccordionItem value="name" className="border rounded-lg px-6 bg-card">
             <AccordionTrigger className="text-xl md:text-2xl font-heading hover:no-underline">
-              What's <span className="text-gradient">in a name</span>?
+              What's in a name?
             </AccordionTrigger>
             <AccordionContent>
             <div className="grid grid-cols-1 lg:grid-cols-5 gap-16 items-start mt-8">
@@ -187,7 +187,7 @@ const About = () => {
         <Accordion type="single" collapsible className="mb-16">
           <AccordionItem value="experience" className="border rounded-lg px-6 bg-card">
             <AccordionTrigger className="text-xl md:text-2xl font-heading hover:no-underline">
-              <span className="text-gradient">Experience</span>
+              Experience
             </AccordionTrigger>
             <AccordionContent>
             <div className="space-y-6 mt-8">
@@ -217,7 +217,7 @@ const About = () => {
         <Accordion type="single" collapsible className="mb-24">
           <AccordionItem value="xfactor" className="border rounded-lg px-6 bg-card">
             <AccordionTrigger className="text-xl md:text-2xl font-heading hover:no-underline">
-              <span className="text-gradient">The X Factor</span>
+              The X Factor
             </AccordionTrigger>
             <AccordionContent>
               {/* Flow Diagram */}
