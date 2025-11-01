@@ -17,8 +17,8 @@ const Index = () => {
           <h1 className="text-4xl md:text-6xl font-bold mb-16 text-white">
             Bombay Breed Consulting
           </h1>
-          <p className="text-lg md:text-xl text-gray-300 mt-8 mb-20 max-w-2xl mx-auto">
-            Strategy to Execution with embedded oversight that ensures ROI based delivery on business KPI
+          <p className="text-lg md:text-xl font-semibold tracking-wide gradient-accent mt-8 mb-20 max-w-2xl mx-auto drop-shadow-[0_0_15px_rgba(20,184,166,0.3)]">
+            From Strategy to Execution—Embedded Oversight Ensuring ROI-Driven Results
           </p>
           
           {/* Two Service Path Cards */}
