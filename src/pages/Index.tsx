@@ -6,7 +6,7 @@ import { Leaf, Building2, ArrowRight } from 'lucide-react';
 
 const Index = () => {
   return (
-    <div className="min-h-screen bg-bombay-background">
+    <div className="min-h-screen bg-black">
       <Header />
       
       {/* Minimal Hero Section */}
@@ -14,10 +14,10 @@ const Index = () => {
         <div className="max-w-5xl mx-auto text-center">
           
           {/* Brief Welcome */}
-          <h1 className="text-4xl md:text-6xl font-bold mb-6 gradient-accent">
+          <h1 className="text-4xl md:text-6xl font-bold mb-6 text-white">
             Bombay Breed Consulting
           </h1>
-          <p className="text-lg md:text-xl text-foreground/70 mb-16 max-w-2xl mx-auto">
+          <p className="text-lg md:text-xl text-gray-300 mb-16 max-w-2xl mx-auto">
             Strategic advisory for carbon markets and business growth
           </p>
           
@@ -26,36 +26,36 @@ const Index = () => {
             
             {/* Card 1: Carbon Markets */}
             <Link to="/climate-communications" className="block h-full">
-              <Card className="group hover:shadow-2xl transition-all duration-300 cursor-pointer h-full border-2 hover:border-green-500/50">
+              <Card className="group bg-gradient-to-br from-teal-400 via-teal-500 to-cyan-500 hover:shadow-[0_20px_60px_-10px_rgba(20,184,166,0.5)] transition-all duration-300 cursor-pointer h-full border-2 border-teal-300/50 hover:border-teal-200">
                 <CardContent className="p-10 text-center flex flex-col items-center justify-center min-h-[320px]">
-                  <div className="w-20 h-20 mx-auto mb-6 rounded-full bg-green-100 dark:bg-green-900/30 flex items-center justify-center group-hover:scale-110 transition-transform">
-                    <Leaf className="w-10 h-10 text-green-600 dark:text-green-400" />
+                  <div className="w-20 h-20 mx-auto mb-6 rounded-full bg-teal-200 flex items-center justify-center group-hover:scale-110 transition-transform">
+                    <Leaf className="w-10 h-10 text-teal-800" />
                   </div>
-                  <h2 className="text-2xl md:text-3xl font-semibold mb-4 group-hover:text-green-600 dark:group-hover:text-green-400 transition-colors">
+                  <h2 className="text-2xl md:text-3xl font-semibold mb-4 text-white group-hover:text-teal-50 transition-colors">
                     Carbon Markets & Climate
                   </h2>
-                  <p className="text-foreground/60 mb-6 text-base md:text-lg">
+                  <p className="text-white/90 mb-6 text-base md:text-lg">
                     Strategic communications for carbon markets and energy transition
                   </p>
-                  <ArrowRight className="w-6 h-6 mx-auto text-green-600 dark:text-green-400 group-hover:translate-x-2 transition-transform" />
+                  <ArrowRight className="w-6 h-6 mx-auto text-white group-hover:translate-x-2 transition-transform" />
                 </CardContent>
               </Card>
             </Link>
             
             {/* Card 2: Business Consulting */}
             <Link to="/business-strategy" className="block h-full">
-              <Card className="group hover:shadow-2xl transition-all duration-300 cursor-pointer h-full border-2 hover:border-blue-500/50">
+              <Card className="group bg-gradient-to-br from-purple-600 via-purple-700 to-indigo-700 hover:shadow-[0_20px_60px_-10px_rgba(139,92,246,0.5)] transition-all duration-300 cursor-pointer h-full border-2 border-purple-400/50 hover:border-purple-300">
                 <CardContent className="p-10 text-center flex flex-col items-center justify-center min-h-[320px]">
-                  <div className="w-20 h-20 mx-auto mb-6 rounded-full bg-blue-100 dark:bg-blue-900/30 flex items-center justify-center group-hover:scale-110 transition-transform">
-                    <Building2 className="w-10 h-10 text-blue-600 dark:text-blue-400" />
+                  <div className="w-20 h-20 mx-auto mb-6 rounded-full bg-purple-200 flex items-center justify-center group-hover:scale-110 transition-transform">
+                    <Building2 className="w-10 h-10 text-purple-800" />
                   </div>
-                  <h2 className="text-2xl md:text-3xl font-semibold mb-4 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
+                  <h2 className="text-2xl md:text-3xl font-semibold mb-4 text-white group-hover:text-purple-50 transition-colors">
                     Business Strategy Consulting
                   </h2>
-                  <p className="text-foreground/60 mb-6 text-base md:text-lg">
+                  <p className="text-white/90 mb-6 text-base md:text-lg">
                     Cross-industry consulting for growth and operational excellence
                   </p>
-                  <ArrowRight className="w-6 h-6 mx-auto text-blue-600 dark:text-blue-400 group-hover:translate-x-2 transition-transform" />
+                  <ArrowRight className="w-6 h-6 mx-auto text-white group-hover:translate-x-2 transition-transform" />
                 </CardContent>
               </Card>
             </Link>
@@ -65,10 +65,10 @@ const Index = () => {
       </section>
       
       {/* Minimal Footer */}
-      <footer className="absolute bottom-4 left-0 right-0 text-center text-sm text-foreground/40">
-        <Link to="/climate-communications" className="hover:text-foreground/60 transition-colors">Contact</Link>
+      <footer className="absolute bottom-4 left-0 right-0 text-center text-sm text-gray-400">
+        <Link to="/climate-communications" className="hover:text-gray-300 transition-colors">Contact</Link>
         <span className="mx-2">•</span>
-        <Link to="/privacy-policy" className="hover:text-foreground/60 transition-colors">Privacy</Link>
+        <Link to="/privacy-policy" className="hover:text-gray-300 transition-colors">Privacy</Link>
       </footer>
     </div>
   );
