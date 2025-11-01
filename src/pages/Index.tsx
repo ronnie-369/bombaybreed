@@ -59,6 +59,9 @@ const Index = () => {
       />
       
       <div className="flex flex-col items-center justify-center min-h-[calc(100vh-120px)] px-4">
+        <p className="text-lg md:text-xl text-white/70 text-center mb-4">
+          Welcome to Bombay Breed Consulting
+        </p>
         <h1 className="text-5xl md:text-7xl font-bold text-center mb-6 bg-gradient-to-r from-emerald-400 via-purple-500 to-purple-600 bg-clip-text text-transparent leading-tight">
           Transforming Strategy into Results
         </h1>
