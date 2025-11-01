@@ -18,7 +18,7 @@ const Index = () => {
             Bombay Breed Consulting
           </h1>
           <p className="text-lg md:text-xl font-semibold tracking-wide gradient-accent mt-8 mb-20 max-w-2xl mx-auto drop-shadow-[0_0_15px_rgba(20,184,166,0.3)]">
-            From Strategy to Execution—Embedded Oversight Ensuring ROI-Driven Results
+            Transforming Strategy into Results with Embedded Oversight and KPI-Driven ROI
           </p>
           
           {/* Two Service Path Cards */}
