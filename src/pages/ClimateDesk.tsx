@@ -25,7 +25,7 @@ const ClimateDesk = () => {
             Welcome to the Climate Desk
           </h1>
           <p className="text-base md:text-lg text-gray-600 max-w-3xl leading-relaxed mx-auto">
-            A strong history of C-suite advisory, Bombay Breed Consulting is the quiet leadership brand leaders depend on. <span className="font-semibold text-gray-800">We are India's only strategic carbon communications advisory and consulting firm</span>
+            A strong history of C-suite advisory, Bombay Breed Consulting is the quiet leadership brand leaders depend on. <span className="font-semibold text-gray-800 shine-text">We are India's only strategic carbon communications advisory and consulting firm</span>
           </p>
         </div>
       </section>

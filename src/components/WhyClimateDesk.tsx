@@ -38,7 +38,7 @@ const WhyClimateDesk = () => {
             What makes The Climate Desk a CXO's Vital Companion?
           </h2>
           <p className="text-base md:text-lg text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-            As your organization navigates its net zero goals, strategic carbon and energy communications become the new <span className="font-semibold text-foreground">value multiplier</span> with your stakeholders
+            As your organization navigates its net zero goals, strategic carbon and energy communications become the <span className="font-semibold text-foreground shine-text">new value multiplier</span> with your stakeholders
           </p>
         </div>
 
@@ -76,7 +76,7 @@ const WhyClimateDesk = () => {
               Investing in the right carbon communications is a strategic advantage
             </p>
             <p className="text-base md:text-lg text-muted-foreground max-w-2xl mx-auto">
-              With CCTS, BRSR, and CBAM disclosures reshaping the competitive landscape, strategic carbon communications transform compliance obligations into opportunities for differentiation and stakeholder value creation.
+              With CCTS, BRSR, and CBAM disclosures reshaping the competitive landscape, strategic carbon communications transform compliance obligations into opportunities for differentiation & strategic stakeholder value creation
             </p>
           </div>
         </div>

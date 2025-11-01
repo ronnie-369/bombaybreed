@@ -9,7 +9,7 @@ const HeroIntro = () => {
             Welcome to Bombay Breed Consulting
           </h2>
           <p className="section-description">
-            A strong history of C-suite advisory, Bombay Breed Consulting is the quiet leadership brand leaders depend on. <span className="font-semibold">We are India's only strategic carbon communications advisory and consulting firm</span>
+            A strong history of C-suite advisory, Bombay Breed Consulting is the quiet leadership brand leaders depend on. <span className="font-semibold shine-text">We are India's only strategic carbon communications advisory and consulting firm</span>
           </p>
         </div>
       </div>
