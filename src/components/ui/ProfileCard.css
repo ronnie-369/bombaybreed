@@ -367,27 +367,20 @@
   margin: 0;
   font-size: min(5svh, 3em);
   line-height: 0.95;
-  background-image: linear-gradient(to bottom, #fff, #6f6fbe);
-  background-size: 1em 1.5em;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  -webkit-background-clip: text;
+  color: #fff;
 }
 
 .pc-details p {
   font-weight: 600;
   position: relative;
-  top: -8px;
+  top: 4em;
   white-space: nowrap;
   font-size: 16px;
   margin: 0 auto;
   line-height: 1.1;
   width: min-content;
-  background-image: linear-gradient(to bottom, #fff, #4a4ac0);
-  background-size: 1em 1.5em;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  -webkit-background-clip: text;
+  color: rgba(255, 255, 255, 0.95);
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
 }
 
 @keyframes glow-bg {
