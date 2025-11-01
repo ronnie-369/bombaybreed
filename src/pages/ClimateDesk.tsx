@@ -1,7 +1,5 @@
 import React from 'react';
 import Header from '@/components/Header';
-import Services from '@/components/Services';
-import Expertise from '@/components/Expertise';
 import CaseStudies from '@/components/CaseStudies';
 import Value from '@/components/Value';
 import About from '@/components/About';
@@ -10,8 +8,7 @@ import Endorsements from '@/components/Endorsements';
 import Newsletter from '@/components/Newsletter';
 import Contact from '@/components/Contact';
 import ClimateDeskCarousel from '@/components/ClimateDeskCarousel';
-import WhyClimateDesk from '@/components/WhyClimateDesk';
-import ComplianceToCredibilitySection from '@/components/ComplianceToCredibilitySection';
+import CollapsibleSections from '@/components/CollapsibleSections';
 
 const ClimateDesk = () => {
   return (
@@ -32,10 +29,7 @@ const ClimateDesk = () => {
 
       {/* Pull sections from existing climate communications page */}
       <ClimateDeskCarousel />
-      <WhyClimateDesk />
-      <Services />
-      <Expertise />
-      <ComplianceToCredibilitySection />
+      <CollapsibleSections />
       <CaseStudies />
       <Value />
       <About />
