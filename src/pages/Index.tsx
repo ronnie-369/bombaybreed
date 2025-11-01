@@ -92,7 +92,7 @@ const Index = () => {
             <ProfileCard
               avatarUrl="/lovable-uploads/business-transformation-avatar.jpg"
               name="Business Transformation"
-              title="ROI increase for business"
+              title="Increase ROI"
               handle="bombaybreed"
               status="Trusted by Industry Leaders"
               contactText="Learn More"

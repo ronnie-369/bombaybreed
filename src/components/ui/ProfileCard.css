@@ -357,7 +357,7 @@
 .pc-details {
   width: 100%;
   position: absolute;
-  top: 3em;
+  top: 1em;
   display: flex;
   flex-direction: column;
 }
@@ -366,7 +366,7 @@
   font-weight: 600;
   margin: 0;
   font-size: min(5svh, 3em);
-  line-height: 1.1;
+  line-height: 0.95;
   background-image: linear-gradient(to bottom, #fff, #6f6fbe);
   background-size: 1em 1.5em;
   -webkit-text-fill-color: transparent;
@@ -377,10 +377,11 @@
 .pc-details p {
   font-weight: 600;
   position: relative;
-  top: -12px;
+  top: -8px;
   white-space: nowrap;
   font-size: 16px;
   margin: 0 auto;
+  line-height: 1.1;
   width: min-content;
   background-image: linear-gradient(to bottom, #fff, #4a4ac0);
   background-size: 1em 1.5em;
