@@ -1,7 +1,6 @@
 import React from 'react';
 import CardNav from '@/components/CardNav';
 import ProfileCard from '@/components/ui/profile-card';
-import FAQSection from '@/components/FAQSection';
 import Footer from '@/components/Footer';
 
 const Index = () => {
@@ -107,8 +106,6 @@ const Index = () => {
           </div>
         </div>
       </div>
-      
-      <FAQSection />
       
       <Footer />
     </div>

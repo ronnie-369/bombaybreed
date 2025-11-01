@@ -87,13 +87,13 @@ const FAQ = () => {
             </h1>
 
             <div className="not-prose mb-12">
-              <Accordion type="single" collapsible className="w-full space-y-4">
+              <Accordion type="single" collapsible className="w-full">
                 {faqs.map((faq, index) => (
-                  <AccordionItem key={index} value={`item-${index}`} className="border rounded-lg px-6 bg-card">
-                    <AccordionTrigger className="text-sm md:text-base font-heading hover:no-underline">
+                  <AccordionItem key={index} value={`item-${index}`}>
+                    <AccordionTrigger className="text-left text-lg font-semibold text-foreground hover:text-primary transition-colors">
                       {faq.question}
                     </AccordionTrigger>
-                    <AccordionContent className="text-sm text-foreground/80 leading-relaxed">
+                    <AccordionContent className="text-foreground/80 leading-relaxed">
                       {faq.answer}
                       {faq.cta && (
                         <>
