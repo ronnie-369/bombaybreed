@@ -1,7 +1,5 @@
 import React from 'react';
 import Header from '@/components/Header';
-import CaseStudies from '@/components/CaseStudies';
-import Value from '@/components/Value';
 import About from '@/components/About';
 import StakeholderEcosystemWheel from '@/components/StakeholderEcosystemWheel';
 import Endorsements from '@/components/Endorsements';
@@ -31,7 +29,6 @@ const ClimateDesk = () => {
       {/* Pull sections from existing climate communications page */}
       <ClimateDeskCarousel />
       <CollapsibleSections />
-      <Value />
       <About />
       <StakeholderEcosystemWheel />
       <Endorsements />
