@@ -60,10 +60,10 @@ const Index = () => {
       />
       
       <div className="flex flex-col items-center justify-center min-h-[calc(100vh-120px)] px-4 pb-16 pt-20">
-        <p className="text-lg md:text-xl text-gray-600 text-center mb-3">
+        <p className="text-lg md:text-xl text-gray-600 text-center mb-3" style={{ marginTop: '2px' }}>
           Welcome to Bombay Breed Consulting
         </p>
-        <p className="text-base md:text-lg text-gray-500 text-center mb-12 tracking-wide">
+        <p className="text-base md:text-lg text-gray-500 text-center mb-12 tracking-wide" style={{ marginTop: '2px' }}>
           We specialise in
         </p>
         <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-center mb-6 bg-gradient-to-r from-emerald-400 via-purple-500 to-purple-600 bg-clip-text text-transparent leading-normal pb-2">
