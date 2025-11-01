@@ -29,7 +29,7 @@ const ComplianceToCredibilitySection = () => {
                 From Compliance to Credibility
               </CardTitle>
               <CardDescription className="text-sm text-foreground/60">
-                A CXO Guide to CCTS & CBAM
+                From Compliance to Strategic Stakeholder Advantage
               </CardDescription>
             </CardHeader>
             <CardContent className="space-y-4">
