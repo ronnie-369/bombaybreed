@@ -4,6 +4,7 @@ import { Button } from '@/components/ui/button';
 interface CaseStudy {
   id: number;
   name: string;
+  anchor?: string;
   type: string;
   duration: string;
   impact: string;
@@ -39,6 +40,7 @@ const CaseStudies = () => {
   }, {
     id: 3,
     name: "ProClime",
+    anchor: "proclime",
     type: "Head of Marketing",
     duration: "Ongoing",
     impact: "300K+ engagement",
@@ -91,7 +93,7 @@ const CaseStudies = () => {
           ))}
         </div>
 
-        <div className="mt-12 md:mt-16">
+        <div id="proclime" className="mt-12 md:mt-16">
           <div className="glass-card rounded-3xl overflow-hidden">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
               <div className="h-full">

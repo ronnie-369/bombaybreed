@@ -27,7 +27,7 @@ const WhyClimateDesk = () => {
   ];
 
   return (
-    <section className="relative py-20 px-4 bg-gradient-to-b from-background via-background/50 to-background">
+    <section id="cxo-companion" className="relative py-20 px-4 bg-gradient-to-b from-background via-background/50 to-background">
       <div className="container mx-auto max-w-6xl">
         {/* Hero Message */}
         <div className="text-center mb-16">

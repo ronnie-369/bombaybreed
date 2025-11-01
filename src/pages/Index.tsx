@@ -10,8 +10,8 @@ const Index = () => {
       bgColor: "rgba(16, 185, 129, 0.15)",
       textColor: "#10b981",
       links: [
-        { label: "Communications", to: "/climate-communications", ariaLabel: "Climate Communications" },
-        { label: "Case Studies", to: "/climate-communications#case-studies", ariaLabel: "Climate Case Studies" }
+        { label: "Communications", to: "/climate-desk#cxo-companion", ariaLabel: "Climate Communications for CXOs" },
+        { label: "Case Studies", to: "/climate-desk#proclime", ariaLabel: "ProClime Case Study" }
       ]
     },
     {
