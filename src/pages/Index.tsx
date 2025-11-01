@@ -43,9 +43,9 @@ const Index = () => {
 
   return (
     <div 
-      className="min-h-screen bg-black relative"
+      className="min-h-screen bg-white relative"
       style={{
-        backgroundImage: 'radial-gradient(circle at 1px 1px, rgba(255, 255, 255, 0.15) 1px, transparent 0)',
+        backgroundImage: 'radial-gradient(circle at 1px 1px, rgba(0, 0, 0, 0.15) 1px, transparent 0)',
         backgroundSize: '24px 24px',
         backgroundPosition: 'center'
       }}
@@ -59,13 +59,13 @@ const Index = () => {
       />
       
       <div className="flex flex-col items-center justify-center min-h-[calc(100vh-120px)] px-4">
-        <p className="text-lg md:text-xl text-white/70 text-center mb-4">
+        <p className="text-lg md:text-xl text-gray-600 text-center mb-4">
           Welcome to Bombay Breed Consulting
         </p>
         <h1 className="text-5xl md:text-7xl font-bold text-center mb-6 bg-gradient-to-r from-emerald-400 via-purple-500 to-purple-600 bg-clip-text text-transparent leading-tight">
           Transforming Strategy into Results
         </h1>
-        <p className="text-xl md:text-2xl text-white/80 text-center max-w-3xl">
+        <p className="text-xl md:text-2xl text-gray-700 text-center max-w-3xl">
           Embedded Oversight and KPI-Driven ROI
         </p>
       </div>
