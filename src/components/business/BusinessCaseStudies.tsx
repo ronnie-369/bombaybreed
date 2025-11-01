@@ -77,7 +77,7 @@ const BusinessCaseStudies = () => {
                     <ul className="space-y-2">
                       {study.results.map((result, idx) => (
                         <li key={idx} className="flex items-start">
-                          <span className="text-blue-600 dark:text-blue-400 mr-2">✓</span>
+                          <span className="text-purple-600 dark:text-purple-400 mr-2">✓</span>
                           <span className="text-foreground/80">{result}</span>
                         </li>
                       ))}

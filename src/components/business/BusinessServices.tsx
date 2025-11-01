@@ -66,8 +66,8 @@ const BusinessServices = () => {
           {services.map((service, index) => (
             <Card key={index} className="hover:shadow-xl transition-shadow duration-300">
               <CardHeader>
-                <div className="w-14 h-14 rounded-full bg-blue-100 dark:bg-blue-900/30 flex items-center justify-center mb-4">
-                  <service.icon className="w-7 h-7 text-blue-600 dark:text-blue-400" />
+                <div className="w-14 h-14 rounded-full bg-purple-100 dark:bg-purple-900/30 flex items-center justify-center mb-4">
+                  <service.icon className="w-7 h-7 text-purple-600 dark:text-purple-400" />
                 </div>
                 <CardTitle className="text-2xl mb-3">{service.title}</CardTitle>
               </CardHeader>
@@ -78,7 +78,7 @@ const BusinessServices = () => {
                 <ul className="space-y-2">
                   {service.highlights.map((highlight, idx) => (
                     <li key={idx} className="flex items-start">
-                      <span className="text-blue-600 dark:text-blue-400 mr-2">•</span>
+                      <span className="text-purple-600 dark:text-purple-400 mr-2">•</span>
                       <span className="text-foreground/80">{highlight}</span>
                     </li>
                   ))}
