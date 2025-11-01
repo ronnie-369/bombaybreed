@@ -18,7 +18,7 @@ const Index = () => {
             Bombay Breed Consulting
           </h1>
           <p className="text-lg md:text-xl text-gray-300 mb-16 max-w-2xl mx-auto">
-            Strategic advisory for carbon markets and business growth
+            Strategy to Execution with embedded oversight that ensures ROI based delivery on business KPI
           </p>
           
           {/* Two Service Path Cards */}
