@@ -66,7 +66,7 @@ const Index = () => {
           Transforming Strategy into Results
         </h1>
         <p className="text-xl md:text-2xl text-gray-700 text-center max-w-3xl">
-          Embedded Oversight and KPI-Driven ROI
+          good for planet, good for business
         </p>
       </div>
     </div>
