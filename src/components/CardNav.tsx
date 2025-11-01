@@ -2,7 +2,43 @@ import { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import './CardNav.css';
 
-const CardNav = () => {
+interface NavLink {
+  label: string;
+  to?: string;
+  href?: string;
+  ariaLabel?: string;
+}
+
+interface NavItem {
+  label: string;
+  bgColor: string;
+  textColor: string;
+  links: NavLink[];
+}
+
+interface CardNavProps {
+  logo: string;
+  logoAlt: string;
+  items: NavItem[];
+  baseColor?: string;
+  menuColor?: string;
+  buttonBgColor?: string;
+  buttonTextColor?: string;
+  ctaText?: string;
+  ctaLink?: string;
+}
+
+const CardNav = ({
+  logo,
+  logoAlt,
+  items,
+  baseColor = '#fff',
+  menuColor = '#000',
+  buttonBgColor = '#111',
+  buttonTextColor = '#fff',
+  ctaText = 'Get Started',
+  ctaLink = '/climate-communications#contact'
+}: CardNavProps) => {
   const [isOpen, setIsOpen] = useState(false);
   const navRef = useRef<HTMLDivElement>(null);
 
@@ -39,109 +75,64 @@ const CardNav = () => {
 
           <Link to="/" className="logo-container" onClick={closeMenu}>
             <img 
-              src="/lovable-uploads/d154fe5b-5dc7-48e1-ae7b-30fb4291f03c.png" 
-              alt="BOMBAY BREED"
+              src={logo} 
+              alt={logoAlt}
               className="logo"
             />
           </Link>
 
-          <button className="card-nav-cta-button" onClick={closeMenu}>
-            <Link to="/climate-communications#contact" style={{ color: 'inherit', textDecoration: 'none' }}>
-              Get Started
+          <button 
+            className="card-nav-cta-button" 
+            onClick={closeMenu}
+            style={{ backgroundColor: buttonBgColor, color: buttonTextColor }}
+          >
+            <Link to={ctaLink} style={{ color: 'inherit', textDecoration: 'none' }}>
+              {ctaText}
             </Link>
           </button>
         </div>
 
         <div className="card-nav-content">
-          <div className="nav-card" style={{ backgroundColor: '#10b981' }}>
-            <div className="nav-card-label" style={{ color: 'white' }}>Climate</div>
-            <div className="nav-card-links">
-              <Link 
-                to="/climate-communications" 
-                className="nav-card-link" 
-                style={{ color: 'white' }}
-                onClick={closeMenu}
-              >
-                Communications
-              </Link>
-              <Link 
-                to="/climate-communications#case-studies" 
-                className="nav-card-link" 
-                style={{ color: 'white' }}
-                onClick={closeMenu}
-              >
-                Case Studies
-              </Link>
+          {items.map((item, index) => (
+            <div 
+              key={index} 
+              className="nav-card" 
+              style={{ backgroundColor: item.bgColor }}
+            >
+              <div className="nav-card-label" style={{ color: item.textColor }}>
+                {item.label}
+              </div>
+              <div className="nav-card-links">
+                {item.links.map((link, linkIndex) => (
+                  link.to ? (
+                    <Link 
+                      key={linkIndex}
+                      to={link.to}
+                      className="nav-card-link"
+                      style={{ color: item.textColor }}
+                      aria-label={link.ariaLabel}
+                      onClick={closeMenu}
+                    >
+                      {link.label}
+                    </Link>
+                  ) : (
+                    <a 
+                      key={linkIndex}
+                      href={link.href}
+                      className="nav-card-link"
+                      style={{ color: item.textColor }}
+                      aria-label={link.ariaLabel}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      onClick={closeMenu}
+                    >
+                      {link.label}
+                    </a>
+                  )
+                ))}
+              </div>
             </div>
-          </div>
-
-          <div className="nav-card" style={{ backgroundColor: '#8b5cf6' }}>
-            <div className="nav-card-label" style={{ color: 'white' }}>Business</div>
-            <div className="nav-card-links">
-              <Link 
-                to="/business-strategy" 
-                className="nav-card-link" 
-                style={{ color: 'white' }}
-                onClick={closeMenu}
-              >
-                Strategy
-              </Link>
-              <Link 
-                to="/business-strategy#services" 
-                className="nav-card-link" 
-                style={{ color: 'white' }}
-                onClick={closeMenu}
-              >
-                Services
-              </Link>
-            </div>
-          </div>
-
-          <div className="nav-card" style={{ backgroundColor: '#f59e0b' }}>
-            <div className="nav-card-label" style={{ color: 'white' }}>Resources</div>
-            <div className="nav-card-links">
-              <Link 
-                to="/climate-communications#blog" 
-                className="nav-card-link" 
-                style={{ color: 'white' }}
-                onClick={closeMenu}
-              >
-                Blog
-              </Link>
-              <Link 
-                to="/climate-communications#about" 
-                className="nav-card-link" 
-                style={{ color: 'white' }}
-                onClick={closeMenu}
-              >
-                About
-              </Link>
-            </div>
-          </div>
-
-          <div className="nav-card" style={{ backgroundColor: '#ef4444' }}>
-            <div className="nav-card-label" style={{ color: 'white' }}>Connect</div>
-            <div className="nav-card-links">
-              <Link 
-                to="/climate-communications#contact" 
-                className="nav-card-link" 
-                style={{ color: 'white' }}
-                onClick={closeMenu}
-              >
-                Contact
-              </Link>
-              <a 
-                href="https://www.linkedin.com/in/saahilmehta/" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="nav-card-link" 
-                style={{ color: 'white' }}
-                onClick={closeMenu}
-              >
-                LinkedIn
-              </a>
-            </div>
-          </div>
+          ))}
         </div>
       </div>
     </div>
