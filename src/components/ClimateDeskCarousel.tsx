@@ -168,7 +168,7 @@ const ClimateDeskCarousel = () => {
             href="https://theclimatedesk.substack.com/"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-teal-600 via-cyan-600 to-emerald-600 text-white font-semibold rounded-full hover:shadow-xl hover:scale-105 transition-all duration-300"
+            className="inline-flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-amber-700 via-amber-800 to-amber-900 text-white font-semibold rounded-full hover:shadow-xl hover:scale-105 transition-all duration-300"
           >
             Subscribe to The Climate Desk
             <ExternalLink className="w-5 h-5" />
