@@ -23,8 +23,8 @@ const About = () => {
     years: "22 years"
   }];
 
-  // Use provided portrait URL
-  const portraitUrl = "https://zjiwmdrtuhsrymsuvpfb.supabase.co/storage/v1/object/public/brand%20assets/6B2F478A-02E5-4199-8335-09A8E6AFD624.JPG";
+  // Use award ceremony image
+  const portraitUrl = "https://zjiwmdrtuhsrymsuvpfb.supabase.co/storage/v1/object/public/brand%20assets/5Q2A8758.jpg";
 
   return (
     <section id="about" className="section-padding bg-background">
@@ -82,8 +82,9 @@ const About = () => {
                 <div className="aspect-[4/5] relative">
                   <img 
                     src={portraitUrl}
-                    alt="Theresa Ronnie - Sustainability Communications Expert"
+                    alt="Theresa Ronnie receiving award - Professional recognition"
                     className="w-full h-full object-cover object-center"
+                    style={{ objectPosition: 'center 30%' }}
                     onError={(e) => {
                       // Fallback to a placeholder if image fails to load
                       e.currentTarget.src = "/public/lovable-uploads/placeholder-portrait.jpg";
