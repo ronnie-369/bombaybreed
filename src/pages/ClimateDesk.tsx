@@ -9,6 +9,7 @@ import Newsletter from '@/components/Newsletter';
 import Contact from '@/components/Contact';
 import ClimateDeskCarousel from '@/components/ClimateDeskCarousel';
 import CollapsibleSections from '@/components/CollapsibleSections';
+import FloatingInquiryForm from '@/components/FloatingInquiryForm';
 
 const ClimateDesk = () => {
   return (
@@ -37,6 +38,7 @@ const ClimateDesk = () => {
       <Endorsements />
       <Newsletter />
       <Contact />
+      <FloatingInquiryForm />
     </div>
   );
 };
