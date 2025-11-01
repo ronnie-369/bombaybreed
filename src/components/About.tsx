@@ -1,6 +1,7 @@
 import React from 'react';
 import { Check, LinkedinIcon } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { climateDesk } from '@/config/stats';
 
 
 const About = () => {
@@ -56,7 +57,7 @@ const About = () => {
               </p>
 
               <p className="text-body-sm text-foreground/80">
-                Through The Climate Desk publication, she reaches over 5,000 subscribers from around the world, sharing insights and driving thought leadership in sustainability communications. She regularly holds webinars and facilitates industry knowledge sharing and ecosystem building efforts, connecting stakeholders across the sustainability landscape.
+                Through The Climate Desk publication, she reaches <span className="font-bold shine-text">{climateDesk.subscriberText} subscribers from around the world</span>, sharing insights and driving thought leadership in sustainability communications. She regularly holds webinars and facilitates industry knowledge sharing and ecosystem building efforts, connecting stakeholders across the sustainability landscape.
               </p>
               
               <p className="text-body-sm text-foreground/80">

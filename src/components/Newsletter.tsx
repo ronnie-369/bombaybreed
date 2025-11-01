@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Mail } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
+import { climateDesk } from '@/config/stats';
 
 const Newsletter = () => {
   const [email, setEmail] = useState('');
@@ -114,7 +115,7 @@ const Newsletter = () => {
           </div>
           
           <p className="text-white/70 text-sm mt-4">
-            Join 2,500+ sustainability professionals. Unsubscribe anytime.
+            Join {climateDesk.subscriberCountFormatted}+ sustainability professionals. Unsubscribe anytime.
           </p>
         </div>
       </div>
