@@ -16,7 +16,7 @@ const CollapsibleSections = () => {
     <div className="container mx-auto px-4 py-8">
       <Accordion type="single" collapsible className="w-full space-y-4">
         <AccordionItem value="why-climate-desk" className="border rounded-lg px-6 bg-card">
-          <AccordionTrigger className="text-base md:text-lg font-heading hover:no-underline">
+          <AccordionTrigger className="text-sm md:text-base font-heading hover:no-underline">
             What Makes the Climate Desk Different
           </AccordionTrigger>
           <AccordionContent className="text-sm">
@@ -25,7 +25,7 @@ const CollapsibleSections = () => {
         </AccordionItem>
 
         <AccordionItem value="services" className="border rounded-lg px-6 bg-card">
-          <AccordionTrigger className="text-base md:text-lg font-heading hover:no-underline">
+          <AccordionTrigger className="text-sm md:text-base font-heading hover:no-underline">
             Our Services
           </AccordionTrigger>
           <AccordionContent className="text-sm">
@@ -34,7 +34,7 @@ const CollapsibleSections = () => {
         </AccordionItem>
 
         <AccordionItem value="expertise" className="border rounded-lg px-6 bg-card">
-          <AccordionTrigger className="text-base md:text-lg font-heading hover:no-underline">
+          <AccordionTrigger className="text-sm md:text-base font-heading hover:no-underline">
             This is Where Sustainability Communications Adds Significant Value
           </AccordionTrigger>
           <AccordionContent className="text-sm">
@@ -43,7 +43,7 @@ const CollapsibleSections = () => {
         </AccordionItem>
 
         <AccordionItem value="success-stories" className="border rounded-lg px-6 bg-card">
-          <AccordionTrigger className="text-base md:text-lg font-heading hover:no-underline">
+          <AccordionTrigger className="text-sm md:text-base font-heading hover:no-underline">
             Success Stories
           </AccordionTrigger>
           <AccordionContent className="text-sm">
@@ -52,7 +52,7 @@ const CollapsibleSections = () => {
         </AccordionItem>
 
         <AccordionItem value="cxo-guide" className="border rounded-lg px-6 bg-card">
-          <AccordionTrigger className="text-base md:text-lg font-heading hover:no-underline">
+          <AccordionTrigger className="text-sm md:text-base font-heading hover:no-underline">
             Download The CXO Guide
           </AccordionTrigger>
           <AccordionContent className="text-sm">
