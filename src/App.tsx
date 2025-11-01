@@ -15,6 +15,7 @@ import CarbonPlaybook from "./pages/CarbonPlaybook";
 import ComplianceToCredibility from "./pages/ComplianceToCredibility";
 import EnergyTransitionPlaybook from "./pages/EnergyTransitionPlaybook";
 import GrowthRooms from "./pages/GrowthRooms";
+import FAQ from "./pages/FAQ";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
 import TermsAndConditions from "./pages/TermsAndConditions";
 import NotFound from "./pages/NotFound";
@@ -41,6 +42,7 @@ const App = () => (
           <Route path="/compliance-to-credibility" element={<ComplianceToCredibility />} />
           <Route path="/energy-transition-playbook" element={<EnergyTransitionPlaybook />} />
           <Route path="/growth-rooms" element={<GrowthRooms />} />
+          <Route path="/faq" element={<FAQ />} />
           <Route path="/privacy-policy" element={<PrivacyPolicy />} />
           <Route path="/terms-and-conditions" element={<TermsAndConditions />} />
           <Route path="/auth" element={<Auth />} />

@@ -12,6 +12,12 @@ const Footer = () => {
           
           <div className="flex gap-6 text-sm">
             <Link 
+              to="/faq" 
+              className="text-gray-600 hover:text-primary transition-colors underline-offset-4 hover:underline"
+            >
+              FAQs
+            </Link>
+            <Link 
               to="/privacy-policy" 
               className="text-gray-600 hover:text-primary transition-colors underline-offset-4 hover:underline"
             >

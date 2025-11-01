@@ -29,7 +29,7 @@ const Index = () => {
       textColor: "#f59e0b",
       links: [
         { label: "About", to: "/climate-communications#about", ariaLabel: "About Us" },
-        { label: "FAQs", to: "/climate-communications#faqs", ariaLabel: "FAQs" }
+        { label: "FAQs", to: "/faq", ariaLabel: "FAQs" }
       ]
     },
     {
