@@ -1,13 +1,12 @@
 
 import React, { useState, useEffect } from 'react';
-import { Star, Building2, ChevronDown } from 'lucide-react';
+import { Star, Building2 } from 'lucide-react';
 import { preloadLogos } from '@/utils/storage-logos';
 import Logo from '@/components/ui/Logo';
 import { Skeleton } from '@/components/ui/skeleton';
-import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@/components/ui/collapsible';
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
 
 const Endorsements = () => {
-  const [isOpen, setIsOpen] = useState(false);
   const [logos, setLogos] = useState<Map<string, string | null>>(new Map());
   const [isLoading, setIsLoading] = useState(true);
 
@@ -55,16 +54,12 @@ const Endorsements = () => {
   return (
     <section className="py-28 px-4 md:px-8 bg-gradient-to-b from-white to-bombay-subtle/20">
       <div className="container mx-auto">
-        <Collapsible open={isOpen} onOpenChange={setIsOpen}>
-          <CollapsibleTrigger className="w-full group">
-            <div className="flex items-center justify-between p-6 bg-white rounded-xl shadow-sm hover:shadow-md transition-all mb-8">
-              <h2 className="text-3xl md:text-4xl font-heading font-bold">
-                <span className="text-gradient">Trusted by Leaders</span>
-              </h2>
-              <ChevronDown className={`w-8 h-8 text-primary transition-transform ${isOpen ? 'rotate-180' : ''}`} />
-            </div>
-          </CollapsibleTrigger>
-          <CollapsibleContent>
+        <Accordion type="single" collapsible>
+          <AccordionItem value="trusted-leaders" className="border rounded-lg px-6 bg-card">
+            <AccordionTrigger className="text-xl md:text-2xl font-heading hover:no-underline">
+              <span className="text-gradient">Trusted by Leaders</span>
+            </AccordionTrigger>
+            <AccordionContent>
             <div className="mb-8">
               <h3 className="text-lg font-heading font-semibold mb-4 flex items-center justify-center">
                 <Star className="h-5 w-5 mr-2 text-bombay-accent" />
@@ -100,8 +95,9 @@ const Endorsements = () => {
                 ))}
               </div>
             </div>
-          </CollapsibleContent>
-        </Collapsible>
+            </AccordionContent>
+          </AccordionItem>
+        </Accordion>
       </div>
     </section>
   );

@@ -1,9 +1,8 @@
-import React, { useState, useEffect, useRef } from 'react';
-import { Users, Building2, DollarSign, Settings, MessageSquare, Lightbulb, TrendingUp, Shield, Scale, ShoppingCart, Truck, Heart, ChevronDown } from 'lucide-react';
-import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@/components/ui/collapsible';
+import React, { useEffect, useRef, useState } from 'react';
+import { Users, Building2, DollarSign, Settings, MessageSquare, Lightbulb, TrendingUp, Shield, Scale, ShoppingCart, Truck, Heart } from 'lucide-react';
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
 
 const StakeholderEcosystemWheel = () => {
-  const [isOpen, setIsOpen] = useState(false);
   const [hoveredStakeholder, setHoveredStakeholder] = useState<string | null>(null);
   const [dimensions, setDimensions] = useState({ width: 400, height: 400 });
   const containerRef = useRef<HTMLDivElement>(null);
@@ -212,19 +211,15 @@ const StakeholderEcosystemWheel = () => {
     <section className="py-20 px-4 md:px-8 bg-gradient-to-b from-background to-muted/20">
       <div className="container mx-auto text-center">
         <div className="max-w-6xl mx-auto">
-          <Collapsible open={isOpen} onOpenChange={setIsOpen}>
-            <CollapsibleTrigger className="w-full group">
-              <div className="flex items-center justify-between p-6 bg-white rounded-xl shadow-sm hover:shadow-md transition-all mb-8">
-                <h2 className="text-3xl md:text-4xl font-heading font-bold">
-                  <span className="text-gradient">Stakeholder Ecosystem</span>
-                </h2>
-                <ChevronDown className={`w-8 h-8 text-primary transition-transform ${isOpen ? 'rotate-180' : ''}`} />
-              </div>
-            </CollapsibleTrigger>
-            <CollapsibleContent>
-              <p className="text-lg text-muted-foreground mb-12">
-                Effective communication with diverse stakeholder groups requires tailored strategies and messaging.
-              </p>
+          <Accordion type="single" collapsible>
+            <AccordionItem value="stakeholder-ecosystem" className="border rounded-lg px-6 bg-card">
+              <AccordionTrigger className="text-xl md:text-2xl font-heading hover:no-underline">
+                <span className="text-gradient">Stakeholder Ecosystem</span>
+              </AccordionTrigger>
+              <AccordionContent>
+                <p className="text-lg text-muted-foreground mb-12">
+                  Effective communication with diverse stakeholder groups requires tailored strategies and messaging.
+                </p>
 
           <div ref={containerRef} className="relative w-full flex justify-center">
             <div className="relative">
@@ -472,8 +467,9 @@ const StakeholderEcosystemWheel = () => {
           <div className="mt-8 text-sm text-muted-foreground">
             <p>Hover over each stakeholder group to learn about tailored communication strategies</p>
           </div>
-            </CollapsibleContent>
-          </Collapsible>
+              </AccordionContent>
+            </AccordionItem>
+          </Accordion>
         </div>
       </div>
     </section>

@@ -1,20 +1,11 @@
-import React, { useState } from 'react';
-import { Check, LinkedinIcon, ArrowRight, ChevronDown } from 'lucide-react';
+import React from 'react';
+import { Check, LinkedinIcon, ArrowRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { climateDesk } from '@/config/stats';
-import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@/components/ui/collapsible';
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
 
 
 const About = () => {
-  const [openSections, setOpenSections] = useState({
-    name: false,
-    experience: false,
-    xfactor: false
-  });
-
-  const toggleSection = (section: 'name' | 'experience' | 'xfactor') => {
-    setOpenSections(prev => ({ ...prev, [section]: !prev[section] }));
-  };
 
   const expertise = ["Proven Expertise", "Strategic Insighting", "Data-Led Approach", "Risk Management", "Stakeholder Engagement", "Innovation in Communication", "Tracking Compliance & Standards", "Cross-Functional Collaboration", "Long-term Vision"];
   
@@ -130,17 +121,13 @@ const About = () => {
           </div>
         </div>
 
-        {/* The Name Section - Collapsible */}
-        <Collapsible open={openSections.name} onOpenChange={() => toggleSection('name')} className="mb-24">
-          <CollapsibleTrigger className="w-full group">
-            <div className="flex items-center justify-between p-6 bg-white rounded-xl shadow-sm hover:shadow-md transition-all">
-              <h2 className="text-3xl md:text-4xl font-heading font-bold">
-                What's <span className="text-gradient">in a name</span>?
-              </h2>
-              <ChevronDown className={`w-8 h-8 text-primary transition-transform ${openSections.name ? 'rotate-180' : ''}`} />
-            </div>
-          </CollapsibleTrigger>
-          <CollapsibleContent>
+        {/* The Name Section */}
+        <Accordion type="single" collapsible className="mb-24">
+          <AccordionItem value="name" className="border rounded-lg px-6 bg-card">
+            <AccordionTrigger className="text-xl md:text-2xl font-heading hover:no-underline">
+              What's <span className="text-gradient">in a name</span>?
+            </AccordionTrigger>
+            <AccordionContent>
             <div className="grid grid-cols-1 lg:grid-cols-5 gap-16 items-start mt-8">
             {/* Left Column - Logo */}
             <div className="lg:col-span-2">
@@ -192,20 +179,17 @@ const About = () => {
               </div>
             </div>
           </div>
-          </CollapsibleContent>
-        </Collapsible>
+            </AccordionContent>
+          </AccordionItem>
+        </Accordion>
 
-        {/* Experience Section - Collapsible */}
-        <Collapsible open={openSections.experience} onOpenChange={() => toggleSection('experience')} className="mb-16">
-          <CollapsibleTrigger className="w-full group">
-            <div className="flex items-center justify-between p-6 bg-white rounded-xl shadow-sm hover:shadow-md transition-all">
-              <h2 className="text-3xl md:text-4xl font-heading font-bold">
-                <span className="text-gradient">Experience</span>
-              </h2>
-              <ChevronDown className={`w-8 h-8 text-primary transition-transform ${openSections.experience ? 'rotate-180' : ''}`} />
-            </div>
-          </CollapsibleTrigger>
-          <CollapsibleContent>
+        {/* Experience Section */}
+        <Accordion type="single" collapsible className="mb-16">
+          <AccordionItem value="experience" className="border rounded-lg px-6 bg-card">
+            <AccordionTrigger className="text-xl md:text-2xl font-heading hover:no-underline">
+              <span className="text-gradient">Experience</span>
+            </AccordionTrigger>
+            <AccordionContent>
             <div className="space-y-6 mt-8">
               {experience.map((item, index) => (
                 <div key={index} className="space-y-2">
@@ -225,20 +209,17 @@ const About = () => {
                 </div>
               ))}
             </div>
-          </CollapsibleContent>
-        </Collapsible>
+            </AccordionContent>
+          </AccordionItem>
+        </Accordion>
 
-        {/* The X Factor Section - Collapsible */}
-        <Collapsible open={openSections.xfactor} onOpenChange={() => toggleSection('xfactor')} className="mb-24">
-          <CollapsibleTrigger className="w-full group">
-            <div className="flex items-center justify-between p-6 bg-white rounded-xl shadow-sm hover:shadow-md transition-all">
-              <h2 className="text-3xl md:text-4xl font-heading font-bold">
-                <span className="text-gradient">The X Factor</span>
-              </h2>
-              <ChevronDown className={`w-8 h-8 text-primary transition-transform ${openSections.xfactor ? 'rotate-180' : ''}`} />
-            </div>
-          </CollapsibleTrigger>
-          <CollapsibleContent>
+        {/* The X Factor Section */}
+        <Accordion type="single" collapsible className="mb-24">
+          <AccordionItem value="xfactor" className="border rounded-lg px-6 bg-card">
+            <AccordionTrigger className="text-xl md:text-2xl font-heading hover:no-underline">
+              <span className="text-gradient">The X Factor</span>
+            </AccordionTrigger>
+            <AccordionContent>
             {/* Flow Diagram */}
             <div className="space-y-6 overflow-x-auto mt-8">
               {/* Top Row - Main Process Flow */}
@@ -311,8 +292,9 @@ const About = () => {
                 <span className="text-sm md:text-base font-semibold text-primary">Stakeholder Trust</span>
               </div>
             </div>
-          </CollapsibleContent>
-        </Collapsible>
+            </AccordionContent>
+          </AccordionItem>
+        </Accordion>
       </div>
     </section>
   );
