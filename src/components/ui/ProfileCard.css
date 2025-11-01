@@ -368,6 +368,18 @@
   font-size: min(4.5svh, 2.75em);
   line-height: 0.95;
   color: #fff;
+  transition: all 0.3s ease;
+}
+
+.pc-card:hover .pc-details h3,
+.pc-card.active .pc-details h3 {
+  color: #1a1a1a;
+  text-shadow: 
+    0 0 20px rgba(255, 255, 255, 0.9),
+    0 0 40px rgba(255, 255, 255, 0.6),
+    1px 1px 0 rgba(255, 255, 255, 0.8),
+    -1px -1px 0 rgba(255, 255, 255, 0.8);
+  -webkit-text-stroke: 0.5px rgba(255, 255, 255, 0.4);
 }
 
 .pc-details p {
@@ -381,6 +393,18 @@
   width: min-content;
   color: rgba(255, 255, 255, 0.95);
   text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+  transition: all 0.3s ease;
+}
+
+.pc-card:hover .pc-details p,
+.pc-card.active .pc-details p {
+  color: #2a2a2a;
+  text-shadow: 
+    0 0 15px rgba(255, 255, 255, 0.8),
+    0 0 30px rgba(255, 255, 255, 0.5),
+    1px 1px 0 rgba(255, 255, 255, 0.7),
+    -1px -1px 0 rgba(255, 255, 255, 0.7);
+  -webkit-text-stroke: 0.3px rgba(255, 255, 255, 0.3);
 }
 
 @keyframes glow-bg {
