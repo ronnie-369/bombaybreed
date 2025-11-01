@@ -14,6 +14,9 @@ export interface ProfileCardProps {
   className?: string;
   gradientFrom?: string;
   gradientTo?: string;
+  showUserInfo?: boolean;
+  enableTilt?: boolean;
+  enableMobileTilt?: boolean;
 }
 
 const ProfileCard = React.forwardRef<HTMLDivElement, ProfileCardProps>(
@@ -29,11 +32,47 @@ const ProfileCard = React.forwardRef<HTMLDivElement, ProfileCardProps>(
       className,
       gradientFrom = 'from-emerald-500/20',
       gradientTo = 'to-purple-500/20',
+      showUserInfo = true,
+      enableTilt = true,
+      enableMobileTilt = false,
     },
     ref
   ) => {
+    const [tiltStyle, setTiltStyle] = React.useState({});
+
+    const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+      if (!enableTilt) return;
+      if (!enableMobileTilt && window.innerWidth < 768) return;
+
+      const card = e.currentTarget;
+      const rect = card.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+      const centerX = rect.width / 2;
+      const centerY = rect.height / 2;
+      const rotateX = (y - centerY) / 10;
+      const rotateY = (centerX - x) / 10;
+
+      setTiltStyle({
+        transform: `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.02, 1.02, 1.02)`,
+        transition: 'transform 0.1s ease',
+      });
+    };
+
+    const handleMouseLeave = () => {
+      setTiltStyle({
+        transform: 'perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)',
+        transition: 'transform 0.3s ease',
+      });
+    };
     return (
-      <div ref={ref} className={cn('relative group', className)}>
+      <div 
+        ref={ref} 
+        className={cn('relative group', className)}
+        onMouseMove={handleMouseMove}
+        onMouseLeave={handleMouseLeave}
+        style={tiltStyle}
+      >
         {/* Background gradient glow effect */}
         <div
           className={cn(
@@ -68,21 +107,23 @@ const ProfileCard = React.forwardRef<HTMLDivElement, ProfileCardProps>(
             </div>
 
             {/* User info */}
-            <div className="text-center space-y-2 mb-4">
-              <h3 className="text-xl font-bold text-foreground">{name}</h3>
-              <p className="text-sm text-muted-foreground">{title}</p>
-              
-              {handle && (
-                <p className="text-sm text-foreground/60">@{handle}</p>
-              )}
-              
-              {status && (
-                <div className="flex items-center justify-center gap-2">
-                  <span className="w-2 h-2 bg-emerald-500 rounded-full animate-pulse" />
-                  <span className="text-xs text-muted-foreground">{status}</span>
-                </div>
-              )}
-            </div>
+            {showUserInfo && (
+              <div className="text-center space-y-2 mb-4">
+                <h3 className="text-xl font-bold text-foreground">{name}</h3>
+                <p className="text-sm text-muted-foreground">{title}</p>
+                
+                {handle && (
+                  <p className="text-sm text-foreground/60">@{handle}</p>
+                )}
+                
+                {status && (
+                  <div className="flex items-center justify-center gap-2">
+                    <span className="w-2 h-2 bg-emerald-500 rounded-full animate-pulse" />
+                    <span className="text-xs text-muted-foreground">{status}</span>
+                  </div>
+                )}
+              </div>
+            )}
 
             {/* Contact button */}
             {onContactClick && (

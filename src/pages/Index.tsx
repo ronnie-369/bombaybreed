@@ -86,6 +86,9 @@ const Index = () => {
               onContactClick={() => window.location.href = '/climate-communications#contact'}
               gradientFrom="from-emerald-500/20"
               gradientTo="to-emerald-600/20"
+              showUserInfo={true}
+              enableTilt={true}
+              enableMobileTilt={false}
             />
             <ProfileCard
               avatarUrl="/lovable-uploads/d154fe5b-5dc7-48e1-ae7b-30fb4291f03c.png"
@@ -96,6 +99,9 @@ const Index = () => {
               onContactClick={() => window.location.href = '/business-strategy'}
               gradientFrom="from-purple-500/20"
               gradientTo="to-purple-600/20"
+              showUserInfo={true}
+              enableTilt={true}
+              enableMobileTilt={false}
             />
           </div>
         </div>
