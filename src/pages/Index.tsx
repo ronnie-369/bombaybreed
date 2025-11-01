@@ -62,7 +62,7 @@ const Index = () => {
         <p className="text-lg md:text-xl text-gray-600 text-center mb-4">
           Welcome to Bombay Breed Consulting
         </p>
-        <h1 className="text-5xl md:text-7xl font-bold text-center mb-6 bg-gradient-to-r from-emerald-400 via-purple-500 to-purple-600 bg-clip-text text-transparent leading-tight">
+        <h1 className="text-5xl md:text-7xl font-bold text-center mb-6 bg-gradient-to-r from-emerald-400 via-purple-500 to-purple-600 bg-clip-text text-transparent leading-snug">
           Transforming Strategy into Results
         </h1>
         <p className="text-xl md:text-2xl text-gray-700 text-center max-w-3xl">
