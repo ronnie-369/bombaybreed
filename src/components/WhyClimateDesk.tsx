@@ -76,7 +76,7 @@ const WhyClimateDesk = () => {
               Investing in the right carbon communications is a strategic advantage
             </p>
             <p className="text-base md:text-lg text-muted-foreground max-w-2xl mx-auto">
-              With CCTS, BRSR, and CBAM disclosures reshaping the competitive landscape, strategic carbon communications transform compliance obligations into opportunities for differentiation & strategic stakeholder value creation
+              With disclosures reshaping the competitive landscape, strategic carbon communications transform compliance obligations into opportunities for differentiation & strategic stakeholder value creation
             </p>
           </div>
         </div>
