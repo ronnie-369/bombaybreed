@@ -17,7 +17,7 @@ const Index = () => {
           <h1 className="text-4xl md:text-6xl font-bold mb-16 text-white">
             Bombay Breed Consulting
           </h1>
-          <p className="text-lg md:text-xl font-semibold tracking-wide gradient-accent mt-8 mb-20 max-w-2xl mx-auto drop-shadow-[0_0_15px_rgba(20,184,166,0.3)]">
+          <p className="text-lg md:text-xl font-semibold tracking-wide bg-gradient-to-r from-teal-400 via-purple-500 to-purple-600 bg-clip-text text-transparent mt-8 mb-20 max-w-2xl mx-auto drop-shadow-[0_0_15px_rgba(20,184,166,0.3)]">
             Transforming Strategy into Results with Embedded Oversight and KPI-Driven ROI
           </p>
           
