@@ -18,7 +18,7 @@ const Index = () => {
       bgColor: "rgba(139, 92, 246, 0.15)",
       textColor: "#8b5cf6",
       links: [
-        { label: "Strategy", to: "/business-strategy", ariaLabel: "Business Strategy" },
+        { label: "Execution Strategy", to: "/business-strategy", ariaLabel: "Business Strategy" },
         { label: "Services", to: "/business-strategy#services", ariaLabel: "Business Services" }
       ]
     },
