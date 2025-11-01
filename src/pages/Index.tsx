@@ -59,14 +59,12 @@ const Index = () => {
       />
       
       <div className="flex flex-col items-center justify-center min-h-[calc(100vh-120px)] px-4">
-        <img 
-          src="/lovable-uploads/d154fe5b-5dc7-48e1-ae7b-30fb4291f03c.png"
-          alt="BOMBAY BREED"
-          className="w-48 h-48 md:w-64 md:h-64 object-contain mb-8 opacity-90 hover:opacity-100 transition-opacity"
-        />
-        <h1 className="text-4xl md:text-6xl font-bold text-white tracking-wider">
-          BOMBAY BREED
+        <h1 className="text-5xl md:text-7xl font-bold text-center mb-6 bg-gradient-to-r from-emerald-400 via-purple-500 to-purple-600 bg-clip-text text-transparent leading-tight">
+          Transforming Strategy into Results
         </h1>
+        <p className="text-xl md:text-2xl text-white/80 text-center max-w-3xl">
+          Embedded Oversight and KPI-Driven ROI
+        </p>
       </div>
     </div>
   );
