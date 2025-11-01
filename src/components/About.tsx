@@ -52,7 +52,7 @@ const About = () => {
               </p>
               
               <p className="text-body-sm text-foreground/80">
-                Possessing an easy-going yet highly professional demeanour, Theresa is heavy on impact to bottomline and hard on effectiveness metrics. She is a student of climate sciences, mythology, behaviour studies, socio-economics, business movements, cultural trends and an active investor in the stock market.
+                Possessing an easy-going yet highly professional demeanour, <span className="font-bold shine-text">Theresa is heavy on impact to bottomline and hard on effectiveness metrics</span>. She is a student of climate sciences, mythology, behaviour studies, socio-economics, business movements, cultural trends and an active investor in the stock market.
               </p>
 
               <p className="text-body-sm text-foreground/80">
