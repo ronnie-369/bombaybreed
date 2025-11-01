@@ -39,9 +39,15 @@ const TermsAndConditions = () => {
             </section>
 
             <section className="mb-8">
-              <h2 className="text-2xl font-semibold mb-4 text-foreground">3. Intellectual Property</h2>
+              <h2 className="text-2xl font-semibold mb-4 text-foreground">3. Intellectual Property and Proprietary Rights</h2>
               <p className="text-muted-foreground mb-4">
                 All content, reports, and materials provided by Bombay Breed Consulting are protected by intellectual property rights. Unauthorized reproduction or distribution is prohibited.
+              </p>
+              <p className="text-muted-foreground mb-4">
+                <strong>Brand Ownership:</strong> Bombay Breed Consulting is the registered brand of Theresa Ronnie, who holds sole and exclusive rights to the use of the name "Bombay Breed Consulting" and all its associated assets, logos, and materials.
+              </p>
+              <p className="text-muted-foreground mb-4">
+                <strong>Proprietary Properties:</strong> The Climate Desk, including its byline, strapline, and proposition "Climate Control (is inevitable)", are proprietary intellectual properties of Bombay Breed Consulting. Any use, reproduction, or reference to these properties requires explicit written permission from Theresa Ronnie or authorized representatives of Bombay Breed Consulting.
               </p>
             </section>
 
