@@ -48,11 +48,15 @@ const About = () => {
 
             <div className="space-y-6 max-w-none">
               <p className="text-body-sm text-foreground/80">
-                Theresa has been a steady yet dynamic influence with CEOs and CXOs (CFOs, COOs, CSOs, CMOs) for over a decade. She has led advertising agencies, consulted with KPMG India, worked with the senior leadership at Microsoft India, before shifting her focus to Climate Action.
+                Theresa has been a steady yet dynamic influence with CEOs and CXOs (CFOs, COOs, CSOs, CMOs) for over a decade. She has led advertising agencies, consulted with KPMG India, worked with the senior leadership at Microsoft India, before shifting her focus to Climate Action. Today, she serves as the steady voice of a global climate ambassador for India.
               </p>
               
               <p className="text-body-sm text-foreground/80">
                 Possessing an easy-going yet highly professional demeanour, Theresa is heavy on impact to bottomline and hard on effectiveness metrics. She is a student of climate sciences, mythology, behaviour studies, socio-economics, business movements, cultural trends and an active investor in the stock market.
+              </p>
+
+              <p className="text-body-sm text-foreground/80">
+                Through The Climate Desk publication, she reaches over 5,000 subscribers from around the world, sharing insights and driving thought leadership in sustainability communications. She regularly holds webinars and facilitates industry knowledge sharing and ecosystem building efforts, connecting stakeholders across the sustainability landscape.
               </p>
               
               <p className="text-body-sm text-foreground/80">
