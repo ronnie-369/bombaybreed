@@ -80,7 +80,7 @@ const Index = () => {
               avatarUrl="/lovable-uploads/carbon-energy-avatar.jpg"
               name="Carbon & Energy"
               title="Strategic Climate Communications"
-              handle="saahilmehta"
+              handle="better planet"
               status="Science, policy, communications."
               contactText="Learn More"
               showUserInfo={true}
