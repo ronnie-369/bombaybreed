@@ -4,27 +4,27 @@ import CardNav from '@/components/CardNav';
 const Index = () => {
   const navItems = [
     {
-      label: "Climate",
-      bgColor: "#10b981",
-      textColor: "#fff",
+      label: "Carbon Markets & Energy Transition",
+      bgColor: "rgba(16, 185, 129, 0.15)",
+      textColor: "#10b981",
       links: [
         { label: "Communications", to: "/climate-communications", ariaLabel: "Climate Communications" },
         { label: "Case Studies", to: "/climate-communications#case-studies", ariaLabel: "Climate Case Studies" }
       ]
     },
     {
-      label: "Business",
-      bgColor: "#8b5cf6",
-      textColor: "#fff",
+      label: "Leadership Advisory",
+      bgColor: "rgba(139, 92, 246, 0.15)",
+      textColor: "#8b5cf6",
       links: [
         { label: "Strategy", to: "/business-strategy", ariaLabel: "Business Strategy" },
         { label: "Services", to: "/business-strategy#services", ariaLabel: "Business Services" }
       ]
     },
     {
-      label: "Resources",
-      bgColor: "#f59e0b",
-      textColor: "#fff",
+      label: "Read more",
+      bgColor: "rgba(245, 158, 11, 0.15)",
+      textColor: "#f59e0b",
       links: [
         { label: "Blog", to: "/climate-communications#blog", ariaLabel: "Blog" },
         { label: "About", to: "/climate-communications#about", ariaLabel: "About Us" }
@@ -32,8 +32,8 @@ const Index = () => {
     },
     {
       label: "Connect",
-      bgColor: "#ef4444",
-      textColor: "#fff",
+      bgColor: "rgba(59, 130, 246, 0.15)",
+      textColor: "#3b82f6",
       links: [
         { label: "Contact", to: "/climate-communications#contact", ariaLabel: "Contact Us" },
         { label: "LinkedIn", href: "https://www.linkedin.com/in/saahilmehta/", ariaLabel: "LinkedIn Profile" }
