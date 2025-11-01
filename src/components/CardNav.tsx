@@ -45,7 +45,7 @@ const CardNav = ({
   useEffect(() => {
     if (navRef.current) {
       if (isOpen) {
-        navRef.current.style.height = '400px';
+        navRef.current.style.height = '320px';
       } else {
         navRef.current.style.height = '60px';
       }

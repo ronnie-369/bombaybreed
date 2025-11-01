@@ -148,7 +148,7 @@
 }
 
 .nav-card-links {
-  margin-top: 4px;
+  margin-top: auto;
   display: flex;
   flex-direction: column;
   gap: 4px;
