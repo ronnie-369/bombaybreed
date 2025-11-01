@@ -42,6 +42,7 @@ export interface ProfileCardProps {
   contactText?: string;
   showUserInfo?: boolean;
   onContactClick?: () => void;
+  userInfoBgColor?: string;
 }
 
 const ProfileCardComponent: React.FC<ProfileCardProps> = ({
@@ -62,7 +63,8 @@ const ProfileCardComponent: React.FC<ProfileCardProps> = ({
   status = 'Online',
   contactText = 'Contact',
   showUserInfo = true,
-  onContactClick
+  onContactClick,
+  userInfoBgColor
 }) => {
   const wrapRef = useRef<HTMLDivElement>(null);
   const cardRef = useRef<HTMLElement>(null);
@@ -288,7 +290,7 @@ const ProfileCardComponent: React.FC<ProfileCardProps> = ({
               }}
             />
             {showUserInfo && (
-              <div className="pc-user-info">
+              <div className="pc-user-info" style={userInfoBgColor ? { background: userInfoBgColor, border: `1px solid ${userInfoBgColor.replace('0.2', '0.3')}` } : {}}>
                 <div className="pc-user-details">
                   <div className="pc-mini-avatar">
                     <img

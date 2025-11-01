@@ -87,6 +87,7 @@ const Index = () => {
               enableTilt={true}
               enableMobileTilt={false}
               onContactClick={() => window.location.href = '/climate-communications#contact'}
+              userInfoBgColor="rgba(16, 185, 129, 0.2)"
             />
             <ProfileCard
               avatarUrl="/lovable-uploads/business-transformation-avatar.jpg"
