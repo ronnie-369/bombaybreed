@@ -48,7 +48,7 @@ const About = () => {
 
             <div className="space-y-6 max-w-none">
               <p className="text-body-sm text-foreground/80">
-                Theresa has been a steady yet dynamic influence with CEOs and CXOs (CFOs, COOs, CSOs, CMOs) for over a greater part of two decades. She has led advertising agencies, consulted with KPMG India, worked with the senior leadership at Microsoft India, before shifting her focus to Climate Action. Today, she serves as the steady voice of a global climate ambassador for India.
+                Theresa has been a steady yet dynamic influence with CEOs and CXOs (CFOs, COOs, CSOs, CMOs) for over a greater part of two decades. She has led advertising agencies, consulted with KPMG India, worked with the senior leadership at Microsoft India, before shifting her focus to Climate Action. Today, she leads the brand and marketing department of a full stack carbon company while also serving as the steady journalistic partner of a global climate ambassador for India.
               </p>
               
               <p className="text-body-sm text-foreground/80">
