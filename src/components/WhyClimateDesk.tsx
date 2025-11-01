@@ -1,5 +1,5 @@
 import React from 'react';
-import { TrendingUp, FileText, Globe, Award } from 'lucide-react';
+import { TrendingUp, FileText, Globe, Star } from 'lucide-react';
 
 const WhyClimateDesk = () => {
   const regulations = [
@@ -32,10 +32,10 @@ const WhyClimateDesk = () => {
         {/* Hero Message */}
         <div className="text-center mb-16">
           <div className="inline-flex items-center justify-center p-3 bg-gradient-to-r from-teal-500/10 to-cyan-500/10 rounded-full mb-6">
-            <Award className="w-8 h-8 text-teal-600" />
+            <Star className="w-8 h-8 text-teal-600" />
           </div>
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6 bg-gradient-to-r from-teal-600 via-cyan-600 to-emerald-600 bg-clip-text text-transparent">
-            Why The Climate Desk is a CXO's Vital Companion
+            What makes The Climate Desk a CXOs Vital Companion?
           </h2>
           <p className="text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
             As your organization navigates its net zero goals, strategic carbon and energy communications become the new <span className="font-semibold text-foreground">value multiplier</span> with your stakeholders.
