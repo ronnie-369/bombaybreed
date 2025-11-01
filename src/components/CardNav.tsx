@@ -105,27 +105,27 @@ const CardNav = ({
               <div className="nav-card-links">
                 {item.links.map((link, linkIndex) => (
                   link.to ? (
-                    <Link 
-                      key={linkIndex}
-                      to={link.to}
-                      className="nav-card-link"
-                      style={{ color: item.textColor }}
-                      aria-label={link.ariaLabel}
-                      onClick={closeMenu}
-                    >
+                  <Link 
+                    key={linkIndex}
+                    to={link.to}
+                    className="nav-card-link"
+                    style={{ color: '#000000' }}
+                    aria-label={link.ariaLabel}
+                    onClick={closeMenu}
+                  >
                       {link.label}
                     </Link>
                   ) : (
-                    <a 
-                      key={linkIndex}
-                      href={link.href}
-                      className="nav-card-link"
-                      style={{ color: item.textColor }}
-                      aria-label={link.ariaLabel}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      onClick={closeMenu}
-                    >
+                  <a 
+                    key={linkIndex}
+                    href={link.href}
+                    className="nav-card-link"
+                    style={{ color: '#000000' }}
+                    aria-label={link.ariaLabel}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    onClick={closeMenu}
+                  >
                       {link.label}
                     </a>
                   )
