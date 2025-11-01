@@ -66,7 +66,7 @@ const Index = () => {
         <p className="text-base md:text-lg text-gray-500 text-center mb-2 tracking-wide">
           We specialise in
         </p>
-        <h1 className="text-5xl md:text-7xl font-bold text-center mb-6 bg-gradient-to-r from-emerald-400 via-purple-500 to-purple-600 bg-clip-text text-transparent leading-snug">
+        <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-center mb-6 bg-gradient-to-r from-emerald-400 via-purple-500 to-purple-600 bg-clip-text text-transparent leading-snug">
           Transforming Strategy into Results
         </h1>
         <p className="text-xl md:text-2xl text-gray-700 text-center max-w-3xl mb-16 tracking-tight">
