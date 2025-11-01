@@ -271,7 +271,7 @@
   z-index: 2;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: flex-end;
   background: rgba(255, 255, 255, 0.1);
   backdrop-filter: blur(30px);
   border: 1px solid rgba(255, 255, 255, 0.1);
@@ -284,6 +284,7 @@
   display: flex;
   align-items: center;
   gap: 12px;
+  order: 2;
 }
 
 .pc-mini-avatar {
@@ -293,6 +294,7 @@
   overflow: hidden;
   border: 1px solid rgba(255, 255, 255, 0.1);
   flex-shrink: 0;
+  order: 2;
 }
 
 .pc-mini-avatar img {
@@ -304,9 +306,11 @@
 
 .pc-user-text {
   display: flex;
-  align-items: flex-start;
+  align-items: flex-end;
   flex-direction: column;
   gap: 6px;
+  order: 1;
+  text-align: right;
 }
 
 .pc-handle {
@@ -353,6 +357,8 @@
   cursor: pointer;
   transition: all 0.2s ease;
   backdrop-filter: blur(10px);
+  order: 1;
+  margin-right: 12px;
 }
 
 .pc-contact-btn:hover {
