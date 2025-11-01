@@ -79,12 +79,12 @@ const About = () => {
               
               {/* Main Portrait Container */}
               <div className="relative bg-white rounded-2xl overflow-hidden shadow-2xl">
-                <div className="aspect-[4/5] relative">
+                <div className="aspect-[4/5] relative overflow-hidden">
                   <img 
                     src={portraitUrl}
                     alt="Theresa Ronnie receiving award - Professional recognition"
-                    className="w-full h-full object-cover object-center"
-                    style={{ objectPosition: 'center 30%' }}
+                    className="w-full h-full object-cover"
+                    style={{ objectPosition: 'center 40%', transform: 'scale(1.3)' }}
                     onError={(e) => {
                       // Fallback to a placeholder if image fails to load
                       e.currentTarget.src = "/public/lovable-uploads/placeholder-portrait.jpg";
