@@ -12,7 +12,7 @@ const ComplianceToCredibilitySection = () => {
       <div className="container mx-auto">
         <div className="text-center max-w-4xl mx-auto mb-16">
           <h2 className="section-title gradient-accent">
-            Featured CXO Guide
+            Download The CXO Guide
           </h2>
           <p className="section-description">
             Strategic frameworks to transform carbon compliance into competitive advantage
