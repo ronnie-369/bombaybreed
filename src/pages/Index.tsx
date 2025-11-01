@@ -92,7 +92,7 @@ const Index = () => {
               userInfoBgColor="rgba(16, 185, 129, 0.2)"
             />
             <ProfileCard
-              avatarUrl="/lovable-uploads/business-transformation-avatar.jpg"
+              avatarUrl="/lovable-uploads/business-transformation-new.jpg"
               name="Business Transformation"
               title="Increase ROI"
               handle="good for business"
