@@ -31,7 +31,6 @@ const ClimateDesk = () => {
       {/* Pull sections from existing climate communications page */}
       <ClimateDeskCarousel />
       <CollapsibleSections />
-      <CaseStudies />
       <Value />
       <About />
       <StakeholderEcosystemWheel />
