@@ -1,5 +1,5 @@
 import React from 'react';
-import { Check, LinkedinIcon } from 'lucide-react';
+import { Check, LinkedinIcon, ArrowRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { climateDesk } from '@/config/stats';
 
@@ -210,19 +210,82 @@ const About = () => {
           </div>
 
           {/* The X Factor Section */}
-          <div className="space-y-6">
+          <div className="space-y-8">
             <h2 className="text-4xl md:text-5xl lg:text-6xl font-heading font-bold leading-tight">
               <span className="text-gradient">The X Factor</span>
             </h2>
-            <div className="grid grid-cols-1 gap-4">
-              {expertise.map((item, index) => (
-                <div key={index} className="flex items-start gap-3 group">
-                  <div className="mt-1 p-1 rounded-full bg-primary/10 group-hover:bg-primary/20 transition-colors">
-                    <Check className="h-4 w-4 text-primary shrink-0" />
-                  </div>
-                  <span className="text-foreground group-hover:text-primary transition-colors">{item}</span>
+            
+            {/* Flow Diagram */}
+            <div className="space-y-8">
+              {/* Top Row - Main Process Flow */}
+              <div className="flex flex-wrap items-center justify-center gap-2 text-center">
+                <div className="flex flex-col items-center gap-2">
+                  <span className="text-lg font-semibold text-foreground">Insight</span>
                 </div>
-              ))}
+                <ArrowRight className="h-5 w-5 text-primary shrink-0 hidden sm:block" />
+                
+                <div className="flex flex-col items-center gap-2">
+                  <span className="text-lg font-semibold text-foreground">Strategy</span>
+                </div>
+                <ArrowRight className="h-5 w-5 text-primary shrink-0 hidden sm:block" />
+                
+                <div className="flex flex-col items-center gap-2">
+                  <span className="text-lg font-semibold text-foreground">Innovation</span>
+                </div>
+                <ArrowRight className="h-5 w-5 text-primary shrink-0 hidden sm:block" />
+                
+                <div className="flex flex-col items-center gap-2">
+                  <span className="text-lg font-semibold text-foreground">Execution</span>
+                </div>
+                <ArrowRight className="h-5 w-5 text-primary shrink-0 hidden sm:block" />
+                
+                <div className="flex flex-col items-center gap-2">
+                  <span className="text-lg font-semibold text-foreground">Governance</span>
+                </div>
+                <ArrowRight className="h-5 w-5 text-primary shrink-0 hidden sm:block" />
+                
+                <div className="flex flex-col items-center gap-2">
+                  <span className="text-lg font-semibold text-foreground">Impact</span>
+                </div>
+              </div>
+              
+              {/* Second Row - Descriptions */}
+              <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-4 text-center">
+                <div className="flex flex-col items-center gap-1">
+                  <span className="text-sm text-muted-foreground">Strategic</span>
+                  <span className="text-sm text-muted-foreground">Thinking</span>
+                </div>
+                
+                <div className="flex flex-col items-center gap-1">
+                  <span className="text-sm text-muted-foreground">Proven</span>
+                  <span className="text-sm text-muted-foreground">Expertise</span>
+                </div>
+                
+                <div className="flex flex-col items-center gap-1">
+                  <span className="text-sm text-muted-foreground">Communication</span>
+                  <span className="text-sm text-muted-foreground">Innovation</span>
+                </div>
+                
+                <div className="flex flex-col items-center gap-1">
+                  <span className="text-sm text-muted-foreground">Cross-Func</span>
+                  <span className="text-sm text-muted-foreground">Collab</span>
+                </div>
+                
+                <div className="flex flex-col items-center gap-1">
+                  <span className="text-sm text-muted-foreground">Compliance</span>
+                  <span className="text-sm text-muted-foreground">& Risk</span>
+                </div>
+                
+                <div className="flex flex-col items-center gap-1">
+                  <span className="text-sm text-muted-foreground">Long-term</span>
+                  <span className="text-sm text-muted-foreground">Vision</span>
+                </div>
+              </div>
+              
+              {/* Bottom - Stakeholder Trust */}
+              <div className="flex justify-center pt-4">
+                <span className="text-base font-semibold text-primary">Stakeholder Trust</span>
+              </div>
             </div>
           </div>
         </div>
