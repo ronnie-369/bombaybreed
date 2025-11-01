@@ -162,11 +162,15 @@ const About = () => {
 
               <div className="space-y-6 max-w-none">
                 <p className="text-body-sm text-foreground/80">
-                  The name comes from a cat. A Bombay Breed that once adopted me and my yet-to-be-born child. For the months leading up to his birth—and through his first steps into the world—this cat was our quiet guardian. Watchful. Protective. Steady. And then, one day, it left. Off to roam the world, leaving behind its imprint of resilience and fierce loyalty.
+                  The name comes from a cat. A Bombay Breed known for its natural curiosity, intelligence, and remarkable trainability. This particular cat adopted me and my yet-to-be-born child—choosing us, protecting us, staying watchful through those uncertain months leading up to his birth and through his first steps into the world.
                 </p>
                 
+                <p className="text-body-sm text-foreground/80">
+                  Like the breed itself, this cat embodied a rare combination of fierce independence and deep loyalty. Curious, adaptable, always learning. And then, one day, it left—off to explore the world, its purpose fulfilled, leaving behind lessons in resilience and quiet strength.
+                </p>
+
                 <p className="text-body-sm text-foreground/80 font-medium text-primary">
-                  Bombay Breed Consulting carries that same spirit. Rooted. Protective of what matters. Restless in pursuit of what's next. A tribute to that unlikely guardian—and a reminder that true strength can come in unexpected forms.
+                  Bombay Breed Consulting carries forward that same spirit. Curious by nature. Adaptable in approach. Fiercely protective of what matters—your reputation, your stakeholders, your future. We stay close during critical transitions, solve complex challenges with intelligence and agility, and help you navigate change with confidence. A tribute to an unlikely guardian—and a reminder that the best partnerships are built on trust, curiosity, and the courage to adapt.
                 </p>
               </div>
             </div>
