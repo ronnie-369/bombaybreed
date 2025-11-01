@@ -9,19 +9,19 @@ const About = () => {
   
   const experience = [{
     area: "Integrated Strategic Communications & Brand Stewardship",
-    years: "18 years"
+    years: "23 years"
   }, {
     area: "C-Suite Management & Strategic Business Leadership",
-    years: "11 years"
+    years: "15 years"
   }, {
     area: "Climate Marketing",
-    years: "2 years"
+    years: "2.5 years"
   }, {
     area: "Motherhood",
-    years: "13 years"
+    years: "15 years"
   }, {
     area: "Creative Expression",
-    years: "22 years"
+    years: "30 years"
   }];
 
   // Use award ceremony image
