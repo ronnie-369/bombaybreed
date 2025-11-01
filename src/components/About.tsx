@@ -45,8 +45,8 @@ const About = () => {
           <div className="lg:col-span-3 space-y-8">
             <div className="space-y-6">
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-heading font-bold leading-tight">
-                A Strong History of{' '}
-                <span className="text-gradient">C-suite Advisory</span>
+                Snowballing Competence Now in{' '}
+                <span className="text-gradient">Carbon Markets and Energy Transition</span>
               </h1>
               
               <div className="w-24 h-1 bg-gradient-to-r from-primary to-accent"></div>
