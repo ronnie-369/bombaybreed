@@ -216,75 +216,75 @@ const About = () => {
             </h2>
             
             {/* Flow Diagram */}
-            <div className="space-y-8">
+            <div className="space-y-6 overflow-x-auto">
               {/* Top Row - Main Process Flow */}
-              <div className="flex flex-wrap items-center justify-center gap-2 text-center">
+              <div className="flex items-center justify-start md:justify-center gap-2 md:gap-3 text-center min-w-max px-4">
                 <div className="flex flex-col items-center gap-2">
-                  <span className="text-lg font-semibold text-foreground">Insight</span>
+                  <span className="text-sm md:text-base lg:text-lg font-semibold text-foreground whitespace-nowrap">Insight</span>
                 </div>
-                <ArrowRight className="h-5 w-5 text-primary shrink-0 hidden sm:block" />
+                <ArrowRight className="h-4 w-4 md:h-5 md:w-5 text-primary shrink-0" />
                 
                 <div className="flex flex-col items-center gap-2">
-                  <span className="text-lg font-semibold text-foreground">Strategy</span>
+                  <span className="text-sm md:text-base lg:text-lg font-semibold text-foreground whitespace-nowrap">Strategy</span>
                 </div>
-                <ArrowRight className="h-5 w-5 text-primary shrink-0 hidden sm:block" />
+                <ArrowRight className="h-4 w-4 md:h-5 md:w-5 text-primary shrink-0" />
                 
                 <div className="flex flex-col items-center gap-2">
-                  <span className="text-lg font-semibold text-foreground">Innovation</span>
+                  <span className="text-sm md:text-base lg:text-lg font-semibold text-foreground whitespace-nowrap">Innovation</span>
                 </div>
-                <ArrowRight className="h-5 w-5 text-primary shrink-0 hidden sm:block" />
+                <ArrowRight className="h-4 w-4 md:h-5 md:w-5 text-primary shrink-0" />
                 
                 <div className="flex flex-col items-center gap-2">
-                  <span className="text-lg font-semibold text-foreground">Execution</span>
+                  <span className="text-sm md:text-base lg:text-lg font-semibold text-foreground whitespace-nowrap">Execution</span>
                 </div>
-                <ArrowRight className="h-5 w-5 text-primary shrink-0 hidden sm:block" />
+                <ArrowRight className="h-4 w-4 md:h-5 md:w-5 text-primary shrink-0" />
                 
                 <div className="flex flex-col items-center gap-2">
-                  <span className="text-lg font-semibold text-foreground">Governance</span>
+                  <span className="text-sm md:text-base lg:text-lg font-semibold text-foreground whitespace-nowrap">Governance</span>
                 </div>
-                <ArrowRight className="h-5 w-5 text-primary shrink-0 hidden sm:block" />
+                <ArrowRight className="h-4 w-4 md:h-5 md:w-5 text-primary shrink-0" />
                 
                 <div className="flex flex-col items-center gap-2">
-                  <span className="text-lg font-semibold text-foreground">Impact</span>
+                  <span className="text-sm md:text-base lg:text-lg font-semibold text-foreground whitespace-nowrap">Impact</span>
                 </div>
               </div>
               
               {/* Second Row - Descriptions */}
-              <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-4 text-center">
+              <div className="grid grid-cols-3 md:grid-cols-6 gap-3 md:gap-4 text-center px-4">
                 <div className="flex flex-col items-center gap-1">
-                  <span className="text-sm text-muted-foreground">Strategic</span>
-                  <span className="text-sm text-muted-foreground">Thinking</span>
+                  <span className="text-xs md:text-sm text-muted-foreground">Strategic</span>
+                  <span className="text-xs md:text-sm text-muted-foreground">Thinking</span>
                 </div>
                 
                 <div className="flex flex-col items-center gap-1">
-                  <span className="text-sm text-muted-foreground">Proven</span>
-                  <span className="text-sm text-muted-foreground">Expertise</span>
+                  <span className="text-xs md:text-sm text-muted-foreground">Proven</span>
+                  <span className="text-xs md:text-sm text-muted-foreground">Expertise</span>
                 </div>
                 
                 <div className="flex flex-col items-center gap-1">
-                  <span className="text-sm text-muted-foreground">Communication</span>
-                  <span className="text-sm text-muted-foreground">Innovation</span>
+                  <span className="text-xs md:text-sm text-muted-foreground">Communication</span>
+                  <span className="text-xs md:text-sm text-muted-foreground">Innovation</span>
                 </div>
                 
                 <div className="flex flex-col items-center gap-1">
-                  <span className="text-sm text-muted-foreground">Cross-Func</span>
-                  <span className="text-sm text-muted-foreground">Collab</span>
+                  <span className="text-xs md:text-sm text-muted-foreground">Cross-Func</span>
+                  <span className="text-xs md:text-sm text-muted-foreground">Collab</span>
                 </div>
                 
                 <div className="flex flex-col items-center gap-1">
-                  <span className="text-sm text-muted-foreground">Compliance</span>
-                  <span className="text-sm text-muted-foreground">& Risk</span>
+                  <span className="text-xs md:text-sm text-muted-foreground">Compliance</span>
+                  <span className="text-xs md:text-sm text-muted-foreground">& Risk</span>
                 </div>
                 
                 <div className="flex flex-col items-center gap-1">
-                  <span className="text-sm text-muted-foreground">Long-term</span>
-                  <span className="text-sm text-muted-foreground">Vision</span>
+                  <span className="text-xs md:text-sm text-muted-foreground">Long-term</span>
+                  <span className="text-xs md:text-sm text-muted-foreground">Vision</span>
                 </div>
               </div>
               
               {/* Bottom - Stakeholder Trust */}
-              <div className="flex justify-center pt-4">
-                <span className="text-base font-semibold text-primary">Stakeholder Trust</span>
+              <div className="flex justify-center pt-2">
+                <span className="text-sm md:text-base font-semibold text-primary">Stakeholder Trust</span>
               </div>
             </div>
           </div>
