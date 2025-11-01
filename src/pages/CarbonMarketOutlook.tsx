@@ -214,7 +214,7 @@ const CarbonMarketOutlook = () => {
       <section className="py-8 px-4 md:px-8 bg-white">
         <div className="container mx-auto text-center">
           <p className="text-sm text-foreground/60">
-            <span className="font-medium">Theresa Ronnie</span> - Strategic communications advisory for the emerging Indian carbon market
+            <span className="font-medium">The Climate Desk</span> - Strategic communications advisory for the emerging Indian carbon market
           </p>
         </div>
       </section>
