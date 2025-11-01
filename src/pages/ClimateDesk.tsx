@@ -9,7 +9,7 @@ import StakeholderEcosystemWheel from '@/components/StakeholderEcosystemWheel';
 import Endorsements from '@/components/Endorsements';
 import Newsletter from '@/components/Newsletter';
 import Contact from '@/components/Contact';
-import ReportsCarousel from '@/components/ReportsCarousel';
+import ClimateDeskCarousel from '@/components/ClimateDeskCarousel';
 import ComplianceToCredibilitySection from '@/components/ComplianceToCredibilitySection';
 
 const ClimateDesk = () => {
@@ -30,7 +30,7 @@ const ClimateDesk = () => {
       </section>
 
       {/* Pull sections from existing climate communications page */}
-      <ReportsCarousel />
+      <ClimateDeskCarousel />
       <ComplianceToCredibilitySection />
       <Services />
       <Expertise />
