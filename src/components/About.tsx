@@ -163,11 +163,11 @@ const About = () => {
 
               <div className="space-y-6 max-w-none">
                 <p className="text-body-sm text-foreground/80">
-                  Named after a Bombay Breed cat that adopted me and my unborn child—staying watchful through uncertain months, protective through first steps, then leaving once its purpose was fulfilled. Like the breed, this consulting practice embodies natural curiosity, remarkable adaptability, and fierce protectiveness.
+                  Named after the Bombay Breed—a cat known for natural curiosity, remarkable adaptability, and fierce protectiveness. This consulting practice embodies those same traits.
                 </p>
 
                 <p className="text-body-sm text-foreground/80 font-medium text-primary">
-                  We stay close during critical transitions, solve complex challenges with intelligence and agility, and fiercely protect what matters—your reputation, your stakeholders, your future.
+                  Curious by nature. Adaptable in approach. Fiercely protective of what matters—your reputation, your stakeholders, your future.
                 </p>
               </div>
             </div>
