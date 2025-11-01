@@ -66,7 +66,7 @@ const Index = () => {
         <p className="text-base md:text-lg text-gray-500 text-center mb-12 tracking-wide" style={{ marginTop: '2px' }}>
           We specialise in
         </p>
-        <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-center mb-6 bg-gradient-to-r from-emerald-400 via-purple-500 to-purple-600 bg-clip-text text-transparent leading-normal pb-2">
+        <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-center mb-6 bg-gradient-to-r from-emerald-400 via-purple-500 to-purple-600 bg-clip-text text-transparent leading-normal pb-2" style={{ marginBottom: 'calc(1.5rem + 2px)' }}>
           Transforming Strategy into Results
         </h1>
         <p className="text-xl md:text-2xl text-gray-700 text-center max-w-3xl mb-16 tracking-tight">
