@@ -109,7 +109,7 @@ const CardNav = ({
                     key={linkIndex}
                     to={link.to}
                     className="nav-card-link"
-                    style={{ color: '#000000' }}
+                    style={{ color: '#000000', '--glow-color': item.textColor } as React.CSSProperties}
                     aria-label={link.ariaLabel}
                     onClick={closeMenu}
                   >
@@ -120,7 +120,7 @@ const CardNav = ({
                     key={linkIndex}
                     href={link.href}
                     className="nav-card-link"
-                    style={{ color: '#000000' }}
+                    style={{ color: '#000000', '--glow-color': item.textColor } as React.CSSProperties}
                     aria-label={link.ariaLabel}
                     target="_blank"
                     rel="noopener noreferrer"

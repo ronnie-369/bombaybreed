@@ -169,7 +169,7 @@
   opacity: 1;
   transform: translateX(2px);
   text-decoration: underline;
-  text-shadow: 0 0 8px currentColor;
+  text-shadow: 0 0 8px var(--glow-color);
 }
 
 @media (max-width: 768px) {
