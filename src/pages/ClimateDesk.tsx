@@ -8,6 +8,7 @@ import Contact from '@/components/Contact';
 import ClimateDeskCarousel from '@/components/ClimateDeskCarousel';
 import CollapsibleSections from '@/components/CollapsibleSections';
 import FloatingInquiryForm from '@/components/FloatingInquiryForm';
+import climateDeskHero from '@/assets/climate-desk-hero.png';
 
 const ClimateDesk = () => {
   return (
@@ -16,13 +17,27 @@ const ClimateDesk = () => {
       
       {/* Hero Section */}
       <section className="relative py-20 md:py-24 px-4">
-        <div className="container mx-auto max-w-5xl text-center">
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 bg-gradient-to-r from-teal-500 via-teal-600 to-cyan-600 bg-clip-text text-transparent">
-            Welcome to the Climate Desk
-          </h1>
-          <p className="text-base md:text-lg text-gray-600 max-w-3xl leading-relaxed mx-auto">
-            A strong history of C-suite advisory, Bombay Breed Consulting is the quiet leadership brand leaders depend on. <span className="font-semibold text-gray-800 shine-text">Leadership in carbon markets and energy transition: out of India, for the world</span>
-          </p>
+        <div className="container mx-auto max-w-6xl">
+          <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
+            {/* Left Column - Text Content */}
+            <div className="text-center lg:text-left">
+              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 bg-gradient-to-r from-teal-500 via-teal-600 to-cyan-600 bg-clip-text text-transparent">
+                Welcome to the Climate Desk
+              </h1>
+              <p className="text-base md:text-lg text-gray-600 leading-relaxed">
+                A strong history of C-suite advisory, Bombay Breed Consulting is the quiet leadership brand leaders depend on. <span className="font-semibold text-gray-800 shine-text">Leadership in carbon markets and energy transition: out of India, for the world</span>
+              </p>
+            </div>
+            
+            {/* Right Column - Image */}
+            <div className="flex justify-center lg:justify-end">
+              <img 
+                src={climateDeskHero} 
+                alt="Climate Desk strategic communications and carbon markets expertise" 
+                className="rounded-lg shadow-lg object-cover w-full max-w-md lg:max-w-lg animate-fade-in"
+              />
+            </div>
+          </div>
         </div>
       </section>
 
