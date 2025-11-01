@@ -24,7 +24,7 @@ const ClimateDesk = () => {
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 bg-gradient-to-r from-teal-500 via-teal-600 to-cyan-600 bg-clip-text text-transparent">
             Welcome to the Climate Desk
           </h1>
-          <p className="text-xl md:text-2xl text-gray-600 max-w-3xl leading-relaxed mx-auto">
+          <p className="text-base md:text-lg text-gray-600 max-w-3xl leading-relaxed mx-auto">
             A strong history of C-suite advisory, Bombay Breed Consulting is the quiet leadership brand leaders depend on. We are India's only strategic carbon communications advisory and consulting firm.
           </p>
         </div>
