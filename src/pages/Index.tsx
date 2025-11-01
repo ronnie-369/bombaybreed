@@ -1,6 +1,6 @@
 import React from 'react';
 import CardNav from '@/components/CardNav';
-import { ProfileCard } from '@/components/ui/profile-card';
+import ProfileCard from '@/components/ui/profile-card';
 
 const Index = () => {
   const navItems = [
@@ -83,25 +83,22 @@ const Index = () => {
               handle="saahilmehta"
               status="Available for Consultation"
               contactText="Get in Touch"
-              onContactClick={() => window.location.href = '/climate-communications#contact'}
-              gradientFrom="from-emerald-500/20"
-              gradientTo="to-emerald-600/20"
               showUserInfo={true}
               enableTilt={true}
               enableMobileTilt={false}
+              onContactClick={() => window.location.href = '/climate-communications#contact'}
             />
             <ProfileCard
               avatarUrl="/lovable-uploads/d154fe5b-5dc7-48e1-ae7b-30fb4291f03c.png"
               name="Strategic Excellence"
               title="Business & Climate Solutions"
+              handle="bombaybreed"
               status="Trusted by Industry Leaders"
               contactText="Learn More"
-              onContactClick={() => window.location.href = '/business-strategy'}
-              gradientFrom="from-purple-500/20"
-              gradientTo="to-purple-600/20"
               showUserInfo={true}
               enableTilt={true}
               enableMobileTilt={false}
+              onContactClick={() => window.location.href = '/business-strategy'}
             />
           </div>
         </div>
