@@ -237,11 +237,14 @@
 
 .pc-avatar-content .avatar {
   width: 100%;
+  height: auto;
+  max-height: 70%;
   position: absolute;
   left: 50%;
   transform: translateX(-50%) scale(1);
   bottom: 2px;
   opacity: calc(1.75 - var(--pointer-from-center));
+  object-fit: contain;
 }
 
 .pc-avatar-content::before {
