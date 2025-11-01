@@ -23,8 +23,8 @@ const About = () => {
     years: "22 years"
   }];
 
-  // Use environment variable for image or fallback to uploaded portrait
-  const portraitUrl = import.meta.env.VITE_PORTRAIT_URL || "/lovable-uploads/76901386-d547-4a2e-b06b-2b2f1420a922.png";
+  // Use provided portrait URL
+  const portraitUrl = "https://zjiwmdrtuhsrymsuvpfb.supabase.co/storage/v1/object/public/brand%20assets/6B2F478A-02E5-4199-8335-09A8E6AFD624.JPG";
 
   return (
     <section id="about" className="section-padding bg-background">
