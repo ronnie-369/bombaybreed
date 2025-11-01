@@ -6,6 +6,8 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import ScrollToTop from "./components/ScrollToTop";
 import CookieBanner from "./components/CookieBanner";
 import Index from "./pages/Index";
+import ClimateStrategicCommunications from "./pages/ClimateStrategicCommunications";
+import BusinessStrategy from "./pages/BusinessStrategy";
 import GreenJobsReport from "./pages/GreenJobsReport";
 import CarbonMarketOutlook from "./pages/CarbonMarketOutlook";
 import CarbonPlaybook from "./pages/CarbonPlaybook";
@@ -28,6 +30,8 @@ const App = () => (
         <ScrollToTop />
         <Routes>
           <Route path="/" element={<Index />} />
+          <Route path="/climate-communications" element={<ClimateStrategicCommunications />} />
+          <Route path="/business-strategy" element={<BusinessStrategy />} />
           <Route path="/green-jobs-report" element={<GreenJobsReport />} />
           <Route path="/carbon-market-outlook" element={<CarbonMarketOutlook />} />
           <Route path="/carbon-playbook" element={<CarbonPlaybook />} />
