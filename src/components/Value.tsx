@@ -8,10 +8,10 @@ const Value = () => {
   const { ref: glowRef, isInView: glowInView } = useInView();
   
   const benefits = [
-    "Accelerate Compliance and Disclosure Readiness",
-    "Strengthen Investor Confidence and Capital Access",
-    "Align Global Strategy with Local Execution",
-    "Mitigate Regulatory and Reputational Risk"
+    "Strategic Leadership with C-Suite Experience",
+    "Deep Government & International Relations Expertise",
+    "Solution-Oriented Approach to Complex Business Challenges",
+    "Proven Track Record Across Sustainability, Communications & Business Transformation"
   ];
 
   return (
@@ -22,7 +22,7 @@ const Value = () => {
             <h2 className="section-title gradient-accent">Why CXOs Choose <span className="whitespace-nowrap">Bombay Breed</span></h2>
             <div className="w-16 h-1 bg-gradient-to-r from-primary to-accent rounded-full mb-6"></div>
             <p className="text-body-sm text-foreground/80 mb-8">
-              Global companies with Indian operations trust us to align their sustainability communications with international expectations while navigating local regulatory landscapes.
+              For over two decades, Bombay Breed has partnered with CXOs, governments, bureaucrats, and international organizations to solve complex business challenges. Our solution-oriented approach and problem-solving expertise at the core enable leaders to navigate regulatory landscapes, align stakeholder expectations, and transform strategic imperatives into measurable outcomes across sustainability, communications, and business transformation
             </p>
             
             <div className="space-y-4">
