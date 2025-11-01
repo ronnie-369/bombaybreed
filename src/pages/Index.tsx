@@ -1,6 +1,7 @@
 import React from 'react';
 import CardNav from '@/components/CardNav';
 import ProfileCard from '@/components/ui/profile-card';
+import Footer from '@/components/Footer';
 
 const Index = () => {
   const navItems = [
@@ -105,6 +106,8 @@ const Index = () => {
           </div>
         </div>
       </div>
+      
+      <Footer />
     </div>
   );
 };
