@@ -23,12 +23,12 @@ const Index = () => {
       ]
     },
     {
-      label: "Read more",
+      label: "Why Us",
       bgColor: "rgba(245, 158, 11, 0.15)",
       textColor: "#f59e0b",
       links: [
-        { label: "Blog", to: "/climate-communications#blog", ariaLabel: "Blog" },
-        { label: "About", to: "/climate-communications#about", ariaLabel: "About Us" }
+        { label: "About", to: "/climate-communications#about", ariaLabel: "About Us" },
+        { label: "Blog", to: "/climate-communications#blog", ariaLabel: "Blog" }
       ]
     },
     {
