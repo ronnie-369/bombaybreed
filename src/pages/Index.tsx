@@ -14,10 +14,10 @@ const Index = () => {
         <div className="max-w-5xl mx-auto text-center">
           
           {/* Brief Welcome */}
-          <h1 className="text-4xl md:text-6xl font-bold mb-6 text-white">
+          <h1 className="text-4xl md:text-6xl font-bold mb-16 text-white">
             Bombay Breed Consulting
           </h1>
-          <p className="text-lg md:text-xl text-gray-300 mb-16 max-w-2xl mx-auto">
+          <p className="text-lg md:text-xl text-gray-300 mt-8 mb-20 max-w-2xl mx-auto">
             Strategy to Execution with embedded oversight that ensures ROI based delivery on business KPI
           </p>
           
