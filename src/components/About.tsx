@@ -289,24 +289,6 @@ const About = () => {
             </div>
           </div>
         </div>
-
-        {/* Resources Section */}
-        <div className="mt-16 pt-16 border-t border-border/50">
-          <div className="space-y-6">
-            <h3 className="section-title text-2xl font-heading">Resources</h3>
-            <div className="space-y-4">
-              <Button asChild variant="outline" size="lg" className="w-full sm:w-auto">
-                <a 
-                  href="https://zjiwmdrtuhsrymsuvpfb.supabase.co/storage/v1/object/sign/Reports/growth%20rooms%20.pdf?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV83ZjY0YjIzNy1hM2RlLTQ3NjctOGZiMC0yYjY1MjE4YjRkODkiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJSZXBvcnRzL2dyb3d0aCByb29tcyAucGRmIiwiaWF0IjoxNzU5MjQ5NDYwLCJleHAiOjIwNzQ2MDk0NjB9.w4Gyi6D21wCMXhNQbNOJgaoPIaRR1WQ3Z7wUl-xK_IY"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  Growth Rooms Report
-                </a>
-              </Button>
-            </div>
-          </div>
-        </div>
       </div>
     </section>
   );
