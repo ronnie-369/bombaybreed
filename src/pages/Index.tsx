@@ -86,7 +86,7 @@ const Index = () => {
               showUserInfo={true}
               enableTilt={true}
               enableMobileTilt={false}
-              onContactClick={() => window.location.href = '/climate-communications#contact'}
+              onContactClick={() => window.location.href = '/climate-desk'}
               userInfoBgColor="rgba(16, 185, 129, 0.2)"
             />
             <ProfileCard
