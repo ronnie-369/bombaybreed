@@ -40,10 +40,10 @@ const caseStudies = [
 
 const BusinessCaseStudies = () => {
   return (
-    <section className="py-20 bg-bombay-background">
+    <section className="py-20 bg-purple-50/20">
       <div className="container mx-auto px-4 max-w-7xl">
         <div className="text-center mb-16">
-          <h2 className="section-title gradient-accent">
+          <h2 className="section-title bg-gradient-to-r from-purple-600 via-purple-500 to-indigo-600 bg-clip-text text-transparent">
             Success Stories
           </h2>
           <p className="section-description max-w-3xl mx-auto">
@@ -53,10 +53,10 @@ const BusinessCaseStudies = () => {
 
         <div className="space-y-8">
           {caseStudies.map((study, index) => (
-            <Card key={index} className="hover:shadow-xl transition-shadow duration-300">
+            <Card key={index} className="hover:shadow-xl transition-shadow duration-300 border-purple-100/50">
               <CardHeader>
                 <div className="flex items-center gap-3 mb-2">
-                  <Badge variant="outline" className="text-sm">
+                  <Badge variant="outline" className="text-sm border-purple-200 text-purple-700">
                     {study.industry}
                   </Badge>
                 </div>

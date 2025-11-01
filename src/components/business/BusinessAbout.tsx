@@ -6,7 +6,7 @@ const BusinessAbout = () => {
     <section className="py-20 bg-background">
       <div className="container mx-auto px-4 max-w-6xl">
         <div className="text-center mb-12">
-          <h2 className="section-title gradient-accent">
+          <h2 className="section-title bg-gradient-to-r from-purple-600 via-purple-500 to-indigo-600 bg-clip-text text-transparent">
             Leadership & Experience
           </h2>
         </div>

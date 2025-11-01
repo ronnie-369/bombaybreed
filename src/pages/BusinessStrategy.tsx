@@ -9,7 +9,7 @@ import Contact from '@/components/Contact';
 
 const BusinessStrategy = () => {
   return (
-    <div className="min-h-screen bg-bombay-background">
+    <div className="min-h-screen bg-gradient-to-b from-purple-50/30 to-background">
       <Header />
       <BusinessHero />
       <BusinessServices />

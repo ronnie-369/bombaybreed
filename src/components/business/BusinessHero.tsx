@@ -2,10 +2,10 @@ import React from 'react';
 
 const BusinessHero = () => {
   return (
-    <section className="pt-32 md:pt-40 pb-16 bg-gradient-to-b from-background to-bombay-background/30">
+    <section className="pt-32 md:pt-40 pb-16 bg-gradient-to-b from-background to-purple-50/30">
       <div className="container mx-auto px-4 max-w-6xl">
         <div className="text-center max-w-4xl mx-auto">
-          <h1 className="text-4xl md:text-6xl font-bold mb-6 gradient-accent">
+          <h1 className="text-4xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-purple-600 via-purple-500 to-indigo-600 bg-clip-text text-transparent">
             Business Strategy Consulting
           </h1>
           <p className="text-xl md:text-2xl text-foreground/80 mb-8">

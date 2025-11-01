@@ -51,10 +51,10 @@ const services = [
 
 const BusinessServices = () => {
   return (
-    <section className="py-20 bg-bombay-background">
+    <section className="py-20 bg-purple-50/20">
       <div className="container mx-auto px-4 max-w-7xl">
         <div className="text-center mb-16">
-          <h2 className="section-title gradient-accent">
+          <h2 className="section-title bg-gradient-to-r from-purple-600 via-purple-500 to-indigo-600 bg-clip-text text-transparent">
             Our Services
           </h2>
           <p className="section-description max-w-3xl mx-auto">
@@ -64,9 +64,9 @@ const BusinessServices = () => {
 
         <div className="grid md:grid-cols-2 gap-8">
           {services.map((service, index) => (
-            <Card key={index} className="hover:shadow-xl transition-shadow duration-300">
+            <Card key={index} className="hover:shadow-xl transition-shadow duration-300 border-purple-100/50">
               <CardHeader>
-                <div className="w-14 h-14 rounded-full bg-purple-100 dark:bg-purple-900/30 flex items-center justify-center mb-4">
+                <div className="w-14 h-14 rounded-full bg-purple-100/50 dark:bg-purple-900/30 flex items-center justify-center mb-4">
                   <service.icon className="w-7 h-7 text-purple-600 dark:text-purple-400" />
                 </div>
                 <CardTitle className="text-2xl mb-3">{service.title}</CardTitle>

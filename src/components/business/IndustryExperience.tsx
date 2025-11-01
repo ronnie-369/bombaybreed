@@ -21,7 +21,7 @@ const IndustryExperience = () => {
     <section className="py-20 bg-background">
       <div className="container mx-auto px-4 max-w-6xl">
         <div className="text-center mb-12">
-          <h2 className="section-title gradient-accent">
+          <h2 className="section-title bg-gradient-to-r from-purple-600 via-purple-500 to-indigo-600 bg-clip-text text-transparent">
             Cross-Industry Expertise
           </h2>
           <p className="section-description max-w-3xl mx-auto">
@@ -35,7 +35,7 @@ const IndustryExperience = () => {
             <Badge 
               key={index} 
               variant="secondary" 
-              className="text-base py-2 px-6 hover:scale-105 transition-transform cursor-default"
+              className="text-base py-2 px-6 hover:scale-105 transition-transform cursor-default bg-purple-100/50 text-purple-700 hover:bg-purple-200/50"
             >
               {industry}
             </Badge>
