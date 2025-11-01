@@ -12,8 +12,10 @@ const BusinessHero = () => {
             Partnering across industries to deliver strategic growth solutions
           </p>
           <p className="section-description max-w-3xl mx-auto">
-            With 18 years of integrated strategic communications experience and 11 years of C-suite management, 
-            we bring a unique blend of creative excellence and business acumen to drive your organization forward.
+            With over two decades in integrated strategic communications and over 15 years of C-suite management, 
+            Bombay Breed brings a unique blend of creative excellence and business acumen to drive your organization forward. 
+            Our strength lies in our network of highly accomplished leaders who work deeply to solve business challenges 
+            with a systems approach to ROI.
           </p>
         </div>
       </div>
