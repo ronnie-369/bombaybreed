@@ -22,22 +22,22 @@ const Index = () => {
           </p>
           
           {/* Two Service Path Cards */}
-          <div className="grid md:grid-cols-2 gap-6 max-w-3xl mx-auto">
+          <div className="grid md:grid-cols-2 gap-4 max-w-2xl mx-auto">
             
             {/* Card 1: Carbon Markets */}
             <Link to="/climate-communications" className="block h-full">
               <Card className="group bg-gradient-to-br from-teal-400 via-teal-500 to-cyan-500 hover:shadow-[0_20px_40px_-10px_rgba(20,184,166,0.4)] transition-all duration-300 cursor-pointer h-full border border-teal-300/30 hover:border-teal-200/50">
-                <CardContent className="p-6 text-center flex flex-col items-center justify-center min-h-[200px]">
-                  <div className="w-14 h-14 mx-auto mb-4 rounded-full bg-teal-200 flex items-center justify-center group-hover:scale-110 transition-transform">
-                    <Leaf className="w-7 h-7 text-teal-800" />
+                <CardContent className="p-4 text-center flex flex-col items-center justify-center min-h-[140px]">
+                  <div className="w-10 h-10 mx-auto mb-3 rounded-full bg-teal-200 flex items-center justify-center group-hover:scale-110 transition-transform">
+                    <Leaf className="w-5 h-5 text-teal-800" />
                   </div>
-                  <h2 className="text-xl md:text-2xl font-semibold mb-3 text-white group-hover:text-teal-50 transition-colors">
+                  <h2 className="text-lg md:text-xl font-semibold mb-2 text-white group-hover:text-teal-50 transition-colors">
                     Carbon Markets & Climate
                   </h2>
-                  <p className="text-white/90 mb-4 text-sm md:text-base">
+                  <p className="text-white/90 mb-3 text-xs md:text-sm">
                     Strategic communications for carbon markets and energy transition
                   </p>
-                  <ArrowRight className="w-5 h-5 mx-auto text-white group-hover:translate-x-2 transition-transform" />
+                  <ArrowRight className="w-4 h-4 mx-auto text-white group-hover:translate-x-2 transition-transform" />
                 </CardContent>
               </Card>
             </Link>
@@ -45,17 +45,17 @@ const Index = () => {
             {/* Card 2: Business Consulting */}
             <Link to="/business-strategy" className="block h-full">
               <Card className="group bg-gradient-to-br from-purple-600 via-purple-700 to-indigo-700 hover:shadow-[0_20px_40px_-10px_rgba(139,92,246,0.4)] transition-all duration-300 cursor-pointer h-full border border-purple-400/30 hover:border-purple-300/50">
-                <CardContent className="p-6 text-center flex flex-col items-center justify-center min-h-[200px]">
-                  <div className="w-14 h-14 mx-auto mb-4 rounded-full bg-purple-200 flex items-center justify-center group-hover:scale-110 transition-transform">
-                    <Building2 className="w-7 h-7 text-purple-800" />
+                <CardContent className="p-4 text-center flex flex-col items-center justify-center min-h-[140px]">
+                  <div className="w-10 h-10 mx-auto mb-3 rounded-full bg-purple-200 flex items-center justify-center group-hover:scale-110 transition-transform">
+                    <Building2 className="w-5 h-5 text-purple-800" />
                   </div>
-                  <h2 className="text-xl md:text-2xl font-semibold mb-3 text-white group-hover:text-purple-50 transition-colors">
+                  <h2 className="text-lg md:text-xl font-semibold mb-2 text-white group-hover:text-purple-50 transition-colors">
                     Business Strategy Consulting
                   </h2>
-                  <p className="text-white/90 mb-4 text-sm md:text-base">
+                  <p className="text-white/90 mb-3 text-xs md:text-sm">
                     Cross-industry consulting for growth and operational excellence
                   </p>
-                  <ArrowRight className="w-5 h-5 mx-auto text-white group-hover:translate-x-2 transition-transform" />
+                  <ArrowRight className="w-4 h-4 mx-auto text-white group-hover:translate-x-2 transition-transform" />
                 </CardContent>
               </Card>
             </Link>
