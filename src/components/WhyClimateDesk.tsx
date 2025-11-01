@@ -57,7 +57,7 @@ const WhyClimateDesk = () => {
                 <h3 className="text-2xl font-bold mb-2 text-foreground">
                   {reg.title}
                 </h3>
-                <p className="text-sm font-medium text-muted-foreground mb-4">
+                <p className="text-sm font-medium text-muted-foreground mb-4 italic">
                   {reg.fullName}
                 </p>
                 <p className="text-base text-muted-foreground leading-relaxed">
