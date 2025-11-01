@@ -9,10 +9,10 @@ const About = () => {
   
   const experience = [{
     area: "Creative Expression",
-    years: 30,
-    label: "30 yrs"
+    years: 12,
+    label: "12 yrs"
   }, {
-    area: "Communications & Brand",
+    area: "Brand Marketing",
     years: 23,
     label: "23 yrs"
   }, {
