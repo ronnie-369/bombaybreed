@@ -1,5 +1,6 @@
 import React from 'react';
 import CardNav from '@/components/CardNav';
+import { ProfileCard } from '@/components/ui/profile-card';
 
 const Index = () => {
   const navItems = [
@@ -58,16 +59,46 @@ const Index = () => {
         ctaLink="/climate-communications#about"
       />
       
-      <div className="flex flex-col items-center justify-center min-h-[calc(100vh-120px)] px-4">
-        <p className="text-lg md:text-xl text-gray-600 text-center mb-4">
+      <div className="flex flex-col items-center justify-center min-h-[calc(100vh-120px)] px-4 pb-16">
+        <p className="text-lg md:text-xl text-gray-600 text-center mb-3">
           Welcome to Bombay Breed Consulting
+        </p>
+        <p className="text-base md:text-lg text-gray-500 text-center mb-2 tracking-wide">
+          We specialise in
         </p>
         <h1 className="text-5xl md:text-7xl font-bold text-center mb-6 bg-gradient-to-r from-emerald-400 via-purple-500 to-purple-600 bg-clip-text text-transparent leading-snug">
           Transforming Strategy into Results
         </h1>
-        <p className="text-xl md:text-2xl text-gray-700 text-center max-w-3xl">
+        <p className="text-xl md:text-2xl text-gray-700 text-center max-w-3xl mb-16 tracking-tight">
           good for planet, good for business
         </p>
+
+        {/* Profile Cards Section */}
+        <div className="container max-w-5xl mx-auto px-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <ProfileCard
+              avatarUrl="/lovable-uploads/d154fe5b-5dc7-48e1-ae7b-30fb4291f03c.png"
+              name="Saahil Mehta"
+              title="Founder & Strategic Advisor"
+              handle="saahilmehta"
+              status="Available for Consultation"
+              contactText="Get in Touch"
+              onContactClick={() => window.location.href = '/climate-communications#contact'}
+              gradientFrom="from-emerald-500/20"
+              gradientTo="to-emerald-600/20"
+            />
+            <ProfileCard
+              avatarUrl="/lovable-uploads/d154fe5b-5dc7-48e1-ae7b-30fb4291f03c.png"
+              name="Strategic Excellence"
+              title="Business & Climate Solutions"
+              status="Trusted by Industry Leaders"
+              contactText="Learn More"
+              onContactClick={() => window.location.href = '/business-strategy'}
+              gradientFrom="from-purple-500/20"
+              gradientTo="to-purple-600/20"
+            />
+          </div>
+        </div>
       </div>
     </div>
   );
