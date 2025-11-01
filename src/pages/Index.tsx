@@ -63,13 +63,13 @@ const Index = () => {
         <p className="text-lg md:text-xl text-center mb-3 mt-16 bg-gradient-to-r from-purple-600 via-purple-500 to-emerald-400 bg-clip-text text-transparent animate-fade-in font-semibold">
           Welcome to Bombay Breed Consulting
         </p>
-        <p className="text-base md:text-lg text-gray-500 text-center mb-8 tracking-wide">
+        <p className="text-base md:text-lg text-gray-500 text-center mb-4 tracking-wide">
           We specialise in
         </p>
-        <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-center mb-4 bg-gradient-to-r from-emerald-400 via-purple-500 to-purple-600 bg-clip-text text-transparent leading-normal pb-2">
+        <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-center mb-2 bg-gradient-to-r from-emerald-400 via-purple-500 to-purple-600 bg-clip-text text-transparent leading-normal pb-2">
           Transforming Strategy into Results
         </h1>
-        <p className="text-xl md:text-2xl text-gray-700 text-center max-w-3xl mb-12 tracking-tight">
+        <p className="text-xl md:text-2xl text-gray-700 text-center max-w-3xl mb-8 tracking-tight">
           good for planet, good for business
         </p>
 
