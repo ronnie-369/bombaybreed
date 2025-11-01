@@ -16,7 +16,7 @@ const ClimateDeskCarousel = () => {
       description: 'A comprehensive guide to navigating India\'s energy transition with strategic insights for business leaders.',
       cta: 'Explore the Playbook',
       route: '/energy-transition-playbook',
-      image: '/lovable-uploads/pexels-veeterzy-38136.jpg',
+      image: '/lovable-uploads/44d63597-9200-4941-8375-9a5a0aa338fe.png',
       gradient: 'from-emerald-500/20 via-teal-500/20 to-cyan-500/20'
     },
     {
@@ -27,7 +27,7 @@ const ClimateDeskCarousel = () => {
       description: 'Exploring how carbon sequestration technologies are reshaping climate action and creating new market opportunities in India.',
       cta: 'Read Article',
       url: 'https://theclimatedesk.substack.com/p/unlock-the-potential-in-carbon-sequestration',
-      image: '/lovable-uploads/e3db2d3c-99b5-412e-a31f-127be1e22543.png',
+      image: 'https://substackcdn.com/image/fetch/w_800,h_600,c_fill,f_auto,q_auto:good/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F11cce985-6213-4548-bc0c-013569608030_1518x1600.jpeg',
       gradient: 'from-blue-500/20 via-indigo-500/20 to-purple-500/20'
     },
     {
@@ -38,7 +38,7 @@ const ClimateDeskCarousel = () => {
       description: 'Transform your sustainability reporting from checkbox compliance into a powerful credibility asset.',
       cta: 'Learn More',
       route: '/compliance-to-credibility',
-      image: '/lovable-uploads/d5904f9c-d840-441f-aa69-0165e2d86aa6.png',
+      image: '/lovable-uploads/44d63597-9200-4941-8375-9a5a0aa338fe.png',
       gradient: 'from-teal-500/20 via-green-500/20 to-emerald-500/20'
     },
     {
@@ -49,7 +49,7 @@ const ClimateDeskCarousel = () => {
       description: 'An in-depth analysis of the barriers preventing circular economy success and practical solutions for businesses.',
       cta: 'Read Article',
       url: 'https://theclimatedesk.substack.com/p/why-circular-business-models-keep-failing',
-      image: '/lovable-uploads/44d63597-9200-4941-8375-9a5a0aa338fe.png',
+      image: 'https://images.unsplash.com/photo-1571377160222-7b1043110482?w=800&auto=format&fit=crop',
       gradient: 'from-violet-500/20 via-purple-500/20 to-fuchsia-500/20'
     },
     {
@@ -60,7 +60,7 @@ const ClimateDeskCarousel = () => {
       description: 'Strategic guidance for navigating India\'s evolving carbon markets and regulatory landscape.',
       cta: 'Access the Playbook',
       route: '/carbon-playbook',
-      image: '/lovable-uploads/76901386-d547-4a2e-b06b-2b2f1420a922.png',
+      image: '/lovable-uploads/44d63597-9200-4941-8375-9a5a0aa338fe.png',
       gradient: 'from-cyan-500/20 via-blue-500/20 to-indigo-500/20'
     },
     {
@@ -71,7 +71,7 @@ const ClimateDeskCarousel = () => {
       description: 'Why global markets are turning to India for carbon credits and what this means for Indian businesses.',
       cta: 'Read Article',
       url: 'https://theclimatedesk.substack.com/p/everyone-wants-indias-carbon-credits',
-      image: '/lovable-uploads/cf9483a4-330e-4730-a41d-eb977510304c.png',
+      image: 'https://images.unsplash.com/photo-1512759925926-28b2607d28fe?w=800&auto=format&fit=crop',
       gradient: 'from-amber-500/20 via-orange-500/20 to-red-500/20'
     }
   ];

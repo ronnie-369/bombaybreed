@@ -19,12 +19,12 @@ const ClimateDesk = () => {
       <Header />
       
       {/* Hero Section */}
-      <section className="relative py-24 px-4">
-        <div className="container mx-auto max-w-6xl text-center">
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-8 mt-4 bg-gradient-to-r from-teal-500 via-teal-600 to-cyan-600 bg-clip-text text-transparent">
+      <section className="relative py-12 md:py-16 px-4">
+        <div className="container mx-auto max-w-5xl">
+          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 bg-gradient-to-r from-teal-500 via-teal-600 to-cyan-600 bg-clip-text text-transparent">
             Welcome to the Climate Desk
           </h1>
-          <p className="text-xl md:text-2xl text-gray-600 max-w-4xl mx-auto leading-relaxed">
+          <p className="text-xl md:text-2xl text-gray-600 max-w-3xl leading-relaxed">
             A strong history of C-suite advisory, Bombay Breed Consulting is the quiet leadership brand leaders depend on. We are India's only strategic carbon communications advisory and consulting firm.
           </p>
         </div>
