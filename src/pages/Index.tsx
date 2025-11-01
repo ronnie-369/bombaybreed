@@ -77,9 +77,9 @@ const Index = () => {
         <div className="container max-w-5xl mx-auto px-4">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             <ProfileCard
-              avatarUrl="/lovable-uploads/d154fe5b-5dc7-48e1-ae7b-30fb4291f03c.png"
-              name="Saahil Mehta"
-              title="Founder & Strategic Advisor"
+              avatarUrl="/lovable-uploads/carbon-energy-avatar.jpg"
+              name="Carbon & Energy"
+              title="Strategic Climate Communications"
               handle="saahilmehta"
               status="Available for Consultation"
               contactText="Get in Touch"
@@ -89,9 +89,9 @@ const Index = () => {
               onContactClick={() => window.location.href = '/climate-communications#contact'}
             />
             <ProfileCard
-              avatarUrl="/lovable-uploads/d154fe5b-5dc7-48e1-ae7b-30fb4291f03c.png"
-              name="Strategic Excellence"
-              title="Business & Climate Solutions"
+              avatarUrl="/lovable-uploads/business-transformation-avatar.jpg"
+              name="Business Transformation"
+              title="ROI increase for business"
               handle="bombaybreed"
               status="Trusted by Industry Leaders"
               contactText="Learn More"

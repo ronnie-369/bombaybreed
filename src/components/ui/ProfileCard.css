@@ -35,29 +35,9 @@
   touch-action: none;
 }
 
-.pc-card-wrapper::before {
-  content: '';
-  position: absolute;
-  inset: -10px;
-  background: inherit;
-  background-position: inherit;
-  border-radius: inherit;
-  transition: all 0.5s ease;
-  filter: contrast(2) saturate(2) blur(36px);
-  transform: scale(0.8) translate3d(0, 0, 0.1px);
-  background-size: 100% 100%;
-  background-image: var(--behind-gradient);
-}
-
 .pc-card-wrapper:hover,
 .pc-card-wrapper.active {
   --card-opacity: 1;
-}
-
-.pc-card-wrapper:hover::before,
-.pc-card-wrapper.active::before {
-  filter: contrast(1) saturate(2) blur(40px) opacity(1);
-  transform: scale(0.9) translate3d(0, 0, 0.1px);
 }
 
 .pc-card {
