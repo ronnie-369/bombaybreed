@@ -316,69 +316,72 @@
 .pc-handle {
   font-size: 14px;
   font-weight: 500;
-  color: rgba(255, 255, 255, 0.9);
+  color: #1a1a1a;
   line-height: 1;
   white-space: nowrap;
   transition: all 0.3s ease;
+  text-shadow: 
+    0 0 10px rgba(255, 255, 255, 0.8),
+    0 0 20px rgba(255, 255, 255, 0.5),
+    0.5px 0.5px 0 rgba(255, 255, 255, 0.7);
 }
 
 .pc-card:hover .pc-handle,
 .pc-card.active .pc-handle {
-  color: #1a1a1a;
-  text-shadow: 
-    0 0 10px rgba(255, 255, 255, 0.8),
-    0 0 20px rgba(255, 255, 255, 0.5),
-    0.5px 0.5px 0 rgba(255, 255, 255, 0.7);
+  color: rgba(255, 255, 255, 0.9);
+  text-shadow: none;
 }
 
 .pc-status {
   font-size: 14px;
-  color: rgba(255, 255, 255, 0.7);
+  color: #2a2a2a;
   line-height: 1;
   transition: all 0.3s ease;
-}
-
-.pc-card:hover .pc-status,
-.pc-card.active .pc-status {
-  color: #2a2a2a;
   text-shadow: 
     0 0 10px rgba(255, 255, 255, 0.8),
     0 0 20px rgba(255, 255, 255, 0.5),
     0.5px 0.5px 0 rgba(255, 255, 255, 0.7);
 }
 
+.pc-card:hover .pc-status,
+.pc-card.active .pc-status {
+  color: rgba(255, 255, 255, 0.7);
+  text-shadow: none;
+}
+
 .pc-contact-btn {
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.3);
   border-radius: 8px;
   padding: 8px 16px;
   font-size: 14px;
   font-weight: 600;
-  color: rgba(255, 255, 255, 0.9);
+  color: #1a1a1a;
   cursor: pointer;
   transition: all 0.2s ease;
   backdrop-filter: blur(10px);
   order: 1;
   margin-right: 12px;
+  text-shadow: 
+    0 0 8px rgba(255, 255, 255, 0.7),
+    0 0 15px rgba(255, 255, 255, 0.4);
 }
 
 .pc-contact-btn:hover {
-  border-color: rgba(255, 255, 255, 0.4);
+  border-color: rgba(255, 255, 255, 0.5);
   transform: translateY(-1px);
   transition: all 0.2s ease;
 }
 
 .pc-card:hover .pc-contact-btn,
 .pc-card.active .pc-contact-btn {
-  color: #1a1a1a;
-  border-color: rgba(255, 255, 255, 0.3);
-  text-shadow: 
-    0 0 8px rgba(255, 255, 255, 0.7),
-    0 0 15px rgba(255, 255, 255, 0.4);
+  color: rgba(255, 255, 255, 0.9);
+  border-color: rgba(255, 255, 255, 0.1);
+  text-shadow: none;
 }
 
 .pc-card:hover .pc-contact-btn:hover,
 .pc-card.active .pc-contact-btn:hover {
-  border-color: rgba(255, 255, 255, 0.5);
+  border-color: rgba(255, 255, 255, 0.4);
 }
 
 .pc-content {
@@ -409,19 +412,21 @@
   margin: 0;
   font-size: min(3.5svh, 2em);
   line-height: 1;
-  color: #fff;
-  transition: all 0.3s ease;
-}
-
-.pc-card:hover .pc-details h3,
-.pc-card.active .pc-details h3 {
   color: #1a1a1a;
+  transition: all 0.3s ease;
   text-shadow: 
     0 0 20px rgba(255, 255, 255, 0.9),
     0 0 40px rgba(255, 255, 255, 0.6),
     1px 1px 0 rgba(255, 255, 255, 0.8),
     -1px -1px 0 rgba(255, 255, 255, 0.8);
   -webkit-text-stroke: 0.5px rgba(255, 255, 255, 0.4);
+}
+
+.pc-card:hover .pc-details h3,
+.pc-card.active .pc-details h3 {
+  color: #fff;
+  text-shadow: none;
+  -webkit-text-stroke: 0;
 }
 
 .pc-details p {
@@ -433,13 +438,6 @@
   margin: 0 auto;
   line-height: 1.2;
   width: min-content;
-  color: rgba(255, 255, 255, 0.95);
-  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
-  transition: all 0.3s ease;
-}
-
-.pc-card:hover .pc-details p,
-.pc-card.active .pc-details p {
   color: #2a2a2a;
   text-shadow: 
     0 0 15px rgba(255, 255, 255, 0.8),
@@ -447,6 +445,14 @@
     1px 1px 0 rgba(255, 255, 255, 0.7),
     -1px -1px 0 rgba(255, 255, 255, 0.7);
   -webkit-text-stroke: 0.3px rgba(255, 255, 255, 0.3);
+  transition: all 0.3s ease;
+}
+
+.pc-card:hover .pc-details p,
+.pc-card.active .pc-details p {
+  color: rgba(255, 255, 255, 0.95);
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+  -webkit-text-stroke: 0;
 }
 
 @keyframes glow-bg {
