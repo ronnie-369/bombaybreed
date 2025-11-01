@@ -28,7 +28,7 @@ const Index = () => {
       textColor: "#f59e0b",
       links: [
         { label: "About", to: "/climate-communications#about", ariaLabel: "About Us" },
-        { label: "Blog", to: "/climate-communications#blog", ariaLabel: "Blog" }
+        { label: "FAQs", to: "/climate-communications#faqs", ariaLabel: "FAQs" }
       ]
     },
     {
@@ -37,6 +37,7 @@ const Index = () => {
       textColor: "#3b82f6",
       links: [
         { label: "Contact", to: "/climate-communications#contact", ariaLabel: "Contact Us" },
+        { label: "Blog", to: "/climate-communications#blog", ariaLabel: "Blog" },
         { label: "LinkedIn", href: "https://www.linkedin.com/in/saahilmehta/", ariaLabel: "LinkedIn Profile" }
       ]
     }
