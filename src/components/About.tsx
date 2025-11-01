@@ -8,21 +8,28 @@ const About = () => {
   const expertise = ["Proven Expertise", "Strategic Insighting", "Data-Led Approach", "Risk Management", "Stakeholder Engagement", "Innovation in Communication", "Tracking Compliance & Standards", "Cross-Functional Collaboration", "Long-term Vision"];
   
   const experience = [{
-    area: "Integrated Strategic Communications & Brand Stewardship",
-    years: "23 years"
+    area: "Creative Expression",
+    years: 30,
+    label: "30 yrs"
   }, {
-    area: "C-Suite Management & Strategic Business Leadership",
-    years: "15 years"
+    area: "Communications & Brand",
+    years: 23,
+    label: "23 yrs"
   }, {
-    area: "Climate Marketing",
-    years: "2.5 years"
+    area: "Business Leadership",
+    years: 15,
+    label: "15 yrs"
   }, {
     area: "Motherhood",
-    years: "15 years"
+    years: 15,
+    label: "15 yrs"
   }, {
-    area: "Creative Expression",
-    years: "30 years"
+    area: "Climate Marketing",
+    years: 2.5,
+    label: "2.5 yrs"
   }];
+
+  const maxYears = 30;
 
   // Use award ceremony image
   const portraitUrl = "https://zjiwmdrtuhsrymsuvpfb.supabase.co/storage/v1/object/public/brand%20assets/5Q2A8758.jpg";
@@ -181,11 +188,22 @@ const About = () => {
             <h2 className="text-4xl md:text-5xl lg:text-6xl font-heading font-bold leading-tight">
               <span className="text-gradient">Experience</span>
             </h2>
-            <div className="space-y-4">
+            <div className="space-y-6">
               {experience.map((item, index) => (
-                <div key={index} className="flex justify-between items-center py-4 border-b border-border/50 hover:border-border transition-colors">
-                  <span className="font-medium text-foreground pr-4">{item.area}</span>
-                  <span className="text-primary font-semibold whitespace-nowrap">{item.years}</span>
+                <div key={index} className="space-y-2">
+                  <div className="flex items-center gap-4">
+                    <span className="font-medium text-foreground min-w-[200px] text-sm">{item.area}</span>
+                    <div className="flex-1 flex items-center gap-3">
+                      <div className="flex-1 bg-muted/30 rounded-full h-8 overflow-hidden">
+                        <div 
+                          className="h-full bg-gradient-to-r from-primary to-accent rounded-full transition-all duration-500 flex items-center justify-end px-3"
+                          style={{ width: `${(item.years / maxYears) * 100}%` }}
+                        >
+                          <span className="text-xs font-semibold text-white whitespace-nowrap">{item.label}</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
                 </div>
               ))}
             </div>
