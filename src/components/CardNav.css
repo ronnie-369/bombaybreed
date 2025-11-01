@@ -145,6 +145,13 @@
   font-weight: 400;
   font-size: 22px;
   letter-spacing: -0.5px;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.nav-card-label:hover {
+  transform: translateX(4px);
+  opacity: 0.8;
 }
 
 .nav-card-links {
