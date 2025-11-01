@@ -59,7 +59,7 @@ const Index = () => {
         ctaLink="/climate-communications#about"
       />
       
-      <div className="flex flex-col items-center justify-center min-h-[calc(100vh-120px)] px-4 pb-16">
+      <div className="flex flex-col items-center justify-center min-h-[calc(100vh-120px)] px-4 pb-16 pt-20">
         <p className="text-lg md:text-xl text-gray-600 text-center mb-3">
           Welcome to Bombay Breed Consulting
         </p>
@@ -74,7 +74,7 @@ const Index = () => {
         </p>
 
         {/* Profile Cards Section */}
-        <div className="container max-w-5xl mx-auto px-4">
+        <div className="container max-w-5xl mx-auto px-4 scale-85">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             <ProfileCard
               avatarUrl="/lovable-uploads/carbon-energy-avatar.jpg"
