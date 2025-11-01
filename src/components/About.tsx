@@ -1,10 +1,21 @@
-import React from 'react';
-import { Check, LinkedinIcon, ArrowRight } from 'lucide-react';
+import React, { useState } from 'react';
+import { Check, LinkedinIcon, ArrowRight, ChevronDown } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { climateDesk } from '@/config/stats';
+import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@/components/ui/collapsible';
 
 
 const About = () => {
+  const [openSections, setOpenSections] = useState({
+    name: false,
+    experience: false,
+    xfactor: false
+  });
+
+  const toggleSection = (section: 'name' | 'experience' | 'xfactor') => {
+    setOpenSections(prev => ({ ...prev, [section]: !prev[section] }));
+  };
+
   const expertise = ["Proven Expertise", "Strategic Insighting", "Data-Led Approach", "Risk Management", "Stakeholder Engagement", "Innovation in Communication", "Tracking Compliance & Standards", "Cross-Functional Collaboration", "Long-term Vision"];
   
   const experience = [{
@@ -119,9 +130,18 @@ const About = () => {
           </div>
         </div>
 
-        {/* The Name Section */}
-        <div className="mb-24">
-            <div className="grid grid-cols-1 lg:grid-cols-5 gap-16 items-start">
+        {/* The Name Section - Collapsible */}
+        <Collapsible open={openSections.name} onOpenChange={() => toggleSection('name')} className="mb-24">
+          <CollapsibleTrigger className="w-full group">
+            <div className="flex items-center justify-between p-6 bg-white rounded-xl shadow-sm hover:shadow-md transition-all">
+              <h2 className="text-3xl md:text-4xl font-heading font-bold">
+                What's <span className="text-gradient">in a name</span>?
+              </h2>
+              <ChevronDown className={`w-8 h-8 text-primary transition-transform ${openSections.name ? 'rotate-180' : ''}`} />
+            </div>
+          </CollapsibleTrigger>
+          <CollapsibleContent>
+            <div className="grid grid-cols-1 lg:grid-cols-5 gap-16 items-start mt-8">
             {/* Left Column - Logo */}
             <div className="lg:col-span-2">
               <div className="relative group">
@@ -156,13 +176,6 @@ const About = () => {
             {/* Right Column - Content */}
             <div className="lg:col-span-3 space-y-8">
             <div className="space-y-6">
-                <h1 className="text-4xl md:text-5xl lg:text-6xl font-heading font-bold leading-tight">
-                  What's{' '}
-                  <span className="text-gradient">in a name</span>?
-                </h1>
-                
-                <div className="w-24 h-1 bg-gradient-to-r from-primary to-accent"></div>
-                
                 <p className="text-lede text-muted-foreground">
                   A tribute to an unlikely guardian and a reminder that true strength can come in unexpected forms
                 </p>
@@ -179,16 +192,21 @@ const About = () => {
               </div>
             </div>
           </div>
-        </div>
+          </CollapsibleContent>
+        </Collapsible>
 
-        {/* Experience & Expertise Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
-          {/* Experience Section */}
-          <div className="space-y-6">
-            <h2 className="text-4xl md:text-5xl lg:text-6xl font-heading font-bold leading-tight">
-              <span className="text-gradient">Experience</span>
-            </h2>
-            <div className="space-y-6">
+        {/* Experience Section - Collapsible */}
+        <Collapsible open={openSections.experience} onOpenChange={() => toggleSection('experience')} className="mb-16">
+          <CollapsibleTrigger className="w-full group">
+            <div className="flex items-center justify-between p-6 bg-white rounded-xl shadow-sm hover:shadow-md transition-all">
+              <h2 className="text-3xl md:text-4xl font-heading font-bold">
+                <span className="text-gradient">Experience</span>
+              </h2>
+              <ChevronDown className={`w-8 h-8 text-primary transition-transform ${openSections.experience ? 'rotate-180' : ''}`} />
+            </div>
+          </CollapsibleTrigger>
+          <CollapsibleContent>
+            <div className="space-y-6 mt-8">
               {experience.map((item, index) => (
                 <div key={index} className="space-y-2">
                   <div className="flex items-center gap-4">
@@ -207,16 +225,22 @@ const About = () => {
                 </div>
               ))}
             </div>
-          </div>
+          </CollapsibleContent>
+        </Collapsible>
 
-          {/* The X Factor Section */}
-          <div className="space-y-8">
-            <h2 className="text-4xl md:text-5xl lg:text-6xl font-heading font-bold leading-tight">
-              <span className="text-gradient">The X Factor</span>
-            </h2>
-            
+        {/* The X Factor Section - Collapsible */}
+        <Collapsible open={openSections.xfactor} onOpenChange={() => toggleSection('xfactor')} className="mb-24">
+          <CollapsibleTrigger className="w-full group">
+            <div className="flex items-center justify-between p-6 bg-white rounded-xl shadow-sm hover:shadow-md transition-all">
+              <h2 className="text-3xl md:text-4xl font-heading font-bold">
+                <span className="text-gradient">The X Factor</span>
+              </h2>
+              <ChevronDown className={`w-8 h-8 text-primary transition-transform ${openSections.xfactor ? 'rotate-180' : ''}`} />
+            </div>
+          </CollapsibleTrigger>
+          <CollapsibleContent>
             {/* Flow Diagram */}
-            <div className="space-y-6 overflow-x-auto">
+            <div className="space-y-6 overflow-x-auto mt-8">
               {/* Top Row - Main Process Flow */}
               <div className="flex items-center justify-start md:justify-center gap-2 md:gap-3 text-center min-w-max px-4">
                 <div className="flex flex-col items-center gap-2">
@@ -287,8 +311,8 @@ const About = () => {
                 <span className="text-sm md:text-base font-semibold text-primary">Stakeholder Trust</span>
               </div>
             </div>
-          </div>
-        </div>
+          </CollapsibleContent>
+        </Collapsible>
       </div>
     </section>
   );

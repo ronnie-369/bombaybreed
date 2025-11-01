@@ -1,11 +1,13 @@
 
 import React, { useState, useEffect } from 'react';
-import { Star, Building2 } from 'lucide-react';
+import { Star, Building2, ChevronDown } from 'lucide-react';
 import { preloadLogos } from '@/utils/storage-logos';
 import Logo from '@/components/ui/Logo';
 import { Skeleton } from '@/components/ui/skeleton';
+import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@/components/ui/collapsible';
 
 const Endorsements = () => {
+  const [isOpen, setIsOpen] = useState(false);
   const [logos, setLogos] = useState<Map<string, string | null>>(new Map());
   const [isLoading, setIsLoading] = useState(true);
 
@@ -33,25 +35,6 @@ const Endorsements = () => {
     "Gh2 Org"
   ];
 
-  const expertisePoints = [
-    {
-      title: "Proven Track Record",
-      description: "Over 18 years of experience in leading strategic communications, focused on building brand value and equity"
-    },
-    {
-      title: "Corporate Advisory Experience",
-      description: "Senior Advisor to KPMG India for 2 years and active advisor and consultant to a Singapore based Climate Action company"
-    },
-    {
-      title: "Climate Action Focus",
-      description: "Continued tracking and studying the in climate action space helps you benefit from impactful strategies that effectively promote your environmental initiatives"
-    },
-    {
-      title: "Strategic Mindset",
-      description: "Analytical rigour and a scientific approach to communication. Two key requirements for effectiveness in stakeholder messaging"
-    }
-  ];
-
   // Load logos on component mount
   useEffect(() => {
     const loadLogos = async () => {
@@ -72,18 +55,22 @@ const Endorsements = () => {
   return (
     <section className="py-28 px-4 md:px-8 bg-gradient-to-b from-white to-bombay-subtle/20">
       <div className="container mx-auto">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-          <div>
-            <h2 className="text-4xl md:text-5xl lg:text-6xl font-heading font-bold leading-tight mb-8">
-              <span className="text-gradient">Trusted by Leaders</span>
-            </h2>
-            
+        <Collapsible open={isOpen} onOpenChange={setIsOpen}>
+          <CollapsibleTrigger className="w-full group">
+            <div className="flex items-center justify-between p-6 bg-white rounded-xl shadow-sm hover:shadow-md transition-all mb-8">
+              <h2 className="text-3xl md:text-4xl font-heading font-bold">
+                <span className="text-gradient">Trusted by Leaders</span>
+              </h2>
+              <ChevronDown className={`w-8 h-8 text-primary transition-transform ${isOpen ? 'rotate-180' : ''}`} />
+            </div>
+          </CollapsibleTrigger>
+          <CollapsibleContent>
             <div className="mb-8">
-              <h3 className="text-lg font-heading font-semibold mb-4 flex items-center">
+              <h3 className="text-lg font-heading font-semibold mb-4 flex items-center justify-center">
                 <Star className="h-5 w-5 mr-2 text-bombay-accent" />
                 CXO leaders at:
               </h3>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 max-w-2xl">
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 max-w-6xl mx-auto">
                 {[...cmos, ...ceos].slice(0, 8).map((company, index) => (
                   <div 
                     key={index} 
@@ -113,26 +100,8 @@ const Endorsements = () => {
                 ))}
               </div>
             </div>
-          </div>
-          
-          <div>
-            <h2 className="text-4xl md:text-5xl lg:text-6xl font-heading font-bold leading-tight mb-4">
-              <span className="text-gradient">The Right Expertise</span>
-            </h2>
-            <p className="text-body-sm mb-6">
-              For Sustainability Strategic Communications
-            </p>
-            
-            <div className="space-y-5">
-              {expertisePoints.map((point, index) => (
-                <div key={index} className="bg-white rounded-xl p-6 shadow-sm">
-                  <h3 className="text-lg font-heading font-semibold mb-2">{point.title}</h3>
-                  <p className="text-body-sm text-foreground/80">{point.description}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
+          </CollapsibleContent>
+        </Collapsible>
       </div>
     </section>
   );
