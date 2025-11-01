@@ -1,6 +1,5 @@
 import React from 'react';
 import CardNav from '@/components/CardNav';
-import BentoGrid from '@/components/BentoGrid';
 
 const Index = () => {
   const navItems = [
@@ -56,9 +55,19 @@ const Index = () => {
         logoAlt="BOMBAY BREED"
         items={navItems}
         ctaText="Get Started"
-        ctaLink="/climate-communications#contact"
+        ctaLink="/climate-communications#about"
       />
-      <BentoGrid />
+      
+      <div className="flex flex-col items-center justify-center min-h-[calc(100vh-120px)] px-4">
+        <img 
+          src="/lovable-uploads/d154fe5b-5dc7-48e1-ae7b-30fb4291f03c.png"
+          alt="BOMBAY BREED"
+          className="w-48 h-48 md:w-64 md:h-64 object-contain mb-8 opacity-90 hover:opacity-100 transition-opacity"
+        />
+        <h1 className="text-4xl md:text-6xl font-bold text-white tracking-wider">
+          BOMBAY BREED
+        </h1>
+      </div>
     </div>
   );
 };
