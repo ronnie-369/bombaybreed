@@ -55,9 +55,9 @@ const CaseStudies = () => {
     <section id="cases" className="py-20 px-4 md:px-8 bg-white animate-fade-in">
       <div className="container mx-auto">
         <div className="text-center max-w-3xl mx-auto mb-16">
-          <h2 className="section-title gradient-accent">Success Stories That Define Us</h2>
+          <h2 className="section-title gradient-accent">Proven Results Across Sectors</h2>
           <p className="section-description">
-            A proven track record of delivering impactful results for leading brands across various sectors
+            Strategic consulting that delivers measurable impact—from Fortune 500 enterprises to climate-focused startups
           </p>
         </div>
 
@@ -72,20 +72,31 @@ const CaseStudies = () => {
                   : 'glass-card hover:shadow-md'
               }`}
             >
-              <div className="flex justify-between items-start">
-                <div>
-                  <span className="text-sm font-medium block mb-1">{String(caseItem.id).padStart(2, '0')}</span>
-                  <h3 className="text-xl font-heading font-semibold mb-1">{caseItem.name}</h3>
-                </div>
-                <div className={`text-right ${activeCase.id === caseItem.id ? 'text-white/80' : 'text-foreground/70'}`}>
-                  <p className="text-sm">{caseItem.type}</p>
-                  <p className="text-note">{caseItem.duration}</p>
-                  <p className="font-medium">{caseItem.impact}</p>
+              <div className="flex justify-between items-start mb-4">
+                <div className="flex-1">
+                  <span className={`text-xs font-medium block mb-2 ${activeCase.id === caseItem.id ? 'text-white/70' : 'text-foreground/50'}`}>
+                    CASE {String(caseItem.id).padStart(2, '0')}
+                  </span>
+                  <h3 className="text-xl font-heading font-semibold mb-2">{caseItem.name}</h3>
+                  <p className={`text-sm ${activeCase.id === caseItem.id ? 'text-white/80' : 'text-foreground/70'}`}>
+                    {caseItem.type}
+                  </p>
                 </div>
               </div>
-              <div className="mt-4 flex justify-between items-center">
-                <span className={`text-note ${activeCase.id === caseItem.id ? 'text-white/90' : 'text-foreground/60'}`}>
-                  View case
+              <div className={`flex items-center gap-4 mb-4 pb-4 border-b ${activeCase.id === caseItem.id ? 'border-white/20' : 'border-border/20'}`}>
+                <div>
+                  <p className={`text-xs ${activeCase.id === caseItem.id ? 'text-white/70' : 'text-foreground/50'}`}>Duration</p>
+                  <p className="text-sm font-medium">{caseItem.duration}</p>
+                </div>
+                <div className={`w-px h-8 ${activeCase.id === caseItem.id ? 'bg-white/20' : 'bg-border/20'}`}></div>
+                <div>
+                  <p className={`text-xs ${activeCase.id === caseItem.id ? 'text-white/70' : 'text-foreground/50'}`}>Impact</p>
+                  <p className="text-sm font-semibold">{caseItem.impact}</p>
+                </div>
+              </div>
+              <div className="flex justify-between items-center">
+                <span className={`text-sm font-medium ${activeCase.id === caseItem.id ? 'text-white' : 'text-primary'}`}>
+                  View full case study
                 </span>
                 <ArrowRight className={`h-4 w-4 ${activeCase.id === caseItem.id ? 'text-white' : 'text-primary'}`} />
               </div>
