@@ -16,6 +16,7 @@ import StakeholderEcosystemWheel from '@/components/StakeholderEcosystemWheel';
 import Endorsements from '@/components/Endorsements';
 import Newsletter from '@/components/Newsletter';
 import Contact from '@/components/Contact';
+import StickyCTA from '@/components/StickyCTA';
 
 const ClimateStrategicCommunications = () => {
   return (
@@ -39,6 +40,7 @@ const ClimateStrategicCommunications = () => {
       <Endorsements />
       <Newsletter id="newsletter" />
       <Contact />
+      <StickyCTA variant="download" />
     </div>
   );
 };

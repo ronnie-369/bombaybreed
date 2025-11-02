@@ -2,6 +2,7 @@ import React from 'react';
 import CardNav from '@/components/CardNav';
 import ProfileCard from '@/components/ui/profile-card';
 import Footer from '@/components/Footer';
+import StickyCTA from '@/components/StickyCTA';
 
 const Index = () => {
   const navItems = [
@@ -108,6 +109,7 @@ const Index = () => {
       </div>
       
       <Footer />
+      <StickyCTA variant="contact" />
     </div>
   );
 };

@@ -202,15 +202,31 @@ const LeadCaptureForm: React.FC<LeadCaptureFormProps> = ({
   }
 
   return (
-    <Card className="w-full max-w-lg mx-auto shadow-lg">
-      <CardHeader className="text-center">
-        <Download className="h-12 w-12 text-bombay mx-auto mb-2" />
-        <CardTitle className="text-xl">Download {reportTitle}</CardTitle>
-        <CardDescription className="text-sm">
+    <Card className="w-full max-w-lg mx-auto shadow-lg border-primary/20">
+      <CardHeader className="text-center pb-2">
+        <Download className="h-12 w-12 text-primary mx-auto mb-3" />
+        <CardTitle className="text-2xl font-bold">Download {reportTitle}</CardTitle>
+        <CardDescription className="text-sm mt-2">
           {reportDescription}
         </CardDescription>
+        
+        {/* Trust Signals */}
+        <div className="flex items-center justify-center gap-6 mt-4 pt-4 border-t">
+          <div className="text-center">
+            <p className="text-2xl font-bold text-primary">4,000+</p>
+            <p className="text-xs text-muted-foreground">Professionals</p>
+          </div>
+          <div className="text-center">
+            <p className="text-2xl font-bold text-primary">50+</p>
+            <p className="text-xs text-muted-foreground">Organizations</p>
+          </div>
+          <div className="text-center">
+            <p className="text-2xl font-bold text-primary">⚡</p>
+            <p className="text-xs text-muted-foreground">Instant Access</p>
+          </div>
+        </div>
       </CardHeader>
-      <CardContent>
+      <CardContent className="pt-4">
         <form onSubmit={handleSubmit} className="space-y-4">
           <div className="space-y-2">
             <Label htmlFor="name" className="text-sm font-medium">
@@ -299,21 +315,25 @@ const LeadCaptureForm: React.FC<LeadCaptureFormProps> = ({
           <Button
             type="submit"
             disabled={isLoading || !formData.name || !formData.email || !formData.consent}
-            className="w-full bg-bombay hover:bg-bombay-light text-white py-3 mt-6"
+            className="w-full bg-primary hover:bg-primary/90 text-white py-3 mt-6 font-semibold shadow-lg hover:shadow-xl transition-all duration-200"
           >
             {isLoading ? (
-              'Sending Report...'
+              <>
+                <span className="animate-pulse">Generating Your Report...</span>
+              </>
             ) : (
               <>
-                <Download className="mr-2 h-4 w-4" />
-                Download Report
+                <Download className="mr-2 h-5 w-5" />
+                Get Instant Access
               </>
             )}
           </Button>
 
-          <p className="text-xs text-foreground/60 text-center mt-4">
-            Your information is secure and will only be used to send you the report and related sustainability insights. Read our <a href="/privacy-policy" className="text-primary hover:underline">Privacy Policy</a>.
-          </p>
+          <div className="bg-muted/50 rounded-lg p-3 mt-4">
+            <p className="text-xs text-foreground/70 text-center">
+              🔒 <strong>100% Secure.</strong> Your information is encrypted and will only be used to send you the report. Read our <a href="/privacy-policy" className="text-primary hover:underline font-semibold">Privacy Policy</a>.
+            </p>
+          </div>
         </form>
       </CardContent>
     </Card>

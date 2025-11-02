@@ -7,6 +7,7 @@ import BusinessCaseStudies from '@/components/business/BusinessCaseStudies';
 import BusinessAbout from '@/components/business/BusinessAbout';
 import TrustSignals from '@/components/TrustSignals';
 import Contact from '@/components/Contact';
+import StickyCTA from '@/components/StickyCTA';
 
 const BusinessStrategy = () => {
   return (
@@ -19,6 +20,7 @@ const BusinessStrategy = () => {
       <TrustSignals />
       <BusinessAbout />
       <Contact />
+      <StickyCTA variant="schedule" />
     </div>
   );
 };

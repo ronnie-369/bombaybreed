@@ -103,18 +103,25 @@ const FloatingInquiryForm = () => {
       <DialogTrigger asChild>
         <Button
           size="lg"
-          className="fixed bottom-6 right-6 h-14 w-14 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 z-50 bg-primary hover:bg-primary/90"
+          className="fixed bottom-24 md:bottom-6 right-6 h-14 w-14 rounded-full shadow-2xl hover:shadow-[0_0_30px_rgba(var(--primary),0.5)] transition-all duration-300 z-40 bg-primary hover:bg-primary/90 hover:scale-110 animate-in fade-in slide-in-from-bottom-5"
           aria-label="Open inquiry form"
         >
-          <MessageSquare className="h-6 w-6" />
+          <MessageSquare className="h-6 w-6 animate-pulse" />
         </Button>
       </DialogTrigger>
-      <DialogContent className="sm:max-w-[500px]">
+      <DialogContent className="sm:max-w-[500px] animate-in fade-in zoom-in-95 duration-200">
         <DialogHeader>
           <DialogTitle className="text-2xl font-heading">Quick Inquiry</DialogTitle>
           <DialogDescription>
-            Send us a message and we'll get back to you as soon as possible.
+            Send us a message and we'll get back to you within 24 hours. ⚡
           </DialogDescription>
+          <div className="flex items-center gap-3 pt-2 text-xs text-muted-foreground">
+            <span>✓ Free consultation</span>
+            <span>•</span>
+            <span>✓ No commitment</span>
+            <span>•</span>
+            <span>✓ Quick response</span>
+          </div>
         </DialogHeader>
         <form onSubmit={handleSubmit} className="space-y-4 mt-4">
           <div className="space-y-2">
