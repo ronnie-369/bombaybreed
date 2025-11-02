@@ -122,12 +122,12 @@ const About = () => {
         </div>
 
         {/* The Name Section */}
-        <Accordion type="single" collapsible className="mb-8">
-          <AccordionItem value="name">
-            <AccordionTrigger className="text-left text-lg font-semibold text-foreground hover:text-primary transition-colors">
+        <Accordion type="single" collapsible className="w-full space-y-4">
+          <AccordionItem value="name" className="border rounded-lg px-6 bg-card">
+            <AccordionTrigger className="text-sm md:text-base font-heading hover:no-underline">
               What's in a name?
             </AccordionTrigger>
-            <AccordionContent className="text-foreground/80">
+            <AccordionContent className="text-sm">
             <div className="grid grid-cols-1 lg:grid-cols-5 gap-16 items-start mt-8">
             {/* Left Column - Logo */}
             <div className="lg:col-span-2">
@@ -183,13 +183,13 @@ const About = () => {
           </AccordionItem>
         </Accordion>
 
-        {/* Experience Section */}
-        <Accordion type="single" collapsible className="mb-8">
-          <AccordionItem value="experience">
-            <AccordionTrigger className="text-left text-lg font-semibold text-foreground hover:text-primary transition-colors">
-              Experience
-            </AccordionTrigger>
-            <AccordionContent className="text-foreground/80">
+      {/* Experience Section */}
+      <Accordion type="single" collapsible className="w-full space-y-4">
+        <AccordionItem value="experience" className="border rounded-lg px-6 bg-card">
+          <AccordionTrigger className="text-sm md:text-base font-heading hover:no-underline">
+            Experience
+          </AccordionTrigger>
+          <AccordionContent className="text-sm">
             <div className="space-y-6 mt-8">
               {experience.map((item, index) => (
                 <div key={index} className="space-y-2">
@@ -213,13 +213,13 @@ const About = () => {
           </AccordionItem>
         </Accordion>
 
-        {/* The X Factor Section */}
-        <Accordion type="single" collapsible className="mb-8">
-          <AccordionItem value="xfactor">
-            <AccordionTrigger className="text-left text-lg font-semibold text-foreground hover:text-primary transition-colors">
-              The X Factor
-            </AccordionTrigger>
-            <AccordionContent className="text-foreground/80">
+      {/* The X Factor Section */}
+      <Accordion type="single" collapsible className="w-full space-y-4">
+        <AccordionItem value="xfactor" className="border rounded-lg px-6 bg-card">
+          <AccordionTrigger className="text-sm md:text-base font-heading hover:no-underline">
+            The X Factor
+          </AccordionTrigger>
+          <AccordionContent className="text-sm">
               {/* Flow Diagram */}
               <div className="space-y-8 py-8">
                 {/* Top Row - Main Process Boxes */}

@@ -54,12 +54,12 @@ const Endorsements = () => {
   return (
     <section className="py-28 px-4 md:px-8 bg-gradient-to-b from-white to-bombay-subtle/20">
       <div className="container mx-auto">
-        <Accordion type="single" collapsible>
+        <Accordion type="single" collapsible className="w-full space-y-4">
           <AccordionItem value="trusted-leaders" className="border rounded-lg px-6 bg-card">
-            <AccordionTrigger className="text-xl md:text-2xl font-heading hover:no-underline">
-              <span className="text-gradient">Trusted by Leaders</span>
+            <AccordionTrigger className="text-sm md:text-base font-heading hover:no-underline">
+              Trusted by Leaders
             </AccordionTrigger>
-            <AccordionContent>
+            <AccordionContent className="text-sm">
             <div className="mb-8">
               <h3 className="text-lg font-heading font-semibold mb-4 flex items-center justify-center">
                 <Star className="h-5 w-5 mr-2 text-bombay-accent" />
