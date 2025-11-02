@@ -3,11 +3,11 @@ import React from 'react';
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from 'lucide-react';
 const Hero = () => {
-  return <section className="pt-28 pb-16 md:pt-40 md:pb-24 px-4 md:px-8 bg-gradient-to-b from-bombay-background to-white overflow-hidden">
-      <div className="container mx-auto">
-        <div className="flex flex-col md:flex-row items-center gap-8 md:gap-16">
+  return <section className="pt-28 pb-16 md:pt-40 md:pb-24 px-4 md:px-8 lg:px-12 bg-gradient-to-b from-bombay-background to-white overflow-hidden">
+      <div className="container mx-auto max-w-7xl">
+        <div className="flex flex-col md:flex-row items-center gap-8 md:gap-12 lg:gap-16">
           <div className="md:w-1/2 space-y-6 text-center md:text-left">
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-tight">
               <span className="text-gradient">India's Only</span>
               <br />
               Sustainability
@@ -16,7 +16,7 @@ const Hero = () => {
               <br />
               Strategy Advisor
             </h1>
-            <p className="text-lede text-foreground/80 max-w-lg">
+            <p className="text-base md:text-lg lg:text-xl text-foreground/80 max-w-lg mx-auto md:mx-0">
               Enhance business value through effective sustainability communication strategies.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 pt-4 justify-center md:justify-start">

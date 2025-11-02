@@ -64,23 +64,23 @@ const Index = () => {
         ctaLink="/climate-communications#about"
       />
       
-      <div className="flex flex-col items-center justify-center min-h-[calc(100vh-80px)] px-4 pb-8 pt-16 md:pt-20">
-        <p className="text-lg md:text-xl text-center mb-2 text-black animate-fade-in font-semibold">
+      <div className="flex flex-col items-center justify-center min-h-[calc(100vh-80px)] px-4 pb-8 pt-16 md:pt-20 lg:pt-24">
+        <p className="text-base md:text-lg lg:text-xl text-center mb-3 text-black animate-fade-in font-semibold">
           Welcome to Bombay Breed Consulting
         </p>
-        <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-center mb-4 leading-tight pb-1 shine-text">
+        <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-center mb-4 leading-tight pb-1 shine-text px-2">
           We enable climate, carbon & energy-transition leaders to <span className="text-gradient">communicate, transform and scale</span>
         </h1>
-        <p className="text-lg md:text-xl text-gray-600 text-center max-w-3xl mb-2 tracking-wide">
+        <p className="text-base md:text-lg lg:text-xl text-gray-600 text-center max-w-3xl mb-3 tracking-wide px-4">
           Serving carbon market intermediaries, energy corporates, and global NGOs
         </p>
-        <p className="text-xl md:text-2xl text-gray-700 text-center max-w-3xl mb-4 md:mb-6 tracking-tight font-medium">
+        <p className="text-lg md:text-xl lg:text-2xl text-gray-700 text-center max-w-3xl mb-6 md:mb-8 tracking-tight font-medium px-4">
           good for planet, good for business
         </p>
 
         {/* Profile Cards Section */}
-        <div className="container max-w-5xl mx-auto px-4 scale-[0.45] md:scale-50 -mt-8 md:-mt-4">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div className="container max-w-6xl mx-auto px-4 scale-[0.65] sm:scale-75 md:scale-90 lg:scale-100 mt-4 md:mt-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
             <ProfileCard
               avatarUrl="/lovable-uploads/carbon-energy-avatar.jpg"
               name="Carbon & Energy"

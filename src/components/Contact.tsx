@@ -115,15 +115,15 @@ const Contact = () => {
   return (
     <footer id="contact" className="bg-[rgba(59,130,246,0.15)] text-foreground animate-fade-in">
       <div className="w-full h-1 bg-gradient-to-r from-blue-500 to-blue-600"></div>
-      <div className="container mx-auto max-w-7xl px-4 py-12 md:py-16">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 md:gap-16">
-          <div className="space-y-8">
+      <div className="container mx-auto max-w-7xl px-4 md:px-8 lg:px-12 py-12 md:py-16 lg:py-20">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12 lg:gap-16">
+          <div className="space-y-6 md:space-y-8">
             <div>
-              <h2 className="text-3xl font-heading font-bold mb-4 text-foreground">Start the Conversation</h2>
-              <p className="text-xl font-medium text-foreground mb-3 leading-relaxed">
+              <h2 className="text-2xl md:text-3xl lg:text-4xl font-heading font-bold mb-4 text-foreground">Start the Conversation</h2>
+              <p className="text-lg md:text-xl font-medium text-foreground mb-3 leading-relaxed">
                 Ready to transform complexity into competitive advantage?
               </p>
-              <p className="text-foreground/80 max-w-md leading-relaxed">
+              <p className="text-base md:text-lg text-foreground/80 max-w-md leading-relaxed">
                 Let's discuss how strategic sustainability communications can strengthen your executive positioning and stakeholder confidence.
               </p>
             </div>

@@ -71,16 +71,16 @@ const Services = ({ id }: { id?: string } = {}) => {
     ]
   }];
   return (
-    <section id={id || "services"} className="py-28 px-4 md:px-8 bg-white animate-fade-in">
-      <div className="container mx-auto max-w-5xl">
-        <div className="text-center max-w-3xl mx-auto mb-20">
-          <h2 className="section-title gradient-accent">What the CXO Suite Needs</h2>
-          <p className="section-description">
+    <section id={id || "services"} className="py-16 md:py-24 lg:py-28 px-4 md:px-8 lg:px-12 bg-white animate-fade-in">
+      <div className="container mx-auto max-w-7xl">
+        <div className="text-center max-w-3xl mx-auto mb-12 md:mb-16 lg:mb-20">
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-heading font-bold mb-4 gradient-accent">What the CXO Suite Needs</h2>
+          <p className="text-base md:text-lg text-foreground/80 max-w-3xl mx-auto px-4">
             Strategic sustainability communications that align international standards with Indian operations
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-6xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 lg:gap-10">
           {services.map((service, index) => (
             <ServiceCard 
               key={index} 

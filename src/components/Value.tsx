@@ -27,17 +27,17 @@ const Value = () => {
   ];
 
   return (
-    <section className="py-20 px-4 md:px-8 bg-gradient-to-b from-bombay-subtle/20 to-white animate-fade-in">
-      <div className="container mx-auto max-w-6xl">
-        <div className="text-center mb-16">
-          <h2 className="section-title gradient-accent">Why CXOs Choose <span className="whitespace-nowrap">Bombay Breed</span></h2>
+    <section className="py-16 md:py-20 lg:py-24 px-4 md:px-8 lg:px-12 bg-gradient-to-b from-bombay-subtle/20 to-white animate-fade-in">
+      <div className="container mx-auto max-w-7xl">
+        <div className="text-center mb-12 md:mb-16">
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-heading font-bold gradient-accent">Why CXOs Choose <span className="whitespace-nowrap">Bombay Breed</span></h2>
           <div className="w-16 h-1 bg-gradient-to-r from-primary to-accent rounded-full mx-auto mt-4 mb-6"></div>
-          <p className="text-body-sm text-foreground/80 max-w-3xl mx-auto">
+          <p className="text-base md:text-lg text-foreground/80 max-w-3xl mx-auto px-4">
             For over two decades, we've partnered with CXOs, governments, and international organizations to solve complex business challenges—delivering measurable outcomes across sustainability, communications, and business transformation.
           </p>
         </div>
         
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
           {benefits.map((benefit, index) => (
             <div 
               key={index} 
