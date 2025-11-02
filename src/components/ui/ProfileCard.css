@@ -51,7 +51,7 @@
   animation: glow-bg 12s linear infinite;
   box-shadow: rgba(0, 0, 0, 0.8) calc((var(--pointer-from-left) * 10px) - 3px)
     calc((var(--pointer-from-top) * 20px) - 6px) 20px -5px;
-  transition: transform 1s ease;
+  transition: transform 1s ease, background-image 0.4s ease;
   transform: translate3d(0, 0, 0.1px) rotateX(0deg) rotateY(0deg);
   background-size: 100% 100%;
   background-position:
@@ -62,9 +62,9 @@
   background-image:
     radial-gradient(
       farthest-side circle at var(--pointer-x) var(--pointer-y),
-      hsla(266, 100%, 90%, var(--card-opacity)) 4%,
-      hsla(266, 50%, 80%, calc(var(--card-opacity) * 0.75)) 10%,
-      hsla(266, 25%, 70%, calc(var(--card-opacity) * 0.5)) 50%,
+      hsla(266, 100%, 90%, 0) 4%,
+      hsla(266, 50%, 80%, 0) 10%,
+      hsla(266, 25%, 70%, 0) 50%,
       hsla(266, 0%, 60%, 0) 100%
     ),
     radial-gradient(35% 52% at 55% 20%, #00ffaac4 0%, #073aff00 100%),
@@ -77,6 +77,17 @@
 .pc-card.active {
   transition: none;
   transform: translate3d(0, 0, 0.1px) rotateX(var(--rotate-y)) rotateY(var(--rotate-x));
+  background-image:
+    radial-gradient(
+      farthest-side circle at var(--pointer-x) var(--pointer-y),
+      hsla(266, 40%, 60%, calc(var(--card-opacity) * 0.9)) 4%,
+      hsla(266, 30%, 50%, calc(var(--card-opacity) * 0.85)) 10%,
+      hsla(266, 20%, 40%, calc(var(--card-opacity) * 0.7)) 50%,
+      hsla(266, 10%, 30%, 0.3) 100%
+    ),
+    linear-gradient(135deg, hsla(266, 35%, 45%, 0.6) 0%, hsla(240, 30%, 40%, 0.5) 100%),
+    radial-gradient(100% 100% at 50% 50%, hsla(266, 40%, 50%, 0.4) 1%, transparent 76%),
+    linear-gradient(180deg, hsla(260, 30%, 35%, 0.7) 0%, hsla(250, 25%, 30%, 0.6) 100%);
 }
 
 .pc-card * {
@@ -412,21 +423,15 @@
   margin: 0;
   font-size: min(3.5svh, 2em);
   line-height: 1;
-  color: #1a1a1a;
+  color: #fff;
   transition: all 0.3s ease;
-  text-shadow: 
-    0 0 20px rgba(255, 255, 255, 0.9),
-    0 0 40px rgba(255, 255, 255, 0.6),
-    1px 1px 0 rgba(255, 255, 255, 0.8),
-    -1px -1px 0 rgba(255, 255, 255, 0.8);
-  -webkit-text-stroke: 0.5px rgba(255, 255, 255, 0.4);
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
 }
 
 .pc-card:hover .pc-details h3,
 .pc-card.active .pc-details h3 {
   color: #fff;
-  text-shadow: none;
-  -webkit-text-stroke: 0;
+  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.5);
 }
 
 .pc-details p {
@@ -438,21 +443,15 @@
   margin: 0 auto;
   line-height: 1.2;
   width: min-content;
-  color: #2a2a2a;
-  text-shadow: 
-    0 0 15px rgba(255, 255, 255, 0.8),
-    0 0 30px rgba(255, 255, 255, 0.5),
-    1px 1px 0 rgba(255, 255, 255, 0.7),
-    -1px -1px 0 rgba(255, 255, 255, 0.7);
-  -webkit-text-stroke: 0.3px rgba(255, 255, 255, 0.3);
+  color: rgba(255, 255, 255, 0.95);
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
   transition: all 0.3s ease;
 }
 
 .pc-card:hover .pc-details p,
 .pc-card.active .pc-details p {
   color: rgba(255, 255, 255, 0.95);
-  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
-  -webkit-text-stroke: 0;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
 }
 
 @keyframes glow-bg {
