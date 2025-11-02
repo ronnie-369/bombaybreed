@@ -61,22 +61,22 @@ const Index = () => {
         ctaLink="/climate-communications#about"
       />
       
-      <div className="flex flex-col items-center justify-center min-h-[calc(100vh-120px)] px-4 pb-16 pt-20">
-        <p className="text-lg md:text-xl text-center mb-3 mt-16 text-black animate-fade-in font-semibold">
+      <div className="flex flex-col items-center justify-center min-h-[calc(100vh-80px)] px-4 pb-8 pt-16 md:pt-20">
+        <p className="text-lg md:text-xl text-center mb-2 text-black animate-fade-in font-semibold">
           Welcome to Bombay Breed Consulting
         </p>
-        <p className="text-base md:text-lg text-gray-500 text-center mb-4 tracking-wide">
+        <p className="text-base md:text-lg text-gray-500 text-center mb-3 tracking-wide">
           We specialise in
         </p>
-        <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-center mb-2 leading-normal pb-2 shine-text">
+        <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-center mb-2 leading-normal pb-1 shine-text">
           Transforming Strategy into Results
         </h1>
-        <p className="text-xl md:text-2xl text-gray-700 text-center max-w-3xl mb-8 tracking-tight">
+        <p className="text-xl md:text-2xl text-gray-700 text-center max-w-3xl mb-4 md:mb-6 tracking-tight">
           good for planet, good for business
         </p>
 
         {/* Profile Cards Section */}
-        <div className="container max-w-5xl mx-auto px-4 scale-50">
+        <div className="container max-w-5xl mx-auto px-4 scale-[0.45] md:scale-50 -mt-8 md:-mt-4">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             <ProfileCard
               avatarUrl="/lovable-uploads/carbon-energy-avatar.jpg"
