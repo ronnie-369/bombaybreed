@@ -83,7 +83,7 @@ const Index = () => {
               name="Carbon & Energy"
               title="Strategic Climate Communications"
               handle="good for planet"
-              status="Science, policy, communications."
+              status="Science. Policy. Communications."
               contactText="Learn More"
               showUserInfo={true}
               enableTilt={true}
@@ -94,7 +94,7 @@ const Index = () => {
             <ProfileCard
               avatarUrl="/lovable-uploads/business-transformation-new.jpg"
               name="Business Transformation"
-              title="Increase ROI"
+              title="Strategy into Results"
               handle="good for business"
               status="Trusted by Industry Leaders"
               contactText="Learn More"
