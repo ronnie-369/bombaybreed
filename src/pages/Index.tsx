@@ -65,13 +65,13 @@ const Index = () => {
         <p className="text-lg md:text-xl text-center mb-2 text-black animate-fade-in font-semibold">
           Welcome to Bombay Breed Consulting
         </p>
-        <p className="text-base md:text-lg text-gray-500 text-center mb-3 tracking-wide">
-          We specialise in
-        </p>
-        <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-center mb-2 leading-normal pb-1 shine-text">
-          Transforming Strategy into Results
+        <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-center mb-4 leading-tight pb-1 shine-text">
+          We enable climate, carbon & energy-transition leaders to <span className="text-gradient">communicate, transform and scale</span>
         </h1>
-        <p className="text-xl md:text-2xl text-gray-700 text-center max-w-3xl mb-4 md:mb-6 tracking-tight">
+        <p className="text-lg md:text-xl text-gray-600 text-center max-w-3xl mb-2 tracking-wide">
+          Serving carbon market intermediaries, energy corporates, and global NGOs
+        </p>
+        <p className="text-xl md:text-2xl text-gray-700 text-center max-w-3xl mb-4 md:mb-6 tracking-tight font-medium">
           good for planet, good for business
         </p>
 

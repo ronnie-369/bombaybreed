@@ -26,7 +26,7 @@ const ServiceCard = ({
   );
 };
 
-const Services = () => {
+const Services = ({ id }: { id?: string } = {}) => {
   const services = [{
     icon: Zap,
     title: "Disclosure & Reporting Alignment",
@@ -45,7 +45,7 @@ const Services = () => {
     description: "Transform ESG metrics into executive insights."
   }];
   return (
-    <section id="services" className="py-28 px-4 md:px-8 bg-white animate-fade-in">
+    <section id={id || "services"} className="py-28 px-4 md:px-8 bg-white animate-fade-in">
       <div className="container mx-auto max-w-5xl">
         <div className="text-center max-w-3xl mx-auto mb-20">
           <h2 className="section-title gradient-accent">What the CXO Suite Needs</h2>

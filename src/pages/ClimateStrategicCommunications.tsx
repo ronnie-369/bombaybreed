@@ -1,6 +1,7 @@
 import React from 'react';
 import Header from '@/components/Header';
-import HeroIntro from '@/components/HeroIntro';
+import ClimateHero from '@/components/ClimateHero';
+import DifferentiationBanner from '@/components/DifferentiationBanner';
 import ReportsCarousel from '@/components/ReportsCarousel';
 import ComplianceToCredibilitySection from '@/components/ComplianceToCredibilitySection';
 import Services from '@/components/Services';
@@ -17,17 +18,18 @@ const ClimateStrategicCommunications = () => {
   return (
     <div className="min-h-screen bg-bombay-background">
       <Header />
-      <HeroIntro />
+      <ClimateHero />
+      <DifferentiationBanner />
       <ReportsCarousel />
       <ComplianceToCredibilitySection />
-      <Services />
+      <Services id="services" />
       <Expertise />
       <CaseStudies />
       <Value />
       <About />
       <StakeholderEcosystemWheel />
       <Endorsements />
-      <Newsletter />
+      <Newsletter id="newsletter" />
       <Contact />
     </div>
   );

@@ -5,7 +5,7 @@ import { Mail } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 import { climateDesk } from '@/config/stats';
 
-const Newsletter = () => {
+const Newsletter = ({ id }: { id?: string } = {}) => {
   const [email, setEmail] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const { toast } = useToast();
@@ -78,7 +78,7 @@ const Newsletter = () => {
   };
 
   return (
-    <section className="py-20 px-4 md:px-8 bg-gradient-to-r from-primary to-accent animate-fade-in">
+    <section id={id || "newsletter"} className="py-20 px-4 md:px-8 bg-gradient-to-r from-primary to-accent animate-fade-in">
       <div className="container mx-auto text-center">
         <div className="max-w-2xl mx-auto">
           <div className="mb-6">
