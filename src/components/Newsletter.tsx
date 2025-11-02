@@ -86,11 +86,25 @@ const Newsletter = ({ id }: { id?: string } = {}) => {
               <Mail className="h-12 w-12 text-white" />
             </div>
             <h2 className="text-3xl md:text-4xl font-heading font-bold text-white mb-4">
-              Subscribe to The Climate Desk
+              Join {climateDesk.subscriberCountFormatted}+ Climate Leaders
             </h2>
-            <p className="text-white/90 text-lg">
-              Get Theresa Ronnie's latest insights on jobs, carbon markets, and India's climate transition delivered to your inbox.
+            <p className="text-white/90 text-lg mb-4">
+              Get exclusive insights on carbon markets, India's energy transition, and sustainability communications—delivered weekly.
             </p>
+            <div className="flex flex-wrap justify-center gap-4 text-white/90 text-sm">
+              <span className="flex items-center gap-2">
+                <span className="w-1.5 h-1.5 bg-white rounded-full"></span>
+                Policy Analysis
+              </span>
+              <span className="flex items-center gap-2">
+                <span className="w-1.5 h-1.5 bg-white rounded-full"></span>
+                Market Trends
+              </span>
+              <span className="flex items-center gap-2">
+                <span className="w-1.5 h-1.5 bg-white rounded-full"></span>
+                Executive Insights
+              </span>
+            </div>
           </div>
           
           <div className="glass-card rounded-2xl p-6 max-w-md mx-auto">
@@ -114,9 +128,17 @@ const Newsletter = ({ id }: { id?: string } = {}) => {
             </form>
           </div>
           
-          <p className="text-white/70 text-sm mt-4">
-            Join {climateDesk.subscriberCountFormatted}+ sustainability professionals. Unsubscribe anytime.
-          </p>
+          <div className="mt-6 space-y-2">
+            <p className="text-white/80 text-sm font-medium">
+              ✓ Weekly insights from industry leaders
+            </p>
+            <p className="text-white/80 text-sm font-medium">
+              ✓ Exclusive research & market analysis
+            </p>
+            <p className="text-white/70 text-xs">
+              Trusted by {climateDesk.subscriberCountFormatted}+ sustainability professionals. Unsubscribe anytime.
+            </p>
+          </div>
         </div>
       </div>
     </section>

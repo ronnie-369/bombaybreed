@@ -6,6 +6,7 @@ import WhyDifferent from '@/components/WhyDifferent';
 import ReportsCarousel from '@/components/ReportsCarousel';
 import ComplianceToCredibilitySection from '@/components/ComplianceToCredibilitySection';
 import Services from '@/components/Services';
+import CTABanner from '@/components/CTABanner';
 import Expertise from '@/components/Expertise';
 import CaseStudies from '@/components/CaseStudies';
 import Value from '@/components/Value';
@@ -25,8 +26,11 @@ const ClimateStrategicCommunications = () => {
       <ReportsCarousel />
       <ComplianceToCredibilitySection />
       <Services id="services" />
+      <CTABanner variant="services" />
       <Expertise />
+      <CTABanner variant="expertise" />
       <CaseStudies />
+      <CTABanner variant="case-studies" />
       <Value />
       <About />
       <StakeholderEcosystemWheel />

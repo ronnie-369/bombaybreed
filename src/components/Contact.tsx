@@ -112,9 +112,12 @@ const Contact = () => {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 md:gap-16">
           <div className="space-y-8">
             <div>
-              <h2 className="text-3xl font-heading font-bold mb-4 text-foreground">Contact</h2>
-              <p className="mb-6 text-foreground/80 max-w-md leading-relaxed text-body">
-                We need to stay on the right side of Climate Action. Because, the children.
+              <h2 className="text-3xl font-heading font-bold mb-4 text-foreground">Start the Conversation</h2>
+              <p className="text-xl font-medium text-foreground mb-3 leading-relaxed">
+                Ready to transform complexity into competitive advantage?
+              </p>
+              <p className="text-foreground/80 max-w-md leading-relaxed">
+                Let's discuss how strategic sustainability communications can strengthen your executive positioning and stakeholder confidence.
               </p>
             </div>
             
@@ -145,18 +148,39 @@ const Contact = () => {
               </a>
             </div>
             
-            <div ref={pricingRef} className="relative border-l-4 border-blue-600 bg-blue-500/5 p-6 rounded-r-xl">
-              <div className="absolute top-2 right-2 text-blue-700 font-medium uppercase tracking-wide shine-text">
-                Pricing
+            <div ref={pricingRef} className="glass-card border-l-4 border-blue-600 bg-gradient-to-r from-blue-500/10 to-blue-500/5 p-6 rounded-2xl shadow-sm">
+              <div className="flex items-center justify-between mb-4">
+                <span className="text-xs font-bold uppercase tracking-wider text-blue-700 bg-blue-100 px-3 py-1 rounded-full">
+                  Pricing
+                </span>
+                <span className="text-xs text-foreground/60">Flexible engagements</span>
               </div>
-              <h3 className="text-body font-heading font-semibold text-foreground drop-shadow-sm leading-relaxed mt-4">
-                Talk to me about your Executive Advisory Retainer from as low as <span className={`text-foreground font-bold glow-pill ${pricingInView ? 'active' : ''}`}>INR 30,000 pm +gst</span>.
+              <h3 className="text-lg font-heading font-semibold text-foreground mb-2">
+                Executive Advisory Retainer
               </h3>
+              <p className="text-sm text-foreground/70 mb-3">
+                Strategic guidance tailored to your C-suite priorities
+              </p>
+              <div className="flex items-baseline gap-2">
+                <span className="text-xs text-foreground/60">Starting from</span>
+                <span className={`text-2xl font-bold text-foreground glow-pill ${pricingInView ? 'active' : ''}`}>
+                  ₹30,000
+                </span>
+                <span className="text-sm text-foreground/60">per month + GST</span>
+              </div>
+              <p className="text-xs text-foreground/60 mt-3">
+                Includes monthly strategic consultations, stakeholder communication frameworks, and ongoing advisory support
+              </p>
             </div>
           </div>
           
           <div className="glass-card bg-blue-500/10 rounded-2xl p-6 md:p-8 h-fit hover-scale">
-            <h3 className="text-xl font-heading font-semibold mb-6 text-foreground">Send us a message</h3>
+            <div className="mb-6">
+              <h3 className="text-xl font-heading font-semibold mb-2 text-foreground">Get Expert Guidance</h3>
+              <p className="text-sm text-foreground/70">
+                Share your sustainability communications challenge—we'll respond within 24 hours
+              </p>
+            </div>
             <Form {...form}>
               <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">

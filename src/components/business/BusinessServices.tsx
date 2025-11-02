@@ -64,28 +64,55 @@ const BusinessServices = () => {
 
         <div className="grid md:grid-cols-2 gap-8">
           {services.map((service, index) => (
-            <Card key={index} className="hover:shadow-xl transition-shadow duration-300 border-purple-100/50">
+            <Card key={index} className="hover:shadow-xl transition-all duration-300 border-purple-100/50 hover:border-purple-300 group">
               <CardHeader>
-                <div className="w-14 h-14 rounded-full bg-purple-100/50 dark:bg-purple-900/30 flex items-center justify-center mb-4">
+                <div className="w-14 h-14 rounded-full bg-purple-100/50 dark:bg-purple-900/30 flex items-center justify-center mb-4 group-hover:bg-purple-200/70 transition-colors">
                   <service.icon className="w-7 h-7 text-purple-600 dark:text-purple-400" />
                 </div>
                 <CardTitle className="text-2xl mb-3">{service.title}</CardTitle>
               </CardHeader>
               <CardContent>
-                <p className="text-foreground/70 mb-6">
+                <p className="text-foreground/70 mb-6 leading-relaxed">
                   {service.description}
                 </p>
-                <ul className="space-y-2">
-                  {service.highlights.map((highlight, idx) => (
-                    <li key={idx} className="flex items-start">
-                      <span className="text-purple-600 dark:text-purple-400 mr-2">•</span>
-                      <span className="text-foreground/80">{highlight}</span>
-                    </li>
-                  ))}
-                </ul>
+                <div className="border-t border-purple-100/50 pt-4 mb-4">
+                  <p className="text-xs font-semibold text-purple-600 dark:text-purple-400 uppercase tracking-wider mb-3">
+                    Key Deliverables
+                  </p>
+                  <ul className="space-y-2">
+                    {service.highlights.map((highlight, idx) => (
+                      <li key={idx} className="flex items-start">
+                        <span className="text-purple-600 dark:text-purple-400 mr-2 mt-0.5">→</span>
+                        <span className="text-sm text-foreground/80">{highlight}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
               </CardContent>
             </Card>
           ))}
+        </div>
+        
+        <div className="mt-12 text-center">
+          <div className="glass-card rounded-2xl p-8 max-w-3xl mx-auto border-2 border-purple-200/50">
+            <p className="text-lg font-medium text-foreground mb-4">
+              Ready to transform your business operations?
+            </p>
+            <p className="text-foreground/70 mb-6">
+              Let's discuss how our proven frameworks can accelerate your growth and operational excellence.
+            </p>
+            <a 
+              href="#contact"
+              className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-purple-600 to-indigo-600 text-white rounded-lg font-semibold hover:shadow-lg transition-all"
+              onClick={(e) => {
+                e.preventDefault();
+                document.querySelector('#contact')?.scrollIntoView({ behavior: 'smooth' });
+              }}
+            >
+              Schedule a Consultation
+              <span className="text-lg">→</span>
+            </a>
+          </div>
         </div>
       </div>
     </section>
