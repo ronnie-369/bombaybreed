@@ -151,15 +151,22 @@
     @apply relative inline-block;
     background: linear-gradient(
       90deg,
-      hsl(var(--primary)),
-      hsl(var(--accent)),
-      hsl(var(--primary))
+      #34d399,
+      #10b981,
+      #a855f7,
+      #9333ea,
+      #7e22ce,
+      #9333ea,
+      #a855f7,
+      #10b981,
+      #34d399
     );
-    background-size: 200% auto;
+    background-size: 300% auto;
     background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-    animation: shine 3s linear infinite;
+    animation: shine 4s linear infinite;
+    filter: brightness(1.1);
   }
   
   @keyframes shine {
@@ -167,7 +174,7 @@
       background-position: 0% center;
     }
     100% {
-      background-position: 200% center;
+      background-position: 300% center;
     }
   }
   
