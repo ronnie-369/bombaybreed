@@ -2,6 +2,7 @@ import React from 'react';
 import Header from '@/components/Header';
 import ClimateHero from '@/components/ClimateHero';
 import DifferentiationBanner from '@/components/DifferentiationBanner';
+import WhyDifferent from '@/components/WhyDifferent';
 import ReportsCarousel from '@/components/ReportsCarousel';
 import ComplianceToCredibilitySection from '@/components/ComplianceToCredibilitySection';
 import Services from '@/components/Services';
@@ -20,6 +21,7 @@ const ClimateStrategicCommunications = () => {
       <Header />
       <ClimateHero />
       <DifferentiationBanner />
+      <WhyDifferent />
       <ReportsCarousel />
       <ComplianceToCredibilitySection />
       <Services id="services" />
