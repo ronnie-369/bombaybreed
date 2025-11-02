@@ -76,7 +76,7 @@ const Index = () => {
         </p>
 
         {/* Profile Cards Section */}
-        <div className="container max-w-5xl mx-auto px-4 scale-85">
+        <div className="container max-w-5xl mx-auto px-4 scale-50">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             <ProfileCard
               avatarUrl="/lovable-uploads/carbon-energy-avatar.jpg"
