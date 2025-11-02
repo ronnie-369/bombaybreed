@@ -211,12 +211,12 @@ const StakeholderEcosystemWheel = () => {
     <section className="py-20 px-4 md:px-8 bg-gradient-to-b from-background to-muted/20">
       <div className="container mx-auto text-center">
         <div className="max-w-6xl mx-auto">
-          <Accordion type="single" collapsible>
+          <Accordion type="single" collapsible className="w-full space-y-4">
             <AccordionItem value="stakeholder-ecosystem" className="border rounded-lg px-6 bg-card">
-              <AccordionTrigger className="text-xl md:text-2xl font-heading hover:no-underline">
-                <span className="text-gradient">Stakeholder Ecosystem</span>
+              <AccordionTrigger className="text-sm md:text-base font-heading hover:no-underline">
+                Stakeholder Ecosystem
               </AccordionTrigger>
-              <AccordionContent>
+              <AccordionContent className="text-sm">
                 <p className="text-lg text-muted-foreground mb-12">
                   Effective communication with diverse stakeholder groups requires tailored strategies and messaging.
                 </p>
