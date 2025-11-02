@@ -5,6 +5,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import ScrollToTop from "./components/ScrollToTop";
 import CookieBanner from "./components/CookieBanner";
+import FloatingInquiryForm from "./components/FloatingInquiryForm";
 import Index from "./pages/Index";
 import ClimateStrategicCommunications from "./pages/ClimateStrategicCommunications";
 import ClimateDesk from "./pages/ClimateDesk";
@@ -51,6 +52,7 @@ const App = () => (
           <Route path="*" element={<NotFound />} />
         </Routes>
         <CookieBanner />
+        <FloatingInquiryForm />
       </BrowserRouter>
     </TooltipProvider>
   </QueryClientProvider>
