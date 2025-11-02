@@ -3,6 +3,7 @@ import CardNav from '@/components/CardNav';
 import ProfileCard from '@/components/ui/profile-card';
 import Footer from '@/components/Footer';
 import StickyCTA from '@/components/StickyCTA';
+import VideoTestimonials from '@/components/VideoTestimonials';
 
 const Index = () => {
   const navItems = [
@@ -107,6 +108,8 @@ const Index = () => {
           </div>
         </div>
       </div>
+      
+      <VideoTestimonials />
       
       <Footer />
       <StickyCTA variant="contact" />

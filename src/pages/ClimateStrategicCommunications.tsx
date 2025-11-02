@@ -17,6 +17,8 @@ import Endorsements from '@/components/Endorsements';
 import Newsletter from '@/components/Newsletter';
 import Contact from '@/components/Contact';
 import StickyCTA from '@/components/StickyCTA';
+import VideoSection from '@/components/VideoSection';
+import VideoTestimonials from '@/components/VideoTestimonials';
 
 const ClimateStrategicCommunications = () => {
   return (
@@ -34,9 +36,27 @@ const ClimateStrategicCommunications = () => {
       <CaseStudies />
       <TrustSignals />
       <CTABanner variant="case-studies" />
+      
+      <VideoSection
+        videoId="dQw4w9WgXcQ"
+        provider="youtube"
+        title="How We Help Climate Leaders Cut Through the Noise"
+        subtitle="Our Approach"
+        description="Watch how we transform complex climate commitments into clear, credible narratives that resonate with your stakeholders."
+        benefits={[
+          'Evidence-based messaging that stands up to scrutiny',
+          'Strategic positioning that differentiates from competitors',
+          'Clear communication frameworks for all audiences'
+        ]}
+        ctaText="Start Your Transformation"
+        ctaLink="#contact"
+        layout="left"
+      />
+      
       <Value />
       <About />
       <StakeholderEcosystemWheel />
+      <VideoTestimonials />
       <Endorsements />
       <Newsletter id="newsletter" />
       <Contact />

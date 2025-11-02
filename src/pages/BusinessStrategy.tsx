@@ -7,7 +7,9 @@ import BusinessCaseStudies from '@/components/business/BusinessCaseStudies';
 import BusinessAbout from '@/components/business/BusinessAbout';
 import TrustSignals from '@/components/TrustSignals';
 import Contact from '@/components/Contact';
+import Newsletter from '@/components/Newsletter';
 import StickyCTA from '@/components/StickyCTA';
+import VideoSection from '@/components/VideoSection';
 
 const BusinessStrategy = () => {
   return (
@@ -18,8 +20,26 @@ const BusinessStrategy = () => {
       <IndustryExperience />
       <BusinessCaseStudies />
       <TrustSignals />
+      
+      <VideoSection
+        videoId="dQw4w9WgXcQ"
+        provider="youtube"
+        title="Strategic Transformation in Action"
+        subtitle="Executive Advisory"
+        description="See how we partner with business leaders to navigate complex transformations and unlock sustainable growth opportunities."
+        benefits={[
+          'Executive-level strategic guidance',
+          'Cross-functional transformation support',
+          'Results-driven implementation roadmaps'
+        ]}
+        ctaText="Schedule Executive Consultation"
+        ctaLink="#contact"
+        layout="right"
+      />
+      
       <BusinessAbout />
       <Contact />
+      <Newsletter />
       <StickyCTA variant="schedule" />
     </div>
   );
