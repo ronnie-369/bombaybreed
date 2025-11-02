@@ -208,7 +208,7 @@ const StakeholderEcosystemWheel = () => {
   };
 
   return (
-    <section className="py-8 px-4 md:px-8 bg-gradient-to-b from-background to-muted/20">
+    <section className="py-8 px-4 md:px-8 bg-[rgba(245,158,11,0.15)]">
       <div className="container mx-auto text-center">
         <div className="max-w-6xl mx-auto">
           <Accordion type="single" collapsible className="w-full space-y-4">
