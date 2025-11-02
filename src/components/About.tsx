@@ -37,7 +37,7 @@ const About = () => {
   const portraitUrl = "https://zjiwmdrtuhsrymsuvpfb.supabase.co/storage/v1/object/public/brand%20assets/5Q2A8758.jpg";
 
   return (
-    <section id="about" className="section-padding bg-background">
+    <section id="about" className="section-padding bg-[rgba(245,158,11,0.15)]">
       <div className="container mx-auto">
         {/* Editorial Hero Section */}
         <div className="grid grid-cols-1 lg:grid-cols-5 gap-16 items-start mb-24">
