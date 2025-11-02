@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { ArrowRight, Phone } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import { trackConversion } from '@/utils/analytics';
 
 interface SticyCTAProps {
   variant?: 'contact' | 'download' | 'schedule';
@@ -28,6 +29,7 @@ const StickyCTA: React.FC<SticyCTAProps> = ({
     const element = document.getElementById(sectionId);
     if (element) {
       element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      trackConversion.ctaClick(content.text, 'sticky_cta_' + variant);
     }
   };
 

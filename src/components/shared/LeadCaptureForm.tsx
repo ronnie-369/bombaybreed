@@ -7,6 +7,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Download, Mail, Phone, CheckCircle, ExternalLink, Copy } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 import { supabase } from '@/integrations/supabase/client';
+import { trackConversion } from '@/utils/analytics';
 
 interface LeadCaptureFormProps {
   reportTitle: string;
@@ -96,6 +97,14 @@ const LeadCaptureForm: React.FC<LeadCaptureFormProps> = ({
         title: "Success!",
         description: "Thank you for your request. Your report is ready for download.",
       });
+      
+      // Track lead submission and report download
+      trackConversion.leadSubmission('report_download', {
+        report_title: reportTitle,
+        company: formData.company_name,
+        designation: formData.designation,
+      });
+      trackConversion.reportDownload(reportTitle);
 
       if (onSuccess) {
         onSuccess();

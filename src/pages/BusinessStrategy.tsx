@@ -10,6 +10,7 @@ import Contact from '@/components/Contact';
 import Newsletter from '@/components/Newsletter';
 import StickyCTA from '@/components/StickyCTA';
 import VideoSection from '@/components/VideoSection';
+import ROICalculator from '@/components/tools/ROICalculator';
 
 const BusinessStrategy = () => {
   return (
@@ -36,6 +37,8 @@ const BusinessStrategy = () => {
         ctaLink="#contact"
         layout="right"
       />
+      
+      <ROICalculator />
       
       <BusinessAbout />
       <Contact />

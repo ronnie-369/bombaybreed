@@ -15,6 +15,7 @@ import { Label } from '@/components/ui/label';
 import { useToast } from '@/hooks/use-toast';
 import { supabase } from '@/integrations/supabase/client';
 import { z } from 'zod';
+import { trackConversion } from '@/utils/analytics';
 
 const inquirySchema = z.object({
   name: z.string().trim().min(1, 'Name is required').max(100, 'Name must be less than 100 characters'),
@@ -81,6 +82,11 @@ const FloatingInquiryForm = () => {
       toast({
         title: 'Inquiry sent!',
         description: 'We\'ll get back to you as soon as possible.',
+      });
+
+      // Track inquiry submission
+      trackConversion.leadSubmission('floating_inquiry', {
+        has_phone: !!formData.phone,
       });
 
       // Reset form and close dialog

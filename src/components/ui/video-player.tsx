@@ -3,6 +3,7 @@ import { Play, X } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { Button } from './button';
 import { Dialog, DialogContent } from './dialog';
+import { trackConversion } from '@/utils/analytics';
 
 interface VideoPlayerProps {
   videoId: string;
@@ -63,7 +64,11 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({
               <Button
                 size="lg"
                 className="h-16 w-16 rounded-full bg-white/90 hover:bg-white text-primary hover:scale-110 transition-all duration-300 shadow-2xl"
-                onClick={() => setIsPlaying(true)}
+                onClick={(e) => {
+                  e.stopPropagation();
+                  setIsPlaying(true);
+                  trackConversion.videoPlay(title, videoId);
+                }}
               >
                 <Play className="h-8 w-8 ml-1" fill="currentColor" />
               </Button>

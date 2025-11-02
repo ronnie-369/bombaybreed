@@ -10,6 +10,7 @@ import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '
 import * as z from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useInView } from '@/hooks/use-in-view';
+import { trackConversion } from '@/utils/analytics';
 
 const formSchema = z.object({
   name: z.string().min(2, {
@@ -93,6 +94,12 @@ const Contact = () => {
           title: "Message sent successfully!",
           description: "We'll get back to you as soon as possible."
         });
+        
+        // Track contact form submission
+        trackConversion.leadSubmission('contact_form', {
+          has_company: !!sanitizedData.company,
+        });
+        
         form.reset();
       }
     } catch (error) {

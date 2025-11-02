@@ -4,6 +4,7 @@ import { Input } from "@/components/ui/input";
 import { Mail } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 import { climateDesk } from '@/config/stats';
+import { trackConversion } from '@/utils/analytics';
 
 const Newsletter = ({ id }: { id?: string } = {}) => {
   const [email, setEmail] = useState('');
@@ -64,6 +65,9 @@ const Newsletter = ({ id }: { id?: string } = {}) => {
           description: "You'll receive updates from The Climate Desk.",
         });
         setEmail('');
+        
+        // Track email signup
+        trackConversion.emailSignup('newsletter_form');
       }
     } catch (error) {
       console.error('Newsletter subscription error:', error);

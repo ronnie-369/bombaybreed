@@ -4,6 +4,7 @@ import ProfileCard from '@/components/ui/profile-card';
 import Footer from '@/components/Footer';
 import StickyCTA from '@/components/StickyCTA';
 import VideoTestimonials from '@/components/VideoTestimonials';
+import AssessmentQuiz from '@/components/tools/AssessmentQuiz';
 
 const Index = () => {
   const navItems = [
@@ -110,6 +111,8 @@ const Index = () => {
       </div>
       
       <VideoTestimonials />
+      
+      <AssessmentQuiz />
       
       <Footer />
       <StickyCTA variant="contact" />
