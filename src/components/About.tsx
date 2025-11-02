@@ -121,8 +121,9 @@ const About = () => {
           </div>
         </div>
 
-        {/* The Name Section */}
+        {/* Collapsible Sections */}
         <Accordion type="single" collapsible className="w-full space-y-4">
+          {/* The Name Section */}
           <AccordionItem value="name" className="border rounded-lg px-6 bg-card">
             <AccordionTrigger className="text-sm md:text-base font-heading hover:no-underline">
               What's in a name?
@@ -181,41 +182,37 @@ const About = () => {
           </div>
             </AccordionContent>
           </AccordionItem>
-        </Accordion>
 
-      {/* Experience Section */}
-      <Accordion type="single" collapsible className="w-full space-y-4">
-        <AccordionItem value="experience" className="border rounded-lg px-6 bg-card">
-          <AccordionTrigger className="text-sm md:text-base font-heading hover:no-underline">
-            Experience
-          </AccordionTrigger>
-          <AccordionContent className="text-sm">
-            <div className="space-y-6 mt-8">
-              {experience.map((item, index) => (
-                <div key={index} className="space-y-2">
-                  <div className="flex items-center gap-4">
-                    <span className="font-medium text-foreground min-w-[200px] text-sm">{item.area}</span>
-                    <div className="flex-1 flex items-center gap-3">
-                      <div className="flex-1 bg-muted/30 rounded-full h-8 overflow-hidden">
-                        <div 
-                          className="h-full bg-gradient-to-r from-primary to-accent rounded-full transition-all duration-500 flex items-center justify-end px-3"
-                          style={{ width: `${(item.years / maxYears) * 100}%` }}
-                        >
-                          <span className="text-xs font-semibold text-white whitespace-nowrap">{item.label}</span>
+          {/* Experience Section */}
+          <AccordionItem value="experience" className="border rounded-lg px-6 bg-card">
+            <AccordionTrigger className="text-sm md:text-base font-heading hover:no-underline">
+              Experience
+            </AccordionTrigger>
+            <AccordionContent className="text-sm">
+              <div className="space-y-6 mt-8">
+                {experience.map((item, index) => (
+                  <div key={index} className="space-y-2">
+                    <div className="flex items-center gap-4">
+                      <span className="font-medium text-foreground min-w-[200px] text-sm">{item.area}</span>
+                      <div className="flex-1 flex items-center gap-3">
+                        <div className="flex-1 bg-muted/30 rounded-full h-8 overflow-hidden">
+                          <div 
+                            className="h-full bg-gradient-to-r from-primary to-accent rounded-full transition-all duration-500 flex items-center justify-end px-3"
+                            style={{ width: `${(item.years / maxYears) * 100}%` }}
+                          >
+                            <span className="text-xs font-semibold text-white whitespace-nowrap">{item.label}</span>
+                          </div>
                         </div>
                       </div>
                     </div>
                   </div>
-                </div>
-              ))}
-            </div>
+                ))}
+              </div>
             </AccordionContent>
           </AccordionItem>
-        </Accordion>
 
-      {/* The X Factor Section */}
-      <Accordion type="single" collapsible className="w-full space-y-4">
-        <AccordionItem value="xfactor" className="border rounded-lg px-6 bg-card">
+          {/* The X Factor Section */}
+          <AccordionItem value="xfactor" className="border rounded-lg px-6 bg-card">
           <AccordionTrigger className="text-sm md:text-base font-heading hover:no-underline">
             The X Factor
           </AccordionTrigger>

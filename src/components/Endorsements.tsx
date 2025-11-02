@@ -52,7 +52,7 @@ const Endorsements = () => {
   }, []);
 
   return (
-    <section className="py-28 px-4 md:px-8 bg-gradient-to-b from-white to-bombay-subtle/20">
+    <section className="py-8 px-4 md:px-8 bg-gradient-to-b from-white to-bombay-subtle/20">
       <div className="container mx-auto">
         <Accordion type="single" collapsible className="w-full space-y-4">
           <AccordionItem value="trusted-leaders" className="border rounded-lg px-6 bg-card">
