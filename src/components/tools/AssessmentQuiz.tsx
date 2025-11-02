@@ -5,7 +5,11 @@ import { Card } from '@/components/ui/card';
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
 import { Label } from '@/components/ui/label';
 import { Progress } from '@/components/ui/progress';
+import { Input } from '@/components/ui/input';
+import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog';
 import { trackConversion } from '@/utils/analytics';
+import { supabase } from '@/integrations/supabase/client';
+import { useToast } from '@/hooks/use-toast';
 
 interface Question {
   id: string;
@@ -70,10 +74,18 @@ const questions: Question[] = [
 ];
 
 const AssessmentQuiz = () => {
+  const { toast } = useToast();
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [answers, setAnswers] = useState<Record<string, number>>({});
   const [showResults, setShowResults] = useState(false);
   const [selectedAnswer, setSelectedAnswer] = useState<number | null>(null);
+  const [showConsultationForm, setShowConsultationForm] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [contactInfo, setContactInfo] = useState({
+    name: '',
+    email: '',
+    phone: '',
+  });
 
   const progress = ((currentQuestion + 1) / questions.length) * 100;
   const isLastQuestion = currentQuestion === questions.length - 1;
@@ -155,6 +167,66 @@ const AssessmentQuiz = () => {
     setSelectedAnswer(null);
   };
 
+  const handleConsultationSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+
+    try {
+      const results = calculateResults();
+      const totalScore = Object.values(answers).reduce((sum, val) => sum + val, 0);
+      const maxScore = questions.length * 4;
+
+      // Format assessment details
+      const assessmentDetails = questions.map((q, idx) => 
+        `${idx + 1}. ${q.question}\n   Answer: ${q.options.find(opt => opt.value === answers[q.id])?.label || 'N/A'} (${answers[q.id]} points)`
+      ).join('\n\n');
+
+      const message = `CLIMATE COMMUNICATIONS READINESS ASSESSMENT RESULTS
+
+SCORE: ${totalScore}/${maxScore} - ${results.level}
+
+ASSESSMENT: ${results.message}
+
+RECOMMENDATION: ${results.recommendation}
+
+DETAILED RESPONSES:
+${assessmentDetails}
+
+---
+The user would like to schedule a consultation to discuss these results.`;
+
+      // Send email via edge function
+      const { error } = await supabase.functions.invoke('send-contact-email', {
+        body: {
+          name: contactInfo.name,
+          email: contactInfo.email,
+          phone: contactInfo.phone,
+          message: message,
+          submitted_at: new Date().toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' }),
+        },
+      });
+
+      if (error) throw error;
+
+      toast({
+        title: 'Consultation Request Sent!',
+        description: 'We\'ll be in touch shortly to schedule your consultation.',
+      });
+
+      setShowConsultationForm(false);
+      trackConversion.leadSubmission('assessment_consultation');
+    } catch (error) {
+      console.error('Error submitting consultation request:', error);
+      toast({
+        title: 'Submission Failed',
+        description: 'Please try again or contact us directly.',
+        variant: 'destructive',
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
   if (showResults) {
     const results = calculateResults();
     const totalScore = Object.values(answers).reduce((sum, val) => sum + val, 0);
@@ -211,12 +283,7 @@ const AssessmentQuiz = () => {
 
             <div className="flex gap-4 flex-col sm:flex-row">
               <Button
-                onClick={() => {
-                  const element = document.getElementById('contact');
-                  if (element) {
-                    element.scrollIntoView({ behavior: 'smooth' });
-                  }
-                }}
+                onClick={() => setShowConsultationForm(true)}
                 size="lg"
                 className="flex-1"
               >
@@ -232,6 +299,65 @@ const AssessmentQuiz = () => {
               </Button>
             </div>
           </Card>
+
+          <Dialog open={showConsultationForm} onOpenChange={setShowConsultationForm}>
+            <DialogContent className="sm:max-w-md">
+              <DialogHeader>
+                <DialogTitle>Schedule Your Consultation</DialogTitle>
+              </DialogHeader>
+              <form onSubmit={handleConsultationSubmit} className="space-y-4">
+                <div>
+                  <Label htmlFor="name">Name *</Label>
+                  <Input
+                    id="name"
+                    value={contactInfo.name}
+                    onChange={(e) => setContactInfo({ ...contactInfo, name: e.target.value })}
+                    required
+                    disabled={isSubmitting}
+                  />
+                </div>
+                <div>
+                  <Label htmlFor="email">Email *</Label>
+                  <Input
+                    id="email"
+                    type="email"
+                    value={contactInfo.email}
+                    onChange={(e) => setContactInfo({ ...contactInfo, email: e.target.value })}
+                    required
+                    disabled={isSubmitting}
+                  />
+                </div>
+                <div>
+                  <Label htmlFor="phone">Phone *</Label>
+                  <Input
+                    id="phone"
+                    type="tel"
+                    value={contactInfo.phone}
+                    onChange={(e) => setContactInfo({ ...contactInfo, phone: e.target.value })}
+                    required
+                    disabled={isSubmitting}
+                  />
+                </div>
+                <p className="text-sm text-muted-foreground">
+                  Your assessment results will be shared with our team to prepare for your consultation.
+                </p>
+                <div className="flex gap-2">
+                  <Button
+                    type="button"
+                    variant="outline"
+                    onClick={() => setShowConsultationForm(false)}
+                    disabled={isSubmitting}
+                    className="flex-1"
+                  >
+                    Cancel
+                  </Button>
+                  <Button type="submit" disabled={isSubmitting} className="flex-1">
+                    {isSubmitting ? 'Sending...' : 'Submit Request'}
+                  </Button>
+                </div>
+              </form>
+            </DialogContent>
+          </Dialog>
         </div>
       </section>
     );

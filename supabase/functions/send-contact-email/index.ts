@@ -71,7 +71,7 @@ serve(async (req: Request) => {
 
   try {
     const body = await req.json();
-    const { name, email, company, message, submitted_at } = body;
+    const { name, email, company, phone, message, submitted_at } = body;
 
     // Validate required fields
     if (!name?.trim() || !email?.trim() || !message?.trim()) {
@@ -97,7 +97,8 @@ serve(async (req: Request) => {
     const sanitizedName = name.trim().substring(0, 100);
     const sanitizedEmail = email.trim().toLowerCase().substring(0, 255);
     const sanitizedCompany = company?.trim().substring(0, 100) || 'Not provided';
-    const sanitizedMessage = message.trim().substring(0, 2000);
+    const sanitizedPhone = phone?.trim().substring(0, 20) || 'Not provided';
+    const sanitizedMessage = message.trim().substring(0, 5000);
 
     console.log('Sending contact inquiry email notification...');
 
@@ -121,10 +122,11 @@ serve(async (req: Request) => {
       <h3>Contact Details:</h3>
       <p><strong>Name:</strong> ${escapeHtml(sanitizedName)}</p>
       <p><strong>Email:</strong> ${escapeHtml(sanitizedEmail)}</p>
+      <p><strong>Phone:</strong> ${escapeHtml(sanitizedPhone)}</p>
       <p><strong>Company:</strong> ${escapeHtml(sanitizedCompany)}</p>
       
       <h3>Message:</h3>
-      <div style="background-color: #f5f5f5; padding: 15px; border-left: 4px solid #007acc; margin: 15px 0;">
+      <div style="background-color: #f5f5f5; padding: 15px; border-left: 4px solid #007acc; margin: 15px 0; white-space: pre-wrap;">
         ${escapeHtml(sanitizedMessage).replace(/\n/g, '<br>')}
       </div>
       
@@ -136,8 +138,8 @@ serve(async (req: Request) => {
     `;
 
     const { error: emailError } = await resend.emails.send({
-      from: 'Nexo Circle <onboarding@resend.dev>',
-      to: ['ronnie@nexocircle.com'],
+      from: 'Bombay Breed <onboarding@resend.dev>',
+      to: ['ronnie@bombaybreed.com'],
       subject: `New website message — ${escapeHtml(sanitizedName)}`,
       html: emailContent,
     });
