@@ -5,6 +5,7 @@ import BusinessServices from '@/components/business/BusinessServices';
 import IndustryExperience from '@/components/business/IndustryExperience';
 import BusinessCaseStudies from '@/components/business/BusinessCaseStudies';
 import BusinessAbout from '@/components/business/BusinessAbout';
+import TrustSignals from '@/components/TrustSignals';
 import Contact from '@/components/Contact';
 
 const BusinessStrategy = () => {
@@ -15,6 +16,7 @@ const BusinessStrategy = () => {
       <BusinessServices />
       <IndustryExperience />
       <BusinessCaseStudies />
+      <TrustSignals />
       <BusinessAbout />
       <Contact />
     </div>

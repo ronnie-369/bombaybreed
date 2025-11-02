@@ -1,6 +1,7 @@
 import React from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
+import { ArrowUpRight } from 'lucide-react';
 
 const caseStudies = [
   {
@@ -40,45 +41,58 @@ const caseStudies = [
 
 const BusinessCaseStudies = () => {
   return (
-    <section className="py-20 bg-purple-50/20">
+    <section className="py-20 bg-gradient-to-b from-purple-50/20 to-background">
       <div className="container mx-auto px-4 max-w-7xl">
         <div className="text-center mb-16">
+          <div className="inline-flex items-center gap-2 bg-purple-100/50 px-4 py-2 rounded-full mb-6">
+            <span className="text-sm font-semibold text-purple-900">Proven Results</span>
+          </div>
           <h2 className="section-title bg-gradient-to-r from-purple-600 via-purple-500 to-indigo-600 bg-clip-text text-transparent">
             Success Stories
           </h2>
           <p className="section-description max-w-3xl mx-auto">
-            Real results from our partnerships with leading organizations across industries
+            Measurable outcomes from strategic partnerships with leading organizations—delivering growth, efficiency, and competitive advantage
           </p>
         </div>
 
         <div className="space-y-8">
           {caseStudies.map((study, index) => (
-            <Card key={index} className="hover:shadow-xl transition-shadow duration-300 border-purple-100/50">
+            <Card key={index} className="hover:shadow-xl transition-all duration-300 border-purple-100/50 hover:border-purple-300 group">
               <CardHeader>
-                <div className="flex items-center gap-3 mb-2">
+                <div className="flex items-center justify-between mb-3">
                   <Badge variant="outline" className="text-sm border-purple-200 text-purple-700">
                     {study.industry}
                   </Badge>
+                  <ArrowUpRight className="h-5 w-5 text-purple-400 group-hover:text-purple-600 group-hover:translate-x-1 group-hover:-translate-y-1 transition-all" />
                 </div>
-                <CardTitle className="text-2xl">{study.title}</CardTitle>
+                <CardTitle className="text-2xl mb-2">{study.title}</CardTitle>
               </CardHeader>
               <CardContent>
                 <div className="grid md:grid-cols-3 gap-8">
                   <div>
-                    <h4 className="font-semibold text-foreground mb-2">Challenge</h4>
-                    <p className="text-foreground/70">{study.challenge}</p>
+                    <h4 className="font-semibold text-foreground mb-3 flex items-center gap-2">
+                      <span className="w-2 h-2 bg-purple-600 rounded-full"></span>
+                      Challenge
+                    </h4>
+                    <p className="text-foreground/70 leading-relaxed">{study.challenge}</p>
                   </div>
                   <div>
-                    <h4 className="font-semibold text-foreground mb-2">Solution</h4>
-                    <p className="text-foreground/70">{study.solution}</p>
+                    <h4 className="font-semibold text-foreground mb-3 flex items-center gap-2">
+                      <span className="w-2 h-2 bg-purple-600 rounded-full"></span>
+                      Solution
+                    </h4>
+                    <p className="text-foreground/70 leading-relaxed">{study.solution}</p>
                   </div>
                   <div>
-                    <h4 className="font-semibold text-foreground mb-2">Results</h4>
+                    <h4 className="font-semibold text-foreground mb-3 flex items-center gap-2">
+                      <span className="w-2 h-2 bg-purple-600 rounded-full"></span>
+                      Results
+                    </h4>
                     <ul className="space-y-2">
                       {study.results.map((result, idx) => (
                         <li key={idx} className="flex items-start">
-                          <span className="text-purple-600 dark:text-purple-400 mr-2">✓</span>
-                          <span className="text-foreground/80">{result}</span>
+                          <span className="text-purple-600 dark:text-purple-400 mr-2 mt-0.5">✓</span>
+                          <span className="text-sm text-foreground/80 font-medium">{result}</span>
                         </li>
                       ))}
                     </ul>
@@ -87,6 +101,12 @@ const BusinessCaseStudies = () => {
               </CardContent>
             </Card>
           ))}
+        </div>
+
+        <div className="mt-12 text-center glass-card rounded-2xl p-8 max-w-3xl mx-auto border-l-4 border-purple-600">
+          <p className="text-lg text-foreground/80">
+            <span className="font-semibold text-purple-600">Ready for similar results?</span> Let's discuss how our proven frameworks can accelerate your business growth
+          </p>
         </div>
       </div>
     </section>

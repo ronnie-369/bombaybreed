@@ -18,34 +18,40 @@ const industries = [
 
 const IndustryExperience = () => {
   return (
-    <section className="py-20 bg-background">
+    <section className="py-20 bg-gradient-to-b from-background to-purple-50/20">
       <div className="container mx-auto px-4 max-w-6xl">
-        <div className="text-center mb-12">
+        <div className="text-center mb-16">
+          <div className="inline-flex items-center gap-2 bg-purple-100/50 px-4 py-2 rounded-full mb-6">
+            <span className="text-sm font-semibold text-purple-900">12+ Industries</span>
+          </div>
           <h2 className="section-title bg-gradient-to-r from-purple-600 via-purple-500 to-indigo-600 bg-clip-text text-transparent">
             Cross-Industry Expertise
           </h2>
           <p className="section-description max-w-3xl mx-auto">
-            Our diverse industry experience enables us to bring fresh perspectives and proven strategies 
-            to your unique business challenges
+            Diverse experience across sectors enables us to bring fresh perspectives, proven strategies, 
+            and cross-pollinated insights to your unique business challenges
           </p>
         </div>
 
-        <div className="flex flex-wrap justify-center gap-4 max-w-4xl mx-auto">
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 max-w-5xl mx-auto mb-12">
           {industries.map((industry, index) => (
-            <Badge 
-              key={index} 
-              variant="secondary" 
-              className="text-base py-2 px-6 hover:scale-105 transition-transform cursor-default bg-purple-100/50 text-purple-700 hover:bg-purple-200/50"
+            <div
+              key={index}
+              className="glass-card rounded-xl p-4 text-center hover-scale group animate-fade-in"
+              style={{animationDelay: `${index * 40}ms`}}
             >
-              {industry}
-            </Badge>
+              <span className="text-sm font-medium text-foreground group-hover:text-purple-600 transition-colors">
+                {industry}
+              </span>
+            </div>
           ))}
         </div>
 
-        <div className="mt-16 text-center">
-          <p className="text-lg text-foreground/70 max-w-2xl mx-auto">
-            Our adaptable frameworks and methodologies have been successfully applied across these sectors, 
-            delivering measurable results and sustainable growth.
+        <div className="glass-card rounded-2xl p-8 max-w-3xl mx-auto border-l-4 border-purple-600">
+          <p className="text-lg text-center text-foreground/80 leading-relaxed">
+            Our adaptable frameworks and proven methodologies have delivered{' '}
+            <span className="font-semibold text-purple-600">measurable results and sustainable growth</span>{' '}
+            across Fortune 500 enterprises, fast-growing startups, and mission-driven organizations
           </p>
         </div>
       </div>

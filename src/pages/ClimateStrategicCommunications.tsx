@@ -9,6 +9,7 @@ import Services from '@/components/Services';
 import CTABanner from '@/components/CTABanner';
 import Expertise from '@/components/Expertise';
 import CaseStudies from '@/components/CaseStudies';
+import TrustSignals from '@/components/TrustSignals';
 import Value from '@/components/Value';
 import About from '@/components/About';
 import StakeholderEcosystemWheel from '@/components/StakeholderEcosystemWheel';
@@ -30,6 +31,7 @@ const ClimateStrategicCommunications = () => {
       <Expertise />
       <CTABanner variant="expertise" />
       <CaseStudies />
+      <TrustSignals />
       <CTABanner variant="case-studies" />
       <Value />
       <About />
