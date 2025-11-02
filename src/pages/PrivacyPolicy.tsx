@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import Header from '@/components/Header';
 import Contact from '@/components/Contact';
+import Footer from '@/components/Footer';
 import { ArrowLeft } from 'lucide-react';
 
 const PrivacyPolicy = () => {
@@ -186,6 +187,7 @@ const PrivacyPolicy = () => {
       </main>
 
       <Contact />
+      <Footer />
     </div>
   );
 };

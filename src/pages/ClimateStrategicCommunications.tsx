@@ -19,6 +19,7 @@ import Contact from '@/components/Contact';
 import StickyCTA from '@/components/StickyCTA';
 import VideoSection from '@/components/VideoSection';
 import VideoTestimonials from '@/components/VideoTestimonials';
+import Footer from '@/components/Footer';
 
 const ClimateStrategicCommunications = () => {
   return (
@@ -60,6 +61,7 @@ const ClimateStrategicCommunications = () => {
       <Endorsements />
       <Newsletter id="newsletter" />
       <Contact />
+      <Footer />
       <StickyCTA variant="download" />
     </div>
   );

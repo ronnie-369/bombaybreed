@@ -8,6 +8,7 @@ import Contact from '@/components/Contact';
 import ClimateDeskCarousel from '@/components/ClimateDeskCarousel';
 import CollapsibleSections from '@/components/CollapsibleSections';
 import FloatingInquiryForm from '@/components/FloatingInquiryForm';
+import Footer from '@/components/Footer';
 import climateDeskHero from '@/assets/climate-desk-hero.png';
 
 const ClimateDesk = () => {
@@ -49,6 +50,7 @@ const ClimateDesk = () => {
       <Endorsements />
       <Newsletter />
       <Contact />
+      <Footer />
       <FloatingInquiryForm />
     </div>
   );

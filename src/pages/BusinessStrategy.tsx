@@ -11,6 +11,7 @@ import Newsletter from '@/components/Newsletter';
 import StickyCTA from '@/components/StickyCTA';
 import VideoSection from '@/components/VideoSection';
 import ROICalculator from '@/components/tools/ROICalculator';
+import Footer from '@/components/Footer';
 
 const BusinessStrategy = () => {
   return (
@@ -43,6 +44,7 @@ const BusinessStrategy = () => {
       <BusinessAbout />
       <Contact />
       <Newsletter />
+      <Footer />
       <StickyCTA variant="schedule" />
     </div>
   );

@@ -1,6 +1,7 @@
 import React from 'react';
 import Header from '@/components/Header';
 import LeadCaptureForm from '@/components/shared/LeadCaptureForm';
+import Footer from '@/components/Footer';
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Users, Target, TrendingUp, Lightbulb } from 'lucide-react';
@@ -139,6 +140,7 @@ const GrowthRooms = () => {
           />
         </div>
       </section>
+      <Footer />
     </div>
   );
 };

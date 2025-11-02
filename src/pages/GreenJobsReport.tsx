@@ -1,6 +1,7 @@
 import React from 'react';
 import Header from '@/components/Header';
 import LeadCaptureForm from '@/components/shared/LeadCaptureForm';
+import Footer from '@/components/Footer';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Users, TrendingUp, MapPin, GraduationCap, DollarSign, Calendar } from 'lucide-react';
@@ -220,6 +221,7 @@ const GreenJobsReport = () => {
           />
         </div>
       </section>
+      <Footer />
     </div>
   );
 };

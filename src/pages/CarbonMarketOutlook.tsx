@@ -1,6 +1,7 @@
 import React from 'react';
 import Header from '@/components/Header';
 import LeadCaptureForm from '@/components/shared/LeadCaptureForm';
+import Footer from '@/components/Footer';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { TrendingUp, DollarSign, BarChart3, Target, Building, Zap } from 'lucide-react';
@@ -235,6 +236,7 @@ const CarbonMarketOutlook = () => {
           />
         </div>
       </section>
+      <Footer />
     </div>
   );
 };

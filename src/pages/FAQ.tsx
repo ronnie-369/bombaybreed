@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { ArrowLeft } from 'lucide-react';
 import Header from '@/components/Header';
 import Contact from '@/components/Contact';
+import Footer from '@/components/Footer';
 import {
   Accordion,
   AccordionContent,
@@ -124,6 +125,7 @@ const FAQ = () => {
       </main>
 
       <Contact />
+      <Footer />
     </div>
   );
 };
