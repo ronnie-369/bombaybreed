@@ -8,7 +8,7 @@ import FAQSection from '@/components/FAQSection';
 
 const FAQ = () => {
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-background reduced-text-size">
       <Header />
       
       <main className="pt-24 pb-16">

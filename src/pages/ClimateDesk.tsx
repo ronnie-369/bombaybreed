@@ -13,7 +13,7 @@ import climateDeskHero from '@/assets/climate-desk-hero.png';
 
 const ClimateDesk = () => {
   return (
-    <div className="min-h-screen bg-bombay-background">
+    <div className="min-h-screen bg-bombay-background reduced-text-size">
       <Header />
       
       {/* Hero Section */}

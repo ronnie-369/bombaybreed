@@ -15,7 +15,7 @@ import Footer from '@/components/Footer';
 
 const BusinessStrategy = () => {
   return (
-    <div className="min-h-screen bg-gradient-to-b from-purple-50/30 to-background">
+    <div className="min-h-screen bg-gradient-to-b from-purple-50/30 to-background reduced-text-size">
       <Header />
       <BusinessHero />
       <BusinessServices />

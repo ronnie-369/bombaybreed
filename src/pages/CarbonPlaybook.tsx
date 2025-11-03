@@ -62,7 +62,7 @@ const CarbonPlaybook = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-bombay-background">
+    <div className="min-h-screen bg-bombay-background reduced-text-size">
       <Header />
       
       {/* Hero Section */}

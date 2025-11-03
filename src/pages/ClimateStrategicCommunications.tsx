@@ -23,7 +23,7 @@ import Footer from '@/components/Footer';
 
 const ClimateStrategicCommunications = () => {
   return (
-    <div className="min-h-screen bg-bombay-background">
+    <div className="min-h-screen bg-bombay-background reduced-text-size">
       <Header />
       <ClimateHero />
       <DifferentiationBanner />

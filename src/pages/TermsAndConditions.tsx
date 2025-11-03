@@ -5,7 +5,7 @@ import Footer from '@/components/Footer';
 
 const TermsAndConditions = () => {
   return (
-    <div className="min-h-screen bg-gradient-to-b from-background to-muted/20 py-16 px-4">
+    <div className="min-h-screen bg-gradient-to-b from-background to-muted/20 py-16 px-4 reduced-text-size">
       <div className="container mx-auto max-w-4xl">
         <Link 
           to="/" 
