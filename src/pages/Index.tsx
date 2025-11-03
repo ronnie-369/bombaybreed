@@ -5,6 +5,7 @@ import Footer from '@/components/Footer';
 import StickyCTA from '@/components/StickyCTA';
 import VideoTestimonials from '@/components/VideoTestimonials';
 import AssessmentQuiz from '@/components/tools/AssessmentQuiz';
+import FAQSection from '@/components/FAQSection';
 
 const Index = () => {
   const navItems = [
@@ -113,6 +114,8 @@ const Index = () => {
       <VideoTestimonials />
       
       <AssessmentQuiz />
+      
+      <FAQSection />
       
       <Footer />
       <StickyCTA variant="contact" />
