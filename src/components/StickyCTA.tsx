@@ -3,6 +3,7 @@ import { Button } from '@/components/ui/button';
 import { ArrowRight, Phone } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { trackConversion } from '@/utils/analytics';
+import BookingDialog from '@/components/BookingDialog';
 
 interface SticyCTAProps {
   variant?: 'contact' | 'download' | 'schedule';
@@ -14,6 +15,7 @@ const StickyCTA: React.FC<SticyCTAProps> = ({
   scrollThreshold = 400 
 }) => {
   const [isVisible, setIsVisible] = useState(false);
+  const [bookingOpen, setBookingOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -43,9 +45,12 @@ const StickyCTA: React.FC<SticyCTAProps> = ({
         };
       case 'schedule':
         return {
-          text: 'Schedule Consultation',
+          text: 'Book a Meeting',
           icon: <Phone className="h-4 w-4" />,
-          action: () => scrollToSection('contact')
+          action: () => {
+            setBookingOpen(true);
+            trackConversion.ctaClick('Book a Meeting', 'sticky_cta_schedule');
+          }
         };
       default:
         return {
@@ -59,35 +64,42 @@ const StickyCTA: React.FC<SticyCTAProps> = ({
   const content = getContent();
 
   return (
-    <div
-      className={cn(
-        "fixed bottom-0 left-0 right-0 z-40 transition-transform duration-300 ease-out",
-        isVisible ? "translate-y-0" : "translate-y-full"
-      )}
-    >
-      <div className="bg-gradient-to-r from-primary via-primary/95 to-primary backdrop-blur-md border-t border-primary/20 shadow-2xl">
-        <div className="container mx-auto px-4 py-3">
-          <div className="flex items-center justify-between gap-4 max-w-6xl mx-auto">
-            <div className="hidden md:block">
-              <p className="text-white font-semibold text-sm">
-                Ready to transform your sustainability strategy?
-              </p>
-              <p className="text-white/80 text-xs">
-                Join 50+ leading organizations building credible climate narratives
-              </p>
+    <>
+      <BookingDialog 
+        open={bookingOpen} 
+        onOpenChange={setBookingOpen}
+        source="sticky_cta_schedule"
+      />
+      <div
+        className={cn(
+          "fixed bottom-0 left-0 right-0 z-40 transition-transform duration-300 ease-out",
+          isVisible ? "translate-y-0" : "translate-y-full"
+        )}
+      >
+        <div className="bg-gradient-to-r from-primary via-primary/95 to-primary backdrop-blur-md border-t border-primary/20 shadow-2xl">
+          <div className="container mx-auto px-4 py-3">
+            <div className="flex items-center justify-between gap-4 max-w-6xl mx-auto">
+              <div className="hidden md:block">
+                <p className="text-white font-semibold text-sm">
+                  Ready to transform your sustainability strategy?
+                </p>
+                <p className="text-white/80 text-xs">
+                  Join 50+ leading organizations building credible climate narratives
+                </p>
+              </div>
+              <Button 
+                onClick={content.action}
+                size="lg"
+                className="bg-white text-primary hover:bg-white/90 font-semibold shadow-lg hover:shadow-xl transition-all duration-200 ml-auto"
+              >
+                {content.text}
+                {content.icon}
+              </Button>
             </div>
-            <Button 
-              onClick={content.action}
-              size="lg"
-              className="bg-white text-primary hover:bg-white/90 font-semibold shadow-lg hover:shadow-xl transition-all duration-200 ml-auto"
-            >
-              {content.text}
-              {content.icon}
-            </Button>
           </div>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 

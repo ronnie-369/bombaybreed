@@ -1,6 +1,6 @@
 
-import React from 'react';
-import { MapPin, Phone, Mail, Linkedin, Twitter } from 'lucide-react';
+import React, { useState } from 'react';
+import { MapPin, Phone, Mail, Linkedin, Twitter, Calendar } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
@@ -11,6 +11,7 @@ import * as z from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useInView } from '@/hooks/use-in-view';
 import { trackConversion } from '@/utils/analytics';
+import BookingDialog from '@/components/BookingDialog';
 
 const formSchema = z.object({
   name: z.string().min(2, {
@@ -30,6 +31,7 @@ type FormValues = z.infer<typeof formSchema>;
 const Contact = () => {
   const { toast } = useToast();
   const { ref: pricingRef, isInView: pricingInView } = useInView();
+  const [bookingOpen, setBookingOpen] = useState(false);
   
   const form = useForm<FormValues>({
     resolver: zodResolver(formSchema),
@@ -183,11 +185,31 @@ const Contact = () => {
           
           <div className="glass-card bg-blue-500/10 rounded-2xl p-6 md:p-8 h-fit hover-scale">
             <div className="mb-6">
+              <Button
+                onClick={() => {
+                  setBookingOpen(true);
+                  trackConversion.ctaClick('Book a Meeting', 'contact_section_booking');
+                }}
+                variant="gradient"
+                size="lg"
+                className="w-full mb-4"
+              >
+                <Calendar className="h-5 w-5" />
+                Book a Meeting
+              </Button>
+              <div className="text-center mb-4">
+                <span className="text-sm text-foreground/60">Or send us a message below</span>
+              </div>
               <h3 className="text-xl font-heading font-semibold mb-2 text-foreground">Get Expert Guidance</h3>
               <p className="text-sm text-foreground/70">
                 Share your sustainability communications challenge—we'll respond within 24 hours
               </p>
             </div>
+            <BookingDialog 
+              open={bookingOpen} 
+              onOpenChange={setBookingOpen}
+              source="contact_section_booking"
+            />
             <Form {...form}>
               <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
