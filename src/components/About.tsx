@@ -1,43 +1,33 @@
 import React from 'react';
-import { Check, LinkedinIcon, ArrowRight } from 'lucide-react';
+import { Check, LinkedinIcon } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { climateDesk } from '@/config/stats';
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
 
 
 const About = () => {
-
   const expertise = ["Proven Expertise", "Strategic Insighting", "Data-Led Approach", "Risk Management", "Stakeholder Engagement", "Innovation in Communication", "Tracking Compliance & Standards", "Cross-Functional Collaboration", "Long-term Vision"];
   
   const experience = [{
-    area: "Creative Expression",
-    years: 12,
-    label: "12 yrs"
+    area: "Integrated Strategic Communications & Brand Stewardship",
+    years: "18 years"
   }, {
-    area: "Brand Marketing",
-    years: 23,
-    label: "23 yrs"
-  }, {
-    area: "Business Leadership",
-    years: 15,
-    label: "15 yrs"
-  }, {
-    area: "Motherhood",
-    years: 15,
-    label: "15 yrs"
+    area: "C-Suite Management & Strategic Business Leadership",
+    years: "11 years"
   }, {
     area: "Climate Marketing",
-    years: 2.5,
-    label: "2.5 yrs"
+    years: "2 years"
+  }, {
+    area: "Motherhood",
+    years: "13 years"
+  }, {
+    area: "Creative Expression",
+    years: "22 years"
   }];
 
-  const maxYears = 30;
-
-  // Use award ceremony image
-  const portraitUrl = "https://zjiwmdrtuhsrymsuvpfb.supabase.co/storage/v1/object/public/brand%20assets/5Q2A8758.jpg";
+  // Use environment variable for image or fallback to uploaded portrait
+  const portraitUrl = import.meta.env.VITE_PORTRAIT_URL || "/lovable-uploads/76901386-d547-4a2e-b06b-2b2f1420a922.png";
 
   return (
-    <section id="about" className="section-padding bg-[rgba(245,158,11,0.15)]">
+    <section id="about" className="section-padding bg-background">
       <div className="container mx-auto">
         {/* Editorial Hero Section */}
         <div className="grid grid-cols-1 lg:grid-cols-5 gap-16 items-start mb-24">
@@ -45,8 +35,8 @@ const About = () => {
           <div className="lg:col-span-3 space-y-8">
             <div className="space-y-6">
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-heading font-bold leading-tight">
-                Snowballing Competence Now in{' '}
-                <span className="text-gradient">Carbon Markets and Energy Transition</span>
+                A Strong History of{' '}
+                <span className="text-gradient">C-suite Advisory</span>
               </h1>
               
               <div className="w-24 h-1 bg-gradient-to-r from-primary to-accent"></div>
@@ -58,15 +48,11 @@ const About = () => {
 
             <div className="space-y-6 max-w-none">
               <p className="text-body-sm text-foreground/80">
-                Theresa has been a steady yet dynamic influence with CEOs and CXOs (CFOs, COOs, CSOs, CMOs) for over a greater part of two decades. She has led advertising agencies, consulted with KPMG India, worked with the senior leadership at Microsoft India, before shifting her focus to Climate Action. Today, she leads the brand and marketing department of a full stack carbon company while also serving as the steady journalistic partner of a global climate ambassador with a focus on India.
+                Theresa has been a steady yet dynamic influence with CEOs and CXOs (CFOs, COOs, CSOs, CMOs) for over a decade. She has led advertising agencies, consulted with KPMG India, worked with the senior leadership at Microsoft India, before shifting her focus to Climate Action.
               </p>
               
               <p className="text-body-sm text-foreground/80">
-                Possessing an easy-going yet highly professional demeanour, <span className="font-bold shine-text">Theresa is heavy on impact to bottomline and hard on effectiveness metrics</span>. She is a student of climate sciences, mythology, behaviour studies, socio-economics, business movements, cultural trends and an active investor in the stock market.
-              </p>
-
-              <p className="text-body-sm text-foreground/80">
-                Through The Climate Desk publication, she reaches <span className="font-bold shine-text">{climateDesk.subscriberText} subscribers from around the world</span>, sharing insights and driving thought leadership in sustainability communications. She regularly holds webinars and facilitates industry knowledge sharing and ecosystem building efforts, connecting stakeholders across the sustainability landscape.
+                Possessing an easy-going yet highly professional demeanour, Theresa is heavy on impact to bottomline and hard on effectiveness metrics. She is a student of climate sciences, mythology, behaviour studies, socio-economics, business movements, cultural trends and an active investor in the stock market.
               </p>
               
               <p className="text-body-sm text-foreground/80">
@@ -93,12 +79,11 @@ const About = () => {
               
               {/* Main Portrait Container */}
               <div className="relative bg-white rounded-2xl overflow-hidden shadow-2xl">
-                <div className="aspect-[4/5] relative overflow-hidden">
+                <div className="aspect-[4/5] relative">
                   <img 
                     src={portraitUrl}
-                    alt="Theresa Ronnie receiving award - Professional recognition"
-                    className="w-full h-full object-cover"
-                    style={{ objectPosition: 'center 40%', transform: 'scale(1.3)' }}
+                    alt="Theresa Ronnie - Sustainability Communications Expert"
+                    className="w-full h-full object-cover object-center"
                     onError={(e) => {
                       // Fallback to a placeholder if image fails to load
                       e.currentTarget.src = "/public/lovable-uploads/placeholder-portrait.jpg";
@@ -121,17 +106,11 @@ const About = () => {
           </div>
         </div>
 
-        {/* Collapsible Sections */}
-        <Accordion type="single" collapsible className="w-full space-y-4">
-          {/* The Name Section */}
-          <AccordionItem value="name" className="border rounded-lg px-6 bg-card">
-            <AccordionTrigger className="text-sm md:text-base font-heading hover:no-underline">
-              What's in a name?
-            </AccordionTrigger>
-            <AccordionContent className="text-sm">
-            <div className="grid grid-cols-1 lg:grid-cols-5 gap-16 items-start mt-8">
+        {/* The Name Section */}
+        <div className="mb-24">
+            <div className="grid grid-cols-1 lg:grid-cols-5 gap-16 items-start">
             {/* Left Column - Logo */}
-            <div className="lg:col-span-2">
+            <div className="lg:col-span-3">
               <div className="relative group">
                 {/* Background Elements */}
                 <div className="absolute -inset-4 bg-gradient-to-br from-primary/20 via-accent/10 to-secondary/30 rounded-3xl blur-2xl"></div>
@@ -139,7 +118,7 @@ const About = () => {
                 
                 {/* Main Logo Container */}
                 <div className="relative bg-white rounded-2xl overflow-hidden shadow-2xl">
-                  <div className="aspect-[3/4] relative">
+                  <div className="aspect-square relative">
                     <img 
                       src="https://zjiwmdrtuhsrymsuvpfb.supabase.co/storage/v1/object/public/brand%20assets/466784065_10159926171046216_7796875165911313074_n.jpg"
                       alt="Bombay Breed Consulting"
@@ -162,8 +141,15 @@ const About = () => {
             </div>
 
             {/* Right Column - Content */}
-            <div className="lg:col-span-3 space-y-8">
+            <div className="lg:col-span-2 space-y-8">
             <div className="space-y-6">
+                <h1 className="text-4xl md:text-5xl lg:text-6xl font-heading font-bold leading-tight">
+                  What's{' '}
+                  <span className="text-gradient">in a name</span>?
+                </h1>
+                
+                <div className="w-24 h-1 bg-gradient-to-r from-primary to-accent"></div>
+                
                 <p className="text-lede text-muted-foreground">
                   A tribute to an unlikely guardian and a reminder that true strength can come in unexpected forms
                 </p>
@@ -171,168 +157,69 @@ const About = () => {
 
               <div className="space-y-6 max-w-none">
                 <p className="text-body-sm text-foreground/80">
-                  Named after the Bombay Breed—a cat known for natural curiosity, remarkable adaptability, and fierce protectiveness. This consulting practice embodies those same traits.
+                  The name comes from a cat. A Bombay Breed that once adopted me and my yet-to-be-born child. For the months leading up to his birth—and through his first steps into the world—this cat was our quiet guardian. Watchful. Protective. Steady. And then, one day, it left. Off to roam the world, leaving behind its imprint of resilience and fierce loyalty.
                 </p>
-
+                
                 <p className="text-body-sm text-foreground/80 font-medium text-primary">
-                  Curious by nature. Adaptable in approach. Fiercely protective of what matters—your reputation, your stakeholders, your future.
+                  Bombay Breed Consulting carries that same spirit. Rooted. Protective of what matters. Restless in pursuit of what's next. A tribute to that unlikely guardian—and a reminder that true strength can come in unexpected forms.
                 </p>
               </div>
             </div>
           </div>
-            </AccordionContent>
-          </AccordionItem>
+        </div>
 
+        {/* Experience & Expertise Grid */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
           {/* Experience Section */}
-          <AccordionItem value="experience" className="border rounded-lg px-6 bg-card">
-            <AccordionTrigger className="text-sm md:text-base font-heading hover:no-underline">
-              Experience
-            </AccordionTrigger>
-            <AccordionContent className="text-sm">
-              <div className="space-y-6 mt-8">
-                {experience.map((item, index) => (
-                  <div key={index} className="space-y-2">
-                    <div className="flex items-center gap-4">
-                      <span className="font-medium text-foreground min-w-[200px] text-sm">{item.area}</span>
-                      <div className="flex-1 flex items-center gap-3">
-                        <div className="flex-1 bg-muted/30 rounded-full h-8 overflow-hidden">
-                          <div 
-                            className="h-full bg-gradient-to-r from-primary to-accent rounded-full transition-all duration-500 flex items-center justify-end px-3"
-                            style={{ width: `${(item.years / maxYears) * 100}%` }}
-                          >
-                            <span className="text-xs font-semibold text-white whitespace-nowrap">{item.label}</span>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </AccordionContent>
-          </AccordionItem>
+          <div className="space-y-6">
+            <h2 className="text-4xl md:text-5xl lg:text-6xl font-heading font-bold leading-tight">
+              <span className="text-gradient">Experience</span>
+            </h2>
+            <div className="space-y-4">
+              {experience.map((item, index) => (
+                <div key={index} className="flex justify-between items-center py-4 border-b border-border/50 hover:border-border transition-colors">
+                  <span className="font-medium text-foreground pr-4">{item.area}</span>
+                  <span className="text-primary font-semibold whitespace-nowrap">{item.years}</span>
+                </div>
+              ))}
+            </div>
+          </div>
 
           {/* The X Factor Section */}
-          <AccordionItem value="xfactor" className="border rounded-lg px-6 bg-card">
-          <AccordionTrigger className="text-sm md:text-base font-heading hover:no-underline">
-            The X Factor
-          </AccordionTrigger>
-          <AccordionContent className="text-sm">
-              {/* Flow Diagram */}
-              <div className="space-y-8 py-8">
-                {/* Top Row - Main Process Boxes */}
-                <div className="flex items-center justify-center gap-4 md:gap-6 flex-wrap px-4">
-                  <div className="flex flex-col items-center gap-3">
-                    <div className="border-2 border-foreground rounded-xl px-6 py-3 bg-background">
-                      <span className="text-sm md:text-base font-bold text-foreground whitespace-nowrap">INSIGHT</span>
-                    </div>
-                    <div className="w-px h-8 bg-foreground/30"></div>
+          <div className="space-y-6">
+            <h2 className="text-4xl md:text-5xl lg:text-6xl font-heading font-bold leading-tight">
+              <span className="text-gradient">The X Factor</span>
+            </h2>
+            <div className="grid grid-cols-1 gap-4">
+              {expertise.map((item, index) => (
+                <div key={index} className="flex items-start gap-3 group">
+                  <div className="mt-1 p-1 rounded-full bg-primary/10 group-hover:bg-primary/20 transition-colors">
+                    <Check className="h-4 w-4 text-primary shrink-0" />
                   </div>
-                  
-                  <div className="flex flex-col items-center gap-3">
-                    <div className="border-2 border-foreground rounded-xl px-6 py-3 bg-background">
-                      <span className="text-sm md:text-base font-bold text-foreground whitespace-nowrap">STRATEGY</span>
-                    </div>
-                    <div className="w-px h-8 bg-foreground/30"></div>
-                  </div>
-                  
-                  <div className="flex flex-col items-center gap-3">
-                    <div className="border-2 border-foreground rounded-xl px-6 py-3 bg-background">
-                      <span className="text-sm md:text-base font-bold text-foreground whitespace-nowrap">INNOVATION</span>
-                    </div>
-                    <div className="w-px h-8 bg-foreground/30"></div>
-                  </div>
-                  
-                  <div className="flex flex-col items-center gap-3">
-                    <div className="border-2 border-foreground rounded-xl px-6 py-3 bg-background">
-                      <span className="text-sm md:text-base font-bold text-foreground whitespace-nowrap">EXECUTION</span>
-                    </div>
-                    <div className="w-px h-8 bg-foreground/30"></div>
-                  </div>
-                  
-                  <div className="flex flex-col items-center gap-3">
-                    <div className="border-2 border-foreground rounded-xl px-6 py-3 bg-background">
-                      <span className="text-sm md:text-base font-bold text-foreground whitespace-nowrap">GOVERNANCE</span>
-                    </div>
-                    <div className="w-px h-8 bg-foreground/30"></div>
-                  </div>
-                  
-                  <div className="flex flex-col items-center gap-3">
-                    <div className="border-2 border-foreground rounded-xl px-6 py-3 bg-background">
-                      <span className="text-sm md:text-base font-bold text-foreground whitespace-nowrap">IMPACT</span>
-                    </div>
-                    <div className="w-px h-8 bg-foreground/30"></div>
-                  </div>
+                  <span className="text-foreground group-hover:text-primary transition-colors">{item}</span>
                 </div>
-                
-                {/* Middle Row - Chevron Flow with Methodology */}
-                <div className="relative overflow-x-auto px-4">
-                  <div className="flex items-center justify-center gap-0 min-w-max mx-auto">
-                    {/* Chevron 1 */}
-                    <div className="relative flex items-center justify-center border-2 border-foreground bg-background px-6 py-4 min-w-[140px] md:min-w-[180px]"
-                         style={{clipPath: 'polygon(0 0, calc(100% - 20px) 0, 100% 50%, calc(100% - 20px) 100%, 0 100%, 20px 50%)'}}>
-                      <span className="text-xs md:text-sm font-semibold text-foreground text-center whitespace-nowrap">Strategic<br/>Thinking</span>
-                    </div>
-                    
-                    {/* Chevron 2 */}
-                    <div className="relative flex items-center justify-center border-2 border-l-0 border-foreground bg-background px-6 py-4 min-w-[140px] md:min-w-[180px] -ml-5"
-                         style={{clipPath: 'polygon(0 0, calc(100% - 20px) 0, 100% 50%, calc(100% - 20px) 100%, 0 100%, 20px 50%)'}}>
-                      <span className="text-xs md:text-sm font-semibold text-foreground text-center whitespace-nowrap">Proven<br/>Expertise</span>
-                    </div>
-                    
-                    {/* Chevron 3 */}
-                    <div className="relative flex items-center justify-center border-2 border-l-0 border-foreground bg-background px-6 py-4 min-w-[140px] md:min-w-[180px] -ml-5"
-                         style={{clipPath: 'polygon(0 0, calc(100% - 20px) 0, 100% 50%, calc(100% - 20px) 100%, 0 100%, 20px 50%)'}}>
-                      <span className="text-xs md:text-sm font-semibold text-foreground text-center whitespace-nowrap">Communicati-<br/>on Innovation</span>
-                    </div>
-                    
-                    {/* Chevron 4 */}
-                    <div className="relative flex items-center justify-center border-2 border-l-0 border-foreground bg-background px-6 py-4 min-w-[140px] md:min-w-[180px] -ml-5"
-                         style={{clipPath: 'polygon(0 0, calc(100% - 20px) 0, 100% 50%, calc(100% - 20px) 100%, 0 100%, 20px 50%)'}}>
-                      <span className="text-xs md:text-sm font-semibold text-foreground text-center whitespace-nowrap">Compliance<br/>& Risk</span>
-                    </div>
-                    
-                    {/* Final Arrow */}
-                    <div className="relative flex items-center justify-center border-2 border-l-0 border-foreground bg-background px-4 py-4 w-[60px] md:w-[80px] -ml-5"
-                         style={{clipPath: 'polygon(0 0, 60% 0, 100% 50%, 60% 100%, 0 100%, 20px 50%)'}}>
-                      <ArrowRight className="h-5 w-5 text-foreground ml-2" />
-                    </div>
-                  </div>
-                </div>
-                
-                {/* Bottom Row - Supporting Elements with Connections */}
-                <div className="flex items-start justify-center gap-4 md:gap-8 flex-wrap px-4">
-                  <div className="flex flex-col items-center gap-2">
-                    <div className="w-px h-6 bg-foreground/30"></div>
-                    <span className="text-xs md:text-sm text-muted-foreground text-center whitespace-nowrap">Strategic<br/>Thinking</span>
-                  </div>
-                  
-                  <div className="flex flex-col items-center gap-2">
-                    <div className="w-px h-6 bg-foreground/30"></div>
-                    <span className="text-xs md:text-sm text-muted-foreground text-center whitespace-nowrap">Proven<br/>Expertise</span>
-                  </div>
-                  
-                  <div className="flex flex-col items-center gap-2">
-                    <div className="w-px h-6 bg-foreground/30"></div>
-                    <div className="text-xs md:text-sm text-muted-foreground text-center">
-                      <div>• Cross-Func Collab</div>
-                      <div>• Stakeholder Trust</div>
-                    </div>
-                  </div>
-                  
-                  <div className="flex flex-col items-center gap-2">
-                    <div className="w-px h-6 bg-foreground/30"></div>
-                    <span className="text-xs md:text-sm text-muted-foreground text-center whitespace-nowrap">Compliance<br/>& Risk</span>
-                  </div>
-                  
-                  <div className="flex flex-col items-center gap-2">
-                    <div className="w-px h-6 bg-foreground/30"></div>
-                    <span className="text-xs md:text-sm text-muted-foreground text-center whitespace-nowrap">Long-term<br/>Vision</span>
-                  </div>
-                </div>
-              </div>
-            </AccordionContent>
-          </AccordionItem>
-        </Accordion>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        {/* Resources Section */}
+        <div className="mt-16 pt-16 border-t border-border/50">
+          <div className="space-y-6">
+            <h3 className="section-title text-2xl font-heading">Resources</h3>
+            <div className="space-y-4">
+              <Button asChild variant="outline" size="lg" className="w-full sm:w-auto">
+                <a 
+                  href="https://zjiwmdrtuhsrymsuvpfb.supabase.co/storage/v1/object/sign/Reports/growth%20rooms%20.pdf?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV83ZjY0YjIzNy1hM2RlLTQ3NjctOGZiMC0yYjY1MjE4YjRkODkiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJSZXBvcnRzL2dyb3d0aCByb29tcyAucGRmIiwiaWF0IjoxNzU5MjQ5NDYwLCJleHAiOjIwNzQ2MDk0NjB9.w4Gyi6D21wCMXhNQbNOJgaoPIaRR1WQ3Z7wUl-xK_IY"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Growth Rooms Report
+                </a>
+              </Button>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
   );

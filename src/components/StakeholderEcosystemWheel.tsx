@@ -1,6 +1,5 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Users, Building2, DollarSign, Settings, MessageSquare, Lightbulb, TrendingUp, Shield, Scale, ShoppingCart, Truck, Heart } from 'lucide-react';
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
 
 const StakeholderEcosystemWheel = () => {
   const [hoveredStakeholder, setHoveredStakeholder] = useState<string | null>(null);
@@ -208,18 +207,15 @@ const StakeholderEcosystemWheel = () => {
   };
 
   return (
-    <section className="py-8 px-4 md:px-8 bg-[rgba(245,158,11,0.15)]">
+    <section className="py-20 px-4 md:px-8 bg-gradient-to-b from-background to-muted/20">
       <div className="container mx-auto text-center">
         <div className="max-w-6xl mx-auto">
-          <Accordion type="single" collapsible className="w-full space-y-4">
-            <AccordionItem value="stakeholder-ecosystem" className="border rounded-lg px-6 bg-card">
-              <AccordionTrigger className="text-sm md:text-base font-heading hover:no-underline">
-                Stakeholder Ecosystem
-              </AccordionTrigger>
-              <AccordionContent className="text-sm">
-                <p className="text-lg text-muted-foreground mb-12">
-                  Effective communication with diverse stakeholder groups requires tailored strategies and messaging.
-                </p>
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-heading font-bold leading-tight mb-4">
+            <span className="text-gradient">Stakeholder Ecosystem</span>
+          </h2>
+          <p className="text-lg text-muted-foreground mb-12">
+            Effective communication with diverse stakeholder groups requires tailored strategies and messaging.
+          </p>
 
           <div ref={containerRef} className="relative w-full flex justify-center">
             <div className="relative">
@@ -467,9 +463,6 @@ const StakeholderEcosystemWheel = () => {
           <div className="mt-8 text-sm text-muted-foreground">
             <p>Hover over each stakeholder group to learn about tailored communication strategies</p>
           </div>
-              </AccordionContent>
-            </AccordionItem>
-          </Accordion>
         </div>
       </div>
     </section>

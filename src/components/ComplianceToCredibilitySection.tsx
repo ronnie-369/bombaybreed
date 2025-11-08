@@ -12,10 +12,10 @@ const ComplianceToCredibilitySection = () => {
       <div className="container mx-auto">
         <div className="text-center max-w-4xl mx-auto mb-16">
           <h2 className="section-title gradient-accent">
-            Download The CXO Guide
+            Featured CXO Guide
           </h2>
           <p className="section-description">
-            Strategic frameworks to transform carbon compliance into competitive advantage
+            Strategic frameworks to transform carbon compliance into competitive advantage.
           </p>
         </div>
 
@@ -29,7 +29,7 @@ const ComplianceToCredibilitySection = () => {
                 From Compliance to Credibility
               </CardTitle>
               <CardDescription className="text-sm text-foreground/60">
-                From Compliance to Strategic Stakeholder Advantage
+                A CXO Guide to CCTS & CBAM
               </CardDescription>
             </CardHeader>
             <CardContent className="space-y-4">

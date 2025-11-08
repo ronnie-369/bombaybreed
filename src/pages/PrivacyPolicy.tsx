@@ -2,12 +2,11 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import Header from '@/components/Header';
 import Contact from '@/components/Contact';
-import Footer from '@/components/Footer';
 import { ArrowLeft } from 'lucide-react';
 
 const PrivacyPolicy = () => {
   return (
-    <div className="min-h-screen bg-background reduced-text-size">
+    <div className="min-h-screen bg-background">
       <Header />
       
       <main className="container mx-auto max-w-4xl px-4 py-24">
@@ -187,7 +186,6 @@ const PrivacyPolicy = () => {
       </main>
 
       <Contact />
-      <Footer />
     </div>
   );
 };

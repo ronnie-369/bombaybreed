@@ -1,65 +1,69 @@
 
 import React from 'react';
 import { BadgeCheck } from 'lucide-react';
+import { useInView } from '@/hooks/use-in-view';
+import { Link } from 'react-router-dom';
 
 const Value = () => {
+  const { ref: glowRef, isInView: glowInView } = useInView();
+  
   const benefits = [
-    {
-      title: "C-Suite Strategic Leadership",
-      description: "20+ years navigating boardroom priorities and executive decision-making",
-      metric: "2 decades"
-    },
-    {
-      title: "Government & Policy Expertise",
-      description: "Direct experience with regulators, bureaucrats, and international organizations",
-      metric: "Multi-sector"
-    },
-    {
-      title: "Solution-Oriented Problem Solving",
-      description: "Proven frameworks that transform complexity into executable strategies",
-      metric: "Results-driven"
-    },
-    {
-      title: "Cross-Domain Integration",
-      description: "Seamlessly bridge sustainability, communications, and business transformation",
-      metric: "Integrated approach"
-    }
+    "Accelerate Compliance and Disclosure Readiness",
+    "Strengthen Investor Confidence and Capital Access",
+    "Align Global Strategy with Local Execution",
+    "Mitigate Regulatory and Reputational Risk"
   ];
 
   return (
-    <section className="py-16 md:py-20 lg:py-24 px-4 md:px-8 lg:px-12 bg-gradient-to-b from-bombay-subtle/20 to-white animate-fade-in">
-      <div className="container mx-auto max-w-7xl">
-        <div className="text-center mb-12 md:mb-16">
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-heading font-bold gradient-accent">Why CXOs Choose <span className="whitespace-nowrap">Bombay Breed</span></h2>
-          <div className="w-16 h-1 bg-gradient-to-r from-primary to-accent rounded-full mx-auto mt-4 mb-6"></div>
-          <p className="text-base md:text-lg text-foreground/80 max-w-3xl mx-auto px-4">
-            For over two decades, we've partnered with CXOs, governments, and international organizations to solve complex business challenges—delivering measurable outcomes across sustainability, communications, and business transformation.
-          </p>
-        </div>
-        
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
-          {benefits.map((benefit, index) => (
-            <div 
-              key={index} 
-              className="glass-card rounded-xl p-6 hover-scale animate-fade-in group"
-              style={{animationDelay: `${index * 100}ms`}}
-            >
-              <div className="flex items-start gap-4">
-                <div className="bg-gradient-to-r from-primary to-accent p-2 rounded-full shadow-sm group-hover:shadow-md transition-shadow shrink-0">
-                  <BadgeCheck className="h-5 w-5 text-white" />
-                </div>
-                <div className="flex-1">
-                  <div className="flex items-center justify-between mb-2">
-                    <h3 className="text-lg font-heading font-semibold">{benefit.title}</h3>
-                    <span className="text-xs font-medium text-primary/70 bg-primary/10 px-2 py-1 rounded-full">
-                      {benefit.metric}
-                    </span>
+    <section className="py-20 px-4 md:px-8 bg-gradient-to-b from-bombay-subtle/20 to-white animate-fade-in">
+      <div className="container mx-auto">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+          <div>
+            <h2 className="section-title gradient-accent">Why CXOs Choose <span className="whitespace-nowrap">Bombay Breed</span></h2>
+            <div className="w-16 h-1 bg-gradient-to-r from-primary to-accent rounded-full mb-6"></div>
+            <p className="text-body-sm text-foreground/80 mb-8">
+              Global companies with Indian operations trust us to align their sustainability communications with international expectations while navigating local regulatory landscapes.
+            </p>
+            
+            <div className="space-y-4">
+              {benefits.map((benefit, index) => (
+                <div key={index} className="flex items-center animate-fade-in" style={{animationDelay: `${index * 100}ms`}}>
+                  <div className="bg-gradient-to-r from-primary to-accent p-2 rounded-full mr-3 shadow-sm">
+                    <BadgeCheck className="h-5 w-5 text-white" />
                   </div>
-                  <p className="text-sm text-foreground/70 leading-relaxed">{benefit.description}</p>
+                  <span className="text-body-sm font-medium">{benefit}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+          
+          <div className="relative">
+            <div className="absolute -inset-4 bg-gradient-to-tr from-primary/20 to-accent/20 rounded-3xl transform rotate-3 scale-105 blur-xl"></div>
+            <div className="relative">
+              <div className="glass-card rounded-3xl overflow-hidden shadow-xl p-8 hover-scale">
+                <h3 className="text-2xl font-heading font-bold mb-6 gradient-accent">The Imperative of Sustainability</h3>
+                <div className="space-y-4 text-body-sm text-foreground/80">
+                  <p>
+                    In today's business environment, ESG and therefore sustainability is non-negotiable. Stakeholders expect transparency and accountability, necessitating a robust approach to communicate your sustainability initiatives effectively.
+                  </p>
+                  <p>
+                    Governance frameworks and regulatory standards are continuously evolving, creating a challenging landscape for companies to navigate effectively. Excessive reporting can expose your business to accusations of greenwashing, while insufficient reporting may alienate key stakeholders.
+                  </p>
+                  <p>
+                    As the climate action landscape evolves with demanding targets and complex objectives, businesses must exhibit integrity, agility, and strategic foresight in their sustainability reporting to maintain a competitive edge.
+                  </p>
+                </div>
+                <div className="mt-8 text-center" ref={glowRef}>
+                  <Link 
+                    to="/compliance-to-credibility"
+                    className={`inline-block bg-gradient-to-r from-primary to-accent text-white font-medium px-6 py-3 rounded-full shadow-sm glow-card hover-scale transition-all duration-300 ${glowInView ? 'active' : ''}`}
+                  >
+                    Effective sustainability communication is a strategic advantage
+                  </Link>
                 </div>
               </div>
             </div>
-          ))}
+          </div>
         </div>
       </div>
     </section>

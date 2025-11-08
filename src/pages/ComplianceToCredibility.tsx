@@ -1,14 +1,13 @@
 import React from 'react';
 import Header from '@/components/Header';
 import LeadCaptureForm from '@/components/shared/LeadCaptureForm';
-import Footer from '@/components/Footer';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Shield, TrendingUp, Target, Users, Globe, BookOpen } from 'lucide-react';
 
 const ComplianceToCredibility = () => {
   return (
-    <div className="min-h-screen bg-bombay-background reduced-text-size">
+    <div className="min-h-screen bg-bombay-background">
       <Header />
       
       {/* Hero Section */}
@@ -88,6 +87,73 @@ const ComplianceToCredibility = () => {
         </div>
       </section>
 
+      {/* Case Studies & Frameworks */}
+      <section className="py-20 px-4 md:px-8 bg-gradient-to-b from-bombay-background to-white">
+        <div className="container mx-auto">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">Real-World Applications</h2>
+            <p className="text-body text-foreground/80 max-w-3xl mx-auto">
+              Sector-specific analysis and case studies showing how leading Indian companies are turning compliance into competitive advantage.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            {[
+              {
+                sector: "Steel & Manufacturing",
+                companies: ["Tata Steel", "JSW Steel"],
+                challenges: ["CBAM exposure", "Carbon intensity reporting", "Supply chain transparency"],
+                frameworks: "Emission disclosure protocols"
+              },
+              {
+                sector: "Textiles & Chemicals",
+                companies: ["Aditya Birla Group", "Reliance Industries"],
+                challenges: ["Scope 3 emissions", "Supplier compliance", "Brand reputation"],
+                frameworks: "Credible communication strategies"
+              },
+              {
+                sector: "Automotive",
+                companies: ["Maruti Suzuki", "Mahindra Group"],
+                challenges: ["EU export requirements", "Battery supply chains", "Lifecycle assessments"],
+                frameworks: "Stakeholder engagement models"
+              },
+              {
+                sector: "Power & Energy",
+                companies: ["NTPC", "Adani Green"],
+                challenges: ["CCTS participation", "Carbon credit monetization", "Regulatory alignment"],
+                frameworks: "Market positioning tactics"
+              }
+            ].map((study, index) => (
+              <Card key={index} className="hover:shadow-lg transition-shadow">
+                <CardHeader>
+                  <CardTitle className="text-xl text-slate-700">{study.sector}</CardTitle>
+                  <CardDescription className="text-sm font-medium">
+                    Featured: {study.companies.join(", ")}
+                  </CardDescription>
+                </CardHeader>
+                <CardContent className="space-y-4">
+                  <div>
+                    <h4 className="font-medium mb-2 text-sm text-foreground/70">Key Challenges</h4>
+                    <ul className="space-y-1">
+                      {study.challenges.map((challenge, challengeIndex) => (
+                        <li key={challengeIndex} className="flex items-center text-card">
+                          <span className="w-1.5 h-1.5 bg-slate-500 rounded-full mr-2"></span>
+                          {challenge}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                  <div className="pt-2 border-t border-gray-100">
+                    <p className="text-sm text-foreground/60">
+                      <span className="font-medium">Framework:</span> {study.frameworks}
+                    </p>
+                  </div>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </div>
+      </section>
 
       {/* Essential for Leaders */}
       <section className="py-20 px-4 md:px-8 bg-white">
@@ -133,7 +199,7 @@ const ComplianceToCredibility = () => {
       <section className="py-8 px-4 md:px-8 bg-white">
         <div className="container mx-auto text-center">
           <p className="text-sm text-foreground/60">
-            <span className="font-medium">The Climate Desk</span> - Strategic communications advisory for the emerging Indian carbon market
+            <span className="font-medium">Theresa Ronnie</span> - Strategic communications advisory for the emerging Indian carbon market
           </p>
         </div>
       </section>
@@ -154,7 +220,6 @@ const ComplianceToCredibility = () => {
           />
         </div>
       </section>
-      <Footer />
     </div>
   );
 };

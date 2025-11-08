@@ -3,10 +3,8 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Mail } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
-import { climateDesk } from '@/config/stats';
-import { trackConversion } from '@/utils/analytics';
 
-const Newsletter = ({ id }: { id?: string } = {}) => {
+const Newsletter = () => {
   const [email, setEmail] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const { toast } = useToast();
@@ -65,9 +63,6 @@ const Newsletter = ({ id }: { id?: string } = {}) => {
           description: "You'll receive updates from The Climate Desk.",
         });
         setEmail('');
-        
-        // Track email signup
-        trackConversion.emailSignup('newsletter_form');
       }
     } catch (error) {
       console.error('Newsletter subscription error:', error);
@@ -82,7 +77,7 @@ const Newsletter = ({ id }: { id?: string } = {}) => {
   };
 
   return (
-    <section id={id || "newsletter"} className="py-20 px-4 md:px-8 bg-gradient-to-r from-primary to-accent animate-fade-in">
+    <section className="py-20 px-4 md:px-8 bg-gradient-to-r from-primary to-accent animate-fade-in">
       <div className="container mx-auto text-center">
         <div className="max-w-2xl mx-auto">
           <div className="mb-6">
@@ -90,25 +85,11 @@ const Newsletter = ({ id }: { id?: string } = {}) => {
               <Mail className="h-12 w-12 text-white" />
             </div>
             <h2 className="text-3xl md:text-4xl font-heading font-bold text-white mb-4">
-              Join {climateDesk.subscriberCountFormatted}+ Climate Leaders
+              Subscribe to The Climate Desk
             </h2>
-            <p className="text-white/90 text-lg mb-4">
-              Get exclusive insights on carbon markets, India's energy transition, and sustainability communications—delivered weekly.
+            <p className="text-white/90 text-lg">
+              Get Theresa Ronnie's latest insights on jobs, carbon markets, and India's climate transition delivered to your inbox.
             </p>
-            <div className="flex flex-wrap justify-center gap-4 text-white/90 text-sm">
-              <span className="flex items-center gap-2">
-                <span className="w-1.5 h-1.5 bg-white rounded-full"></span>
-                Policy Analysis
-              </span>
-              <span className="flex items-center gap-2">
-                <span className="w-1.5 h-1.5 bg-white rounded-full"></span>
-                Market Trends
-              </span>
-              <span className="flex items-center gap-2">
-                <span className="w-1.5 h-1.5 bg-white rounded-full"></span>
-                Executive Insights
-              </span>
-            </div>
           </div>
           
           <div className="glass-card rounded-2xl p-6 max-w-md mx-auto">
@@ -132,17 +113,9 @@ const Newsletter = ({ id }: { id?: string } = {}) => {
             </form>
           </div>
           
-          <div className="mt-6 space-y-2">
-            <p className="text-white/80 text-sm font-medium">
-              ✓ Weekly insights from industry leaders
-            </p>
-            <p className="text-white/80 text-sm font-medium">
-              ✓ Exclusive research & market analysis
-            </p>
-            <p className="text-white/70 text-xs">
-              Trusted by {climateDesk.subscriberCountFormatted}+ sustainability professionals. Unsubscribe anytime.
-            </p>
-          </div>
+          <p className="text-white/70 text-sm mt-4">
+            Join 2,500+ sustainability professionals. Unsubscribe anytime.
+          </p>
         </div>
       </div>
     </section>

@@ -1,7 +1,6 @@
 import React from 'react';
 import Header from '@/components/Header';
 import LeadCaptureForm from '@/components/shared/LeadCaptureForm';
-import Footer from '@/components/Footer';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Zap, Target, Cog, Building2, Lightbulb, Calendar } from 'lucide-react';
@@ -58,7 +57,7 @@ const EnergyTransitionPlaybook = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-bombay-background reduced-text-size">
+    <div className="min-h-screen bg-bombay-background">
       <Header />
       
       {/* Hero Section */}
@@ -200,7 +199,7 @@ const EnergyTransitionPlaybook = () => {
       <section className="py-8 px-4 md:px-8 bg-white">
         <div className="container mx-auto text-center">
           <p className="text-sm text-foreground/60">
-            <span className="font-medium">The Climate Desk</span> - Strategic communications advisory for the emerging Indian carbon market
+            <span className="font-medium">Theresa Ronnie</span> - Strategic communications advisory for the emerging Indian carbon market
           </p>
         </div>
       </section>
@@ -221,7 +220,6 @@ const EnergyTransitionPlaybook = () => {
           />
         </div>
       </section>
-      <Footer />
     </div>
   );
 };
