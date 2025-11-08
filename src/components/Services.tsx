@@ -1,6 +1,7 @@
 
 import React from 'react';
 import { Shield, Zap, Trophy, Rocket, Star, ShieldCheck } from 'lucide-react';
+import BookingDialog from './BookingDialog';
 
 const ServiceCard = ({
   icon: Icon,
@@ -63,6 +64,16 @@ const Services = () => {
               description={service.description} 
             />
           ))}
+        </div>
+
+        <div className="mt-16 text-center max-w-2xl mx-auto glass-card rounded-xl p-8 animate-fade-in">
+          <h3 className="text-2xl md:text-3xl font-heading font-semibold mb-3 gradient-accent">
+            Ready to Transform Your ESG Strategy?
+          </h3>
+          <p className="text-note text-foreground/70 mb-6">
+            Schedule a consultation to discuss your sustainability communications needs
+          </p>
+          <BookingDialog />
         </div>
       </div>
     </section>

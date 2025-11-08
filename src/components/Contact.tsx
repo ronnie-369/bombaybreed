@@ -10,6 +10,7 @@ import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '
 import * as z from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useInView } from '@/hooks/use-in-view';
+import BookingDialog from './BookingDialog';
 
 const formSchema = z.object({
   name: z.string().min(2, {
@@ -156,6 +157,20 @@ const Contact = () => {
           </div>
           
           <div className="glass-card bg-white/10 rounded-2xl p-6 md:p-8 h-fit hover-scale">
+            <div className="text-center mb-6">
+              <p className="text-note text-white/80 mb-4">Prefer to book directly?</p>
+              <BookingDialog triggerText="Book a Meeting" />
+            </div>
+            
+            <div className="relative my-8">
+              <div className="absolute inset-0 flex items-center">
+                <span className="w-full border-t border-white/20"></span>
+              </div>
+              <div className="relative flex justify-center text-note">
+                <span className="bg-white/10 px-4 text-white/60">Or send us a message below</span>
+              </div>
+            </div>
+
             <h3 className="text-xl font-heading font-semibold mb-6">Send us a message</h3>
             <Form {...form}>
               <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
