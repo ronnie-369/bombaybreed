@@ -6,12 +6,8 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import ScrollToTop from "./components/ScrollToTop";
 import CookieBanner from "./components/CookieBanner";
 import Index from "./pages/Index";
-import GreenJobsReport from "./pages/GreenJobsReport";
-import CarbonMarketOutlook from "./pages/CarbonMarketOutlook";
-import CarbonPlaybook from "./pages/CarbonPlaybook";
-import ComplianceToCredibility from "./pages/ComplianceToCredibility";
-import EnergyTransitionPlaybook from "./pages/EnergyTransitionPlaybook";
-import GrowthRooms from "./pages/GrowthRooms";
+import Resources from "./pages/Resources";
+import Credentials from "./pages/Credentials";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
 import NotFound from "./pages/NotFound";
 import Auth from "./pages/Auth";
@@ -28,12 +24,8 @@ const App = () => (
         <ScrollToTop />
         <Routes>
           <Route path="/" element={<Index />} />
-          <Route path="/green-jobs-report" element={<GreenJobsReport />} />
-          <Route path="/carbon-market-outlook" element={<CarbonMarketOutlook />} />
-          <Route path="/carbon-playbook" element={<CarbonPlaybook />} />
-          <Route path="/compliance-to-credibility" element={<ComplianceToCredibility />} />
-          <Route path="/energy-transition-playbook" element={<EnergyTransitionPlaybook />} />
-          <Route path="/growth-rooms" element={<GrowthRooms />} />
+          <Route path="/resources" element={<Resources />} />
+          <Route path="/credentials" element={<Credentials />} />
           <Route path="/privacy-policy" element={<PrivacyPolicy />} />
           <Route path="/auth" element={<Auth />} />
           <Route path="/admin" element={<Admin />} />

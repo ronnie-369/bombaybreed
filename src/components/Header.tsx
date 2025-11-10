@@ -47,35 +47,23 @@ const Header = () => {
         </div>
 
         <nav className="hidden md:flex items-center space-x-8">
-          <Link to="/#services" className="text-foreground/80 hover:text-bombay story-link transition-colors">
-            Services
+          <Link to="/" className="text-foreground/80 hover:text-primary story-link transition-colors">
+            Home
           </Link>
-          <Link to="/#expertise" className="text-foreground/80 hover:text-bombay story-link transition-colors">
-            Expertise
+          <Link to="/resources" className="text-foreground/80 hover:text-primary story-link transition-colors">
+            Resources
           </Link>
-          <Link to="/#cases" className="text-foreground/80 hover:text-bombay story-link transition-colors">
-            Case Studies
+          <Link to="/credentials" className="text-foreground/80 hover:text-primary story-link transition-colors">
+            Credentials
           </Link>
-          <Link to="/#about" className="text-foreground/80 hover:text-bombay story-link transition-colors">
-            About
-          </Link>
-          <div className="flex space-x-4">
-            <a href="https://theclimatedesk.substack.com/" target="_blank" rel="noopener noreferrer" className="text-foreground/80 hover:text-bombay story-link transition-colors">
-              Blog
-            </a>
-            <span className="text-foreground/40">|</span>
-            <a href="https://www.linkedin.com/in/theresaronnie/" target="_blank" rel="noopener noreferrer" className="text-foreground/80 hover:text-bombay story-link transition-colors">
-              LinkedIn
-            </a>
-          </div>
           {location.pathname === '/' ? (
             <Button variant="gradient" className="px-6" onClick={scrollToContact}>
-              Contact Us
+              Contact
             </Button>
           ) : (
             <Link to="/#contact">
               <Button variant="gradient" className="px-6">
-                Contact Us
+                Contact
               </Button>
             </Link>
           )}
@@ -89,35 +77,23 @@ const Header = () => {
       {isMenuOpen && (
         <div className="md:hidden bg-white shadow-md absolute top-full left-0 right-0 z-40 animate-fade-in">
           <div className="container mx-auto px-4 py-4 flex flex-col space-y-4">
-            <Link to="/#services" className="text-foreground/80 hover:text-bombay transition-colors py-2" onClick={toggleMenu}>
-              Services
+            <Link to="/" className="text-foreground/80 hover:text-primary transition-colors py-2" onClick={toggleMenu}>
+              Home
             </Link>
-            <Link to="/#expertise" className="text-foreground/80 hover:text-bombay transition-colors py-2" onClick={toggleMenu}>
-              Expertise
+            <Link to="/resources" className="text-foreground/80 hover:text-primary transition-colors py-2" onClick={toggleMenu}>
+              Resources
             </Link>
-            <Link to="/#cases" className="text-foreground/80 hover:text-bombay transition-colors py-2" onClick={toggleMenu}>
-              Case Studies
+            <Link to="/credentials" className="text-foreground/80 hover:text-primary transition-colors py-2" onClick={toggleMenu}>
+              Credentials
             </Link>
-            <Link to="/#about" className="text-foreground/80 hover:text-bombay transition-colors py-2" onClick={toggleMenu}>
-              About
-            </Link>
-            <div className="flex space-x-4 py-2">
-              <a href="https://theclimatedesk.substack.com/" target="_blank" rel="noopener noreferrer" className="text-foreground/80 hover:text-bombay transition-colors">
-                Blog
-              </a>
-              <span className="text-foreground/40">|</span>
-              <a href="https://www.linkedin.com/in/theresaronnie/" target="_blank" rel="noopener noreferrer" className="text-foreground/80 hover:text-bombay transition-colors">
-                LinkedIn
-              </a>
-            </div>
             {location.pathname === '/' ? (
               <Button variant="gradient" className="w-full px-6" onClick={scrollToContact}>
-                Contact Us
+                Contact
               </Button>
             ) : (
               <Link to="/#contact">
                 <Button variant="gradient" className="w-full px-6" onClick={toggleMenu}>
-                  Contact Us
+                  Contact
                 </Button>
               </Link>
             )}
