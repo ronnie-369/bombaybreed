@@ -3,8 +3,10 @@ import { Button } from '@/components/ui/button';
 import BookingDialog from './BookingDialog';
 import { ArrowDown } from 'lucide-react';
 
+import theresaPortrait from '@/assets/theresa-portrait.jpg';
+
 const ExecutiveHero = () => {
-  const portraitUrl = import.meta.env.VITE_PORTRAIT_URL || "https://zjiwmdrtuhsrymsuvpfb.supabase.co/storage/v1/object/public/brand%20assets/images.png";
+  const portraitUrl = theresaPortrait;
 
   const scrollToTrackRecord = () => {
     const section = document.getElementById('track-record');
