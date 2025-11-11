@@ -31,7 +31,7 @@ const ExecutiveHero = () => {
               </h1>
               
               <h2 className="text-2xl md:text-3xl font-heading text-foreground/70">
-                Independent Director & Board Advisor
+                Strategic advisor to CEOs/CXOs including Microsoft, KPMG India & founders
               </h2>
               
               <div className="w-24 h-1 bg-gradient-to-r from-primary to-accent mx-auto lg:mx-0"></div>
