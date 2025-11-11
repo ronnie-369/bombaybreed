@@ -2,7 +2,8 @@ import React from 'react';
 import { Button } from '@/components/ui/button';
 import BookingDialog from './BookingDialog';
 import { ArrowDown } from 'lucide-react';
-import theresaPortrait from '@/assets/theresa-executive-portrait.jpg';
+
+import theresaPortrait from '@/assets/theresa-portrait.jpg';
 
 const ExecutiveHero = () => {
   const portraitUrl = theresaPortrait;
