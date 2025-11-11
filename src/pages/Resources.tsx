@@ -140,26 +140,6 @@ const Resources = () => {
               </CardContent>
             </Card>
 
-            <Card className="hover:shadow-lg transition-shadow">
-              <CardHeader>
-                <CardTitle className="text-lg">Growth Rooms Report</CardTitle>
-                <CardDescription>
-                  Analysis of India's climate finance and investment landscape
-                </CardDescription>
-              </CardHeader>
-              <CardContent>
-                <Button asChild variant="outline" className="w-full gap-2">
-                  <a 
-                    href="https://zjiwmdrtuhsrymsuvpfb.supabase.co/storage/v1/object/sign/Reports/growth%20rooms%20.pdf?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV83ZjY0YjIzNy1hM2RlLTQ3NjctOGZiMC0yYjY1MjE4YjRkODkiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJSZXBvcnRzL2dyb3d0aCByb29tcyAucGRmIiwiaWF0IjoxNzU5MjQ5NDYwLCJleHAiOjIwNzQ2MDk0NjB9.w4Gyi6D21wCMXhNQbNOJgaoPIaRR1WQ3Z7wUl-xK_IY"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    Download PDF
-                    <Download className="h-4 w-4" />
-                  </a>
-                </Button>
-              </CardContent>
-            </Card>
 
             <Card className="hover:shadow-lg transition-shadow">
               <CardHeader>
