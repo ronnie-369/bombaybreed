@@ -4,7 +4,7 @@ import BookingDialog from './BookingDialog';
 import { ArrowDown } from 'lucide-react';
 
 const ExecutiveHero = () => {
-  const portraitUrl = import.meta.env.VITE_PORTRAIT_URL || "/lovable-uploads/76901386-d547-4a2e-b06b-2b2f1420a922.png";
+  const portraitUrl = import.meta.env.VITE_PORTRAIT_URL || "https://zjiwmdrtuhsrymsuvpfb.supabase.co/storage/v1/object/public/brand%20assets/images.png";
 
   const scrollToTrackRecord = () => {
     const section = document.getElementById('track-record');
