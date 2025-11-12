@@ -92,8 +92,8 @@ const DirectContact = () => {
                 </div>
                 <div>
                   <p className="font-medium text-foreground">Phone</p>
-                  <a href="tel:+919820248586" className="text-body-sm text-foreground/70 hover:text-primary transition-colors">
-                    +91 98202 48586
+                  <a href="tel:+919916090806" className="text-body-sm text-foreground/70 hover:text-primary transition-colors">
+                    +91 99160 90806
                   </a>
                 </div>
               </div>
@@ -104,8 +104,8 @@ const DirectContact = () => {
                 </div>
                 <div>
                   <p className="font-medium text-foreground">Email</p>
-                  <a href="mailto:theresa@bombaybreed.com" className="text-body-sm text-foreground/70 hover:text-primary transition-colors">
-                    theresa@bombaybreed.com
+                  <a href="mailto:ronnie@bombaybreed.com" className="text-body-sm text-foreground/70 hover:text-primary transition-colors">
+                    ronnie@bombaybreed.com
                   </a>
                 </div>
               </div>
