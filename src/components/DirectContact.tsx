@@ -8,7 +8,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import * as z from 'zod';
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
 import BookingDialog from './BookingDialog';
-import { LinkedinIcon, Phone, Mail, MapPin } from 'lucide-react';
+import { LinkedinIcon, Mail, MapPin } from 'lucide-react';
 
 const formSchema = z.object({
   name: z.string().trim().min(2, { message: "Name must be at least 2 characters" }).max(100, { message: "Name must be less than 100 characters" }),
@@ -86,18 +86,6 @@ const DirectContact = () => {
           {/* Left Column - Contact Info */}
           <div className="lg:col-span-2 space-y-8">
             <div className="space-y-6">
-              <div className="flex items-start gap-4">
-                <div className="p-3 bg-primary/10 rounded-lg">
-                  <Phone className="h-5 w-5 text-primary" />
-                </div>
-                <div>
-                  <p className="font-medium text-foreground">Phone</p>
-                  <a href="tel:+919916090806" className="text-body-sm text-foreground/70 hover:text-primary transition-colors">
-                    +91 99160 90806
-                  </a>
-                </div>
-              </div>
-
               <div className="flex items-start gap-4">
                 <div className="p-3 bg-primary/10 rounded-lg">
                   <Mail className="h-5 w-5 text-primary" />
