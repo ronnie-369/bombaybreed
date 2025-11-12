@@ -117,7 +117,7 @@ const DirectContact = () => {
                 <div>
                   <p className="font-medium text-foreground">Location</p>
                   <p className="text-body-sm text-foreground/70">
-                    Mumbai, Maharashtra, India
+                    Bangalore, Karnataka, India
                   </p>
                 </div>
               </div>
