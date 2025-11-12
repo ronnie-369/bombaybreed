@@ -75,7 +75,7 @@ const DirectContact = () => {
       <div className="container mx-auto max-w-7xl">
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-heading font-bold mb-4">
-            Let's Discuss Your Board's Carbon/ESG Governance Needs
+            Let's Discuss Your Board's Carbon/ESG Governance Systems Needs
           </h2>
           <p className="text-body text-foreground/70 max-w-3xl mx-auto">
             Schedule a consultation or send a message to explore how I can support your board
