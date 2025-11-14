@@ -205,7 +205,7 @@ export type Database = {
     }
     Functions: {
       get_current_user_role: {
-        Args: Record<PropertyKey, never>
+        Args: never
         Returns: Database["public"]["Enums"]["app_role"]
       }
       has_role: {
@@ -215,10 +215,7 @@ export type Database = {
         }
         Returns: boolean
       }
-      unsubscribe_newsletter: {
-        Args: { token: string }
-        Returns: Json
-      }
+      unsubscribe_newsletter: { Args: { token: string }; Returns: Json }
     }
     Enums: {
       app_role: "admin" | "moderator" | "user"
