@@ -26,34 +26,34 @@ const BoardValue = () => {
   ];
 
   return (
-    <section className="py-20 px-4 md:px-8 bg-white">
+    <section className="py-24 md:py-32 lg:py-40 px-4 md:px-8 bg-white">
       <div className="container mx-auto max-w-7xl">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-heading font-bold mb-4">
+        <div className="text-center mb-20">
+          <h2 className="text-section font-heading font-bold mb-6">
             What I Bring to the Boardroom
           </h2>
-          <p className="text-body text-foreground/70 max-w-3xl mx-auto">
+          <p className="text-body-enhanced text-foreground/80 max-w-3xl mx-auto">
             Board-level strategic oversight on carbon markets, ESG governance, and stakeholder credibility
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-10">
           {competencies.map((competency, index) => {
             const IconComponent = competency.icon;
             return (
               <div
                 key={index}
-                className="group p-8 rounded-xl bg-gradient-to-br from-background to-secondary/10 border border-border hover:border-primary/30 hover:shadow-lg transition-all duration-300"
+                className="group card-hover p-10 rounded-xl bg-gradient-to-br from-background to-secondary/10 border border-border hover:border-primary/30"
               >
-                <div className="flex items-start gap-4">
-                  <div className="p-3 bg-primary/10 rounded-lg group-hover:bg-primary/20 transition-colors">
+                <div className="flex items-start gap-6">
+                  <div className="p-3 bg-primary/10 rounded-lg group-hover:bg-primary/20 smooth-transition">
                     <IconComponent className="h-7 w-7 text-primary" />
                   </div>
-                  <div className="flex-1 space-y-2">
-                    <h3 className="text-xl font-heading font-semibold text-foreground">
+                  <div className="flex-1 space-y-3">
+                    <h3 className="text-xl md:text-2xl font-heading font-semibold text-foreground">
                       {competency.title}
                     </h3>
-                    <p className="text-body-sm text-foreground/70 leading-relaxed">
+                    <p className="text-body text-foreground/75 leading-relaxed">
                       {competency.description}
                     </p>
                   </div>
