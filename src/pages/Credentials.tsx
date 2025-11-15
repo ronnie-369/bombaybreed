@@ -160,25 +160,6 @@ const Credentials = () => {
             </div>
           </div>
 
-          {/* Firm Information */}
-          <div className="mt-24 pt-16 border-t border-border/50">
-            <div className="text-center max-w-3xl mx-auto space-y-6">
-              <h3 className="text-2xl md:text-3xl font-heading font-semibold">
-                Bombay Breed Consulting
-              </h3>
-              <p className="text-body text-foreground/70">
-                Strategic communications advisory for carbon markets, ESG governance, and India's climate transition. 
-                Serving as the professional entity for board advisory engagements and strategic consulting services.
-              </p>
-              <div className="pt-6">
-                <img 
-                  src="https://zjiwmdrtuhsrymsuvpfb.supabase.co/storage/v1/object/public/brand%20assets/466784065_10159926171046216_7796875165911313074_n.jpg"
-                  alt="Bombay Breed Consulting"
-                  className="w-48 h-48 object-cover rounded-2xl mx-auto shadow-lg"
-                />
-              </div>
-            </div>
-          </div>
         </div>
       </section>
     </div>
