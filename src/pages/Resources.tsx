@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useRef } from 'react';
 import Header from '@/components/Header';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from '@/components/ui/button';
@@ -37,6 +37,14 @@ const Resources = () => {
     }
   ];
 
+  const [selectedReport, setSelectedReport] = useState(publications[0]);
+  const formSectionRef = useRef<HTMLDivElement>(null);
+
+  const handleDownloadClick = (pub: typeof publications[0]) => {
+    setSelectedReport(pub);
+    formSectionRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  };
+
   return (
     <div className="min-h-screen bg-background">
       <Header />
@@ -72,7 +80,12 @@ const Resources = () => {
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {publications.map((pub, index) => (
-              <Card key={index} className="hover:shadow-lg transition-all duration-300 overflow-hidden group">
+              <Card 
+                key={index} 
+                className={`hover:shadow-lg transition-all duration-300 overflow-hidden group ${
+                  selectedReport.title === pub.title ? 'ring-2 ring-primary' : ''
+                }`}
+              >
                 <div className={`h-2 bg-gradient-to-r ${pub.color}`}></div>
                 <CardHeader>
                   <div className="flex items-center gap-2 mb-2">
@@ -98,7 +111,11 @@ const Resources = () => {
                         </span>
                       ))}
                     </div>
-                    <Button variant="outline" className="w-full gap-2 group-hover:bg-primary group-hover:text-white transition-colors">
+                    <Button 
+                      onClick={() => handleDownloadClick(pub)}
+                      variant="outline" 
+                      className="w-full gap-2 group-hover:bg-primary group-hover:text-white transition-colors"
+                    >
                       <Download className="h-4 w-4" />
                       Download Report
                     </Button>
@@ -162,20 +179,20 @@ const Resources = () => {
       </section>
 
       {/* Download CTA */}
-      <section className="py-20 px-4 md:px-8 bg-white">
+      <section ref={formSectionRef} className="py-20 px-4 md:px-8 bg-white">
         <div className="container mx-auto max-w-5xl">
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-heading font-bold mb-4">
-              Access Full Reports
+              Download: {selectedReport.title}
             </h2>
             <p className="text-body text-foreground/70">
-              Provide your details to receive comprehensive research and analysis
+              {selectedReport.description}
             </p>
           </div>
           
           <LeadCaptureForm
-            reportTitle="Complete Resource Library Access"
-            reportDescription="Gain access to all published reports, frameworks, and insights on carbon markets and ESG governance"
+            reportTitle={selectedReport.title}
+            reportDescription={selectedReport.description}
           />
         </div>
       </section>
