@@ -137,9 +137,11 @@ serve(async (req: Request) => {
     const FILE_MAP: Record<string, string> = {
       "Green Jobs in India: Workforce and Investment Outlook 2025-2030": "Green-Jobs-in-India-Workforce-and-Investment-Outlook-2025-2030 (1).pdf",
       "Green Jobs Report.pdf": "Green-Jobs-in-India-Workforce-and-Investment-Outlook-2025-2030 (1).pdf",
+      "Carbon Market Outlook 2025-2030: An Investor's Deep Dive": "India-Carbon-Market-Outlook-2025-2030-An-Investors-Deep-Dive.pdf",
       "India Carbon Market Outlook 2025-2030: An Investor's Deep Dive": "India-Carbon-Market-Outlook-2025-2030-An-Investors-Deep-Dive.pdf",
       "India's Carbon Playbook": "Indias-Carbon-Playbook (1).pdf",
       "From Compliance to Credibility: A CXO Guide to CCTS & CBAM": "From-Compliance-to-Credibility-A-CXO-Guide-to-CCTS-and-CBAM.pdf",
+      "Energy Transition Playbook": "The-Energy-Transition-Playbook-for-India (2).pdf",
       "The Energy Transition Playbook for India": "The-Energy-Transition-Playbook-for-India (2).pdf",
     };
 
