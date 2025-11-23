@@ -2,7 +2,7 @@ import React, { useState, useRef } from 'react';
 import Header from '@/components/Header';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from '@/components/ui/button';
-import { Download, ExternalLink, FileText } from 'lucide-react';
+import { Download, ExternalLink, FileText, Video } from 'lucide-react';
 import LeadCaptureForm from '@/components/shared/LeadCaptureForm';
 
 const Resources = () => {
@@ -169,6 +169,26 @@ const Resources = () => {
                 <Button asChild className="w-full bg-[#0077B5] hover:bg-[#0077B5]/90 text-white gap-2">
                   <a href="https://www.linkedin.com/in/theresaronnie/" target="_blank" rel="noopener noreferrer">
                     Connect
+                    <ExternalLink className="h-4 w-4" />
+                  </a>
+                </Button>
+              </CardContent>
+            </Card>
+
+            <Card className="hover:shadow-lg transition-shadow">
+              <CardHeader>
+                <CardTitle className="text-lg flex items-center gap-2">
+                  <Video className="h-5 w-5 text-destructive" />
+                  Video Assets
+                </CardTitle>
+                <CardDescription>
+                  Watch presentations, webinars, and educational content on climate governance
+                </CardDescription>
+              </CardHeader>
+              <CardContent>
+                <Button asChild className="w-full bg-destructive hover:bg-destructive/90 text-destructive-foreground gap-2">
+                  <a href="https://www.youtube.com/@theresaronnie" target="_blank" rel="noopener noreferrer">
+                    Watch Videos
                     <ExternalLink className="h-4 w-4" />
                   </a>
                 </Button>
