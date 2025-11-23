@@ -88,7 +88,7 @@ const ExecutiveHero = () => {
             {/* Professional Quote */}
             <div className="absolute -bottom-6 -left-6 bg-card p-6 rounded-2xl shadow-lg border max-w-sm animate-fade-in">
               <p className="text-note font-medium text-card-foreground italic">
-                "Strategic governance oversight on carbon markets, ESG compliance, and stakeholder credibility."
+                "I ensure climate transition strategy is credible, compliant, and investable in India."
               </p>
               <div className="w-3 h-3 bg-card transform rotate-45 absolute -top-1.5 left-8 border-l border-t"></div>
             </div>
