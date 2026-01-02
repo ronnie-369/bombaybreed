@@ -34,6 +34,13 @@ const Resources = () => {
       type: "Strategic Playbook",
       color: "from-orange-700 to-amber-600",
       topics: ["Renewable Energy", "Grid Integration", "Policy Framework", "Technology Adoption"]
+    },
+    {
+      title: "India's Climate Inflection Point",
+      description: "Critical analysis of India's pivotal moment in climate transition and the strategic decisions shaping the nation's sustainable future",
+      type: "Strategic Analysis",
+      color: "from-purple-700 to-indigo-600",
+      topics: ["Climate Transition", "Policy Inflection", "Strategic Decisions", "Future Outlook"]
     }
   ];
 
