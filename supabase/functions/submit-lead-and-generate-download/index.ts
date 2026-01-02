@@ -143,6 +143,7 @@ serve(async (req: Request) => {
       "From Compliance to Credibility: A CXO Guide to CCTS & CBAM": "From-Compliance-to-Credibility-A-CXO-Guide-to-CCTS-and-CBAM.pdf",
       "Energy Transition Playbook": "The-Energy-Transition-Playbook-for-India (2).pdf",
       "The Energy Transition Playbook for India": "The-Energy-Transition-Playbook-for-India (2).pdf",
+      "India's Climate Inflection Point": "Indias-Climate-Inflection-Point-The Climate Desk_compressed.pdf",
     };
 
     const ensurePdf = (s: string) => (s.toLowerCase().endsWith(".pdf") ? s : `${s}.pdf`);
