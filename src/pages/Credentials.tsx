@@ -27,7 +27,7 @@ const Credentials = () => {
     },
     {
       area: "Carbon Markets & Energy Transition",
-      years: "10,000 hours"
+      years: ">10,000 hours"
     }
   ];
 
