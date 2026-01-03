@@ -71,13 +71,16 @@ const DirectContact = () => {
   };
 
   return (
-    <section id="contact" className="py-20 px-4 md:px-8 bg-gradient-to-b from-background to-secondary/10">
-      <div className="container mx-auto max-w-7xl">
+    <section id="contact" className="py-20 md:py-28 px-6 md:px-8 bg-background">
+      <div className="container mx-auto max-w-6xl">
         <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-heading font-bold mb-4">
-            Let's Discuss Your Board's Carbon/ESG Governance Systems Needs
+          <p className="text-sm font-medium text-accent tracking-wide uppercase mb-3">
+            Get in Touch
+          </p>
+          <h2 className="text-section font-heading tracking-tight mb-4">
+            Let's Discuss Your Governance Needs
           </h2>
-          <p className="text-body text-foreground/70 max-w-3xl mx-auto">
+          <p className="text-body text-muted-foreground max-w-2xl mx-auto">
             Schedule a consultation or send a message to explore how I can support your board
           </p>
         </div>
@@ -85,47 +88,47 @@ const DirectContact = () => {
         <div className="grid grid-cols-1 lg:grid-cols-5 gap-12">
           {/* Left Column - Contact Info */}
           <div className="lg:col-span-2 space-y-8">
-            <div className="space-y-6">
+            <div className="space-y-5">
               <div className="flex items-start gap-4">
-                <div className="p-3 bg-primary/10 rounded-lg">
-                  <Mail className="h-5 w-5 text-primary" />
+                <div className="p-2.5 bg-primary/10 rounded-md">
+                  <Mail className="h-4 w-4 text-primary" />
                 </div>
                 <div>
-                  <p className="font-medium text-foreground">Email</p>
-                  <a href="mailto:ronnie@bombaybreed.com" className="text-body-sm text-foreground/70 hover:text-primary transition-colors">
+                  <p className="text-sm font-medium text-foreground">Email</p>
+                  <a href="mailto:ronnie@bombaybreed.com" className="text-sm text-muted-foreground hover:text-primary transition-colors">
                     ronnie@bombaybreed.com
                   </a>
                 </div>
               </div>
 
               <div className="flex items-start gap-4">
-                <div className="p-3 bg-primary/10 rounded-lg">
-                  <MapPin className="h-5 w-5 text-primary" />
+                <div className="p-2.5 bg-primary/10 rounded-md">
+                  <MapPin className="h-4 w-4 text-primary" />
                 </div>
                 <div>
-                  <p className="font-medium text-foreground">Location</p>
-                  <p className="text-body-sm text-foreground/70">
+                  <p className="text-sm font-medium text-foreground">Location</p>
+                  <p className="text-sm text-muted-foreground">
                     Bangalore, Karnataka, India
                   </p>
                 </div>
               </div>
             </div>
 
-            <div className="pt-8 border-t border-border/50">
-              <div className="text-center p-8 bg-gradient-to-br from-primary/5 to-accent/5 rounded-xl">
-                <h3 className="text-xl font-heading font-semibold mb-4">
+            <div className="pt-6 border-t border-border/50">
+              <div className="p-6 bg-secondary/50 rounded-lg">
+                <h3 className="text-sm font-medium mb-4">
                   Schedule Directly
                 </h3>
                 <BookingDialog 
-                  triggerText="Book Board Advisory Consultation"
+                  triggerText="Book Consultation"
                 />
               </div>
             </div>
 
-            <div className="pt-4">
-              <Button asChild size="lg" className="w-full bg-[#0077B5] hover:bg-[#0077B5]/90 text-white">
-                <a href="https://www.linkedin.com/in/theresaronnie/" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-3">
-                  <LinkedinIcon className="h-5 w-5" />
+            <div>
+              <Button asChild variant="outline" className="w-full">
+                <a href="https://www.linkedin.com/in/theresaronnie/" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2">
+                  <LinkedinIcon className="h-4 w-4" />
                   <span>Connect on LinkedIn</span>
                 </a>
               </Button>
@@ -134,18 +137,18 @@ const DirectContact = () => {
 
           {/* Right Column - Contact Form */}
           <div className="lg:col-span-3">
-            <div className="p-8 bg-white rounded-2xl shadow-sm border border-border">
-              <h3 className="text-2xl font-heading font-semibold mb-6">Send a Message</h3>
+            <div className="p-8 bg-card rounded-lg border border-border/50">
+              <h3 className="text-lg font-medium mb-6">Send a Message</h3>
               <Form {...form}>
-                <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+                <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-5">
                   <FormField
                     control={form.control}
                     name="name"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel>Name *</FormLabel>
+                        <FormLabel className="text-sm">Name *</FormLabel>
                         <FormControl>
-                          <Input placeholder="Your full name" {...field} />
+                          <Input placeholder="Your full name" {...field} className="bg-background" />
                         </FormControl>
                         <FormMessage />
                       </FormItem>
@@ -157,9 +160,9 @@ const DirectContact = () => {
                     name="email"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel>Email *</FormLabel>
+                        <FormLabel className="text-sm">Email *</FormLabel>
                         <FormControl>
-                          <Input type="email" placeholder="your.email@company.com" {...field} />
+                          <Input type="email" placeholder="your.email@company.com" {...field} className="bg-background" />
                         </FormControl>
                         <FormMessage />
                       </FormItem>
@@ -171,9 +174,9 @@ const DirectContact = () => {
                     name="company"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel>Company (Optional)</FormLabel>
+                        <FormLabel className="text-sm">Company (Optional)</FormLabel>
                         <FormControl>
-                          <Input placeholder="Your company name" {...field} />
+                          <Input placeholder="Your company name" {...field} className="bg-background" />
                         </FormControl>
                         <FormMessage />
                       </FormItem>
@@ -185,11 +188,11 @@ const DirectContact = () => {
                     name="message"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel>Message *</FormLabel>
+                        <FormLabel className="text-sm">Message *</FormLabel>
                         <FormControl>
                           <Textarea 
-                            placeholder="Describe your board's carbon/ESG governance needs..." 
-                            className="min-h-[150px]"
+                            placeholder="Describe your governance needs..." 
+                            className="min-h-[120px] bg-background"
                             {...field} 
                           />
                         </FormControl>
@@ -200,7 +203,6 @@ const DirectContact = () => {
 
                   <Button 
                     type="submit" 
-                    size="lg"
                     className="w-full"
                     disabled={isSubmitting}
                   >
@@ -214,8 +216,8 @@ const DirectContact = () => {
 
         {/* Footer */}
         <div className="mt-16 pt-8 border-t border-border/50 text-center">
-          <p className="text-note text-foreground/60">
-            © {new Date().getFullYear()} Bombay Breed Consulting. All rights reserved. | <a href="/privacy-policy" className="hover:text-primary transition-colors">Privacy Policy</a>
+          <p className="text-sm text-muted-foreground">
+            © {new Date().getFullYear()} Bombay Breed Consulting. All rights reserved. | <a href="/privacy-policy" className="hover:text-foreground transition-colors">Privacy Policy</a>
           </p>
         </div>
       </div>
