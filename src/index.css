@@ -75,11 +75,15 @@
 
 @layer components {
   .glass-card {
-    @apply bg-card/80 backdrop-blur-sm border border-border/30 transition-all duration-300;
+    @apply bg-card/80 backdrop-blur-sm border border-border/30;
+    @apply transition-all duration-300 ease-out;
+    @apply hover:border-border/50 hover:shadow-hover hover:-translate-y-0.5;
   }
   
   .feature-card {
-    @apply p-8 rounded-lg bg-card border border-border/50 hover:border-border transition-all duration-300;
+    @apply p-8 rounded-lg bg-card border border-border/50;
+    @apply transition-all duration-300 ease-out;
+    @apply hover:border-border hover:shadow-card-hover hover:-translate-y-1 hover:scale-[1.01];
   }
   
   .sustainability-gradient {
@@ -304,9 +308,40 @@
   .reveal-delay-4 { animation-delay: 400ms; }
   .reveal-delay-5 { animation-delay: 500ms; }
 
+  /* === Micro-interaction Utilities === */
+  .btn-micro {
+    @apply transition-all duration-200 ease-out;
+    @apply hover:scale-[1.02] hover:-translate-y-px;
+    @apply active:scale-[0.97] active:translate-y-0;
+  }
+
+  .card-micro {
+    @apply transition-all duration-300 ease-out;
+    @apply hover:-translate-y-1 hover:scale-[1.01];
+  }
+
+  .icon-micro {
+    @apply transition-all duration-200 ease-out;
+    @apply group-hover:scale-110 group-hover:rotate-3;
+  }
+
+  .link-micro {
+    @apply transition-all duration-200 ease-out;
+    @apply hover:text-primary hover:-translate-y-px;
+  }
+
+  .focus-glow {
+    @apply transition-shadow duration-200;
+    @apply focus:shadow-[0_0_0_3px_hsl(var(--primary)/0.15)];
+  }
+
   /* Reduced motion support */
   @media (prefers-reduced-motion: reduce) {
-    .scroll-reveal {
+    .scroll-reveal,
+    .btn-micro,
+    .card-micro,
+    .icon-micro,
+    .link-micro {
       opacity: 1;
       transform: none !important;
       animation: none !important;

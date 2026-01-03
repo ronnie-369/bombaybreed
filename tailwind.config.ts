@@ -133,6 +133,11 @@ export default {
 			},
 			boxShadow: {
 				'hover': '0 4px 12px -2px rgba(0, 0, 0, 0.05)',
+				'hover-md': '0 6px 16px -4px rgba(0, 0, 0, 0.08)',
+				'hover-lg': '0 8px 24px -6px rgba(0, 0, 0, 0.1)',
+				'button': '0 2px 8px -2px rgba(0, 0, 0, 0.08)',
+				'button-hover': '0 4px 12px -3px rgba(0, 0, 0, 0.12)',
+				'card-hover': '0 8px 20px -8px rgba(0, 0, 0, 0.08)',
 			}
 		}
 	},
