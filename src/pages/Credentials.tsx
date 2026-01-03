@@ -108,11 +108,11 @@ const Credentials = () => {
                 </div>
                 
                 {/* Quote */}
-                <div className="absolute -bottom-4 -left-4 bg-card p-5 rounded-lg shadow-sm border border-border max-w-xs">
-                  <p className="text-sm text-card-foreground italic leading-relaxed">
+                <div className="absolute -bottom-4 -left-4 bg-primary p-5 rounded-lg shadow-lg max-w-xs">
+                  <p className="text-sm text-primary-foreground italic leading-relaxed font-medium">
                     "The most trustworthy person on the Subcontinent"
                   </p>
-                  <p className="text-xs text-muted-foreground mt-2">— Erik Solheim</p>
+                  <p className="text-xs text-primary-foreground/70 mt-2 font-medium">— Erik Solheim</p>
                 </div>
               </div>
             </div>
