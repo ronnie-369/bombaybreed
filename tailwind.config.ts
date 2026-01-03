@@ -98,6 +98,12 @@ export default {
 				heading: ['Plus Jakarta Sans', 'system-ui', 'sans-serif'],
 				logo: ['Plus Jakarta Sans', 'system-ui', 'sans-serif'],
 				serif: ['Georgia', 'serif']
+			},
+			transitionTimingFunction: {
+				'out-expo': 'cubic-bezier(0.16, 1, 0.3, 1)',
+			},
+			boxShadow: {
+				'hover': '0 4px 12px -2px rgba(0, 0, 0, 0.05)',
 			}
 		}
 	},

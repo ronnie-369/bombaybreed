@@ -107,7 +107,7 @@ const Resources = () => {
                       {pub.topics.map((topic, topicIndex) => (
                         <span 
                           key={topicIndex}
-                          className="px-2.5 py-1 bg-muted text-muted-foreground rounded text-xs"
+                          className="px-2.5 py-1 bg-muted text-muted-foreground rounded text-xs hover-pill cursor-default"
                         >
                           {topic}
                         </span>
