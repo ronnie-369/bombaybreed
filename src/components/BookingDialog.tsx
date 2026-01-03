@@ -40,18 +40,18 @@ const BookingDialog = ({
       <DialogTrigger asChild>
         {trigger || (
           <Button 
-            variant="gradient" 
+            variant="default" 
             size="lg"
             className="gap-2"
           >
-            <Calendar className="h-5 w-5" />
+            <Calendar className="h-4 w-4" />
             {triggerText}
           </Button>
         )}
       </DialogTrigger>
       <DialogContent className="max-w-[90vw] md:max-w-[800px] max-h-[90vh] p-0 overflow-hidden">
         <DialogHeader className="p-6 pb-0">
-          <DialogTitle className="text-2xl font-heading">Schedule Your Consultation</DialogTitle>
+          <DialogTitle className="text-lg font-medium">Schedule Your Consultation</DialogTitle>
         </DialogHeader>
         <div className="w-full h-[500px] md:h-[600px] overflow-hidden">
           <iframe

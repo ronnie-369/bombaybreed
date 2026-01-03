@@ -5,35 +5,41 @@
 
 @layer base {
   :root {
-    --background: 210 40% 98%;
-    --foreground: 215 25% 27%;
+    /* Scandinavian Minimal - Cool greens and blues */
+    --background: 210 20% 98%;
+    --foreground: 210 15% 20%;
 
     --card: 0 0% 100%;
-    --card-foreground: 215 25% 27%;
+    --card-foreground: 210 15% 20%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 215 25% 27%;
+    --popover-foreground: 210 15% 20%;
 
-    --primary: 183 70% 25%;
-    --primary-foreground: 210 40% 98%;
+    /* Deep forest green primary */
+    --primary: 160 45% 25%;
+    --primary-foreground: 0 0% 100%;
 
-    --secondary: 177 77% 95%;
-    --secondary-foreground: 183 70% 25%;
+    /* Soft sage secondary */
+    --secondary: 160 20% 95%;
+    --secondary-foreground: 160 45% 25%;
 
-    --muted: 177 77% 95%;
-    --muted-foreground: 215 25% 40%;
+    /* Muted blue-grey */
+    --muted: 210 15% 95%;
+    --muted-foreground: 210 10% 45%;
 
-    --accent: 181 59% 45%;
-    --accent-foreground: 210 40% 98%;
+    /* Ocean blue accent */
+    --accent: 200 60% 40%;
+    --accent-foreground: 0 0% 100%;
 
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive: 0 70% 50%;
+    --destructive-foreground: 0 0% 100%;
 
-    --border: 214 32% 91%;
-    --input: 214 32% 91%;
-    --ring: 183 70% 25%;
+    /* Subtle borders */
+    --border: 210 15% 90%;
+    --input: 210 15% 90%;
+    --ring: 160 45% 25%;
 
-    --radius: 0.5rem;
+    --radius: 0.375rem;
   }
 
   * {
@@ -41,137 +47,138 @@
   }
 
   body {
-    @apply bg-bombay-background text-foreground antialiased;
-    font-feature-settings: "ss01", "ss02", "cv01", "cv02", "cv03";
+    @apply bg-background text-foreground antialiased;
+    font-feature-settings: "ss01", "ss02", "cv01";
   }
 
+  /* Minimal Card */
   .apple-card {
-    @apply bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden transition-all duration-300 hover:shadow-md;
+    @apply bg-card rounded-lg border border-border/50 transition-all duration-300 hover:border-border;
   }
 
   .section-padding {
-    @apply py-16 md:py-24 px-6 md:px-8 lg:px-16;
+    @apply py-20 md:py-32 px-6 md:px-8 lg:px-16;
   }
 
   .btn-primary {
-    @apply px-6 py-3 bg-bombay text-white rounded-full font-medium transition-all hover:bg-bombay-light;
+    @apply px-6 py-3 bg-primary text-primary-foreground rounded-md font-medium transition-all hover:opacity-90;
   }
 
   .btn-secondary {
-    @apply px-6 py-3 bg-transparent border border-bombay text-bombay rounded-full font-medium transition-all hover:bg-bombay-subtle;
+    @apply px-6 py-3 bg-transparent border border-primary text-primary rounded-md font-medium transition-all hover:bg-primary/5;
   }
 
   .text-gradient {
-    @apply bg-gradient-to-r from-bombay to-bombay-accent bg-clip-text text-transparent;
+    @apply bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent;
   }
 }
 
 @layer components {
   .glass-card {
-    @apply bg-white/70 backdrop-blur-md border border-white/80 shadow-sm hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300;
+    @apply bg-card/80 backdrop-blur-sm border border-border/30 transition-all duration-300;
   }
   
   .feature-card {
-    @apply p-6 rounded-xl bg-white shadow-sm border border-gray-100 hover:shadow-md transition-all duration-300;
+    @apply p-8 rounded-lg bg-card border border-border/50 hover:border-border transition-all duration-300;
   }
   
   .sustainability-gradient {
-    @apply bg-gradient-to-r from-teal-700 via-teal-600 to-teal-500 text-white;
+    @apply bg-gradient-to-r from-primary to-accent text-white;
   }
   
   .section-title {
-    @apply text-3xl md:text-4xl font-heading font-bold mb-4;
+    @apply text-2xl md:text-3xl font-heading font-semibold tracking-tight mb-4;
   }
   
   .section-description {
-    @apply text-body text-foreground/80 max-w-3xl mx-auto;
+    @apply text-body text-muted-foreground max-w-2xl mx-auto;
   }
   
-  /* === Enhanced Typography with Fluid Sizing === */
+  /* === Clean Scandinavian Typography === */
   
   /* Display Text: Largest hero headings */
   .text-display {
-    font-size: clamp(2.5rem, 5vw + 1rem, 5rem);
-    line-height: 1.05;
-    letter-spacing: -0.025em;
-    font-weight: 700;
+    font-size: clamp(2.25rem, 4vw + 1rem, 4rem);
+    line-height: 1.1;
+    letter-spacing: -0.03em;
+    font-weight: 600;
   }
   
   /* Hero Text: Main hero headings */
   .text-hero {
-    font-size: clamp(2rem, 4vw + 1rem, 4rem);
-    line-height: 1.1;
-    letter-spacing: -0.02em;
-    font-weight: 700;
+    font-size: clamp(1.875rem, 3vw + 1rem, 3.25rem);
+    line-height: 1.15;
+    letter-spacing: -0.025em;
+    font-weight: 600;
   }
   
   /* Section Headings: Major section titles */
   .text-section {
-    font-size: clamp(1.75rem, 3vw + 0.5rem, 3rem);
-    line-height: 1.2;
-    letter-spacing: -0.015em;
-    font-weight: 600;
+    font-size: clamp(1.5rem, 2vw + 0.5rem, 2.25rem);
+    line-height: 1.25;
+    letter-spacing: -0.02em;
+    font-weight: 500;
   }
   
   /* Subsection Headings: Secondary titles */
   .text-subsection {
-    font-size: clamp(1.5rem, 2vw + 0.5rem, 2rem);
-    line-height: 1.3;
-    letter-spacing: -0.01em;
-    font-weight: 600;
+    font-size: clamp(1.25rem, 1.5vw + 0.5rem, 1.625rem);
+    line-height: 1.35;
+    letter-spacing: -0.015em;
+    font-weight: 500;
   }
   
   /* Lead Paragraphs: Large intro text */
   .text-lede {
-    font-size: clamp(1.125rem, 1vw + 0.5rem, 1.375rem);
-    line-height: 1.7;
+    font-size: clamp(1.0625rem, 0.75vw + 0.5rem, 1.25rem);
+    line-height: 1.75;
+    font-weight: 400;
   }
   
   /* Body Text: Standard paragraph text */
   .text-body {
-    font-size: clamp(1rem, 0.5vw + 0.875rem, 1.125rem);
-    line-height: 1.7;
+    font-size: clamp(0.9375rem, 0.25vw + 0.875rem, 1.0625rem);
+    line-height: 1.75;
   }
   
-  /* Enhanced Body Text: Better for important content */
+  /* Enhanced Body Text */
   .text-body-enhanced {
     font-size: clamp(1rem, 0.5vw + 0.875rem, 1.125rem);
     line-height: 1.7;
     font-weight: 400;
   }
   
-  /* Smaller Body Text: For dense content sections */
+  /* Smaller Body Text */
   .text-body-sm {
-    @apply text-sm md:text-base leading-relaxed;
-  }
-  
-  /* Small Text: Captions, labels, metadata */
-  .text-note {
     @apply text-sm leading-relaxed;
   }
   
-  /* Card Content: Text inside cards */
+  /* Small Text: Captions, labels */
+  .text-note {
+    @apply text-sm leading-relaxed text-muted-foreground;
+  }
+  
+  /* Card Content */
   .text-card {
     @apply text-sm md:text-base leading-relaxed;
   }
   
   .gradient-accent {
-    @apply bg-gradient-to-r from-primary via-accent to-primary bg-clip-text text-transparent;
+    @apply bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent;
   }
   
-  /* === Smooth Transitions === */
+  /* === Minimal Transitions === */
   .smooth-transition {
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: all 0.2s ease;
   }
   
-  /* Enhanced Card Hover */
+  /* Subtle Card Hover */
   .card-hover {
-    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+    transition: transform 0.2s ease, border-color 0.2s ease;
   }
   
   .card-hover:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    transform: translateY(-1px);
   }
 }
 
@@ -181,72 +188,33 @@
   }
   
   .focus-ring {
-    @apply focus:outline-none focus:ring-2 focus:ring-bombay focus:ring-offset-2;
+    @apply focus:outline-none focus:ring-2 focus:ring-primary/20 focus:ring-offset-2;
   }
   
   .story-link {
-    @apply relative inline-block after:content-[''] after:absolute after:w-full after:scale-x-0 after:h-0.5 after:bottom-0 after:left-0 after:bg-primary after:origin-bottom-right after:transition-transform after:duration-300 hover:after:scale-x-100 hover:after:origin-bottom-left;
+    @apply relative inline-block after:content-[''] after:absolute after:w-full after:scale-x-0 after:h-px after:bottom-0 after:left-0 after:bg-primary after:origin-bottom-right after:transition-transform after:duration-200 hover:after:scale-x-100 hover:after:origin-bottom-left;
   }
   
   .hover-scale {
-    @apply transition-transform duration-200 hover:scale-105;
+    @apply transition-transform duration-200 hover:scale-[1.02];
   }
   
-  .shine-text {
-    @apply relative overflow-hidden;
-  }
-  
-  .shine-text::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.6), transparent);
-    animation: shine 2s infinite;
-  }
-  
-  @keyframes shine {
-    0% { left: -100%; }
-    100% { left: 100%; }
-  }
-  
+  /* Minimal glow effects */
   .glow-pill {
     @apply relative;
-    transition: all 0.3s ease;
+    transition: all 0.2s ease;
   }
   
   .glow-pill.active {
-    box-shadow: 0 0 20px hsl(var(--accent) / 0.4), 0 0 40px hsl(var(--accent) / 0.2);
-    animation: pulse-glow 2s infinite;
+    box-shadow: 0 0 12px hsl(var(--accent) / 0.2);
   }
   
   .glow-card {
     @apply relative;
-    transition: all 0.3s ease;
+    transition: all 0.2s ease;
   }
   
   .glow-card.active {
-    box-shadow: 0 0 30px hsl(var(--primary) / 0.3), 0 0 60px hsl(var(--primary) / 0.1);
-    animation: soft-glow 3s infinite;
-  }
-  
-  @keyframes pulse-glow {
-    0%, 100% { 
-      box-shadow: 0 0 20px hsl(var(--accent) / 0.4), 0 0 40px hsl(var(--accent) / 0.2);
-    }
-    50% { 
-      box-shadow: 0 0 30px hsl(var(--accent) / 0.6), 0 0 60px hsl(var(--accent) / 0.3);
-    }
-  }
-  
-  @keyframes soft-glow {
-    0%, 100% { 
-      box-shadow: 0 0 30px hsl(var(--primary) / 0.3), 0 0 60px hsl(var(--primary) / 0.1);
-    }
-    50% { 
-      box-shadow: 0 0 40px hsl(var(--primary) / 0.4), 0 0 80px hsl(var(--primary) / 0.15);
-    }
+    box-shadow: 0 0 20px hsl(var(--primary) / 0.1);
   }
 }
