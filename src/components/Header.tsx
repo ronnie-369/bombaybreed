@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { useIsMobile } from '@/hooks/use-mobile';
 import { Link, useLocation } from 'react-router-dom';
 import AnimatedLogo from '@/components/ui/AnimatedLogo';
+import { ThemeToggle } from '@/components/ui/ThemeToggle';
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -55,6 +56,7 @@ const Header = () => {
           <Link to="/credentials" className="text-sm text-muted-foreground hover:text-foreground transition-colors story-link">
             Credentials
           </Link>
+          <ThemeToggle />
           {location.pathname === '/' ? (
             <Button variant="default" size="sm" onClick={scrollToContact}>
               Contact
@@ -68,9 +70,12 @@ const Header = () => {
           )}
         </nav>
 
-        <button className="md:hidden text-foreground" onClick={toggleMenu} aria-label="Toggle Menu">
-          {isMenuOpen ? <X size={20} /> : <Menu size={20} />}
-        </button>
+        <div className="md:hidden flex items-center gap-2">
+          <ThemeToggle />
+          <button className="text-foreground" onClick={toggleMenu} aria-label="Toggle Menu">
+            {isMenuOpen ? <X size={20} /> : <Menu size={20} />}
+          </button>
+        </div>
       </div>
 
       {isMenuOpen && (
