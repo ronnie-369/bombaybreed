@@ -44,12 +44,12 @@ const BoardValue = () => {
           {competencies.map((competency, index) => {
             const IconComponent = competency.icon;
             return (
-              <div
+            <div
                 key={index}
-                className="p-8 rounded-lg bg-card border border-border/50 hover:border-border transition-colors"
+                className="group p-8 rounded-lg bg-card border border-border/50 hover:border-border hover:shadow-sm hover:-translate-y-0.5 transition-all duration-300 ease-out"
               >
                 <div className="flex items-start gap-5">
-                  <div className="p-2.5 bg-primary/10 rounded-md">
+                  <div className="p-2.5 bg-primary/10 rounded-md icon-highlight">
                     <IconComponent className="h-5 w-5 text-primary" />
                   </div>
                   <div className="flex-1 space-y-2">

@@ -46,13 +46,13 @@ const Header = () => {
         </div>
 
         <nav className="hidden md:flex items-center space-x-10">
-          <Link to="/" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
+          <Link to="/" className="text-sm text-muted-foreground hover:text-foreground transition-colors story-link">
             Home
           </Link>
-          <Link to="/resources" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
+          <Link to="/resources" className="text-sm text-muted-foreground hover:text-foreground transition-colors story-link">
             Resources
           </Link>
-          <Link to="/credentials" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
+          <Link to="/credentials" className="text-sm text-muted-foreground hover:text-foreground transition-colors story-link">
             Credentials
           </Link>
           {location.pathname === '/' ? (

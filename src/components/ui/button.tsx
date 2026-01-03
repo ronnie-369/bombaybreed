@@ -5,20 +5,20 @@ import { cva, type VariantProps } from "class-variance-authority"
 import { cn } from "@/lib/utils"
 
 const buttonVariants = cva(
-  "inline-flex items-center justify-center gap-2 whitespace-nowrap text-sm font-medium transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0",
+  "inline-flex items-center justify-center gap-2 whitespace-nowrap text-sm font-medium transition-all duration-200 ease-out focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 active:scale-[0.98]",
   {
     variants: {
       variant: {
-        default: "bg-primary text-primary-foreground hover:opacity-90 rounded-md",
+        default: "bg-primary text-primary-foreground hover:bg-primary/90 hover:shadow-sm rounded-md",
         destructive:
-          "bg-destructive text-destructive-foreground hover:opacity-90 rounded-md",
+          "bg-destructive text-destructive-foreground hover:bg-destructive/90 hover:shadow-sm rounded-md",
         outline:
-          "border border-border bg-transparent hover:bg-muted text-foreground rounded-md",
+          "border border-border bg-transparent hover:bg-muted hover:border-primary/30 text-foreground rounded-md",
         secondary:
-          "bg-secondary text-secondary-foreground hover:bg-secondary/80 rounded-md",
-        ghost: "hover:bg-muted text-foreground rounded-md",
-        link: "text-primary underline-offset-4 hover:underline",
-        gradient: "bg-primary text-primary-foreground hover:opacity-90 rounded-md font-medium",
+          "bg-secondary text-secondary-foreground hover:bg-secondary/70 rounded-md",
+        ghost: "hover:bg-muted/70 text-foreground rounded-md",
+        link: "text-primary underline-offset-4 hover:underline hover:text-primary/80",
+        gradient: "bg-primary text-primary-foreground hover:bg-primary/90 hover:shadow-sm rounded-md font-medium",
       },
       size: {
         default: "h-10 px-5 py-2",

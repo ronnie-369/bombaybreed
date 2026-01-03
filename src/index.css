@@ -199,6 +199,29 @@
     @apply transition-transform duration-200 hover:scale-[1.02];
   }
   
+  /* Subtle lift animation */
+  .hover-lift {
+    @apply transition-all duration-300 ease-out hover:-translate-y-0.5 hover:shadow-sm;
+  }
+  
+  /* Icon rotation on hover */
+  .group:hover .hover-icon-rotate {
+    @apply rotate-3 transition-transform duration-200 ease-out;
+  }
+  
+  /* Icon background pulse on card hover */
+  .icon-highlight {
+    @apply transition-colors duration-200 ease-out;
+  }
+  .group:hover .icon-highlight {
+    @apply bg-primary/20;
+  }
+  
+  /* Topic pill hover */
+  .hover-pill {
+    @apply transition-colors duration-200 ease-out hover:bg-primary/10 hover:text-primary;
+  }
+  
   /* Minimal glow effects */
   .glow-pill {
     @apply relative;
