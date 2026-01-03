@@ -5,20 +5,20 @@ import { cva, type VariantProps } from "class-variance-authority"
 import { cn } from "@/lib/utils"
 
 const buttonVariants = cva(
-  "inline-flex items-center justify-center gap-2 whitespace-nowrap text-sm font-medium transition-all duration-200 ease-out focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 active:scale-[0.98]",
+  "inline-flex items-center justify-center gap-2 whitespace-nowrap text-sm font-medium transition-all duration-200 ease-out focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 active:scale-[0.97] active:shadow-none",
   {
     variants: {
       variant: {
-        default: "bg-primary text-primary-foreground hover:bg-primary/90 hover:shadow-sm rounded-md",
+        default: "bg-primary text-primary-foreground rounded-md shadow-button hover:bg-primary/90 hover:shadow-button-hover hover:scale-[1.02] hover:-translate-y-px",
         destructive:
-          "bg-destructive text-destructive-foreground hover:bg-destructive/90 hover:shadow-sm rounded-md",
+          "bg-destructive text-destructive-foreground rounded-md shadow-button hover:bg-destructive/90 hover:shadow-button-hover hover:scale-[1.02] hover:-translate-y-px",
         outline:
-          "border border-border bg-transparent hover:bg-muted hover:border-primary/30 text-foreground rounded-md",
+          "border border-border bg-transparent text-foreground rounded-md hover:bg-muted/50 hover:border-primary/40 hover:scale-[1.02] hover:shadow-sm",
         secondary:
-          "bg-secondary text-secondary-foreground hover:bg-secondary/70 rounded-md",
-        ghost: "hover:bg-muted/70 text-foreground rounded-md",
+          "bg-secondary text-secondary-foreground rounded-md hover:bg-secondary/70 hover:scale-[1.02] hover:shadow-sm",
+        ghost: "text-foreground rounded-md hover:bg-muted/70 hover:scale-[1.02]",
         link: "text-primary underline-offset-4 hover:underline hover:text-primary/80",
-        gradient: "bg-primary text-primary-foreground hover:bg-primary/90 hover:shadow-sm rounded-md font-medium",
+        gradient: "bg-primary text-primary-foreground rounded-md font-medium shadow-button hover:bg-primary/90 hover:shadow-button-hover hover:scale-[1.02] hover:-translate-y-px",
       },
       size: {
         default: "h-10 px-5 py-2",
