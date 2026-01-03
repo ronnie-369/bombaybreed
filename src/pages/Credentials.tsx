@@ -38,15 +38,15 @@ const Credentials = () => {
       <Header />
       
       {/* Hero Section */}
-      <section className="pt-28 pb-16 md:pt-36 md:pb-20 px-6 md:px-8 bg-secondary/30">
+      <section className="pt-28 pb-16 md:pt-36 md:pb-20 px-6 md:px-8 bg-primary">
         <div className="container mx-auto text-center max-w-3xl">
-          <p className="text-sm font-medium text-accent tracking-wide uppercase mb-4">
+          <p className="text-sm font-medium text-primary-foreground/70 tracking-wide uppercase mb-4">
             Background
           </p>
-          <h1 className="text-display font-heading tracking-tight mb-6">
+          <h1 className="text-display font-heading tracking-tight mb-6 text-primary-foreground">
             Professional Credentials
           </h1>
-          <p className="text-lede text-muted-foreground">
+          <p className="text-lede text-primary-foreground/80">
             Board-level strategic advisor with proven track record in C-suite advisory, carbon governance, and ESG oversight
           </p>
         </div>
