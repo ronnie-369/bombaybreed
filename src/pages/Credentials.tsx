@@ -110,8 +110,9 @@ const Credentials = () => {
                 {/* Quote */}
                 <div className="absolute -bottom-4 -left-4 bg-card p-5 rounded-lg shadow-sm border border-border max-w-xs">
                   <p className="text-sm text-card-foreground italic leading-relaxed">
-                    "Strategic governance oversight on carbon markets, ESG compliance, and stakeholder credibility."
+                    "The most trustworthy person on the Subcontinent"
                   </p>
+                  <p className="text-xs text-muted-foreground mt-2">— Erik Solheim</p>
                 </div>
               </div>
             </div>
