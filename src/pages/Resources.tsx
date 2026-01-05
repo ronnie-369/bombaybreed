@@ -1,4 +1,4 @@
-import React, { useState, useRef, useMemo } from 'react';
+import React, { useState, useRef, useMemo, useEffect } from 'react';
 import Header from '@/components/Header';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from '@/components/ui/button';
@@ -17,57 +17,107 @@ interface Publication {
 
 // Topic filter categories with their matching keywords
 const TOPIC_CATEGORIES = [
-  { label: "Article 6", keywords: ["Article 6"] },
-  { label: "Carbon Markets", keywords: ["Carbon", "Market", "CCTS", "CBAM", "Emissions"] },
-  { label: "Energy Transition", keywords: ["Energy", "Renewable", "Grid", "Transition"] },
-  { label: "Climate Policy", keywords: ["Policy", "Climate"] },
-  { label: "Green Economy", keywords: ["Jobs", "Workforce", "Skills", "Investment"] },
-  { label: "India Focus", keywords: ["India", "Asia"] },
+  { label: "Carbon Markets", keywords: ["Carbon", "Credits", "Trading", "CCTS", "CBAM", "Emissions", "Market"] },
+  { label: "Energy & Renewables", keywords: ["Energy", "Solar", "Wind", "Grid", "Hydrogen", "Storage", "Renewable"] },
+  { label: "Mining & Minerals", keywords: ["Mining", "Lithium", "Cobalt", "Nickel", "Copper", "Tailings", "Critical Minerals"] },
+  { label: "Policy & Regulation", keywords: ["Policy", "Article 6", "CBAM", "CCTS", "Compliance", "EU", "Paris Agreement"] },
+  { label: "Jobs & Skills", keywords: ["Jobs", "Workforce", "Skills", "Salary", "Training", "Employment"] },
+  { label: "Investment", keywords: ["Investment", "Investor", "Portfolio", "ESG", "Green Bonds", "Market Sizing"] },
+  { label: "India Focus", keywords: ["India", "Gujarat", "Maharashtra", "Tamil Nadu", "Asia"] },
+  { label: "Industrial Sectors", keywords: ["Steel", "Cement", "Textiles", "Chemicals", "Automotive", "Aluminum"] },
+];
+
+// Dynamic search prompts that cycle in the placeholder
+const SEARCH_PROMPTS = [
+  "Search for lithium mining risks...",
+  "Search for carbon credits investment...",
+  "Search for green jobs salary...",
+  "Search for CBAM compliance...",
+  "Search for Article 6 policy...",
+  "Search for steel decarbonization...",
+  "Search for tailings dam risk...",
+  "Search for renewable energy grid...",
+  "Search for ESG portfolio screening...",
+  "Search for Gujarat solar jobs...",
 ];
 
 const Resources = () => {
   // Publications ordered from newest to oldest
   const publications: Publication[] = [
     {
+      title: "Mining the Transition: A Climate-Critical Minerals Risk Framework for Investors",
+      description: "Comprehensive risk framework for climate-critical minerals investment, covering lithium, cobalt, nickel, copper, and rare earths with ESG portfolio screening tools",
+      type: "Investor Framework",
+      topics: [
+        "Critical Minerals", "Lithium", "Cobalt", "Nickel", "Copper", "Rare Earths",
+        "Tailings Dams", "Water Risk", "Aquifer Depletion", "ESG Investing",
+        "Mining Risk", "Portfolio Screening", "SDGs", "Investor Intelligence"
+      ],
+      publishedDate: "2025-01-10"
+    },
+    {
       title: "Asia Climate Emissions and Article 6: Comparative Policy Grade",
       description: "Comprehensive analysis of Asia's climate emissions landscape and comparative policy grading under Article 6 of the Paris Agreement",
       type: "Policy Analysis",
-      topics: ["Article 6", "Climate Policy", "Emissions Analysis", "Asia Markets"],
+      topics: [
+        "Article 6", "Paris Agreement", "Emissions Trading", "Climate Policy",
+        "Asia Markets", "Carbon Credits", "NDCs", "Policy Comparison", "UNFCCC"
+      ],
       publishedDate: "2025-01-05"
     },
     {
       title: "India's Climate Inflection Point",
       description: "Critical analysis of India's pivotal moment in climate transition and the strategic decisions shaping the nation's sustainable future",
       type: "Strategic Analysis",
-      topics: ["Climate Transition", "Policy Inflection", "Strategic Decisions", "Future Outlook"],
+      topics: [
+        "India", "Net Zero", "Climate Strategy", "Policy Inflection",
+        "Decarbonization", "Strategic Analysis", "2070 Targets", "NDC"
+      ],
       publishedDate: "2024-12-15"
     },
     {
       title: "From Compliance to Credibility: A CXO Guide to CCTS & CBAM",
       description: "Strategic frameworks to transform carbon compliance into competitive advantage and market leadership",
       type: "CXO Strategic Guide",
-      topics: ["CCTS Compliance", "CBAM Regulations", "Strategic Communications", "Market Access"],
+      topics: [
+        "CCTS", "CBAM", "EU Regulations", "Export Compliance", "Steel",
+        "Textiles", "Chemicals", "Automotive", "Carbon Intensity", "Scope 3",
+        "CXO Strategy", "Trade Policy"
+      ],
       publishedDate: "2024-11-20"
     },
     {
       title: "Carbon Market Outlook 2025-2030: An Investor's Deep Dive",
       description: "Complete investor's guide to India's $1.4B carbon market opportunity with financial models and risk analysis",
       type: "Investor's Deep Dive",
-      topics: ["Market Sizing", "Investment Sectors", "Risk Analysis", "Growth Projections"],
+      topics: [
+        "Carbon Credits", "Carbon Trading", "Investment Analysis", "Market Sizing",
+        "Renewable Energy Credits", "Green Bonds", "Net Zero", "Carbon Tax",
+        "ESG Reporting", "Forestry", "Agriculture", "Transportation", "India"
+      ],
       publishedDate: "2024-10-15"
     },
     {
       title: "Green Jobs in India: Workforce and Investment Outlook 2025-2030",
       description: "Complete workforce & investment outlook for India's green economy transformation",
       type: "Workforce Outlook",
-      topics: ["Job Archetypes", "Salary Benchmarks", "Skills Gap", "Regional Hubs"],
+      topics: [
+        "Green Jobs", "Workforce", "Skills Gap", "Salary Benchmarks",
+        "Solar", "Wind", "Battery Storage", "Manufacturing",
+        "Gujarat", "Maharashtra", "Tamil Nadu", "Training", "Employment"
+      ],
       publishedDate: "2024-09-01"
     },
     {
       title: "Energy Transition Playbook",
       description: "Strategic roadmap for India's energy transition and decarbonization pathways",
       type: "Strategic Playbook",
-      topics: ["Renewable Energy", "Grid Integration", "Policy Framework", "Technology Adoption"],
+      topics: [
+        "Energy Transition", "Renewable Energy", "Solar", "Wind",
+        "Smart Grid", "Energy Storage", "Green Hydrogen", "Carbon Capture",
+        "Steel Decarbonization", "Cement", "Aluminum", "Industrial Policy",
+        "PLI Scheme", "Grid Integration", "India"
+      ],
       publishedDate: "2024-07-15"
     }
   ];
@@ -75,7 +125,20 @@ const Resources = () => {
   const [selectedReport, setSelectedReport] = useState(publications[0]);
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedTopics, setSelectedTopics] = useState<string[]>([]);
+  const [placeholderIndex, setPlaceholderIndex] = useState(0);
+  const [isSearchFocused, setIsSearchFocused] = useState(false);
   const formSectionRef = useRef<HTMLDivElement>(null);
+
+  // Cycle through search prompts every 3 seconds when not focused
+  useEffect(() => {
+    if (isSearchFocused || searchQuery) return;
+    
+    const interval = setInterval(() => {
+      setPlaceholderIndex((prev) => (prev + 1) % SEARCH_PROMPTS.length);
+    }, 3000);
+    
+    return () => clearInterval(interval);
+  }, [isSearchFocused, searchQuery]);
 
   const handleDownloadClick = (pub: Publication) => {
     setSelectedReport(pub);
@@ -165,10 +228,12 @@ const Resources = () => {
               <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
               <Input
                 type="text"
-                placeholder="Search publications by title, description, or topic..."
+                placeholder={SEARCH_PROMPTS[placeholderIndex]}
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="pl-10 pr-10"
+                onFocus={() => setIsSearchFocused(true)}
+                onBlur={() => setIsSearchFocused(false)}
+                className="pl-10 pr-10 transition-all"
               />
               {searchQuery && (
                 <button

@@ -41,9 +41,15 @@ const getCorsHeaders = (origin: string | null): Record<string, string> => {
 
 // Report file mapping
 const REPORT_FILES: Record<string, string> = {
+  'Mining the Transition: A Climate-Critical Minerals Risk Framework for Investors': 'Mining-the-Transition-A-Climate-Critical-Minerals-Risk-Framework-for-Investors.pdf',
   'Green Jobs in India: Workforce and Investment Outlook 2025-2030': 'Green-Jobs-in-India-Workforce-and-Investment-Outlook-2025-2030 (1).pdf',
   'India Carbon Market Outlook 2025-2030: An Investor\'s Deep Dive': 'India-Carbon-Market-Outlook-2025-2030-An-Investors-Deep-Dive.pdf',
+  'Carbon Market Outlook 2025-2030: An Investor\'s Deep Dive': 'India-Carbon-Market-Outlook-2025-2030-An-Investors-Deep-Dive.pdf',
   'India\'s Carbon Playbook': 'Indias-Carbon-Playbook (1).pdf',
+  'From Compliance to Credibility: A CXO Guide to CCTS & CBAM': 'From-Compliance-to-Credibility-A-CXO-Guide-to-CCTS-and-CBAM.pdf',
+  'Energy Transition Playbook': 'The-Energy-Transition-Playbook-for-India (2).pdf',
+  'The Energy Transition Playbook for India': 'The-Energy-Transition-Playbook-for-India (2).pdf',
+  'India\'s Climate Inflection Point': 'Indias-Climate-Inflection-Point-The Climate Desk_compressed.pdf',
   'Asia Climate Emissions and Article 6: Comparative Policy Grade': 'ASIA-CLIMATE-EMISSIONS-and-ARTICLE-6-COMPARATIVE-POLICY-GRADE (3).pdf'
 };
 

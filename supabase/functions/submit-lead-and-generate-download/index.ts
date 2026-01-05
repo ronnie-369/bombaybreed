@@ -135,6 +135,7 @@ serve(async (req: Request) => {
 
     // Map report titles to actual filenames in storage
     const FILE_MAP: Record<string, string> = {
+      "Mining the Transition: A Climate-Critical Minerals Risk Framework for Investors": "Mining-the-Transition-A-Climate-Critical-Minerals-Risk-Framework-for-Investors.pdf",
       "Green Jobs in India: Workforce and Investment Outlook 2025-2030": "Green-Jobs-in-India-Workforce-and-Investment-Outlook-2025-2030 (1).pdf",
       "Green Jobs Report.pdf": "Green-Jobs-in-India-Workforce-and-Investment-Outlook-2025-2030 (1).pdf",
       "Carbon Market Outlook 2025-2030: An Investor's Deep Dive": "India-Carbon-Market-Outlook-2025-2030-An-Investors-Deep-Dive.pdf",
