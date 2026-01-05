@@ -15,6 +15,16 @@ interface Publication {
   publishedDate: string;
 }
 
+// Topic filter categories with their matching keywords
+const TOPIC_CATEGORIES = [
+  { label: "Article 6", keywords: ["Article 6"] },
+  { label: "Carbon Markets", keywords: ["Carbon", "Market", "CCTS", "CBAM", "Emissions"] },
+  { label: "Energy Transition", keywords: ["Energy", "Renewable", "Grid", "Transition"] },
+  { label: "Climate Policy", keywords: ["Policy", "Climate"] },
+  { label: "Green Economy", keywords: ["Jobs", "Workforce", "Skills", "Investment"] },
+  { label: "India Focus", keywords: ["India", "Asia"] },
+];
+
 const Resources = () => {
   // Publications ordered from newest to oldest
   const publications: Publication[] = [
@@ -64,6 +74,7 @@ const Resources = () => {
 
   const [selectedReport, setSelectedReport] = useState(publications[0]);
   const [searchQuery, setSearchQuery] = useState('');
+  const [selectedTopics, setSelectedTopics] = useState<string[]>([]);
   const formSectionRef = useRef<HTMLDivElement>(null);
 
   const handleDownloadClick = (pub: Publication) => {
@@ -75,19 +86,51 @@ const Resources = () => {
     return format(new Date(dateString), 'MMMM yyyy');
   };
 
-  // Filter publications based on search query
-  const filteredPublications = useMemo(() => {
-    if (!searchQuery.trim()) return publications;
-    
-    const query = searchQuery.toLowerCase().trim();
-    return publications.filter(pub => 
-      pub.title.toLowerCase().includes(query) ||
-      pub.description.toLowerCase().includes(query) ||
-      pub.topics.some(topic => topic.toLowerCase().includes(query))
+  // Check if a publication matches a topic category
+  const matchesCategory = (pubTopics: string[], category: string) => {
+    const categoryConfig = TOPIC_CATEGORIES.find(c => c.label === category);
+    if (!categoryConfig) return false;
+    return pubTopics.some(topic => 
+      categoryConfig.keywords.some(keyword => 
+        topic.toLowerCase().includes(keyword.toLowerCase())
+      )
     );
-  }, [searchQuery]);
+  };
 
-  const isSearching = searchQuery.trim().length > 0;
+  // Toggle topic filter
+  const toggleTopic = (topic: string) => {
+    setSelectedTopics(prev => 
+      prev.includes(topic) 
+        ? prev.filter(t => t !== topic)
+        : [...prev, topic]
+    );
+  };
+
+  // Filter publications based on search query and selected topics
+  const filteredPublications = useMemo(() => {
+    let results = publications;
+    
+    // Apply topic filters (OR logic between selected topics)
+    if (selectedTopics.length > 0) {
+      results = results.filter(pub => 
+        selectedTopics.some(category => matchesCategory(pub.topics, category))
+      );
+    }
+    
+    // Apply search filter
+    if (searchQuery.trim()) {
+      const query = searchQuery.toLowerCase().trim();
+      results = results.filter(pub => 
+        pub.title.toLowerCase().includes(query) ||
+        pub.description.toLowerCase().includes(query) ||
+        pub.topics.some(topic => topic.toLowerCase().includes(query))
+      );
+    }
+    
+    return results;
+  }, [searchQuery, selectedTopics]);
+
+  const isFiltering = searchQuery.trim().length > 0 || selectedTopics.length > 0;
 
   // Split publications: featured (newest) + recent (next 2) + archive (rest)
   const featuredPublication = filteredPublications[0];
@@ -136,11 +179,42 @@ const Resources = () => {
                 </button>
               )}
             </div>
-            {isSearching && (
+            {searchQuery && (
               <p className="text-center text-sm text-muted-foreground mt-3">
                 {filteredPublications.length} {filteredPublications.length === 1 ? 'result' : 'results'} found
               </p>
             )}
+          </div>
+
+          {/* Topic Filter Chips */}
+          <div className="mb-12">
+            <div className="flex flex-wrap justify-center gap-2">
+              {TOPIC_CATEGORIES.map((category) => {
+                const isActive = selectedTopics.includes(category.label);
+                return (
+                  <button
+                    key={category.label}
+                    onClick={() => toggleTopic(category.label)}
+                    className={`px-4 py-2 rounded-full text-sm font-medium transition-all ${
+                      isActive
+                        ? 'bg-primary text-primary-foreground shadow-sm'
+                        : 'bg-muted text-muted-foreground hover:bg-muted/80'
+                    }`}
+                  >
+                    {category.label}
+                  </button>
+                );
+              })}
+              {selectedTopics.length > 0 && (
+                <button
+                  onClick={() => setSelectedTopics([])}
+                  className="px-4 py-2 rounded-full text-sm font-medium text-muted-foreground hover:text-foreground transition-colors flex items-center gap-1.5"
+                >
+                  <X className="h-3.5 w-3.5" />
+                  Clear filters
+                </button>
+              )}
+            </div>
           </div>
 
           {/* No Results State */}
@@ -156,7 +230,7 @@ const Resources = () => {
           ) : (
             <>
               {/* Featured Section Header */}
-              {!isSearching && (
+              {!isFiltering && (
                 <div className="text-center mb-12">
                   <p className="text-sm font-medium text-accent tracking-wide uppercase mb-3">
                     Latest Publication
@@ -167,8 +241,10 @@ const Resources = () => {
                 </div>
               )}
 
-              {isSearching && (
-                <h3 className="text-lg font-medium mb-6 text-muted-foreground">Search Results</h3>
+              {isFiltering && (
+                <h3 className="text-lg font-medium mb-6 text-muted-foreground">
+                  {filteredPublications.length} {filteredPublications.length === 1 ? 'result' : 'results'} found
+                </h3>
               )}
 
           {/* Featured Card - Full Width */}
