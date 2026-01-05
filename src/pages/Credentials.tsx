@@ -31,7 +31,7 @@ const Credentials = () => {
     }
   ];
 
-  const portraitUrl = import.meta.env.VITE_PORTRAIT_URL || "/lovable-uploads/76901386-d547-4a2e-b06b-2b2f1420a922.png";
+  const portraitUrl = "https://zjiwmdrtuhsrymsuvpfb.supabase.co/storage/v1/object/public/brand%20assets/2194e7e6-56ca-4efd-9f86-44eac8db0353.JPG";
 
   return (
     <div className="min-h-screen bg-background">
@@ -80,6 +80,13 @@ const Credentials = () => {
                 
                 <p>
                   Theresa believes that businesses can build for sustainability and convert it to their competitive advantage through strategic governance, credible communications, and board-level oversight on carbon/ESG compliance.
+                </p>
+              </div>
+              
+              {/* Personal Motto */}
+              <div className="mt-2 pt-6 border-t border-primary/10">
+                <p className="text-base md:text-lg italic text-primary/80 font-serif">
+                  "It will take all of us, to do this for all of us"
                 </p>
               </div>
               
