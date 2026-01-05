@@ -43,7 +43,8 @@ const getCorsHeaders = (origin: string | null): Record<string, string> => {
 const REPORT_FILES: Record<string, string> = {
   'Green Jobs in India: Workforce and Investment Outlook 2025-2030': 'Green-Jobs-in-India-Workforce-and-Investment-Outlook-2025-2030 (1).pdf',
   'India Carbon Market Outlook 2025-2030: An Investor\'s Deep Dive': 'India-Carbon-Market-Outlook-2025-2030-An-Investors-Deep-Dive.pdf',
-  'India\'s Carbon Playbook': 'Indias-Carbon-Playbook (1).pdf'
+  'India\'s Carbon Playbook': 'Indias-Carbon-Playbook (1).pdf',
+  'Asia Climate Emissions and Article 6: Comparative Policy Grade': 'ASIA-CLIMATE-EMISSIONS-and-ARTICLE-6-COMPARATIVE-POLICY-GRADE (3).pdf'
 };
 
 interface DownloadRequest {

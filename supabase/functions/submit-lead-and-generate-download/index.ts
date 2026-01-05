@@ -144,6 +144,7 @@ serve(async (req: Request) => {
       "Energy Transition Playbook": "The-Energy-Transition-Playbook-for-India (2).pdf",
       "The Energy Transition Playbook for India": "The-Energy-Transition-Playbook-for-India (2).pdf",
       "India's Climate Inflection Point": "Indias-Climate-Inflection-Point-The Climate Desk_compressed.pdf",
+      "Asia Climate Emissions and Article 6: Comparative Policy Grade": "ASIA-CLIMATE-EMISSIONS-and-ARTICLE-6-COMPARATIVE-POLICY-GRADE (3).pdf",
     };
 
     const ensurePdf = (s: string) => (s.toLowerCase().endsWith(".pdf") ? s : `${s}.pdf`);

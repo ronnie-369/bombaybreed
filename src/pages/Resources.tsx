@@ -36,6 +36,12 @@ const Resources = () => {
       description: "Critical analysis of India's pivotal moment in climate transition and the strategic decisions shaping the nation's sustainable future",
       type: "Strategic Analysis",
       topics: ["Climate Transition", "Policy Inflection", "Strategic Decisions", "Future Outlook"]
+    },
+    {
+      title: "Asia Climate Emissions and Article 6: Comparative Policy Grade",
+      description: "Comprehensive analysis of Asia's climate emissions landscape and comparative policy grading under Article 6 of the Paris Agreement",
+      type: "Policy Analysis",
+      topics: ["Article 6", "Climate Policy", "Emissions Analysis", "Asia Markets"]
     }
   ];
 
