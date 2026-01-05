@@ -1,5 +1,7 @@
 import React, { useState, useRef, useMemo, useEffect } from 'react';
 import Header from '@/components/Header';
+import Footer from '@/components/Footer';
+import BlogCarousel from '@/components/BlogCarousel';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -201,7 +203,7 @@ const Resources = () => {
   const archivePublications = filteredPublications.slice(3);
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-background flex flex-col">
       <Header />
       
       {/* Hero Section */}
@@ -458,6 +460,9 @@ const Resources = () => {
         </div>
       </section>
 
+      {/* Blog Insights */}
+      <BlogCarousel />
+
       {/* Additional Resources */}
       <section className="py-20 px-6 md:px-8 bg-secondary/30">
         <div className="container mx-auto max-w-6xl">
@@ -552,6 +557,8 @@ const Resources = () => {
           />
         </div>
       </section>
+
+      <Footer />
     </div>
   );
 };
