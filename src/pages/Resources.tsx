@@ -2,56 +2,81 @@ import React, { useState, useRef } from 'react';
 import Header from '@/components/Header';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from '@/components/ui/button';
-import { Download, ExternalLink, FileText, Video } from 'lucide-react';
+import { Download, ExternalLink, FileText, Video, Calendar, ChevronRight } from 'lucide-react';
 import LeadCaptureForm from '@/components/shared/LeadCaptureForm';
+import { format } from 'date-fns';
+
+interface Publication {
+  title: string;
+  description: string;
+  type: string;
+  topics: string[];
+  publishedDate: string;
+}
 
 const Resources = () => {
-  const publications = [
+  // Publications ordered from newest to oldest
+  const publications: Publication[] = [
     {
-      title: "From Compliance to Credibility: A CXO Guide to CCTS & CBAM",
-      description: "Strategic frameworks to transform carbon compliance into competitive advantage and market leadership",
-      type: "CXO Strategic Guide",
-      topics: ["CCTS Compliance", "CBAM Regulations", "Strategic Communications", "Market Access"]
-    },
-    {
-      title: "Carbon Market Outlook 2025-2030: An Investor's Deep Dive",
-      description: "Complete investor's guide to India's $1.4B carbon market opportunity with financial models and risk analysis",
-      type: "Investor's Deep Dive",
-      topics: ["Market Sizing", "Investment Sectors", "Risk Analysis", "Growth Projections"]
-    },
-    {
-      title: "Green Jobs in India: Workforce and Investment Outlook 2025-2030",
-      description: "Complete workforce & investment outlook for India's green economy transformation",
-      type: "Workforce Outlook",
-      topics: ["Job Archetypes", "Salary Benchmarks", "Skills Gap", "Regional Hubs"]
-    },
-    {
-      title: "Energy Transition Playbook",
-      description: "Strategic roadmap for India's energy transition and decarbonization pathways",
-      type: "Strategic Playbook",
-      topics: ["Renewable Energy", "Grid Integration", "Policy Framework", "Technology Adoption"]
+      title: "Asia Climate Emissions and Article 6: Comparative Policy Grade",
+      description: "Comprehensive analysis of Asia's climate emissions landscape and comparative policy grading under Article 6 of the Paris Agreement",
+      type: "Policy Analysis",
+      topics: ["Article 6", "Climate Policy", "Emissions Analysis", "Asia Markets"],
+      publishedDate: "2025-01-05"
     },
     {
       title: "India's Climate Inflection Point",
       description: "Critical analysis of India's pivotal moment in climate transition and the strategic decisions shaping the nation's sustainable future",
       type: "Strategic Analysis",
-      topics: ["Climate Transition", "Policy Inflection", "Strategic Decisions", "Future Outlook"]
+      topics: ["Climate Transition", "Policy Inflection", "Strategic Decisions", "Future Outlook"],
+      publishedDate: "2024-12-15"
     },
     {
-      title: "Asia Climate Emissions and Article 6: Comparative Policy Grade",
-      description: "Comprehensive analysis of Asia's climate emissions landscape and comparative policy grading under Article 6 of the Paris Agreement",
-      type: "Policy Analysis",
-      topics: ["Article 6", "Climate Policy", "Emissions Analysis", "Asia Markets"]
+      title: "From Compliance to Credibility: A CXO Guide to CCTS & CBAM",
+      description: "Strategic frameworks to transform carbon compliance into competitive advantage and market leadership",
+      type: "CXO Strategic Guide",
+      topics: ["CCTS Compliance", "CBAM Regulations", "Strategic Communications", "Market Access"],
+      publishedDate: "2024-11-20"
+    },
+    {
+      title: "Carbon Market Outlook 2025-2030: An Investor's Deep Dive",
+      description: "Complete investor's guide to India's $1.4B carbon market opportunity with financial models and risk analysis",
+      type: "Investor's Deep Dive",
+      topics: ["Market Sizing", "Investment Sectors", "Risk Analysis", "Growth Projections"],
+      publishedDate: "2024-10-15"
+    },
+    {
+      title: "Green Jobs in India: Workforce and Investment Outlook 2025-2030",
+      description: "Complete workforce & investment outlook for India's green economy transformation",
+      type: "Workforce Outlook",
+      topics: ["Job Archetypes", "Salary Benchmarks", "Skills Gap", "Regional Hubs"],
+      publishedDate: "2024-09-01"
+    },
+    {
+      title: "Energy Transition Playbook",
+      description: "Strategic roadmap for India's energy transition and decarbonization pathways",
+      type: "Strategic Playbook",
+      topics: ["Renewable Energy", "Grid Integration", "Policy Framework", "Technology Adoption"],
+      publishedDate: "2024-07-15"
     }
   ];
 
   const [selectedReport, setSelectedReport] = useState(publications[0]);
   const formSectionRef = useRef<HTMLDivElement>(null);
 
-  const handleDownloadClick = (pub: typeof publications[0]) => {
+  const handleDownloadClick = (pub: Publication) => {
     setSelectedReport(pub);
     formSectionRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
   };
+
+  const formatDate = (dateString: string) => {
+    return format(new Date(dateString), 'MMMM yyyy');
+  };
+
+  // Split publications: featured (newest) + recent (next 2) + archive (rest)
+  const featuredPublication = publications[0];
+  const recentPublications = publications.slice(1, 3);
+  const archivePublications = publications.slice(3);
 
   return (
     <div className="min-h-screen bg-background">
@@ -72,66 +97,154 @@ const Resources = () => {
         </div>
       </section>
 
-      {/* Featured Publications */}
+      {/* Featured Publication */}
       <section className="py-20 px-6 md:px-8">
         <div className="container mx-auto max-w-6xl">
-          <div className="text-center mb-16">
+          <div className="text-center mb-12">
             <p className="text-sm font-medium text-accent tracking-wide uppercase mb-3">
-              Publications
+              Latest Publication
             </p>
-            <h2 className="text-section font-heading tracking-tight mb-4">
-              Featured Publications
+            <h2 className="text-section font-heading tracking-tight">
+              Featured Report
             </h2>
-            <p className="text-body text-muted-foreground max-w-2xl mx-auto">
-              Comprehensive research and analysis on carbon markets, ESG compliance, and sustainability transformation
-            </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {publications.map((pub, index) => (
-              <Card 
-                key={index} 
-                className={`transition-colors hover:border-border ${
-                  selectedReport.title === pub.title ? 'border-primary' : 'border-border/50'
-                }`}
-              >
-                <CardHeader>
-                  <div className="flex items-center gap-2 mb-2">
-                    <FileText className="h-4 w-4 text-accent" />
-                    <span className="text-xs font-medium text-accent uppercase tracking-wide">{pub.type}</span>
-                  </div>
-                  <CardTitle className="text-lg font-medium">
-                    {pub.title}
-                  </CardTitle>
-                  <CardDescription className="text-sm">
-                    {pub.description}
-                  </CardDescription>
-                </CardHeader>
-                <CardContent>
-                  <div className="space-y-4">
-                    <div className="flex flex-wrap gap-2">
-                      {pub.topics.map((topic, topicIndex) => (
-                        <span 
-                          key={topicIndex}
-                          className="px-2.5 py-1 bg-muted text-muted-foreground rounded text-xs hover-pill cursor-default"
-                        >
-                          {topic}
-                        </span>
-                      ))}
-                    </div>
-                    <Button 
-                      onClick={() => handleDownloadClick(pub)}
-                      variant="outline" 
-                      size="sm"
-                      className="w-full gap-2"
+          {/* Featured Card - Full Width */}
+          <Card className="border-primary/30 bg-gradient-to-br from-card to-secondary/20 mb-12">
+            <div className="grid md:grid-cols-3 gap-6">
+              <div className="md:col-span-2 p-6 md:p-8">
+                <div className="flex items-center gap-3 mb-4">
+                  <span className="px-3 py-1 bg-primary/10 text-primary rounded-full text-xs font-medium uppercase tracking-wide">
+                    {featuredPublication.type}
+                  </span>
+                  <span className="flex items-center gap-1.5 text-xs text-muted-foreground">
+                    <Calendar className="h-3 w-3" />
+                    {formatDate(featuredPublication.publishedDate)}
+                  </span>
+                </div>
+                <h3 className="text-2xl md:text-3xl font-heading font-medium mb-4">
+                  {featuredPublication.title}
+                </h3>
+                <p className="text-muted-foreground mb-6 leading-relaxed">
+                  {featuredPublication.description}
+                </p>
+                <div className="flex flex-wrap gap-2 mb-6">
+                  {featuredPublication.topics.map((topic, index) => (
+                    <span 
+                      key={index}
+                      className="px-2.5 py-1 bg-muted text-muted-foreground rounded text-xs"
                     >
-                      <Download className="h-4 w-4" />
-                      Download Report
-                    </Button>
+                      {topic}
+                    </span>
+                  ))}
+                </div>
+                <Button 
+                  onClick={() => handleDownloadClick(featuredPublication)}
+                  className="gap-2"
+                >
+                  <Download className="h-4 w-4" />
+                  Download Report
+                </Button>
+              </div>
+              <div className="hidden md:flex items-center justify-center p-8 bg-primary/5 rounded-r-lg">
+                <FileText className="h-24 w-24 text-primary/30" />
+              </div>
+            </div>
+          </Card>
+
+          {/* Recent Publications Grid */}
+          <div className="mb-16">
+            <h3 className="text-lg font-medium mb-6 text-muted-foreground">Recent Publications</h3>
+            <div className="grid md:grid-cols-2 gap-6">
+              {recentPublications.map((pub, index) => (
+                <Card 
+                  key={index} 
+                  className={`transition-colors hover:border-border ${
+                    selectedReport.title === pub.title ? 'border-primary' : 'border-border/50'
+                  }`}
+                >
+                  <CardHeader>
+                    <div className="flex items-center justify-between mb-2">
+                      <div className="flex items-center gap-2">
+                        <FileText className="h-4 w-4 text-accent" />
+                        <span className="text-xs font-medium text-accent uppercase tracking-wide">{pub.type}</span>
+                      </div>
+                      <span className="flex items-center gap-1.5 text-xs text-muted-foreground">
+                        <Calendar className="h-3 w-3" />
+                        {formatDate(pub.publishedDate)}
+                      </span>
+                    </div>
+                    <CardTitle className="text-lg font-medium">
+                      {pub.title}
+                    </CardTitle>
+                    <CardDescription className="text-sm">
+                      {pub.description}
+                    </CardDescription>
+                  </CardHeader>
+                  <CardContent>
+                    <div className="space-y-4">
+                      <div className="flex flex-wrap gap-2">
+                        {pub.topics.slice(0, 3).map((topic, topicIndex) => (
+                          <span 
+                            key={topicIndex}
+                            className="px-2.5 py-1 bg-muted text-muted-foreground rounded text-xs"
+                          >
+                            {topic}
+                          </span>
+                        ))}
+                      </div>
+                      <Button 
+                        onClick={() => handleDownloadClick(pub)}
+                        variant="outline" 
+                        size="sm"
+                        className="w-full gap-2"
+                      >
+                        <Download className="h-4 w-4" />
+                        Download Report
+                      </Button>
+                    </div>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+          </div>
+
+          {/* Archive List */}
+          <div>
+            <h3 className="text-lg font-medium mb-6 text-muted-foreground">All Publications</h3>
+            <div className="bg-card border border-border/50 rounded-lg overflow-hidden">
+              {archivePublications.map((pub, index) => (
+                <div 
+                  key={index}
+                  className={`flex items-center justify-between p-4 hover:bg-secondary/30 transition-colors cursor-pointer group ${
+                    index !== archivePublications.length - 1 ? 'border-b border-border/30' : ''
+                  }`}
+                  onClick={() => handleDownloadClick(pub)}
+                >
+                  <div className="flex-1 min-w-0">
+                    <div className="flex items-center gap-3 mb-1">
+                      <span className="text-xs font-medium text-accent uppercase tracking-wide">
+                        {pub.type}
+                      </span>
+                      <span className="text-xs text-muted-foreground">
+                        {formatDate(pub.publishedDate)}
+                      </span>
+                    </div>
+                    <h4 className="font-medium text-foreground truncate pr-4">
+                      {pub.title}
+                    </h4>
                   </div>
-                </CardContent>
-              </Card>
-            ))}
+                  <Button 
+                    variant="ghost" 
+                    size="sm"
+                    className="gap-1 opacity-0 group-hover:opacity-100 transition-opacity shrink-0"
+                  >
+                    Download
+                    <ChevronRight className="h-4 w-4" />
+                  </Button>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </section>
