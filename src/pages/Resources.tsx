@@ -235,7 +235,7 @@ const Resources = () => {
                 onChange={(e) => setSearchQuery(e.target.value)}
                 onFocus={() => setIsSearchFocused(true)}
                 onBlur={() => setIsSearchFocused(false)}
-                className="pl-10 pr-10 transition-all"
+                className="pl-11 pr-10 transition-all"
               />
               {searchQuery && (
                 <button
