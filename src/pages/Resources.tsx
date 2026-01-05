@@ -1,8 +1,9 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useMemo } from 'react';
 import Header from '@/components/Header';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from '@/components/ui/button';
-import { Download, ExternalLink, FileText, Video, Calendar, ChevronRight } from 'lucide-react';
+import { Input } from '@/components/ui/input';
+import { Download, ExternalLink, FileText, Video, Calendar, ChevronRight, Search, X } from 'lucide-react';
 import LeadCaptureForm from '@/components/shared/LeadCaptureForm';
 import { format } from 'date-fns';
 
@@ -62,6 +63,7 @@ const Resources = () => {
   ];
 
   const [selectedReport, setSelectedReport] = useState(publications[0]);
+  const [searchQuery, setSearchQuery] = useState('');
   const formSectionRef = useRef<HTMLDivElement>(null);
 
   const handleDownloadClick = (pub: Publication) => {
@@ -73,10 +75,24 @@ const Resources = () => {
     return format(new Date(dateString), 'MMMM yyyy');
   };
 
+  // Filter publications based on search query
+  const filteredPublications = useMemo(() => {
+    if (!searchQuery.trim()) return publications;
+    
+    const query = searchQuery.toLowerCase().trim();
+    return publications.filter(pub => 
+      pub.title.toLowerCase().includes(query) ||
+      pub.description.toLowerCase().includes(query) ||
+      pub.topics.some(topic => topic.toLowerCase().includes(query))
+    );
+  }, [searchQuery]);
+
+  const isSearching = searchQuery.trim().length > 0;
+
   // Split publications: featured (newest) + recent (next 2) + archive (rest)
-  const featuredPublication = publications[0];
-  const recentPublications = publications.slice(1, 3);
-  const archivePublications = publications.slice(3);
+  const featuredPublication = filteredPublications[0];
+  const recentPublications = filteredPublications.slice(1, 3);
+  const archivePublications = filteredPublications.slice(3);
 
   return (
     <div className="min-h-screen bg-background">
@@ -97,17 +113,63 @@ const Resources = () => {
         </div>
       </section>
 
-      {/* Featured Publication */}
+      {/* Search & Publications */}
       <section className="py-20 px-6 md:px-8">
         <div className="container mx-auto max-w-6xl">
-          <div className="text-center mb-12">
-            <p className="text-sm font-medium text-accent tracking-wide uppercase mb-3">
-              Latest Publication
-            </p>
-            <h2 className="text-section font-heading tracking-tight">
-              Featured Report
-            </h2>
+          {/* Search Bar */}
+          <div className="mb-12">
+            <div className="relative max-w-md mx-auto">
+              <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+              <Input
+                type="text"
+                placeholder="Search publications by title, description, or topic..."
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                className="pl-10 pr-10"
+              />
+              {searchQuery && (
+                <button
+                  onClick={() => setSearchQuery('')}
+                  className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground transition-colors"
+                >
+                  <X className="h-4 w-4" />
+                </button>
+              )}
+            </div>
+            {isSearching && (
+              <p className="text-center text-sm text-muted-foreground mt-3">
+                {filteredPublications.length} {filteredPublications.length === 1 ? 'result' : 'results'} found
+              </p>
+            )}
           </div>
+
+          {/* No Results State */}
+          {filteredPublications.length === 0 ? (
+            <div className="text-center py-16">
+              <FileText className="h-12 w-12 text-muted-foreground/50 mx-auto mb-4" />
+              <h3 className="text-lg font-medium mb-2">No publications found</h3>
+              <p className="text-muted-foreground mb-4">Try adjusting your search terms</p>
+              <Button variant="outline" onClick={() => setSearchQuery('')}>
+                Clear Search
+              </Button>
+            </div>
+          ) : (
+            <>
+              {/* Featured Section Header */}
+              {!isSearching && (
+                <div className="text-center mb-12">
+                  <p className="text-sm font-medium text-accent tracking-wide uppercase mb-3">
+                    Latest Publication
+                  </p>
+                  <h2 className="text-section font-heading tracking-tight">
+                    Featured Report
+                  </h2>
+                </div>
+              )}
+
+              {isSearching && (
+                <h3 className="text-lg font-medium mb-6 text-muted-foreground">Search Results</h3>
+              )}
 
           {/* Featured Card - Full Width */}
           <Card className="border-primary/30 bg-gradient-to-br from-card to-secondary/20 mb-12">
@@ -153,6 +215,7 @@ const Resources = () => {
           </Card>
 
           {/* Recent Publications Grid */}
+          {recentPublications.length > 0 && (
           <div className="mb-16">
             <h3 className="text-lg font-medium mb-6 text-muted-foreground">Recent Publications</h3>
             <div className="grid md:grid-cols-2 gap-6">
@@ -208,8 +271,10 @@ const Resources = () => {
               ))}
             </div>
           </div>
+          )}
 
           {/* Archive List */}
+          {archivePublications.length > 0 && (
           <div>
             <h3 className="text-lg font-medium mb-6 text-muted-foreground">All Publications</h3>
             <div className="bg-card border border-border/50 rounded-lg overflow-hidden">
@@ -246,6 +311,9 @@ const Resources = () => {
               ))}
             </div>
           </div>
+          )}
+            </>
+          )}
         </div>
       </section>
 
