@@ -1,6 +1,6 @@
 import React from 'react';
 import { Button } from "@/components/ui/button";
-import { ArrowRight, ExternalLink } from 'lucide-react';
+import { ArrowRight, ExternalLink, Calendar } from 'lucide-react';
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
 import Autoplay from 'embla-carousel-autoplay';
 import { useQuery } from '@tanstack/react-query';
@@ -53,16 +53,19 @@ const staticBlogPosts: BlogPost[] = [
 ];
 
 const BlogCarouselSkeleton = () => (
-  <div className="flex flex-col md:flex-row items-center gap-8 md:gap-16 py-8">
-    <div className="md:w-1/2 space-y-4 md:space-y-6 text-center md:text-left">
-      <Skeleton className="h-12 w-3/4 mx-auto md:mx-0" />
-      <Skeleton className="h-8 w-1/2 mx-auto md:mx-0" />
-      <Skeleton className="h-20 w-full max-w-xl mx-auto md:mx-0" />
-      <Skeleton className="h-12 w-48 mx-auto md:mx-0" />
+  <div className="grid md:grid-cols-2 gap-8 lg:gap-12 items-center">
+    <div className="space-y-4">
+      <Skeleton className="h-5 w-24" />
+      <Skeleton className="h-8 w-full max-w-md" />
+      <Skeleton className="h-6 w-3/4" />
+      <div className="space-y-2 pt-2">
+        <Skeleton className="h-4 w-full" />
+        <Skeleton className="h-4 w-5/6" />
+        <Skeleton className="h-4 w-4/6" />
+      </div>
+      <Skeleton className="h-10 w-36 mt-4" />
     </div>
-    <div className="md:w-1/2 mt-8 md:mt-0">
-      <Skeleton className="aspect-[4/3] w-full max-w-lg mx-auto rounded-2xl" />
-    </div>
+    <Skeleton className="aspect-[4/3] w-full rounded-lg" />
   </div>
 );
 
@@ -81,7 +84,7 @@ const BlogCarousel = () => {
       }
       return data.posts;
     },
-    staleTime: 1000 * 60 * 60, // 1 hour cache
+    staleTime: 1000 * 60 * 60,
     placeholderData: staticBlogPosts,
     retry: 2,
   });
@@ -89,18 +92,18 @@ const BlogCarousel = () => {
   const posts = blogPosts || staticBlogPosts;
 
   return (
-    <section className="py-16 md:py-24 px-6 md:px-8 bg-gradient-to-b from-white to-bombay-background/30">
-      <div className="container mx-auto">
-        <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-display font-bold mb-4">
-            <span className="text-gradient">Latest from</span>
-            <br />
-            <span className="bg-gradient-to-r from-emerald-600 to-teal-600 bg-clip-text text-transparent">
-              The Climate Desk
-            </span>
+    <section className="section-padding bg-secondary/30">
+      <div className="container mx-auto max-w-6xl">
+        {/* Section Header */}
+        <div className="text-center mb-12 md:mb-16">
+          <span className="text-sm font-medium text-accent tracking-wide uppercase mb-3 block">
+            From The Climate Desk
+          </span>
+          <h2 className="text-section font-heading tracking-tight text-foreground mb-4">
+            Latest Articles
           </h2>
-          <p className="text-lg text-foreground/70 max-w-2xl mx-auto">
-            Insights, analysis, and deep dives into India's climate economy
+          <p className="text-body text-muted-foreground max-w-xl mx-auto">
+            Insights and analysis on India's climate economy
           </p>
         </div>
 
@@ -120,60 +123,61 @@ const BlogCarousel = () => {
             <CarouselContent>
               {posts.map((post) => (
                 <CarouselItem key={post.id}>
-                  <div className="flex flex-col md:flex-row items-center gap-8 md:gap-16 py-8">
-                    <div className="md:w-1/2 space-y-4 md:space-y-6 text-center md:text-left">
-                      <h3 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-heading font-bold leading-tight">
-                        <span className={`bg-gradient-to-r ${post.gradient} bg-clip-text text-transparent`}>
-                          {post.title}
-                        </span>
+                  <div className="grid md:grid-cols-2 gap-8 lg:gap-12 items-center">
+                    {/* Content */}
+                    <div className="space-y-4 order-2 md:order-1">
+                      <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                        <Calendar className="h-4 w-4" />
+                        <span>{post.date}</span>
+                      </div>
+                      <h3 className="text-subsection font-heading font-medium text-foreground leading-tight">
+                        {post.title}
                         {post.subtitle && (
-                          <>
-                            <br className="hidden md:block" />
-                            <span className="hidden md:inline text-foreground/80 text-xl md:text-2xl lg:text-3xl">
-                              {post.subtitle}
-                            </span>
-                          </>
+                          <span className="block text-muted-foreground font-normal text-lg mt-1">
+                            {post.subtitle}
+                          </span>
                         )}
                       </h3>
-                      <p className="hidden md:block text-sm sm:text-base md:text-lg text-foreground/70 leading-relaxed max-w-xl">
+                      <p className="text-body text-muted-foreground leading-relaxed">
                         {post.description}
                       </p>
                       <Button
                         onClick={() => window.open(post.url, '_blank', 'noopener,noreferrer')}
-                        variant="gradient"
-                        className="px-8 py-6 text-lg"
+                        variant="default"
+                        className="mt-2"
                       >
-                        Read Full Article
-                        <ExternalLink className="ml-2 h-5 w-5" />
+                        Read Article
+                        <ExternalLink className="ml-2 h-4 w-4" />
                       </Button>
                     </div>
-                    <div className="md:w-1/2 mt-8 md:mt-0 relative">
-                      <div className={`absolute -inset-4 bg-gradient-to-br ${post.gradient} opacity-20 rounded-full blur-3xl`}></div>
-                      <div className="relative">
-                        <div className="aspect-[4/3] w-full max-w-lg mx-auto overflow-hidden rounded-2xl shadow-2xl">
-                          <img 
-                            alt={post.title}
-                            className="w-full h-full object-cover hover:scale-105 transition-transform duration-500" 
-                            src={post.image}
-                            loading="lazy"
-                          />
-                        </div>
+                    
+                    {/* Image */}
+                    <div className="order-1 md:order-2">
+                      <div className="aspect-[4/3] w-full overflow-hidden rounded-lg border border-border/50 bg-muted">
+                        <img 
+                          alt={post.title}
+                          className="w-full h-full object-cover transition-transform duration-300 hover:scale-[1.02]" 
+                          src={post.image}
+                          loading="lazy"
+                        />
                       </div>
                     </div>
                   </div>
                 </CarouselItem>
               ))}
             </CarouselContent>
-            <CarouselPrevious className="left-4" />
-            <CarouselNext className="right-4" />
+            <div className="flex items-center justify-center gap-2 mt-8">
+              <CarouselPrevious className="static translate-y-0" />
+              <CarouselNext className="static translate-y-0" />
+            </div>
           </Carousel>
         )}
 
-        <div className="text-center mt-12">
+        {/* View All Button */}
+        <div className="text-center mt-10">
           <Button
             onClick={() => window.open('https://theclimatedesk.substack.com/', '_blank', 'noopener,noreferrer')}
             variant="outline"
-            className="px-6 py-3"
           >
             View All Articles
             <ArrowRight className="ml-2 h-4 w-4" />
