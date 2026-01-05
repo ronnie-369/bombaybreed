@@ -220,7 +220,10 @@ const DirectContact = () => {
         </div>
 
         {/* Footer */}
-        <div className="mt-16 pt-8 border-t border-border/50 text-center">
+        <div className="mt-16 pt-8 border-t border-border/50 text-center space-y-4">
+          <p className="text-sm italic text-primary/70 font-serif">
+            "It will take all of us, to do this for all of us"
+          </p>
           <p className="text-sm text-muted-foreground">
             © {new Date().getFullYear()} Bombay Breed Consulting. All rights reserved. | <a href="/privacy-policy" className="hover:text-foreground transition-colors">Privacy Policy</a>
           </p>
