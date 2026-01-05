@@ -10,12 +10,14 @@ import HeroSkeleton from '@/components/skeletons/HeroSkeleton';
 import BoardValueSkeleton from '@/components/skeletons/BoardValueSkeleton';
 import TrackRecordSkeleton from '@/components/skeletons/TrackRecordSkeleton';
 import DirectContactSkeleton from '@/components/skeletons/DirectContactSkeleton';
+import ReportsCarousel from '@/components/ReportsCarousel';
+import Footer from '@/components/Footer';
 
 const Index = () => {
   const { isLoading } = useContentLoading({ delay: 600 });
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-background flex flex-col">
       <Header />
       <ContentLoader isLoading={isLoading} skeleton={<HeroSkeleton />}>
         <ExecutiveHero />
@@ -23,12 +25,14 @@ const Index = () => {
       <ContentLoader isLoading={isLoading} skeleton={<BoardValueSkeleton />}>
         <BoardValue />
       </ContentLoader>
+      <ReportsCarousel />
       <ContentLoader isLoading={isLoading} skeleton={<TrackRecordSkeleton />}>
         <TrackRecord />
       </ContentLoader>
       <ContentLoader isLoading={isLoading} skeleton={<DirectContactSkeleton />}>
         <DirectContact />
       </ContentLoader>
+      <Footer />
     </div>
   );
 };
