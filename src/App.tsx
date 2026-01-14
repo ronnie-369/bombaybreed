@@ -15,6 +15,7 @@ import PrivacyPolicy from "./pages/PrivacyPolicy";
 import NotFound from "./pages/NotFound";
 import Auth from "./pages/Auth";
 import Admin from "./pages/Admin";
+import ServicePage from "./pages/ServicePage";
 
 const queryClient = new QueryClient();
 
@@ -37,8 +38,9 @@ const AppContent = () => {
             <Route path="/privacy-policy" element={<PrivacyPolicy />} />
             <Route path="/auth" element={<Auth />} />
             <Route path="/admin" element={<Admin />} />
-            {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
-            <Route path="*" element={<NotFound />} />
+            <Route path="/404" element={<NotFound />} />
+            {/* SEO DYNAMIC ROUTES - catches all programmatic pages */}
+            <Route path="/*" element={<ServicePage />} />
           </Routes>
           <CookieBanner />
         </BrowserRouter>
