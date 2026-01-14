@@ -17,6 +17,7 @@ import Auth from "./pages/Auth";
 import Admin from "./pages/Admin";
 import AdminSEO from "./pages/AdminSEO";
 import ServicePage from "./pages/ServicePage";
+import Services from "./pages/Services";
 
 const queryClient = new QueryClient();
 
@@ -40,6 +41,7 @@ const AppContent = () => {
             <Route path="/auth" element={<Auth />} />
             <Route path="/admin" element={<Admin />} />
             <Route path="/admin/seo" element={<AdminSEO />} />
+            <Route path="/services" element={<Services />} />
             <Route path="/404" element={<NotFound />} />
             {/* SEO DYNAMIC ROUTES - catches all programmatic pages */}
             <Route path="/*" element={<ServicePage />} />

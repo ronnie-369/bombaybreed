@@ -1,0 +1,70 @@
+# Bombay Breed - Strategic Sustainability Communications Advisory
+
+> Expert advisory for climate strategy, carbon markets, and ESG governance for boards, CXOs, and investors navigating India's energy transition.
+
+## About
+
+Bombay Breed, led by Theresa Ronnie, provides strategic sustainability communications and climate advisory services. We help organizations navigate the complexities of climate policy, carbon markets, and ESG governance with practical, board-ready solutions.
+
+## Core Services
+
+### Energy Optimisation Consulting
+Strategic energy efficiency and cost optimization for industrial operations.
+
+### Industrial Decarbonisation Strategy
+Comprehensive decarbonisation roadmaps for heavy industries including steel, cement, and oil & gas.
+
+### Article 6 & Carbon Markets Advisory
+Expert guidance on Paris Agreement Article 6 mechanisms, carbon credits, and voluntary carbon markets.
+
+### Climate Investment Readiness
+Preparing organizations for climate finance, green bonds, and sustainability-linked financing.
+
+### DMRV Integrity & Due Diligence
+Digital Monitoring, Reporting, and Verification services for carbon market integrity.
+
+## Industries Served
+
+- Steel Industry
+- Cement Industry
+- Oil & Gas
+- Power & Utilities
+- Data Centres
+
+## Geographies
+
+Primary focus on:
+- India (National level)
+- Gujarat
+- Maharashtra
+- UAE
+- Singapore
+
+## Regulatory Expertise
+
+- BRSR (Business Responsibility and Sustainability Reporting)
+- CBAM (Carbon Border Adjustment Mechanism)
+- Indian Carbon Credit Trading Scheme
+- SEBI ESG Disclosure Requirements
+
+## Key Resources
+
+- /resources - Research publications, playbooks, and thought leadership
+- /credentials - Professional credentials and advisory experience
+- /services - Full list of strategic advisory services
+
+## Content Channels
+
+- The Climate Desk (Substack) - Weekly insights on climate strategy
+- LinkedIn - Professional updates and commentary
+- YouTube - Presentations and thought leadership
+
+## Contact
+
+For strategic advisory inquiries, visit https://bombaybreed.lovable.app and use the contact form.
+
+## Technical Information
+
+This website is built with React, TypeScript, and Supabase. It features programmatic SEO pages for various capability, industry, geography, and regulation combinations.
+
+Sitemap: https://bombaybreed.lovable.app/sitemap.xml

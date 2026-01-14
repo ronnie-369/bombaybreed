@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import { Linkedin, Youtube, Mail, ExternalLink } from 'lucide-react';
 
 const Footer = () => {
@@ -22,10 +23,18 @@ const Footer = () => {
     },
   ];
 
+  const serviceLinks = [
+    { name: 'Energy Optimisation', slug: 'energy-optimisation' },
+    { name: 'Industrial Decarbonisation', slug: 'industrial-decarbonisation' },
+    { name: 'Article 6 Advisory', slug: 'article-6-advisory' },
+    { name: 'Climate Investment', slug: 'climate-investment-readiness' },
+    { name: 'DMRV Integrity', slug: 'dmrv-integrity' },
+  ];
+
   return (
     <footer className="bg-muted/30 border-t border-border/50 py-12 mt-auto">
       <div className="container mx-auto px-4">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8">
           {/* Brand */}
           <div className="lg:col-span-1">
             <h3 className="font-display text-lg font-semibold text-foreground mb-2">
@@ -34,6 +43,33 @@ const Footer = () => {
             <p className="text-sm text-muted-foreground">
               Strategic Advisory for Climate & Sustainability
             </p>
+          </div>
+
+          {/* Services */}
+          <div className="lg:col-span-1">
+            <h4 className="text-sm font-medium text-foreground mb-4 uppercase tracking-wider">
+              Services
+            </h4>
+            <ul className="space-y-2">
+              {serviceLinks.map((service) => (
+                <li key={service.slug}>
+                  <Link 
+                    to={`/${service.slug}`} 
+                    className="text-sm text-muted-foreground hover:text-primary transition-colors"
+                  >
+                    {service.name}
+                  </Link>
+                </li>
+              ))}
+              <li>
+                <Link 
+                  to="/services" 
+                  className="text-sm text-primary hover:text-primary/80 transition-colors font-medium"
+                >
+                  View All Services →
+                </Link>
+              </li>
+            </ul>
           </div>
 
           {/* Content Channels */}
@@ -72,24 +108,29 @@ const Footer = () => {
             </h4>
             <ul className="space-y-2">
               <li>
-                <a href="/" className="text-sm text-muted-foreground hover:text-primary transition-colors">
+                <Link to="/" className="text-sm text-muted-foreground hover:text-primary transition-colors">
                   Home
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="/resources" className="text-sm text-muted-foreground hover:text-primary transition-colors">
+                <Link to="/services" className="text-sm text-muted-foreground hover:text-primary transition-colors">
+                  Services
+                </Link>
+              </li>
+              <li>
+                <Link to="/resources" className="text-sm text-muted-foreground hover:text-primary transition-colors">
                   Resources
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="/credentials" className="text-sm text-muted-foreground hover:text-primary transition-colors">
+                <Link to="/credentials" className="text-sm text-muted-foreground hover:text-primary transition-colors">
                   Credentials
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="/privacy-policy" className="text-sm text-muted-foreground hover:text-primary transition-colors">
+                <Link to="/privacy-policy" className="text-sm text-muted-foreground hover:text-primary transition-colors">
                   Privacy Policy
-                </a>
+                </Link>
               </li>
             </ul>
           </div>

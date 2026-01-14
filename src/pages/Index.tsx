@@ -13,6 +13,7 @@ import DirectContactSkeleton from '@/components/skeletons/DirectContactSkeleton'
 import ReportsCarousel from '@/components/ReportsCarousel';
 import Footer from '@/components/Footer';
 import ScrollReveal from '@/components/ui/ScrollReveal';
+import ServicesHub from '@/components/ServicesHub';
 
 const Index = () => {
   const { isLoading } = useContentLoading({ delay: 600 });
@@ -27,6 +28,9 @@ const Index = () => {
         <BoardValue />
       </ContentLoader>
       <ReportsCarousel />
+      
+      {/* Services Hub Section */}
+      <ServicesHub />
       
       {/* Personal Quote Section */}
       <section className="py-12 md:py-16 px-6 md:px-8 bg-gradient-to-b from-secondary/20 to-background">
