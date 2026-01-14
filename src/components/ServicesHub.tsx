@@ -6,9 +6,10 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { ArrowRight, Zap, Factory, Globe, FileText, ChevronRight } from 'lucide-react';
 import ScrollReveal from '@/components/ui/ScrollReveal';
+import ServicesHubSkeleton from '@/components/skeletons/ServicesHubSkeleton';
 
 const ServicesHub = () => {
-  const { data: capabilities } = useQuery({
+  const { data: capabilities, isLoading: capabilitiesLoading } = useQuery({
     queryKey: ['seo-capabilities-hub'],
     queryFn: async () => {
       const { data, error } = await supabase
@@ -21,7 +22,7 @@ const ServicesHub = () => {
     },
   });
 
-  const { data: industries } = useQuery({
+  const { data: industries, isLoading: industriesLoading } = useQuery({
     queryKey: ['seo-industries-hub'],
     queryFn: async () => {
       const { data, error } = await supabase
@@ -34,7 +35,7 @@ const ServicesHub = () => {
     },
   });
 
-  const { data: geographies } = useQuery({
+  const { data: geographies, isLoading: geographiesLoading } = useQuery({
     queryKey: ['seo-geographies-hub'],
     queryFn: async () => {
       const { data, error } = await supabase
@@ -54,6 +55,12 @@ const ServicesHub = () => {
     'climate-investment-readiness': <Globe className="w-5 h-5" />,
     'dmrv-integrity': <FileText className="w-5 h-5" />,
   };
+
+  const isLoading = capabilitiesLoading || industriesLoading || geographiesLoading;
+
+  if (isLoading) {
+    return <ServicesHubSkeleton />;
+  }
 
   return (
     <section className="py-16 md:py-24 px-6 md:px-8 bg-gradient-to-b from-background to-secondary/10">
