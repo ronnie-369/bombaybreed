@@ -21,18 +21,23 @@ interface FAQItem {
   answer: string;
 }
 
+// Allow any string keys for content sections to handle varied database entries
 interface ContentSections {
   the_problem?: string;
   why_this_fails?: string;
   what_changes?: string;
   our_approach?: string;
   market_risks?: string;
+  introduction?: string;
+  main_content?: string;
+  [key: string]: string | undefined;
 }
 
 interface RelatedPage {
-  slug: string;
-  title: string;
-  type: 'capability' | 'industry' | 'geography' | 'regulation' | 'problem';
+  slug?: string;
+  url?: string;
+  title?: string;
+  type?: string;
 }
 
 interface ServicePageTemplateProps {
@@ -175,8 +180,8 @@ const ServicePageTemplate = ({
             <DirectAnswerBlock content={direct_answer_block} />
           )}
 
-          {/* Content Sections */}
-          {content_sections.the_problem && (
+          {/* Content Sections - Predefined sections with specific styling */}
+          {content_sections?.the_problem && (
             <ContentSection 
               title="The Problem" 
               content={content_sections.the_problem}
@@ -184,7 +189,7 @@ const ServicePageTemplate = ({
             />
           )}
 
-          {content_sections.why_this_fails && (
+          {content_sections?.why_this_fails && (
             <ContentSection 
               title="Why This Fails Today" 
               content={content_sections.why_this_fails}
@@ -193,7 +198,7 @@ const ServicePageTemplate = ({
             />
           )}
 
-          {content_sections.what_changes && (
+          {content_sections?.what_changes && (
             <ContentSection 
               title="What Changes When Done Right" 
               content={content_sections.what_changes}
@@ -202,7 +207,7 @@ const ServicePageTemplate = ({
             />
           )}
 
-          {content_sections.our_approach && (
+          {content_sections?.our_approach && (
             <ContentSection 
               title="How Bombay Breed Approaches It" 
               content={content_sections.our_approach}
@@ -210,11 +215,28 @@ const ServicePageTemplate = ({
             />
           )}
 
-          {content_sections.market_risks && (
+          {content_sections?.market_risks && (
             <ContentSection 
               title="Market-Specific Risks" 
               content={content_sections.market_risks}
               icon={MapPin}
+            />
+          )}
+
+          {/* Handle additional content sections not in predefined list */}
+          {content_sections?.introduction && (
+            <ContentSection 
+              title="Introduction" 
+              content={content_sections.introduction}
+              icon={Lightbulb}
+            />
+          )}
+
+          {content_sections?.main_content && (
+            <ContentSection 
+              title="Overview" 
+              content={content_sections.main_content}
+              icon={Target}
             />
           )}
 
