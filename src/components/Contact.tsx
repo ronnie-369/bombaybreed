@@ -136,7 +136,7 @@ const Contact = () => {
                 <div className="bg-white/20 p-2 rounded-full mr-3">
                   <Mail className="h-5 w-5 text-white" />
                 </div>
-                <a href="mailto:ronnie@bombaybreed.com" className="story-link hover:text-white/80">ronnie@bombaybreed.com</a>
+                <a href="mailto:theresa.ronnie@bombaybreed.com" className="story-link hover:text-white/80">theresa.ronnie@bombaybreed.com</a>
               </div>
             </div>
             

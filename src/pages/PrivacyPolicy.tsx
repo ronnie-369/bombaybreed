@@ -170,7 +170,7 @@ const PrivacyPolicy = () => {
             </p>
             <div className="bg-muted p-6 rounded-lg">
               <p className="text-foreground font-medium">Bombay Breed</p>
-              <p className="text-foreground/80">Email: <a href="mailto:ronnie@bombaybreed.com" className="text-primary hover:underline">ronnie@bombaybreed.com</a></p>
+              <p className="text-foreground/80">Email: <a href="mailto:theresa.ronnie@bombaybreed.com" className="text-primary hover:underline">theresa.ronnie@bombaybreed.com</a></p>
               <p className="text-foreground/80">Phone: +91-9916090806</p>
               <p className="text-foreground/80">Address: Malleshwaram, Bangalore, India</p>
             </div>
