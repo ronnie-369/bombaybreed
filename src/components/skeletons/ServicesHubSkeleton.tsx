@@ -33,14 +33,25 @@ const ServicesHubSkeleton = () => {
           </div>
         </div>
 
-        {/* Browse by Industry & Geography */}
+        {/* Who We Work With & Browse by Region */}
         <div className="grid md:grid-cols-2 gap-8">
-          {/* Industries */}
+          {/* Who We Work With */}
           <div className="p-6 rounded-xl bg-card border border-border/50">
-            <Skeleton className="h-4 w-32 mb-4" />
-            <div className="flex flex-wrap gap-2">
-              {[...Array(6)].map((_, i) => (
-                <Skeleton key={i} className="h-9 w-24 rounded-full" />
+            <Skeleton className="h-4 w-36 mb-4" />
+            <div className="space-y-4">
+              {[...Array(4)].map((_, i) => (
+                <div key={i} className="flex items-start gap-3 p-3">
+                  <Skeleton className="h-8 w-8 rounded-lg shrink-0" />
+                  <div className="flex-1">
+                    <Skeleton className="h-4 w-40 mb-2" />
+                    <Skeleton className="h-3 w-full mb-2" />
+                    <div className="flex gap-1">
+                      <Skeleton className="h-5 w-16 rounded-full" />
+                      <Skeleton className="h-5 w-14 rounded-full" />
+                      <Skeleton className="h-5 w-18 rounded-full" />
+                    </div>
+                  </div>
+                </div>
               ))}
             </div>
             <Skeleton className="h-4 w-32 mt-4" />

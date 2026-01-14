@@ -7,8 +7,48 @@ import Footer from '@/components/Footer';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
-import { ArrowRight, Filter, Zap, Factory, Globe, FileText, Building, MapPin } from 'lucide-react';
+import { ArrowRight, Filter, Zap, Factory, Globe, FileText, MapPin, Landmark, Building2, Sprout, Sparkles } from 'lucide-react';
 import ScrollReveal from '@/components/ui/ScrollReveal';
+
+// Client intent segments with industry mappings
+const clientSegments = [
+  {
+    id: 'governments',
+    icon: Landmark,
+    title: 'Governments & Agencies',
+    description: 'Looking for bankable Article 6 projects, ITMO structuring, and bilateral carbon agreements. We help structure projects that meet international standards and attract investment.',
+    industries: ['power', 'oil-gas', 'steel'],
+    cta: 'Develop bankable projects',
+    link: '/article-6-advisory',
+  },
+  {
+    id: 'corporates',
+    icon: Building2,
+    title: 'Corporates & Credit Buyers',
+    description: 'Seeking high-quality credits through ITMOs or EACs with robust procurement strategy and due diligence. We help navigate carbon markets with confidence.',
+    industries: ['steel', 'cement', 'data-centres', 'fmcg', 'fashion'],
+    cta: 'Secure quality credits',
+    link: '/climate-investment-readiness',
+  },
+  {
+    id: 'climate-ventures',
+    icon: Sprout,
+    title: 'Climate Ventures',
+    description: 'Build visibility and brand premium through systems thinking narrative development. We help climate companies articulate their value proposition and market positioning.',
+    industries: ['data-centres', 'fashion', 'fmcg'],
+    cta: 'Build your narrative',
+    link: '/services',
+  },
+  {
+    id: 'visibility',
+    icon: Sparkles,
+    title: 'Visibility & Thought Leadership',
+    description: 'Get featured on The Climate Desk, build credibility through case studies, and establish thought leadership in the energy transition space.',
+    industries: [],
+    cta: 'Get featured',
+    link: '/resources',
+  },
+];
 
 const Services = () => {
   const [activeFilter, setActiveFilter] = useState<'all' | 'capability' | 'industry' | 'geography' | 'regulation'>('all');
@@ -73,6 +113,12 @@ const Services = () => {
       return data;
     },
   });
+
+  // Create a map of slug to name for industry display
+  const industryMap = industries?.reduce((acc, ind) => {
+    acc[ind.slug] = ind.name;
+    return acc;
+  }, {} as Record<string, string>) || {};
 
   const filterButtons = [
     { key: 'all', label: 'All Services', icon: Filter },
@@ -153,36 +199,45 @@ const Services = () => {
           </div>
         </section>
 
-        {/* Industries Section */}
+        {/* Who We Work With Section */}
         <section className="px-6 md:px-8 mb-16 bg-secondary/20 py-12">
           <div className="container mx-auto max-w-6xl">
             <ScrollReveal direction="up">
               <h2 className="text-2xl font-display font-semibold text-foreground mb-6 flex items-center gap-2">
-                <Building className="w-6 h-6 text-primary" />
-                Industries We Serve
+                <Building2 className="w-6 h-6 text-primary" />
+                Who We Work With
               </h2>
-              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {industries?.map((ind) => (
-                  <Link key={ind.id} to={`/${ind.slug}`}>
+              <div className="grid md:grid-cols-2 gap-6">
+                {clientSegments.map((segment) => (
+                  <Link key={segment.id} to={segment.link}>
                     <Card className="h-full group cursor-pointer">
                       <CardHeader>
-                        <CardTitle className="text-lg group-hover:text-primary transition-colors">
-                          {ind.name}
+                        <CardTitle className="flex items-center gap-3 text-lg group-hover:text-primary transition-colors">
+                          <span className="p-2 rounded-lg bg-primary/10 text-primary group-hover:bg-primary group-hover:text-primary-foreground transition-colors">
+                            <segment.icon className="w-5 h-5" />
+                          </span>
+                          {segment.title}
                         </CardTitle>
-                        <CardDescription className="line-clamp-2">
-                          {ind.description}
+                        <CardDescription className="line-clamp-3">
+                          {segment.description}
                         </CardDescription>
                       </CardHeader>
                       <CardContent>
-                        <div className="flex items-center gap-2 flex-wrap mb-3">
-                          {ind.energy_intensity && (
+                        <div className="flex flex-wrap gap-2 mb-4">
+                          {segment.industries.length > 0 ? (
+                            segment.industries.map((slug) => (
+                              <Badge key={slug} variant="secondary" className="text-xs">
+                                {industryMap[slug] || slug}
+                              </Badge>
+                            ))
+                          ) : (
                             <Badge variant="secondary" className="text-xs">
-                              {ind.energy_intensity} energy intensity
+                              All sectors
                             </Badge>
                           )}
                         </div>
                         <span className="inline-flex items-center gap-1 text-sm text-primary group-hover:gap-2 transition-all">
-                          Explore solutions <ArrowRight className="w-4 h-4" />
+                          {segment.cta} <ArrowRight className="w-4 h-4" />
                         </span>
                       </CardContent>
                     </Card>
@@ -193,8 +248,34 @@ const Services = () => {
           </div>
         </section>
 
-        {/* Geographies Section */}
+        {/* All Industries Section (for SEO) */}
         <section className="px-6 md:px-8 mb-16">
+          <div className="container mx-auto max-w-6xl">
+            <ScrollReveal direction="up">
+              <h2 className="text-2xl font-display font-semibold text-foreground mb-6 flex items-center gap-2">
+                <Factory className="w-6 h-6 text-primary" />
+                Industry Expertise
+              </h2>
+              <p className="text-muted-foreground mb-6">
+                While we're transition-intent focused rather than industry-specialized, we bring deep expertise across these sectors:
+              </p>
+              <div className="flex flex-wrap gap-3">
+                {industries?.map((ind) => (
+                  <Link
+                    key={ind.id}
+                    to={`/${ind.slug}`}
+                    className="px-4 py-2 rounded-full bg-card border border-border/50 text-sm text-foreground hover:border-primary hover:text-primary transition-colors"
+                  >
+                    {ind.name}
+                  </Link>
+                ))}
+              </div>
+            </ScrollReveal>
+          </div>
+        </section>
+
+        {/* Geographies Section */}
+        <section className="px-6 md:px-8 mb-16 bg-secondary/20 py-12">
           <div className="container mx-auto max-w-6xl">
             <ScrollReveal direction="up">
               <h2 className="text-2xl font-display font-semibold text-foreground mb-6 flex items-center gap-2">
@@ -232,7 +313,7 @@ const Services = () => {
         </section>
 
         {/* Regulations Section */}
-        <section className="px-6 md:px-8 mb-16 bg-secondary/20 py-12">
+        <section className="px-6 md:px-8 mb-16">
           <div className="container mx-auto max-w-6xl">
             <ScrollReveal direction="up">
               <h2 className="text-2xl font-display font-semibold text-foreground mb-6 flex items-center gap-2">
@@ -280,7 +361,7 @@ const Services = () => {
         </section>
 
         {/* All Pages Browser */}
-        <section className="px-6 md:px-8">
+        <section className="px-6 md:px-8 bg-secondary/20 py-12">
           <div className="container mx-auto max-w-6xl">
             <ScrollReveal direction="up">
               <h2 className="text-2xl font-display font-semibold text-foreground mb-6">
@@ -307,7 +388,7 @@ const Services = () => {
               <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
                 {filteredPages?.map((page) => (
                   <Link key={page.slug} to={`/${page.slug}`}>
-                    <div className="p-4 rounded-lg border border-border/50 hover:border-primary/50 hover:bg-primary/5 transition-all group">
+                    <div className="p-4 rounded-lg border border-border/50 bg-card hover:border-primary/50 hover:bg-primary/5 transition-all group">
                       <div className="flex items-start justify-between gap-2">
                         <div>
                           <h3 className="font-medium text-foreground group-hover:text-primary transition-colors line-clamp-1">
