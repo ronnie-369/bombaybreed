@@ -9,12 +9,13 @@ interface WhoHiresUsProps {
   industry?: string;
 }
 
-export const WhoHiresUs = ({ roles = ['CEO', 'COO', 'CSO', 'CFO'], industry }: WhoHiresUsProps) => {
+export const WhoHiresUs = ({ roles = ['CEO', 'COO', 'CSO', 'CFO', 'CMO'], industry }: WhoHiresUsProps) => {
   const roleDescriptions: Record<string, string> = {
     'CEO': 'Strategic positioning, investor relations, regulatory risk',
     'COO': 'Operational efficiency, energy costs, process optimization',
     'CSO': 'Sustainability strategy, reporting frameworks, stakeholder engagement',
-    'CFO': 'Capital allocation, green financing, risk quantification'
+    'CFO': 'Capital allocation, green financing, risk quantification',
+    'CMO': 'Strategic communications, carbon markets messaging, energy transition narrative'
   };
 
   return (
