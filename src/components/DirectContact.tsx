@@ -99,8 +99,8 @@ const DirectContact = () => {
                   </div>
                   <div>
                     <p className="text-sm font-medium text-foreground">Email</p>
-                    <a href="mailto:ronnie@bombaybreed.com" className="text-sm text-muted-foreground hover:text-primary transition-colors">
-                      ronnie@bombaybreed.com
+                    <a href="mailto:theresa.ronnie@bombaybreed.com" className="text-sm text-muted-foreground hover:text-primary transition-colors">
+                      theresa.ronnie@bombaybreed.com
                     </a>
                   </div>
                 </div>

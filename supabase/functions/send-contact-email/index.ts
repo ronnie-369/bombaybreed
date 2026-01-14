@@ -136,8 +136,8 @@ serve(async (req: Request) => {
     `;
 
     const { error: emailError } = await resend.emails.send({
-      from: 'Nexo Circle <onboarding@resend.dev>',
-      to: ['ronnie@nexocircle.com'],
+      from: 'Bombay Breed <onboarding@resend.dev>',
+      to: ['theresa.ronnie@bombaybreed.com'],
       subject: `New website message — ${escapeHtml(sanitizedName)}`,
       html: emailContent,
     });
