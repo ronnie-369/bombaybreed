@@ -24,7 +24,7 @@ export const WhoHiresUs = ({ roles = ['CEO', 'COO', 'CSO', 'CFO', 'CMO'], indust
         <Users className="h-6 w-6 text-primary" />
         <h2 className="text-2xl font-bold text-foreground">Who Hires Us For This</h2>
       </div>
-      <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
+      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
         {roles.map((role) => (
           <Card key={role} className="bg-card/50 border-border/50">
             <CardHeader className="pb-2">
