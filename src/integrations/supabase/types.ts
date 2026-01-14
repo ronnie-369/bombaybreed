@@ -175,6 +175,269 @@ export type Database = {
           },
         ]
       }
+      seo_capabilities: {
+        Row: {
+          buyer_intent: Database["public"]["Enums"]["intent_level"] | null
+          contract_value: Database["public"]["Enums"]["intent_level"] | null
+          conversion_cta: string | null
+          created_at: string
+          decision_maker: string | null
+          description: string | null
+          id: string
+          is_active: boolean
+          name: string
+          slug: string
+          updated_at: string
+        }
+        Insert: {
+          buyer_intent?: Database["public"]["Enums"]["intent_level"] | null
+          contract_value?: Database["public"]["Enums"]["intent_level"] | null
+          conversion_cta?: string | null
+          created_at?: string
+          decision_maker?: string | null
+          description?: string | null
+          id?: string
+          is_active?: boolean
+          name: string
+          slug: string
+          updated_at?: string
+        }
+        Update: {
+          buyer_intent?: Database["public"]["Enums"]["intent_level"] | null
+          contract_value?: Database["public"]["Enums"]["intent_level"] | null
+          conversion_cta?: string | null
+          created_at?: string
+          decision_maker?: string | null
+          description?: string | null
+          id?: string
+          is_active?: boolean
+          name?: string
+          slug?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      seo_geographies: {
+        Row: {
+          capital_presence: string | null
+          created_at: string
+          description: string | null
+          dominant_industries: string[] | null
+          energy_profile: string | null
+          geo_type: Database["public"]["Enums"]["geo_type"]
+          id: string
+          is_active: boolean
+          name: string
+          regulatory_context: string | null
+          slug: string
+          updated_at: string
+        }
+        Insert: {
+          capital_presence?: string | null
+          created_at?: string
+          description?: string | null
+          dominant_industries?: string[] | null
+          energy_profile?: string | null
+          geo_type?: Database["public"]["Enums"]["geo_type"]
+          id?: string
+          is_active?: boolean
+          name: string
+          regulatory_context?: string | null
+          slug: string
+          updated_at?: string
+        }
+        Update: {
+          capital_presence?: string | null
+          created_at?: string
+          description?: string | null
+          dominant_industries?: string[] | null
+          energy_profile?: string | null
+          geo_type?: Database["public"]["Enums"]["geo_type"]
+          id?: string
+          is_active?: boolean
+          name?: string
+          regulatory_context?: string | null
+          slug?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      seo_industries: {
+        Row: {
+          created_at: string
+          description: string | null
+          emission_profile: string | null
+          energy_intensity: Database["public"]["Enums"]["intent_level"] | null
+          id: string
+          is_active: boolean
+          name: string
+          regulation_exposure: string[] | null
+          slug: string
+          typical_roles: string[] | null
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          description?: string | null
+          emission_profile?: string | null
+          energy_intensity?: Database["public"]["Enums"]["intent_level"] | null
+          id?: string
+          is_active?: boolean
+          name: string
+          regulation_exposure?: string[] | null
+          slug: string
+          typical_roles?: string[] | null
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          description?: string | null
+          emission_profile?: string | null
+          energy_intensity?: Database["public"]["Enums"]["intent_level"] | null
+          id?: string
+          is_active?: boolean
+          name?: string
+          regulation_exposure?: string[] | null
+          slug?: string
+          typical_roles?: string[] | null
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      seo_pages: {
+        Row: {
+          capability_id: string | null
+          content_sections: Json | null
+          created_at: string
+          direct_answer_block: string | null
+          faq_items: Json | null
+          geography_id: string | null
+          h1_headline: string
+          id: string
+          industry_id: string | null
+          internal_links: Json | null
+          is_published: boolean
+          meta_description: string | null
+          meta_title: string
+          page_type: Database["public"]["Enums"]["page_type"]
+          priority: number | null
+          regulation_id: string | null
+          schema_data: Json | null
+          slug: string
+          updated_at: string
+        }
+        Insert: {
+          capability_id?: string | null
+          content_sections?: Json | null
+          created_at?: string
+          direct_answer_block?: string | null
+          faq_items?: Json | null
+          geography_id?: string | null
+          h1_headline: string
+          id?: string
+          industry_id?: string | null
+          internal_links?: Json | null
+          is_published?: boolean
+          meta_description?: string | null
+          meta_title: string
+          page_type: Database["public"]["Enums"]["page_type"]
+          priority?: number | null
+          regulation_id?: string | null
+          schema_data?: Json | null
+          slug: string
+          updated_at?: string
+        }
+        Update: {
+          capability_id?: string | null
+          content_sections?: Json | null
+          created_at?: string
+          direct_answer_block?: string | null
+          faq_items?: Json | null
+          geography_id?: string | null
+          h1_headline?: string
+          id?: string
+          industry_id?: string | null
+          internal_links?: Json | null
+          is_published?: boolean
+          meta_description?: string | null
+          meta_title?: string
+          page_type?: Database["public"]["Enums"]["page_type"]
+          priority?: number | null
+          regulation_id?: string | null
+          schema_data?: Json | null
+          slug?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "seo_pages_capability_id_fkey"
+            columns: ["capability_id"]
+            isOneToOne: false
+            referencedRelation: "seo_capabilities"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "seo_pages_geography_id_fkey"
+            columns: ["geography_id"]
+            isOneToOne: false
+            referencedRelation: "seo_geographies"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "seo_pages_industry_id_fkey"
+            columns: ["industry_id"]
+            isOneToOne: false
+            referencedRelation: "seo_industries"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "seo_pages_regulation_id_fkey"
+            columns: ["regulation_id"]
+            isOneToOne: false
+            referencedRelation: "seo_regulations"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      seo_regulations: {
+        Row: {
+          created_at: string
+          description: string | null
+          id: string
+          is_active: boolean
+          jurisdiction: string | null
+          name: string
+          risk_type: string | null
+          slug: string
+          updated_at: string
+          urgency: Database["public"]["Enums"]["urgency_level"] | null
+        }
+        Insert: {
+          created_at?: string
+          description?: string | null
+          id?: string
+          is_active?: boolean
+          jurisdiction?: string | null
+          name: string
+          risk_type?: string | null
+          slug: string
+          updated_at?: string
+          urgency?: Database["public"]["Enums"]["urgency_level"] | null
+        }
+        Update: {
+          created_at?: string
+          description?: string | null
+          id?: string
+          is_active?: boolean
+          jurisdiction?: string | null
+          name?: string
+          risk_type?: string | null
+          slug?: string
+          updated_at?: string
+          urgency?: Database["public"]["Enums"]["urgency_level"] | null
+        }
+        Relationships: []
+      }
       user_roles: {
         Row: {
           created_at: string
@@ -219,6 +482,16 @@ export type Database = {
     }
     Enums: {
       app_role: "admin" | "moderator" | "user"
+      geo_type: "state" | "city" | "country" | "region"
+      intent_level: "high" | "medium" | "low"
+      page_type:
+        | "capability"
+        | "industry"
+        | "geography"
+        | "regulation"
+        | "problem"
+        | "combined"
+      urgency_level: "high" | "medium" | "low"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -347,6 +620,17 @@ export const Constants = {
   public: {
     Enums: {
       app_role: ["admin", "moderator", "user"],
+      geo_type: ["state", "city", "country", "region"],
+      intent_level: ["high", "medium", "low"],
+      page_type: [
+        "capability",
+        "industry",
+        "geography",
+        "regulation",
+        "problem",
+        "combined",
+      ],
+      urgency_level: ["high", "medium", "low"],
     },
   },
 } as const
