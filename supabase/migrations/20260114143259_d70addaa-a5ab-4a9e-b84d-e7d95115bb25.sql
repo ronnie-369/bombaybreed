@@ -1,0 +1,42 @@
+-- Insert problem-led SEO pages
+INSERT INTO public.seo_pages (slug, meta_title, meta_description, h1_headline, page_type, is_published, priority, direct_answer_block, faq_items, content_sections, internal_links)
+VALUES 
+(
+  'reduce-energy-costs-heavy-industry',
+  'How to Reduce Energy Costs in Heavy Industry | Bombay Breed',
+  'Proven strategies to cut energy costs by 15-30% in cement, steel, and chemical manufacturing through optimization, waste heat recovery, and renewable integration.',
+  'How to Reduce Energy Costs in Heavy Industry',
+  'problem',
+  true,
+  85,
+  'Heavy industries can reduce energy costs by 15-30% through energy audits, waste heat recovery, process optimization, renewable integration, and demand-side management. The payback period for these investments typically ranges from 2-4 years.',
+  '[{"question": "What are the biggest energy cost drivers in heavy industry?", "answer": "Thermal processes (50-70%), electrical systems (20-30%), and compressed air/utilities (10-20%) are the main drivers."}, {"question": "How quickly can energy efficiency measures pay back?", "answer": "Most measures achieve payback within 2-4 years, with some quick wins under 1 year."}, {"question": "What government incentives are available?", "answer": "PAT scheme certificates, accelerated depreciation, and state-level renewable incentives can offset 20-40% of costs."}]',
+  '{"introduction": "Energy costs represent 30-60% of operating expenses in heavy industries like cement, steel, and chemicals. This guide provides actionable strategies to reduce these costs while improving operational efficiency.", "main_content": "## Key Strategies\n\n### 1. Comprehensive Energy Audits\nStart with detailed energy audits to identify inefficiencies and prioritize interventions based on ROI.\n\n### 2. Waste Heat Recovery\nCapture and reuse thermal energy from kilns, furnaces, and exhaust systems to generate power or preheat inputs.\n\n### 3. Process Optimization\nImplement advanced process controls, optimize loading patterns, and reduce idle time to minimize energy intensity.\n\n### 4. Renewable Integration\nCaptive solar, wind, and hybrid systems can provide 20-40% of energy needs at lower long-term costs.\n\n### 5. Demand Management\nShift energy-intensive operations to off-peak hours and implement load management systems.", "conclusion": "Energy cost reduction is not just about savings—it builds resilience against price volatility and positions your operations for carbon regulations. Start with an energy audit and develop a phased implementation roadmap."}',
+  '[{"url": "/energy-optimisation-cement-industry", "title": "Energy Optimisation for Cement Industry"}, {"url": "/energy-optimisation-steel-industry", "title": "Energy Optimisation for Steel Industry"}, {"url": "/decarbonisation-steel-industry", "title": "Decarbonisation for Steel Industry"}]'
+),
+(
+  'prepare-for-carbon-border-taxes',
+  'How to Prepare for CBAM & Carbon Border Taxes | Bombay Breed',
+  'Guide for exporters to prepare for EU CBAM and carbon border adjustments. Understand reporting requirements, calculate embedded emissions, and develop compliance strategies.',
+  'Preparing for Carbon Border Adjustment Mechanisms',
+  'problem',
+  true,
+  90,
+  'To prepare for CBAM, exporters must: (1) map embedded emissions in products, (2) establish carbon accounting systems, (3) work with EU importers on reporting, and (4) explore decarbonization to minimize carbon costs. The transitional phase requires quarterly reporting starting 2024.',
+  '[{"question": "When does CBAM take full effect?", "answer": "The transitional phase runs 2023-2025 with reporting only. Full carbon payments begin January 2026."}, {"question": "Which products are covered?", "answer": "Iron, steel, aluminium, cement, fertilizers, electricity, and hydrogen, with possible expansion to other sectors."}, {"question": "How are carbon costs calculated?", "answer": "Based on embedded emissions minus any carbon price already paid in the country of origin."}]',
+  '{"introduction": "The EU Carbon Border Adjustment Mechanism (CBAM) will fundamentally change how carbon-intensive exports are priced. Indian exporters in steel, aluminium, cement, and fertilizers must prepare now to maintain competitiveness.", "main_content": "## Understanding CBAM\n\nCBAM requires importers to purchase certificates matching the carbon embedded in imported goods, adjusted for any carbon price paid in the country of origin.\n\n## Preparation Steps\n\n### 1. Emissions Mapping\nCalculate direct (Scope 1) and electricity-related (Scope 2) emissions for covered products using EU-approved methodologies.\n\n### 2. Data Systems\nImplement carbon accounting systems that can track emissions at product level and generate compliant reports.\n\n### 3. Supplier Engagement\nWork with raw material suppliers to understand upstream emissions and explore lower-carbon alternatives.\n\n### 4. Decarbonization Roadmap\nDevelop a pathway to reduce embedded emissions through energy efficiency, renewable energy, and process changes.\n\n### 5. Commercial Strategy\nExplore options including passing through costs, product differentiation, or market diversification.", "conclusion": "CBAM is the first of many carbon border measures globally. Early preparation provides competitive advantage and reduces exposure to carbon costs that could otherwise erode margins by 10-20%."}',
+  '[{"url": "/cbam-compliance-consulting", "title": "CBAM Compliance Consulting"}, {"url": "/decarbonisation-steel-industry", "title": "Decarbonisation for Steel"}, {"url": "/article-6-consulting-india", "title": "Article 6 Consulting India"}]'
+),
+(
+  'measure-scope-3-emissions',
+  'How to Measure Scope 3 Emissions | Complete Guide | Bombay Breed',
+  'Step-by-step guide to measuring Scope 3 value chain emissions for Indian companies. Covers data collection, calculation methods, and reporting frameworks.',
+  'How to Measure and Report Scope 3 Emissions',
+  'problem',
+  true,
+  80,
+  'Scope 3 emissions are measured by: (1) identifying relevant categories from the 15 GHG Protocol categories, (2) collecting activity data from suppliers and customers, (3) applying emission factors, and (4) reporting per BRSR/CDP requirements. Most companies start with purchased goods, transportation, and use of sold products.',
+  '[{"question": "Which Scope 3 categories are most material?", "answer": "Typically purchased goods (Category 1), transportation (Categories 4,9), and use of sold products (Category 11) represent 80%+ of Scope 3."}, {"question": "What data do I need from suppliers?", "answer": "Product-level carbon footprints, energy consumption data, or spend data for estimation methods."}, {"question": "Is Scope 3 reporting mandatory in India?", "answer": "BRSR Core requires top 1000 listed companies to report Scope 3 from FY2023-24."}]',
+  '{"introduction": "Scope 3 emissions—those from your value chain—typically represent 70-90% of a company''s total carbon footprint. Understanding and measuring these emissions is increasingly critical for regulatory compliance and stakeholder expectations.", "main_content": "## The 15 Scope 3 Categories\n\nThe GHG Protocol defines 15 categories covering upstream (purchased goods, transportation, capital goods, waste) and downstream (use of sold products, end-of-life, investments) emissions.\n\n## Measurement Approach\n\n### 1. Materiality Assessment\nIdentify which categories are most significant for your business based on emissions magnitude, data availability, and stakeholder relevance.\n\n### 2. Data Collection\nGather primary data from key suppliers and use secondary data (emission factors, industry averages) for the rest.\n\n### 3. Calculation Methods\n- **Supplier-specific**: Use actual supplier emissions data\n- **Hybrid**: Combine supplier data with emission factors\n- **Spend-based**: Apply emission factors to procurement spend\n\n### 4. Quality Improvement\nStart with estimates and progressively improve data quality through supplier engagement programs.", "conclusion": "Scope 3 measurement is a journey, not a destination. Begin with material categories, establish baselines, and continuously improve data quality while engaging suppliers on decarbonization."}',
+  '[{"url": "/sustainability-reporting", "title": "Sustainability Reporting Services"}, {"url": "/brsr-compliance", "title": "BRSR Compliance Consulting"}]'
+);
