@@ -1,18 +1,53 @@
 import React, { useState } from 'react';
-import { Menu, X } from 'lucide-react';
+import { Menu, X, ChevronDown } from 'lucide-react';
 import { Button } from "@/components/ui/button";
 import { useIsMobile } from '@/hooks/use-mobile';
 import { Link, useLocation } from 'react-router-dom';
 import AnimatedLogo from '@/components/ui/AnimatedLogo';
 import { ThemeToggle } from '@/components/ui/ThemeToggle';
+import {
+  NavigationMenu,
+  NavigationMenuContent,
+  NavigationMenuItem,
+  NavigationMenuLink,
+  NavigationMenuList,
+  NavigationMenuTrigger,
+} from "@/components/ui/navigation-menu";
+import { cn } from '@/lib/utils';
+
+const capabilities = [
+  { name: 'Energy Optimisation', slug: 'energy-optimisation', description: 'Strategic energy efficiency consulting' },
+  { name: 'Industrial Decarbonisation', slug: 'industrial-decarbonisation', description: 'Decarbonisation roadmaps for industry' },
+  { name: 'Article 6 Advisory', slug: 'article-6-advisory', description: 'Carbon markets & Paris Agreement guidance' },
+  { name: 'Climate Investment', slug: 'climate-investment-readiness', description: 'Climate finance readiness' },
+  { name: 'DMRV Integrity', slug: 'dmrv-integrity', description: 'Verification & due diligence' },
+];
+
+const industries = [
+  { name: 'Steel Industry', slug: 'steel-industry' },
+  { name: 'Cement Industry', slug: 'cement-industry' },
+  { name: 'Oil & Gas', slug: 'oil-gas' },
+  { name: 'Power & Utilities', slug: 'power-utilities' },
+  { name: 'Data Centres', slug: 'data-centres' },
+];
+
+const regions = [
+  { name: 'India', slug: 'india' },
+  { name: 'Gujarat', slug: 'gujarat' },
+  { name: 'Maharashtra', slug: 'maharashtra' },
+  { name: 'UAE', slug: 'uae' },
+  { name: 'Singapore', slug: 'singapore' },
+];
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isMobileServicesOpen, setIsMobileServicesOpen] = useState(false);
   const isMobile = useIsMobile();
   const location = useLocation();
   
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
+    setIsMobileServicesOpen(false);
   };
 
   const scrollToContact = () => {
@@ -46,10 +81,98 @@ const Header = () => {
           </Link>
         </div>
 
-        <nav className="hidden md:flex items-center space-x-10">
+        <nav className="hidden md:flex items-center space-x-6">
           <Link to="/" className="text-sm text-muted-foreground hover:text-foreground transition-colors story-link">
             Home
           </Link>
+          
+          {/* Services Mega Menu */}
+          <NavigationMenu>
+            <NavigationMenuList>
+              <NavigationMenuItem>
+                <NavigationMenuTrigger className="text-sm text-muted-foreground hover:text-foreground bg-transparent">
+                  Services
+                </NavigationMenuTrigger>
+                <NavigationMenuContent>
+                  <div className="w-[600px] p-4 grid grid-cols-3 gap-4">
+                    {/* Capabilities Column */}
+                    <div>
+                      <h4 className="text-xs font-medium text-primary uppercase tracking-wider mb-3">
+                        Capabilities
+                      </h4>
+                      <ul className="space-y-2">
+                        {capabilities.map((cap) => (
+                          <li key={cap.slug}>
+                            <NavigationMenuLink asChild>
+                              <Link
+                                to={`/${cap.slug}`}
+                                className="block text-sm text-muted-foreground hover:text-foreground transition-colors py-1"
+                              >
+                                {cap.name}
+                              </Link>
+                            </NavigationMenuLink>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+
+                    {/* Industries Column */}
+                    <div>
+                      <h4 className="text-xs font-medium text-primary uppercase tracking-wider mb-3">
+                        Industries
+                      </h4>
+                      <ul className="space-y-2">
+                        {industries.map((ind) => (
+                          <li key={ind.slug}>
+                            <NavigationMenuLink asChild>
+                              <Link
+                                to={`/${ind.slug}`}
+                                className="block text-sm text-muted-foreground hover:text-foreground transition-colors py-1"
+                              >
+                                {ind.name}
+                              </Link>
+                            </NavigationMenuLink>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+
+                    {/* Regions Column */}
+                    <div>
+                      <h4 className="text-xs font-medium text-primary uppercase tracking-wider mb-3">
+                        Regions
+                      </h4>
+                      <ul className="space-y-2">
+                        {regions.map((reg) => (
+                          <li key={reg.slug}>
+                            <NavigationMenuLink asChild>
+                              <Link
+                                to={`/${reg.slug}`}
+                                className="block text-sm text-muted-foreground hover:text-foreground transition-colors py-1"
+                              >
+                                {reg.name}
+                              </Link>
+                            </NavigationMenuLink>
+                          </li>
+                        ))}
+                      </ul>
+                      <div className="mt-4 pt-3 border-t border-border/50">
+                        <NavigationMenuLink asChild>
+                          <Link
+                            to="/services"
+                            className="text-sm font-medium text-primary hover:text-primary/80 transition-colors"
+                          >
+                            View All Services →
+                          </Link>
+                        </NavigationMenuLink>
+                      </div>
+                    </div>
+                  </div>
+                </NavigationMenuContent>
+              </NavigationMenuItem>
+            </NavigationMenuList>
+          </NavigationMenu>
+
           <Link to="/resources" className="text-sm text-muted-foreground hover:text-foreground transition-colors story-link">
             Resources
           </Link>
@@ -84,6 +207,55 @@ const Header = () => {
             <Link to="/" className="text-sm text-muted-foreground hover:text-foreground transition-colors py-2" onClick={toggleMenu}>
               Home
             </Link>
+            
+            {/* Mobile Services Accordion */}
+            <div>
+              <button 
+                className="w-full flex items-center justify-between text-sm text-muted-foreground hover:text-foreground transition-colors py-2"
+                onClick={() => setIsMobileServicesOpen(!isMobileServicesOpen)}
+              >
+                Services
+                <ChevronDown className={cn("w-4 h-4 transition-transform", isMobileServicesOpen && "rotate-180")} />
+              </button>
+              {isMobileServicesOpen && (
+                <div className="pl-4 mt-2 space-y-3 border-l border-border/50">
+                  <div>
+                    <p className="text-xs font-medium text-primary uppercase tracking-wider mb-2">Capabilities</p>
+                    {capabilities.slice(0, 3).map((cap) => (
+                      <Link 
+                        key={cap.slug} 
+                        to={`/${cap.slug}`} 
+                        className="block text-sm text-muted-foreground hover:text-foreground py-1"
+                        onClick={toggleMenu}
+                      >
+                        {cap.name}
+                      </Link>
+                    ))}
+                  </div>
+                  <div>
+                    <p className="text-xs font-medium text-primary uppercase tracking-wider mb-2">Industries</p>
+                    {industries.slice(0, 3).map((ind) => (
+                      <Link 
+                        key={ind.slug} 
+                        to={`/${ind.slug}`} 
+                        className="block text-sm text-muted-foreground hover:text-foreground py-1"
+                        onClick={toggleMenu}
+                      >
+                        {ind.name}
+                      </Link>
+                    ))}
+                  </div>
+                  <Link 
+                    to="/services" 
+                    className="block text-sm font-medium text-primary hover:text-primary/80 py-1"
+                    onClick={toggleMenu}
+                  >
+                    View All Services →
+                  </Link>
+                </div>
+              )}
+            </div>
+
             <Link to="/resources" className="text-sm text-muted-foreground hover:text-foreground transition-colors py-2" onClick={toggleMenu}>
               Resources
             </Link>
