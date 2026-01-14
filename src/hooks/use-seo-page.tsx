@@ -8,9 +8,10 @@ interface FAQItem {
 }
 
 interface RelatedPage {
-  slug: string;
-  title: string;
-  type: 'capability' | 'industry' | 'geography' | 'regulation' | 'problem';
+  slug?: string;
+  url?: string;
+  title?: string;
+  type?: string;
 }
 
 interface ContentSections {
@@ -19,6 +20,9 @@ interface ContentSections {
   what_changes?: string;
   our_approach?: string;
   market_risks?: string;
+  introduction?: string;
+  main_content?: string;
+  [key: string]: string | undefined;
 }
 
 interface SEOPageData {

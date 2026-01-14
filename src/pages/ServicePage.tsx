@@ -1,6 +1,7 @@
 import { useParams, Navigate } from 'react-router-dom';
 import { useSEOPage } from '@/hooks/use-seo-page';
 import ServicePageTemplate from '@/components/seo/ServicePageTemplate';
+import ServicePageErrorBoundary from '@/components/seo/ServicePageErrorBoundary';
 import { Skeleton } from '@/components/ui/skeleton';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
@@ -26,7 +27,7 @@ const ServicePageLoading = () => (
   </div>
 );
 
-const ServicePage = () => {
+const ServicePageContent = () => {
   // Get all URL parameters
   const params = useParams<{ '*': string }>();
   const fullPath = params['*'] || '';
@@ -60,5 +61,12 @@ const ServicePage = () => {
     />
   );
 };
+
+// Wrap with error boundary to catch any rendering errors
+const ServicePage = () => (
+  <ServicePageErrorBoundary>
+    <ServicePageContent />
+  </ServicePageErrorBoundary>
+);
 
 export default ServicePage;
