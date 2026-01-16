@@ -6,65 +6,155 @@
 
 Bombay Breed, led by Theresa Ronnie, provides strategic sustainability communications and climate advisory services. We help organizations navigate the complexities of climate policy, carbon markets, and ESG governance with practical, board-ready solutions.
 
-## Core Services
+## Website Structure
+
+- Homepage: https://bombaybreed.lovable.app/
+- Services Hub: https://bombaybreed.lovable.app/services
+- Resources: https://bombaybreed.lovable.app/resources
+- Credentials: https://bombaybreed.lovable.app/credentials
+
+## Core Capabilities
 
 ### Energy Optimisation Consulting
-Strategic energy efficiency and cost optimization for industrial operations.
+/energy-optimisation-consulting
+Strategic energy efficiency and cost optimization for industrial operations. We help heavy industries reduce energy costs while improving operational performance.
 
 ### Industrial Decarbonisation Strategy
-Comprehensive decarbonisation roadmaps for heavy industries including steel, cement, and oil & gas.
+/industrial-decarbonisation-strategy
+Comprehensive decarbonisation roadmaps for heavy industries including steel, cement, oil & gas, and power sectors. Board-level strategy to net-zero pathways.
 
 ### Article 6 & Carbon Markets Advisory
-Expert guidance on Paris Agreement Article 6 mechanisms, carbon credits, and voluntary carbon markets.
+/article-6-advisory
+Expert guidance on Paris Agreement Article 6 mechanisms, ITMOs, carbon credits, and voluntary carbon markets. We help structure bankable projects and navigate bilateral agreements.
 
 ### Climate Investment Readiness
-Preparing organizations for climate finance, green bonds, and sustainability-linked financing.
+/climate-investment-readiness
+Preparing organizations for climate finance, green bonds, and sustainability-linked financing. We help you become investment-ready for climate capital.
 
 ### DMRV Integrity & Due Diligence
-Digital Monitoring, Reporting, and Verification services for carbon market integrity.
+/dmrv-integrity-due-diligence
+Digital Monitoring, Reporting, and Verification services for carbon market integrity. Due diligence on carbon credits and climate claims.
 
 ## Industries Served
 
-- Steel Industry
-- Cement Industry
-- Oil & Gas
-- Power & Utilities
-- Data Centres
+### Steel Industry
+/steel-industry
+Decarbonisation and energy optimisation for integrated steel plants and secondary steel producers. Focus on green steel transition, hydrogen-based steelmaking, and EAF optimization.
 
-## Geographies
+### Cement Industry
+/cement-industry
+Low-carbon cement strategies including alternative fuels, clinker substitution, and carbon capture readiness. CBAM compliance support.
 
-Primary focus on:
-- India (National level)
-- Gujarat
-- Maharashtra
-- UAE
-- Singapore
+### Oil & Gas
+/oil-gas
+Energy transition strategy for upstream, midstream, and downstream operations. Methane management, flaring reduction, and diversification pathways.
+
+### Power & Utilities
+/power-utilities
+Grid decarbonisation, renewable integration, and demand-side management. Support for thermal power transition and clean energy procurement.
+
+### Data Centres
+/data-centres
+Energy efficiency and sustainability for data centre operations. Green power procurement, PUE optimization, and carbon neutrality pathways.
+
+## Geographic Coverage
+
+### India (National)
+/india
+Comprehensive coverage of India's energy transition landscape including PAT Scheme, CCTS, BRSR, and renewable energy policies.
+
+### Gujarat
+/gujarat
+India's industrial powerhouse with significant petrochemical, cement, and renewable energy operations.
+
+### Maharashtra
+/maharashtra
+Manufacturing hub with major steel, cement, and power sector presence.
+
+### UAE
+/uae
+GCC energy transition, Article 6 opportunities, and regional carbon market development.
+
+### Singapore
+/singapore
+Southeast Asian climate finance hub, carbon services, and regional sustainability leadership.
 
 ## Regulatory Expertise
 
-- BRSR (Business Responsibility and Sustainability Reporting)
-- CBAM (Carbon Border Adjustment Mechanism)
-- Indian Carbon Credit Trading Scheme
-- SEBI ESG Disclosure Requirements
+### Article 6 (Paris Agreement)
+/article-6
+International carbon market cooperation mechanisms. ITMOs, bilateral agreements, and corresponding adjustments.
+
+### CBAM (Carbon Border Adjustment Mechanism)
+/cbam
+EU Carbon Border Adjustment Mechanism impacting steel, cement, aluminum, fertilizers, hydrogen, and electricity exports to Europe.
+
+### Corresponding Adjustments
+/corresponding-adjustments
+Double-counting prevention mechanism under Article 6.2 bilateral agreements.
+
+### PAT Scheme (Perform Achieve Trade)
+/pat-scheme
+India's energy efficiency trading scheme for designated consumers in energy-intensive industries.
+
+### CCTS (Carbon Credit Trading Scheme)
+/ccts
+India's domestic carbon market framework under development for compliance obligations.
+
+## Problem-Focused Pages
+
+These pages address specific challenges our clients face:
+
+- /prepare-for-carbon-border-taxes - CBAM preparation for Indian exporters
+- /reduce-energy-costs-heavy-industry - Energy cost optimization strategies
+- /measure-scope-3-emissions - Value chain emissions measurement
+- /net-zero-strategy-manufacturing - Manufacturing decarbonisation pathways
+- /carbon-footprint-supply-chain - Supply chain carbon management
+- /green-hydrogen-strategy - Hydrogen economy transition planning
+- /science-based-targets - SBTi target setting and validation
+- /sustainability-reporting-brsr - BRSR and ESG disclosure compliance
+- /renewable-energy-procurement-india - Green power sourcing in India
+
+## Combined Service Pages
+
+Capability + Industry combinations:
+- /decarbonisation-steel-industry
+- /decarbonisation-cement-industry
+- /decarbonisation-oil-gas
+- /decarbonisation-power-sector
+- /decarbonisation-data-centres
+- /energy-optimisation-steel-industry
+- /energy-optimisation-cement-industry
+- /energy-optimisation-oil-gas
+- /energy-efficiency-data-centres
+
+Capability + Geography combinations:
+- /decarbonisation-consulting-india
+- /decarbonisation-consulting-uae
+- /decarbonisation-consulting-singapore
+- /energy-optimisation-consulting-india
+- /energy-optimisation-consulting-gujarat
+- /energy-optimisation-consulting-maharashtra
+- /article-6-consulting-india
+- /article-6-consulting-uae
+- /climate-investment-readiness-india
+- /climate-investment-readiness-singapore
 
 ## Key Resources
 
-- /resources - Research publications, playbooks, and thought leadership
-- /credentials - Professional credentials and advisory experience
-- /services - Full list of strategic advisory services
-
-## Content Channels
-
-- The Climate Desk (Substack) - Weekly insights on climate strategy
-- LinkedIn - Professional updates and commentary
-- YouTube - Presentations and thought leadership
+- The Climate Desk (Substack) - Weekly insights on climate strategy and policy
+- Research publications and playbooks on carbon markets and energy transition
+- Case studies and thought leadership content
 
 ## Contact
 
-For strategic advisory inquiries, visit https://bombaybreed.lovable.app and use the contact form.
+For strategic advisory inquiries:
+- Website: https://bombaybreed.lovable.app
+- Contact form on homepage
 
 ## Technical Information
 
-This website is built with React, TypeScript, and Supabase. It features programmatic SEO pages for various capability, industry, geography, and regulation combinations.
+This website is built with React, TypeScript, and Supabase. It features programmatic SEO pages for various capability, industry, geography, and regulation combinations to serve specific search intents.
 
 Sitemap: https://bombaybreed.lovable.app/sitemap.xml
+LLMs.txt: https://bombaybreed.lovable.app/llms.txt
