@@ -16,11 +16,11 @@ import {
 import { cn } from '@/lib/utils';
 
 const capabilities = [
-  { name: 'Energy Optimisation', slug: 'energy-optimisation', description: 'Strategic energy efficiency consulting' },
-  { name: 'Industrial Decarbonisation', slug: 'industrial-decarbonisation', description: 'Decarbonisation roadmaps for industry' },
+  { name: 'Energy Optimisation', slug: 'energy-optimisation-consulting', description: 'Strategic energy efficiency consulting' },
+  { name: 'Industrial Decarbonisation', slug: 'industrial-decarbonisation-strategy', description: 'Decarbonisation roadmaps for industry' },
   { name: 'Article 6 Advisory', slug: 'article-6-advisory', description: 'Carbon markets & Paris Agreement guidance' },
   { name: 'Climate Investment', slug: 'climate-investment-readiness', description: 'Climate finance readiness' },
-  { name: 'DMRV Integrity', slug: 'dmrv-integrity', description: 'Verification & due diligence' },
+  { name: 'DMRV Integrity', slug: 'dmrv-integrity-due-diligence', description: 'Verification & due diligence' },
 ];
 
 const industries = [
