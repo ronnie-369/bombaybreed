@@ -8,10 +8,10 @@ Bombay Breed, led by Theresa Ronnie, provides strategic sustainability communica
 
 ## Website Structure
 
-- Homepage: https://bombaybreed.lovable.app/
-- Services Hub: https://bombaybreed.lovable.app/services
-- Resources: https://bombaybreed.lovable.app/resources
-- Credentials: https://bombaybreed.lovable.app/credentials
+- Homepage: https://bombaybreed.com/
+- Services Hub: https://bombaybreed.com/services
+- Resources: https://bombaybreed.com/resources
+- Credentials: https://bombaybreed.com/credentials
 
 ## Core Capabilities
 
@@ -149,12 +149,12 @@ Capability + Geography combinations:
 ## Contact
 
 For strategic advisory inquiries:
-- Website: https://bombaybreed.lovable.app
+- Website: https://bombaybreed.com
 - Contact form on homepage
 
 ## Technical Information
 
 This website is built with React, TypeScript, and Supabase. It features programmatic SEO pages for various capability, industry, geography, and regulation combinations to serve specific search intents.
 
-Sitemap: https://bombaybreed.lovable.app/sitemap.xml
-LLMs.txt: https://bombaybreed.lovable.app/llms.txt
+Sitemap: https://bombaybreed.com/sitemap.xml
+LLMs.txt: https://bombaybreed.com/llms.txt
