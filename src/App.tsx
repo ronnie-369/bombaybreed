@@ -18,6 +18,7 @@ import Admin from "./pages/Admin";
 import AdminSEO from "./pages/AdminSEO";
 import ServicePage from "./pages/ServicePage";
 import Services from "./pages/Services";
+import WEFGlobalRisksReport from "./pages/WEFGlobalRisksReport";
 
 const queryClient = new QueryClient();
 
@@ -42,6 +43,7 @@ const AppContent = () => {
             <Route path="/admin" element={<Admin />} />
             <Route path="/admin/seo" element={<AdminSEO />} />
             <Route path="/services" element={<Services />} />
+            <Route path="/wef-global-risks-2026" element={<WEFGlobalRisksReport />} />
             <Route path="/404" element={<NotFound />} />
             {/* SEO DYNAMIC ROUTES - catches all programmatic pages */}
             <Route path="/*" element={<ServicePage />} />
