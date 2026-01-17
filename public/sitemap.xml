@@ -26,6 +26,14 @@
     <priority>0.70</priority>
   </url>
   
+  <!-- Report Pages -->
+  <url>
+    <loc>https://bombaybreed.com/wef-global-risks-2026</loc>
+    <lastmod>2026-01-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+  </url>
+  
   <!-- Capability Pages -->
   <url>
     <loc>https://bombaybreed.com/energy-optimisation-consulting</loc>
