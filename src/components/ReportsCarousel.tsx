@@ -35,6 +35,17 @@ interface ContentItem {
 // Static reports that don't change
 const staticReports: ContentItem[] = [
   {
+    id: 'wef-global-risks-2026',
+    type: 'report',
+    title: 'WEF Global Risks 2026',
+    subtitle: 'Davos Analysis',
+    description: 'Strategic interpretation of the World Economic Forum\'s flagship risk report for climate leaders.',
+    cta: 'Download Executive Briefing',
+    route: '/wef-global-risks-2026',
+    image: '/lovable-uploads/44d63597-9200-4941-8375-9a5a0aa338fe.png',
+    gradient: 'from-slate-800 to-blue-900'
+  },
+  {
     id: 'energy-transition-playbook',
     type: 'report',
     title: 'The Energy Transition',
