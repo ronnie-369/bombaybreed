@@ -9,6 +9,7 @@ import { Download, ExternalLink, FileText, Video, Calendar, ChevronRight, Search
 import LeadCaptureForm from '@/components/shared/LeadCaptureForm';
 import { format } from 'date-fns';
 import wefCoverImage from '@/assets/wef-global-risks-2026-cover.jpg';
+import greenJobsCoverImage from '@/assets/green-jobs-india-2026-cover.jpg';
 
 interface Publication {
   title: string;
@@ -16,6 +17,7 @@ interface Publication {
   type: string;
   topics: string[];
   publishedDate: string;
+  coverImage?: string;
 }
 
 // Topic filter categories with their matching keywords
@@ -58,7 +60,8 @@ const Resources = () => {
         "Green Jobs", "Workforce", "Solar Jobs", "Wind Jobs", "Battery Storage",
         "Skills Gap", "Net Zero 2070", "Renewable Energy", "India", "Employment"
       ],
-      publishedDate: "2026-01-17"
+      publishedDate: "2026-01-17",
+      coverImage: greenJobsCoverImage
     },
     {
       title: "WEF Global Risks Report 2026: Climate & Geopolitical Volatility",
@@ -69,7 +72,8 @@ const Resources = () => {
         "Economic Instability", "Systemic Risk", "Strategic Planning",
         "Risk Framework", "Scenario Analysis", "Investor Intelligence"
       ],
-      publishedDate: "2026-01-17"
+      publishedDate: "2026-01-17",
+      coverImage: wefCoverImage
     },
     {
       title: "Mining the Transition: A Climate-Critical Minerals Risk Framework for Investors",
@@ -377,11 +381,17 @@ const Resources = () => {
                 </Button>
               </div>
               <div className="hidden md:block relative overflow-hidden rounded-r-lg">
-                <img 
-                  src={wefCoverImage} 
-                  alt="WEF Global Risks Report 2026 Cover" 
-                  className="w-full h-full object-cover"
-                />
+                {featuredPublication.coverImage ? (
+                  <img 
+                    src={featuredPublication.coverImage} 
+                    alt={`${featuredPublication.title} Cover`} 
+                    className="w-full h-full object-cover"
+                  />
+                ) : (
+                  <div className="w-full h-full bg-gradient-to-br from-primary/20 to-accent/20 flex items-center justify-center">
+                    <FileText className="h-16 w-16 text-muted-foreground/30" />
+                  </div>
+                )}
                 <div className="absolute inset-0 bg-gradient-to-l from-transparent to-card/20" />
               </div>
             </div>
