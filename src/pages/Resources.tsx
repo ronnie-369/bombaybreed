@@ -2,6 +2,7 @@ import React, { useState, useRef, useMemo, useEffect } from 'react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import BlogCarousel from '@/components/BlogCarousel';
+import FeaturedReportsCarousel from '@/components/FeaturedReportsCarousel';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -343,59 +344,13 @@ const Resources = () => {
                 </h3>
               )}
 
-          {/* Featured Card - Full Width */}
-          <Card className="border-primary/30 bg-gradient-to-br from-card to-secondary/20 mb-12">
-            <div className="grid md:grid-cols-3 gap-6">
-              <div className="md:col-span-2 p-6 md:p-8">
-                <div className="flex items-center gap-3 mb-4">
-                  <span className="px-3 py-1 bg-primary/10 text-primary rounded-full text-xs font-medium uppercase tracking-wide">
-                    {featuredPublication.type}
-                  </span>
-                  <span className="flex items-center gap-1.5 text-xs text-muted-foreground">
-                    <Calendar className="h-3 w-3" />
-                    {formatDate(featuredPublication.publishedDate)}
-                  </span>
-                </div>
-                <h3 className="text-2xl md:text-3xl font-heading font-medium mb-4">
-                  {featuredPublication.title}
-                </h3>
-                <p className="text-muted-foreground mb-6 leading-relaxed">
-                  {featuredPublication.description}
-                </p>
-                <div className="flex flex-wrap gap-2 mb-6">
-                  {featuredPublication.topics.map((topic, index) => (
-                    <span 
-                      key={index}
-                      className="px-2.5 py-1 bg-muted text-muted-foreground rounded text-xs"
-                    >
-                      {topic}
-                    </span>
-                  ))}
-                </div>
-                <Button 
-                  onClick={() => handleDownloadClick(featuredPublication)}
-                  className="gap-2"
-                >
-                  <Download className="h-4 w-4" />
-                  Download Report
-                </Button>
-              </div>
-              <div className="hidden md:block relative overflow-hidden rounded-r-lg">
-                {featuredPublication.coverImage ? (
-                  <img 
-                    src={featuredPublication.coverImage} 
-                    alt={`${featuredPublication.title} Cover`} 
-                    className="w-full h-full object-cover"
-                  />
-                ) : (
-                  <div className="w-full h-full bg-gradient-to-br from-primary/20 to-accent/20 flex items-center justify-center">
-                    <FileText className="h-16 w-16 text-muted-foreground/30" />
-                  </div>
-                )}
-                <div className="absolute inset-0 bg-gradient-to-l from-transparent to-card/20" />
-              </div>
-            </div>
-          </Card>
+          {/* Featured Reports Carousel */}
+          <div className="mb-12">
+            <FeaturedReportsCarousel 
+              publications={publications} 
+              onDownloadClick={handleDownloadClick} 
+            />
+          </div>
 
           {/* Recent Publications Grid */}
           {recentPublications.length > 0 && (
