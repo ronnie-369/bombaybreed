@@ -204,7 +204,7 @@ const LeadCaptureForm: React.FC<LeadCaptureFormProps> = ({
   return (
     <Card className="w-full max-w-lg mx-auto shadow-lg">
       <CardHeader className="text-center">
-        <Download className="h-12 w-12 text-bombay mx-auto mb-2" />
+        <Download className="h-12 w-12 text-accent mx-auto mb-2" />
         <CardTitle className="text-xl">Download {reportTitle}</CardTitle>
         <CardDescription className="text-sm">
           {reportDescription}
@@ -299,7 +299,7 @@ const LeadCaptureForm: React.FC<LeadCaptureFormProps> = ({
           <Button
             type="submit"
             disabled={isLoading || !formData.name || !formData.email || !formData.consent}
-            className="w-full bg-bombay hover:bg-bombay-light text-white py-3 mt-6"
+            className="w-full bg-accent hover:bg-accent/90 text-accent-foreground py-3 mt-6 shadow-md hover:shadow-lg hover:scale-[1.02] active:scale-[0.98] transition-all duration-200"
           >
             {isLoading ? (
               'Sending Report...'
