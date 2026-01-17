@@ -102,7 +102,7 @@ const FeaturedReportsCarousel: React.FC<FeaturedReportsCarouselProps> = ({
                   </div>
                   <Button 
                     onClick={() => onDownloadClick(pub)}
-                    className="gap-2"
+                    className="gap-2 bg-accent hover:bg-accent/90 text-accent-foreground shadow-md hover:shadow-lg hover:scale-[1.03] active:scale-[0.97] transition-all duration-200"
                   >
                     <Download className="h-4 w-4" />
                     Download Report
