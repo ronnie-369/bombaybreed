@@ -146,6 +146,9 @@ serve(async (req: Request) => {
       "The Energy Transition Playbook for India": "The-Energy-Transition-Playbook-for-India (2).pdf",
       "India's Climate Inflection Point": "Indias-Climate-Inflection-Point-The Climate Desk_compressed.pdf",
       "Asia Climate Emissions and Article 6: Comparative Policy Grade": "ASIA-CLIMATE-EMISSIONS-and-ARTICLE-6-COMPARATIVE-POLICY-GRADE (3).pdf",
+      // New 2026 reports
+      "Jobs on the Rise 2026: India Green Jobs Outlook": "Jobs-on-the-Rise-2026-India-Green-Jobs-Outlook.pdf",
+      "WEF Global Risks Report 2026: Climate & Geopolitical Volatility": "WEF-Global-Risks-Report-2026-Climate-and-Geopolitical-Volatility.pdf",
     };
 
     const ensurePdf = (s: string) => (s.toLowerCase().endsWith(".pdf") ? s : `${s}.pdf`);
