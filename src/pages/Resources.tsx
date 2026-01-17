@@ -84,7 +84,7 @@ const Resources = () => {
         "Tailings Dams", "Water Risk", "Aquifer Depletion", "ESG Investing",
         "Mining Risk", "Portfolio Screening", "SDGs", "Investor Intelligence"
       ],
-      publishedDate: "2025-01-10"
+      publishedDate: "2025-12-15"
     },
     {
       title: "Asia Climate Emissions and Article 6: Comparative Policy Grade",
@@ -94,7 +94,7 @@ const Resources = () => {
         "Article 6", "Paris Agreement", "Emissions Trading", "Climate Policy",
         "Asia Markets", "Carbon Credits", "NDCs", "Policy Comparison", "UNFCCC"
       ],
-      publishedDate: "2025-01-05"
+      publishedDate: "2025-12-10"
     },
     {
       title: "India's Climate Inflection Point",
@@ -104,7 +104,7 @@ const Resources = () => {
         "India", "Net Zero", "Climate Strategy", "Policy Inflection",
         "Decarbonization", "Strategic Analysis", "2070 Targets", "NDC"
       ],
-      publishedDate: "2024-12-15"
+      publishedDate: "2025-11-15"
     },
     {
       title: "From Compliance to Credibility: A CXO Guide to CCTS & CBAM",
@@ -115,7 +115,7 @@ const Resources = () => {
         "Textiles", "Chemicals", "Automotive", "Carbon Intensity", "Scope 3",
         "CXO Strategy", "Trade Policy"
       ],
-      publishedDate: "2024-11-20"
+      publishedDate: "2025-10-20"
     },
     {
       title: "Carbon Market Outlook 2025-2030: An Investor's Deep Dive",
@@ -126,7 +126,7 @@ const Resources = () => {
         "Renewable Energy Credits", "Green Bonds", "Net Zero", "Carbon Tax",
         "ESG Reporting", "Forestry", "Agriculture", "Transportation", "India"
       ],
-      publishedDate: "2024-10-15"
+      publishedDate: "2025-10-15"
     },
     {
       title: "Green Jobs in India: Workforce and Investment Outlook 2025-2030",
@@ -137,7 +137,7 @@ const Resources = () => {
         "Solar", "Wind", "Battery Storage", "Manufacturing",
         "Gujarat", "Maharashtra", "Tamil Nadu", "Training", "Employment"
       ],
-      publishedDate: "2024-09-01"
+      publishedDate: "2025-09-01"
     },
     {
       title: "Energy Transition Playbook",
@@ -149,7 +149,7 @@ const Resources = () => {
         "Steel Decarbonization", "Cement", "Aluminum", "Industrial Policy",
         "PLI Scheme", "Grid Integration", "India"
       ],
-      publishedDate: "2024-07-15"
+      publishedDate: "2025-08-15"
     }
   ];
 
