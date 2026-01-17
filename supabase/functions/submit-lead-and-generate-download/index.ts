@@ -147,8 +147,8 @@ serve(async (req: Request) => {
       "India's Climate Inflection Point": "Indias-Climate-Inflection-Point-The Climate Desk_compressed.pdf",
       "Asia Climate Emissions and Article 6: Comparative Policy Grade": "ASIA-CLIMATE-EMISSIONS-and-ARTICLE-6-COMPARATIVE-POLICY-GRADE (3).pdf",
       // New 2026 reports
-      "Jobs on the Rise 2026: India Green Jobs Outlook": "Jobs-on-the-Rise-2026-India-Green-Jobs-Outlook.pdf",
-      "WEF Global Risks Report 2026: Climate & Geopolitical Volatility": "WEF-Global-Risks-Report-2026-Climate-and-Geopolitical-Volatility.pdf",
+      "Jobs on the Rise 2026: India Green Jobs Outlook": "linkedin_jobs_on_the_rise_2026_india_green_jobs_20260117180846.pdf",
+      "WEF Global Risks Report 2026: Climate & Geopolitical Volatility": "The-Global-Risks-Report-2026-was-written-assuming-instability-What-it-did-not-fully-price-in-was-spe (1).pdf",
     };
 
     const ensurePdf = (s: string) => (s.toLowerCase().endsWith(".pdf") ? s : `${s}.pdf`);
