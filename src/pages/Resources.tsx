@@ -21,11 +21,12 @@ interface Publication {
 // Topic filter categories with their matching keywords
 const TOPIC_CATEGORIES = [
   { label: "WEF & Davos", keywords: ["WEF", "Davos", "Global Risks", "World Economic Forum"] },
+  { label: "Government & Policy Bodies", keywords: ["ILO", "MNRE", "NITI Aayog", "SEBI", "BRSR", "MoEFCC", "BEE", "CEEW", "IRENA"] },
   { label: "Carbon Markets", keywords: ["Carbon", "Credits", "Trading", "CCTS", "CBAM", "Emissions", "Market"] },
   { label: "Energy & Renewables", keywords: ["Energy", "Solar", "Wind", "Grid", "Hydrogen", "Storage", "Renewable"] },
   { label: "Mining & Minerals", keywords: ["Mining", "Lithium", "Cobalt", "Nickel", "Copper", "Tailings", "Critical Minerals"] },
   { label: "Policy & Regulation", keywords: ["Policy", "Article 6", "CBAM", "CCTS", "Compliance", "EU", "Paris Agreement"] },
-  { label: "Jobs & Skills", keywords: ["Jobs", "Workforce", "Skills", "Salary", "Training", "Employment"] },
+  { label: "Jobs & Skills", keywords: ["Jobs", "Workforce", "Skills", "Salary", "Training", "Employment", "Green Jobs"] },
   { label: "Investment", keywords: ["Investment", "Investor", "Portfolio", "ESG", "Green Bonds", "Market Sizing"] },
   { label: "India Focus", keywords: ["India", "Gujarat", "Maharashtra", "Tamil Nadu", "Asia"] },
   { label: "Industrial Sectors", keywords: ["Steel", "Cement", "Textiles", "Chemicals", "Automotive", "Aluminum"] },
@@ -48,6 +49,17 @@ const SEARCH_PROMPTS = [
 const Resources = () => {
   // Publications ordered from newest to oldest
   const publications: Publication[] = [
+    {
+      title: "Jobs on the Rise 2026: India Green Jobs Outlook",
+      description: "Comprehensive analysis of India's green jobs landscape aligned with Net-Zero 2070 goals and 500 GW renewable energy targets. Covers solar, wind, battery storage workforce trends, salary benchmarks, and skills gaps across key states.",
+      type: "Workforce Analysis",
+      topics: [
+        "ILO", "MNRE", "NITI Aayog", "SEBI", "BRSR", "MoEFCC", "BEE", "CEEW", "IRENA",
+        "Green Jobs", "Workforce", "Solar Jobs", "Wind Jobs", "Battery Storage",
+        "Skills Gap", "Net Zero 2070", "Renewable Energy", "India", "Employment"
+      ],
+      publishedDate: "2026-01-17"
+    },
     {
       title: "WEF Global Risks Report 2026: Climate & Geopolitical Volatility",
       description: "Bombay Breed analysis of the World Economic Forum's Global Risks Report 2026, examining the intersection of climate risks, geopolitical instability, and economic uncertainty for corporate strategists",

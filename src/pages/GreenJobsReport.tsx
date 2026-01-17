@@ -1,153 +1,135 @@
 import React from 'react';
 import Header from '@/components/Header';
+import Footer from '@/components/Footer';
 import LeadCaptureForm from '@/components/shared/LeadCaptureForm';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Users, TrendingUp, MapPin, GraduationCap, DollarSign, Calendar } from 'lucide-react';
+import { Button } from "@/components/ui/button";
+import { Users, TrendingUp, MapPin, GraduationCap, Building2, Briefcase, Globe, Zap, Target, ArrowLeft, Download } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 const GreenJobsReport = () => {
-  const discoveries = [
+  const keyFindings = [
     {
-      icon: Users,
-      title: "1 Million Green Jobs by 2030",
-      description: "India is projected to create over 1 million new green jobs across renewable energy, sustainable manufacturing, and climate adaptation sectors."
+      icon: <TrendingUp className="h-6 w-6" />,
+      stat: "1.1M",
+      label: "Solar Jobs by 2030",
+      description: "Projected solar workforce aligned with India's 500 GW renewable energy target"
     },
     {
-      icon: DollarSign,
-      title: "₹2.5-4.2 Lakh Average Salary",
-      description: "Green jobs offer competitive compensation with significant growth potential across skill levels and geographies."
+      icon: <Target className="h-6 w-6" />,
+      stat: "72%",
+      label: "Job-Hunting Intent",
+      description: "Professionals planning to seek new roles, signaling a dynamic workforce"
     },
     {
-      icon: TrendingUp,
-      title: "35% Skills Gap Challenge",
-      description: "Critical shortage in specialized skills requires immediate action in education and training infrastructure."
+      icon: <Users className="h-6 w-6" />,
+      stat: "84%",
+      label: "Preparation Gap",
+      description: "Candidates feeling unprepared, highlighting critical upskilling needs"
     },
     {
-      icon: MapPin,
-      title: "Regional Hub Development",
-      description: "Gujarat, Maharashtra, and Tamil Nadu emerging as green job powerhouses with supporting policy frameworks."
+      icon: <Zap className="h-6 w-6" />,
+      stat: "500 GW",
+      label: "RE Capacity Target",
+      description: "India's renewable energy target by 2030 driving massive job creation"
     }
   ];
 
-  const archetypeRoles = [
-    {
-      category: "Technical Specialists",
-      roles: ["Solar Installation Engineer", "Wind Farm Technician", "Battery Storage Analyst", "Carbon Footprint Consultant"],
-      salaryRange: "₹3.5-6.2L",
-      growth: "45% CAGR"
-    },
-    {
-      category: "Project Management",
-      roles: ["Renewable Energy Project Manager", "Sustainability Program Lead", "ESG Compliance Officer"],
-      salaryRange: "₹8-15L", 
-      growth: "38% CAGR"
-    },
-    {
-      category: "Research & Development",
-      roles: ["Clean Technology Researcher", "Environmental Data Scientist", "Green Finance Analyst"],
-      salaryRange: "₹6-12L",
-      growth: "42% CAGR"
-    },
-    {
-      category: "Operations & Manufacturing",
-      roles: ["Green Manufacturing Supervisor", "Waste Management Coordinator", "Circular Economy Specialist"],
-      salaryRange: "₹4-8L",
-      growth: "33% CAGR"
-    }
+  const sectors = [
+    { name: "Solar Energy", growth: "High", roles: "Project Engineers, Installation Technicians, O&M Specialists" },
+    { name: "Wind Energy", growth: "High", roles: "Turbine Engineers, Site Managers, Grid Integration Experts" },
+    { name: "Battery Storage", growth: "Very High", roles: "Battery Engineers, Energy Storage Analysts, System Integrators" },
+    { name: "Green Hydrogen", growth: "Emerging", roles: "Electrolyzer Engineers, Hydrogen Safety Officers, Process Engineers" },
+    { name: "ESG & Sustainability", growth: "High", roles: "ESG Analysts, Sustainability Managers, BRSR Consultants" },
+    { name: "Carbon Markets", growth: "High", roles: "Carbon Traders, MRV Specialists, Verification Auditors" }
   ];
+
+  const policyBodies = [
+    { abbr: "ILO", name: "International Labour Organization", focus: "Global green jobs standards" },
+    { abbr: "MNRE", name: "Ministry of New & Renewable Energy", focus: "RE deployment & workforce" },
+    { abbr: "NITI Aayog", name: "National Institution for Transforming India", focus: "Strategic policy planning" },
+    { abbr: "SEBI", name: "Securities & Exchange Board of India", focus: "ESG disclosure mandates" },
+    { abbr: "BRSR", name: "Business Responsibility & Sustainability Reporting", focus: "Corporate sustainability" },
+    { abbr: "MoEFCC", name: "Ministry of Environment, Forest & Climate Change", focus: "Climate policy framework" },
+    { abbr: "BEE", name: "Bureau of Energy Efficiency", focus: "Energy efficiency standards" },
+    { abbr: "CEEW", name: "Council on Energy, Environment & Water", focus: "Research & insights" },
+    { abbr: "IRENA", name: "International Renewable Energy Agency", focus: "Global RE transitions" }
+  ];
+
+  const stateOutlook = [
+    { state: "Gujarat", specialization: "Solar, Wind, Green Hydrogen", jobPotential: "Very High" },
+    { state: "Maharashtra", specialization: "Industrial Decarbonization, ESG", jobPotential: "Very High" },
+    { state: "Tamil Nadu", specialization: "Wind, EV Manufacturing", jobPotential: "High" },
+    { state: "Rajasthan", specialization: "Solar, Utility-Scale RE", jobPotential: "High" },
+    { state: "Karnataka", specialization: "Solar, Tech & ESG Services", jobPotential: "High" }
+  ];
+
+  const policyTags = ["ILO", "MNRE", "NITI Aayog", "SEBI", "BRSR", "MoEFCC", "BEE", "CEEW", "IRENA"];
 
   return (
-    <div className="min-h-screen bg-bombay-background">
+    <div className="min-h-screen bg-background flex flex-col">
       <Header />
       
       {/* Hero Section */}
-      <section className="pt-28 pb-16 md:pt-40 md:pb-24 px-4 md:px-8 bg-gradient-to-br from-teal-700 via-teal-600 to-emerald-600 text-white">
-        <div className="container mx-auto text-center">
-          <Badge className="mb-6 bg-white/20 text-white border-white/30 px-4 py-2">
-            Workforce Outlook 2025–2030
-          </Badge>
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight">
-            Green Jobs in India
-            <br />
-            <span className="text-emerald-200">1 Million by 2030</span>
+      <section className="pt-28 pb-16 md:pt-36 md:pb-20 px-6 md:px-8 bg-gradient-to-br from-primary via-primary to-accent/30">
+        <div className="container mx-auto max-w-5xl">
+          <Link to="/resources" className="inline-flex items-center gap-2 text-primary-foreground/70 hover:text-primary-foreground mb-6 transition-colors">
+            <ArrowLeft className="h-4 w-4" />
+            Back to Resources
+          </Link>
+          
+          <div className="flex flex-wrap gap-2 mb-6">
+            <Badge variant="secondary" className="bg-primary-foreground/10 text-primary-foreground border-0">
+              Workforce Analysis
+            </Badge>
+            <Badge variant="secondary" className="bg-primary-foreground/10 text-primary-foreground border-0">
+              January 2026
+            </Badge>
+          </div>
+          
+          <h1 className="text-display font-heading tracking-tight mb-6 text-primary-foreground">
+            Jobs on the Rise 2026: India Green Jobs Outlook
           </h1>
-          <p className="text-lede mb-8 text-teal-100 max-w-3xl mx-auto">
-            The definitive analysis of India's green workforce transformation, investment patterns, and skills ecosystem development.
+          
+          <p className="text-lede text-primary-foreground/80 max-w-3xl mb-8">
+            Comprehensive analysis of India's green jobs landscape aligned with Net-Zero 2070 goals 
+            and 500 GW renewable energy targets. AI-driven market transformation meets sustainability alignment.
           </p>
-          <div className="flex flex-wrap justify-center gap-4 text-sm">
-            <span className="bg-white/20 px-4 py-2 rounded-full">September 2025</span>
-            <span className="bg-white/20 px-4 py-2 rounded-full">50+ Data Points</span>
-            <span className="bg-white/20 px-4 py-2 rounded-full">Industry Interviews</span>
+          
+          <div className="flex flex-wrap gap-2 mb-8">
+            {policyTags.map((tag) => (
+              <Badge key={tag} variant="outline" className="border-primary-foreground/30 text-primary-foreground/90">
+                {tag}
+              </Badge>
+            ))}
           </div>
+          
+          <Button size="lg" variant="secondary" className="gap-2">
+            <Download className="h-5 w-5" />
+            Download Full Report
+          </Button>
         </div>
       </section>
 
-      {/* What You'll Discover */}
-      <section className="py-20 px-4 md:px-8 bg-white">
-        <div className="container mx-auto">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">What You'll Discover</h2>
-            <p className="text-body text-foreground/80 max-w-3xl mx-auto">
-              Deep insights into India's green workforce transformation backed by comprehensive research and industry analysis.
-            </p>
+      {/* Key Findings */}
+      <section className="py-20 px-6 md:px-8 bg-secondary/30">
+        <div className="container mx-auto max-w-6xl">
+          <div className="text-center mb-12">
+            <p className="text-sm font-medium text-accent tracking-wide uppercase mb-3">Key Findings</p>
+            <h2 className="text-section font-heading tracking-tight">Labor Market Transformation</h2>
           </div>
           
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
-            {discoveries.map((discovery, index) => {
-              const IconComponent = discovery.icon;
-              return (
-                <Card key={index} className="border-l-4 border-l-teal-600">
-                  <CardHeader className="pb-3">
-                    <div className="flex items-center gap-3">
-                      <div className="p-2 bg-teal-100 rounded-lg">
-                        <IconComponent className="h-6 w-6 text-teal-600" />
-                      </div>
-                      <CardTitle className="text-xl">{discovery.title}</CardTitle>
-                    </div>
-                  </CardHeader>
-                  <CardContent>
-                    <p className="text-foreground/80 text-card">{discovery.description}</p>
-                  </CardContent>
-                </Card>
-              );
-            })}
-          </div>
-        </div>
-      </section>
-
-      {/* Why This Matters */}
-      <section className="py-20 px-4 md:px-8 bg-gradient-to-b from-bombay-background to-white">
-        <div className="container mx-auto">
-          <h2 className="text-3xl md:text-4xl font-bold text-center mb-16">Why This Matters</h2>
-          
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {[
-              {
-                audience: "Policymakers",
-                value: "Evidence-based insights for workforce development policies and skill building programs.",
-                icon: "🏛️"
-              },
-              {
-                audience: "Investors",
-                value: "Market sizing, growth projections, and sector-wise investment opportunities in human capital.",
-                icon: "💼"
-              },
-              {
-                audience: "Professionals",
-                value: "Career pathway mapping, salary benchmarks, and skill development recommendations.",
-                icon: "🎯"
-              },
-              {
-                audience: "Educators",
-                value: "Curriculum alignment insights and training program effectiveness metrics.",
-                icon: "📚"
-              }
-            ].map((item, index) => (
-              <Card key={index} className="text-center hover:shadow-lg transition-shadow">
-                <CardContent className="p-6">
-                  <div className="text-4xl mb-4">{item.icon}</div>
-                  <h3 className="text-body font-semibold mb-3 text-bombay">{item.audience}</h3>
-                  <p className="text-card text-foreground/80">{item.value}</p>
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            {keyFindings.map((finding, index) => (
+              <Card key={index} className="text-center border-border/50 hover:border-primary/30 transition-colors">
+                <CardContent className="pt-8 pb-6">
+                  <div className="inline-flex items-center justify-center w-14 h-14 rounded-full bg-primary/10 text-primary mb-4">
+                    {finding.icon}
+                  </div>
+                  <div className="text-3xl font-heading font-bold text-primary mb-1">{finding.stat}</div>
+                  <div className="font-medium text-foreground mb-2">{finding.label}</div>
+                  <p className="text-sm text-muted-foreground">{finding.description}</p>
                 </CardContent>
               </Card>
             ))}
@@ -155,39 +137,90 @@ const GreenJobsReport = () => {
         </div>
       </section>
 
-      {/* Archetype Roles */}
-      <section className="py-20 px-4 md:px-8 bg-white">
-        <div className="container mx-auto">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">Green Job Archetypes</h2>
-            <p className="text-body text-foreground/80 max-w-3xl mx-auto">
-              Detailed breakdown of emerging roles, compensation ranges, and growth trajectories across India's green economy.
+      {/* Sector Analysis */}
+      <section className="py-20 px-6 md:px-8">
+        <div className="container mx-auto max-w-6xl">
+          <div className="grid lg:grid-cols-2 gap-12 items-start">
+            <div>
+              <p className="text-sm font-medium text-accent tracking-wide uppercase mb-3">Sector Analysis</p>
+              <h2 className="text-section font-heading tracking-tight mb-6">High-Growth Green Sectors</h2>
+              <p className="text-muted-foreground mb-8">
+                The labor market is undergoing rapid shifts driven by AI adoption and sustainability mandates, 
+                creating unprecedented demand for specialized technical and leadership roles across key green sectors.
+              </p>
+              
+              <div className="space-y-4">
+                {sectors.map((sector, index) => (
+                  <Card key={index} className="border-border/50">
+                    <CardContent className="p-4">
+                      <div className="flex items-start justify-between mb-2">
+                        <h3 className="font-medium text-foreground">{sector.name}</h3>
+                        <Badge variant={sector.growth === "Very High" ? "default" : sector.growth === "High" ? "secondary" : "outline"}>
+                          {sector.growth}
+                        </Badge>
+                      </div>
+                      <p className="text-sm text-muted-foreground">{sector.roles}</p>
+                    </CardContent>
+                  </Card>
+                ))}
+              </div>
+            </div>
+            
+            <div>
+              <p className="text-sm font-medium text-accent tracking-wide uppercase mb-3">Policy Alignment</p>
+              <h2 className="text-section font-heading tracking-tight mb-6">Key Policy Bodies & Frameworks</h2>
+              <p className="text-muted-foreground mb-8">
+                Understanding the regulatory and institutional landscape is critical for workforce planning 
+                and skills development aligned with India's climate commitments.
+              </p>
+              
+              <div className="grid gap-3">
+                {policyBodies.map((body, index) => (
+                  <div key={index} className="flex items-start gap-3 p-3 rounded-lg bg-muted/50 hover:bg-muted transition-colors">
+                    <div className="flex-shrink-0 w-20 font-mono text-sm font-medium text-primary">{body.abbr}</div>
+                    <div className="flex-1 min-w-0">
+                      <div className="text-sm font-medium text-foreground truncate">{body.name}</div>
+                      <div className="text-xs text-muted-foreground">{body.focus}</div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* State-wise Outlook */}
+      <section className="py-20 px-6 md:px-8 bg-secondary/30">
+        <div className="container mx-auto max-w-6xl">
+          <div className="text-center mb-12">
+            <p className="text-sm font-medium text-accent tracking-wide uppercase mb-3">Geographic Distribution</p>
+            <h2 className="text-section font-heading tracking-tight">State-wise Green Jobs Outlook</h2>
+            <p className="text-muted-foreground mt-4 max-w-2xl mx-auto">
+              Job creation potential varies by state based on renewable energy resources, industrial base, and policy support
             </p>
           </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {archetypeRoles.map((category, index) => (
-              <Card key={index} className="hover:shadow-lg transition-shadow">
-                <CardHeader>
-                  <div className="flex justify-between items-start">
-                    <CardTitle className="text-xl text-bombay">{category.category}</CardTitle>
-                    <Badge variant="secondary" className="bg-emerald-100 text-emerald-700">
-                      {category.growth}
-                    </Badge>
+          
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {stateOutlook.map((state, index) => (
+              <Card key={index} className="border-border/50 hover:border-primary/30 transition-colors">
+                <CardHeader className="pb-3">
+                  <div className="flex items-center gap-3">
+                    <MapPin className="h-5 w-5 text-primary" />
+                    <CardTitle className="text-lg">{state.state}</CardTitle>
                   </div>
-                  <CardDescription className="text-lg font-semibold">
-                    {category.salaryRange}
-                  </CardDescription>
                 </CardHeader>
                 <CardContent>
-                  <ul className="space-y-2">
-                    {category.roles.map((role, roleIndex) => (
-                      <li key={roleIndex} className="flex items-center text-card">
-                        <span className="w-2 h-2 bg-teal-500 rounded-full mr-3"></span>
-                        {role}
-                      </li>
-                    ))}
-                  </ul>
+                  <div className="flex items-center gap-2 mb-3">
+                    <span className="text-sm text-muted-foreground">Job Potential:</span>
+                    <Badge variant={state.jobPotential === "Very High" ? "default" : "secondary"}>
+                      {state.jobPotential}
+                    </Badge>
+                  </div>
+                  <p className="text-sm text-muted-foreground">
+                    <span className="font-medium text-foreground">Focus Areas: </span>
+                    {state.specialization}
+                  </p>
                 </CardContent>
               </Card>
             ))}
@@ -195,31 +228,96 @@ const GreenJobsReport = () => {
         </div>
       </section>
 
-      {/* Author Attribution */}
-      <section className="py-8 px-4 md:px-8 bg-white">
-        <div className="container mx-auto text-center">
-          <p className="text-sm text-foreground/60">
-            <span className="font-medium">Theresa Ronnie</span> - Strategic communications advisory for the emerging Indian carbon market
-          </p>
+      {/* Strategic Implications */}
+      <section className="py-20 px-6 md:px-8">
+        <div className="container mx-auto max-w-4xl">
+          <div className="text-center mb-12">
+            <p className="text-sm font-medium text-accent tracking-wide uppercase mb-3">Strategic Implications</p>
+            <h2 className="text-section font-heading tracking-tight">What This Means for Stakeholders</h2>
+          </div>
+          
+          <div className="grid md:grid-cols-2 gap-8">
+            <Card className="border-border/50">
+              <CardHeader>
+                <div className="flex items-center gap-3 mb-2">
+                  <Building2 className="h-5 w-5 text-primary" />
+                  <CardTitle className="text-lg">For Employers</CardTitle>
+                </div>
+              </CardHeader>
+              <CardContent className="space-y-3 text-sm text-muted-foreground">
+                <p>• Invest in internal upskilling programs for green technology competencies</p>
+                <p>• Partner with technical institutions for talent pipeline development</p>
+                <p>• Develop competitive compensation aligned with market benchmarks</p>
+                <p>• Create clear career pathways in sustainability roles</p>
+              </CardContent>
+            </Card>
+            
+            <Card className="border-border/50">
+              <CardHeader>
+                <div className="flex items-center gap-3 mb-2">
+                  <GraduationCap className="h-5 w-5 text-primary" />
+                  <CardTitle className="text-lg">For Job Seekers</CardTitle>
+                </div>
+              </CardHeader>
+              <CardContent className="space-y-3 text-sm text-muted-foreground">
+                <p>• Prioritize certifications in solar PV, wind, and ESG frameworks</p>
+                <p>• Develop cross-functional skills bridging technical and strategic domains</p>
+                <p>• Target high-growth states with strong RE infrastructure</p>
+                <p>• Build expertise in regulatory compliance (BRSR, CBAM, CCTS)</p>
+              </CardContent>
+            </Card>
+            
+            <Card className="border-border/50">
+              <CardHeader>
+                <div className="flex items-center gap-3 mb-2">
+                  <Globe className="h-5 w-5 text-primary" />
+                  <CardTitle className="text-lg">For Policymakers</CardTitle>
+                </div>
+              </CardHeader>
+              <CardContent className="space-y-3 text-sm text-muted-foreground">
+                <p>• Scale up skill development programs aligned with RE targets</p>
+                <p>• Create incentives for green job creation in manufacturing</p>
+                <p>• Establish quality standards for green skills certification</p>
+                <p>• Support just transition for workers in fossil fuel sectors</p>
+              </CardContent>
+            </Card>
+            
+            <Card className="border-border/50">
+              <CardHeader>
+                <div className="flex items-center gap-3 mb-2">
+                  <Briefcase className="h-5 w-5 text-primary" />
+                  <CardTitle className="text-lg">For Investors</CardTitle>
+                </div>
+              </CardHeader>
+              <CardContent className="space-y-3 text-sm text-muted-foreground">
+                <p>• Factor workforce availability into renewable energy project assessments</p>
+                <p>• Support companies with strong talent development strategies</p>
+                <p>• Track skills gap metrics as ESG investment criteria</p>
+                <p>• Invest in skilling infrastructure and ed-tech platforms</p>
+              </CardContent>
+            </Card>
+          </div>
         </div>
       </section>
 
       {/* Lead Capture */}
-      <section className="py-20 px-4 md:px-8 bg-white">
-        <div className="container mx-auto">
+      <section className="py-20 px-6 md:px-8 bg-secondary/30">
+        <div className="container mx-auto max-w-4xl">
           <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">Get Your Copy Now</h2>
-            <p className="text-body text-foreground/80 max-w-2xl mx-auto">
-              Join 1,200+ professionals who've downloaded this comprehensive workforce analysis.
+            <h2 className="text-section font-heading tracking-tight mb-4">Get Your Copy Now</h2>
+            <p className="text-muted-foreground max-w-2xl mx-auto">
+              Access detailed salary benchmarks, skills gap analysis, and state-wise workforce projections.
             </p>
           </div>
           
           <LeadCaptureForm
-            reportTitle="Green Jobs in India: Workforce and Investment Outlook 2025-2030"
-            reportDescription="Complete workforce & investment outlook for India's green economy transformation (2025-2030)"
+            reportTitle="Jobs on the Rise 2026: India Green Jobs Outlook"
+            reportDescription="Comprehensive analysis of India's green jobs landscape aligned with Net-Zero 2070 goals and 500 GW renewable energy targets."
           />
         </div>
       </section>
+
+      <Footer />
     </div>
   );
 };
