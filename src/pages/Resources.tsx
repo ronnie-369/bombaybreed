@@ -8,6 +8,7 @@ import { Input } from '@/components/ui/input';
 import { Download, ExternalLink, FileText, Video, Calendar, ChevronRight, Search, X } from 'lucide-react';
 import LeadCaptureForm from '@/components/shared/LeadCaptureForm';
 import { format } from 'date-fns';
+import wefCoverImage from '@/assets/wef-global-risks-2026-cover.jpg';
 
 interface Publication {
   title: string;
@@ -363,8 +364,13 @@ const Resources = () => {
                   Download Report
                 </Button>
               </div>
-              <div className="hidden md:flex items-center justify-center p-8 bg-primary/5 rounded-r-lg">
-                <FileText className="h-24 w-24 text-primary/30" />
+              <div className="hidden md:block relative overflow-hidden rounded-r-lg">
+                <img 
+                  src={wefCoverImage} 
+                  alt="WEF Global Risks Report 2026 Cover" 
+                  className="w-full h-full object-cover"
+                />
+                <div className="absolute inset-0 bg-gradient-to-l from-transparent to-card/20" />
               </div>
             </div>
           </Card>
