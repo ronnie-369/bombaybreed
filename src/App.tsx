@@ -19,6 +19,7 @@ import AdminSEO from "./pages/AdminSEO";
 import ServicePage from "./pages/ServicePage";
 import Services from "./pages/Services";
 import WEFGlobalRisksReport from "./pages/WEFGlobalRisksReport";
+import GreenJobsReport from "./pages/GreenJobsReport";
 
 const queryClient = new QueryClient();
 
@@ -44,6 +45,7 @@ const AppContent = () => {
             <Route path="/admin/seo" element={<AdminSEO />} />
             <Route path="/services" element={<Services />} />
             <Route path="/wef-global-risks-2026" element={<WEFGlobalRisksReport />} />
+            <Route path="/green-jobs-india-2026" element={<GreenJobsReport />} />
             <Route path="/404" element={<NotFound />} />
             {/* SEO DYNAMIC ROUTES - catches all programmatic pages */}
             <Route path="/*" element={<ServicePage />} />
