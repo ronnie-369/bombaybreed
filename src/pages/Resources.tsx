@@ -19,6 +19,7 @@ interface Publication {
 
 // Topic filter categories with their matching keywords
 const TOPIC_CATEGORIES = [
+  { label: "WEF & Davos", keywords: ["WEF", "Davos", "Global Risks", "World Economic Forum"] },
   { label: "Carbon Markets", keywords: ["Carbon", "Credits", "Trading", "CCTS", "CBAM", "Emissions", "Market"] },
   { label: "Energy & Renewables", keywords: ["Energy", "Solar", "Wind", "Grid", "Hydrogen", "Storage", "Renewable"] },
   { label: "Mining & Minerals", keywords: ["Mining", "Lithium", "Cobalt", "Nickel", "Copper", "Tailings", "Critical Minerals"] },
@@ -46,6 +47,17 @@ const SEARCH_PROMPTS = [
 const Resources = () => {
   // Publications ordered from newest to oldest
   const publications: Publication[] = [
+    {
+      title: "WEF Global Risks Report 2026: Climate & Geopolitical Volatility",
+      description: "Bombay Breed analysis of the World Economic Forum's Global Risks Report 2026, examining the intersection of climate risks, geopolitical instability, and economic uncertainty for corporate strategists",
+      type: "WEF Analysis",
+      topics: [
+        "WEF", "Davos", "Global Risks", "Geopolitical Risk", "Climate Risk",
+        "Economic Instability", "Systemic Risk", "Strategic Planning",
+        "Risk Framework", "Scenario Analysis", "Investor Intelligence"
+      ],
+      publishedDate: "2026-01-17"
+    },
     {
       title: "Mining the Transition: A Climate-Critical Minerals Risk Framework for Investors",
       description: "Comprehensive risk framework for climate-critical minerals investment, covering lithium, cobalt, nickel, copper, and rare earths with ESG portfolio screening tools",
