@@ -11,6 +11,12 @@ import LeadCaptureForm from '@/components/shared/LeadCaptureForm';
 import { format } from 'date-fns';
 import wefCoverImage from '@/assets/wef-global-risks-2026-cover.jpg';
 import greenJobsCoverImage from '@/assets/green-jobs-india-2026-cover.jpg';
+import miningTransitionCover from '@/assets/mining-transition-cover.jpg';
+import asiaClimateArticle6Cover from '@/assets/asia-climate-article6-cover.jpg';
+import indiaClimateInflectionCover from '@/assets/india-climate-inflection-cover.jpg';
+import complianceCredibilityCover from '@/assets/compliance-credibility-cover.jpg';
+import carbonMarketOutlookCover from '@/assets/carbon-market-outlook-cover.jpg';
+import energyTransitionPlaybookCover from '@/assets/energy-transition-playbook-cover.jpg';
 
 interface Publication {
   title: string;
@@ -85,7 +91,8 @@ const Resources = () => {
         "Tailings Dams", "Water Risk", "Aquifer Depletion", "ESG Investing",
         "Mining Risk", "Portfolio Screening", "SDGs", "Investor Intelligence"
       ],
-      publishedDate: "2025-12-15"
+      publishedDate: "2025-12-15",
+      coverImage: miningTransitionCover
     },
     {
       title: "Asia Climate Emissions and Article 6: Comparative Policy Grade",
@@ -95,7 +102,8 @@ const Resources = () => {
         "Article 6", "Paris Agreement", "Emissions Trading", "Climate Policy",
         "Asia Markets", "Carbon Credits", "NDCs", "Policy Comparison", "UNFCCC"
       ],
-      publishedDate: "2025-12-10"
+      publishedDate: "2025-12-10",
+      coverImage: asiaClimateArticle6Cover
     },
     {
       title: "India's Climate Inflection Point",
@@ -105,7 +113,8 @@ const Resources = () => {
         "India", "Net Zero", "Climate Strategy", "Policy Inflection",
         "Decarbonization", "Strategic Analysis", "2070 Targets", "NDC"
       ],
-      publishedDate: "2025-11-15"
+      publishedDate: "2025-11-15",
+      coverImage: indiaClimateInflectionCover
     },
     {
       title: "From Compliance to Credibility: A CXO Guide to CCTS & CBAM",
@@ -116,7 +125,8 @@ const Resources = () => {
         "Textiles", "Chemicals", "Automotive", "Carbon Intensity", "Scope 3",
         "CXO Strategy", "Trade Policy"
       ],
-      publishedDate: "2025-10-20"
+      publishedDate: "2025-10-20",
+      coverImage: complianceCredibilityCover
     },
     {
       title: "Carbon Market Outlook 2025-2030: An Investor's Deep Dive",
@@ -127,7 +137,8 @@ const Resources = () => {
         "Renewable Energy Credits", "Green Bonds", "Net Zero", "Carbon Tax",
         "ESG Reporting", "Forestry", "Agriculture", "Transportation", "India"
       ],
-      publishedDate: "2025-10-15"
+      publishedDate: "2025-10-15",
+      coverImage: carbonMarketOutlookCover
     },
     {
       title: "Green Jobs in India: Workforce and Investment Outlook 2025-2030",
@@ -150,7 +161,8 @@ const Resources = () => {
         "Steel Decarbonization", "Cement", "Aluminum", "Industrial Policy",
         "PLI Scheme", "Grid Integration", "India"
       ],
-      publishedDate: "2025-08-15"
+      publishedDate: "2025-08-15",
+      coverImage: energyTransitionPlaybookCover
     }
   ];
 
@@ -359,11 +371,25 @@ const Resources = () => {
               {archivePublications.map((pub, index) => (
                 <div 
                   key={index}
-                  className={`flex items-center justify-between p-4 hover:bg-secondary/30 transition-colors cursor-pointer group ${
+                  className={`flex items-center gap-4 p-4 hover:bg-secondary/30 transition-colors cursor-pointer group ${
                     index !== archivePublications.length - 1 ? 'border-b border-border/30' : ''
                   }`}
                   onClick={() => handleDownloadClick(pub)}
                 >
+                  {/* Thumbnail */}
+                  {pub.coverImage ? (
+                    <div className="shrink-0 w-16 h-20 rounded overflow-hidden bg-muted">
+                      <img 
+                        src={pub.coverImage} 
+                        alt={pub.title}
+                        className="w-full h-full object-cover"
+                      />
+                    </div>
+                  ) : (
+                    <div className="shrink-0 w-16 h-20 rounded bg-muted flex items-center justify-center">
+                      <FileText className="h-6 w-6 text-muted-foreground/50" />
+                    </div>
+                  )}
                   <div className="flex-1 min-w-0">
                     <div className="flex items-center gap-3 mb-1">
                       <span className="text-xs font-medium text-accent uppercase tracking-wide">
