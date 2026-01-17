@@ -227,9 +227,7 @@ const Resources = () => {
 
   const isFiltering = searchQuery.trim().length > 0 || selectedTopics.length > 0;
 
-  // Split publications: featured (newest) + recent (next 2) + archive (rest)
-  const featuredPublication = filteredPublications[0];
-  const recentPublications = filteredPublications.slice(1, 3);
+  // Split publications: archive starts after carousel (3 featured)
   const archivePublications = filteredPublications.slice(3);
 
   return (
@@ -352,64 +350,6 @@ const Resources = () => {
             />
           </div>
 
-          {/* Recent Publications Grid */}
-          {recentPublications.length > 0 && (
-          <div className="mb-16">
-            <h3 className="text-lg font-medium mb-6 text-muted-foreground">Recent Publications</h3>
-            <div className="grid md:grid-cols-2 gap-6">
-              {recentPublications.map((pub, index) => (
-                <Card 
-                  key={index} 
-                  className={`transition-colors hover:border-border ${
-                    selectedReport.title === pub.title ? 'border-primary' : 'border-border/50'
-                  }`}
-                >
-                  <CardHeader>
-                    <div className="flex items-center justify-between mb-2">
-                      <div className="flex items-center gap-2">
-                        <FileText className="h-4 w-4 text-accent" />
-                        <span className="text-xs font-medium text-accent uppercase tracking-wide">{pub.type}</span>
-                      </div>
-                      <span className="flex items-center gap-1.5 text-xs text-muted-foreground">
-                        <Calendar className="h-3 w-3" />
-                        {formatDate(pub.publishedDate)}
-                      </span>
-                    </div>
-                    <CardTitle className="text-lg font-medium">
-                      {pub.title}
-                    </CardTitle>
-                    <CardDescription className="text-sm">
-                      {pub.description}
-                    </CardDescription>
-                  </CardHeader>
-                  <CardContent>
-                    <div className="space-y-4">
-                      <div className="flex flex-wrap gap-2">
-                        {pub.topics.slice(0, 3).map((topic, topicIndex) => (
-                          <span 
-                            key={topicIndex}
-                            className="px-2.5 py-1 bg-muted text-muted-foreground rounded text-xs"
-                          >
-                            {topic}
-                          </span>
-                        ))}
-                      </div>
-                      <Button 
-                        onClick={() => handleDownloadClick(pub)}
-                        variant="outline" 
-                        size="sm"
-                        className="w-full gap-2"
-                      >
-                        <Download className="h-4 w-4" />
-                        Download Report
-                      </Button>
-                    </div>
-                  </CardContent>
-                </Card>
-              ))}
-            </div>
-          </div>
-          )}
 
           {/* Archive List */}
           {archivePublications.length > 0 && (
