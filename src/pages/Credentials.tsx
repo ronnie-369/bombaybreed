@@ -79,7 +79,7 @@ const Credentials = () => {
 
   const testimonials = [
     {
-      quote: "Theresa's strategic counsel on sustainability governance has been transformative for ITC Foods. Her ability to navigate complex regulatory landscapes while keeping business objectives front and center is remarkable.",
+      quote: "Landing strategy, delivering creative excellence, and driving business growth—it's a rare combination. Theresa brings all three with a sharp mind and an energy that makes even the toughest boardroom conversations productive. She's been instrumental in turning our sustainability agenda into market advantage.",
       author: "CEO",
       company: "ITC Foods"
     },
