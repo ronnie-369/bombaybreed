@@ -1,6 +1,6 @@
 import React from 'react';
 import Header from '@/components/Header';
-import { Check, LinkedinIcon } from 'lucide-react';
+import { Check, LinkedinIcon, Quote } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
 const Credentials = () => {
@@ -48,6 +48,24 @@ const Credentials = () => {
     "ProClime",
     "Gh2 Org",
     "Bharatiya.org"
+  ];
+
+  const testimonials = [
+    {
+      quote: "Theresa brings a rare combination of strategic clarity and deep domain expertise. Her ability to translate complex sustainability challenges into actionable board-level insights has been invaluable.",
+      author: "Chief Sustainability Officer",
+      company: "KPMG India"
+    },
+    {
+      quote: "Working with Theresa transformed how our leadership team approaches ESG governance. She doesn't just advise—she builds lasting frameworks for accountability.",
+      author: "CEO",
+      company: "ProClime"
+    },
+    {
+      quote: "Her understanding of both the technical aspects of carbon markets and the strategic communications needed to engage stakeholders is exceptional.",
+      author: "Managing Director",
+      company: "Gh2 Org"
+    }
   ];
 
   const portraitUrl = "https://zjiwmdrtuhsrymsuvpfb.supabase.co/storage/v1/object/public/brand%20assets/2194e7e6-56ca-4efd-9f86-44eac8db0353.JPG";
@@ -174,6 +192,36 @@ const Credentials = () => {
                   </div>
                 ))}
               </div>
+            </div>
+          </div>
+
+          {/* Testimonials Section */}
+          <div className="pt-12 border-t border-border/30 mb-20">
+            <div className="text-center mb-12">
+              <h3 className="text-lg font-medium text-primary mb-2">
+                What Leaders Say
+              </h3>
+              <p className="text-sm text-muted-foreground">
+                Perspectives from C-suite executives
+              </p>
+            </div>
+            
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto">
+              {testimonials.map((testimonial, index) => (
+                <div 
+                  key={index}
+                  className="relative p-6 rounded-lg bg-muted/10 border border-border/30 hover:border-border/50 transition-colors"
+                >
+                  <Quote className="h-6 w-6 text-primary/20 mb-4" />
+                  <p className="text-sm text-foreground/80 leading-relaxed mb-6 italic">
+                    "{testimonial.quote}"
+                  </p>
+                  <div className="mt-auto">
+                    <p className="text-sm font-medium text-foreground">{testimonial.author}</p>
+                    <p className="text-xs text-muted-foreground">{testimonial.company}</p>
+                  </div>
+                </div>
+              ))}
             </div>
           </div>
 
