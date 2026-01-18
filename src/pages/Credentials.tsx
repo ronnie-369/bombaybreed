@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Header from '@/components/Header';
 import { Check, LinkedinIcon, Quote } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { preloadLogos } from '@/utils/storage-logos';
 
 const Credentials = () => {
   const expertise = [
@@ -69,6 +70,92 @@ const Credentials = () => {
   ];
 
   const portraitUrl = "https://zjiwmdrtuhsrymsuvpfb.supabase.co/storage/v1/object/public/brand%20assets/2194e7e6-56ca-4efd-9f86-44eac8db0353.JPG";
+
+  return (
+    <div className="min-h-screen bg-background">
+      <Header />
+      <CredentialsContent 
+        clients={clients} 
+        testimonials={testimonials} 
+        portraitUrl={portraitUrl}
+        experience={experience}
+        expertise={expertise}
+      />
+    </div>
+  );
+};
+
+// Client Logos Section Component
+const ClientLogosSection = ({ clients }: { clients: string[] }) => {
+  const [clientLogos, setClientLogos] = useState<Map<string, string | null>>(new Map());
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    const loadLogos = async () => {
+      setIsLoading(true);
+      const logos = await preloadLogos(clients);
+      setClientLogos(logos);
+      setIsLoading(false);
+    };
+    loadLogos();
+  }, [clients]);
+
+  return (
+    <div className="pt-12 border-t border-border/30">
+      <div className="text-center mb-10">
+        <h3 className="text-lg font-medium text-primary mb-2">
+          Trusted By
+        </h3>
+        <p className="text-sm text-muted-foreground">
+          Advisory work with leading organizations
+        </p>
+      </div>
+      
+      <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 max-w-4xl mx-auto">
+        {clients.map((client, index) => {
+          const logoUrl = clientLogos.get(client);
+          
+          return (
+            <div 
+              key={index}
+              className="group px-4 py-5 rounded-lg bg-muted/10 border border-border/30 flex flex-col items-center justify-center hover:bg-muted/30 hover:border-border/50 transition-all duration-300 min-h-[80px]"
+            >
+              {isLoading ? (
+                <div className="h-8 w-20 bg-muted/40 rounded animate-pulse" />
+              ) : logoUrl ? (
+                <img 
+                  src={logoUrl} 
+                  alt={`${client} logo`}
+                  className="max-h-10 max-w-[120px] object-contain opacity-70 group-hover:opacity-100 transition-opacity duration-300 grayscale group-hover:grayscale-0"
+                  loading="lazy"
+                />
+              ) : (
+                <span className="text-sm text-foreground/70 font-medium text-center group-hover:text-foreground/90 transition-colors">
+                  {client}
+                </span>
+              )}
+            </div>
+          );
+        })}
+      </div>
+    </div>
+  );
+};
+
+// Main content component
+const CredentialsContent = ({ 
+  clients, 
+  testimonials, 
+  portraitUrl,
+  experience,
+  expertise
+}: { 
+  clients: string[]; 
+  testimonials: { quote: string; author: string; company: string }[];
+  portraitUrl: string;
+  experience: { area: string; years: string }[];
+  expertise: string[];
+}) => {
 
   return (
     <div className="min-h-screen bg-background">
@@ -226,27 +313,7 @@ const Credentials = () => {
           </div>
 
           {/* Client List Section */}
-          <div className="pt-12 border-t border-border/30">
-            <div className="text-center mb-10">
-              <h3 className="text-lg font-medium text-primary mb-2">
-                Trusted By
-              </h3>
-              <p className="text-sm text-muted-foreground">
-                Advisory work with leading organizations
-              </p>
-            </div>
-            
-            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3 max-w-4xl mx-auto">
-              {clients.map((client, index) => (
-                <div 
-                  key={index}
-                  className="px-4 py-3 rounded-lg bg-muted/20 border border-border/40 text-center hover:bg-muted/40 transition-colors"
-                >
-                  <span className="text-sm text-foreground/80 font-medium">{client}</span>
-                </div>
-              ))}
-            </div>
-          </div>
+          <ClientLogosSection clients={clients} />
 
         </div>
       </section>
