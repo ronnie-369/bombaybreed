@@ -53,19 +53,19 @@ const Credentials = () => {
 
   const testimonials = [
     {
-      quote: "Theresa brings a rare combination of strategic clarity and deep domain expertise. Her ability to translate complex sustainability challenges into actionable board-level insights has been invaluable.",
-      author: "Chief Sustainability Officer",
-      company: "KPMG India"
+      quote: "Theresa's strategic counsel on sustainability governance has been transformative for ITC Foods. Her ability to navigate complex regulatory landscapes while keeping business objectives front and center is remarkable.",
+      author: "CEO",
+      company: "ITC Foods"
     },
     {
-      quote: "Working with Theresa transformed how our leadership team approaches ESG governance. She doesn't just advise—she builds lasting frameworks for accountability.",
+      quote: "Working with Theresa transformed how our leadership team approaches ESG governance. She doesn't just advise—she builds lasting frameworks for accountability that scale with ambition.",
       author: "CEO",
       company: "ProClime"
     },
     {
-      quote: "Her understanding of both the technical aspects of carbon markets and the strategic communications needed to engage stakeholders is exceptional.",
-      author: "Managing Director",
-      company: "Gh2 Org"
+      quote: "Theresa helped us reframe sustainability from a compliance burden into a genuine brand differentiator. Her insights on stakeholder communication have been invaluable for our marketing strategy.",
+      author: "CMO",
+      company: "United Breweries"
     }
   ];
 
