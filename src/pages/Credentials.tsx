@@ -331,21 +331,37 @@ const CredentialsContent = ({
               </p>
             </div>
             
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
               {/* Left column: ITC Foods and ProClime stacked */}
-              <div className="space-y-6">
+              <div className="space-y-8">
                 {testimonials.filter(t => t.company === 'ITC Foods' || t.company === 'ProClime').map((testimonial, index) => (
                   <div 
                     key={index}
-                    className="relative p-6 rounded-lg bg-muted/10 border border-border/30 hover:border-border/50 transition-colors"
+                    className="group relative p-8 rounded-xl bg-gradient-to-br from-card/80 to-card/40 backdrop-blur-sm border-l-4 border-l-primary border border-border/20 shadow-sm hover:shadow-xl hover:shadow-primary/5 hover:-translate-y-1 hover:scale-[1.01] hover:border-primary/30 transition-all duration-300 ease-out"
                   >
-                    <Quote className="h-6 w-6 text-primary/20 mb-4" />
-                    <p className="text-sm text-foreground/80 leading-relaxed mb-6 italic">
-                      "{testimonial.quote}"
+                    {/* Decorative quote icon */}
+                    <Quote className="absolute top-6 right-6 h-10 w-10 text-primary/10 group-hover:text-primary/20 group-hover:scale-110 transition-all duration-300" />
+                    
+                    {/* Opening quote mark */}
+                    <span className="text-4xl font-serif text-primary/30 leading-none block mb-2">"</span>
+                    
+                    <p className="text-base text-foreground/90 leading-relaxed mb-8 pr-8">
+                      {testimonial.quote}
                     </p>
-                    <div className="flex items-center gap-2">
-                      <span className="text-xs font-medium text-foreground">{testimonial.author}</span>
-                      <span className="text-xs text-muted-foreground">• {testimonial.company}</span>
+                    
+                    {/* Attribution footer */}
+                    <div className="pt-6 border-t border-border/30 flex items-center gap-4">
+                      {clientLogos[testimonial.company] && (
+                        <img 
+                          src={clientLogos[testimonial.company]} 
+                          alt={`${testimonial.company} logo`}
+                          className="h-8 w-auto object-contain opacity-60 group-hover:opacity-100 transition-opacity duration-300"
+                        />
+                      )}
+                      <div className="flex flex-col">
+                        <span className="text-sm font-semibold text-foreground">{testimonial.author}</span>
+                        <span className="text-xs text-muted-foreground">{testimonial.company}</span>
+                      </div>
                     </div>
                   </div>
                 ))}
@@ -356,15 +372,31 @@ const CredentialsContent = ({
                 {testimonials.filter(t => t.company === 'United Breweries').map((testimonial, index) => (
                   <div 
                     key={index}
-                    className="relative p-6 rounded-lg bg-muted/10 border border-border/30 hover:border-border/50 transition-colors flex flex-col h-full"
+                    className="group relative p-8 rounded-xl bg-gradient-to-br from-card/80 to-card/40 backdrop-blur-sm border-l-4 border-l-primary border border-border/20 shadow-sm hover:shadow-xl hover:shadow-primary/5 hover:-translate-y-1 hover:scale-[1.01] hover:border-primary/30 transition-all duration-300 ease-out flex flex-col h-full"
                   >
-                    <Quote className="h-6 w-6 text-primary/20 mb-4" />
-                    <p className="text-sm text-foreground/80 leading-relaxed mb-6 italic flex-1">
-                      "{testimonial.quote}"
+                    {/* Decorative quote icon */}
+                    <Quote className="absolute top-6 right-6 h-10 w-10 text-primary/10 group-hover:text-primary/20 group-hover:scale-110 transition-all duration-300" />
+                    
+                    {/* Opening quote mark */}
+                    <span className="text-4xl font-serif text-primary/30 leading-none block mb-2">"</span>
+                    
+                    <p className="text-base text-foreground/90 leading-relaxed mb-8 pr-8 flex-1">
+                      {testimonial.quote}
                     </p>
-                    <div className="flex items-center gap-2 mt-auto">
-                      <span className="text-xs font-medium text-foreground">{testimonial.author}</span>
-                      <span className="text-xs text-muted-foreground">• {testimonial.company}</span>
+                    
+                    {/* Attribution footer */}
+                    <div className="pt-6 border-t border-border/30 flex items-center gap-4 mt-auto">
+                      {clientLogos[testimonial.company] && (
+                        <img 
+                          src={clientLogos[testimonial.company]} 
+                          alt={`${testimonial.company} logo`}
+                          className="h-8 w-auto object-contain opacity-60 group-hover:opacity-100 transition-opacity duration-300"
+                        />
+                      )}
+                      <div className="flex flex-col">
+                        <span className="text-sm font-semibold text-foreground">{testimonial.author}</span>
+                        <span className="text-xs text-muted-foreground">{testimonial.company}</span>
+                      </div>
                     </div>
                   </div>
                 ))}
