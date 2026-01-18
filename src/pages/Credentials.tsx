@@ -18,6 +18,7 @@ import volkswagenLogo from '@/assets/client-logos/volkswagen.png';
 import publicisLogo from '@/assets/client-logos/publicis.png';
 import swatchLogo from '@/assets/client-logos/swatch.png';
 import gh2IndiaLogo from '@/assets/client-logos/gh2-india.png';
+import apolloLogo from '@/assets/client-logos/apollo-hospitals.png';
 
 // Client logo mapping
 const clientLogos: Record<string, string> = {
@@ -35,6 +36,7 @@ const clientLogos: Record<string, string> = {
   "Publicis India": publicisLogo,
   "Swatch": swatchLogo,
   "GH2 India": gh2IndiaLogo,
+  "Apollo Hospitals": apolloLogo,
 };
 
 const Credentials = () => {
@@ -78,6 +80,7 @@ const Credentials = () => {
     "Quess Corp",
     "Machani Group",
     "ProClime",
+    "Apollo Hospitals",
     "CETFI",
     "Swatch",
     "GH2 India",
