@@ -84,7 +84,7 @@ const Credentials = () => {
       company: "ITC Foods"
     },
     {
-      quote: "Working with Theresa transformed how our leadership team approaches ESG governance. She doesn't just advise—she builds lasting frameworks for accountability that scale with ambition.",
+      quote: "Theresa is a powerhouse of talent and discipline. She brings razor focus to our industry and steers teams towards accountability and high integrity. She is systems thinking and strategic in her approach to building brand Proclime.",
       author: "CEO",
       company: "ProClime"
     },
