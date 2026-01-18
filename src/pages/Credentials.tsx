@@ -84,7 +84,7 @@ const Credentials = () => {
       company: "ITC Foods"
     },
     {
-      quote: "Theresa is a powerhouse of talent and discipline. She brings razor focus to our industry and steers teams towards accountability and high integrity. She is systems thinking and strategic in her approach to building brand Proclime.",
+      quote: "Theresa is a powerhouse of talent and discipline. She brings razor focus to our industry and steers teams towards accountability and high integrity. She is systems thinking and strategic in her approach to building brand Proclime. She is a star.",
       author: "CEO",
       company: "ProClime"
     },
