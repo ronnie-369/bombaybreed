@@ -121,8 +121,21 @@ const Credentials = () => {
 // Client Logos Section Component
 const ClientLogosSection = ({ clients }: { clients: string[] }) => {
   return (
-    <div className="pt-12 border-t border-border/30">
-      <div className="text-center mb-10">
+    <div className="pt-12 border-t border-border/30 relative overflow-hidden">
+      {/* Subtle gradient background */}
+      <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-accent/5 pointer-events-none" />
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-primary/3 via-transparent to-transparent pointer-events-none" />
+      
+      {/* Subtle dot pattern */}
+      <div 
+        className="absolute inset-0 opacity-[0.03] pointer-events-none"
+        style={{
+          backgroundImage: `radial-gradient(circle at 1px 1px, currentColor 1px, transparent 0)`,
+          backgroundSize: '24px 24px'
+        }}
+      />
+      
+      <div className="relative text-center mb-10">
         <h3 className="text-lg font-medium text-primary mb-2">
           Trusted By
         </h3>
@@ -131,7 +144,7 @@ const ClientLogosSection = ({ clients }: { clients: string[] }) => {
         </p>
       </div>
       
-      <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 max-w-4xl mx-auto">
+      <div className="relative grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 max-w-4xl mx-auto">
         {clients.map((client, index) => {
           const logoUrl = clientLogos[client];
           
