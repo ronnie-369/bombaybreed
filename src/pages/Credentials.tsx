@@ -16,6 +16,8 @@ import ubLogo from '@/assets/client-logos/united-breweries.png';
 import proclimeLogo from '@/assets/client-logos/proclime.jpg';
 import volkswagenLogo from '@/assets/client-logos/volkswagen.png';
 import publicisLogo from '@/assets/client-logos/publicis.png';
+import swatchLogo from '@/assets/client-logos/swatch.png';
+import gh2IndiaLogo from '@/assets/client-logos/gh2-india.png';
 
 // Client logo mapping
 const clientLogos: Record<string, string> = {
@@ -31,6 +33,8 @@ const clientLogos: Record<string, string> = {
   "ProClime": proclimeLogo,
   "Volkswagen Malaysia": volkswagenLogo,
   "Publicis India": publicisLogo,
+  "Swatch": swatchLogo,
+  "GH2 India": gh2IndiaLogo,
 };
 
 const Credentials = () => {
@@ -74,7 +78,10 @@ const Credentials = () => {
     "Quess Corp",
     "Machani Group",
     "ProClime",
-    "CETFI"
+    "CETFI",
+    "Swatch",
+    "GH2 India",
+    "Erik Solheim"
   ];
 
   const testimonials = [
@@ -137,8 +144,12 @@ const ClientLogosSection = ({ clients }: { clients: string[] }) => {
                 <img 
                   src={logoUrl} 
                   alt={`${client} logo`}
-                  className="max-h-10 max-w-[120px] object-contain opacity-70 group-hover:opacity-100 transition-opacity duration-300 grayscale group-hover:grayscale-0"
+                  className={`max-w-[120px] object-contain opacity-70 group-hover:opacity-100 transition-opacity duration-300 grayscale group-hover:grayscale-0 ${client === 'ProClime' ? 'max-h-16' : 'max-h-10'}`}
                 />
+              ) : client === 'Erik Solheim' ? (
+                <span className="text-lg font-serif font-semibold text-foreground/70 group-hover:text-foreground/90 transition-colors tracking-wide">
+                  Erik Solheim
+                </span>
               ) : (
                 <span className="text-sm text-foreground/70 font-medium text-center group-hover:text-foreground/90 transition-colors">
                   {client}
