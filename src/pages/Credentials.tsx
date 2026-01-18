@@ -31,6 +31,25 @@ const Credentials = () => {
     }
   ];
 
+  const clients = [
+    "KPMG India",
+    "Microsoft India",
+    "PETRONAS",
+    "Ford Motor Co",
+    "TVS Motors",
+    "Volkswagen Malaysia",
+    "ITC Foods",
+    "United Breweries",
+    "Publicis India",
+    "Bharti AXA",
+    "Quess Corp",
+    "GUVNL",
+    "Machani Group",
+    "ProClime",
+    "Gh2 Org",
+    "Bharatiya.org"
+  ];
+
   const portraitUrl = "https://zjiwmdrtuhsrymsuvpfb.supabase.co/storage/v1/object/public/brand%20assets/2194e7e6-56ca-4efd-9f86-44eac8db0353.JPG";
 
   return (
@@ -126,7 +145,7 @@ const Credentials = () => {
           </div>
 
           {/* Experience & Expertise Grid */}
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-20">
             {/* Experience Section */}
             <div className="space-y-6">
               <h3 className="text-lg font-medium text-primary">
@@ -155,6 +174,29 @@ const Credentials = () => {
                   </div>
                 ))}
               </div>
+            </div>
+          </div>
+
+          {/* Client List Section */}
+          <div className="pt-12 border-t border-border/30">
+            <div className="text-center mb-10">
+              <h3 className="text-lg font-medium text-primary mb-2">
+                Trusted By
+              </h3>
+              <p className="text-sm text-muted-foreground">
+                Advisory work with leading organizations
+              </p>
+            </div>
+            
+            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3 max-w-4xl mx-auto">
+              {clients.map((client, index) => (
+                <div 
+                  key={index}
+                  className="px-4 py-3 rounded-lg bg-muted/20 border border-border/40 text-center hover:bg-muted/40 transition-colors"
+                >
+                  <span className="text-sm text-foreground/80 font-medium">{client}</span>
+                </div>
+              ))}
             </div>
           </div>
 
