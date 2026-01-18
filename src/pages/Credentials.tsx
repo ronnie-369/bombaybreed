@@ -79,7 +79,7 @@ const Credentials = () => {
 
   const testimonials = [
     {
-      quote: "Landing strategy, delivering creative excellence, and driving business growth—it's a rare combination. Theresa brings all three with a sharp mind and an energy that makes even the toughest boardroom conversations productive. She's been instrumental in turning our sustainability agenda into market advantage.",
+      quote: "Landing strategy, delivering creative excellence, and driving business growth—it's a rare combination. Theresa brings all three with a sharp mind and an energy that makes even the toughest boardroom conversations productive. She has always championed sustainability for market advantage.",
       author: "CEO",
       company: "ITC Foods"
     },
