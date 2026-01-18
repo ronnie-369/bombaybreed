@@ -328,22 +328,44 @@ const CredentialsContent = ({
               </p>
             </div>
             
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto">
-              {testimonials.map((testimonial, index) => (
-                <div 
-                  key={index}
-                  className="relative p-6 rounded-lg bg-muted/10 border border-border/30 hover:border-border/50 transition-colors"
-                >
-                  <Quote className="h-6 w-6 text-primary/20 mb-4" />
-                  <p className="text-sm text-foreground/80 leading-relaxed mb-6 italic">
-                    "{testimonial.quote}"
-                  </p>
-                  <div className="mt-auto">
-                    <p className="text-sm font-medium text-foreground">{testimonial.author}</p>
-                    <p className="text-xs text-muted-foreground">{testimonial.company}</p>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
+              {/* Left column: ITC Foods and ProClime stacked */}
+              <div className="space-y-6">
+                {testimonials.filter(t => t.company === 'ITC Foods' || t.company === 'ProClime').map((testimonial, index) => (
+                  <div 
+                    key={index}
+                    className="relative p-6 rounded-lg bg-muted/10 border border-border/30 hover:border-border/50 transition-colors"
+                  >
+                    <Quote className="h-6 w-6 text-primary/20 mb-4" />
+                    <p className="text-sm text-foreground/80 leading-relaxed mb-6 italic">
+                      "{testimonial.quote}"
+                    </p>
+                    <div className="flex items-center gap-2">
+                      <span className="text-xs font-medium text-foreground">{testimonial.author}</span>
+                      <span className="text-xs text-muted-foreground">• {testimonial.company}</span>
+                    </div>
                   </div>
-                </div>
-              ))}
+                ))}
+              </div>
+              
+              {/* Right column: United Breweries */}
+              <div className="flex">
+                {testimonials.filter(t => t.company === 'United Breweries').map((testimonial, index) => (
+                  <div 
+                    key={index}
+                    className="relative p-6 rounded-lg bg-muted/10 border border-border/30 hover:border-border/50 transition-colors flex flex-col h-full"
+                  >
+                    <Quote className="h-6 w-6 text-primary/20 mb-4" />
+                    <p className="text-sm text-foreground/80 leading-relaxed mb-6 italic flex-1">
+                      "{testimonial.quote}"
+                    </p>
+                    <div className="flex items-center gap-2 mt-auto">
+                      <span className="text-xs font-medium text-foreground">{testimonial.author}</span>
+                      <span className="text-xs text-muted-foreground">• {testimonial.company}</span>
+                    </div>
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
 
