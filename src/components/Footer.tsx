@@ -24,11 +24,11 @@ const Footer = () => {
   ];
 
   const serviceLinks = [
-    { name: 'Energy Optimisation', slug: 'energy-optimisation' },
-    { name: 'Industrial Decarbonisation', slug: 'industrial-decarbonisation' },
+    { name: 'Energy Optimisation', slug: 'energy-optimisation-consulting' },
+    { name: 'Industrial Decarbonisation', slug: 'industrial-decarbonisation-strategy' },
     { name: 'Article 6 Advisory', slug: 'article-6-advisory' },
     { name: 'Climate Investment', slug: 'climate-investment-readiness' },
-    { name: 'DMRV Integrity', slug: 'dmrv-integrity' },
+    { name: 'DMRV Integrity', slug: 'dmrv-integrity-due-diligence' },
   ];
 
   return (
