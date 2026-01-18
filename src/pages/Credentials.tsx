@@ -321,8 +321,21 @@ const CredentialsContent = ({
           </div>
 
           {/* Testimonials Section */}
-          <div className="pt-12 border-t border-border/30 mb-20">
-            <div className="text-center mb-12">
+          <div className="pt-12 border-t border-border/30 mb-20 relative overflow-hidden">
+            {/* Subtle gradient background */}
+            <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-accent/5 pointer-events-none" />
+            <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_left,_var(--tw-gradient-stops))] from-primary/3 via-transparent to-transparent pointer-events-none" />
+            
+            {/* Subtle dot pattern */}
+            <div 
+              className="absolute inset-0 opacity-[0.02] pointer-events-none"
+              style={{
+                backgroundImage: `radial-gradient(circle at 1px 1px, currentColor 1px, transparent 0)`,
+                backgroundSize: '32px 32px'
+              }}
+            />
+            
+            <div className="relative text-center mb-12">
               <h3 className="text-lg font-medium text-primary mb-2">
                 What Leaders Say
               </h3>
@@ -331,7 +344,7 @@ const CredentialsContent = ({
               </p>
             </div>
             
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+            <div className="relative grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
               {/* Left column: ITC Foods and ProClime stacked */}
               <div className="space-y-8">
                 {testimonials.filter(t => t.company === 'ITC Foods' || t.company === 'ProClime').map((testimonial, index) => (
