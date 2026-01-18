@@ -89,7 +89,7 @@ const Credentials = () => {
       company: "ProClime"
     },
     {
-      quote: "Theresa helped us reframe sustainability from a compliance burden into a genuine brand differentiator. Her insights on stakeholder communication have been invaluable for our marketing strategy.",
+      quote: "Ronnie is one of the finest professionals that I have had the privilege of knowing and working with. A razor sharp mind, an insatiable appetite for learning, deep knowledge of diverse fields including business, strategy, marketing, communication, technology and consumers, incredible client focus, strong leadership and unparalleled hard work make her not only a sheer joy to work with and for, but also an asset to whichever team she belongs. Ronnie has experience across diverse industries, both in India and overseas, and an indomitable will to keep bettering herself. The ability to move seamlessly from the big picture to the minutest detail enables her to acquit herself honourably across both strategy and operations.",
       author: "CMO",
       company: "United Breweries"
     }
