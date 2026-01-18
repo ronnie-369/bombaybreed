@@ -138,20 +138,21 @@ const ClientLogosSection = ({ clients }: { clients: string[] }) => {
           return (
             <div 
               key={index}
-              className="group px-4 py-5 rounded-lg bg-muted/10 border border-border/30 flex flex-col items-center justify-center hover:bg-muted/30 hover:border-border/50 transition-all duration-300 min-h-[80px]"
+              className="group px-4 py-5 rounded-lg bg-muted/10 border border-border/30 flex flex-col items-center justify-center min-h-[80px] hover:bg-muted/30 hover:border-primary/30 hover:shadow-lg hover:shadow-primary/5 hover:-translate-y-1 transition-all duration-300 ease-out cursor-default"
+              style={{ animationDelay: `${index * 50}ms` }}
             >
               {logoUrl ? (
                 <img 
                   src={logoUrl} 
                   alt={`${client} logo`}
-                  className={`max-w-[120px] object-contain opacity-70 group-hover:opacity-100 transition-opacity duration-300 grayscale group-hover:grayscale-0 ${client === 'ProClime' ? 'max-h-16' : 'max-h-10'}`}
+                  className={`max-w-[120px] object-contain opacity-60 grayscale group-hover:opacity-100 group-hover:grayscale-0 group-hover:scale-110 transition-all duration-300 ease-out ${client === 'ProClime' ? 'max-h-16' : 'max-h-10'}`}
                 />
               ) : client === 'Erik Solheim' ? (
-                <span className="text-lg font-serif font-semibold text-foreground/70 group-hover:text-foreground/90 transition-colors tracking-wide">
+                <span className="text-lg font-serif font-semibold text-foreground/60 group-hover:text-primary group-hover:scale-105 transition-all duration-300 tracking-wide">
                   Erik Solheim
                 </span>
               ) : (
-                <span className="text-sm text-foreground/70 font-medium text-center group-hover:text-foreground/90 transition-colors">
+                <span className="text-sm text-foreground/60 font-medium text-center group-hover:text-foreground/90 group-hover:scale-105 transition-all duration-300">
                   {client}
                 </span>
               )}
