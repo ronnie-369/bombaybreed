@@ -1,8 +1,37 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import Header from '@/components/Header';
 import { Check, LinkedinIcon, Quote } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { preloadLogos } from '@/utils/storage-logos';
+
+// Import client logos
+import itcLogo from '@/assets/client-logos/itc.jpg';
+import fordLogo from '@/assets/client-logos/ford.png';
+import cetfiLogo from '@/assets/client-logos/cetfi.jpg';
+import machaniLogo from '@/assets/client-logos/machani.png';
+import petronasLogo from '@/assets/client-logos/petronas.png';
+import microsoftLogo from '@/assets/client-logos/microsoft.png';
+import kpmgLogo from '@/assets/client-logos/kpmg.png';
+import quessLogo from '@/assets/client-logos/quess.png';
+import ubLogo from '@/assets/client-logos/united-breweries.png';
+import proclimeLogo from '@/assets/client-logos/proclime.jpg';
+import volkswagenLogo from '@/assets/client-logos/volkswagen.png';
+import publicisLogo from '@/assets/client-logos/publicis.png';
+
+// Client logo mapping
+const clientLogos: Record<string, string> = {
+  "ITC Foods": itcLogo,
+  "Ford Motor Co": fordLogo,
+  "CETFI": cetfiLogo,
+  "Machani Group": machaniLogo,
+  "PETRONAS": petronasLogo,
+  "Microsoft India": microsoftLogo,
+  "KPMG India": kpmgLogo,
+  "Quess Corp": quessLogo,
+  "United Breweries": ubLogo,
+  "ProClime": proclimeLogo,
+  "Volkswagen Malaysia": volkswagenLogo,
+  "Publicis India": publicisLogo,
+};
 
 const Credentials = () => {
   const expertise = [
@@ -32,23 +61,20 @@ const Credentials = () => {
     }
   ];
 
+  // Only clients with logos
   const clients = [
     "KPMG India",
     "Microsoft India",
     "PETRONAS",
     "Ford Motor Co",
-    "TVS Motors",
     "Volkswagen Malaysia",
     "ITC Foods",
     "United Breweries",
     "Publicis India",
-    "Bharti AXA",
     "Quess Corp",
-    "GUVNL",
     "Machani Group",
     "ProClime",
-    "Gh2 Org",
-    "Bharatiya.org"
+    "CETFI"
   ];
 
   const testimonials = [
@@ -87,19 +113,6 @@ const Credentials = () => {
 
 // Client Logos Section Component
 const ClientLogosSection = ({ clients }: { clients: string[] }) => {
-  const [clientLogos, setClientLogos] = useState<Map<string, string | null>>(new Map());
-  const [isLoading, setIsLoading] = useState(true);
-
-  useEffect(() => {
-    const loadLogos = async () => {
-      setIsLoading(true);
-      const logos = await preloadLogos(clients);
-      setClientLogos(logos);
-      setIsLoading(false);
-    };
-    loadLogos();
-  }, [clients]);
-
   return (
     <div className="pt-12 border-t border-border/30">
       <div className="text-center mb-10">
@@ -113,21 +126,18 @@ const ClientLogosSection = ({ clients }: { clients: string[] }) => {
       
       <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 max-w-4xl mx-auto">
         {clients.map((client, index) => {
-          const logoUrl = clientLogos.get(client);
+          const logoUrl = clientLogos[client];
           
           return (
             <div 
               key={index}
               className="group px-4 py-5 rounded-lg bg-muted/10 border border-border/30 flex flex-col items-center justify-center hover:bg-muted/30 hover:border-border/50 transition-all duration-300 min-h-[80px]"
             >
-              {isLoading ? (
-                <div className="h-8 w-20 bg-muted/40 rounded animate-pulse" />
-              ) : logoUrl ? (
+              {logoUrl ? (
                 <img 
                   src={logoUrl} 
                   alt={`${client} logo`}
                   className="max-h-10 max-w-[120px] object-contain opacity-70 group-hover:opacity-100 transition-opacity duration-300 grayscale group-hover:grayscale-0"
-                  loading="lazy"
                 />
               ) : (
                 <span className="text-sm text-foreground/70 font-medium text-center group-hover:text-foreground/90 transition-colors">
