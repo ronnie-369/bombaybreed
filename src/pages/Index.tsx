@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Header from '@/components/Header';
 import ExecutiveHero from '@/components/ExecutiveHero';
 import BoardValue from '@/components/BoardValue';
@@ -17,6 +17,14 @@ import ServicesHub from '@/components/ServicesHub';
 
 const Index = () => {
   const { isLoading } = useContentLoading({ delay: 600 });
+
+  useEffect(() => {
+    document.title = "Bombay Breed | Strategic Carbon Communications Advisory India";
+    const metaDescription = document.querySelector('meta[name="description"]');
+    if (metaDescription) {
+      metaDescription.setAttribute('content', "India's only strategic carbon communications advisory. C-suite counsel for carbon markets, ESG governance, and climate transition strategy.");
+    }
+  }, []);
 
   return (
     <div className="min-h-screen bg-background flex flex-col">

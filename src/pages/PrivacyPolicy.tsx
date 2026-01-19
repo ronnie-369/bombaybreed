@@ -1,10 +1,17 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import Header from '@/components/Header';
 import Contact from '@/components/Contact';
 import { ArrowLeft } from 'lucide-react';
 
 const PrivacyPolicy = () => {
+  useEffect(() => {
+    document.title = "Privacy Policy | Bombay Breed";
+    const metaDescription = document.querySelector('meta[name="description"]');
+    if (metaDescription) {
+      metaDescription.setAttribute('content', "Learn how Bombay Breed collects, uses, and protects your personal information. Our privacy policy ensures your data is handled securely.");
+    }
+  }, []);
   return (
     <div className="min-h-screen bg-background">
       <Header />

@@ -18,6 +18,8 @@ import Admin from "./pages/Admin";
 import AdminSEO from "./pages/AdminSEO";
 import ServicePage from "./pages/ServicePage";
 import Services from "./pages/Services";
+import About from "./pages/About";
+import Insights from "./pages/Insights";
 import WEFGlobalRisksReport from "./pages/WEFGlobalRisksReport";
 import GreenJobsReport from "./pages/GreenJobsReport";
 
@@ -39,6 +41,8 @@ const AppContent = () => {
             <Route path="/" element={<Index />} />
             <Route path="/resources" element={<Resources />} />
             <Route path="/credentials" element={<Credentials />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/insights" element={<Insights />} />
             <Route path="/privacy-policy" element={<PrivacyPolicy />} />
             <Route path="/auth" element={<Auth />} />
             <Route path="/admin" element={<Admin />} />

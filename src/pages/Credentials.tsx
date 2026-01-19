@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Header from '@/components/Header';
 import { Check, LinkedinIcon, Quote } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -40,6 +40,13 @@ const clientLogos: Record<string, string> = {
 };
 
 const Credentials = () => {
+  useEffect(() => {
+    document.title = "Track Record & Client Portfolio | Bombay Breed";
+    const metaDescription = document.querySelector('meta[name="description"]');
+    if (metaDescription) {
+      metaDescription.setAttribute('content', "18 years of C-suite advisory. Trusted by KPMG, Microsoft, ITC, PETRONAS and leading enterprises.");
+    }
+  }, []);
   const expertise = [
     "Proven Expertise", 
     "Strategic Insighting", 
