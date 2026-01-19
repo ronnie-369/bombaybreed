@@ -4,9 +4,43 @@ import { useQuery } from '@tanstack/react-query';
 import { supabase } from '@/integrations/supabase/client';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { ArrowRight, Zap, Factory, Globe, FileText, ChevronRight, Landmark, Building2, Sprout, Sparkles } from 'lucide-react';
+import { ArrowRight, Zap, Factory, Globe, FileText, ChevronRight, Landmark, Building2, Sprout, Sparkles, Megaphone, TrendingUp, MessageSquare, Target } from 'lucide-react';
 import ScrollReveal from '@/components/ui/ScrollReveal';
 import ServicesHubSkeleton from '@/components/skeletons/ServicesHubSkeleton';
+
+// Primary Services - Tier 1 Money Keywords
+const primaryServices = [
+  {
+    slug: 'carbon-communications-strategy-india',
+    icon: Megaphone,
+    name: 'Carbon Communications Strategy',
+    description: 'Strategic communications for carbon market positioning and stakeholder engagement.',
+  },
+  {
+    slug: 'sustainability-reporting-india',
+    icon: FileText,
+    name: 'Sustainability Reporting',
+    description: 'BRSR, GRI, and integrated reporting advisory for Indian enterprises.',
+  },
+  {
+    slug: 'carbon-market-advisory-india',
+    icon: TrendingUp,
+    name: 'Carbon Market Advisory',
+    description: 'Navigate India carbon markets including CCTS, VCM, and international mechanisms.',
+  },
+  {
+    slug: 'esg-communications-consultant',
+    icon: MessageSquare,
+    name: 'ESG Communications',
+    description: 'Authentic ESG narratives that build stakeholder trust and avoid greenwashing.',
+  },
+  {
+    slug: 'climate-strategy-india-enterprises',
+    icon: Target,
+    name: 'Climate Strategy',
+    description: 'Net zero roadmaps and transition planning for Indian corporates.',
+  },
+];
 
 // Intent signaller segments with mapped industries
 const clientSegments = [
@@ -121,11 +155,39 @@ const ServicesHub = () => {
           </div>
         </ScrollReveal>
 
-        {/* Core Capabilities */}
+        {/* Primary Services */}
         <ScrollReveal direction="up" delay={1}>
           <div className="mb-12">
             <h3 className="text-sm font-medium text-primary uppercase tracking-wider mb-6">
-              Core Capabilities
+              Services
+            </h3>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mb-8">
+              {primaryServices.map((service) => (
+                <Link key={service.slug} to={`/${service.slug}`}>
+                  <Card className="h-full group cursor-pointer border-primary/20 hover:border-primary/50 transition-colors">
+                    <CardHeader className="pb-2">
+                      <CardTitle className="flex items-center gap-3 text-base">
+                        <span className="p-2 rounded-lg bg-primary/10 text-primary group-hover:bg-primary group-hover:text-primary-foreground transition-colors">
+                          <service.icon className="w-5 h-5" />
+                        </span>
+                        {service.name}
+                      </CardTitle>
+                    </CardHeader>
+                    <CardContent>
+                      <p className="text-sm text-muted-foreground line-clamp-2">
+                        {service.description}
+                      </p>
+                      <span className="inline-flex items-center gap-1 text-sm text-primary mt-3 group-hover:gap-2 transition-all">
+                        Get started <ArrowRight className="w-4 h-4" />
+                      </span>
+                    </CardContent>
+                  </Card>
+                </Link>
+              ))}
+            </div>
+
+            <h3 className="text-sm font-medium text-muted-foreground uppercase tracking-wider mb-6">
+              Specialized Capabilities
             </h3>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
               {capabilities?.map((capability) => (

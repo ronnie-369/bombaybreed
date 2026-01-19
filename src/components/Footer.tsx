@@ -24,11 +24,11 @@ const Footer = () => {
   ];
 
   const serviceLinks = [
-    { name: 'Energy Optimisation', slug: 'energy-optimisation-consulting' },
-    { name: 'Industrial Decarbonisation', slug: 'industrial-decarbonisation-strategy' },
-    { name: 'Article 6 Advisory', slug: 'article-6-advisory' },
-    { name: 'Climate Investment', slug: 'climate-investment-readiness' },
-    { name: 'DMRV Integrity', slug: 'dmrv-integrity-due-diligence' },
+    { name: 'Carbon Communications', slug: 'carbon-communications-strategy-india' },
+    { name: 'Sustainability Reporting', slug: 'sustainability-reporting-india' },
+    { name: 'Carbon Market Advisory', slug: 'carbon-market-advisory-india' },
+    { name: 'ESG Communications', slug: 'esg-communications-consultant' },
+    { name: 'Climate Strategy', slug: 'climate-strategy-india-enterprises' },
   ];
 
   return (
