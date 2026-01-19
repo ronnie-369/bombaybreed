@@ -149,7 +149,8 @@ const Resources = () => {
         "Solar", "Wind", "Battery Storage", "Manufacturing",
         "Gujarat", "Maharashtra", "Tamil Nadu", "Training", "Employment"
       ],
-      publishedDate: "2025-09-01"
+      publishedDate: "2025-09-01",
+      coverImage: greenJobsCoverImage
     },
     {
       title: "Energy Transition Playbook",
