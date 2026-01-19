@@ -7,6 +7,24 @@ import { Label } from "@/components/ui/label";
 import { useToast } from "@/hooks/use-toast";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { z } from "zod";
+
+// Strong password validation schema
+const passwordSchema = z
+  .string()
+  .min(12, "Password must be at least 12 characters")
+  .regex(/[A-Z]/, "Password must contain at least one uppercase letter")
+  .regex(/[a-z]/, "Password must contain at least one lowercase letter")
+  .regex(/[0-9]/, "Password must contain at least one number")
+  .regex(/[^A-Za-z0-9]/, "Password must contain at least one special character");
+
+const validatePassword = (password: string): string | null => {
+  const result = passwordSchema.safeParse(password);
+  if (!result.success) {
+    return result.error.errors[0].message;
+  }
+  return null;
+};
 
 const Auth = () => {
   const navigate = useNavigate();
@@ -14,6 +32,7 @@ const Auth = () => {
   const [loading, setLoading] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [passwordError, setPasswordError] = useState<string | null>(null);
 
   useEffect(() => {
     // Check if user is already logged in
@@ -35,6 +54,7 @@ const Auth = () => {
   const handleSignUp = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
+    setPasswordError(null);
 
     if (!email || !password) {
       toast({
@@ -46,10 +66,12 @@ const Auth = () => {
       return;
     }
 
-    if (password.length < 6) {
+    const passwordValidationError = validatePassword(password);
+    if (passwordValidationError) {
+      setPasswordError(passwordValidationError);
       toast({
-        title: "Error",
-        description: "Password must be at least 6 characters",
+        title: "Weak Password",
+        description: passwordValidationError,
         variant: "destructive",
       });
       setLoading(false);
@@ -180,11 +202,20 @@ const Auth = () => {
                   <Input
                     id="signup-password"
                     type="password"
-                    placeholder="••••••••"
+                    placeholder="••••••••••••"
                     value={password}
-                    onChange={(e) => setPassword(e.target.value)}
+                    onChange={(e) => {
+                      setPassword(e.target.value);
+                      setPasswordError(null);
+                    }}
                     required
                   />
+                  {passwordError && (
+                    <p className="text-sm text-destructive">{passwordError}</p>
+                  )}
+                  <p className="text-xs text-muted-foreground">
+                    Min 12 chars with uppercase, lowercase, number & special character
+                  </p>
                 </div>
                 <Button type="submit" className="w-full" disabled={loading}>
                   {loading ? "Signing up..." : "Sign Up"}
