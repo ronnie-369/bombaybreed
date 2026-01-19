@@ -161,7 +161,7 @@ const ServicesHub = () => {
             <h3 className="text-sm font-medium text-primary uppercase tracking-wider mb-6">
               Services
             </h3>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mb-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
               {primaryServices.map((service) => (
                 <Link key={service.slug} to={`/${service.slug}`}>
                   <Card className="h-full group cursor-pointer border-primary/20 hover:border-primary/50 transition-colors">
@@ -185,41 +185,13 @@ const ServicesHub = () => {
                 </Link>
               ))}
             </div>
-
-            <h3 className="text-sm font-medium text-muted-foreground uppercase tracking-wider mb-6">
-              Specialized Capabilities
-            </h3>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-              {capabilities?.map((capability) => (
-                <Link key={capability.slug} to={`/${capability.slug}`}>
-                  <Card className="h-full group cursor-pointer">
-                    <CardHeader className="pb-2">
-                      <CardTitle className="flex items-center gap-3 text-base">
-                        <span className="p-2 rounded-lg bg-primary/10 text-primary group-hover:bg-primary group-hover:text-primary-foreground transition-colors">
-                          {capabilityIcons[capability.slug] || <Zap className="w-5 h-5" />}
-                        </span>
-                        {capability.name}
-                      </CardTitle>
-                    </CardHeader>
-                    <CardContent>
-                      <p className="text-sm text-muted-foreground line-clamp-2">
-                        {capability.description || 'Strategic advisory for sustainable business transformation.'}
-                      </p>
-                      <span className="inline-flex items-center gap-1 text-sm text-primary mt-3 group-hover:gap-2 transition-all">
-                        Learn more <ArrowRight className="w-4 h-4" />
-                      </span>
-                    </CardContent>
-                  </Card>
-                </Link>
-              ))}
-            </div>
           </div>
         </ScrollReveal>
 
         {/* Who We Work With & Browse by Region */}
-        <div className="grid md:grid-cols-2 gap-8">
+        <div className="grid md:grid-cols-2 gap-8 mb-12">
           <ScrollReveal direction="left" delay={2}>
-            <div className="p-6 rounded-xl bg-card border border-border/50">
+            <div className="p-6 rounded-xl bg-card border border-border/50 h-full">
               <h3 className="text-sm font-medium text-primary uppercase tracking-wider mb-4">
                 Who We Work With
               </h3>
@@ -273,7 +245,7 @@ const ServicesHub = () => {
           </ScrollReveal>
 
           <ScrollReveal direction="right" delay={2}>
-            <div className="p-6 rounded-xl bg-card border border-border/50">
+            <div className="p-6 rounded-xl bg-card border border-border/50 h-full">
               <h3 className="text-sm font-medium text-primary uppercase tracking-wider mb-4">
                 Browse by Region
               </h3>
@@ -298,8 +270,41 @@ const ServicesHub = () => {
           </ScrollReveal>
         </div>
 
-        {/* CTA */}
+        {/* Specialized Capabilities */}
         <ScrollReveal direction="up" delay={3}>
+          <div className="mb-12">
+            <h3 className="text-sm font-medium text-muted-foreground uppercase tracking-wider mb-6">
+              Specialized Capabilities
+            </h3>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+              {capabilities?.map((capability) => (
+                <Link key={capability.slug} to={`/${capability.slug}`}>
+                  <Card className="h-full group cursor-pointer">
+                    <CardHeader className="pb-2">
+                      <CardTitle className="flex items-center gap-3 text-base">
+                        <span className="p-2 rounded-lg bg-primary/10 text-primary group-hover:bg-primary group-hover:text-primary-foreground transition-colors">
+                          {capabilityIcons[capability.slug] || <Zap className="w-5 h-5" />}
+                        </span>
+                        {capability.name}
+                      </CardTitle>
+                    </CardHeader>
+                    <CardContent>
+                      <p className="text-sm text-muted-foreground line-clamp-2">
+                        {capability.description || 'Strategic advisory for sustainable business transformation.'}
+                      </p>
+                      <span className="inline-flex items-center gap-1 text-sm text-primary mt-3 group-hover:gap-2 transition-all">
+                        Learn more <ArrowRight className="w-4 h-4" />
+                      </span>
+                    </CardContent>
+                  </Card>
+                </Link>
+              ))}
+            </div>
+          </div>
+        </ScrollReveal>
+
+        {/* CTA */}
+        <ScrollReveal direction="up" delay={4}>
           <div className="mt-12 text-center">
             <Link to="/services">
               <Button size="lg" variant="outline" className="group">
