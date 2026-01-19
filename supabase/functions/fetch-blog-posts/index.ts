@@ -1,8 +1,44 @@
 import { serve } from "https://deno.land/std@0.168.0/http/server.ts";
 
-const corsHeaders = {
-  'Access-Control-Allow-Origin': '*',
-  'Access-Control-Allow-Headers': 'authorization, x-client-info, apikey, content-type',
+// Dynamic CORS with origin validation
+const getAllowedOrigins = (): string[] => {
+  const env = Deno.env.get('ALLOWED_ORIGINS');
+  if (env) return env.split(',').map((o) => o.trim()).filter(Boolean);
+  return [
+    'https://zjiwmdrtuhsrymsuvpfb.lovableproject.com',
+    'http://localhost:5173',
+    'http://localhost:3000',
+  ];
+};
+
+const isOriginAllowed = (origin: string | null): boolean => {
+  if (!origin) return false;
+  const allowed = getAllowedOrigins();
+  if (allowed.includes(origin)) return true;
+  try {
+    const { hostname, protocol } = new URL(origin);
+    // Allow Lovable preview domains
+    if (hostname.endsWith('.lovableproject.com')) return true;
+    if (hostname.endsWith('.lovable.app')) return true;
+    // Allow production domain
+    if (hostname.endsWith('.bombaybreed.com') || hostname === 'bombaybreed.com') return true;
+    // Allow localhost for development
+    if (hostname === 'localhost' && (protocol === 'http:' || protocol === 'https:')) return true;
+  } catch (_) {
+    // ignore parse errors
+  }
+  return false;
+};
+
+const getCorsHeaders = (origin: string | null): Record<string, string> => {
+  const allow = isOriginAllowed(origin);
+  const fallback = getAllowedOrigins()[0];
+  return {
+    'Access-Control-Allow-Origin': allow && origin ? origin : fallback,
+    'Access-Control-Allow-Headers': 'authorization, x-client-info, apikey, content-type',
+    'Access-Control-Allow-Methods': 'GET, OPTIONS',
+    'Access-Control-Max-Age': '86400',
+  };
 };
 
 interface BlogPost {
@@ -132,9 +168,21 @@ function parseXML(xml: string): BlogPost[] {
 }
 
 serve(async (req) => {
+  const origin = req.headers.get('origin');
+  const corsHeaders = getCorsHeaders(origin);
+
   // Handle CORS preflight requests
   if (req.method === 'OPTIONS') {
     return new Response(null, { headers: corsHeaders });
+  }
+
+  // Block requests from non-allowed origins
+  if (!isOriginAllowed(origin)) {
+    console.warn('CORS: blocked origin for fetch-blog-posts', { origin });
+    return new Response(JSON.stringify({ error: 'Origin not allowed', posts: [] }), {
+      status: 403,
+      headers: { 'Content-Type': 'application/json', ...corsHeaders }
+    });
   }
 
   try {
