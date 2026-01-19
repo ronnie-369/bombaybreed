@@ -7,8 +7,47 @@ import Footer from '@/components/Footer';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
-import { ArrowRight, Filter, Zap, Factory, Globe, FileText, MapPin, Landmark, Building2, Sprout, Sparkles } from 'lucide-react';
+import { ArrowRight, Filter, Zap, Factory, Globe, FileText, MapPin, Landmark, Building2, Sprout, Sparkles, Megaphone, TrendingUp, MessageSquare, Target } from 'lucide-react';
 import ScrollReveal from '@/components/ui/ScrollReveal';
+
+// Primary Services - Tier 1 Money Keywords
+const primaryServices = [
+  {
+    slug: 'carbon-communications-strategy-india',
+    icon: Megaphone,
+    name: 'Carbon Communications Strategy',
+    description: 'Strategic communications for carbon market positioning and stakeholder engagement in India.',
+    keyword: 'carbon communications strategy India',
+  },
+  {
+    slug: 'sustainability-reporting-india',
+    icon: FileText,
+    name: 'Sustainability Reporting',
+    description: 'BRSR, GRI, and integrated reporting advisory for Indian enterprises navigating disclosure requirements.',
+    keyword: 'sustainability reporting India',
+  },
+  {
+    slug: 'carbon-market-advisory-india',
+    icon: TrendingUp,
+    name: 'Carbon Market Advisory',
+    description: 'Navigate India carbon markets including CCTS, VCM, and international mechanisms with expert guidance.',
+    keyword: 'carbon market advisory India',
+  },
+  {
+    slug: 'esg-communications-consultant',
+    icon: MessageSquare,
+    name: 'ESG Communications',
+    description: 'Authentic ESG narratives that build stakeholder trust and help you avoid greenwashing pitfalls.',
+    keyword: 'ESG communications consultant',
+  },
+  {
+    slug: 'climate-strategy-india-enterprises',
+    icon: Target,
+    name: 'Climate Strategy',
+    description: 'Net zero roadmaps and transition planning designed for Indian corporate realities.',
+    keyword: 'climate strategy India enterprises',
+  },
+];
 
 // Client intent segments with industry mappings
 const clientSegments = [
@@ -154,13 +193,55 @@ const Services = () => {
           </div>
         </section>
 
+        {/* Primary Services Section */}
+        <section className="px-6 md:px-8 mb-16 bg-primary/5 py-12 -mx-6 md:-mx-8">
+          <div className="container mx-auto max-w-6xl px-6 md:px-8">
+            <ScrollReveal direction="up">
+              <h2 className="text-2xl font-display font-semibold text-foreground mb-2 flex items-center gap-2">
+                <Megaphone className="w-6 h-6 text-primary" />
+                Primary Services
+              </h2>
+              <p className="text-muted-foreground mb-8">
+                High-impact advisory services for India's climate transition
+              </p>
+              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                {primaryServices.map((service) => (
+                  <Link key={service.slug} to={`/${service.slug}`}>
+                    <Card className="h-full group cursor-pointer border-primary/30 hover:border-primary hover:shadow-lg transition-all">
+                      <CardHeader>
+                        <CardTitle className="flex items-center gap-3 text-lg group-hover:text-primary transition-colors">
+                          <span className="p-2 rounded-lg bg-primary/10 text-primary group-hover:bg-primary group-hover:text-primary-foreground transition-colors">
+                            <service.icon className="w-5 h-5" />
+                          </span>
+                          {service.name}
+                        </CardTitle>
+                        <CardDescription className="line-clamp-3">
+                          {service.description}
+                        </CardDescription>
+                      </CardHeader>
+                      <CardContent>
+                        <Badge variant="secondary" className="text-xs mb-3">
+                          {service.keyword}
+                        </Badge>
+                        <span className="flex items-center gap-1 text-sm text-primary group-hover:gap-2 transition-all">
+                          Get started <ArrowRight className="w-4 h-4" />
+                        </span>
+                      </CardContent>
+                    </Card>
+                  </Link>
+                ))}
+              </div>
+            </ScrollReveal>
+          </div>
+        </section>
+
         {/* Core Capabilities Section */}
         <section className="px-6 md:px-8 mb-16">
           <div className="container mx-auto max-w-6xl">
             <ScrollReveal direction="up">
               <h2 className="text-2xl font-display font-semibold text-foreground mb-6 flex items-center gap-2">
                 <Zap className="w-6 h-6 text-primary" />
-                Core Capabilities
+                Specialized Capabilities
               </h2>
               <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {capabilities?.map((cap) => (
