@@ -1,4 +1,5 @@
 import { serve } from "https://deno.land/std@0.168.0/http/server.ts";
+import { createClient } from "https://esm.sh/@supabase/supabase-js@2.39.3";
 
 // Dynamic CORS with origin validation
 const getAllowedOrigins = (): string[] => {
@@ -51,6 +52,9 @@ interface BlogPost {
   date: string;
   gradient: string;
 }
+
+// Cache TTL in milliseconds (1 hour)
+const CACHE_TTL_MS = 60 * 60 * 1000;
 
 // Gradient options to cycle through
 const gradients = [
@@ -167,6 +171,90 @@ function parseXML(xml: string): BlogPost[] {
   return posts;
 }
 
+// Create Supabase client with service role for cache management
+function getSupabaseClient() {
+  const supabaseUrl = Deno.env.get('SUPABASE_URL')!;
+  const serviceRoleKey = Deno.env.get('SUPABASE_SERVICE_ROLE_KEY')!;
+  return createClient(supabaseUrl, serviceRoleKey);
+}
+
+// Check if cache is valid (less than 1 hour old)
+async function getCachedPosts(supabase: ReturnType<typeof createClient>): Promise<{ posts: BlogPost[], isValid: boolean, fetchedAt: string | null }> {
+  const { data, error } = await supabase
+    .from('cached_blog_posts')
+    .select('*')
+    .order('fetched_at', { ascending: false })
+    .limit(10);
+
+  if (error || !data || data.length === 0) {
+    return { posts: [], isValid: false, fetchedAt: null };
+  }
+
+  const latestFetchedAt = new Date(data[0].fetched_at);
+  const now = new Date();
+  const isValid = (now.getTime() - latestFetchedAt.getTime()) < CACHE_TTL_MS;
+
+  const posts: BlogPost[] = data.map((row) => ({
+    id: row.id,
+    title: row.title,
+    subtitle: row.subtitle,
+    description: row.description,
+    url: row.url,
+    image: row.image,
+    date: row.date,
+    gradient: row.gradient,
+  }));
+
+  return { posts, isValid, fetchedAt: latestFetchedAt.toISOString() };
+}
+
+// Update cache with fresh posts
+async function updateCache(supabase: ReturnType<typeof createClient>, posts: BlogPost[]): Promise<void> {
+  const now = new Date().toISOString();
+  
+  // Delete old cache entries
+  await supabase.from('cached_blog_posts').delete().neq('id', '');
+
+  // Insert fresh posts
+  const rows = posts.map((post) => ({
+    id: post.id,
+    title: post.title,
+    subtitle: post.subtitle,
+    description: post.description,
+    url: post.url,
+    image: post.image,
+    date: post.date,
+    gradient: post.gradient,
+    fetched_at: now,
+  }));
+
+  const { error } = await supabase.from('cached_blog_posts').insert(rows);
+  if (error) {
+    console.error('Failed to update cache:', error);
+  } else {
+    console.log(`Cache updated with ${posts.length} posts`);
+  }
+}
+
+// Fetch fresh posts from Substack RSS
+async function fetchFreshPosts(): Promise<BlogPost[]> {
+  const rssUrl = 'https://theclimatedesk.substack.com/feed';
+  
+  const response = await fetch(rssUrl, {
+    headers: {
+      'User-Agent': 'Mozilla/5.0 (compatible; BlogFetcher/1.0)',
+      'Accept': 'application/rss+xml, application/xml, text/xml',
+    },
+  });
+  
+  if (!response.ok) {
+    throw new Error(`Failed to fetch RSS: ${response.status} ${response.statusText}`);
+  }
+  
+  const xml = await response.text();
+  return parseXML(xml);
+}
+
 serve(async (req) => {
   const origin = req.headers.get('origin');
   const corsHeaders = getCorsHeaders(origin);
@@ -185,45 +273,87 @@ serve(async (req) => {
     });
   }
 
+  // Check for force refresh param
+  const url = new URL(req.url);
+  const forceRefresh = url.searchParams.get('refresh') === 'true';
+
   try {
-    console.log('Fetching Substack RSS feed...');
+    const supabase = getSupabaseClient();
     
-    const rssUrl = 'https://theclimatedesk.substack.com/feed';
+    // Try to get cached posts first
+    const cached = await getCachedPosts(supabase);
     
-    const response = await fetch(rssUrl, {
-      headers: {
-        'User-Agent': 'Mozilla/5.0 (compatible; BlogFetcher/1.0)',
-        'Accept': 'application/rss+xml, application/xml, text/xml',
-      },
-    });
-    
-    if (!response.ok) {
-      throw new Error(`Failed to fetch RSS: ${response.status} ${response.statusText}`);
+    if (cached.isValid && cached.posts.length > 0 && !forceRefresh) {
+      console.log('Returning cached blog posts');
+      return new Response(
+        JSON.stringify({ 
+          success: true, 
+          posts: cached.posts,
+          fetchedAt: cached.fetchedAt,
+          cached: true,
+        }),
+        { 
+          headers: { 
+            ...corsHeaders, 
+            'Content-Type': 'application/json',
+            'Cache-Control': 'public, max-age=3600',
+          } 
+        }
+      );
     }
-    
-    const xml = await response.text();
-    console.log('RSS feed fetched, parsing...');
-    
-    const posts = parseXML(xml);
-    console.log(`Parsed ${posts.length} blog posts`);
+
+    // Cache is stale or empty, fetch fresh posts
+    console.log('Cache stale or empty, fetching fresh posts...');
+    const posts = await fetchFreshPosts();
+    console.log(`Fetched ${posts.length} fresh blog posts`);
+
+    // Update cache in background (don't await to avoid blocking response)
+    updateCache(supabase, posts).catch((err) => console.error('Cache update failed:', err));
     
     return new Response(
       JSON.stringify({ 
         success: true, 
         posts,
         fetchedAt: new Date().toISOString(),
+        cached: false,
       }),
       { 
         headers: { 
           ...corsHeaders, 
           'Content-Type': 'application/json',
-          'Cache-Control': 'public, max-age=3600', // Cache for 1 hour
+          'Cache-Control': 'public, max-age=3600',
         } 
       }
     );
     
   } catch (error) {
     console.error('Error fetching blog posts:', error);
+    
+    // Try to return stale cache on error
+    try {
+      const supabase = getSupabaseClient();
+      const cached = await getCachedPosts(supabase);
+      if (cached.posts.length > 0) {
+        console.log('Returning stale cache due to fetch error');
+        return new Response(
+          JSON.stringify({ 
+            success: true, 
+            posts: cached.posts,
+            fetchedAt: cached.fetchedAt,
+            cached: true,
+            stale: true,
+          }),
+          { 
+            headers: { 
+              ...corsHeaders, 
+              'Content-Type': 'application/json',
+            } 
+          }
+        );
+      }
+    } catch (cacheError) {
+      console.error('Failed to fetch stale cache:', cacheError);
+    }
     
     return new Response(
       JSON.stringify({ 

@@ -14,6 +14,48 @@ export type Database = {
   }
   public: {
     Tables: {
+      cached_blog_posts: {
+        Row: {
+          created_at: string
+          date: string
+          description: string
+          fetched_at: string
+          gradient: string
+          id: string
+          image: string
+          subtitle: string | null
+          title: string
+          updated_at: string
+          url: string
+        }
+        Insert: {
+          created_at?: string
+          date: string
+          description: string
+          fetched_at?: string
+          gradient: string
+          id: string
+          image: string
+          subtitle?: string | null
+          title: string
+          updated_at?: string
+          url: string
+        }
+        Update: {
+          created_at?: string
+          date?: string
+          description?: string
+          fetched_at?: string
+          gradient?: string
+          id?: string
+          image?: string
+          subtitle?: string | null
+          title?: string
+          updated_at?: string
+          url?: string
+        }
+        Relationships: []
+      }
       contact_inquiries: {
         Row: {
           company: string | null
