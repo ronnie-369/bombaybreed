@@ -173,6 +173,15 @@ const Resources = () => {
   const [isSearchFocused, setIsSearchFocused] = useState(false);
   const formSectionRef = useRef<HTMLDivElement>(null);
 
+  // Set page meta
+  useEffect(() => {
+    document.title = "Climate Research & Reports | Bombay Breed";
+    const metaDescription = document.querySelector('meta[name="description"]');
+    if (metaDescription) {
+      metaDescription.setAttribute('content', "Deep-dive reports on India's carbon markets, green jobs, energy transition, and climate policy analysis.");
+    }
+  }, []);
+
   // Cycle through search prompts every 3 seconds when not focused
   useEffect(() => {
     if (isSearchFocused || searchQuery) return;

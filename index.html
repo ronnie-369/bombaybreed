@@ -74,7 +74,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" />
     
-    <!-- Structured Data -->
+    <!-- Organization Schema -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -118,6 +118,44 @@
           }
         ]
       }
+    }
+    </script>
+    
+    <!-- WebSite Schema for Sitelinks -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "Bombay Breed",
+      "url": "https://bombaybreed.com",
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": "https://bombaybreed.com/services?q={search_term_string}",
+        "query-input": "required name=search_term_string"
+      }
+    }
+    </script>
+    
+    <!-- ProfessionalService Schema -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "ProfessionalService",
+      "name": "Bombay Breed",
+      "description": "Strategic carbon communications advisory and ESG governance consulting for Indian enterprises",
+      "url": "https://bombaybreed.com",
+      "priceRange": "$$$$",
+      "areaServed": {
+        "@type": "Country",
+        "name": "India"
+      },
+      "serviceType": [
+        "Carbon Communications Strategy",
+        "Sustainability Reporting Advisory",
+        "Carbon Market Advisory",
+        "ESG Communications Consulting",
+        "Climate Strategy Consulting"
+      ]
     }
     </script>
   </head>

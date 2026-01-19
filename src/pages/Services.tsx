@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
 import { supabase } from '@/integrations/supabase/client';
@@ -91,6 +91,14 @@ const clientSegments = [
 
 const Services = () => {
   const [activeFilter, setActiveFilter] = useState<'all' | 'capability' | 'industry' | 'geography' | 'regulation'>('all');
+
+  useEffect(() => {
+    document.title = "Climate Advisory Services | Bombay Breed India";
+    const metaDescription = document.querySelector('meta[name="description"]');
+    if (metaDescription) {
+      metaDescription.setAttribute('content', "Strategic carbon market advisory, ESG communications, and industrial decarbonisation services for Indian enterprises. Expert climate strategy consulting.");
+    }
+  }, []);
 
   const { data: capabilities } = useQuery({
     queryKey: ['seo-capabilities-full'],

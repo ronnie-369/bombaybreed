@@ -85,7 +85,9 @@ const Header = () => {
           <Link to="/" className="text-sm text-muted-foreground hover:text-foreground transition-colors story-link">
             Home
           </Link>
-          
+          <Link to="/about" className="text-sm text-muted-foreground hover:text-foreground transition-colors story-link">
+            About
+          </Link>
           {/* Services Mega Menu */}
           <NavigationMenu>
             <NavigationMenuList>
@@ -173,6 +175,9 @@ const Header = () => {
             </NavigationMenuList>
           </NavigationMenu>
 
+          <Link to="/insights" className="text-sm text-muted-foreground hover:text-foreground transition-colors story-link">
+            Insights
+          </Link>
           <Link to="/resources" className="text-sm text-muted-foreground hover:text-foreground transition-colors story-link">
             Resources
           </Link>
@@ -206,6 +211,9 @@ const Header = () => {
           <div className="container mx-auto px-6 py-6 flex flex-col space-y-4">
             <Link to="/" className="text-sm text-muted-foreground hover:text-foreground transition-colors py-2" onClick={toggleMenu}>
               Home
+            </Link>
+            <Link to="/about" className="text-sm text-muted-foreground hover:text-foreground transition-colors py-2" onClick={toggleMenu}>
+              About
             </Link>
             
             {/* Mobile Services Accordion */}
@@ -256,6 +264,9 @@ const Header = () => {
               )}
             </div>
 
+            <Link to="/insights" className="text-sm text-muted-foreground hover:text-foreground transition-colors py-2" onClick={toggleMenu}>
+              Insights
+            </Link>
             <Link to="/resources" className="text-sm text-muted-foreground hover:text-foreground transition-colors py-2" onClick={toggleMenu}>
               Resources
             </Link>
