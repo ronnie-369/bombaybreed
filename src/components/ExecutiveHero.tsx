@@ -80,6 +80,10 @@ const ExecutiveHero = () => {
                     src={portraitUrl}
                     alt="Theresa Ronnie - Independent Director & Board Advisor"
                     className="w-full h-full object-cover object-center"
+                    fetchPriority="high"
+                    decoding="async"
+                    width={400}
+                    height={500}
                   />
                 </div>
               </div>

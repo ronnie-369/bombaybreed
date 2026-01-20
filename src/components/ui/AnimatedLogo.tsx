@@ -8,9 +8,13 @@ interface AnimatedLogoProps {
   fallbackSrc?: string;
 }
 
+// Known video path to avoid recursive listing API calls
+const KNOWN_VIDEO_PATH = 'pounce-logo.webm';
+
 /**
  * Animated logo component that displays a video from Supabase storage
  * Falls back to static logo on error or when motion is reduced
+ * Optimized: Uses direct path instead of recursive file listing
  */
 const AnimatedLogo: React.FC<AnimatedLogoProps> = ({ 
   className = "", 
@@ -32,100 +36,55 @@ const AnimatedLogo: React.FC<AnimatedLogoProps> = ({
       if (prefersReducedMotion) return;
 
       try {
-        // Recursive function to list all files in bucket
-        const listAllFiles = async (prefix: string = '', depth: number = 0): Promise<string[]> => {
-          if (depth > 3) return [];
+        // Try direct path first (no recursive listing needed)
+        const { data: publicData } = supabase.storage
+          .from('brand assets')
+          .getPublicUrl(KNOWN_VIDEO_PATH);
           
-          const { data: files, error } = await supabase.storage
-            .from('brand assets')
-            .list(prefix, { limit: 100 });
-
-          if (error || !files) return [];
-
-          const allFiles: string[] = [];
-          for (const file of files) {
-            const fullPath = prefix ? `${prefix}/${file.name}` : file.name;
-            
-            if (file.metadata === null) {
-              // Folder - recurse
-              const subFiles = await listAllFiles(fullPath, depth + 1);
-              allFiles.push(...subFiles);
-            } else {
-              // File
-              allFiles.push(fullPath);
-            }
-          }
-          return allFiles;
-        };
-
-        const allFiles = await listAllFiles();
-        
-        if (allFiles.length === 0) {
-          console.info('No files found in brand assets bucket');
-          return;
-        }
-
-        // Filter for video files with broader keywords
-        const videoFiles = allFiles.filter(file => {
-          const filename = file.toLowerCase();
-          const hasKeyword = filename.includes('pounce') || 
-                           filename.includes('animated-logo') || 
-                           filename.includes('logo');
-          const hasExtension = /\.(webm|mp4|mov|m4v)$/i.test(file);
-          return hasKeyword && hasExtension;
-        });
-
-        if (videoFiles.length === 0) {
-          const sampleFiles = allFiles.slice(0, 5).join(', ');
-          console.info('No animated logo candidates found. Sample files:', sampleFiles + (allFiles.length > 5 ? '...' : ''));
-          return;
-        }
-
-        // Sort by preference: WebM first, then by keyword preference
-        videoFiles.sort((a, b) => {
-          const aExt = a.toLowerCase().split('.').pop() || '';
-          const bExt = b.toLowerCase().split('.').pop() || '';
-          const aName = a.toLowerCase();
-          const bName = b.toLowerCase();
-          
-          // WebM files first
-          if (aExt === 'webm' && bExt !== 'webm') return -1;
-          if (aExt !== 'webm' && bExt === 'webm') return 1;
-          
-          // Then by keyword preference
-          if (aName.includes('pounce') && !bName.includes('pounce')) return -1;
-          if (!aName.includes('pounce') && bName.includes('pounce')) return 1;
-          
-          return 0;
-        });
-
-        // Try each video file until one works
-        for (const videoFile of videoFiles) {
+        if (publicData?.publicUrl) {
+          // Verify the URL is valid by checking headers
           try {
-            const { data, error } = await supabase.storage
-              .from('brand assets')
-              .createSignedUrl(videoFile, 3600);
-
-            if (data?.signedUrl && !error) {
-              setVideoUrl(data.signedUrl);
-              console.info('Loaded animated logo:', videoFile);
+            const response = await fetch(publicData.publicUrl, { method: 'HEAD' });
+            if (response.ok) {
+              setVideoUrl(publicData.publicUrl);
               return;
             }
-          } catch (err) {
-            // Try public URL as fallback
-            const { data: publicData } = supabase.storage
+          } catch {
+            // URL check failed, try signed URL
+          }
+        }
+
+        // Try signed URL as fallback
+        const { data, error } = await supabase.storage
+          .from('brand assets')
+          .createSignedUrl(KNOWN_VIDEO_PATH, 3600);
+
+        if (data?.signedUrl && !error) {
+          setVideoUrl(data.signedUrl);
+          return;
+        }
+
+        // If direct path fails, do a simple single-level list
+        const { data: files } = await supabase.storage
+          .from('brand assets')
+          .list('', { limit: 50 });
+
+        if (files) {
+          const videoFile = files.find(f => 
+            /\.(webm|mp4)$/i.test(f.name) && 
+            (f.name.toLowerCase().includes('pounce') || f.name.toLowerCase().includes('logo'))
+          );
+
+          if (videoFile) {
+            const { data: videoData } = supabase.storage
               .from('brand assets')
-              .getPublicUrl(videoFile);
+              .getPublicUrl(videoFile.name);
               
-            if (publicData?.publicUrl) {
-              setVideoUrl(publicData.publicUrl);
-              console.info('Loaded animated logo (public):', videoFile);
-              return;
+            if (videoData?.publicUrl) {
+              setVideoUrl(videoData.publicUrl);
             }
           }
         }
-        
-        console.info('No working animated logo found from candidates:', videoFiles);
       } catch (error) {
         console.warn('Failed to load animated logo:', error);
         setHasError(true);
