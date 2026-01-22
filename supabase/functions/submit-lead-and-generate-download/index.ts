@@ -149,6 +149,7 @@ serve(async (req: Request) => {
       // New 2026 reports
       "Jobs on the Rise 2026: India Green Jobs Outlook": "linkedin_jobs_on_the_rise_2026_india_green_jobs_20260117180846.pdf",
       "WEF Global Risks Report 2026: Climate & Geopolitical Volatility": "The-Global-Risks-Report-2026-was-written-assuming-instability-What-it-did-not-fully-price-in-was-spe (1).pdf",
+      "India Power Sector Investment Presentation": "India_Power_Sector_Investment_Presentation (1).pdf",
     };
 
     const ensurePdf = (s: string) => (s.toLowerCase().endsWith(".pdf") ? s : `${s}.pdf`);

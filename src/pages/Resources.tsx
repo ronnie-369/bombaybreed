@@ -17,6 +17,7 @@ import indiaClimateInflectionCover from '@/assets/india-climate-inflection-cover
 import complianceCredibilityCover from '@/assets/compliance-credibility-cover.jpg';
 import carbonMarketOutlookCover from '@/assets/carbon-market-outlook-cover.jpg';
 import energyTransitionPlaybookCover from '@/assets/energy-transition-playbook-cover.jpg';
+import indiaPowerSectorCover from '@/assets/india-power-sector-cover.jpg';
 
 interface Publication {
   title: string;
@@ -58,6 +59,20 @@ const SEARCH_PROMPTS = [
 const Resources = () => {
   // Publications ordered from newest to oldest
   const publications: Publication[] = [
+    {
+      title: "India Power Sector Investment Presentation",
+      description: "India's ₹4.5 lakh crore ($54B) power revolution: Analysis of the generation transition from coal to renewables, 100 GW nuclear target by 2047, distribution reform under the Electricity Amendment Bill 2025, and grid-scale storage opportunities across 510 GW installed capacity.",
+      type: "Investment Analysis",
+      topics: [
+        "Power Sector", "India", "Investment", "Renewable Energy", 
+        "Nuclear Energy", "Grid Infrastructure", "Energy Transition",
+        "Electricity Amendment Bill", "Coal Transition", "Battery Storage",
+        "Pumped Hydro", "Distribution Reform", "Investor Intelligence",
+        "Market Sizing", "Viksit Bharat 2047"
+      ],
+      publishedDate: "2026-01-22",
+      coverImage: indiaPowerSectorCover
+    },
     {
       title: "Jobs on the Rise 2026: India Green Jobs Outlook",
       description: "Comprehensive analysis of India's green jobs landscape aligned with Net-Zero 2070 goals and 500 GW renewable energy targets. Covers solar, wind, battery storage workforce trends, salary benchmarks, and skills gaps across key states.",
