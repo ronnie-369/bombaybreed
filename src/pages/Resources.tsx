@@ -61,7 +61,7 @@ const Resources = () => {
   const publications: Publication[] = [
     {
       title: "India Power Sector Investment Presentation",
-      description: "India's ₹4.5 lakh crore ($54B) power revolution: Analysis of the generation transition from coal to renewables, 100 GW nuclear target by 2047, distribution reform under the Electricity Amendment Bill 2025, and grid-scale storage opportunities across 510 GW installed capacity.",
+      description: "India's ₹4.5 lakh crore ($49B) power revolution: Analysis of the generation transition from coal to renewables, 100 GW nuclear target by 2047, distribution reform under the Electricity Amendment Bill 2025, and grid-scale storage opportunities across 510 GW installed capacity.",
       type: "Investment Analysis",
       topics: [
         "Power Sector", "India", "Investment", "Renewable Energy", 
