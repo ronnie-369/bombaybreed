@@ -95,7 +95,7 @@ const ServicePageTemplate = ({
     breadcrumbItems[breadcrumbItems.length - 1].href = undefined;
   }
 
-  // Inject schemas
+  // Inject schemas and SEO meta tags
   useEffect(() => {
     // Update document title and meta
     document.title = meta_title;
@@ -103,6 +103,15 @@ const ServicePageTemplate = ({
     if (metaDesc && meta_description) {
       metaDesc.setAttribute('content', meta_description);
     }
+
+    // Add self-referencing canonical tag to prevent duplicate content issues
+    let canonical = document.querySelector('link[rel="canonical"]') as HTMLLinkElement;
+    if (!canonical) {
+      canonical = document.createElement('link');
+      canonical.setAttribute('rel', 'canonical');
+      document.head.appendChild(canonical);
+    }
+    canonical.setAttribute('href', `https://bombaybreed.com/${slug}`);
 
     // Inject Service schema
     const serviceSchema = generateServiceSchema({
@@ -134,6 +143,7 @@ const ServicePageTemplate = ({
       removeSchema('schema-service');
       removeSchema('schema-faq');
       removeSchema('schema-breadcrumb');
+      // Don't remove canonical on cleanup - let the next page handle it
     };
   }, [slug, meta_title, meta_description, h1_headline, capability, industry, geography, regulation, faq_items]);
 
