@@ -3,7 +3,7 @@ import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { ThemeProvider } from "next-themes";
 import ScrollToTop from "./components/ScrollToTop";
 import CookieBanner from "./components/CookieBanner";
@@ -27,6 +27,12 @@ const Insights = lazy(() => import("./pages/Insights"));
 const WEFGlobalRisksReport = lazy(() => import("./pages/WEFGlobalRisksReport"));
 const GreenJobsReport = lazy(() => import("./pages/GreenJobsReport"));
 
+// Static report pages - explicitly routed to prevent Soft 404s
+const EnergyTransitionPlaybook = lazy(() => import("./pages/EnergyTransitionPlaybook"));
+const CarbonPlaybook = lazy(() => import("./pages/CarbonPlaybook"));
+const CarbonMarketOutlook = lazy(() => import("./pages/CarbonMarketOutlook"));
+const ComplianceToCredibility = lazy(() => import("./pages/ComplianceToCredibility"));
+
 const queryClient = new QueryClient();
 
 const AppContent = () => {
@@ -44,20 +50,35 @@ const AppContent = () => {
           <ScrollToTop />
           <Suspense fallback={<PageSkeleton />}>
             <Routes>
+              {/* Core pages */}
               <Route path="/" element={<Index />} />
               <Route path="/resources" element={<Resources />} />
               <Route path="/credentials" element={<Credentials />} />
               <Route path="/about" element={<About />} />
               <Route path="/insights" element={<Insights />} />
               <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+              <Route path="/services" element={<Services />} />
+              
+              {/* Auth & Admin */}
               <Route path="/auth" element={<Auth />} />
               <Route path="/admin" element={<Admin />} />
               <Route path="/admin/seo" element={<AdminSEO />} />
-              <Route path="/services" element={<Services />} />
+              
+              {/* Report pages - explicitly routed */}
               <Route path="/wef-global-risks-2026" element={<WEFGlobalRisksReport />} />
               <Route path="/green-jobs-india-2026" element={<GreenJobsReport />} />
+              <Route path="/energy-transition-playbook" element={<EnergyTransitionPlaybook />} />
+              <Route path="/carbon-playbook" element={<CarbonPlaybook />} />
+              <Route path="/carbon-market-outlook" element={<CarbonMarketOutlook />} />
+              <Route path="/compliance-to-credibility" element={<ComplianceToCredibility />} />
+              
+              {/* Redirect /index.html to root to prevent Soft 404 */}
+              <Route path="/index.html" element={<Navigate to="/" replace />} />
+              
+              {/* 404 page */}
               <Route path="/404" element={<NotFound />} />
-              {/* SEO DYNAMIC ROUTES - catches all programmatic pages */}
+              
+              {/* SEO DYNAMIC ROUTES - catches all programmatic pages from database */}
               <Route path="/*" element={<ServicePage />} />
             </Routes>
           </Suspense>
