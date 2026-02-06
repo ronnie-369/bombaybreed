@@ -43,18 +43,18 @@ const topicClusters = [
 // Featured insights (would typically come from a CMS or database)
 const featuredInsights = [
   {
+    title: "Working for the Earth — A Dialectic Discourse",
+    description: "The planet's most urgent crisis demands its most essential workers. Yet those who protect the Earth are among the least protected themselves.",
+    category: "Green Jobs",
+    readTime: "12 min read",
+    link: "/working-for-the-earth"
+  },
+  {
     title: "How India's Carbon Market Is Reshaping Industrial Strategy",
     description: "The CCTS framework creates both compliance imperatives and commercial opportunities for heavy-emitting industries. Here's what boards need to know.",
     category: "Carbon Markets",
     readTime: "8 min read",
     link: "/resources"
-  },
-  {
-    title: "CBAM Is Coming: What Indian Exporters Must Do Now",
-    description: "EU's Carbon Border Adjustment Mechanism will impact steel, cement, and aluminum exports. Preparation should start today, not in 2026.",
-    category: "Policy & Regulation",
-    readTime: "6 min read",
-    link: "/cbam"
   },
   {
     title: "Beyond Compliance: Turning BRSR Into Competitive Advantage",
