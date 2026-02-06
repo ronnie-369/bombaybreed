@@ -32,6 +32,7 @@ const EnergyTransitionPlaybook = lazy(() => import("./pages/EnergyTransitionPlay
 const CarbonPlaybook = lazy(() => import("./pages/CarbonPlaybook"));
 const CarbonMarketOutlook = lazy(() => import("./pages/CarbonMarketOutlook"));
 const ComplianceToCredibility = lazy(() => import("./pages/ComplianceToCredibility"));
+const WorkingForTheEarth = lazy(() => import("./pages/WorkingForTheEarth"));
 
 const queryClient = new QueryClient();
 
@@ -71,6 +72,7 @@ const AppContent = () => {
               <Route path="/carbon-playbook" element={<CarbonPlaybook />} />
               <Route path="/carbon-market-outlook" element={<CarbonMarketOutlook />} />
               <Route path="/compliance-to-credibility" element={<ComplianceToCredibility />} />
+              <Route path="/working-for-the-earth" element={<WorkingForTheEarth />} />
               
               {/* Redirect /index.html to root to prevent Soft 404 */}
               <Route path="/index.html" element={<Navigate to="/" replace />} />
