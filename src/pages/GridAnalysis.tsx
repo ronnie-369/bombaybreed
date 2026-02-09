@@ -46,7 +46,7 @@ const Bar = ({ value, max, color, label, sublabel, delay = 0 }: {
           className="ga-bar-fill"
           style={{
             width: `${pct}%`,
-            background: `linear-gradient(90deg, ${color}88, ${color})`,
+            background: color,
             transitionDelay: `${delay}ms`,
           }}
         />
@@ -249,7 +249,8 @@ const InvestmentChart = () => {
               className="ga-investment-bar"
               style={{
                 height: `${(item.value / maxVal) * 140}px`,
-                background: `linear-gradient(180deg, ${item.color}, ${item.color}44)`,
+                background: item.color,
+                opacity: 0.85,
               }}
             />
             <div className="ga-investment-label">{item.label}</div>
@@ -473,7 +474,7 @@ export default function GridAnalysis() {
                     </div>
                     <div className="ga-gap-desc">{gap.desc}</div>
                     <div className="ga-gap-bar-track">
-                      <div className="ga-gap-bar-fill" style={{ width: `${gap.pct}%`, background: `linear-gradient(90deg, ${gap.color}66, ${gap.color})` }} />
+                      <div className="ga-gap-bar-fill" style={{ width: `${gap.pct}%`, background: gap.color }} />
                     </div>
                   </div>
                 ))}
