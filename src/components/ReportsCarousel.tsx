@@ -35,6 +35,17 @@ interface ContentItem {
 // Static reports that don't change
 const staticReports: ContentItem[] = [
   {
+    id: 'working-for-the-earth',
+    type: 'report',
+    title: 'Working for the Earth',
+    subtitle: 'A Dialectic Discourse',
+    description: 'The planet\'s most urgent crisis demands its most essential workers. A deep exploration of the green labour paradox and just transition pathways.',
+    cta: 'Read the Analysis',
+    route: '/working-for-the-earth',
+    image: '/lovable-uploads/pexels-veeterzy-38136.jpg',
+    gradient: 'from-emerald-800 to-teal-700'
+  },
+  {
     id: 'wef-global-risks-2026',
     type: 'report',
     title: 'WEF Global Risks 2026',

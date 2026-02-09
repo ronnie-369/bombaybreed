@@ -50,24 +50,27 @@ const topicClusters = [
 // Featured insights (would typically come from a CMS or database)
 const featuredInsights = [
   {
-    title: "Working for the Earth — A Dialectic Discourse",
-    description: "The planet's most urgent crisis demands its most essential workers. Yet those who protect the Earth are among the least protected themselves.",
-    category: "Green Jobs",
-    readTime: "12 min read",
-    link: "/working-for-the-earth"
-  },
-  {
     title: "India's Renewable Grid at Breaking Point",
     description: "Strategic analysis of the 203 GW grid crisis, thermal-RE gaps, and the ₹3.4 lakh crore infrastructure investment required for stabilization.",
     category: "Energy Transition",
     readTime: "15 min read",
+    date: "9 February 2026",
     link: "/india-renewable-grid-analysis"
+  },
+  {
+    title: "Working for the Earth — A Dialectic Discourse",
+    description: "The planet's most urgent crisis demands its most essential workers. Yet those who protect the Earth are among the least protected themselves.",
+    category: "Green Jobs",
+    readTime: "12 min read",
+    date: "6 February 2026",
+    link: "/working-for-the-earth"
   },
   {
     title: "Beyond Compliance: Turning BRSR Into Competitive Advantage",
     description: "India's mandatory sustainability reporting isn't just a checkbox exercise—it's an opportunity to differentiate in investor communications.",
     category: "Sustainability Reporting",
     readTime: "5 min read",
+    date: "Coming Soon",
     link: "/sustainability-reporting-india"
   }
 ];
@@ -130,6 +133,9 @@ const Insights = () => {
                             {insight.category}
                           </Badge>
                           <span className="text-xs text-muted-foreground">{insight.readTime}</span>
+                          {insight.date && (
+                            <span className="text-xs text-muted-foreground ml-auto">{insight.date}</span>
+                          )}
                         </div>
                         <CardTitle className="text-lg group-hover:text-primary transition-colors line-clamp-2">
                           {insight.title}
