@@ -3,7 +3,7 @@ import { Helmet } from "react-helmet-async";
 import { Link } from "react-router-dom";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import { ArrowLeft, ExternalLink } from "lucide-react";
+import { ArrowLeft, ExternalLink, Play } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import "./GridAnalysis.css";
 
@@ -55,7 +55,7 @@ const Bar = ({ value, max, color, label, sublabel, delay = 0 }: {
   );
 };
 
-const StatCard = ({ number, label, accent = "#FF6B35" }: {
+const StatCard = ({ number, label, accent = "hsl(160, 45%, 25%)" }: {
   number: string;
   label: string;
   accent?: string;
@@ -83,9 +83,9 @@ const Callout = ({ children, type = "insight" }: {
   type?: "insight" | "data" | "warning";
 }) => {
   const colors = {
-    insight: { bg: "rgba(255,107,53,0.08)", border: "#FF6B35", icon: "◆" },
-    data: { bg: "rgba(0,168,150,0.08)", border: "#00A896", icon: "■" },
-    warning: { bg: "rgba(255,71,87,0.08)", border: "#FF4757", icon: "▲" },
+    insight: { bg: "hsla(160, 45%, 25%, 0.08)", border: "hsl(160, 45%, 25%)", icon: "◆" },
+    data: { bg: "hsla(200, 60%, 40%, 0.08)", border: "hsl(200, 60%, 40%)", icon: "■" },
+    warning: { bg: "hsla(0, 70%, 50%, 0.08)", border: "hsl(0, 70%, 50%)", icon: "▲" },
   };
   const c = colors[type];
   return (
@@ -123,51 +123,51 @@ const DuckCurve = () => {
       <svg viewBox={`0 0 ${w} ${h}`} className="ga-svg">
         <defs>
           <linearGradient id="solarFill" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0%" stopColor="#FFB347" stopOpacity="0.4" />
-            <stop offset="100%" stopColor="#FFB347" stopOpacity="0.02" />
+            <stop offset="0%" stopColor="hsl(160, 40%, 35%)" stopOpacity="0.4" />
+            <stop offset="100%" stopColor="hsl(160, 40%, 35%)" stopOpacity="0.02" />
           </linearGradient>
           <linearGradient id="gapFill" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0%" stopColor="#FF4757" stopOpacity="0.25" />
-            <stop offset="100%" stopColor="#FF4757" stopOpacity="0.02" />
+            <stop offset="0%" stopColor="hsl(0, 70%, 50%)" stopOpacity="0.25" />
+            <stop offset="100%" stopColor="hsl(0, 70%, 50%)" stopOpacity="0.02" />
           </linearGradient>
         </defs>
         {/* Grid lines */}
         {[0, 30, 60, 90].map((v) => (
           <g key={v}>
-            <line x1={padL} y1={toY(v)} x2={w - padR} y2={toY(v)} stroke="rgba(255,255,255,0.06)" strokeDasharray="3,3" />
-            <text x={padL - 6} y={toY(v) + 4} fill="#555" fontSize="9" textAnchor="end" className="ga-chart-text">
+        <line x1={padL} y1={toY(v)} x2={w - padR} y2={toY(v)} stroke="hsl(210, 15%, 90%)" strokeDasharray="3,3" />
+            <text x={padL - 6} y={toY(v) + 4} fill="hsl(210, 10%, 55%)" fontSize="9" textAnchor="end" className="ga-chart-text">
               {v}%
             </text>
           </g>
         ))}
         {/* Time labels */}
         {[0, 6, 12, 18, 23].map((i) => (
-          <text key={i} x={toX(i)} y={h - 5} fill="#555" fontSize="9" textAnchor="middle" className="ga-chart-text">
+          <text key={i} x={toX(i)} y={h - 5} fill="hsl(210, 10%, 55%)" fontSize="9" textAnchor="middle" className="ga-chart-text">
             {`${String(i).padStart(2, "0")}:00`}
           </text>
         ))}
         {/* Solar area */}
         <path d={makeArea(solarData)} fill="url(#solarFill)" />
         {/* Demand line */}
-        <path d={makePath(demandData)} fill="none" stroke="#00A896" strokeWidth="2" strokeDasharray="6,3" />
+        <path d={makePath(demandData)} fill="none" stroke="hsl(200, 60%, 40%)" strokeWidth="2" strokeDasharray="6,3" />
         {/* Thermal line */}
-        <path d={makePath(thermalData)} fill="none" stroke="#FF4757" strokeWidth="2" />
+        <path d={makePath(thermalData)} fill="none" stroke="hsl(0, 70%, 50%)" strokeWidth="2" />
         {/* Solar line */}
-        <path d={makePath(solarData)} fill="none" stroke="#FFB347" strokeWidth="2" />
+        <path d={makePath(solarData)} fill="none" stroke="hsl(160, 40%, 35%)" strokeWidth="2" />
         {/* Labels */}
-        <text x={toX(17)} y={toY(85) - 6} fill="#00A896" fontSize="9" className="ga-chart-text">Demand</text>
-        <text x={toX(16)} y={toY(72) + 14} fill="#FF4757" fontSize="9" className="ga-chart-text">Thermal</text>
-        <text x={toX(9)} y={toY(55) - 8} fill="#FFB347" fontSize="9" className="ga-chart-text">Solar</text>
+        <text x={toX(17)} y={toY(85) - 6} fill="hsl(200, 60%, 40%)" fontSize="9" className="ga-chart-text">Demand</text>
+        <text x={toX(16)} y={toY(72) + 14} fill="hsl(0, 70%, 50%)" fontSize="9" className="ga-chart-text">Thermal</text>
+        <text x={toX(9)} y={toY(55) - 8} fill="hsl(160, 40%, 35%)" fontSize="9" className="ga-chart-text">Solar</text>
         {/* Evening ramp annotation */}
-        <line x1={toX(15)} y1={toY(72)} x2={toX(15)} y2={toY(4)} stroke="#FF4757" strokeWidth="1" strokeDasharray="2,2" opacity="0.5" />
-        <text x={toX(15) + 4} y={toY(15)} fill="#FF4757" fontSize="8" className="ga-chart-text" opacity="0.7">Evening</text>
-        <text x={toX(15) + 4} y={toY(15) + 10} fill="#FF4757" fontSize="8" className="ga-chart-text" opacity="0.7">Ramp</text>
+        <line x1={toX(15)} y1={toY(72)} x2={toX(15)} y2={toY(4)} stroke="hsl(0, 70%, 50%)" strokeWidth="1" strokeDasharray="2,2" opacity="0.5" />
+        <text x={toX(15) + 4} y={toY(15)} fill="hsl(0, 70%, 50%)" fontSize="8" className="ga-chart-text" opacity="0.7">Evening</text>
+        <text x={toX(15) + 4} y={toY(15) + 10} fill="hsl(0, 70%, 50%)" fontSize="8" className="ga-chart-text" opacity="0.7">Ramp</text>
       </svg>
       <div className="ga-legend">
         {[
-          { color: "#FFB347", label: "Solar Generation" },
-          { color: "#FF4757", label: "Thermal Dispatch" },
-          { color: "#00A896", label: "System Demand" },
+         { color: "hsl(160, 40%, 35%)", label: "Solar Generation" },
+          { color: "hsl(0, 70%, 50%)", label: "Thermal Dispatch" },
+          { color: "hsl(200, 60%, 40%)", label: "System Demand" },
         ].map((l) => (
           <div key={l.label} className="ga-legend-item">
             <div className="ga-legend-color" style={{ background: l.color }} />
@@ -228,11 +228,11 @@ const SolutionsMatrix = () => {
 // Investment waterfall
 const InvestmentChart = () => {
   const items = [
-    { label: "Transmission\n(GEC III-IV)", value: 56000, color: "#FF6B35" },
-    { label: "BESS\n(47 GW target)", value: 91000, color: "#00A896" },
-    { label: "Pumped Hydro\n(19 GW)", value: 120000, color: "#FFB347" },
-    { label: "Grid\nModernisation", value: 45000, color: "#FF4757" },
-    { label: "Smart Grid\n& Digital", value: 25000, color: "#9B59B6" },
+    { label: "Transmission\n(GEC III-IV)", value: 56000, color: "hsl(160, 45%, 25%)" },
+    { label: "BESS\n(47 GW target)", value: 91000, color: "hsl(200, 60%, 40%)" },
+    { label: "Pumped Hydro\n(19 GW)", value: 120000, color: "hsl(160, 40%, 35%)" },
+    { label: "Grid\nModernisation", value: 45000, color: "hsl(0, 70%, 50%)" },
+    { label: "Smart Grid\n& Digital", value: 25000, color: "hsl(270, 40%, 50%)" },
   ];
   const maxVal = 130000;
   
@@ -261,7 +261,7 @@ const InvestmentChart = () => {
 };
 
 // Scorecard for article assessment
-const ScoreBar = ({ label, score, maxScore = 10, color = "#FF6B35" }: {
+const ScoreBar = ({ label, score, maxScore = 10, color = "hsl(160, 45%, 25%)" }: {
   label: string;
   score: number;
   maxScore?: number;
@@ -277,7 +277,7 @@ const ScoreBar = ({ label, score, maxScore = 10, color = "#FF6B35" }: {
         <div
           key={i}
           className="ga-score-dot"
-          style={{ background: i < score ? color : "rgba(255,255,255,0.06)" }}
+          style={{ background: i < score ? color : "hsl(210, 15%, 90%)" }}
         />
       ))}
     </div>
@@ -362,18 +362,24 @@ export default function GridAnalysis() {
             <div className="ga-subtitle">
               The thermal-RE gap, grid stabilisation pathways, and the ₹3.4 lakh crore infrastructure question
             </div>
-            <div className="ga-sources">
-              Source Article:{" "}
+            {/* Prominent Source Attribution Card */}
+            <div className="ga-source-card">
+              <div className="ga-source-card-label">SOURCE ARTICLE</div>
+              <div className="ga-source-card-title">
+                Mint — Centre steps in to resolve electricity curtailment issue, tasks CEA and national grid operator to find a resolution
+              </div>
               <a
                 href="https://www.livemint.com/industry/energy/centre-steps-in-to-resolve-electricity-curtailment-issue-tasks-cea-and-national-grid-operator-to-find-a-resolution-11770376761817.html"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="ga-source-link"
+                className="ga-source-card-cta"
               >
-                Mint — Centre steps in to resolve electricity curtailment issue
-                <ExternalLink className="w-3 h-3 inline-block ml-1" />
+                Read on Mint
+                <ExternalLink className="w-3.5 h-3.5" />
               </a>
-              <span className="ga-sources-secondary"> · Additional data: Ember, CEA, CERC, IEA, Bloomberg, NREL, Mercom India · Feb 2026</span>
+            </div>
+            <div className="ga-sources-secondary">
+              Additional data: Ember, CEA, CERC, IEA, Bloomberg, NREL, Mercom India · Feb 2026
             </div>
           </div>
         </div>
@@ -404,14 +410,34 @@ export default function GridAnalysis() {
 
               <div className="ga-stats-grid">
                 <StatCard number="203 GW" label="RE Capacity Installed" />
-                <StatCard number="18%" label="Solar Curtailed Monthly" accent="#FF4757" />
-                <StatCard number="₹575-690 Cr" label="Compensation Payouts" accent="#FFB347" />
-                <StatCard number="4 GW" label="Curtailed in Rajasthan" accent="#FF4757" />
+                <StatCard number="18%" label="Solar Curtailed Monthly" accent="hsl(0, 70%, 50%)" />
+                <StatCard number="₹575-690 Cr" label="Compensation Payouts" accent="hsl(160, 40%, 35%)" />
+                <StatCard number="4 GW" label="Curtailed in Rajasthan" accent="hsl(0, 70%, 50%)" />
               </div>
 
               <Callout type="warning">
                 The curtailment in Rajasthan reached 51.5% during peak solar hours (10:30 AM - 2:30 PM). Revenue losses for developers hit 20-25%, raising insolvency concerns if sustained beyond six months.
               </Callout>
+
+              {/* WSJ Video Link Card */}
+              <div className="ga-video-card">
+                <div className="ga-video-card-icon">
+                  <Play className="w-5 h-5" />
+                </div>
+                <div className="ga-video-card-content">
+                  <div className="ga-video-card-label">WATCH: WSJ on Grid Stabilisation</div>
+                  <div className="ga-video-card-desc">Understanding why grids built for thermal power struggle with variable renewables</div>
+                </div>
+                <a
+                  href="https://youtu.be/Sq-y-wiZduE?si=HVmD69o1APxl3WK7"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="ga-video-card-cta"
+                >
+                  Watch on YouTube
+                  <ExternalLink className="w-3.5 h-3.5" />
+                </a>
+              </div>
 
               <Prose>
                 The WSJ analysis on grid stabilisation frames the global dimension of this same problem: grids built around the spinning mass of thermal turbines lack the physical inertia to absorb variable renewable power safely. Three core engineering challenges - inertia loss, reactive power deficits, and transmission inadequacy - converge in India with particular intensity because the country is attempting the fastest large-scale energy transition in history, on a grid that was never designed for it.
@@ -435,10 +461,10 @@ export default function GridAnalysis() {
               <div className="ga-gaps-container">
                 <div className="ga-chart-label">FOUR CRITICAL GAPS</div>
                 {[
-                  { title: "Inertia Gap", desc: "Thermal turbines store kinetic energy in rotating mass, resisting frequency changes. Solar/wind inverters provide zero mechanical inertia. India's system inertia is declining as thermal plants retire or ramp down during solar hours.", pct: 85, color: "#FF4757" },
-                  { title: "Reactive Power Gap", desc: "Thermal generators produce reactive power (VARs) essential for voltage stability. RE sources, located far from load centres, cannot deliver reactive power over long transmission lines. Doubling power consumed quadruples VARs needed.", pct: 70, color: "#FFB347" },
-                  { title: "Ramping Gap", desc: "The 'duck curve' demands thermal plants ramp from minimum to maximum output in 3-4 hours as solar fades. Indian coal plants were designed for baseload, not rapid cycling. This causes equipment stress and inefficiency.", pct: 75, color: "#FF6B35" },
-                  { title: "Transmission Gap", desc: "22,500 MW commissioned in Rajasthan against 14,000 MW of GNA capacity. RE build-out has structurally outpaced evacuation infrastructure, with key 765 kV lines delayed by 18-24 months.", pct: 90, color: "#FF4757" },
+                  { title: "Inertia Gap", desc: "Thermal turbines store kinetic energy in rotating mass, resisting frequency changes. Solar/wind inverters provide zero mechanical inertia. India's system inertia is declining as thermal plants retire or ramp down during solar hours.", pct: 85, color: "hsl(0, 70%, 50%)" },
+                  { title: "Reactive Power Gap", desc: "Thermal generators produce reactive power (VARs) essential for voltage stability. RE sources, located far from load centres, cannot deliver reactive power over long transmission lines. Doubling power consumed quadruples VARs needed.", pct: 70, color: "hsl(160, 40%, 35%)" },
+                  { title: "Ramping Gap", desc: "The 'duck curve' demands thermal plants ramp from minimum to maximum output in 3-4 hours as solar fades. Indian coal plants were designed for baseload, not rapid cycling. This causes equipment stress and inefficiency.", pct: 75, color: "hsl(160, 45%, 25%)" },
+                  { title: "Transmission Gap", desc: "22,500 MW commissioned in Rajasthan against 14,000 MW of GNA capacity. RE build-out has structurally outpaced evacuation infrastructure, with key 765 kV lines delayed by 18-24 months.", pct: 90, color: "hsl(0, 70%, 50%)" },
                 ].map((gap, i) => (
                   <div key={gap.title} className={`ga-gap-item ${i < 3 ? "ga-gap-item--bordered" : ""}`}>
                     <div className="ga-gap-header">
@@ -558,17 +584,17 @@ export default function GridAnalysis() {
               <InvestmentChart />
 
               <div className="ga-investment-summary">
-                <Bar value={487} max={500} color="#FF6B35" label="Total Storage Investment Opportunity (2025-2050)" sublabel="$487 Billion" delay={0} />
-                <Bar value={450} max={500} color="#00A896" label="Power Sector Investment by 2032" sublabel="₹4.5 Lakh Cr" delay={200} />
-                <Bar value={91} max={500} color="#FFB347" label="VGF Committed for BESS" sublabel="₹9,160 Cr" delay={400} />
-                <Bar value={181} max={500} color="#9B59B6" label="PLI for ACC Battery Manufacturing" sublabel="₹18,100 Cr" delay={600} />
+                <Bar value={487} max={500} color="hsl(160, 45%, 25%)" label="Total Storage Investment Opportunity (2025-2050)" sublabel="$487 Billion" delay={0} />
+                <Bar value={450} max={500} color="hsl(200, 60%, 40%)" label="Power Sector Investment by 2032" sublabel="₹4.5 Lakh Cr" delay={200} />
+                <Bar value={91} max={500} color="hsl(160, 40%, 35%)" label="VGF Committed for BESS" sublabel="₹9,160 Cr" delay={400} />
+                <Bar value={181} max={500} color="hsl(270, 40%, 50%)" label="PLI for ACC Battery Manufacturing" sublabel="₹18,100 Cr" delay={600} />
               </div>
 
               <div className="ga-triad-grid">
                 {[
                   {
                     title: "Space",
-                    color: "#FF6B35",
+                    color: "hsl(160, 45%, 25%)",
                     items: [
                       "Land for 150 GW transmission corridors",
                       "Pumped hydro reservoir sites",
@@ -578,7 +604,7 @@ export default function GridAnalysis() {
                   },
                   {
                     title: "Finance",
-                    color: "#00A896",
+                    color: "hsl(200, 60%, 40%)",
                     items: [
                       "$487B storage opportunity",
                       "₹4.5L Cr power sector by 2032",
@@ -588,7 +614,7 @@ export default function GridAnalysis() {
                   },
                   {
                     title: "Intent",
-                    color: "#FFB347",
+                    color: "hsl(160, 40%, 35%)",
                     items: [
                       "500 GW RE by 2030 target",
                       "ESO mandated trajectory to FY30",
@@ -623,12 +649,12 @@ export default function GridAnalysis() {
 
               <div className="ga-scorecard">
                 <div className="ga-chart-label">ARTICLE SCORECARD</div>
-                <ScoreBar label="Policy Intent Signal" score={7} color="#00A896" />
-                <ScoreBar label="Concrete Action Commitment" score={4} color="#FFB347" />
-                <ScoreBar label="Systemic Problem Diagnosis" score={6} color="#FF6B35" />
-                <ScoreBar label="Solution Specificity" score={3} color="#FF4757" />
-                <ScoreBar label="Investor Confidence Impact" score={3} color="#9B59B6" />
-                <ScoreBar label="Timeline Credibility" score={4} color="#FF6B35" />
+                <ScoreBar label="Policy Intent Signal" score={7} color="hsl(200, 60%, 40%)" />
+                <ScoreBar label="Concrete Action Commitment" score={4} color="hsl(160, 40%, 35%)" />
+                <ScoreBar label="Systemic Problem Diagnosis" score={6} color="hsl(160, 45%, 25%)" />
+                <ScoreBar label="Solution Specificity" score={3} color="hsl(0, 70%, 50%)" />
+                <ScoreBar label="Investor Confidence Impact" score={3} color="hsl(270, 40%, 50%)" />
+                <ScoreBar label="Timeline Credibility" score={4} color="hsl(160, 45%, 25%)" />
               </div>
 
               <Prose>
