@@ -315,6 +315,15 @@ export default function GridAnalysis() {
     "mainEntityOfPage": {
       "@type": "WebPage",
       "@id": "https://bombaybreed.com/india-renewable-grid-analysis"
+    },
+    "citation": {
+      "@type": "NewsArticle",
+      "headline": "Centre steps in to resolve electricity curtailment issue, tasks CEA and national grid operator to find a resolution",
+      "url": "https://www.livemint.com/industry/energy/centre-steps-in-to-resolve-electricity-curtailment-issue-tasks-cea-and-national-grid-operator-to-find-a-resolution-11770376761817.html",
+      "publisher": {
+        "@type": "Organization",
+        "name": "Mint"
+      }
     }
   };
 
