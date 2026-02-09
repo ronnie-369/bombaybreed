@@ -11,6 +11,13 @@ import ScrollReveal from '@/components/ui/ScrollReveal';
 // Topic clusters for internal linking
 const topicClusters = [
   {
+    title: "Energy Transition",
+    description: "Grid infrastructure and RE integration",
+    topics: ["Renewable Energy", "Grid Stability", "Energy Storage", "Transmission"],
+    serviceLink: "/energy-optimisation-consulting",
+    serviceName: "Energy Optimisation"
+  },
+  {
     title: "Carbon Markets",
     description: "Understanding India's carbon trading landscape",
     topics: ["CCTS", "Carbon Credits", "VCM", "Article 6"],
@@ -50,11 +57,11 @@ const featuredInsights = [
     link: "/working-for-the-earth"
   },
   {
-    title: "How India's Carbon Market Is Reshaping Industrial Strategy",
-    description: "The CCTS framework creates both compliance imperatives and commercial opportunities for heavy-emitting industries. Here's what boards need to know.",
-    category: "Carbon Markets",
-    readTime: "8 min read",
-    link: "/resources"
+    title: "India's Renewable Grid at Breaking Point",
+    description: "Strategic analysis of the 203 GW grid crisis, thermal-RE gaps, and the ₹3.4 lakh crore infrastructure investment required for stabilization.",
+    category: "Energy Transition",
+    readTime: "15 min read",
+    link: "/india-renewable-grid-analysis"
   },
   {
     title: "Beyond Compliance: Turning BRSR Into Competitive Advantage",
