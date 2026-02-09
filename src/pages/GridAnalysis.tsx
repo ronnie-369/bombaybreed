@@ -354,7 +354,17 @@ export default function GridAnalysis() {
               The thermal-RE gap, grid stabilisation pathways, and the ₹3.4 lakh crore infrastructure question
             </div>
             <div className="ga-sources">
-              Sources: Mint, Ember, CEA, CERC, IEA, Bloomberg, NREL, Mercom India · Feb 2026
+              Source Article:{" "}
+              <a
+                href="https://www.livemint.com/industry/energy/centre-steps-in-to-resolve-electricity-curtailment-issue-tasks-cea-and-national-grid-operator-to-find-a-resolution-11770376761817.html"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="ga-source-link"
+              >
+                Mint — Centre steps in to resolve electricity curtailment issue
+                <ExternalLink className="w-3 h-3 inline-block ml-1" />
+              </a>
+              <span className="ga-sources-secondary"> · Additional data: Ember, CEA, CERC, IEA, Bloomberg, NREL, Mercom India · Feb 2026</span>
             </div>
           </div>
         </div>
