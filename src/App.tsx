@@ -26,6 +26,7 @@ const About = lazy(() => import("./pages/About"));
 const Insights = lazy(() => import("./pages/Insights"));
 const WEFGlobalRisksReport = lazy(() => import("./pages/WEFGlobalRisksReport"));
 const GreenJobsReport = lazy(() => import("./pages/GreenJobsReport"));
+const GreenJobsGuide = lazy(() => import("./pages/GreenJobsGuide"));
 
 // Static report pages - explicitly routed to prevent Soft 404s
 const EnergyTransitionPlaybook = lazy(() => import("./pages/EnergyTransitionPlaybook"));
@@ -69,6 +70,7 @@ const AppContent = () => {
               {/* Report pages - explicitly routed */}
               <Route path="/wef-global-risks-2026" element={<WEFGlobalRisksReport />} />
               <Route path="/green-jobs-india-2026" element={<GreenJobsReport />} />
+              <Route path="/green-jobs-guide" element={<GreenJobsGuide />} />
               <Route path="/energy-transition-playbook" element={<EnergyTransitionPlaybook />} />
               <Route path="/carbon-playbook" element={<CarbonPlaybook />} />
               <Route path="/carbon-market-outlook" element={<CarbonMarketOutlook />} />
