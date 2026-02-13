@@ -355,6 +355,12 @@ export default function GreenJobsGuide() {
       });
       if (error) throw error;
 
+      // Mark quiz interaction as form_completed
+      supabase.from('quiz_interactions').insert({
+        personality_selected: activePersonality || '',
+        form_completed: true,
+      }).then(() => {});
+
       setLeadCaptured(true);
       setShowGate(false);
       toast({ title: 'Results unlocked!', description: 'Your personalised career matches are ready.' });
@@ -461,6 +467,11 @@ export default function GreenJobsGuide() {
               isActive={activePersonality === p.id}
               onClick={() => {
                 setActivePersonality(p.id);
+                // Track personality click (even without form fill)
+                supabase.from('quiz_interactions').insert({
+                  personality_selected: p.id,
+                  form_completed: false,
+                }).then(() => {});
                 if (leadCaptured) {
                   setTimeout(() => jobsRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' }), 100);
                 } else {
@@ -559,10 +570,17 @@ export default function GreenJobsGuide() {
             Green talent demand is growing at 12% annually - twice the rate of supply. The skills gap is your opportunity gap.
           </p>
           <div className="bg-white/[0.08] rounded-2xl p-5 text-left">
-            <p className="text-sm font-semibold text-white mb-2.5">🎯 Your three next steps:</p>
-            {['Identify your personality archetype above', 'Pick ONE career that excites you and research the training path', 'Start a microcredential or short course within 30 days'].map((step, i) => (
+            <p className="text-sm font-semibold text-white mb-2.5">🎯 Your four next steps:</p>
+            {[
+              'Identify your personality archetype above',
+              'Pick ONE career that excites you and research the training path',
+              'Start a microcredential or short course within 30 days',
+            ].map((step, i) => (
               <p key={i} className="text-sm leading-relaxed mb-2" style={{ color: '#B7DFC9' }}>{i + 1}. {step}</p>
             ))}
+            <p className="text-sm leading-relaxed mb-2" style={{ color: '#B7DFC9' }}>
+              4. <a href="https://www.theclimatedesk.earth" target="_blank" rel="noopener noreferrer" className="underline underline-offset-2 hover:text-white transition-colors font-semibold">Subscribe to The Climate Desk</a> for regular updates on green jobs matching your interest
+            </p>
           </div>
         </div>
       </section>
