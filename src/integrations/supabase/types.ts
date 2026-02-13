@@ -188,6 +188,27 @@ export type Database = {
         }
         Relationships: []
       }
+      quiz_interactions: {
+        Row: {
+          created_at: string
+          form_completed: boolean
+          id: string
+          personality_selected: string
+        }
+        Insert: {
+          created_at?: string
+          form_completed?: boolean
+          id?: string
+          personality_selected: string
+        }
+        Update: {
+          created_at?: string
+          form_completed?: boolean
+          id?: string
+          personality_selected?: string
+        }
+        Relationships: []
+      }
       report_downloads: {
         Row: {
           downloaded_at: string
