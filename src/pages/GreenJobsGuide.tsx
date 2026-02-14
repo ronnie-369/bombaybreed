@@ -37,6 +37,7 @@ interface Personality {
   emoji: string;
   name: string;
   tagline: string;
+  academicFit: string;
   color: string;
   lightBg: string;
   traits: string[];
@@ -51,6 +52,7 @@ const PERSONALITIES: Personality[] = [
   {
     id: 'builder', emoji: '🔧', name: 'The Builder',
     tagline: 'You love making things with your hands',
+    academicFit: 'Engineering, vocational/trades, applied sciences',
     color: COLORS.coral, lightBg: '#FFF0EC',
     traits: ['Hands-on', 'Practical', 'Physical stamina', 'Detail-oriented'],
     vibe: "You'd rather fix a roof than write an email. You find satisfaction in seeing tangible results of your work by end of day.",
@@ -67,6 +69,7 @@ const PERSONALITIES: Personality[] = [
   {
     id: 'earthkeeper', emoji: '🌱', name: 'The Earth Keeper',
     tagline: 'You feel alive outdoors and in nature',
+    academicFit: 'Life sciences, agriculture, ecology, geography',
     color: '#52796F', lightBg: '#F0F7F4',
     traits: ['Nature-loving', 'Patient', 'Observant', 'Community-minded'],
     vibe: "Office walls feel like a cage. You want soil under your nails, the sky as your ceiling, and work that actually heals the planet.",
@@ -83,6 +86,7 @@ const PERSONALITIES: Personality[] = [
   {
     id: 'analyst', emoji: '📊', name: 'The Systems Thinker',
     tagline: 'You love data, strategy and solving puzzles',
+    academicFit: 'STEM, economics, finance, data science, MBA',
     color: COLORS.sky, lightBg: '#F0F6FA',
     traits: ['Analytical', 'Strategic', 'Tech-savvy', 'Detail-driven'],
     vibe: "You see patterns where others see chaos. You want to use your brain to decode the climate crisis and design solutions at scale.",
@@ -99,6 +103,7 @@ const PERSONALITIES: Personality[] = [
   {
     id: 'connector', emoji: '🤝', name: 'The Community Catalyst',
     tagline: 'You energize people and spark change',
+    academicFit: 'Social sciences, humanities, law, development studies, education',
     color: COLORS.lavender, lightBg: '#F5F0FA',
     traits: ['Empathetic', 'Charismatic', 'Adaptable', 'Purpose-driven'],
     vibe: "You believe change happens through people, not spreadsheets. You want to organize, inspire, and help communities thrive through the transition.",
@@ -241,6 +246,7 @@ const PersonalityCard = ({ p, isActive, onClick }: { p: Personality; isActive: b
     <div className="text-[32px] mb-1.5">{p.emoji}</div>
     <div className="font-serif text-sm font-bold text-foreground">{p.name}</div>
     <div className="text-[11px] text-muted-foreground mt-1 leading-snug">{p.tagline}</div>
+    <div className="text-[9px] text-muted-foreground/60 mt-1 italic leading-snug">{p.academicFit}</div>
   </button>
 );
 
@@ -388,8 +394,11 @@ export default function GreenJobsGuide() {
           <h1 className="font-serif text-4xl md:text-[42px] font-black text-white leading-[1.2] mb-5">
             Your Future is Green.<br />Here's the Map.
           </h1>
-          <p className="text-[15px] leading-[1.7] mb-8 max-w-[480px] mx-auto" style={{ color: '#B7DFC9' }}>
-            375 million net new jobs are coming by 2035. This guide matches your personality to the climate career that fits you.
+          <p className="text-[15px] leading-[1.7] mb-3 max-w-[480px] mx-auto" style={{ color: '#B7DFC9' }}>
+            A guide for college graduates and early-career professionals choosing a work stream. 375 million net new jobs are coming by 2035 — find the one that fits you.
+          </p>
+          <p className="text-[12px] leading-[1.6] mb-8 max-w-[420px] mx-auto" style={{ color: '#B7DFC980' }}>
+            This quiz covers select archetypes — the actual green economy spans hundreds of roles across every industry.
           </p>
 
           {/* Quiz CTA */}
@@ -457,7 +466,7 @@ export default function GreenJobsGuide() {
         <SectionLabel color={COLORS.coral}>Find Your Path</SectionLabel>
         <Heading>Which green career personality are you?</Heading>
         <Body>
-          Instead of starting with degrees and job titles, let's start with YOU. Pick the archetype that resonates most.
+          These four archetypes are starting points, not an exhaustive list. Pick the one that resonates most with your background and interests — then explore the indicative career matches it reveals.
         </Body>
         <div className="flex gap-3 flex-wrap mt-5">
           {PERSONALITIES.map((p) => (
@@ -550,7 +559,7 @@ export default function GreenJobsGuide() {
           </div>
           <BigStat number={activePerson.bigNumber} label={activePerson.bigNumberLabel} source={activePerson.source} color={activePerson.color} />
           <h4 className="font-serif text-xl font-bold text-foreground mt-7 mb-4">Your top 5 career matches</h4>
-          <p className="text-xs text-muted-foreground -mt-2 mb-4">Tap any card to explore details</p>
+          <p className="text-xs text-muted-foreground -mt-2 mb-4">These are indicative roles for your archetype. The green economy offers many more career paths across sectors — explore widely. Tap any card for details.</p>
           <div className="flex flex-col gap-3.5">
             {activePerson.sectors.map((job, i) => (
               <JobCard key={i} job={job} color={activePerson.color} />
@@ -582,6 +591,23 @@ export default function GreenJobsGuide() {
               4. <a href="https://www.theclimatedesk.earth" target="_blank" rel="noopener noreferrer" className="underline underline-offset-2 hover:text-white transition-colors font-semibold">Subscribe to The Climate Desk</a> for regular updates on green jobs matching your interest
             </p>
           </div>
+          <p className="text-sm mt-6 leading-relaxed" style={{ color: '#B7DFC9' }}>
+            Know a college student or fresh graduate figuring out their first career move?{' '}
+            <button
+              onClick={() => {
+                const url = window.location.origin + '/green-jobs-guide';
+                if (navigator.share) {
+                  navigator.share({ title: 'Green Jobs Career Guide', url });
+                } else {
+                  navigator.clipboard.writeText(url);
+                  toast({ title: 'Link copied!', description: 'Share it with someone starting their career.' });
+                }
+              }}
+              className="underline underline-offset-2 hover:text-white transition-colors font-semibold"
+            >
+              Share this guide with them →
+            </button>
+          </p>
         </div>
       </section>
 
