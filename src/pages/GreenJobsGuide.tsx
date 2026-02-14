@@ -370,6 +370,18 @@ export default function GreenJobsGuide() {
       setLeadCaptured(true);
       setShowGate(false);
       toast({ title: 'Results unlocked!', description: 'Your personalised career matches are ready.' });
+
+      // Send inquiry notification email (fire-and-forget)
+      const personalityName = PERSONALITIES.find(p => p.id === activePersonality)?.name || activePersonality || '';
+      supabase.functions.invoke('send-inquiry-notification', {
+        body: {
+          type: 'green-jobs-quiz',
+          email: leadForm.email.trim(),
+          name: leadForm.name.trim(),
+          phone: leadForm.phone.trim(),
+          personality: personalityName,
+        },
+      }).catch((err) => console.error('Quiz notification error:', err));
       setTimeout(() => jobsRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' }), 200);
     } catch {
       setFormError('Something went wrong. Please try again.');

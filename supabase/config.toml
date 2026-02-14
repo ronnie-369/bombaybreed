@@ -14,3 +14,9 @@ verify_jwt = false
 
 [functions.generate-sitemap]
 verify_jwt = false
+
+[functions.send-inquiry-notification]
+verify_jwt = false
+
+[functions.send-weekly-digest]
+verify_jwt = false
