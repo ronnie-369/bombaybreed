@@ -1,44 +1,102 @@
 
 
-# Refine Green Jobs Guide Messaging
+# Unified Inquiry Notifications + Weekly Analytics Digest
 
-Adjust existing copy across the guide page and homepage teaser to clearly frame the quiz as indicative, aimed at college graduates entering the workforce, and shareable. No new sections or components -- just targeted copy edits.
+## What Changes
 
-## Changes
+### A. Instant Email Notifications for Every Inquiry Type
 
-### 1. Homepage Teaser (`src/components/GreenJobsTeaser.tsx`)
+Currently, only the contact form and report downloads trigger emails. Two inquiry types are missing notifications:
 
-- Update subtitle to address college graduates: "Graduating soon? 375 million net new jobs are coming by 2035..."
-- Add a one-liner below the CTA: "Know someone planning their first job? Share this quiz with them."
+| Inquiry Source | Current State | Change |
+|---|---|---|
+| Contact form | Already sends email | Update subject to "Website Message -- {name}" (keep as-is) |
+| Report downloads | Already sends email | Update subject to "Report Download -- {report title}" (keep as-is) |
+| Newsletter signups | No email | Add email trigger |
+| Green Jobs quiz leads | No email | Add email trigger |
+| Quiz personality clicks (no form) | No email | No email needed (too noisy -- tracked in DB only) |
 
-### 2. Guide Page Hero (lines 385-412 in `GreenJobsGuide.tsx`)
+**Implementation:**
 
-- Update subtitle copy to say this guide is for college graduates and early-career professionals choosing a work stream
-- Add a short line: "This quiz covers select archetypes -- the actual green economy spans hundreds of roles across every industry."
+1. **Create a single new edge function: `send-inquiry-notification`**
+   - Accepts a `type` parameter: `newsletter`, `green-jobs-quiz`
+   - Sends a labeled email to theresa.ronnie@bombaybreed.com with:
+     - Subject line that qualifies the inquiry type (e.g., "New Newsletter Subscriber -- priya@example.com", "Green Jobs Quiz Lead -- Priya Sharma (Systems Thinker)")
+     - Body with all captured fields so Theresa can act directly from her inbox
 
-### 3. Personality Quiz Section (lines 457-461)
+2. **Update `Newsletter.tsx`** -- after successful Supabase insert, invoke `send-inquiry-notification` with type `newsletter`
 
-- Update the intro body text to frame the four archetypes as starting points, not an exhaustive list
-- Add academic stream hints to each personality's `tagline` or `vibe` field so readers can self-select based on their degree:
-  - Builder: Engineering, vocational/trades, applied sciences
-  - Earth Keeper: Life sciences, agriculture, ecology, geography
-  - Systems Thinker: STEM, economics, finance, data science, MBA
-  - Catalyst: Social sciences, humanities, law, development studies, education
+3. **Update `GreenJobsGuide.tsx`** -- after successful lead form submission, invoke `send-inquiry-notification` with type `green-jobs-quiz`
 
-### 4. Personality Results Section (around line 552)
+### B. Weekly Digest Email (Report Downloads + Site Analytics)
 
-- After "Your top 5 career matches" heading, add a short note: "These are indicative roles for your archetype. The green economy offers many more career paths across sectors -- explore widely."
+A scheduled edge function that runs every Monday morning and sends a single digest email covering:
 
-### 5. Bottom Line Section (lines 563-586)
+1. **Report downloads this week** -- count per report title, total downloads
+2. **Inquiry summary** -- count of contact messages, newsletter signups, quiz leads
+3. **Quiz engagement** -- personality clicks vs. form completions (conversion rate)
 
-- Add a share prompt after the 4 steps box: "Know a college student or fresh graduate figuring out their first career move? Share this guide with them." with a copy-link or native share button
+**Implementation:**
+
+1. **Create edge function: `send-weekly-digest`**
+   - Queries `contact_submissions`, `contact_inquiries`, `newsletter_subscribers`, `quiz_interactions`, and `report_downloads` for records from the past 7 days
+   - Builds an HTML email dashboard with counts and top-line metrics
+   - Sends to theresa.ronnie@bombaybreed.com
+   - Subject: "Bombay Breed Weekly Dashboard -- {date range}"
+
+2. **Schedule via pg_cron** -- run every Monday at 9:00 AM IST (3:30 AM UTC)
+
+## Files to Create / Modify
+
+| File | Action | Description |
+|---|---|---|
+| `supabase/functions/send-inquiry-notification/index.ts` | Create | Generic inquiry email sender |
+| `supabase/functions/send-weekly-digest/index.ts` | Create | Weekly analytics digest |
+| `supabase/config.toml` | Modify | Add verify_jwt = false for both new functions |
+| `src/components/Newsletter.tsx` | Modify | Add email notification after subscribe |
+| `src/pages/GreenJobsGuide.tsx` | Modify | Add email notification after quiz lead capture |
+| Database (pg_cron) | Insert | Schedule weekly digest cron job |
 
 ## Technical Details
 
-All changes are copy/text edits within existing elements -- no new components, no new state, no new dependencies. The academic stream hints will be added as a new `academicFit` field on each personality object and rendered as a small line under the tagline on the PersonalityCard. The share prompt will use `navigator.share` with a `navigator.clipboard` fallback.
+### send-inquiry-notification Edge Function
 
-| File | Lines affected | Type |
-|------|---------------|------|
-| `src/components/GreenJobsTeaser.tsx` | ~38-40, ~67-69 | Copy edit + share line |
-| `src/pages/GreenJobsGuide.tsx` | ~50-115 (personality data), ~388-393, ~458-461, ~552-553, ~572-584 | Copy edits + academicFit field + share CTA |
+Accepts POST body:
+```json
+{
+  "type": "newsletter" | "green-jobs-quiz",
+  "email": "user@example.com",
+  "name": "Priya Sharma",         // optional for newsletter
+  "phone": "+91 98765 43210",     // optional
+  "personality": "Systems Thinker" // only for quiz
+}
+```
 
+Generates subject lines:
+- Newsletter: "New Newsletter Subscriber -- priya@example.com"
+- Quiz: "Green Jobs Quiz Lead -- Priya Sharma (Systems Thinker)"
+
+Body includes all available fields in a clean HTML table.
+
+### send-weekly-digest Edge Function
+
+Queries the last 7 days of data using the service role key:
+- `report_downloads` grouped by `report_name` with counts
+- `contact_inquiries` count
+- `contact_submissions` where form_type = 'green-jobs-quiz' count
+- `newsletter_subscribers` count
+- `quiz_interactions` total clicks vs. form_completed = true
+
+Renders an HTML email with sections:
+- Report Downloads (table: report name, count)
+- New Inquiries (contact messages, quiz leads, newsletter signups)
+- Quiz Funnel (personality clicks to form completions, conversion %)
+- Date range header
+
+### Cron Schedule (pg_cron)
+
+Monday 9 AM IST = `30 3 * * 1` UTC. Uses `pg_net.http_post` to call the edge function.
+
+### Existing Functions Unchanged
+
+The `send-contact-email` and `submit-lead-and-generate-download` functions already send properly labeled emails for their respective inquiry types. No changes needed there.
