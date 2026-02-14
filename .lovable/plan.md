@@ -1,83 +1,44 @@
 
 
-# Green Jobs Quiz -- Homepage Highlight + Full Page
+# Refine Green Jobs Guide Messaging
 
-## Overview
+Adjust existing copy across the guide page and homepage teaser to clearly frame the quiz as indicative, aimed at college graduates entering the workforce, and shareable. No new sections or components -- just targeted copy edits.
 
-Add a prominent, eye-catching "Green Jobs Quiz" teaser section to the homepage that appears immediately after the hero (first scroll), driving every visitor to take the personality quiz. The full interactive quiz lives on its own page at `/green-jobs-guide`.
+## Changes
 
-## 1. Homepage Teaser Section
+### 1. Homepage Teaser (`src/components/GreenJobsTeaser.tsx`)
 
-A visually striking section placed directly after `ExecutiveHero` on the homepage (before `BoardValue`). It will feature:
+- Update subtitle to address college graduates: "Graduating soon? 375 million net new jobs are coming by 2035..."
+- Add a one-liner below the CTA: "Know someone planning their first job? Share this quiz with them."
 
-- Forest green gradient background (matching site primary)
-- Bold headline: "Your Future is Green. Here's the Map."
-- The 4 personality emoji icons as visual hooks
-- Key stat: "375M net new jobs by 2035"
-- Large CTA button linking to `/green-jobs-guide`
-- Subtitle: "30 seconds . Personalised career matches . Based on WRI data"
+### 2. Guide Page Hero (lines 385-412 in `GreenJobsGuide.tsx`)
 
-This section uses the site's existing design system (Tailwind classes, ScrollReveal, Button component) -- not the inline styles from the uploaded file.
+- Update subtitle copy to say this guide is for college graduates and early-career professionals choosing a work stream
+- Add a short line: "This quiz covers select archetypes -- the actual green economy spans hundreds of roles across every industry."
 
-## 2. Full Green Jobs Guide Page
+### 3. Personality Quiz Section (lines 457-461)
 
-Convert the uploaded `green-jobs-guide.jsx` into a proper TypeScript React component at `src/pages/GreenJobsGuide.tsx` (note: there is already a `src/pages/GreenJobsReport.tsx` -- this is a different page). The component will be adapted to:
+- Update the intro body text to frame the four archetypes as starting points, not an exhaustive list
+- Add academic stream hints to each personality's `tagline` or `vibe` field so readers can self-select based on their degree:
+  - Builder: Engineering, vocational/trades, applied sciences
+  - Earth Keeper: Life sciences, agriculture, ecology, geography
+  - Systems Thinker: STEM, economics, finance, data science, MBA
+  - Catalyst: Social sciences, humanities, law, development studies, education
 
-- Use TypeScript with proper type annotations
-- Replace inline `style={}` with Tailwind classes where practical, but keep inline styles for complex/dynamic values (charts, color-driven UI)
-- Replace hardcoded font imports with the site's existing Georgia / system fonts
-- Include the site's `Header` and `Footer` components
-- Wire up the lead capture form to Supabase (using the existing `submit-lead-and-generate-download` edge function or a direct insert)
-- Remove the debug analytics dashboard (fixed bottom-right panel)
+### 4. Personality Results Section (around line 552)
 
-## 3. Routing
+- After "Your top 5 career matches" heading, add a short note: "These are indicative roles for your archetype. The green economy offers many more career paths across sectors -- explore widely."
 
-Add a route for `/green-jobs-guide` in `App.tsx` pointing to the new page component.
+### 5. Bottom Line Section (lines 563-586)
 
-## Files to Create / Modify
-
-| File | Action | Description |
-|------|--------|-------------|
-| `src/components/GreenJobsTeaser.tsx` | Create | Homepage teaser section with CTA |
-| `src/pages/GreenJobsGuide.tsx` | Create | Full quiz page (adapted from uploaded JSX) |
-| `src/pages/Index.tsx` | Modify | Insert `GreenJobsTeaser` after `ExecutiveHero` |
-| `src/App.tsx` | Modify | Add `/green-jobs-guide` route |
+- Add a share prompt after the 4 steps box: "Know a college student or fresh graduate figuring out their first career move? Share this guide with them." with a copy-link or native share button
 
 ## Technical Details
 
-### Homepage Teaser Component (`GreenJobsTeaser.tsx`)
+All changes are copy/text edits within existing elements -- no new components, no new state, no new dependencies. The academic stream hints will be added as a new `academicFit` field on each personality object and rendered as a small line under the tagline on the PersonalityCard. The share prompt will use `navigator.share` with a `navigator.clipboard` fallback.
 
-```text
-+--------------------------------------------------------+
-|  [Forest green gradient background]                     |
-|                                                         |
-|  A CLIMATE DIGEST CAREER GUIDE                          |
-|                                                         |
-|  Your Future is Green. Here's the Map.                  |
-|                                                         |
-|  [emoji icons]  375M net new jobs by 2035               |
-|                                                         |
-|  [ Take the Free Quiz -> ]   (large CTA button)        |
-|                                                         |
-|  30 sec . Personalised matches . Based on WRI data      |
-+--------------------------------------------------------+
-```
-
-- Uses `ScrollReveal` for entrance animation
-- Uses site `Button` component with `gradient` variant
-- Links via `react-router-dom` `Link` to `/green-jobs-guide`
-- Responsive: stacks on mobile, side-by-side on desktop
-
-### Full Page Adaptation
-
-- All 4 personality types preserved (Builder, Earth Keeper, Systems Thinker, Community Catalyst)
-- All charts preserved (SectorJobsChart, ChurnDonut, AdaptationROI, SkillTransferSankey)
-- Lead capture gate with name/email/phone preserved
-- Job cards with expandable details preserved
-- Color palette mapped to site theme variables where possible
-- Wrapped with site Header/Footer
-
-### Index.tsx Change
-
-Insert `<GreenJobsTeaser />` between `ExecutiveHero` and `BoardValue` so it's visible on first scroll.
+| File | Lines affected | Type |
+|------|---------------|------|
+| `src/components/GreenJobsTeaser.tsx` | ~38-40, ~67-69 | Copy edit + share line |
+| `src/pages/GreenJobsGuide.tsx` | ~50-115 (personality data), ~388-393, ~458-461, ~552-553, ~572-584 | Copy edits + academicFit field + share CTA |
 
