@@ -36,7 +36,7 @@ const GreenJobsTeaser = () => {
           </h2>
 
           <p className="text-base md:text-lg text-emerald-200/80 leading-relaxed max-w-xl mx-auto mb-8">
-            <span className="font-semibold text-white">375 million net new jobs</span> are coming by 2035.
+            Graduating soon? <span className="font-semibold text-white">375 million net new jobs</span> are coming by 2035.
             Find the climate career that fits your personality — not a generic list, but <em>your</em> path.
           </p>
         </ScrollReveal>
@@ -66,6 +66,9 @@ const GreenJobsTeaser = () => {
 
           <p className="text-xs text-white/40 mt-5 tracking-wide">
             30 seconds · Personalised career matches · Based on WRI data
+          </p>
+          <p className="text-xs text-emerald-300/60 mt-3">
+            Know someone planning their first job? Share this quiz with them.
           </p>
         </ScrollReveal>
       </div>
