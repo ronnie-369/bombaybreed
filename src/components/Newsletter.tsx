@@ -58,11 +58,16 @@ const Newsletter = () => {
           });
         }
       } else {
-        toast({
+      toast({
           title: "Subscription successful!",
           description: "You'll receive updates from The Climate Desk.",
         });
         setEmail('');
+
+        // Send inquiry notification email (fire-and-forget)
+        supabase.functions.invoke('send-inquiry-notification', {
+          body: { type: 'newsletter', email: sanitizedEmail },
+        }).catch((err) => console.error('Newsletter notification error:', err));
       }
     } catch (error) {
       console.error('Newsletter subscription error:', error);
