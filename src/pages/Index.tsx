@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import Header from '@/components/Header';
 import ExecutiveHero from '@/components/ExecutiveHero';
-import GreenJobsTeaser from '@/components/GreenJobsTeaser';
+
 import BoardValue from '@/components/BoardValue';
 import TrackRecord from '@/components/TrackRecord';
 import DirectContact from '@/components/DirectContact';
@@ -33,7 +33,7 @@ const Index = () => {
       <ContentLoader isLoading={isLoading} skeleton={<HeroSkeleton />}>
         <ExecutiveHero />
       </ContentLoader>
-      <GreenJobsTeaser />
+      
       <ContentLoader isLoading={isLoading} skeleton={<BoardValueSkeleton />}>
         <BoardValue />
       </ContentLoader>
