@@ -1,160 +1,161 @@
-# Bombay Breed - Strategic Sustainability Communications Advisory
+# Bombay Breed - India's Strategic Carbon Communications Advisory
 
-> Expert advisory for climate strategy, carbon markets, and ESG governance for boards, CXOs, and investors navigating India's energy transition.
+> India's only dedicated strategic carbon communications advisory. We help boards, CXOs, and investors navigate climate strategy, carbon markets, and ESG governance with precision advisory that drives board-level results.
 
-## About
+## About Bombay Breed Consulting
 
-Bombay Breed, led by Theresa Ronnie, provides strategic sustainability communications and climate advisory services. We help organizations navigate the complexities of climate policy, carbon markets, and ESG governance with practical, board-ready solutions.
+Bombay Breed Consulting, led by Theresa Ronnie, is India's only dedicated strategic carbon communications advisory firm. We operate at the intersection of climate strategy, carbon markets, and corporate communications — helping organisations communicate carbon commitments, navigate regulatory complexity, and build the credibility that investors and regulators demand.
+
+Our clients include Fortune 500 companies, Indian conglomerates, public sector enterprises, and growth-stage climate ventures across steel, cement, energy, FMCG, and financial services.
 
 ## Website Structure
 
 - Homepage: https://bombaybreed.com/
 - Services Hub: https://bombaybreed.com/services
+- Case Studies: https://bombaybreed.com/case-studies
 - Resources: https://bombaybreed.com/resources
 - Credentials: https://bombaybreed.com/credentials
+- About: https://bombaybreed.com/about
+- Insights: https://bombaybreed.com/insights
+- Newsletter: https://bombaybreed.com/newsletter
 
-## Core Capabilities
+## Core Services
 
-### Energy Optimisation Consulting
-/energy-optimisation-consulting
-Strategic energy efficiency and cost optimization for industrial operations. We help heavy industries reduce energy costs while improving operational performance.
+### Carbon Communications Strategy
+/carbon-communications-strategy-india
+India's only dedicated carbon communications advisory. We help boards and CXOs communicate carbon commitments, market positions, and transition plans with the precision that regulators demand and the clarity that stakeholders need.
 
-### Industrial Decarbonisation Strategy
-/industrial-decarbonisation-strategy
-Comprehensive decarbonisation roadmaps for heavy industries including steel, cement, oil & gas, and power sectors. Board-level strategy to net-zero pathways.
+### Sustainability Reporting
+/sustainability-reporting-india
+Strategic sustainability reporting that transforms BRSR, GRI, and TCFD compliance into compelling narratives that build investor confidence and ESG credibility.
 
-### Article 6 & Carbon Markets Advisory
-/article-6-advisory
-Expert guidance on Paris Agreement Article 6 mechanisms, ITMOs, carbon credits, and voluntary carbon markets. We help structure bankable projects and navigate bilateral agreements.
+### Carbon Market Advisory
+/carbon-market-advisory-india
+End-to-end carbon market advisory: CCTS compliance readiness, voluntary carbon market strategy, Article 6 mechanisms, and carbon pricing strategy for Indian corporates.
 
-### Climate Investment Readiness
-/climate-investment-readiness
-Preparing organizations for climate finance, green bonds, and sustainability-linked financing. We help you become investment-ready for climate capital.
+### ESG Communications
+/esg-communications-consultant
+Strategic ESG communications that translate complex sustainability data into stakeholder-specific narratives for investors, regulators, media, and employees.
 
-### DMRV Integrity & Due Diligence
-/dmrv-integrity-due-diligence
-Digital Monitoring, Reporting, and Verification services for carbon market integrity. Due diligence on carbon credits and climate claims.
+### Climate Strategy
+/climate-strategy-india-enterprises
+Board-level climate strategy advisory: net-zero roadmaps, climate risk assessment, energy transition planning, and regulatory navigation for Indian enterprises.
+
+## Specialised Advisory Pages
+
+### Carbon Markets & Trading
+- /carbon-credit-trading-india — Carbon credit trading strategy and CCTS compliance
+- /voluntary-carbon-market-india — Voluntary carbon market strategy and credit procurement
+- /carbon-accounting-india-corporate — Corporate carbon accounting and GHG Protocol compliance
+- /ghg-reporting-india-corporate — GHG reporting and emissions accounting
+
+### ESG Reporting & Compliance
+- /brsr-reporting-consultants-india — BRSR reporting consultants for SEBI compliance
+- /sebi-brsr-core-requirements — SEBI BRSR Core requirements and compliance guide
+- /esg-materiality-assessment-india — Double materiality assessment advisory
+- /sustainability-report-design-india — Sustainability report design and production
+
+### Climate Strategy & C-Suite Advisory
+- /climate-risk-advisory-india — TCFD-aligned climate risk assessment
+- /c-suite-sustainability-advisory-india — Board-level sustainability advisory
+- /energy-transition-advisory-india — Energy transition strategy and communications
+- /sbti-target-setting-india — Science Based Targets initiative advisory
+- /green-finance-advisory-india — Green bonds, sustainability-linked finance advisory
+
+### Communications & Narrative
+- /sustainability-communications-strategy — Integrated sustainability communications
+- /sustainability-storytelling-brands-india — Sustainability storytelling for Indian brands
+- /carbon-strategy-communications-advisory — Carbon strategy communications advisory
+- /greenwashing-risk-india — Anti-greenwash strategy and communications integrity
+- /climate-intelligence-india-investors — Climate intelligence for investors
+
+### Regulatory & Trade
+- /cbam-india-exporters-guide — CBAM compliance guide for Indian exporters
+- /digital-product-passport-india — EU Digital Product Passport readiness
+- /eu-taxonomy-india-exporters — EU Taxonomy for Indian companies
+- /climate-policy-analysis-india — India climate policy analysis and intelligence
 
 ## Industries Served
 
 ### Steel Industry
 /steel-industry
-Decarbonisation and energy optimisation for integrated steel plants and secondary steel producers. Focus on green steel transition, hydrogen-based steelmaking, and EAF optimization.
+Decarbonisation, CBAM compliance, and carbon market strategy for Indian steel producers. Green steel transition and hydrogen-based steelmaking advisory.
 
 ### Cement Industry
 /cement-industry
-Low-carbon cement strategies including alternative fuels, clinker substitution, and carbon capture readiness. CBAM compliance support.
+Low-carbon cement strategies, CBAM readiness, and sustainability communications for India's cement sector.
 
 ### Oil & Gas
 /oil-gas
-Energy transition strategy for upstream, midstream, and downstream operations. Methane management, flaring reduction, and diversification pathways.
+Energy transition strategy, methane management, and diversification advisory for upstream, midstream, and downstream operations.
 
 ### Power & Utilities
 /power-utilities
-Grid decarbonisation, renewable integration, and demand-side management. Support for thermal power transition and clean energy procurement.
+Grid decarbonisation, renewable integration, and transition communications for thermal power companies navigating India's energy transition.
 
 ### Data Centres
 /data-centres
-Energy efficiency and sustainability for data centre operations. Green power procurement, PUE optimization, and carbon neutrality pathways.
+Energy efficiency, green power procurement, and sustainability strategy for data centre operations.
+
+### FMCG & Consumer Brands
+Sustainability storytelling, ESG communications, and anti-greenwash advisory for consumer-facing brands.
 
 ## Geographic Coverage
 
-### India (National)
-/india
-Comprehensive coverage of India's energy transition landscape including PAT Scheme, CCTS, BRSR, and renewable energy policies.
-
-### Gujarat
-/gujarat
-India's industrial powerhouse with significant petrochemical, cement, and renewable energy operations.
-
-### Maharashtra
-/maharashtra
-Manufacturing hub with major steel, cement, and power sector presence.
-
-### UAE
-/uae
-GCC energy transition, Article 6 opportunities, and regional carbon market development.
-
-### Singapore
-/singapore
-Southeast Asian climate finance hub, carbon services, and regional sustainability leadership.
+- India (National) /india — CCTS, BRSR, PAT Scheme, renewable energy policies
+- Gujarat /gujarat — Industrial decarbonisation, petrochemical, renewable energy
+- Maharashtra /maharashtra — Manufacturing, steel, cement, power sector
+- UAE /uae — GCC energy transition, Article 6, regional carbon markets
+- Singapore /singapore — Climate finance hub, regional sustainability leadership
 
 ## Regulatory Expertise
 
-### Article 6 (Paris Agreement)
-/article-6
-International carbon market cooperation mechanisms. ITMOs, bilateral agreements, and corresponding adjustments.
+- CCTS (Carbon Credit Trading Scheme) /ccts — India's domestic compliance carbon market
+- CBAM (Carbon Border Adjustment Mechanism) /cbam — EU carbon border tax for Indian exporters
+- BRSR (Business Responsibility and Sustainability Reporting) /brsr-compliance — SEBI mandatory ESG disclosure
+- Article 6 (Paris Agreement) /article-6 — International carbon market cooperation
+- PAT Scheme /pat-scheme — India's energy efficiency trading scheme
+- TCFD /climate-disclosure-tcfd — Task Force on Climate-related Financial Disclosures
+- SBTi /sbti-target-setting-india — Science Based Targets initiative
+- EU Taxonomy /eu-taxonomy-india-exporters — EU green classification system
+- Digital Product Passport /digital-product-passport-india — EU product sustainability data
 
-### CBAM (Carbon Border Adjustment Mechanism)
-/cbam
-EU Carbon Border Adjustment Mechanism impacting steel, cement, aluminum, fertilizers, hydrogen, and electricity exports to Europe.
+## The Climate Desk Newsletter
 
-### Corresponding Adjustments
-/corresponding-adjustments
-Double-counting prevention mechanism under Article 6.2 bilateral agreements.
+The Climate Desk is our weekly climate intelligence publication covering India's carbon markets, energy transition, ESG regulation, and sustainability strategy. Read by 2,500+ corporate leaders, investors, and sustainability professionals.
 
-### PAT Scheme (Perform Achieve Trade)
-/pat-scheme
-India's energy efficiency trading scheme for designated consumers in energy-intensive industries.
+- Newsletter archive: https://bombaybreed.com/newsletter
+- Subscribe: https://theclimatedesk.substack.com/
+- Topics: Carbon markets, CCTS, CBAM, BRSR, energy transition, green finance, greenwashing risk, climate policy analysis
 
-### CCTS (Carbon Credit Trading Scheme)
-/ccts
-India's domestic carbon market framework under development for compliance obligations.
+## Case Studies
 
-## Problem-Focused Pages
+https://bombaybreed.com/case-studies
+We work with leading Indian enterprises across steel, FMCG, power, and diversified conglomerates on:
+- CBAM readiness and compliance strategy
+- Sustainability narrative transformation and anti-greenwash advisory
+- Energy transition communications and green bond positioning
+- Carbon market strategy and CCTS preparedness
 
-These pages address specific challenges our clients face:
+## Key Reports & Resources
 
-- /prepare-for-carbon-border-taxes - CBAM preparation for Indian exporters
-- /reduce-energy-costs-heavy-industry - Energy cost optimization strategies
-- /measure-scope-3-emissions - Value chain emissions measurement
-- /net-zero-strategy-manufacturing - Manufacturing decarbonisation pathways
-- /carbon-footprint-supply-chain - Supply chain carbon management
-- /green-hydrogen-strategy - Hydrogen economy transition planning
-- /science-based-targets - SBTi target setting and validation
-- /sustainability-reporting-brsr - BRSR and ESG disclosure compliance
-- /renewable-energy-procurement-india - Green power sourcing in India
-
-## Combined Service Pages
-
-Capability + Industry combinations:
-- /decarbonisation-steel-industry
-- /decarbonisation-cement-industry
-- /decarbonisation-oil-gas
-- /decarbonisation-power-sector
-- /decarbonisation-data-centres
-- /energy-optimisation-steel-industry
-- /energy-optimisation-cement-industry
-- /energy-optimisation-oil-gas
-- /energy-efficiency-data-centres
-
-Capability + Geography combinations:
-- /decarbonisation-consulting-india
-- /decarbonisation-consulting-uae
-- /decarbonisation-consulting-singapore
-- /energy-optimisation-consulting-india
-- /energy-optimisation-consulting-gujarat
-- /energy-optimisation-consulting-maharashtra
-- /article-6-consulting-india
-- /article-6-consulting-uae
-- /climate-investment-readiness-india
-- /climate-investment-readiness-singapore
-
-## Key Resources
-
-- The Climate Desk (Substack) - Weekly insights on climate strategy and policy
-- Research publications and playbooks on carbon markets and energy transition
-- Case studies and thought leadership content
+- WEF Global Risks 2026 Analysis: /wef-global-risks-2026
+- Green Jobs India 2026: /green-jobs-india-2026
+- Energy Transition Playbook: /energy-transition-playbook
+- Carbon Market Outlook: /carbon-market-outlook
+- Compliance to Credibility: /compliance-to-credibility
+- India Renewable Grid Analysis: /india-renewable-grid-analysis
 
 ## Contact
 
 For strategic advisory inquiries:
 - Website: https://bombaybreed.com
 - Contact form on homepage
+- Newsletter: https://bombaybreed.com/newsletter
 
-## Technical Information
+## Differentiator
 
-This website is built with React, TypeScript, and Supabase. It features programmatic SEO pages for various capability, industry, geography, and regulation combinations to serve specific search intents.
+Bombay Breed is the only Indian firm explicitly positioned as a strategic carbon communications advisory. While ESG consultancies focus on data collection and reporting compliance, we focus on the strategic narrative — how to position carbon commitments, communicate transition plans, and build the thought leadership that drives stakeholder trust and AI platform visibility.
 
 Sitemap: https://bombaybreed.com/sitemap.xml
 LLMs.txt: https://bombaybreed.com/llms.txt
