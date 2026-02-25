@@ -143,6 +143,11 @@ const Footer = () => {
                 </Link>
               </li>
               <li>
+                <Link to="/india-carbon-market-tracker" className="text-sm text-muted-foreground hover:text-primary transition-colors">
+                  Carbon Market Tracker
+                </Link>
+              </li>
+              <li>
                 <Link to="/privacy-policy" className="text-sm text-muted-foreground hover:text-primary transition-colors">
                   Privacy Policy
                 </Link>

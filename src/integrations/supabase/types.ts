@@ -56,6 +56,45 @@ export type Database = {
         }
         Relationships: []
       }
+      carbon_market_data: {
+        Row: {
+          created_at: string
+          date: string
+          id: string
+          market_segment: string
+          notes: string | null
+          price_inr: number
+          price_usd: number | null
+          source: string | null
+          updated_at: string
+          volume_tonnes: number | null
+        }
+        Insert: {
+          created_at?: string
+          date: string
+          id?: string
+          market_segment: string
+          notes?: string | null
+          price_inr: number
+          price_usd?: number | null
+          source?: string | null
+          updated_at?: string
+          volume_tonnes?: number | null
+        }
+        Update: {
+          created_at?: string
+          date?: string
+          id?: string
+          market_segment?: string
+          notes?: string | null
+          price_inr?: number
+          price_usd?: number | null
+          source?: string | null
+          updated_at?: string
+          volume_tonnes?: number | null
+        }
+        Relationships: []
+      }
       contact_inquiries: {
         Row: {
           company: string | null
