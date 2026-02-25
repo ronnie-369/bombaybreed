@@ -118,6 +118,16 @@ const Footer = () => {
                 </Link>
               </li>
               <li>
+                <Link to="/case-studies" className="text-sm text-muted-foreground hover:text-primary transition-colors">
+                  Case Studies
+                </Link>
+              </li>
+              <li>
+                <Link to="/newsletter" className="text-sm text-muted-foreground hover:text-primary transition-colors">
+                  Newsletter
+                </Link>
+              </li>
+              <li>
                 <Link to="/resources" className="text-sm text-muted-foreground hover:text-primary transition-colors">
                   Resources
                 </Link>
@@ -125,6 +135,11 @@ const Footer = () => {
               <li>
                 <Link to="/credentials" className="text-sm text-muted-foreground hover:text-primary transition-colors">
                   Credentials
+                </Link>
+              </li>
+              <li>
+                <Link to="/insights" className="text-sm text-muted-foreground hover:text-primary transition-colors">
+                  Insights
                 </Link>
               </li>
               <li>
