@@ -2,7 +2,7 @@ import React, { useState, useRef, useMemo, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
-import BlogCarousel from '@/components/BlogCarousel';
+
 import FeaturedReportsCarousel from '@/components/FeaturedReportsCarousel';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from '@/components/ui/button';
@@ -446,8 +446,6 @@ const Insights = () => {
           </div>
         </section>
 
-        {/* Blog Insights */}
-        <BlogCarousel />
 
         {/* The Climate Desk Newsletter */}
         <section className="py-20 px-6 md:px-8">
