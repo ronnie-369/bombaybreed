@@ -1,102 +1,45 @@
 
 
-# Unified Inquiry Notifications + Weekly Analytics Digest
+## Streamline Website Navigation & Content
 
-## What Changes
+### Problem
+The site has significant content overlap and too many top-level pages:
+- **About** and **Credentials** duplicate Theresa's bio, portrait, experience stats, and Erik Solheim quote
+- **Insights** and **Resources** both serve reports/analysis content with similar layouts
+- Header has 6 nav items + Contact button — too many for a lean advisory brand
+- Footer has 9 quick links
 
-### A. Instant Email Notifications for Every Inquiry Type
+### Plan
 
-Currently, only the contact form and report downloads trigger emails. Two inquiry types are missing notifications:
+**1. Merge About + Credentials → single `/about` page**
+- Combine the "Why Carbon Communications Matters" + "Our Approach" sections from About with the client logos, testimonials, and experience grid from Credentials
+- Structure: Hero → Gap We Fill → Founder Bio (with portrait + stats) → Client Logos → Testimonials → CTA
+- Remove the standalone Credentials page component; redirect `/credentials` → `/about`
 
-| Inquiry Source | Current State | Change |
-|---|---|---|
-| Contact form | Already sends email | Update subject to "Website Message -- {name}" (keep as-is) |
-| Report downloads | Already sends email | Update subject to "Report Download -- {report title}" (keep as-is) |
-| Newsletter signups | No email | Add email trigger |
-| Green Jobs quiz leads | No email | Add email trigger |
-| Quiz personality clicks (no form) | No email | No email needed (too noisy -- tracked in DB only) |
+**2. Merge Insights + Resources → single `/insights` page**
+- Lead with the featured insights cards, then the featured reports carousel from Resources, then topic clusters, then full publication archive with search/filters, then Climate Desk newsletter CTA
+- Remove the standalone Resources page component; redirect `/resources` → `/insights`
 
-**Implementation:**
+**3. Simplify Header navigation**
+- Reduce to: **Home, About, Services, Insights, Contact**
+- Remove "Resources" and "Credentials" from nav
+- Keep the Services mega menu as-is (it's well-structured for SEO)
 
-1. **Create a single new edge function: `send-inquiry-notification`**
-   - Accepts a `type` parameter: `newsletter`, `green-jobs-quiz`
-   - Sends a labeled email to theresa.ronnie@bombaybreed.com with:
-     - Subject line that qualifies the inquiry type (e.g., "New Newsletter Subscriber -- priya@example.com", "Green Jobs Quiz Lead -- Priya Sharma (Systems Thinker)")
-     - Body with all captured fields so Theresa can act directly from her inbox
+**4. Simplify Footer**
+- Reduce Quick Links to: Home, About, Services, Insights, Case Studies, Privacy Policy
+- Remove Carbon Market Tracker and Newsletter from quick links (accessible via Insights page)
+- Keep Services column and Stay Connected column unchanged
 
-2. **Update `Newsletter.tsx`** -- after successful Supabase insert, invoke `send-inquiry-notification` with type `newsletter`
+**5. Add route redirects in App.tsx**
+- `/credentials` → `<Navigate to="/about" replace />`
+- `/resources` → `<Navigate to="/insights" replace />`
+- Preserves SEO equity from any existing backlinks
 
-3. **Update `GreenJobsGuide.tsx`** -- after successful lead form submission, invoke `send-inquiry-notification` with type `green-jobs-quiz`
+### Files Changed
+- `src/pages/About.tsx` — rewrite to incorporate Credentials content (client logos, testimonials, experience grid)
+- `src/pages/Insights.tsx` — rewrite to incorporate Resources content (reports archive, search, filters, lead capture form)
+- `src/components/Header.tsx` — remove "Resources" and "Credentials" nav links
+- `src/components/Footer.tsx` — reduce quick links
+- `src/App.tsx` — add redirects for `/credentials` → `/about` and `/resources` → `/insights`; remove lazy imports for old pages
+- Delete: `src/pages/Credentials.tsx`, `src/pages/Resources.tsx` (after merging content)
 
-### B. Weekly Digest Email (Report Downloads + Site Analytics)
-
-A scheduled edge function that runs every Monday morning and sends a single digest email covering:
-
-1. **Report downloads this week** -- count per report title, total downloads
-2. **Inquiry summary** -- count of contact messages, newsletter signups, quiz leads
-3. **Quiz engagement** -- personality clicks vs. form completions (conversion rate)
-
-**Implementation:**
-
-1. **Create edge function: `send-weekly-digest`**
-   - Queries `contact_submissions`, `contact_inquiries`, `newsletter_subscribers`, `quiz_interactions`, and `report_downloads` for records from the past 7 days
-   - Builds an HTML email dashboard with counts and top-line metrics
-   - Sends to theresa.ronnie@bombaybreed.com
-   - Subject: "Bombay Breed Weekly Dashboard -- {date range}"
-
-2. **Schedule via pg_cron** -- run every Monday at 9:00 AM IST (3:30 AM UTC)
-
-## Files to Create / Modify
-
-| File | Action | Description |
-|---|---|---|
-| `supabase/functions/send-inquiry-notification/index.ts` | Create | Generic inquiry email sender |
-| `supabase/functions/send-weekly-digest/index.ts` | Create | Weekly analytics digest |
-| `supabase/config.toml` | Modify | Add verify_jwt = false for both new functions |
-| `src/components/Newsletter.tsx` | Modify | Add email notification after subscribe |
-| `src/pages/GreenJobsGuide.tsx` | Modify | Add email notification after quiz lead capture |
-| Database (pg_cron) | Insert | Schedule weekly digest cron job |
-
-## Technical Details
-
-### send-inquiry-notification Edge Function
-
-Accepts POST body:
-```json
-{
-  "type": "newsletter" | "green-jobs-quiz",
-  "email": "user@example.com",
-  "name": "Priya Sharma",         // optional for newsletter
-  "phone": "+91 98765 43210",     // optional
-  "personality": "Systems Thinker" // only for quiz
-}
-```
-
-Generates subject lines:
-- Newsletter: "New Newsletter Subscriber -- priya@example.com"
-- Quiz: "Green Jobs Quiz Lead -- Priya Sharma (Systems Thinker)"
-
-Body includes all available fields in a clean HTML table.
-
-### send-weekly-digest Edge Function
-
-Queries the last 7 days of data using the service role key:
-- `report_downloads` grouped by `report_name` with counts
-- `contact_inquiries` count
-- `contact_submissions` where form_type = 'green-jobs-quiz' count
-- `newsletter_subscribers` count
-- `quiz_interactions` total clicks vs. form_completed = true
-
-Renders an HTML email with sections:
-- Report Downloads (table: report name, count)
-- New Inquiries (contact messages, quiz leads, newsletter signups)
-- Quiz Funnel (personality clicks to form completions, conversion %)
-- Date range header
-
-### Cron Schedule (pg_cron)
-
-Monday 9 AM IST = `30 3 * * 1` UTC. Uses `pg_net.http_post` to call the edge function.
-
-### Existing Functions Unchanged
-
-The `send-contact-email` and `submit-lead-and-generate-download` functions already send properly labeled emails for their respective inquiry types. No changes needed there.
