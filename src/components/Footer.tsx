@@ -108,49 +108,22 @@ const Footer = () => {
             </h4>
             <ul className="space-y-2">
               <li>
-                <Link to="/" className="text-sm text-muted-foreground hover:text-primary transition-colors">
-                  Home
-                </Link>
+                <Link to="/" className="text-sm text-muted-foreground hover:text-primary transition-colors">Home</Link>
               </li>
               <li>
-                <Link to="/services" className="text-sm text-muted-foreground hover:text-primary transition-colors">
-                  Services
-                </Link>
+                <Link to="/about" className="text-sm text-muted-foreground hover:text-primary transition-colors">About</Link>
               </li>
               <li>
-                <Link to="/case-studies" className="text-sm text-muted-foreground hover:text-primary transition-colors">
-                  Case Studies
-                </Link>
+                <Link to="/services" className="text-sm text-muted-foreground hover:text-primary transition-colors">Services</Link>
               </li>
               <li>
-                <Link to="/newsletter" className="text-sm text-muted-foreground hover:text-primary transition-colors">
-                  Newsletter
-                </Link>
+                <Link to="/insights" className="text-sm text-muted-foreground hover:text-primary transition-colors">Insights</Link>
               </li>
               <li>
-                <Link to="/resources" className="text-sm text-muted-foreground hover:text-primary transition-colors">
-                  Resources
-                </Link>
+                <Link to="/case-studies" className="text-sm text-muted-foreground hover:text-primary transition-colors">Case Studies</Link>
               </li>
               <li>
-                <Link to="/credentials" className="text-sm text-muted-foreground hover:text-primary transition-colors">
-                  Credentials
-                </Link>
-              </li>
-              <li>
-                <Link to="/insights" className="text-sm text-muted-foreground hover:text-primary transition-colors">
-                  Insights
-                </Link>
-              </li>
-              <li>
-                <Link to="/india-carbon-market-tracker" className="text-sm text-muted-foreground hover:text-primary transition-colors">
-                  Carbon Market Tracker
-                </Link>
-              </li>
-              <li>
-                <Link to="/privacy-policy" className="text-sm text-muted-foreground hover:text-primary transition-colors">
-                  Privacy Policy
-                </Link>
+                <Link to="/privacy-policy" className="text-sm text-muted-foreground hover:text-primary transition-colors">Privacy Policy</Link>
               </li>
             </ul>
           </div>

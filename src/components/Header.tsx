@@ -178,12 +178,6 @@ const Header = () => {
           <Link to="/insights" className="text-sm text-muted-foreground hover:text-foreground transition-colors story-link">
             Insights
           </Link>
-          <Link to="/resources" className="text-sm text-muted-foreground hover:text-foreground transition-colors story-link">
-            Resources
-          </Link>
-          <Link to="/credentials" className="text-sm text-muted-foreground hover:text-foreground transition-colors story-link">
-            Credentials
-          </Link>
           <ThemeToggle />
           {location.pathname === '/' ? (
             <Button variant="default" size="sm" onClick={scrollToContact}>
@@ -266,12 +260,6 @@ const Header = () => {
 
             <Link to="/insights" className="text-sm text-muted-foreground hover:text-foreground transition-colors py-2" onClick={toggleMenu}>
               Insights
-            </Link>
-            <Link to="/resources" className="text-sm text-muted-foreground hover:text-foreground transition-colors py-2" onClick={toggleMenu}>
-              Resources
-            </Link>
-            <Link to="/credentials" className="text-sm text-muted-foreground hover:text-foreground transition-colors py-2" onClick={toggleMenu}>
-              Credentials
             </Link>
             {location.pathname === '/' ? (
               <Button variant="default" className="w-full" onClick={scrollToContact}>

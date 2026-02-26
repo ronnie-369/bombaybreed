@@ -13,8 +13,6 @@ import { usePreloader } from "./hooks/use-preloader";
 
 // Lazy load all page components for code splitting
 const Index = lazy(() => import("./pages/Index"));
-const Resources = lazy(() => import("./pages/Resources"));
-const Credentials = lazy(() => import("./pages/Credentials"));
 const PrivacyPolicy = lazy(() => import("./pages/PrivacyPolicy"));
 const NotFound = lazy(() => import("./pages/NotFound"));
 const Auth = lazy(() => import("./pages/Auth"));
@@ -58,8 +56,8 @@ const AppContent = () => {
             <Routes>
               {/* Core pages */}
               <Route path="/" element={<Index />} />
-              <Route path="/resources" element={<Resources />} />
-              <Route path="/credentials" element={<Credentials />} />
+              <Route path="/resources" element={<Navigate to="/insights" replace />} />
+              <Route path="/credentials" element={<Navigate to="/about" replace />} />
               <Route path="/about" element={<About />} />
               <Route path="/insights" element={<Insights />} />
               <Route path="/privacy-policy" element={<PrivacyPolicy />} />
