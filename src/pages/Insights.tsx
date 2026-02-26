@@ -272,7 +272,7 @@ const Insights = () => {
                   <TrendingUp className="w-6 h-6 text-primary" />
                   Featured Analysis
                 </h2>
-                <p className="text-muted-foreground">Strategic insights from The Climate Desk</p>
+                <p className="text-muted-foreground">Latest research and strategic analysis</p>
               </div>
 
               <div className="grid md:grid-cols-3 gap-6">
