@@ -6,6 +6,66 @@ import { Button } from '@/components/ui/button';
 import { ArrowRight, LinkedinIcon, Check, Quote } from 'lucide-react';
 import ScrollReveal from '@/components/ui/ScrollReveal';
 
+// Import client logos
+import itcLogo from '@/assets/client-logos/itc.jpg';
+import fordLogo from '@/assets/client-logos/ford.png';
+import cetfiLogo from '@/assets/client-logos/cetfi.jpg';
+import machaniLogo from '@/assets/client-logos/machani.png';
+import petronasLogo from '@/assets/client-logos/petronas.png';
+import microsoftLogo from '@/assets/client-logos/microsoft.png';
+import kpmgLogo from '@/assets/client-logos/kpmg.png';
+import quessLogo from '@/assets/client-logos/quess.png';
+import ubLogo from '@/assets/client-logos/united-breweries.png';
+import proclimeLogo from '@/assets/client-logos/proclime.jpg';
+import volkswagenLogo from '@/assets/client-logos/volkswagen.png';
+import publicisLogo from '@/assets/client-logos/publicis.png';
+import swatchLogo from '@/assets/client-logos/swatch.png';
+import gh2IndiaLogo from '@/assets/client-logos/gh2-india.png';
+import apolloLogo from '@/assets/client-logos/apollo-hospitals.png';
+
+const clientLogos: Record<string, string> = {
+  "ITC Foods": itcLogo,
+  "Ford Motor Co": fordLogo,
+  "CETFI": cetfiLogo,
+  "Machani Group": machaniLogo,
+  "PETRONAS": petronasLogo,
+  "Microsoft India": microsoftLogo,
+  "KPMG India": kpmgLogo,
+  "Quess Corp": quessLogo,
+  "United Breweries": ubLogo,
+  "ProClime": proclimeLogo,
+  "Volkswagen Malaysia": volkswagenLogo,
+  "Publicis India": publicisLogo,
+  "Swatch": swatchLogo,
+  "GH2 India": gh2IndiaLogo,
+  "Apollo Hospitals": apolloLogo,
+};
+
+const clients = [
+  "KPMG India", "Microsoft India", "PETRONAS", "Ford Motor Co",
+  "Volkswagen Malaysia", "ITC Foods", "United Breweries", "Publicis India",
+  "Quess Corp", "Machani Group", "ProClime", "Apollo Hospitals",
+  "CETFI", "Swatch", "GH2 India", "Erik Solheim"
+];
+
+const testimonials = [
+  {
+    quote: "Landing strategy, delivering creative excellence, and driving business growth—it's a rare combination. Theresa brings all three with a sharp mind and an energy that makes even the toughest boardroom conversations productive. She has always championed sustainability for market advantage.",
+    author: "CEO",
+    company: "ITC Foods"
+  },
+  {
+    quote: "Theresa is a powerhouse of talent and discipline. She brings razor focus to our industry and steers teams towards accountability and high integrity. She is systems thinking and strategic in her approach to building brand Proclime. She is a star.",
+    author: "CEO",
+    company: "ProClime"
+  },
+  {
+    quote: "Ronnie is one of the finest professionals that I have had the privilege of knowing and working with. A razor sharp mind, an insatiable appetite for learning, deep knowledge of diverse fields including business, strategy, marketing, communication, technology and consumers, incredible client focus, strong leadership and unparalleled hard work make her not only a sheer joy to work with and for, but also an asset to whichever team she belongs.",
+    author: "CMO",
+    company: "United Breweries"
+  }
+];
+
 const About = () => {
   useEffect(() => {
     document.title = "About Bombay Breed | Theresa Ronnie - Carbon Communications Advisory";
@@ -109,8 +169,6 @@ const About = () => {
                         />
                       </div>
                     </div>
-                    
-                    {/* Quote */}
                     <div className="absolute -bottom-4 -right-4 bg-primary p-5 rounded-lg shadow-lg max-w-xs">
                       <Quote className="h-6 w-6 text-primary-foreground/30 mb-2" />
                       <p className="text-sm text-primary-foreground italic leading-relaxed font-medium">
@@ -172,11 +230,6 @@ const About = () => {
                         Connect on LinkedIn
                       </a>
                     </Button>
-                    <Link to="/credentials">
-                      <Button variant="default">
-                        Full Credentials <ArrowRight className="ml-2 h-4 w-4" />
-                      </Button>
-                    </Link>
                   </div>
                 </div>
               </div>
@@ -218,6 +271,100 @@ const About = () => {
                     <p className="text-sm text-muted-foreground">{approach.description}</p>
                   </div>
                 ))}
+              </div>
+            </ScrollReveal>
+          </div>
+        </section>
+
+        {/* Client Logos */}
+        <section className="py-20 px-6 md:px-8 bg-secondary/20">
+          <div className="container mx-auto max-w-6xl">
+            <ScrollReveal direction="up">
+              <div className="relative overflow-hidden">
+                <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-accent/5 pointer-events-none" />
+                <div className="relative text-center mb-10">
+                  <h2 className="text-section font-heading tracking-tight mb-2">Trusted By</h2>
+                  <p className="text-sm text-muted-foreground">Advisory work with leading organizations</p>
+                </div>
+                <div className="relative grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 max-w-4xl mx-auto">
+                  {clients.map((client, index) => {
+                    const logoUrl = clientLogos[client];
+                    return (
+                      <div 
+                        key={index}
+                        className="group px-4 py-5 rounded-lg bg-muted/10 border border-border/30 flex flex-col items-center justify-center min-h-[80px] hover:bg-muted/30 hover:border-primary/30 hover:shadow-lg hover:shadow-primary/5 hover:-translate-y-1 transition-all duration-300 ease-out cursor-default"
+                      >
+                        {logoUrl ? (
+                          <img 
+                            src={logoUrl} 
+                            alt={`${client} logo`}
+                            className={`max-w-[120px] object-contain opacity-60 grayscale group-hover:opacity-100 group-hover:grayscale-0 group-hover:scale-110 transition-all duration-300 ease-out ${client === 'ProClime' ? 'max-h-16' : 'max-h-10'}`}
+                          />
+                        ) : client === 'Erik Solheim' ? (
+                          <span className="text-lg font-serif font-semibold text-foreground/60 group-hover:text-primary group-hover:scale-105 transition-all duration-300 tracking-wide">
+                            Erik Solheim
+                          </span>
+                        ) : (
+                          <span className="text-sm text-foreground/60 font-medium text-center group-hover:text-foreground/90 group-hover:scale-105 transition-all duration-300">
+                            {client}
+                          </span>
+                        )}
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
+            </ScrollReveal>
+          </div>
+        </section>
+
+        {/* Testimonials */}
+        <section className="py-20 px-6 md:px-8">
+          <div className="container mx-auto max-w-6xl">
+            <ScrollReveal direction="up">
+              <div className="text-center mb-12">
+                <h2 className="text-section font-heading tracking-tight mb-2">What Leaders Say</h2>
+                <p className="text-sm text-muted-foreground">Perspectives from C-suite executives</p>
+              </div>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+                {/* Left column */}
+                <div className="space-y-8">
+                  {testimonials.filter(t => t.company !== 'United Breweries').map((testimonial, index) => (
+                    <div key={index} className="group relative p-8 rounded-xl bg-gradient-to-br from-card/80 to-card/40 backdrop-blur-sm border-l-4 border-l-primary border border-border/20 shadow-sm hover:shadow-xl hover:shadow-primary/5 hover:-translate-y-1 transition-all duration-300 ease-out">
+                      <Quote className="absolute top-6 right-6 h-10 w-10 text-primary/10 group-hover:text-primary/20 transition-all duration-300" />
+                      <span className="text-4xl font-serif text-primary/30 leading-none block mb-2">"</span>
+                      <p className="text-base text-foreground/90 leading-relaxed mb-8 pr-8">{testimonial.quote}</p>
+                      <div className="pt-6 border-t border-border/30 flex items-center gap-4">
+                        {clientLogos[testimonial.company] && (
+                          <img src={clientLogos[testimonial.company]} alt={`${testimonial.company} logo`} className="h-8 w-auto object-contain opacity-60 group-hover:opacity-100 transition-opacity duration-300" />
+                        )}
+                        <div className="flex flex-col">
+                          <span className="text-sm font-semibold text-foreground">{testimonial.author}</span>
+                          <span className="text-xs text-muted-foreground">{testimonial.company}</span>
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+                {/* Right column */}
+                <div className="flex">
+                  {testimonials.filter(t => t.company === 'United Breweries').map((testimonial, index) => (
+                    <div key={index} className="group relative p-8 rounded-xl bg-gradient-to-br from-card/80 to-card/40 backdrop-blur-sm border-l-4 border-l-primary border border-border/20 shadow-sm hover:shadow-xl hover:shadow-primary/5 hover:-translate-y-1 transition-all duration-300 ease-out flex flex-col h-full">
+                      <Quote className="absolute top-6 right-6 h-10 w-10 text-primary/10 group-hover:text-primary/20 transition-all duration-300" />
+                      <span className="text-4xl font-serif text-primary/30 leading-none block mb-2">"</span>
+                      <p className="text-base text-foreground/90 leading-relaxed mb-8 pr-8 flex-1">{testimonial.quote}</p>
+                      <div className="pt-6 border-t border-border/30 flex items-center gap-4 mt-auto">
+                        {clientLogos[testimonial.company] && (
+                          <img src={clientLogos[testimonial.company]} alt={`${testimonial.company} logo`} className="h-8 w-auto object-contain opacity-60 group-hover:opacity-100 transition-opacity duration-300" />
+                        )}
+                        <div className="flex flex-col">
+                          <span className="text-sm font-semibold text-foreground">{testimonial.author}</span>
+                          <span className="text-xs text-muted-foreground">{testimonial.company}</span>
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
               </div>
             </ScrollReveal>
           </div>
