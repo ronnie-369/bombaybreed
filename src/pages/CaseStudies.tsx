@@ -4,7 +4,7 @@ import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
-import { ArrowRight, Database, FileText, Leaf, TrendingUp } from 'lucide-react';
+import { ArrowRight, CheckCircle2, Database, FileText, Leaf, TrendingUp, Zap } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import BookingDialog from '@/components/BookingDialog';
 
@@ -14,8 +14,21 @@ const caseStudies = [
     sector: 'Climate Awareness & Advocacy',
     sectorIcon: Leaf,
     title: 'Sounds of ProClime — India\'s National Anthem Recreated Using Sounds of Nature',
-    challenge: 'Climate action remains confined to policy papers and boardrooms. With 1.55 lakh species calling India home, how do you make biodiversity conservation personal and emotionally resonant for 1.4 billion people on Independence Day?',
-    approach: 'Conceived a creative campaign reimagining India\'s National Anthem using only sounds from nature — birdsong, insects, water, wind — to represent the 1.55 lakh species that share India\'s independence. Partnered with music producer Premik Jolly to compose the piece, built a teaser-to-launch rollout strategy, and secured multi-channel press coverage across national publications.',
+    subtitle: 'A creative campaign that made biodiversity conservation emotionally resonant for 1.4 billion people.',
+    challenge: [
+      'Climate action confined to policy papers and boardrooms',
+      '1.55 lakh species with no public-facing narrative',
+      'Independence Day as a cultural moment — untapped for conservation',
+      'Need for emotional resonance, not data overload',
+    ],
+    approach: [
+      'Reimagined India\'s National Anthem using only sounds from nature — birdsong, insects, water, wind',
+      'Partnered with music producer Premik Jolly to compose the piece',
+      'Built a teaser-to-launch rollout strategy across channels',
+      'Secured multi-channel press coverage across national publications',
+    ],
+    image: 'https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?auto=format&fit=crop&w=800&q=80',
+    imageAlt: 'Lush green forest canopy representing Indian biodiversity',
     outcomes: [
       '300,000+ YouTube engagements',
       'Featured in The New Indian Express, Indiatimes, MediaBrief, and Passionate in Marketing',
@@ -30,9 +43,22 @@ const caseStudies = [
     sector: 'Creative Capability & Brand Strategy',
     sectorIcon: TrendingUp,
     title: 'The Creative Effectiveness Sprint — From Campaign Execution to Business-Moving Strategy',
-    challenge: 'A leading flexible workspace brand\'s in-house marketing team was delivering campaigns on time — but the work was execution-focused, not strategy-led. Briefs lacked business linkage, ideas stayed safe, and stakeholder presentations weren\'t landing. The CMO needed a measurable creative transformation without hiring externally or disrupting live operations.',
-    approach: 'Designed and delivered a 5-week sprint programme: a creative audit to baseline capability across 8 pillars, a 2-day intensive workshop covering brief decoding, bold ideation, copy-design craft, and stakeholder simulation — followed by a 4-week action cycle with live feedback on real campaigns and a leadership showcase to present transformation proof.',
-    whyThisClient: 'This client operates one of India\'s largest flexible workspace networks — a sector with significant energy, water and waste footprints across hundreds of managed buildings. With an active sustainability mandate requiring vendor alignment on climate ethics, carbon footprint reduction, renewable energy use and responsible procurement, their marketing team needed to credibly communicate ESG commitments without greenwashing. A creative capability uplift wasn\'t just a brand exercise — it was essential to translating real operational sustainability into trustworthy, regulation-aware communications that serve occupiers, investors and policy stakeholders.',
+    subtitle: 'Transforming an in-house marketing team\'s creative capability without disrupting live operations.',
+    challenge: [
+      'In-house team delivering campaigns on time — but execution-focused, not strategy-led',
+      'Briefs lacked business linkage; ideas stayed safe',
+      'Stakeholder presentations weren\'t landing',
+      'CMO needed measurable transformation without external hires',
+    ],
+    approach: [
+      'Creative audit to baseline capability across 8 pillars',
+      '2-day intensive workshop: brief decoding, bold ideation, copy-design craft, stakeholder simulation',
+      '4-week action cycle with live feedback on real campaigns',
+      'Leadership showcase to present transformation proof',
+    ],
+    whyThisClient: 'This client operates one of India\'s largest flexible workspace networks — a sector with significant energy, water and waste footprints. With an active sustainability mandate requiring vendor alignment on climate ethics, carbon reduction, and responsible procurement, their marketing team needed to credibly communicate ESG commitments without greenwashing.',
+    image: 'https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=800&q=80',
+    imageAlt: 'Team workshop and strategy session in progress',
     outcomes: [
       '2 live campaigns uplifted and 3 briefs sharpened during the workshop itself',
       'Measurable improvement across 8 creative capability pillars (scored before and after)',
@@ -47,9 +73,22 @@ const caseStudies = [
     sector: 'Green Hydrogen & Industrial Policy',
     sectorIcon: FileText,
     title: 'GH2 India Annual Report 2025 — Designing the Definitive Record of India\'s Green Hydrogen Movement',
-    challenge: 'GH2 India — a not-for-profit industry association and think tank advancing India\'s green hydrogen ecosystem — needed its first-ever annual report. The organisation had delivered 14 high-impact webinars, 5 formal policy submissions, global representation at summits in Rotterdam, Brussels, and Copenhagen, and launched a flagship Green Ports and Shipping Network. But none of this was consolidated into a single, investable, policy-ready narrative. The report had to serve members, policymakers, international partners, and prospective funders — all with different information needs.',
-    approach: 'Led the end-to-end design, editorial, and delivery of the 30-page annual report. Structured the narrative arc from executive summary through policy engagement, knowledge dialogues, global convenings, and the GPSN launch — ensuring each section served both documentary and strategic purposes. Designed the visual language to reflect institutional credibility while remaining accessible. Managed delivery timelines, stakeholder review cycles across chair and CEO offices, and prepared the report for digital distribution and event use at the January 2026 launch.',
-    whyThisClient: 'GH2 India sits at the intersection of India\'s National Green Hydrogen Mission and global decarbonisation. As an industry body convening developers, policymakers, technology providers, and international partners, their communications must balance technical rigour with policy accessibility. Shaping their inaugural annual report was an opportunity to define how India\'s green hydrogen story is told — to the sector, to government, and to the world.',
+    subtitle: 'Shaping the inaugural annual report for India\'s leading green hydrogen industry association.',
+    challenge: [
+      'First-ever annual report for a nascent but high-impact industry body',
+      '14 webinars, 5 policy submissions, global summits — none consolidated into a single narrative',
+      'Multiple audiences: members, policymakers, international partners, funders',
+      'Report needed to be both documentary and strategically investable',
+    ],
+    approach: [
+      'Led end-to-end design, editorial, and delivery of the 30-page report',
+      'Structured narrative arc: executive summary → policy engagement → global convenings → GPSN launch',
+      'Designed visual language balancing institutional credibility with accessibility',
+      'Managed stakeholder review cycles across chair and CEO offices',
+    ],
+    whyThisClient: 'GH2 India sits at the intersection of India\'s National Green Hydrogen Mission and global decarbonisation. As an industry body convening developers, policymakers, and technology providers, their communications must balance technical rigour with policy accessibility.',
+    image: 'https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?auto=format&fit=crop&w=800&q=80',
+    imageAlt: 'Wind turbines and renewable energy infrastructure',
     outcomes: [
       'First-ever annual report for India\'s leading green hydrogen industry association',
       '30-page report consolidating policy advocacy, 14 webinars, global summit participation, and the GPSN launch',
@@ -64,14 +103,27 @@ const caseStudies = [
     sector: 'ESG Technology & Content Strategy',
     sectorIcon: Database,
     title: 'The Feedstock Intelligence Content Ecosystem — Building Category Authority for an AI-Driven ESG Platform',
-    challenge: 'An AI-driven sustainability data technology company had built a powerful platform bridging operational data and strategic ESG decisions — spanning carbon accounting, supply chain compliance, and feedstock intelligence. But their market positioning didn\'t reflect their true competitive advantage. Two existing articles showed editorial depth but lacked SEO architecture, keyword targeting, or ecosystem integration. The company needed a content strategy that would claim an unoccupied category position and convert technical authority into inbound pipeline.',
-    approach: 'Designed a 5-pillar, 15-article content ecosystem with 75+ derivative content pieces — carousels, social posts, lead magnets, and email nurture sequences — across a 7.5-month publishing cadence. Structured the architecture around a proprietary thesis: that feedstock decisions carry embedded carbon, cost, compliance, and continuity implications simultaneously. Audited and repositioned two existing articles into the ecosystem. Built progressive topic authority through sequenced publishing, internal linking strategy, and dual product-line integration. Each article mapped to specific buyer personas — field-level implementers, CFOs, and compliance officers.',
-    whyThisClient: 'This client operates at the intersection of AI, industrial data, and ESG compliance — a space where technical capability far outpaces market communication. Their platform serves chemical manufacturers, agri-processors, and heavy industry navigating BRSR, CSRD, and CBAM simultaneously. Building their content ecosystem wasn\'t just a marketing exercise — it was about defining a category (feedstock intelligence) that no competitor had claimed, and translating deep data science into language that moves procurement decisions, board agendas, and policy conversations.',
+    subtitle: 'Defining an uncontested category position through a 15-article content architecture.',
+    challenge: [
+      'Powerful AI platform bridging operational data and strategic ESG decisions',
+      'Market positioning didn\'t reflect true competitive advantage',
+      'Existing articles showed depth but lacked SEO architecture or ecosystem integration',
+      'Needed to claim an unoccupied category and convert authority into pipeline',
+    ],
+    approach: [
+      '5-pillar, 15-article content ecosystem with 75+ derivative pieces',
+      'Architecture built around proprietary "feedstock intelligence" thesis',
+      'Audited and repositioned 2 existing articles into the ecosystem',
+      'Each article mapped to specific buyer personas: implementers, CFOs, compliance officers',
+    ],
+    whyThisClient: 'This client operates at the intersection of AI, industrial data, and ESG compliance — serving chemical manufacturers, agri-processors, and heavy industry navigating BRSR, CSRD, and CBAM simultaneously. Building their content ecosystem was about defining a category no competitor had claimed.',
+    image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=800&q=80',
+    imageAlt: 'Data analytics dashboard representing ESG technology',
     outcomes: [
-      '5-pillar content architecture covering feedstock intelligence, supply chain compliance, carbon intelligence, ESG assurance, and strategic sustainability',
-      '15 long-form SEO-optimised articles with 75+ derivative content pieces designed for a 7.5-month deployment',
-      '2 existing articles audited, repositioned, and integrated into the strategic ecosystem',
-      'Category-defining thesis established: "feedstock intelligence" as an uncontested market position',
+      '5-pillar content architecture: feedstock intelligence, supply chain compliance, carbon intelligence, ESG assurance, strategic sustainability',
+      '15 long-form SEO-optimised articles with 75+ derivative content pieces',
+      '2 existing articles audited, repositioned, and integrated into the ecosystem',
+      'Category-defining thesis: "feedstock intelligence" as an uncontested market position',
     ],
     keywords: ['ESG Technology', 'Content Strategy', 'Feedstock Intelligence', 'SEO Architecture'],
     relatedPages: [],
@@ -105,90 +157,122 @@ const CaseStudies = () => {
 
       <main className="min-h-screen bg-background">
         {/* Hero */}
-        <section className="pt-32 pb-16 px-4 bg-gradient-to-b from-primary/5 to-background">
+        <section className="pt-32 pb-20 md:pb-24 px-4 bg-gradient-to-b from-primary/5 to-background">
           <div className="container mx-auto max-w-4xl text-center">
             <Badge variant="outline" className="mb-4 text-primary border-primary/30">
               Client Engagements
             </Badge>
-            <h1 className="text-4xl md:text-5xl font-display font-bold text-foreground mb-6">
+            <h1 className="text-display font-display font-bold text-foreground mb-6 tracking-tight">
               Strategic Impact,<br />Measurable Outcomes
             </h1>
-            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+            <p className="text-body-enhanced text-muted-foreground max-w-2xl mx-auto">
               How we help Indian enterprises navigate carbon markets, climate regulation, and sustainability communications with precision advisory that drives board-level results.
             </p>
           </div>
         </section>
 
         {/* Case Studies */}
-        <section className="py-16 px-4">
-          <div className="container mx-auto max-w-5xl space-y-16">
-            {caseStudies.map((study, index) => (
-              <article 
-                key={study.id} 
-                className="bg-card border border-border rounded-2xl overflow-hidden hover:border-primary/30 transition-colors"
-              >
-                <div className="p-8 md:p-12">
-                  {/* Sector Badge */}
-                  <div className="flex items-center gap-2 mb-6">
-                    <study.sectorIcon className="w-5 h-5 text-primary" />
-                    <span className="text-sm font-medium text-primary uppercase tracking-wider">
-                      {study.sector}
-                    </span>
+        <section className="py-16 md:py-24 px-4">
+          <div className="container mx-auto max-w-6xl space-y-24 md:space-y-32">
+            {caseStudies.map((study, index) => {
+              const isReversed = index % 2 === 1;
+
+              return (
+                <article key={study.id} className="scroll-mt-24" id={study.id}>
+                  {/* Sector + Title Header */}
+                  <div className="mb-8 md:mb-12">
+                    <div className="flex items-center gap-2 mb-4">
+                      <study.sectorIcon className="w-5 h-5 text-primary" />
+                      <span className="text-xs font-semibold text-primary uppercase tracking-[0.15em]">
+                        {study.sector}
+                      </span>
+                    </div>
+                    <h2 className="text-section font-display font-bold text-foreground tracking-tight mb-3">
+                      {study.title}
+                    </h2>
+                    <p className="text-lg text-muted-foreground max-w-3xl">
+                      {study.subtitle}
+                    </p>
                   </div>
 
-                  {/* Title */}
-                  <h2 className="text-2xl md:text-3xl font-display font-bold text-foreground mb-8">
-                    {study.title}
-                  </h2>
-
-                  {/* Challenge / Approach / Outcomes */}
-                  <div className="grid md:grid-cols-2 gap-8 mb-8">
-                    <div>
-                      <h3 className="text-sm font-semibold text-muted-foreground uppercase tracking-wider mb-3">
-                        The Challenge
-                      </h3>
-                      <p className="text-foreground/80 leading-relaxed">
-                        {study.challenge}
-                      </p>
+                  {/* Image + Challenge/Approach Grid */}
+                  <div className={`grid lg:grid-cols-2 gap-8 md:gap-12 mb-10 md:mb-14 ${isReversed ? 'lg:grid-flow-dense' : ''}`}>
+                    {/* Image */}
+                    <div className={`relative overflow-hidden rounded-2xl aspect-[4/3] lg:aspect-auto ${isReversed ? 'lg:col-start-2' : ''}`}>
+                      <img
+                        src={study.image}
+                        alt={study.imageAlt}
+                        className="w-full h-full object-cover transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] hover:scale-105"
+                        loading="lazy"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-foreground/20 to-transparent" />
                     </div>
-                    <div>
-                      <h3 className="text-sm font-semibold text-muted-foreground uppercase tracking-wider mb-3">
-                        Our Approach
-                      </h3>
-                      <p className="text-foreground/80 leading-relaxed">
-                        {study.approach}
-                      </p>
+
+                    {/* Challenge + Approach */}
+                    <div className={`flex flex-col gap-8 ${isReversed ? 'lg:col-start-1' : ''}`}>
+                      {/* Challenge */}
+                      <div>
+                        <h3 className="text-xs font-semibold text-muted-foreground uppercase tracking-[0.15em] mb-4 flex items-center gap-2">
+                          <span className="w-8 h-px bg-muted-foreground/40" />
+                          The Challenge
+                        </h3>
+                        <ul className="space-y-3">
+                          {study.challenge.map((point, i) => (
+                            <li key={i} className="flex items-start gap-3 text-foreground/80 leading-relaxed">
+                              <span className="mt-2 w-1.5 h-1.5 rounded-full bg-primary/60 flex-shrink-0" />
+                              <span>{point}</span>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+
+                      {/* Approach */}
+                      <div>
+                        <h3 className="text-xs font-semibold text-muted-foreground uppercase tracking-[0.15em] mb-4 flex items-center gap-2">
+                          <span className="w-8 h-px bg-muted-foreground/40" />
+                          Our Approach
+                        </h3>
+                        <ul className="space-y-3">
+                          {study.approach.map((point, i) => (
+                            <li key={i} className="flex items-start gap-3 text-foreground/80 leading-relaxed">
+                              <Zap className="w-4 h-4 text-primary mt-0.5 flex-shrink-0" />
+                              <span>{point}</span>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
                     </div>
                   </div>
 
-                  {/* Why This Client (if available) */}
+                  {/* Why This Client */}
                   {study.whyThisClient && (
-                    <div className="mb-8 border-l-2 border-primary/30 pl-6">
-                      <h3 className="text-sm font-semibold text-muted-foreground uppercase tracking-wider mb-3">
+                    <div className="mb-10 md:mb-14 bg-muted/30 rounded-xl p-6 md:p-8 border-l-4 border-primary/30">
+                      <h3 className="text-xs font-semibold text-muted-foreground uppercase tracking-[0.15em] mb-3">
                         Why This Client
                       </h3>
-                      <p className="text-foreground/80 leading-relaxed text-sm">
+                      <p className="text-foreground/80 leading-relaxed max-w-4xl">
                         {study.whyThisClient}
                       </p>
                     </div>
                   )}
 
                   {/* Outcomes */}
-                  <div className="bg-primary/5 rounded-xl p-6 mb-6">
-                    <h3 className="text-sm font-semibold text-primary uppercase tracking-wider mb-4">
+                  <div className="mb-8">
+                    <h3 className="text-xs font-semibold text-primary uppercase tracking-[0.15em] mb-5 flex items-center gap-2">
+                      <span className="w-8 h-px bg-primary/40" />
                       Key Outcomes
                     </h3>
-                    <ul className="grid sm:grid-cols-2 gap-3">
+                    <div className="grid sm:grid-cols-2 gap-4">
                       {study.outcomes.map((outcome, i) => (
-                        <li key={i} className="flex items-start gap-2 text-sm text-foreground/80">
-                          <ArrowRight className="w-4 h-4 text-primary mt-0.5 flex-shrink-0" />
-                          {outcome}
-                        </li>
+                        <div key={i} className="flex items-start gap-3 bg-primary/5 rounded-lg p-4">
+                          <CheckCircle2 className="w-5 h-5 text-primary mt-0.5 flex-shrink-0" />
+                          <span className="text-sm text-foreground/80 leading-relaxed">{outcome}</span>
+                        </div>
                       ))}
-                    </ul>
+                    </div>
                   </div>
 
-                  {/* Keywords + Related Links */}
+                  {/* Keywords */}
                   <div className="flex flex-wrap items-center gap-2">
                     {study.keywords.map((kw) => (
                       <Badge key={kw} variant="secondary" className="text-xs">
@@ -205,16 +289,25 @@ const CaseStudies = () => {
                       </Link>
                     ))}
                   </div>
-                </div>
-              </article>
-            ))}
+
+                  {/* Divider between case studies */}
+                  {index < caseStudies.length - 1 && (
+                    <div className="mt-16 md:mt-20 flex items-center gap-4">
+                      <span className="flex-1 h-px bg-border" />
+                      <span className="w-2 h-2 rounded-full bg-primary/30" />
+                      <span className="flex-1 h-px bg-border" />
+                    </div>
+                  )}
+                </article>
+              );
+            })}
           </div>
         </section>
 
         {/* CTA */}
-        <section className="py-20 px-4 bg-muted/30">
+        <section className="py-24 md:py-32 px-4 bg-muted/30">
           <div className="container mx-auto max-w-3xl text-center">
-            <h2 className="text-3xl font-display font-bold text-foreground mb-4">
+            <h2 className="text-section font-display font-bold text-foreground mb-4 tracking-tight">
               Ready to Build Your Climate Strategy?
             </h2>
             <p className="text-muted-foreground mb-8 max-w-xl mx-auto">
