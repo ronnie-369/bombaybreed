@@ -87,8 +87,8 @@ const caseStudies = [
       'Managed stakeholder review cycles across chair and CEO offices',
     ],
     whyThisClient: 'GH2 India sits at the intersection of India\'s National Green Hydrogen Mission and global decarbonisation. As an industry body convening developers, policymakers, and technology providers, their communications must balance technical rigour with policy accessibility.',
-    image: 'https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?auto=format&fit=crop&w=800&q=80',
-    imageAlt: 'Wind turbines and renewable energy infrastructure',
+    image: 'https://images.unsplash.com/photo-1611348586804-61bf6c080437?auto=format&fit=crop&w=800&q=80',
+    imageAlt: 'Green hydrogen production and clean energy technology',
     outcomes: [
       'First-ever annual report for India\'s leading green hydrogen industry association',
       '30-page report consolidating policy advocacy, 14 webinars, global summit participation, and the GPSN launch',
