@@ -4,7 +4,7 @@ import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
-import { ArrowRight, Leaf } from 'lucide-react';
+import { ArrowRight, Leaf, TrendingUp } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import BookingDialog from '@/components/BookingDialog';
 
@@ -23,6 +23,22 @@ const caseStudies = [
       'Showcased to the Minister of Environment; featured track played to A.R. Rahman',
     ],
     keywords: ['Biodiversity', 'Climate Awareness', 'Creative Campaigning'],
+    relatedPages: [],
+  },
+  {
+    id: 'creative-effectiveness-sprint',
+    sector: 'Creative Capability & Brand Strategy',
+    sectorIcon: TrendingUp,
+    title: 'The Creative Effectiveness Sprint — From Campaign Execution to Business-Moving Strategy',
+    challenge: 'A leading flexible workspace brand\'s in-house marketing team was delivering campaigns on time — but the work was execution-focused, not strategy-led. Briefs lacked business linkage, ideas stayed safe, and stakeholder presentations weren\'t landing. The CMO needed a measurable creative transformation without hiring externally or disrupting live operations.',
+    approach: 'Designed and delivered a 5-week sprint programme: a creative audit to baseline capability across 8 pillars, a 2-day intensive workshop covering brief decoding, bold ideation, copy-design craft, and stakeholder simulation — followed by a 4-week action cycle with live feedback on real campaigns and a leadership showcase to present transformation proof.',
+    outcomes: [
+      '2 live campaigns uplifted and 3 briefs sharpened during the workshop itself',
+      'Measurable improvement across 8 creative capability pillars (scored before and after)',
+      'Team shifted from asset delivery to outcome-driven campaign ownership',
+      'Reduced dependence on external agencies for strategic creative direction',
+    ],
+    keywords: ['Creative Strategy', 'Capability Building', 'Brand Transformation'],
     relatedPages: [],
   },
 ];
