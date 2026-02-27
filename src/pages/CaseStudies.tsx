@@ -32,13 +32,14 @@ const caseStudies = [
     title: 'The Creative Effectiveness Sprint — From Campaign Execution to Business-Moving Strategy',
     challenge: 'A leading flexible workspace brand\'s in-house marketing team was delivering campaigns on time — but the work was execution-focused, not strategy-led. Briefs lacked business linkage, ideas stayed safe, and stakeholder presentations weren\'t landing. The CMO needed a measurable creative transformation without hiring externally or disrupting live operations.',
     approach: 'Designed and delivered a 5-week sprint programme: a creative audit to baseline capability across 8 pillars, a 2-day intensive workshop covering brief decoding, bold ideation, copy-design craft, and stakeholder simulation — followed by a 4-week action cycle with live feedback on real campaigns and a leadership showcase to present transformation proof.',
+    whyThisClient: 'This client operates one of India\'s largest flexible workspace networks — a sector with significant energy, water and waste footprints across hundreds of managed buildings. With an active sustainability mandate requiring vendor alignment on climate ethics, carbon footprint reduction, renewable energy use and responsible procurement, their marketing team needed to credibly communicate ESG commitments without greenwashing. A creative capability uplift wasn\'t just a brand exercise — it was essential to translating real operational sustainability into trustworthy, regulation-aware communications that serve occupiers, investors and policy stakeholders.',
     outcomes: [
       '2 live campaigns uplifted and 3 briefs sharpened during the workshop itself',
       'Measurable improvement across 8 creative capability pillars (scored before and after)',
       'Team shifted from asset delivery to outcome-driven campaign ownership',
       'Reduced dependence on external agencies for strategic creative direction',
     ],
-    keywords: ['Creative Strategy', 'Capability Building', 'Brand Transformation'],
+    keywords: ['Creative Strategy', 'Capability Building', 'Brand Transformation', 'Sustainability Communications'],
     relatedPages: [],
   },
 ];
@@ -125,6 +126,18 @@ const CaseStudies = () => {
                       </p>
                     </div>
                   </div>
+
+                  {/* Why This Client (if available) */}
+                  {study.whyThisClient && (
+                    <div className="mb-8 border-l-2 border-primary/30 pl-6">
+                      <h3 className="text-sm font-semibold text-muted-foreground uppercase tracking-wider mb-3">
+                        Why This Client
+                      </h3>
+                      <p className="text-foreground/80 leading-relaxed text-sm">
+                        {study.whyThisClient}
+                      </p>
+                    </div>
+                  )}
 
                   {/* Outcomes */}
                   <div className="bg-primary/5 rounded-xl p-6 mb-6">
