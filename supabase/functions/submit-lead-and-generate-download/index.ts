@@ -8,6 +8,22 @@ const resendApiKey = Deno.env.get("RESEND_API_KEY")!;
 const supabase = createClient(supabaseUrl, serviceRoleKey);
 const resend = new Resend(resendApiKey);
 
+// In-memory rate limiter
+const rateLimitMap = new Map<string, { count: number; resetAt: number }>();
+const RATE_LIMIT = 5;
+const RATE_WINDOW_MS = 60_000;
+
+function isRateLimited(ip: string): boolean {
+  const now = Date.now();
+  const entry = rateLimitMap.get(ip);
+  if (!entry || now > entry.resetAt) {
+    rateLimitMap.set(ip, { count: 1, resetAt: now + RATE_WINDOW_MS });
+    return false;
+  }
+  entry.count++;
+  return entry.count > RATE_LIMIT;
+}
+
 // Dynamic CORS with wildcard support for *.lovableproject.com and localhost
 const getAllowedOrigins = (): string[] => {
   const env = Deno.env.get('ALLOWED_ORIGINS');
@@ -53,6 +69,14 @@ serve(async (req: Request) => {
 
   if (req.method === "OPTIONS") {
     return new Response(null, { headers: corsHeaders });
+  }
+
+  const clientIp = req.headers.get('x-forwarded-for')?.split(',')[0]?.trim() || 'unknown';
+  if (isRateLimited(clientIp)) {
+    return new Response(JSON.stringify({ error: 'Too many requests' }), {
+      status: 429,
+      headers: { "Content-Type": "application/json", 'Retry-After': '60', ...corsHeaders },
+    });
   }
 
   if (!isOriginAllowed(origin)) {
