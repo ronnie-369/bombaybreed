@@ -1,17 +1,60 @@
 import { serve } from "https://deno.land/std@0.181.0/http/server.ts";
 import { Resend } from "npm:resend@4.0.0";
 
-const corsHeaders = {
-  'Access-Control-Allow-Origin': '*',
-  'Access-Control-Allow-Headers': 'authorization, x-client-info, apikey, content-type, x-supabase-client-platform, x-supabase-client-platform-version, x-supabase-client-runtime, x-supabase-client-runtime-version',
+// Dynamic CORS with origin validation (matches other edge functions)
+const getAllowedOrigins = (): string[] => {
+  const env = Deno.env.get('ALLOWED_ORIGINS');
+  if (env) return env.split(',').map((o) => o.trim()).filter(Boolean);
+  return [
+    'https://zjiwmdrtuhsrymsuvpfb.lovableproject.com',
+    'http://localhost:5173',
+    'http://localhost:3000',
+  ];
+};
+
+const isOriginAllowed = (origin: string | null): boolean => {
+  if (!origin) return false;
+  const allowed = getAllowedOrigins();
+  if (allowed.includes(origin)) return true;
+  try {
+    const { hostname, protocol } = new URL(origin);
+    if (hostname.endsWith('.lovableproject.com')) return true;
+    if (hostname.endsWith('.lovable.app')) return true;
+    if (hostname.endsWith('.bombaybreed.com') || hostname === 'bombaybreed.com') return true;
+    if (hostname === 'localhost' && (protocol === 'http:' || protocol === 'https:')) return true;
+  } catch (_) {
+    return false;
+  }
+  return false;
+};
+
+const getCorsHeaders = (origin: string | null): Record<string, string> => {
+  const allow = isOriginAllowed(origin);
+  const fallback = getAllowedOrigins()[0];
+  return {
+    'Access-Control-Allow-Origin': allow && origin ? origin : fallback,
+    'Access-Control-Allow-Headers': 'authorization, x-client-info, apikey, content-type, x-supabase-client-platform, x-supabase-client-platform-version, x-supabase-client-runtime, x-supabase-client-runtime-version',
+  };
 };
 
 const escapeHtml = (text: string) =>
   text.replace(/[<>&"']/g, (m) => ({ '<': '&lt;', '>': '&gt;', '&': '&amp;', '"': '&quot;', "'": '&#x27;' }[m] || m));
 
 serve(async (req: Request) => {
+  const origin = req.headers.get('origin');
+  const corsHeaders = getCorsHeaders(origin);
+
   if (req.method === 'OPTIONS') {
     return new Response(null, { headers: corsHeaders });
+  }
+
+  // Block requests from non-allowed origins
+  if (!isOriginAllowed(origin)) {
+    console.warn('CORS: blocked origin for send-inquiry-notification', { origin });
+    return new Response(JSON.stringify({ error: 'Origin not allowed' }), {
+      status: 403,
+      headers: { 'Content-Type': 'application/json', ...corsHeaders },
+    });
   }
 
   try {
