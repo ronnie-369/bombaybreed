@@ -4,7 +4,7 @@ import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
-import { ArrowRight, Building2, TrendingUp, Shield, Leaf } from 'lucide-react';
+import { ArrowRight, Leaf } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import BookingDialog from '@/components/BookingDialog';
 
@@ -24,70 +24,6 @@ const caseStudies = [
     ],
     keywords: ['Biodiversity', 'Climate Awareness', 'Creative Campaigning'],
     relatedPages: [],
-  },
-  {
-    id: 'manufacturing-cbam',
-    sector: 'Steel & Manufacturing',
-    sectorIcon: Building2,
-    title: 'CBAM Readiness Strategy for a Leading Indian Steel Exporter',
-    challenge: 'A top-10 Indian steel producer with €200M+ annual EU exports faced uncertainty about CBAM compliance costs, reporting requirements, and strategic implications for their European market position.',
-    approach: 'We conducted a comprehensive CBAM exposure assessment, designed their emissions reporting architecture, developed a phased decarbonisation roadmap aligned with CBAM cost reduction, and crafted investor-facing communications positioning CBAM preparedness as a competitive advantage.',
-    outcomes: [
-      'Quantified CBAM cost exposure across 12 product lines',
-      'Designed CBAM-ready emissions reporting system 18 months ahead of compliance deadline',
-      'Board-approved decarbonisation roadmap with clear ROI timeline',
-      'Investor presentation positioning company as sector leader on CBAM readiness',
-    ],
-    keywords: ['CBAM', 'Steel Industry', 'Decarbonisation'],
-    relatedPages: ['/cbam-india-exporters-guide', '/decarbonisation-consulting-india'],
-  },
-  {
-    id: 'fmcg-sustainability-narrative',
-    sector: 'FMCG & Consumer Brands',
-    sectorIcon: Leaf,
-    title: 'Sustainability Narrative Transformation for a National FMCG Brand',
-    challenge: 'A major Indian FMCG company had invested significantly in sustainability initiatives but struggled to communicate impact credibly — facing both greenwashing concerns and investor frustration at the lack of clear ESG narrative.',
-    approach: 'We developed a comprehensive sustainability communications strategy: auditing existing claims for defensibility, creating audience-specific narratives (investors, consumers, regulators), designing the annual sustainability report, and training leadership on credible sustainability messaging.',
-    outcomes: [
-      'ESG rating improved by two notches within 12 months',
-      'Sustainability report cited in 3 analyst reports',
-      'Zero greenwashing complaints despite 4x increase in sustainability communications',
-      'CEO positioned as credible voice on sustainability in industry forums',
-    ],
-    keywords: ['Sustainability Communications', 'ESG Narrative', 'Brand Strategy'],
-    relatedPages: ['/sustainability-storytelling-brands-india', '/greenwashing-risk-india'],
-  },
-  {
-    id: 'energy-transition-advisory',
-    sector: 'Power & Energy',
-    sectorIcon: TrendingUp,
-    title: 'Energy Transition Communications for a Thermal Power Company',
-    challenge: 'A thermal power utility navigating the transition to renewable energy needed to communicate its transition plan to investors, regulators, and employees without undermining confidence in its current operations.',
-    approach: 'We developed a phased transition narrative that acknowledged the company\'s coal legacy while positioning its renewable investments as strategic evolution. This included investor presentations, regulatory submissions, employee townhall materials, and media positioning.',
-    outcomes: [
-      'Successful green bond issuance supported by credible transition narrative',
-      'Regulatory engagement positioned company as constructive transition partner',
-      'Employee retention improved during transition period',
-      'Media coverage shifted from "coal company" to "transition leader"',
-    ],
-    keywords: ['Energy Transition', 'Climate Communications', 'Green Finance'],
-    relatedPages: ['/energy-transition-advisory-india', '/green-finance-advisory-india'],
-  },
-  {
-    id: 'carbon-market-positioning',
-    sector: 'Diversified Conglomerate',
-    sectorIcon: Shield,
-    title: 'Carbon Market Strategy for a Diversified Industrial Group',
-    challenge: 'A diversified Indian conglomerate with operations across cement, chemicals, and manufacturing needed a unified carbon market strategy as CCTS implementation approached — including internal carbon pricing, credit portfolio management, and stakeholder communications.',
-    approach: 'We developed a group-level carbon market strategy covering CCTS compliance scenarios, voluntary market participation, internal carbon pricing implementation, and communications framework for carbon market disclosures across all business units.',
-    outcomes: [
-      'Internal carbon price adopted across 5 business units',
-      'Carbon credit portfolio strategy generating ₹12Cr+ annual value',
-      'Board-approved CCTS readiness plan 24 months ahead of compliance',
-      'Unified carbon narrative for annual report and investor communications',
-    ],
-    keywords: ['Carbon Markets', 'CCTS', 'Internal Carbon Pricing'],
-    relatedPages: ['/carbon-credit-trading-india', '/ccts-compliance-india'],
   },
 ];
 
