@@ -1,28 +1,25 @@
 
 
-## Plan: Add ProClime "Sounds of ProClime" Case Study
+## Plan: Add Creative Effectiveness Sprint Case Study
 
-Add a new case study to the `/case-studies` page based on the Independence Day biodiversity campaign created for ProClime.
+Add a new case study to `src/pages/CaseStudies.tsx` written from outcomes, without naming the client. Based on the PDF, this was a 5-week creative capability sprint for a leading flexible workspace brand's marketing team.
 
 ### New Case Study Entry
 
-A 5th entry in the `caseStudies` array in `src/pages/CaseStudies.tsx`:
-
-- **id**: `proclime-biodiversity-campaign`
-- **sector**: Climate Awareness & Advocacy
-- **sectorIcon**: `Leaf`
-- **title**: Sounds of ProClime — India's National Anthem Recreated Using Sounds of Nature
-- **challenge**: Climate action remains confined to policy papers and boardrooms. With 1.55 lakh species calling India home, how do you make biodiversity conservation personal and emotionally resonant for 1.4 billion people on Independence Day?
-- **approach**: Conceived a creative campaign reimagining India's National Anthem using only sounds from nature — birdsong, insects, water, wind — to represent the 1.55 lakh species that share India's independence. Partnered with music producer Premik Jolly to compose the piece, built a teaser-to-launch rollout strategy, and secured multi-channel press coverage across national publications.
+- **id**: `creative-effectiveness-sprint`
+- **sector**: Creative Capability & Brand Strategy
+- **sectorIcon**: `TrendingUp` (import from lucide-react)
+- **title**: "The Creative Effectiveness Sprint — From Campaign Execution to Business-Moving Strategy"
+- **challenge**: A leading flexible workspace brand's in-house marketing team was delivering campaigns on time — but the work was execution-focused, not strategy-led. Briefs lacked business linkage, ideas stayed safe, and stakeholder presentations weren't landing. The CMO needed a measurable creative transformation without hiring externally or disrupting live operations.
+- **approach**: Designed and delivered a 5-week sprint programme: a creative audit to baseline capability across 8 pillars, a 2-day intensive workshop covering brief decoding, bold ideation, copy-design craft, and stakeholder simulation — followed by a 4-week action cycle with live feedback on real campaigns and a leadership showcase to present transformation proof.
 - **outcomes**:
-  - 300,000+ YouTube engagements
-  - Featured in The New Indian Express, Indiatimes, MediaBrief, and Passionate in Marketing
-  - Campaign felicitated at IIT Roorkee
-  - Showcased to the Minister of Environment; featured track played to A.R. Rahman
-- **keywords**: Biodiversity, Climate Awareness, Creative Campaigning
-- **relatedPages**: (empty array or links to relevant existing service pages)
+  - 2 live campaigns uplifted and 3 briefs sharpened during the workshop itself
+  - Measurable improvement across 8 creative capability pillars (scored before and after)
+  - Team shifted from asset delivery to outcome-driven campaign ownership
+  - Reduced dependence on external agencies for strategic creative direction
+- **keywords**: Creative Strategy, Capability Building, Brand Transformation
 
-### Implementation
+### File Changes
 
-Single file change to `src/pages/CaseStudies.tsx` — insert the new object into the `caseStudies` array (after the existing 4 entries, before the closing bracket).
+1. **`src/pages/CaseStudies.tsx`** — Add `TrendingUp` to lucide-react imports, append new case study object to `caseStudies` array.
 
