@@ -1,26 +1,26 @@
 
 
-## Plan: Add GH2 India Annual Report Case Study
+## Plan: Add Impactree Content Strategy Case Study (Anonymized)
 
-Add a third case study to `src/pages/CaseStudies.tsx` about shaping GH2 India's inaugural Annual Report 2025 from design, delivery, and communications perspectives. GH2 India is referenced as an industrial body (not-for-profit industry association and think tank for green hydrogen).
+Add a fourth case study to `src/pages/CaseStudies.tsx` about designing a comprehensive content strategy for an AI-driven ESG data technology platform, without naming the client.
 
 ### New Case Study Entry
 
-- **id**: `gh2-india-annual-report`
-- **sector**: Green Hydrogen & Industrial Policy
-- **sectorIcon**: `FileText` (import from lucide-react)
-- **title**: "GH2 India Annual Report 2025 — Designing the Definitive Record of India's Green Hydrogen Movement"
-- **challenge**: GH2 India — a not-for-profit industry association and think tank advancing India's green hydrogen ecosystem — needed its first-ever annual report. The organisation had delivered 14 high-impact webinars, 5 formal policy submissions, global representation at summits in Rotterdam, Brussels, and Copenhagen, and launched a flagship Green Ports and Shipping Network. But none of this was consolidated into a single, investable, policy-ready narrative. The report had to serve members, policymakers, international partners, and prospective funders — all with different information needs.
-- **approach**: Led the end-to-end design, editorial, and delivery of the 30-page annual report. Structured the narrative arc from executive summary through policy engagement, knowledge dialogues, global convenings, and the GPSN launch — ensuring each section served both documentary and strategic purposes. Designed the visual language to reflect institutional credibility while remaining accessible. Managed delivery timelines, stakeholder review cycles across chair and CEO offices, and prepared the report for digital distribution and event use at the January 2026 launch.
-- **whyThisClient**: GH2 India sits at the intersection of India's National Green Hydrogen Mission and global decarbonisation. As an industry body convening developers, policymakers, technology providers, and international partners, their communications must balance technical rigour with policy accessibility. Shaping their inaugural annual report was an opportunity to define how India's green hydrogen story is told — to the sector, to government, and to the world.
+- **id**: `feedstock-intelligence-content-strategy`
+- **sector**: ESG Technology & Content Strategy
+- **sectorIcon**: `Database` (import from lucide-react)
+- **title**: "The Feedstock Intelligence Content Ecosystem — Building Category Authority for an AI-Driven ESG Platform"
+- **challenge**: An AI-driven sustainability data technology company had built a powerful platform bridging operational data and strategic ESG decisions — spanning carbon accounting, supply chain compliance, and feedstock intelligence. But their market positioning didn't reflect their true competitive advantage. Two existing articles showed editorial depth but lacked SEO architecture, keyword targeting, or ecosystem integration. The company needed a content strategy that would claim an unoccupied category position and convert technical authority into inbound pipeline.
+- **approach**: Designed a 5-pillar, 15-article content ecosystem with 75+ derivative content pieces — carousels, social posts, lead magnets, and email nurture sequences — across a 7.5-month publishing cadence. Structured the architecture around a proprietary thesis: that feedstock decisions carry embedded carbon, cost, compliance, and continuity implications simultaneously. Audited and repositioned two existing articles into the ecosystem. Built progressive topic authority through sequenced publishing, internal linking strategy, and dual product-line integration. Each article mapped to specific buyer personas — field-level implementers, CFOs, and compliance officers.
+- **whyThisClient**: This client operates at the intersection of AI, industrial data, and ESG compliance — a space where technical capability far outpaces market communication. Their platform serves chemical manufacturers, agri-processors, and heavy industry navigating BRSR, CSRD, and CBAM simultaneously. Building their content ecosystem wasn't just a marketing exercise — it was about defining a category (feedstock intelligence) that no competitor had claimed, and translating deep data science into language that moves procurement decisions, board agendas, and policy conversations.
 - **outcomes**:
-  - First-ever annual report for India's leading green hydrogen industry association
-  - 30-page report consolidating policy advocacy, 14 webinars, global summit participation, and the GPSN launch
-  - Designed for multi-stakeholder use: members, ministries, international partners, and investors
-  - Report timed for the GPSN launch event in New Delhi, January 2026
-- **keywords**: Green Hydrogen, Annual Report, Policy Communications, Industrial Advocacy
+  - 5-pillar content architecture covering feedstock intelligence, supply chain compliance, carbon intelligence, ESG assurance, and strategic sustainability
+  - 15 long-form SEO-optimised articles with 75+ derivative content pieces designed for a 7.5-month deployment
+  - 2 existing articles audited, repositioned, and integrated into the strategic ecosystem
+  - Category-defining thesis established: "feedstock intelligence" as an uncontested market position
+- **keywords**: ESG Technology, Content Strategy, Feedstock Intelligence, SEO Architecture
 
 ### File Changes
 
-1. **`src/pages/CaseStudies.tsx`** — Add `FileText` to lucide-react imports, append new case study object to `caseStudies` array after the creative-effectiveness-sprint entry.
+1. **`src/pages/CaseStudies.tsx`** — Add `Database` to lucide-react imports, append new case study object to `caseStudies` array after the GH2 India entry.
 
