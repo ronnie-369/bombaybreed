@@ -8,6 +8,7 @@ import { ArrowRight, CheckCircle2, Database, FileText, Leaf, TrendingUp, Zap } f
 import { Link } from 'react-router-dom';
 import BookingDialog from '@/components/BookingDialog';
 import greenHydrogenImg from '@/assets/green-hydrogen-case-study.jpg';
+import creativeWorkshopImg from '@/assets/creative-workshop-case-study.webp';
 
 const caseStudies = [
   {
@@ -58,8 +59,8 @@ const caseStudies = [
       'Leadership showcase to present transformation proof',
     ],
     whyThisClient: 'This client operates one of India\'s largest flexible workspace networks — a sector with significant energy, water and waste footprints. With an active sustainability mandate requiring vendor alignment on climate ethics, carbon reduction, and responsible procurement, their marketing team needed to credibly communicate ESG commitments without greenwashing.',
-    image: 'https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=800&q=80',
-    imageAlt: 'Team workshop and strategy session in progress',
+    image: creativeWorkshopImg,
+    imageAlt: 'Creative workshop with sticky notes and team collaboration',
     outcomes: [
       '2 live campaigns uplifted and 3 briefs sharpened during the workshop itself',
       'Measurable improvement across 8 creative capability pillars (scored before and after)',
