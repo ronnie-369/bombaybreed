@@ -140,7 +140,7 @@ const GreenJobsReport = () => {
                   <div>
                     <h3 className="text-xl font-semibold mb-3">Introduction</h3>
                     <p className="text-foreground/80 leading-relaxed">
-                      India is at the tipping point of a green revolution. By 2030, renewable energy will not only power our homes and cities but also fuel a workforce transformation of historic scale—with 1 million direct green jobs and over 3.2 million total employment opportunities across the economy.
+                      India is at the tipping point of a green revolution. By 2030, renewable energy will not only power our homes and cities but also fuel a workforce transformation of historic scale - with 1 million direct green jobs and over 3.2 million total employment opportunities across the economy.
                     </p>
                     <p className="text-foreground/80 leading-relaxed mt-4">
                       This in-depth report by Theresa Ronnie maps the workforce and investment pathways shaping India's clean energy future. Whether you're an investor, policymaker, student, or professional, this report offers the insights you need to understand where opportunity is headed.
@@ -274,7 +274,7 @@ const GreenJobsReport = () => {
         <Card className="border-bombay bg-gradient-to-r from-bombay-subtle/20 to-bombay-background/30 text-center p-8">
           <CardContent className="space-y-6">
             <h3 className="text-2xl font-bold text-foreground">
-              India's renewable future is here. Don't just watch it happen—understand it, shape it, and benefit from it.
+              India's renewable future is here. Don't just watch it happen - understand it, shape it, and benefit from it.
             </h3>
             <Button 
               size="lg" 
