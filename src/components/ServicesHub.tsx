@@ -4,7 +4,7 @@ import { useQuery } from '@tanstack/react-query';
 import { supabase } from '@/integrations/supabase/client';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { ArrowRight, Zap, Factory, Globe, FileText, ChevronRight, Landmark, Building2, Sprout, Sparkles, Megaphone, TrendingUp, MessageSquare, Target } from 'lucide-react';
+import { ArrowRight, ChevronRight } from 'lucide-react';
 import ScrollReveal from '@/components/ui/ScrollReveal';
 import ServicesHubSkeleton from '@/components/skeletons/ServicesHubSkeleton';
 
@@ -12,31 +12,26 @@ import ServicesHubSkeleton from '@/components/skeletons/ServicesHubSkeleton';
 const primaryServices = [
   {
     slug: 'carbon-communications-strategy-india',
-    icon: Megaphone,
     name: 'Carbon Communications Strategy',
     description: 'Strategic communications for carbon market positioning and stakeholder engagement.',
   },
   {
     slug: 'sustainability-reporting-india',
-    icon: FileText,
     name: 'Sustainability Reporting',
     description: 'BRSR, GRI, and integrated reporting advisory for Indian enterprises.',
   },
   {
     slug: 'carbon-market-advisory-india',
-    icon: TrendingUp,
     name: 'Carbon Market Advisory',
     description: 'Navigate India carbon markets including CCTS, VCM, and international mechanisms.',
   },
   {
     slug: 'esg-communications-consultant',
-    icon: MessageSquare,
     name: 'ESG Communications',
     description: 'Authentic ESG narratives that build stakeholder trust and avoid greenwashing.',
   },
   {
     slug: 'climate-strategy-india-enterprises',
-    icon: Target,
     name: 'Climate Strategy',
     description: 'Net zero roadmaps and transition planning for Indian corporates.',
   },
@@ -46,7 +41,6 @@ const primaryServices = [
 const clientSegments = [
   {
     id: 'governments',
-    icon: Landmark,
     title: 'Governments & Agencies',
     description: 'Bankable Article 6 projects, ITMO structuring, bilateral agreements',
     industries: ['power', 'oil-gas', 'steel'],
@@ -55,7 +49,6 @@ const clientSegments = [
   },
   {
     id: 'corporates',
-    icon: Building2,
     title: 'Corporates & Credit Buyers',
     description: 'High-quality credits through ITMOs or EACs, procurement strategy',
     industries: ['steel', 'cement', 'data-centres', 'fmcg', 'fashion'],
@@ -64,7 +57,6 @@ const clientSegments = [
   },
   {
     id: 'climate-ventures',
-    icon: Sprout,
     title: 'Climate Ventures',
     description: 'Visibility, brand premium, systems thinking narrative',
     industries: ['data-centres', 'fashion', 'fmcg'],
@@ -73,7 +65,6 @@ const clientSegments = [
   },
   {
     id: 'visibility',
-    icon: Sparkles,
     title: 'Visibility & Thought Leadership',
     description: 'Featured on The Climate Desk, case studies, credibility building',
     industries: [], // All sectors
@@ -121,14 +112,6 @@ const ServicesHub = () => {
     },
   });
 
-  const capabilityIcons: Record<string, React.ReactNode> = {
-    'energy-optimisation': <Zap className="w-5 h-5" />,
-    'industrial-decarbonisation': <Factory className="w-5 h-5" />,
-    'article-6-advisory': <FileText className="w-5 h-5" />,
-    'climate-investment-readiness': <Globe className="w-5 h-5" />,
-    'dmrv-integrity': <FileText className="w-5 h-5" />,
-  };
-
   // Create a map of slug to name for industry display
   const industryMap = industries?.reduce((acc, ind) => {
     acc[ind.slug] = ind.name;
@@ -164,12 +147,9 @@ const ServicesHub = () => {
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
               {primaryServices.map((service) => (
                 <Link key={service.slug} to={`/${service.slug}`}>
-                  <Card className="h-full group cursor-pointer border-primary/20 hover:border-primary/50 transition-colors">
+                  <Card className="h-full group cursor-pointer border-border/50 hover:border-primary/50 transition-colors">
                     <CardHeader className="pb-2">
-                      <CardTitle className="flex items-center gap-3 text-base">
-                        <span className="p-2 rounded-lg bg-primary/10 text-primary group-hover:bg-primary group-hover:text-primary-foreground transition-colors">
-                          <service.icon className="w-5 h-5" />
-                        </span>
+                      <CardTitle className="text-base font-semibold">
                         {service.name}
                       </CardTitle>
                     </CardHeader>
@@ -199,9 +179,6 @@ const ServicesHub = () => {
                 {clientSegments.map((segment) => (
                   <Link key={segment.id} to={segment.link} className="block group">
                     <div className="flex items-start gap-3 p-3 rounded-lg hover:bg-secondary/50 transition-colors">
-                      <span className="p-2 rounded-lg bg-primary/10 text-primary group-hover:bg-primary group-hover:text-primary-foreground transition-colors shrink-0">
-                        <segment.icon className="w-4 h-4" />
-                      </span>
                       <div className="min-w-0">
                         <h4 className="font-medium text-foreground text-sm group-hover:text-primary transition-colors">
                           {segment.title}
@@ -281,10 +258,7 @@ const ServicesHub = () => {
                 <Link key={capability.slug} to={`/${capability.slug}`}>
                   <Card className="h-full group cursor-pointer">
                     <CardHeader className="pb-2">
-                      <CardTitle className="flex items-center gap-3 text-base">
-                        <span className="p-2 rounded-lg bg-primary/10 text-primary group-hover:bg-primary group-hover:text-primary-foreground transition-colors">
-                          {capabilityIcons[capability.slug] || <Zap className="w-5 h-5" />}
-                        </span>
+                      <CardTitle className="text-base font-semibold">
                         {capability.name}
                       </CardTitle>
                     </CardHeader>
