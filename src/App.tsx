@@ -21,15 +21,10 @@ const ServicePage = lazy(() => import("./pages/ServicePage"));
 const Services = lazy(() => import("./pages/Services"));
 const About = lazy(() => import("./pages/About"));
 const Insights = lazy(() => import("./pages/Insights"));
-const WEFGlobalRisksReport = lazy(() => import("./pages/WEFGlobalRisksReport"));
-const GreenJobsReport = lazy(() => import("./pages/GreenJobsReport"));
-const GreenJobsGuide = lazy(() => import("./pages/GreenJobsGuide"));
+const InsightDetail = lazy(() => import("./pages/InsightDetail"));
 
-// Static report pages - explicitly routed to prevent Soft 404s
-const EnergyTransitionPlaybook = lazy(() => import("./pages/EnergyTransitionPlaybook"));
-const CarbonPlaybook = lazy(() => import("./pages/CarbonPlaybook"));
-const CarbonMarketOutlook = lazy(() => import("./pages/CarbonMarketOutlook"));
-const ComplianceToCredibility = lazy(() => import("./pages/ComplianceToCredibility"));
+// Special pages that stay as-is (custom interactive layouts)
+const GreenJobsGuide = lazy(() => import("./pages/GreenJobsGuide"));
 const WorkingForTheEarth = lazy(() => import("./pages/WorkingForTheEarth"));
 const GridAnalysis = lazy(() => import("./pages/GridAnalysis"));
 const CaseStudies = lazy(() => import("./pages/CaseStudies"));
@@ -68,14 +63,19 @@ const AppContent = () => {
               <Route path="/admin" element={<Admin />} />
               <Route path="/admin/seo" element={<AdminSEO />} />
               
-              {/* Report pages - explicitly routed */}
-              <Route path="/wef-global-risks-2026" element={<WEFGlobalRisksReport />} />
-              <Route path="/green-jobs-india-2026" element={<GreenJobsReport />} />
+              {/* Insight detail pages (template-driven) */}
+              <Route path="/insights/:slug" element={<InsightDetail />} />
+
+              {/* Legacy redirects → new /insights/:slug routes */}
+              <Route path="/carbon-playbook" element={<Navigate to="/insights/carbon-playbook" replace />} />
+              <Route path="/wef-global-risks-2026" element={<Navigate to="/insights/wef-global-risks-2026" replace />} />
+              <Route path="/green-jobs-india-2026" element={<Navigate to="/insights/green-jobs-india-2026" replace />} />
+              <Route path="/energy-transition-playbook" element={<Navigate to="/insights/energy-transition-playbook" replace />} />
+              <Route path="/carbon-market-outlook" element={<Navigate to="/insights/carbon-market-outlook" replace />} />
+              <Route path="/compliance-to-credibility" element={<Navigate to="/insights/compliance-to-credibility" replace />} />
+
+              {/* Special pages (custom interactive layouts — not template-driven) */}
               <Route path="/green-jobs-guide" element={<GreenJobsGuide />} />
-              <Route path="/energy-transition-playbook" element={<EnergyTransitionPlaybook />} />
-              <Route path="/carbon-playbook" element={<CarbonPlaybook />} />
-              <Route path="/carbon-market-outlook" element={<CarbonMarketOutlook />} />
-              <Route path="/compliance-to-credibility" element={<ComplianceToCredibility />} />
               <Route path="/working-for-the-earth" element={<WorkingForTheEarth />} />
               <Route path="/india-renewable-grid-analysis" element={<GridAnalysis />} />
               <Route path="/case-studies" element={<CaseStudies />} />
