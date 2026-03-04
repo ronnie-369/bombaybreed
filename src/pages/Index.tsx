@@ -52,17 +52,9 @@ const Index = () => {
       <section className="py-16 md:py-24 px-6 md:px-8 bg-background">
         <div className="container mx-auto max-w-3xl text-center">
           <ScrollReveal direction="up">
-            <blockquote className="font-serif text-xl md:text-2xl lg:text-3xl italic text-foreground/80 leading-relaxed mb-6">
+            <blockquote className="font-serif text-xl md:text-2xl lg:text-3xl italic text-foreground/80 leading-relaxed">
               "Theresa won't oversell. She doesn't simplify irresponsibly. She is trustworthy to find the right answers."
             </blockquote>
-          </ScrollReveal>
-          <ScrollReveal direction="up" delay={1}>
-            <blockquote className="font-serif text-xl md:text-2xl lg:text-3xl italic text-foreground/80 leading-relaxed">
-              "It will take all of us, to do this for all of us"
-            </blockquote>
-            <p className="mt-4 text-sm text-muted-foreground tracking-wide">
-              — Theresa Ronnie
-            </p>
           </ScrollReveal>
         </div>
       </section>
