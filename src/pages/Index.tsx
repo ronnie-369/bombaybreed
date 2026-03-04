@@ -32,10 +32,10 @@ const Index = () => {
     <div className="min-h-screen bg-background flex flex-col">
       <Header />
       <ExecutiveHero />
-      <SpecialFeatureHighlight />
       <ClientLogoStrip />
       <ProofStat />
       <ServicePillars />
+      <SpecialFeatureHighlight />
       <FeaturedInsight />
 
       {/* Testimonial */}
