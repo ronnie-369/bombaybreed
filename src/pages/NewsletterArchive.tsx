@@ -39,7 +39,7 @@ const newsletterEditions = [
     date: 'December 2025',
     topic: 'Climate Economy',
     icon: TrendingUp,
-    summary: 'Mapping the emerging climate workforce across renewable energy, carbon markets, ESG advisory, and green finance — and what it means for talent strategy.',
+    summary: 'Mapping the emerging climate workforce across renewable energy, carbon markets, ESG advisory, and green finance - and what it means for talent strategy.',
     url: 'https://theclimatedesk.substack.com/',
     keywords: ['Green Jobs', 'Climate Economy', 'Workforce'],
   },
@@ -48,7 +48,7 @@ const newsletterEditions = [
     date: 'November 2025',
     topic: 'Policy Analysis',
     icon: Landmark,
-    summary: 'How India-EU trade negotiations are being reshaped by climate policy — from CBAM to the EU Taxonomy to Digital Product Passports.',
+    summary: 'How India-EU trade negotiations are being reshaped by climate policy - from CBAM to the EU Taxonomy to Digital Product Passports.',
     url: 'https://theclimatedesk.substack.com/',
     keywords: ['India-EU Trade', 'Climate Diplomacy', 'CBAM'],
   },
@@ -68,7 +68,7 @@ const NewsletterArchive = () => {
     "@context": "https://schema.org",
     "@type": "Blog",
     "name": "The Climate Desk",
-    "description": "Weekly climate intelligence for India\'s corporate leaders — covering carbon markets, ESG regulation, energy transition, and sustainability communications.",
+    "description": "Weekly climate intelligence for India\'s corporate leaders - covering carbon markets, ESG regulation, energy transition, and sustainability communications.",
     "url": "https://bombaybreed.com/newsletter",
     "author": {
       "@type": "Person",
@@ -90,7 +90,7 @@ const NewsletterArchive = () => {
     <>
       <Helmet>
         <title>The Climate Desk Newsletter | Climate Intelligence India</title>
-        <meta name="description" content="Subscribe to The Climate Desk — weekly climate intelligence covering India's carbon markets, CBAM, BRSR, energy transition, and sustainability strategy for corporate leaders." />
+        <meta name="description" content="Subscribe to The Climate Desk - weekly climate intelligence covering India's carbon markets, CBAM, BRSR, energy transition, and sustainability strategy for corporate leaders." />
         <link rel="canonical" href="https://bombaybreed.com/newsletter" />
         <script type="application/ld+json">{JSON.stringify(structuredData)}</script>
       </Helmet>
@@ -108,7 +108,7 @@ const NewsletterArchive = () => {
               Climate Intelligence,<br />Delivered Weekly
             </h1>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto mb-8">
-              Data-driven analysis of India's carbon markets, climate regulation, and energy transition — curated for corporate leaders, investors, and sustainability professionals by Theresa Ronnie.
+              Data-driven analysis of India's carbon markets, climate regulation, and energy transition - curated for corporate leaders, investors, and sustainability professionals by Theresa Ronnie.
             </p>
             <div className="flex justify-center gap-4 text-sm text-muted-foreground">
               <span>📬 2,500+ subscribers</span>

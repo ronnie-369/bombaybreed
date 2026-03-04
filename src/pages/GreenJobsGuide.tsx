@@ -407,10 +407,10 @@ export default function GreenJobsGuide() {
             Your Future is Green.<br />Here's the Map.
           </h1>
           <p className="text-[15px] leading-[1.7] mb-3 max-w-[480px] mx-auto" style={{ color: '#B7DFC9' }}>
-            A guide for college graduates and early-career professionals choosing a work stream. 375 million net new jobs are coming by 2035 — find the one that fits you.
+            A guide for college graduates and early-career professionals choosing a work stream. 375 million net new jobs are coming by 2035 - find the one that fits you.
           </p>
           <p className="text-[12px] leading-[1.6] mb-8 max-w-[420px] mx-auto" style={{ color: '#B7DFC980' }}>
-            This quiz covers select archetypes — the actual green economy spans hundreds of roles across every industry.
+            This quiz covers select archetypes - the actual green economy spans hundreds of roles across every industry.
           </p>
 
           {/* Quiz CTA */}
@@ -478,7 +478,7 @@ export default function GreenJobsGuide() {
         <SectionLabel color={COLORS.coral}>Find Your Path</SectionLabel>
         <Heading>Which green career personality are you?</Heading>
         <Body>
-          These four archetypes are starting points, not an exhaustive list. Pick the one that resonates most with your background and interests — then explore the indicative career matches it reveals.
+          These four archetypes are starting points, not an exhaustive list. Pick the one that resonates most with your background and interests - then explore the indicative career matches it reveals.
         </Body>
         <div className="flex gap-3 flex-wrap mt-5">
           {PERSONALITIES.map((p) => (
@@ -571,7 +571,7 @@ export default function GreenJobsGuide() {
           </div>
           <BigStat number={activePerson.bigNumber} label={activePerson.bigNumberLabel} source={activePerson.source} color={activePerson.color} />
           <h4 className="font-serif text-xl font-bold text-foreground mt-7 mb-4">Your top 5 career matches</h4>
-          <p className="text-xs text-muted-foreground -mt-2 mb-4">These are indicative roles for your archetype. The green economy offers many more career paths across sectors — explore widely. Tap any card for details.</p>
+          <p className="text-xs text-muted-foreground -mt-2 mb-4">These are indicative roles for your archetype. The green economy offers many more career paths across sectors - explore widely. Tap any card for details.</p>
           <div className="flex flex-col gap-3.5">
             {activePerson.sectors.map((job, i) => (
               <JobCard key={i} job={job} color={activePerson.color} />

@@ -56,7 +56,7 @@ const publications: Publication[] = [
   },
   {
     title: "The One Emitter the Paris Agreement Forgot to Name",
-    description: "Every climate treaty ever signed has a missing line — the world's militaries collectively emit more greenhouse gases than all but two nations.",
+    description: "Every climate treaty ever signed has a missing line - the world's militaries collectively emit more greenhouse gases than all but two nations.",
     contentType: 'Perspective',
     topic: 'Regulatory Intel',
     publishedDate: "2026-03-01",
@@ -101,7 +101,7 @@ const publications: Publication[] = [
   },
   {
     title: "Mining the Transition: A Climate-Critical Minerals Risk Framework",
-    description: "Risk framework for climate-critical minerals investment — lithium, cobalt, nickel, copper, and rare earths.",
+    description: "Risk framework for climate-critical minerals investment - lithium, cobalt, nickel, copper, and rare earths.",
     contentType: 'Intelligence Brief',
     topic: 'Carbon Markets',
     publishedDate: "2025-12-15",
