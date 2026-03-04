@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { supabase } from '@/integrations/supabase/client';
-import Logo from '@/components/ui/Logo';
 
 interface AnimatedLogoProps {
   className?: string;
@@ -14,7 +13,6 @@ const KNOWN_VIDEO_PATH = 'pounce-logo.webm';
 /**
  * Animated logo component that displays a video from Supabase storage
  * Falls back to static logo on error or when motion is reduced
- * Optimized: Uses direct path instead of recursive file listing
  */
 const AnimatedLogo: React.FC<AnimatedLogoProps> = ({ 
   className = "", 
@@ -26,7 +24,6 @@ const AnimatedLogo: React.FC<AnimatedLogoProps> = ({
   const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
 
   useEffect(() => {
-    // Check for reduced motion preference
     const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
     setPrefersReducedMotion(mediaQuery.matches);
   }, []);
@@ -36,13 +33,11 @@ const AnimatedLogo: React.FC<AnimatedLogoProps> = ({
       if (prefersReducedMotion) return;
 
       try {
-        // Try direct path first (no recursive listing needed)
         const { data: publicData } = supabase.storage
           .from('brand assets')
           .getPublicUrl(KNOWN_VIDEO_PATH);
           
         if (publicData?.publicUrl) {
-          // Verify the URL is valid by checking headers
           try {
             const response = await fetch(publicData.publicUrl, { method: 'HEAD' });
             if (response.ok) {
@@ -54,7 +49,6 @@ const AnimatedLogo: React.FC<AnimatedLogoProps> = ({
           }
         }
 
-        // Try signed URL as fallback
         const { data, error } = await supabase.storage
           .from('brand assets')
           .createSignedUrl(KNOWN_VIDEO_PATH, 3600);
@@ -64,7 +58,6 @@ const AnimatedLogo: React.FC<AnimatedLogoProps> = ({
           return;
         }
 
-        // If direct path fails, do a simple single-level list
         const { data: files } = await supabase.storage
           .from('brand assets')
           .list('', { limit: 50 });
@@ -97,11 +90,10 @@ const AnimatedLogo: React.FC<AnimatedLogoProps> = ({
   // Use static logo if reduced motion is preferred, error occurred, or no video URL
   if (prefersReducedMotion || hasError || !videoUrl) {
     return (
-      <Logo
+      <img
         src={fallbackSrc}
         alt={alt}
         className={className}
-        fallbackSrc={fallbackSrc}
       />
     );
   }

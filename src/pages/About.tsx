@@ -4,51 +4,28 @@ import { Link } from 'react-router-dom';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import { Button } from '@/components/ui/button';
-import { ArrowRight, LinkedinIcon, Quote } from 'lucide-react';
+import { ArrowRight, LinkedinIcon } from 'lucide-react';
 import ScrollReveal from '@/components/ui/ScrollReveal';
 import SectionLabel from '@/components/ui/SectionLabel';
 import theresaPortrait from '@/assets/theresa-portrait.jpg';
 
-// Import client logos
-import itcLogo from '@/assets/client-logos/itc.jpg';
-import fordLogo from '@/assets/client-logos/ford.png';
-import cetfiLogo from '@/assets/client-logos/cetfi.jpg';
-import machaniLogo from '@/assets/client-logos/machani.png';
-import petronasLogo from '@/assets/client-logos/petronas.png';
+// Import client logos — max 7
 import microsoftLogo from '@/assets/client-logos/microsoft.png';
 import kpmgLogo from '@/assets/client-logos/kpmg.png';
-import quessLogo from '@/assets/client-logos/quess.png';
-import ubLogo from '@/assets/client-logos/united-breweries.png';
-import proclimeLogo from '@/assets/client-logos/proclime.jpg';
+import fordLogo from '@/assets/client-logos/ford.png';
 import volkswagenLogo from '@/assets/client-logos/volkswagen.png';
-import publicisLogo from '@/assets/client-logos/publicis.png';
-import swatchLogo from '@/assets/client-logos/swatch.png';
-import gh2IndiaLogo from '@/assets/client-logos/gh2-india.png';
+import itcLogo from '@/assets/client-logos/itc.jpg';
 import apolloLogo from '@/assets/client-logos/apollo-hospitals.png';
+import petronasLogo from '@/assets/client-logos/petronas.png';
 
-const clientLogos: Record<string, string> = {
-  "ITC Foods": itcLogo,
-  "Ford Motor Co": fordLogo,
-  "CETFI": cetfiLogo,
-  "Machani Group": machaniLogo,
-  "PETRONAS": petronasLogo,
-  "Microsoft India": microsoftLogo,
-  "KPMG India": kpmgLogo,
-  "Quess Corp": quessLogo,
-  "United Breweries": ubLogo,
-  "ProClime": proclimeLogo,
-  "Volkswagen Malaysia": volkswagenLogo,
-  "Publicis India": publicisLogo,
-  "Swatch": swatchLogo,
-  "GH2 India": gh2IndiaLogo,
-  "Apollo Hospitals": apolloLogo,
-};
-
-const clients = [
-  "KPMG India", "Microsoft India", "PETRONAS", "Ford Motor Co",
-  "Volkswagen Malaysia", "ITC Foods", "United Breweries", "Publicis India",
-  "Quess Corp", "Machani Group", "ProClime", "Apollo Hospitals",
-  "CETFI", "Swatch", "GH2 India", "Erik Solheim"
+const clientLogos = [
+  { src: microsoftLogo, alt: 'Microsoft India' },
+  { src: kpmgLogo, alt: 'KPMG India' },
+  { src: fordLogo, alt: 'Ford Motor Co' },
+  { src: volkswagenLogo, alt: 'Volkswagen Malaysia' },
+  { src: itcLogo, alt: 'ITC Foods' },
+  { src: apolloLogo, alt: 'Apollo Hospitals' },
+  { src: petronasLogo, alt: 'PETRONAS' },
 ];
 
 const testimonials = [
@@ -129,16 +106,16 @@ const About = () => {
           </div>
         </section>
 
-        {/* Portrait */}
+        {/* Portrait — editorial treatment */}
         <section className="px-6 md:px-8 pb-20 md:pb-28">
-          <div className="container mx-auto max-w-4xl">
+          <div className="container mx-auto max-w-[480px]">
             <ScrollReveal direction="up">
               <div className="relative bg-muted rounded-lg overflow-hidden">
-                <div className="aspect-[16/9] md:aspect-[2/1] relative">
+                <div className="aspect-[3/4] relative">
                   <img 
                     src={theresaPortrait}
-                    alt="Theresa Ronnie — Founder, Bombay Breed"
-                    className="w-full h-full object-cover object-top"
+                    alt="Theresa Ronnie, Strategic Carbon Communications Advisor"
+                    className="w-full h-full object-cover object-top saturate-[0.85]"
                   />
                 </div>
               </div>
@@ -231,24 +208,20 @@ const About = () => {
           </div>
         </section>
 
-        {/* Client Logos */}
+        {/* Client Logos — max 7, no header */}
         <section className="py-16 px-6 md:px-8 border-t border-border/50">
           <div className="container mx-auto max-w-4xl">
             <ScrollReveal direction="up">
-              <div className="grid grid-cols-3 sm:grid-cols-4 lg:grid-cols-5 gap-6 items-center justify-items-center">
-                {clients.map((client, index) => {
-                  const logoUrl = clientLogos[client];
-                  if (!logoUrl) return null;
-                  return (
-                    <img
-                      key={index}
-                      src={logoUrl}
-                      alt={`${client} logo`}
-                      className="h-8 md:h-10 object-contain grayscale opacity-50 hover:grayscale-0 hover:opacity-100 transition-all duration-300"
-                      loading="lazy"
-                    />
-                  );
-                })}
+              <div className="flex items-center justify-center gap-8 md:gap-12 flex-wrap">
+                {clientLogos.map((logo, index) => (
+                  <img
+                    key={index}
+                    src={logo.src}
+                    alt={logo.alt}
+                    className="h-8 md:h-10 object-contain grayscale opacity-30 hover:grayscale-0 hover:opacity-80 transition-all duration-300"
+                    loading="lazy"
+                  />
+                ))}
               </div>
             </ScrollReveal>
           </div>
