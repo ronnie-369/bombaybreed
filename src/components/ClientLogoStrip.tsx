@@ -8,7 +8,6 @@ import volkswagen from '@/assets/client-logos/volkswagen.png';
 import heineken from '@/assets/client-logos/heineken.png';
 import itc from '@/assets/client-logos/itc.jpg';
 import apollo from '@/assets/client-logos/apollo-hospitals.png';
-import publicis from '@/assets/client-logos/publicis.png';
 
 const logos = [
   { src: microsoft, alt: 'Microsoft' },
@@ -18,7 +17,6 @@ const logos = [
   { src: heineken, alt: 'Heineken' },
   { src: itc, alt: 'ITC' },
   { src: apollo, alt: 'Apollo Hospitals' },
-  { src: publicis, alt: 'Publicis' },
 ];
 
 const ClientLogoStrip = () => {
@@ -32,7 +30,7 @@ const ClientLogoStrip = () => {
                 key={logo.alt}
                 src={logo.src}
                 alt={logo.alt}
-                className="h-8 md:h-10 object-contain grayscale opacity-50 hover:grayscale-0 hover:opacity-100 transition-all duration-300"
+                className="h-8 md:h-10 object-contain grayscale opacity-30 hover:grayscale-0 hover:opacity-80 transition-all duration-300"
                 loading="lazy"
               />
             ))}
