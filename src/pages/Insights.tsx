@@ -9,7 +9,7 @@ import { Input } from '@/components/ui/input';
 import ScrollReveal from '@/components/ui/ScrollReveal';
 import SectionLabel from '@/components/ui/SectionLabel';
 import LeadCaptureForm from '@/components/shared/LeadCaptureForm';
-import { format } from 'date-fns';
+
 
 type ContentType = 'Flagship Report' | 'Intelligence Brief' | 'Regulatory Alert' | 'Perspective';
 type Topic = 'Carbon Markets' | 'Board Governance' | 'ESG Communications' | 'Regulatory Intel';
@@ -202,7 +202,7 @@ const Insights = () => {
     currentPage * ITEMS_PER_PAGE
   );
 
-  const formatDate = (dateString: string) => format(new Date(dateString), 'MMM yyyy');
+  
 
   const renderListingCard = (pub: Publication, index: number) => {
     const inner = (
@@ -222,9 +222,7 @@ const Insights = () => {
           <p className="text-[13px] text-muted-foreground mt-1 line-clamp-1">{pub.description}</p>
         </div>
         <div className="flex-shrink-0 text-right text-[11px] text-muted-foreground/60 pl-5">
-          {formatDate(pub.publishedDate)}
-          <br />
-          {pub.readTimeMinutes} min
+          {pub.readTimeMinutes} min read
         </div>
       </div>
     );
@@ -367,7 +365,7 @@ const Insights = () => {
                         <p className="text-xs text-muted-foreground">{report.description}</p>
                       </div>
                       <div className="text-[11px] text-muted-foreground/50 mt-4">
-                        {formatDate(report.publishedDate)} · {report.readTimeMinutes} min read
+                        {report.readTimeMinutes} min read
                       </div>
                     </div>
                   );
