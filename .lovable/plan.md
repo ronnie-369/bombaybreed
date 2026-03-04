@@ -1,26 +1,54 @@
 
 
-## Plan: Add Impactree Content Strategy Case Study (Anonymized)
+## Plan: War & Climate Special Feature — Insights Integration, Sitemap, SEO & Source Links
 
-Add a fourth case study to `src/pages/CaseStudies.tsx` about designing a comprehensive content strategy for an AI-driven ESG data technology platform, without naming the client.
+### 1. Add Special Feature banner to Insights page
+- Import and place `SpecialFeatureHighlight` component at the top of the Insights page, immediately after the Hero section and before "Featured Analysis"
+- This gives it top-banner prominence as the most recent/impactful piece
 
-### New Case Study Entry
+### 2. Add to `featuredInsights` array
+- Add a new entry at position 0 (top) in the `featuredInsights` array on the Insights page:
+  - Title: "The One Emitter the Paris Agreement Forgot to Name"
+  - Category: "Special Investigation"
+  - 5,800 words / ~25 min read
+  - Date: March 2026
+  - Link: `/special-features/war-climate.html` (target blank)
 
-- **id**: `feedstock-intelligence-content-strategy`
-- **sector**: ESG Technology & Content Strategy
-- **sectorIcon**: `Database` (import from lucide-react)
-- **title**: "The Feedstock Intelligence Content Ecosystem — Building Category Authority for an AI-Driven ESG Platform"
-- **challenge**: An AI-driven sustainability data technology company had built a powerful platform bridging operational data and strategic ESG decisions — spanning carbon accounting, supply chain compliance, and feedstock intelligence. But their market positioning didn't reflect their true competitive advantage. Two existing articles showed editorial depth but lacked SEO architecture, keyword targeting, or ecosystem integration. The company needed a content strategy that would claim an unoccupied category position and convert technical authority into inbound pipeline.
-- **approach**: Designed a 5-pillar, 15-article content ecosystem with 75+ derivative content pieces — carousels, social posts, lead magnets, and email nurture sequences — across a 7.5-month publishing cadence. Structured the architecture around a proprietary thesis: that feedstock decisions carry embedded carbon, cost, compliance, and continuity implications simultaneously. Audited and repositioned two existing articles into the ecosystem. Built progressive topic authority through sequenced publishing, internal linking strategy, and dual product-line integration. Each article mapped to specific buyer personas — field-level implementers, CFOs, and compliance officers.
-- **whyThisClient**: This client operates at the intersection of AI, industrial data, and ESG compliance — a space where technical capability far outpaces market communication. Their platform serves chemical manufacturers, agri-processors, and heavy industry navigating BRSR, CSRD, and CBAM simultaneously. Building their content ecosystem wasn't just a marketing exercise — it was about defining a category (feedstock intelligence) that no competitor had claimed, and translating deep data science into language that moves procurement decisions, board agendas, and policy conversations.
-- **outcomes**:
-  - 5-pillar content architecture covering feedstock intelligence, supply chain compliance, carbon intelligence, ESG assurance, and strategic sustainability
-  - 15 long-form SEO-optimised articles with 75+ derivative content pieces designed for a 7.5-month deployment
-  - 2 existing articles audited, repositioned, and integrated into the strategic ecosystem
-  - Category-defining thesis established: "feedstock intelligence" as an uncontested market position
-- **keywords**: ESG Technology, Content Strategy, Feedstock Intelligence, SEO Architecture
+### 3. Add to sitemap
+- Update `generate-sitemap/index.ts` to include a hardcoded static URL entry for `special-features/war-climate.html` in the XML output (alongside the existing static pages like `/`, `/resources`, `/credentials`)
+- Priority: 0.90, changefreq: monthly
 
-### File Changes
+### 4. SEO enhancements on the HTML page
+- Add meta tags to `war-climate.html` `<head>`:
+  - `og:title`, `og:description`, `og:type` (article), `og:url`
+  - `twitter:card`, `twitter:title`, `twitter:description`
+  - Canonical URL: `https://bombaybreed.com/special-features/war-climate.html`
+  - `meta description`
+- Add Article structured data (JSON-LD) with:
+  - headline, datePublished (March 2026), author (Bombay Breed), publisher, wordCount (5800)
 
-1. **`src/pages/CaseStudies.tsx`** — Add `Database` to lucide-react imports, append new case study object to `caseStudies` array after the GH2 India entry.
+### 5. Add source hyperlinks to the HTML article
+Insert hyperlinks in the footnotes section (lines 2105-2119) linking cited sources to their homepages or exact report pages:
+
+| Source | URL |
+|--------|-----|
+| CEOBS Military Emissions Gap | `https://ceobs.org/estimating-the-militarys-global-greenhouse-gas-emissions/` |
+| SIPRI Military Expenditure | `https://www.sipri.org/media/press-release/2025/unprecedented-rise-global-military-expenditure-european-and-middle-east-spending-surges` |
+| Belfer Center (Colgan) | `https://www.belfercenter.org/publication/fueling-fire-pathways-oil-war` |
+| Queen Mary Univ Gaza study | `https://www.qmul.ac.uk/media/news/2024/hss/new-study-reveals-substantial-carbon-emissions-from-the-ongoing-israel-gaza-conflict.html` |
+| UNEP Gaza Assessment | `https://www.unep.org/resources/report/environmental-impact-conflict-gaza-preliminary-assessment-environmental-impacts` |
+| UNEP Emissions Gap 2025 | `https://www.unep.org/resources/emissions-gap-report-2025` |
+| IEA China Energy Investment | `https://www.iea.org/reports/world-energy-investment-2025/china` |
+| Ember China Review 2025 | `https://ember-energy.org/latest-insights/china-energy-transition-review-2025/` |
+| Brown Univ Costs of War | `https://costsofwar.watson.brown.edu/` |
+| Global Carbon Project 2024 | `https://globalcarbonbudget.org/gcb-2024/` |
+| CCPI 2024 (Germanwatch) | `https://ccpi.org/download/climate-change-performance-index-2024/` |
+| OECD Climate Finance | `https://www.oecd.org/` |
+
+These will be added as `<a href="..." target="_blank" rel="noopener noreferrer">` links wrapping the source names in the footnotes.
+
+### Files to modify
+- `src/pages/Insights.tsx` — import SpecialFeatureHighlight, add banner + featured entry
+- `supabase/functions/generate-sitemap/index.ts` — add static URL for the special feature
+- `public/special-features/war-climate.html` — add meta/OG tags, JSON-LD schema, hyperlinks in footnotes
 
