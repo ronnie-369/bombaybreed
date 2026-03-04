@@ -1,6 +1,4 @@
-
 import React from 'react';
-import { BadgeCheck } from 'lucide-react';
 import { useInView } from '@/hooks/use-in-view';
 import { Link } from 'react-router-dom';
 
@@ -28,9 +26,7 @@ const Value = () => {
             <div className="space-y-4">
               {benefits.map((benefit, index) => (
                 <div key={index} className="flex items-center animate-fade-in" style={{animationDelay: `${index * 100}ms`}}>
-                  <div className="bg-gradient-to-r from-primary to-accent p-2 rounded-full mr-3 shadow-sm">
-                    <BadgeCheck className="h-5 w-5 text-white" />
-                  </div>
+                  <span className="text-xs font-semibold tracking-widest text-primary/60 mr-4">{String(index + 1).padStart(2, '0')}</span>
                   <span className="text-body-sm font-medium">{benefit}</span>
                 </div>
               ))}
@@ -58,7 +54,7 @@ const Value = () => {
                     to="/compliance-to-credibility"
                     className={`inline-block bg-gradient-to-r from-primary to-accent text-white font-medium px-6 py-3 rounded-full shadow-sm glow-card hover-scale transition-all duration-300 ${glowInView ? 'active' : ''}`}
                   >
-                    Effective sustainability communication is a strategic advantage
+                    Read Our Framework →
                   </Link>
                 </div>
               </div>

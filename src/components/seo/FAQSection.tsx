@@ -4,7 +4,6 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from '@/components/ui/accordion';
-import { HelpCircle } from 'lucide-react';
 
 interface FAQItem {
   question: string;
@@ -21,10 +20,7 @@ const FAQSection = ({ items, title = 'What Decision-Makers Ask Us' }: FAQSection
 
   return (
     <section className="py-12 border-t border-border/50">
-      <div className="flex items-center gap-3 mb-8">
-        <HelpCircle className="h-6 w-6 text-primary" />
-        <h2 className="text-2xl font-bold text-foreground">{title}</h2>
-      </div>
+      <h2 className="text-xl font-serif tracking-tight text-foreground mb-8">{title}</h2>
       <Accordion type="single" collapsible className="w-full">
         {items.map((item, index) => (
           <AccordionItem key={index} value={`faq-${index}`}>

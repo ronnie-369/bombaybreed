@@ -4,7 +4,7 @@ import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
-import { ArrowRight, CheckCircle2, Database, FileText, Leaf, TrendingUp, Zap } from 'lucide-react';
+import { ArrowRight, CheckCircle2 } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import BookingDialog from '@/components/BookingDialog';
 
@@ -12,7 +12,6 @@ const caseStudies = [
   {
     id: 'proclime-biodiversity-campaign',
     sector: 'Climate Awareness & Advocacy',
-    sectorIcon: Leaf,
     title: 'Sounds of ProClime: India\'s National Anthem Recreated Using Sounds of Nature',
     subtitle: 'A creative campaign that made biodiversity conservation emotionally resonant for 1.4 billion people.',
     challenge: [
@@ -38,7 +37,6 @@ const caseStudies = [
   {
     id: 'creative-effectiveness-sprint',
     sector: 'Creative Capability & Brand Strategy',
-    sectorIcon: TrendingUp,
     title: 'The Creative Effectiveness Sprint: From Campaign Execution to Business-Moving Strategy',
     subtitle: 'Transforming an in-house marketing team\'s creative capability without disrupting live operations.',
     challenge: [
@@ -65,7 +63,6 @@ const caseStudies = [
   {
     id: 'gh2-india-annual-report',
     sector: 'Green Hydrogen & Industrial Policy',
-    sectorIcon: FileText,
     title: 'GH2 India Annual Report 2025: Designing the Definitive Record of India\'s Green Hydrogen Movement',
     subtitle: 'Shaping the inaugural annual report for India\'s leading green hydrogen industry association.',
     challenge: [
@@ -92,7 +89,6 @@ const caseStudies = [
   {
     id: 'feedstock-intelligence-content-strategy',
     sector: 'ESG Technology & Content Strategy',
-    sectorIcon: Database,
     title: 'The Feedstock Intelligence Content Ecosystem: Building Category Authority for an AI-Driven ESG Platform',
     subtitle: 'Defining an uncontested category position through a 15-article content architecture.',
     challenge: [
@@ -167,7 +163,6 @@ const CaseStudies = () => {
                 {/* Sector + Title Header */}
                 <div className="mb-8 md:mb-12">
                   <div className="flex items-center gap-2 mb-4">
-                    <study.sectorIcon className="w-5 h-5 text-primary" />
                     <span className="text-xs font-semibold text-primary uppercase tracking-[0.15em]">
                       {study.sector}
                     </span>
@@ -207,7 +202,7 @@ const CaseStudies = () => {
                     <ul className="space-y-3">
                       {study.approach.map((point, i) => (
                         <li key={i} className="flex items-start gap-3 text-foreground/80 leading-relaxed">
-                          <Zap className="w-4 h-4 text-primary mt-0.5 flex-shrink-0" />
+                          <span className="mt-2 w-1.5 h-1.5 rounded-full bg-accent/60 flex-shrink-0" />
                           <span>{point}</span>
                         </li>
                       ))}

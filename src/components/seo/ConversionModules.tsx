@@ -1,7 +1,6 @@
 import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
-import { ArrowRight, AlertTriangle, Clock, Users, TrendingDown } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 import BookingDialog from '@/components/BookingDialog';
 
 interface WhoHiresUsProps {
@@ -20,22 +19,15 @@ export const WhoHiresUs = ({ roles = ['CEO', 'COO', 'CSO', 'CFO', 'CMO'], indust
 
   return (
     <section className="py-12 border-t border-border/50">
-      <div className="flex items-center gap-3 mb-6">
-        <Users className="h-6 w-6 text-primary" />
-        <h2 className="text-2xl font-bold text-foreground">Who Hires Us For This</h2>
-      </div>
-      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
+      <h2 className="text-xl font-serif tracking-tight text-foreground mb-6">Who Hires Us For This</h2>
+      <div className="space-y-4">
         {roles.map((role) => (
-          <Card key={role} className="bg-card/50 border-border/50">
-            <CardHeader className="pb-2">
-              <CardTitle className="text-lg">{role}</CardTitle>
-            </CardHeader>
-            <CardContent>
-              <p className="text-sm text-muted-foreground">
-                {roleDescriptions[role] || `${industry || 'Industry'} leadership seeking strategic climate advisory`}
-              </p>
-            </CardContent>
-          </Card>
+          <div key={role} className="flex items-baseline gap-3">
+            <span className="font-semibold text-foreground text-sm min-w-[180px]">{role}</span>
+            <span className="text-sm text-muted-foreground">
+              {roleDescriptions[role] || `${industry || 'Industry'} leadership seeking strategic climate advisory`}
+            </span>
+          </div>
         ))}
       </div>
     </section>
@@ -59,10 +51,7 @@ export const UrgencyTriggers = ({ triggers }: UrgencyTriggersProps) => {
 
   return (
     <section className="py-12 border-t border-border/50">
-      <div className="flex items-center gap-3 mb-6">
-        <Clock className="h-6 w-6 text-primary" />
-        <h2 className="text-2xl font-bold text-foreground">When This Becomes Urgent</h2>
-      </div>
+      <h2 className="text-xl font-serif tracking-tight text-foreground mb-6">When This Becomes Urgent</h2>
       <div className="flex flex-wrap gap-3">
         {displayTriggers.map((trigger, index) => (
           <Badge 
@@ -109,23 +98,13 @@ export const FailureConsequences = ({ consequences }: FailureConsequencesProps) 
 
   return (
     <section className="py-12 border-t border-border/50">
-      <div className="flex items-center gap-3 mb-6">
-        <AlertTriangle className="h-6 w-6 text-destructive" />
-        <h2 className="text-2xl font-bold text-foreground">What Failure Looks Like</h2>
-      </div>
+      <h2 className="text-xl font-serif tracking-tight text-foreground mb-6">What Failure Looks Like</h2>
       <div className="grid md:grid-cols-2 gap-6">
         {displayConsequences.map((item, index) => (
-          <Card key={index} className="bg-destructive/5 border-destructive/20">
-            <CardHeader className="pb-2">
-              <CardTitle className="text-lg flex items-center gap-2">
-                <TrendingDown className="h-5 w-5 text-destructive" />
-                {item.title}
-              </CardTitle>
-            </CardHeader>
-            <CardContent>
-              <p className="text-sm text-muted-foreground">{item.description}</p>
-            </CardContent>
-          </Card>
+          <div key={index} className="border-l-2 border-destructive/30 pl-4">
+            <h3 className="font-semibold text-foreground mb-1">{item.title}</h3>
+            <p className="text-sm text-muted-foreground">{item.description}</p>
+          </div>
         ))}
       </div>
     </section>
@@ -144,8 +123,8 @@ export const DiagnosticCTA = ({
 }: DiagnosticCTAProps) => {
   return (
     <section className="py-16 border-t border-border/50">
-      <div className="bg-gradient-to-br from-primary/10 via-secondary/20 to-primary/5 rounded-2xl p-8 md:p-12 text-center">
-        <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-4">
+      <div className="text-center">
+        <h2 className="text-2xl font-serif tracking-tight text-foreground mb-4">
           Ready to Move Forward?
         </h2>
         <p className="text-muted-foreground max-w-2xl mx-auto mb-8">
