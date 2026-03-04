@@ -1,0 +1,2122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The One Emitter the Paris Agreement Forgot to Name | Bombay Breed</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=IBM+Plex+Mono:wght@300;400;500&family=IBM+Plex+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --ink: #111010;
+  --navy: #0f1f3d;
+  --paper: #f7f3ec;
+  --warm: #ece6d8;
+  --red: #b91c1c;
+  --red-dim: rgba(185,28,28,0.08);
+  --steel: #1e3a5f;
+  --steel-dim: rgba(30,58,95,0.08);
+  --gold: #92400e;
+  --gold-dim: rgba(146,64,14,0.08);
+  --smoke: #6b6558;
+  --rule: rgba(17,16,16,0.12);
+  --rule-heavy: rgba(17,16,16,0.25);
+  --white: #ffffff;
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--paper);
+  color: var(--ink);
+  font-family: 'IBM Plex Sans', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 0 0 100px;
+}
+
+/* ── BELFER HIGHLIGHT BLOCK ── */
+.belfer-highlight {
+  margin: 40px 0;
+}
+.belfer-rule {
+  height: 3px;
+  background: linear-gradient(90deg, var(--red) 0%, rgba(185,28,28,0.15) 100%);
+  margin-bottom: 0;
+}
+.belfer-inner {
+  background: var(--navy);
+  padding: 40px 44px;
+}
+.belfer-source {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: rgba(185,28,28,0.8);
+  margin-bottom: 20px;
+}
+.belfer-quote {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(20px, 2.8vw, 28px);
+  font-weight: 700;
+  font-style: italic;
+  line-height: 1.35;
+  color: var(--paper);
+  max-width: 640px;
+  margin-bottom: 32px;
+  border-left: 3px solid var(--red);
+  padding-left: 20px;
+}
+.belfer-mechanisms {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px 20px;
+  margin-bottom: 36px;
+  padding-bottom: 32px;
+  border-bottom: 1px solid rgba(247,243,236,0.1);
+}
+.mech-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: 'IBM Plex Sans', sans-serif;
+  font-size: 12px;
+  color: rgba(247,243,236,0.65);
+}
+.mech-dot {
+  display: block;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+.mech-dot.red { background: var(--red); }
+.mech-dot.dark { background: rgba(247,243,236,0.35); }
+.belfer-foot-row {
+  display: grid;
+  grid-template-columns: 1fr 1px 1fr 1px 1fr;
+  gap: 0;
+}
+.belfer-foot-divider {
+  background: rgba(247,243,236,0.12);
+}
+.belfer-foot-stat {
+  padding: 0 28px;
+  text-align: center;
+}
+.belfer-foot-stat:first-child { padding-left: 0; }
+.belfer-foot-stat:last-child { padding-right: 0; }
+.belfer-num {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(32px, 4vw, 48px);
+  font-weight: 900;
+  color: var(--red);
+  line-height: 1;
+  margin-bottom: 10px;
+}
+.belfer-num-label {
+  font-family: 'IBM Plex Sans', sans-serif;
+  font-size: 12px;
+  line-height: 1.55;
+  color: rgba(247,243,236,0.55);
+}
+.belfer-citation {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 1px;
+  color: var(--smoke);
+  padding: 12px 0 0;
+}
+
+/* ── COLLISION BLOCK ── */
+.collision-block {
+  margin: 48px 0 0;
+  background: var(--warm);
+  border: 1px solid var(--rule-heavy);
+  padding: 44px 44px 48px;
+}
+.collision-label {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--smoke);
+  margin-bottom: 20px;
+}
+.collision-rule {
+  flex: 1;
+  height: 1px;
+  background: var(--rule-heavy);
+}
+.collision-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(22px, 3vw, 32px);
+  font-weight: 900;
+  line-height: 1.15;
+  letter-spacing: -0.5px;
+  color: var(--ink);
+  margin-bottom: 14px;
+}
+.collision-intro {
+  font-family: 'IBM Plex Sans', sans-serif;
+  font-size: 15px;
+  line-height: 1.7;
+  color: var(--smoke);
+  max-width: 620px;
+  margin-bottom: 36px;
+}
+.collision-grid {
+  display: grid;
+  grid-template-columns: 1fr 56px 1fr;
+  gap: 0;
+  margin-bottom: 40px;
+  border: 1px solid var(--rule-heavy);
+}
+.collision-cell {
+  padding: 28px;
+}
+.collision-cell.red-side {
+  border-right: 1px solid var(--rule-heavy);
+  background: rgba(185,28,28,0.04);
+}
+.collision-cell.steel-side {
+  background: rgba(30,58,95,0.04);
+}
+.collision-cell-label {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--smoke);
+  margin-bottom: 8px;
+}
+.collision-cell-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 16px;
+  font-weight: 700;
+  margin-bottom: 20px;
+  color: var(--ink);
+}
+.collision-stat-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  margin-bottom: 16px;
+}
+.cs-num {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 22px;
+  font-weight: 600;
+  line-height: 1;
+  flex-shrink: 0;
+  width: 72px;
+  padding-top: 2px;
+}
+.cs-num.red { color: var(--red); }
+.cs-num.steel { color: var(--steel); }
+.cs-desc {
+  font-family: 'IBM Plex Sans', sans-serif;
+  font-size: 12px;
+  line-height: 1.6;
+  color: var(--smoke);
+}
+.collision-verdict {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  padding: 10px 14px;
+  margin-top: 8px;
+  border-left: 3px solid;
+}
+.collision-verdict.red { color: var(--red); border-color: var(--red); background: rgba(185,28,28,0.06); }
+.collision-verdict.steel { color: var(--steel); border-color: var(--steel); background: rgba(30,58,95,0.06); }
+.collision-vs {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: var(--navy);
+  position: relative;
+}
+.vs-circle {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--paper);
+  letter-spacing: 2px;
+  background: var(--red);
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2;
+}
+.collision-analysis {
+  border-top: 2px solid var(--ink);
+  padding-top: 28px;
+}
+.ca-heading {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--ink);
+  margin-bottom: 18px;
+}
+.ca-body {
+  font-family: 'IBM Plex Sans', sans-serif;
+  font-size: 15px;
+  line-height: 1.75;
+  color: var(--ink);
+  margin-bottom: 16px;
+}
+.ca-verdict {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(17px, 2.2vw, 22px);
+  font-weight: 700;
+  font-style: italic;
+  line-height: 1.4;
+  color: var(--ink);
+  margin-top: 24px;
+  padding: 20px 24px;
+  border-left: 4px solid var(--ink);
+  background: rgba(17,16,16,0.04);
+}
+
+/* ── BRIDGE PARAGRAPH ── */
+.bridge-para {
+  margin: 40px 0;
+  padding: 32px 36px;
+  border-left: 4px solid var(--rule-heavy);
+  background: rgba(17,16,16,0.03);
+}
+.bridge-para p {
+  font-family: 'IBM Plex Sans', sans-serif;
+  font-size: 15.5px;
+  font-weight: 300;
+  line-height: 1.8;
+  color: var(--ink);
+  margin-bottom: 18px;
+}
+.bridge-para p:last-child { margin-bottom: 0; }
+.bridge-para p strong {
+  font-weight: 600;
+  color: var(--ink);
+}
+
+/* ── LOOP LIST ── */
+.loop-list {
+  list-style: none;
+  counter-reset: loop-counter;
+  margin: 20px 0 32px;
+  padding: 0;
+}
+.loop-list li {
+  counter-increment: loop-counter;
+  position: relative;
+  padding: 18px 0 18px 52px;
+  border-bottom: 1px solid var(--rule);
+  font-family: 'IBM Plex Sans', sans-serif;
+  font-size: 15px;
+  line-height: 1.7;
+  color: var(--ink);
+}
+.loop-list li:last-child { border-bottom: none; }
+.loop-list li::before {
+  content: counter(loop-counter);
+  position: absolute;
+  left: 0;
+  top: 18px;
+  font-family: 'Playfair Display', serif;
+  font-size: 26px;
+  font-weight: 900;
+  color: var(--red);
+  line-height: 1;
+}
+.loop-list li strong {
+  font-weight: 600;
+  color: var(--ink);
+}
+
+.table-note {
+  font-family: 'IBM Plex Sans', sans-serif;
+  font-size: 11px;
+  font-weight: 400;
+  font-style: italic;
+  color: var(--smoke);
+  line-height: 1.5;
+  margin-top: 5px;
+  padding-top: 5px;
+  border-top: 1px solid var(--rule);
+}
+
+.topbar {
+  background: var(--navy);
+  color: rgba(247,243,236,0.5);
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  padding: 10px 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.topbar strong { color: var(--red); }
+.topbar-logo {
+  font-family: 'Playfair Display', serif;
+  font-size: 13px;
+  letter-spacing: 3px;
+  color: rgba(247,243,236,0.9);
+  font-weight: 700;
+}
+
+/* ── COVER BLOCK ── */
+.cover {
+  background: var(--navy);
+  padding: 64px 48px 56px;
+  position: relative;
+  overflow: hidden;
+}
+.cover::before {
+  content: '';
+  position: absolute;
+  top: 0; right: 0;
+  width: 300px; height: 300px;
+  background: radial-gradient(circle at top right, rgba(185,28,28,0.12), transparent 70%);
+  pointer-events: none;
+}
+.cover-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 3.5px;
+  text-transform: uppercase;
+  color: var(--red);
+  margin-bottom: 28px;
+}
+.cover-label::before {
+  content: '';
+  display: block;
+  width: 36px;
+  height: 1.5px;
+  background: var(--red);
+}
+.cover h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(38px, 5.5vw, 64px);
+  font-weight: 900;
+  line-height: 1.04;
+  letter-spacing: -1.5px;
+  color: var(--paper);
+  max-width: 680px;
+  margin-bottom: 24px;
+}
+.cover h1 em {
+  font-style: italic;
+  color: var(--red);
+}
+.cover-deck {
+  font-family: 'IBM Plex Sans', sans-serif;
+  font-size: 17px;
+  font-weight: 300;
+  line-height: 1.65;
+  color: rgba(247,243,236,0.72);
+  max-width: 600px;
+  margin-bottom: 36px;
+}
+.cover-meta {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: rgba(247,243,236,0.4);
+  border-top: 1px solid rgba(247,243,236,0.1);
+  padding-top: 20px;
+}
+.cover-meta span { color: rgba(247,243,236,0.65); }
+
+/* ── OPENING STAT ── */
+.opening-stat {
+  background: var(--red);
+  padding: 48px 48px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 0;
+}
+.stat-cell {
+  padding: 0 32px 0 0;
+  border-right: 1px solid rgba(247,243,236,0.2);
+}
+.stat-cell:first-child { padding-left: 0; }
+.stat-cell:last-child { border-right: none; padding-right: 0; padding-left: 32px; }
+.stat-num {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(36px, 5vw, 54px);
+  font-weight: 900;
+  color: var(--paper);
+  line-height: 1;
+  margin-bottom: 8px;
+}
+.stat-label {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  color: rgba(247,243,236,0.65);
+  line-height: 1.5;
+}
+.stat-note {
+  font-family: 'IBM Plex Sans', sans-serif;
+  font-size: 12px;
+  color: rgba(247,243,236,0.45);
+  margin-top: 6px;
+}
+
+/* ── BODY / SECTION LAYOUT ── */
+.section-wrap {
+  padding: 0 48px;
+}
+.section-head {
+  display: flex;
+  align-items: baseline;
+  gap: 16px;
+  padding: 52px 0 0;
+  margin-bottom: 24px;
+}
+.section-num {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--red);
+  background: var(--red-dim);
+  padding: 4px 10px;
+  border: 1px solid rgba(185,28,28,0.2);
+  white-space: nowrap;
+}
+.section-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(24px, 3vw, 32px);
+  font-weight: 700;
+  color: var(--ink);
+  line-height: 1.2;
+}
+.section-title em { font-style: italic; color: var(--red); }
+.section-title.steel em { color: var(--steel); }
+.section-title.gold em { color: var(--gold); }
+
+.article-body {
+  font-family: 'IBM Plex Sans', sans-serif;
+  font-size: 16px;
+  font-weight: 300;
+  line-height: 1.75;
+  color: rgba(17,16,16,0.82);
+  margin-bottom: 24px;
+}
+.article-body strong {
+  font-weight: 600;
+  color: var(--ink);
+}
+.article-body a { color: var(--steel); }
+
+.pull-quote {
+  border-left: 3px solid var(--red);
+  padding: 16px 0 16px 24px;
+  margin: 32px 0;
+}
+.pull-quote p {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(19px, 2.5vw, 23px);
+  font-style: italic;
+  line-height: 1.4;
+  color: var(--ink);
+  font-weight: 400;
+}
+.pull-quote cite {
+  display: block;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--smoke);
+  margin-top: 10px;
+  font-style: normal;
+}
+
+.divider {
+  border: none;
+  border-top: 1px solid var(--rule);
+  margin: 40px 0;
+}
+
+/* ── CHART BOXES ── */
+.chart-box {
+  background: var(--white);
+  border: 1px solid var(--rule);
+  border-top: 3px solid var(--ink);
+  padding: 32px;
+  margin: 36px 0;
+}
+.chart-box.red-top { border-top-color: var(--red); }
+.chart-box.steel-top { border-top-color: var(--steel); }
+.chart-box.gold-top { border-top-color: var(--gold); }
+
+.chart-title {
+  font-family: 'IBM Plex Sans', sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  color: var(--ink);
+  margin-bottom: 4px;
+  text-transform: uppercase;
+}
+.chart-sub {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 1.5px;
+  color: var(--smoke);
+  text-transform: uppercase;
+  margin-bottom: 28px;
+}
+.chart-src {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 9.5px;
+  letter-spacing: 1px;
+  color: var(--smoke);
+  text-transform: uppercase;
+  margin-top: 20px;
+  padding-top: 14px;
+  border-top: 1px solid var(--rule);
+  opacity: 0.75;
+}
+
+/* ── BAR CHART ── */
+.bar-chart { display: flex; flex-direction: column; gap: 14px; }
+.bar-row {
+  display: grid;
+  grid-template-columns: 220px 1fr 80px;
+  align-items: center;
+  gap: 12px;
+}
+.bar-label {
+  font-family: 'IBM Plex Sans', sans-serif;
+  font-size: 12.5px;
+  font-weight: 500;
+  color: var(--ink);
+  text-align: right;
+  padding-right: 4px;
+}
+.bar-label small {
+  display: block;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 1px;
+  color: var(--smoke);
+  font-weight: 400;
+  text-transform: uppercase;
+}
+.bar-track {
+  height: 24px;
+  background: rgba(17,16,16,0.06);
+  border-radius: 2px;
+  overflow: hidden;
+}
+.bar-fill {
+  height: 100%;
+  border-radius: 2px;
+  background: var(--navy);
+  transition: width 0.4s ease;
+}
+.bar-fill.red { background: var(--red); }
+.bar-fill.steel { background: var(--steel); }
+.bar-fill.gold { background: var(--gold); }
+.bar-fill.highlight { background: var(--navy); }
+.bar-fill.faded { background: rgba(17,16,16,0.3); }
+.bar-val {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11.5px;
+  font-weight: 500;
+  color: var(--ink);
+}
+.bar-val.red { color: var(--red); }
+.bar-val.steel { color: var(--steel); }
+
+/* ── DATA TABLE ── */
+.data-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: 'IBM Plex Sans', sans-serif;
+  font-size: 13px;
+}
+.data-table thead tr {
+  background: var(--navy);
+  color: var(--paper);
+}
+.data-table thead th {
+  padding: 11px 14px;
+  text-align: left;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  font-weight: 500;
+}
+.data-table tbody tr {
+  border-bottom: 1px solid var(--rule);
+  transition: background 0.15s;
+}
+.data-table tbody tr:hover { background: var(--warm); }
+.data-table tbody td {
+  padding: 11px 14px;
+  color: rgba(17,16,16,0.85);
+  vertical-align: top;
+}
+.data-table tbody td:first-child { font-weight: 600; color: var(--ink); }
+.data-table tbody tr.highlight-row { background: var(--red-dim); }
+.data-table tbody tr.highlight-row td:first-child { color: var(--red); }
+.data-table tbody tr.highlight-steel { background: var(--steel-dim); }
+.data-table tbody tr.highlight-steel td:first-child { color: var(--steel); }
+.data-table tbody tr.highlight-gold { background: var(--gold-dim); }
+.badge {
+  display: inline-block;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  padding: 2px 8px;
+  border-radius: 2px;
+}
+.badge-red { background: var(--red-dim); color: var(--red); border: 1px solid rgba(185,28,28,0.2); }
+.badge-steel { background: var(--steel-dim); color: var(--steel); border: 1px solid rgba(30,58,95,0.2); }
+.badge-gold { background: var(--gold-dim); color: var(--gold); border: 1px solid rgba(146,64,14,0.2); }
+.badge-dark { background: rgba(17,16,16,0.07); color: var(--ink); border: 1px solid rgba(17,16,16,0.15); }
+
+/* ── COMPARISON GRID ── */
+.compare-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1px;
+  background: var(--rule);
+  border: 1px solid var(--rule);
+  margin: 32px 0;
+}
+.compare-cell {
+  background: var(--white);
+  padding: 28px 24px;
+}
+.compare-cell.dark { background: var(--navy); }
+.compare-cell.red-bg { background: var(--red-dim); }
+.compare-cell.steel-bg { background: var(--steel-dim); }
+.compare-label {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  color: var(--smoke);
+  margin-bottom: 10px;
+}
+.compare-label.on-dark { color: rgba(247,243,236,0.45); }
+.compare-num {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(28px, 4vw, 40px);
+  font-weight: 900;
+  color: var(--ink);
+  line-height: 1;
+  margin-bottom: 6px;
+}
+.compare-num.red { color: var(--red); }
+.compare-num.steel { color: var(--steel); }
+.compare-num.on-dark { color: var(--paper); }
+.compare-desc {
+  font-family: 'IBM Plex Sans', sans-serif;
+  font-size: 12.5px;
+  color: var(--smoke);
+  line-height: 1.5;
+}
+.compare-desc.on-dark { color: rgba(247,243,236,0.55); }
+
+/* ── TIMELINE ── */
+.timeline { position: relative; padding-left: 28px; }
+.timeline::before {
+  content: '';
+  position: absolute;
+  left: 7px; top: 8px; bottom: 0;
+  width: 1px;
+  background: var(--rule-heavy);
+}
+.tl-item {
+  position: relative;
+  margin-bottom: 28px;
+}
+.tl-item::before {
+  content: '';
+  position: absolute;
+  left: -24px; top: 6px;
+  width: 9px; height: 9px;
+  border-radius: 50%;
+  background: var(--ink);
+  border: 2px solid var(--paper);
+  box-shadow: 0 0 0 1px var(--ink);
+}
+.tl-item.red::before { background: var(--red); box-shadow: 0 0 0 1px var(--red); }
+.tl-item.steel::before { background: var(--steel); box-shadow: 0 0 0 1px var(--steel); }
+.tl-year {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--smoke);
+  margin-bottom: 3px;
+}
+.tl-title {
+  font-family: 'IBM Plex Sans', sans-serif;
+  font-size: 13.5px;
+  font-weight: 600;
+  color: var(--ink);
+  margin-bottom: 3px;
+}
+.tl-body {
+  font-family: 'IBM Plex Sans', sans-serif;
+  font-size: 13px;
+  color: var(--smoke);
+  line-height: 1.6;
+}
+
+/* ── TWO-COL ── */
+.two-col {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 32px;
+  margin: 32px 0;
+}
+
+/* ── CALLOUT BOX ── */
+.callout {
+  background: var(--warm);
+  border-left: 3px solid var(--gold);
+  padding: 20px 24px;
+  margin: 28px 0;
+}
+.callout.steel-border { border-left-color: var(--steel); }
+.callout.red-border { border-left-color: var(--red); }
+.callout-title {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 8px;
+}
+.callout-title.steel { color: var(--steel); }
+.callout-title.red { color: var(--red); }
+.callout p {
+  font-family: 'IBM Plex Sans', sans-serif;
+  font-size: 13.5px;
+  line-height: 1.65;
+  color: rgba(17,16,16,0.82);
+}
+
+/* ── DARK INSIGHT BAND ── */
+.insight-band {
+  background: var(--navy);
+  padding: 48px 48px;
+  margin: 48px 0 0;
+}
+.insight-band .insight-label {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--red);
+  margin-bottom: 20px;
+}
+.insight-band h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(22px, 3vw, 30px);
+  font-weight: 700;
+  color: var(--paper);
+  line-height: 1.25;
+  margin-bottom: 16px;
+}
+.insight-band h3 em { font-style: italic; color: rgba(247,243,236,0.6); }
+.insight-band p {
+  font-family: 'IBM Plex Sans', sans-serif;
+  font-size: 14.5px;
+  color: rgba(247,243,236,0.65);
+  line-height: 1.7;
+  max-width: 680px;
+}
+
+/* ── SCATTER / DOT VISUAL ── */
+.dot-chart { display: flex; flex-wrap: wrap; gap: 8px; padding: 8px 0; }
+.dot-item { display: flex; align-items: center; gap: 6px; }
+.dot {
+  width: 12px; height: 12px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+.dot-lbl {
+  font-family: 'IBM Plex Sans', sans-serif;
+  font-size: 11.5px;
+  color: var(--ink);
+}
+
+/* ── SECTION DIVIDER ── */
+.section-sep {
+  border: none;
+  border-top: 2px solid var(--ink);
+  margin: 56px 0 0;
+}
+
+/* ── FOOTNOTES ── */
+.footnotes {
+  background: var(--warm);
+  padding: 32px 48px;
+  margin-top: 48px;
+}
+.footnotes-title {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--smoke);
+  margin-bottom: 16px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--rule);
+}
+.footnotes p {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10.5px;
+  color: var(--smoke);
+  line-height: 1.65;
+  margin-bottom: 8px;
+}
+
+/* ── INVESTMENT THESIS BOX ── */
+.thesis-box {
+  background: var(--steel);
+  padding: 40px 40px;
+  margin: 40px 0;
+}
+.thesis-box .thesis-label {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: rgba(247,243,236,0.5);
+  margin-bottom: 18px;
+}
+.thesis-box h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(20px, 2.5vw, 26px);
+  font-weight: 700;
+  color: var(--paper);
+  line-height: 1.3;
+  margin-bottom: 14px;
+  font-style: italic;
+}
+.thesis-box p {
+  font-family: 'IBM Plex Sans', sans-serif;
+  font-size: 13.5px;
+  color: rgba(247,243,236,0.7);
+  line-height: 1.7;
+}
+
+/* ── CLOSING ── */
+.closing {
+  background: var(--navy);
+  padding: 60px 48px;
+}
+.closing-label {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: rgba(247,243,236,0.35);
+  margin-bottom: 24px;
+}
+.closing h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(26px, 3.5vw, 38px);
+  font-weight: 900;
+  color: var(--paper);
+  line-height: 1.15;
+  margin-bottom: 20px;
+  max-width: 640px;
+}
+.closing h2 em { font-style: italic; color: var(--red); }
+.closing p {
+  font-family: 'IBM Plex Sans', sans-serif;
+  font-size: 15px;
+  color: rgba(247,243,236,0.62);
+  line-height: 1.75;
+  max-width: 620px;
+  margin-bottom: 16px;
+}
+.closing-sig {
+  margin-top: 36px;
+  padding-top: 24px;
+  border-top: 1px solid rgba(247,243,236,0.1);
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: rgba(247,243,236,0.3);
+}
+.closing-sig strong { color: rgba(247,243,236,0.7); }
+
+/* ── HORIZONTAL LINE CHART ── */
+.line-row {
+  display: grid;
+  grid-template-columns: 140px 1fr 100px;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+.line-year {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  color: var(--smoke);
+  text-align: right;
+}
+.line-track {
+  height: 6px;
+  background: rgba(17,16,16,0.07);
+  border-radius: 3px;
+  position: relative;
+}
+.line-fill {
+  height: 100%;
+  border-radius: 3px;
+}
+.line-val {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  color: var(--smoke);
+}
+.line-val strong { color: var(--ink); font-weight: 600; }
+
+@media (max-width: 640px) {
+  .opening-stat { grid-template-columns: 1fr; gap: 28px; }
+  .stat-cell { padding: 0 !important; border: none !important; }
+  .two-col { grid-template-columns: 1fr; gap: 20px; }
+  .compare-grid { grid-template-columns: 1fr; }
+  .bar-row { grid-template-columns: 120px 1fr 60px; }
+  .section-wrap, .cover, .insight-band, .closing, .footnotes { padding-left: 24px; padding-right: 24px; }
+}
+</style>
+</head>
+<body>
+
+<!-- TOP BAR -->
+<div class="topbar">
+  <span class="topbar-logo">BOMBAY BREED</span>
+  <span>SPECIAL FEATURE · CLIMATE INTELLIGENCE · MARCH 2026</span>
+  <strong>BOMBAYBREED.COM</strong>
+</div>
+
+<!-- COVER -->
+<div class="cover">
+  <div class="cover-label">Special Investigation</div>
+  <h1>The One Emitter<br>the Paris Agreement<br><em>Forgot to Name</em></h1>
+  <p class="cover-deck">Every climate treaty ever signed has a missing line. The world's militaries collectively emit more greenhouse gases than all but two nations on earth - and appear in none of them. This is not an oversight. It was a choice. And the world is paying for it.</p>
+  <div class="cover-meta">
+    <span>Bombay Breed Intelligence</span>
+    · <span>5,800 words</span>
+    · Sources: CEOBS · Brown University · IEA · SIPRI · UNEP · Belfer Center · Ember · Queen Mary University
+  </div>
+</div>
+
+<!-- OPENING STATS -->
+<div class="opening-stat">
+  <div class="stat-cell">
+    <div class="stat-num">5.5%</div>
+    <div class="stat-label">Of Global GHG Emissions from World's Militaries</div>
+    <div class="stat-note">Larger than civil aviation (~2%). Source: CEOBS 2022</div>
+  </div>
+  <div class="stat-cell">
+    <div class="stat-num">$2.7T</div>
+    <div class="stat-label">Global Military Spending in 2024</div>
+    <div class="stat-note">9.4% rise - steepest since Cold War. Source: SIPRI 2025</div>
+  </div>
+  <div class="stat-cell">
+    <div class="stat-num">23×</div>
+    <div class="stat-label">Military Spend vs. Climate Finance to Developing Nations</div>
+    <div class="stat-note">$2.7T vs $116B mobilised in 2022. Source: SIPRI / OECD</div>
+  </div>
+</div>
+
+<!-- ═════════════════════════════════════ -->
+<!-- SECTION 01: THE INVISIBLE EMITTER    -->
+<!-- ═════════════════════════════════════ -->
+<div class="section-sep"></div>
+<div class="section-wrap">
+  <div class="section-head">
+    <span class="section-num">01</span>
+    <h2 class="section-title">Named by No Treaty. <em>Bound by Nothing.</em></h2>
+  </div>
+
+  <p class="article-body">
+    The Paris Agreement runs to 27 pages. The Kyoto Protocol to 21. The UNFCCC framework spans three decades of negotiation, 198 signatories, and annual summits attended by heads of state. Nowhere in this architecture - not in a single binding clause, reporting obligation, or emissions target - is there a named commitment covering the world's third-largest source of greenhouse gases. That source is war. More precisely: it is the combined military apparatus of every nation on earth.
+  </p>
+  <p class="article-body">
+    If the world's militaries were a single country, they would rank as the <strong>third-largest greenhouse gas emitter on earth</strong> - ahead of India, ahead of Russia - emitting an estimated <strong>2,750 million tonnes of CO₂ equivalent every year</strong>. They would be invited to every COP. They would have binding targets. They would face scrutiny. Instead, by deliberate diplomatic design, they have none of these things.
+  </p>
+
+  <div class="chart-box red-top">
+    <div class="chart-title">The Emitter Paris Forgot: Where Do Militaries Rank Globally?</div>
+    <div class="chart-sub">Annual CO₂-equivalent emissions · Selected comparison · 2023 data</div>
+    <div class="bar-chart">
+      <div class="bar-row">
+        <div class="bar-label">China<small>Country</small></div>
+        <div class="bar-track"><div class="bar-fill faded" style="width:100%"></div></div>
+        <div class="bar-val">12,700 Mt</div>
+      </div>
+      <div class="bar-row">
+        <div class="bar-label">United States<small>Country</small></div>
+        <div class="bar-track"><div class="bar-fill faded" style="width:47%"></div></div>
+        <div class="bar-val">5,920 Mt</div>
+      </div>
+      <div class="bar-row">
+        <div class="bar-label" style="color:var(--red);font-weight:700">World's Militaries<small style="color:var(--red)">NOT A COUNTRY · UNACCOUNTABLE</small></div>
+        <div class="bar-track"><div class="bar-fill red" style="width:21.6%"></div></div>
+        <div class="bar-val red">~2,750 Mt</div>
+      </div>
+      <div class="bar-row">
+        <div class="bar-label">India<small>Country</small></div>
+        <div class="bar-track"><div class="bar-fill faded" style="width:21.5%"></div></div>
+        <div class="bar-val">2,720 Mt</div>
+      </div>
+      <div class="bar-row">
+        <div class="bar-label">Russia<small>Country</small></div>
+        <div class="bar-track"><div class="bar-fill faded" style="width:15.7%"></div></div>
+        <div class="bar-val">1,990 Mt</div>
+      </div>
+      <div class="bar-row">
+        <div class="bar-label">EU (combined)<small>27 Countries</small></div>
+        <div class="bar-track"><div class="bar-fill faded" style="width:22%"></div></div>
+        <div class="bar-val">2,790 Mt</div>
+      </div>
+      <div class="bar-row">
+        <div class="bar-label">Civil Aviation<small>Global Sector</small></div>
+        <div class="bar-track"><div class="bar-fill faded" style="width:7.8%"></div></div>
+        <div class="bar-val">~1,000 Mt</div>
+      </div>
+    </div>
+    <div class="chart-src">Sources: Global Carbon Project 2024 · CEOBS Military Emissions Gap 2022 · IEA Aviation Report 2023 · IPCC AR6 · Note: Military estimate is conservative; actual figure likely higher given 82% reporting gap in NATO nations</div>
+  </div>
+
+  <p class="article-body">
+    This is not primarily a story about wartime emissions. <strong>Two-thirds of military emissions occur during peacetime</strong> - in training exercises, base operations, logistics networks, and procurement supply chains. The US military alone consumes roughly <strong>269,000 barrels of oil per day</strong>, making it the world's single largest institutional consumer of hydrocarbons. It emits more CO₂ annually than entire industrialised nations such as Denmark, Portugal, and Sweden.
+  </p>
+
+  <div class="pull-quote">
+    <p>"The US military is the 800-pound gorilla of military emissions - both in terms of operations and in terms of the military-industrial complex. It operates with a cloak of invisibility despite a long track record of serious environmental damage."</p>
+    <cite>- Patrick Bigger, Research Director, Climate and Community Project (CCP)</cite>
+  </div>
+
+  <p class="article-body">
+    The accounting gap is not an accident. In 1997, the United States government - led by the Department of Defense, with congressional support including from then-Senator Joe Biden and Senator John Kerry - successfully lobbied for military emissions to be <strong>entirely exempted from the Kyoto Protocol's reporting requirements</strong>. The world's single largest institutional polluter negotiated itself off the books in the very treaty designed to hold the world accountable. That is not a footnote. It is the headline.
+  </p>
+  <p class="article-body">
+    The Paris Agreement nominally closed this loophole, replacing mandatory exemptions with voluntary disclosure. The result is arguably worse: militaries can report what they choose, when they choose, using methodologies they define. CEOBS' 2025 analysis of UNFCCC submissions found the US - the world's largest military spender at $916 billion in 2023 - <strong>submitted no emissions inventory report whatsoever</strong> for the 2025 cycle. Russia's reported military emissions showed an implausible 63% drop during its full-scale invasion of Ukraine. Paris did not forget to name this emitter. It chose not to.
+  </p>
+
+  <div class="chart-box">
+    <div class="chart-title">The Military Emissions Reporting Gap: What Countries Declare vs. What They Spend</div>
+    <div class="chart-sub">Top Military Spenders · Reporting Status 2025 · Data: CEOBS / UNFCCC / SIPRI</div>
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th>Country</th>
+          <th>Military Spend 2024</th>
+          <th>Share of Global Military Spend</th>
+          <th>UNFCCC Reporting Status</th>
+          <th>Reliability</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="highlight-row">
+          <td>United States</td>
+          <td>$997B</td>
+          <td>37%</td>
+          <td>No report submitted 2025</td>
+          <td><span class="badge badge-red">None</span></td>
+        </tr>
+        <tr>
+          <td>China</td>
+          <td>$314B</td>
+          <td>12%</td>
+          <td>Non-Annex I - voluntary only</td>
+          <td><span class="badge badge-red">Minimal</span></td>
+        </tr>
+        <tr>
+          <td>Russia</td>
+          <td>$149B</td>
+          <td>5.5%</td>
+          <td>Reported - implausible data</td>
+          <td><span class="badge badge-red">Unreliable</span></td>
+        </tr>
+        <tr>
+          <td>India</td>
+          <td>$84B</td>
+          <td>3.1%</td>
+          <td>Non-Annex I - no military data</td>
+          <td><span class="badge badge-red">None</span></td>
+        </tr>
+        <tr>
+          <td>Saudi Arabia</td>
+          <td>$80B</td>
+          <td>2.9%</td>
+          <td>Not in SIPRI estimates</td>
+          <td><span class="badge badge-red">None</span></td>
+        </tr>
+        <tr class="highlight-steel">
+          <td>United Kingdom</td>
+          <td>$74B</td>
+          <td>2.7%</td>
+          <td>Partial - base energy only</td>
+          <td><span class="badge badge-steel">Partial</span></td>
+        </tr>
+        <tr class="highlight-steel">
+          <td>Germany</td>
+          <td>$98B</td>
+          <td>3.6%</td>
+          <td>Partial - Annex I, gaps in ops</td>
+          <td><span class="badge badge-steel">Partial</span></td>
+        </tr>
+        <tr class="highlight-row">
+          <td style="font-weight:700">Combined Top 7</td>
+          <td>$1,796B</td>
+          <td>66%</td>
+          <td>No meaningful full-scope data</td>
+          <td><span class="badge badge-red">Critical Gap</span></td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="chart-src">Sources: SIPRI Military Expenditure Database 2025 · CEOBS Military Emissions Gap Dataset 2025 · UNFCCC National Inventory Reports 2025</div>
+  </div>
+
+  <p class="article-body">
+    The consequence of this diplomatic silence is not merely academic. Global emissions totals are structurally understated. National NDCs are built on incomplete baselines. Net-zero targets are measured against counts that exclude one of humanity's largest emission sources. The world is trying to balance a climate budget with a missing line item the size of India's entire annual output - and every signatory to the Paris Agreement has agreed, implicitly, to keep it missing.
+  </p>
+</div>
+
+<!-- ═════════════════════════════════════ -->
+<!-- SECTION 02: THE OIL CYCLE            -->
+<!-- ═════════════════════════════════════ -->
+<div class="section-sep"></div>
+<div class="section-wrap">
+  <div class="section-head">
+    <span class="section-num">02</span>
+    <h2 class="section-title">The Virtuous Cycle That <em>Isn't</em>: War, Oil, and Self-Perpetuating Dependency</h2>
+  </div>
+
+  <p class="article-body">
+    The relationship between war and fossil fuels is not incidental - it is structural. Modern militaries run on petroleum. Every sortie, every ship deployment, every tank offensive requires uninterrupted fuel supply chains. This creates a dependency loop that is, by design, self-reinforcing: <strong>the need to secure oil supply routes is itself a primary driver of military engagement</strong>, which requires more fuel, which creates more supply route insecurity, which demands more military presence.
+  </p>
+  <div class="belfer-highlight">
+    <div class="belfer-rule"></div>
+    <div class="belfer-inner">
+      <div class="belfer-source">Harvard Kennedy School · Belfer Center for Science and International Affairs</div>
+      <div class="belfer-quote">Between 25% and 50% of all interstate wars since 1973 have been connected to oil interests, through one or more of eight distinct mechanisms.</div>
+      <div class="belfer-mechanisms">
+        <div class="mech-item"><span class="mech-dot red"></span>Resource Seizure</div>
+        <div class="mech-item"><span class="mech-dot red"></span>Petro-Aggression</div>
+        <div class="mech-item"><span class="mech-dot red"></span>Insurgency Financing</div>
+        <div class="mech-item"><span class="mech-dot dark"></span>Transit Route Control</div>
+        <div class="mech-item"><span class="mech-dot dark"></span>Supply Disruption</div>
+        <div class="mech-item"><span class="mech-dot dark"></span>Market Dominance</div>
+        <div class="mech-item"><span class="mech-dot dark"></span>Strategic Reserve Access</div>
+        <div class="mech-item"><span class="mech-dot dark"></span>Regime Stabilisation</div>
+      </div>
+      <div class="belfer-foot-row">
+        <div class="belfer-foot-stat">
+          <div class="belfer-num">180</div>
+          <div class="belfer-num-label">Armed conflicts fought over territories containing, or believed to contain, oil or natural gas reserves · 1912–2010</div>
+        </div>
+        <div class="belfer-foot-divider"></div>
+        <div class="belfer-foot-stat">
+          <div class="belfer-num">50%</div>
+          <div class="belfer-num-label">Upper bound of all interstate wars since 1973 with a documented oil-interest connection. At minimum, one-in-four wars is an oil war.</div>
+        </div>
+        <div class="belfer-foot-divider"></div>
+        <div class="belfer-foot-stat">
+          <div class="belfer-num">8</div>
+          <div class="belfer-num-label">Distinct mechanisms through which oil drives conflict, making the link systemic, not circumstantial</div>
+        </div>
+      </div>
+    </div>
+    <div class="belfer-rule"></div>
+    <div class="belfer-citation">Source: Jeff Colgan, "Oil, Conflict and US National Interests" · Harvard Belfer Center · 2013 · IAEE International Conference · Modern Diplomacy resource war analysis 2025</div>
+  </div>
+
+  <div class="chart-box red-top">
+    <div class="chart-title">The Resource-War Codex: Major 20th–21st Century Conflicts Mapped to Resource Motivations</div>
+    <div class="chart-sub">Primary resource driver · Belfer Center / IAEE / Modern Diplomacy · 1914–2025</div>
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th>Conflict</th>
+          <th>Period</th>
+          <th>Primary Initiator</th>
+          <th>Resource Driver</th>
+          <th>Mechanism</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="highlight-row">
+          <td>WW II · Pacific Theatre<div class="table-note">Oil was the primary documented casus belli. The International Military Tribunal for the Far East (1946) ruled Japan's invasion of the Dutch East Indies was driven by oil denial, not defensive war.</div></td>
+          <td>1941–45</td>
+          <td>Japan</td>
+          <td>Resource seizure: Dutch East Indies oil. Japan imported ~90% of its oil; US embargo (July 1941) severed 80% of supply overnight. The Dutch East Indies was the world's 4th-largest oil exporter. Admiral Stark formally warned Roosevelt that an oil embargo "meant war." Pearl Harbor was planned explicitly to neutralise the US Pacific Fleet and open the path to East Indies oilfields.</td>
+          <td><span class="badge badge-red">Resource Seizure</span></td>
+        </tr>
+        <tr class="highlight-row">
+          <td>WW II · Eastern Front<div class="table-note">Oil was a documented strategic objective within a broader ideological war. Nazi Germany's invasion of the USSR had multiple drivers: Lebensraum, anti-Bolshevism, racial ideology. Oil was a critical but not singular cause.</div></td>
+          <td>1942–43</td>
+          <td>Germany</td>
+          <td>Strategic resource denial + capture: Case Blue / Operation Edelweiss (1942) explicitly targeted Caucasus oilfields at Baku, Grozny and Maikop. Hitler overruled his generals' preference for Moscow, insisting Germany needed Caucasus oil to sustain a war of attrition. Baku provided 80% of Soviet oil; <em>four in five</em> Soviet tanks, aircraft and trucks ran on Baku fuel. Wehrmacht advanced with 15,000 oil industry workers embedded to resume production upon capture.</td>
+          <td><span class="badge badge-dark">Strategic Resource</span></td>
+        </tr>
+        <tr>
+          <td>Suez Crisis</td>
+          <td>1956</td>
+          <td>UK, France, Israel</td>
+          <td>Oil transit routes</td>
+          <td><span class="badge badge-dark">Route Control</span></td>
+        </tr>
+        <tr class="highlight-row">
+          <td>Iran–Iraq War</td>
+          <td>1980–88</td>
+          <td>Iraq</td>
+          <td>Oil revenues / Shatt al-Arab</td>
+          <td><span class="badge badge-red">Petro-Aggression</span></td>
+        </tr>
+        <tr class="highlight-row">
+          <td>Gulf War (Kuwait)</td>
+          <td>1990–91</td>
+          <td>Iraq</td>
+          <td>Oil (Kuwait reserves)</td>
+          <td><span class="badge badge-red">Oil Gambit</span></td>
+        </tr>
+        <tr class="highlight-row">
+          <td>Iraq War</td>
+          <td>2003–11</td>
+          <td>USA</td>
+          <td>Oil access + market dominance</td>
+          <td><span class="badge badge-red">Strategic Control</span></td>
+        </tr>
+        <tr>
+          <td>Libya Intervention</td>
+          <td>2011</td>
+          <td>NATO</td>
+          <td>Oil infrastructure protection</td>
+          <td><span class="badge badge-dark">Route + Supply</span></td>
+        </tr>
+        <tr>
+          <td>Syria War</td>
+          <td>2011–pres.</td>
+          <td>Multiple</td>
+          <td>Pipeline routes, gas fields</td>
+          <td><span class="badge badge-dark">Transit Control</span></td>
+        </tr>
+        <tr>
+          <td>Sudan–South Sudan</td>
+          <td>2011–pres.</td>
+          <td>Multiple</td>
+          <td>Oil fields (Unity, Heglig)</td>
+          <td><span class="badge badge-dark">Resource Seizure</span></td>
+        </tr>
+        <tr>
+          <td>Yemen War</td>
+          <td>2015–pres.</td>
+          <td>Saudi-led Coalition</td>
+          <td>Bab al-Mandab oil route</td>
+          <td><span class="badge badge-dark">Route Control</span></td>
+        </tr>
+        <tr class="highlight-row">
+          <td>Ukraine War</td>
+          <td>2022–pres.</td>
+          <td>Russia</td>
+          <td>Gas supply dominance / territory</td>
+          <td><span class="badge badge-red">Strategic Resource</span></td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="chart-src">Sources: Belfer Center / Jeff Colgan "Oil, Conflict and US National Interests" (2013) · IAEE · Modern Diplomacy (2025) · CFR · Lawfare / Emily Meierding · WW2 Pacific: Dutch East Indies Campaign Wikipedia · Pacific War Online Encyclopedia · International Military Tribunal for the Far East (1946) · Osprey Publishing "Netherlands East Indies Campaign 1941–42: Japan's Quest for Oil" · WW2 Eastern Front: Case Blue / Operation Edelweiss Wikipedia · Imperial War Museum · Visions of Azerbaijan "Baku Oil in Decisive Battles of WW2" · Hitler Führer Directive No. 41 (5 April 1942)</div>
+  </div>
+
+  <div class="callout red-border">
+    <div class="callout-title red">The Dick Cheney Doctrine - On Record</div>
+    <p>Prior to the 1990 Gulf War, Halliburton president and future US Vice-President Dick Cheney stated plainly: <em>"We're there because that part of the world controls the world supply of oil, and whoever controls the supply of oil would have a stranglehold on the world economy."</em> The strategic logic has not changed. Only its candour has.</p>
+  </div>
+
+  <p class="article-body">
+    The cycle operates across five reinforcing loops:</p>
+  <ol class="loop-list">
+    <li><strong>Infrastructure lock-in.</strong> Major powers maintain vast overseas military infrastructure to protect oil transit routes. The US operates over 800 bases globally, disproportionately concentrated in the Gulf, Central Asia, and East Africa.</li>
+    <li><strong>Regime stabilisation.</strong> This military presence provides a security guarantee that keeps oil-producing regimes stable and supply flowing, regardless of their governance record.</li>
+    <li><strong>Self-fuelling demand.</strong> The fuel required to maintain these bases and operations creates direct petroleum demand, enriching the very producers the military is supposedly securing.</li>
+    <li><strong>Petro-aggression.</strong> Petrostates, insulated by oil revenues from domestic accountability, pursue more aggressive foreign policies. Belfer Center names this the "petro-aggression" effect: resource wealth enables risk-taking that accountable governments cannot afford.</li>
+    <li><strong>Loop closure.</strong> This aggression triggers further military deployment, which requires more fuel, which deepens dependency. The cycle restarts.</li>
+  </ol>
+  <p class="article-body" style="display:none">
+  </p>
+
+  <div class="compare-grid">
+    <div class="compare-cell dark">
+      <div class="compare-label on-dark">US Daily Oil Consumption</div>
+      <div class="compare-num on-dark">269,230</div>
+      <div class="compare-desc on-dark">Barrels per day purchased by US military (2017). At $80/bbl, this is $21.5M per day - $7.9 billion per year - flowing to petroleum markets it simultaneously claims to police.</div>
+    </div>
+    <div class="compare-cell red-bg">
+      <div class="compare-label">US Military Bases</div>
+      <div class="compare-num red">800+</div>
+      <div class="compare-desc">Overseas bases - more than 3× the number of US diplomatic missions. Each requires fuel, generates waste, and creates local political pressure that can trigger the conflicts it is supposedly preventing.</div>
+    </div>
+    <div class="compare-cell steel-bg">
+      <div class="compare-label">NATO Military Carbon Budget</div>
+      <div class="compare-num steel">2B tCO₂e</div>
+      <div class="compare-desc">Projected total NATO military emissions 2021–2028 if all members hit the 2% GDP spending target - greater than Russia's entire annual national GHG output.</div>
+    </div>
+    <div class="compare-cell">
+      <div class="compare-label">Oil-Linked Wars Since 1973</div>
+      <div class="compare-num">25–50%</div>
+      <div class="compare-desc">Of all interstate conflicts since 1973 linked to oil through at least one mechanism. No other commodity drives international security risk at this scale. Source: Harvard Belfer Center.</div>
+    </div>
+  </div>
+
+  <p class="article-body">
+    The climate implication of this loop is precise: every oil-motivated military engagement increases aggregate fossil fuel consumption at both ends - by the military machine itself, and by sustaining the global infrastructure that makes oil the world's dominant energy currency. <strong><em>To decarbonise the global economy while maintaining the military apparatus built to secure fossil fuel supply chains is, structurally, a contradiction.</em></strong>
+  </p>
+
+  <div class="insight-band">
+    <div class="insight-label">Strategic Insight</div>
+    <h3>Military spending is not a climate-neutral line item.<br><em>It is the subsidy Paris agreed never to measure.</em></h3>
+    <p>The $2.7 trillion spent annually on global military forces is overwhelmingly allocated to institutions built around petroleum - to defend it, transport it, and fight over it. Every dollar of that budget is a structural barrier to the energy transition. It is the hidden subsidy that every UNFCCC signatory agreed, by silence, to leave off the books.</p>
+  </div>
+
+  </div>
+
+  <!-- ── BRIDGE: IPCC MANDATE CONTEXT ── -->
+  <div class="bridge-para">
+    <p>The scale of what is required makes that contradiction impossible to ignore. The IPCC's Sixth Assessment Report, the most authoritative scientific consensus on climate action ever assembled, is unambiguous: to hold warming to 1.5°C, the world must cut global oil production and use by <strong>30% by 2030</strong> and <strong>62% by 2050</strong>. Coal must be nearly eliminated. Gas must follow. These are not aspirational targets. They are the mathematically derived minimum conditions for avoiding catastrophic warming, agreed by 195 governments and endorsed by every major scientific institution on the planet.</p>
+    <p>Now hold that mandate against everything this section has documented: a century of wars fought to control the very resource that must be eliminated; a military-industrial apparatus consuming 269,000 barrels of oil per day in peacetime alone; $2.7 trillion in annual defence spending overwhelmingly structured around petroleum security; and a diplomatic compact, forged in Kyoto and sustained in Paris, that keeps all of it invisible in every climate model ever run.</p>
+  </div>
+
+  <!-- ── IPCC FOSSIL FUEL PHASE-DOWN CHART ── -->
+  <div class="chart-box red-top" style="margin-top:40px">
+    <div class="chart-title">The IPCC Mandate: How Fast Must Fossil Fuels Decline?</div>
+    <div class="chart-sub">Required reduction in global production and use vs. 2020 levels · 1.5°C pathway · IPCC AR6 Scenario Database (C1) · Nature Communications 2023</div>
+
+    <div style="margin: 28px 0 8px; font-family:'IBM Plex Mono',monospace; font-size:10px; letter-spacing:2px; text-transform:uppercase; color:var(--smoke)">Reduction required from 2020 baseline - by fuel type</div>
+
+    <!-- COAL -->
+    <div style="margin-bottom:24px">
+      <div style="display:flex; justify-content:space-between; align-items:baseline; margin-bottom:6px">
+        <span style="font-family:'IBM Plex Sans',sans-serif; font-size:13px; font-weight:600; text-transform:uppercase; letter-spacing:1px">Coal</span>
+        <span style="font-family:'IBM Plex Mono',monospace; font-size:10px; color:var(--smoke)">Most urgent phase-out</span>
+      </div>
+      <div style="display:grid; grid-template-columns:80px 1fr 60px; gap:10px; align-items:center; margin-bottom:8px">
+        <span style="font-family:'IBM Plex Mono',monospace; font-size:11px; color:var(--smoke)">By 2030</span>
+        <div style="background:rgba(17,16,16,0.08); border-radius:2px; height:20px; position:relative">
+          <div style="background:#b91c1c; width:67%; height:100%; border-radius:2px"></div>
+        </div>
+        <span style="font-family:'IBM Plex Mono',monospace; font-size:13px; font-weight:600; color:#b91c1c">-67%</span>
+      </div>
+      <div style="display:grid; grid-template-columns:80px 1fr 60px; gap:10px; align-items:center">
+        <span style="font-family:'IBM Plex Mono',monospace; font-size:11px; color:var(--smoke)">By 2050</span>
+        <div style="background:rgba(17,16,16,0.08); border-radius:2px; height:20px; position:relative">
+          <div style="background:#7f1d1d; width:95%; height:100%; border-radius:2px"></div>
+        </div>
+        <span style="font-family:'IBM Plex Mono',monospace; font-size:13px; font-weight:600; color:#7f1d1d">-95%</span>
+      </div>
+    </div>
+
+    <!-- OIL -->
+    <div style="margin-bottom:24px">
+      <div style="display:flex; justify-content:space-between; align-items:baseline; margin-bottom:6px">
+        <span style="font-family:'IBM Plex Sans',sans-serif; font-size:13px; font-weight:600; text-transform:uppercase; letter-spacing:1px">Oil</span>
+        <span style="font-family:'IBM Plex Mono',monospace; font-size:10px; color:var(--smoke)">The war economy's primary fuel</span>
+      </div>
+      <div style="display:grid; grid-template-columns:80px 1fr 60px; gap:10px; align-items:center; margin-bottom:8px">
+        <span style="font-family:'IBM Plex Mono',monospace; font-size:11px; color:var(--smoke)">By 2030</span>
+        <div style="background:rgba(17,16,16,0.08); border-radius:2px; height:20px; position:relative">
+          <div style="background:#92400e; width:30%; height:100%; border-radius:2px"></div>
+        </div>
+        <span style="font-family:'IBM Plex Mono',monospace; font-size:13px; font-weight:600; color:#92400e">-30%</span>
+      </div>
+      <div style="display:grid; grid-template-columns:80px 1fr 60px; gap:10px; align-items:center">
+        <span style="font-family:'IBM Plex Mono',monospace; font-size:11px; color:var(--smoke)">By 2050</span>
+        <div style="background:rgba(17,16,16,0.08); border-radius:2px; height:20px; position:relative">
+          <div style="background:#78350f; width:62%; height:100%; border-radius:2px"></div>
+        </div>
+        <span style="font-family:'IBM Plex Mono',monospace; font-size:13px; font-weight:600; color:#78350f">-62%</span>
+      </div>
+    </div>
+
+    <!-- GAS -->
+    <div style="margin-bottom:12px">
+      <div style="display:flex; justify-content:space-between; align-items:baseline; margin-bottom:6px">
+        <span style="font-family:'IBM Plex Sans',sans-serif; font-size:13px; font-weight:600; text-transform:uppercase; letter-spacing:1px">Natural Gas</span>
+        <span style="font-family:'IBM Plex Mono',monospace; font-size:10px; color:var(--smoke)">If CCS constrained: -84% by 2050</span>
+      </div>
+      <div style="display:grid; grid-template-columns:80px 1fr 60px; gap:10px; align-items:center; margin-bottom:8px">
+        <span style="font-family:'IBM Plex Mono',monospace; font-size:11px; color:var(--smoke)">By 2030</span>
+        <div style="background:rgba(17,16,16,0.08); border-radius:2px; height:20px; position:relative">
+          <div style="background:#1e3a5f; width:15%; height:100%; border-radius:2px"></div>
+        </div>
+        <span style="font-family:'IBM Plex Mono',monospace; font-size:13px; font-weight:600; color:#1e3a5f">-15%</span>
+      </div>
+      <div style="display:grid; grid-template-columns:80px 1fr 60px; gap:10px; align-items:center">
+        <span style="font-family:'IBM Plex Mono',monospace; font-size:11px; color:var(--smoke)">By 2050</span>
+        <div style="background:rgba(17,16,16,0.08); border-radius:2px; height:20px; position:relative">
+          <div style="background:#1e3a5f; width:42%; height:100%; border-radius:2px"></div>
+        </div>
+        <span style="font-family:'IBM Plex Mono',monospace; font-size:13px; font-weight:600; color:#1e3a5f">-42%</span>
+      </div>
+    </div>
+
+    <div style="margin-top:24px; padding-top:16px; border-top:1px solid var(--rule); display:grid; grid-template-columns:1fr 1fr 1fr; gap:16px">
+      <div style="text-align:center">
+        <div style="font-family:'IBM Plex Mono',monospace; font-size:18px; font-weight:600; color:#b91c1c">Peak by 2025</div>
+        <div style="font-family:'IBM Plex Sans',sans-serif; font-size:11px; color:var(--smoke); margin-top:4px">Global GHG emissions must peak. Current trajectory misses this window.</div>
+      </div>
+      <div style="text-align:center">
+        <div style="font-family:'IBM Plex Mono',monospace; font-size:18px; font-weight:600; color:#92400e">-42% by 2030</div>
+        <div style="font-family:'IBM Plex Sans',sans-serif; font-size:11px; color:var(--smoke); margin-top:4px">Total emissions cut required in 8 years. Global military spend grew 9.4% in 2024 alone.</div>
+      </div>
+      <div style="text-align:center">
+        <div style="font-family:'IBM Plex Mono',monospace; font-size:18px; font-weight:600; color:#1e3a5f">Net Zero ~2050</div>
+        <div style="font-family:'IBM Plex Sans',sans-serif; font-size:11px; color:var(--smoke); margin-top:4px">Energy system CO₂ must fall 87–97%. Military emissions unaccounted in any scenario model.</div>
+      </div>
+    </div>
+    <div class="chart-src">Sources: IPCC AR6 Working Group III Chapter 6 (2022) · Nature Communications "Global fossil fuel reduction pathways" (Welsby et al., 2023) · IISD "Lighting the Path" (2022) · IPCC C1 scenario median. 2030 oil figure from IISD analysis of IPCC pathways. Note: Military emissions excluded from all IPCC scenario baselines, compounding the undercount.</div>
+  </div>
+
+  <!-- ── THE COLLISION: DUAL-DATASET ANALYSIS ── -->
+  <div class="collision-block">
+    <div class="collision-label">
+      <span class="collision-rule"></span>
+      <span>The Central Contradiction</span>
+      <span class="collision-rule"></span>
+    </div>
+    <h3 class="collision-title">Two Datasets. One Impossible Equation.</h3>
+    <p class="collision-intro">Set the Belfer Center data against the IPCC mandate and a single, devastating conclusion emerges: the world is fighting more wars over the fuel it must stop using; and none of those wars appear in any climate model.</p>
+
+    <div class="collision-grid">
+      <div class="collision-cell red-side">
+        <div class="collision-cell-label">THE TREND LINE</div>
+        <div class="collision-cell-title">Oil Conflicts: Accelerating</div>
+        <div class="collision-cell-body">
+          <div class="collision-stat-row"><span class="cs-num red">180</span><span class="cs-desc">armed conflicts over oil territories · 1912–2010 · averaging 1.8 per year across the century</span></div>
+          <div class="collision-stat-row"><span class="cs-num red">50%</span><span class="cs-desc">of interstate wars since 1973 carry an oil-interest mechanism; the share is rising, not falling</span></div>
+          <div class="collision-stat-row"><span class="cs-num red">$2.7T</span><span class="cs-desc">global military spend in 2024; 9.4% single-year increase, steepest rise since the Cold War</span></div>
+          <div class="collision-verdict red">Direction: <strong>Escalating</strong></div>
+        </div>
+      </div>
+
+      <div class="collision-vs">
+        <div class="vs-circle">VS</div>
+        <div class="vs-line"></div>
+      </div>
+
+      <div class="collision-cell steel-side">
+        <div class="collision-cell-label">THE IMPERATIVE</div>
+        <div class="collision-cell-title">Oil Dependency: Must Collapse</div>
+        <div class="collision-cell-body">
+          <div class="collision-stat-row"><span class="cs-num steel">-30%</span><span class="cs-desc">global oil production and use must fall by 2030 (in 4 years) to remain on a 1.5°C pathway</span></div>
+          <div class="collision-stat-row"><span class="cs-num steel">-62%</span><span class="cs-desc">oil reduction required by 2050. No new fields. No new exploration. Existing assets already exceed the carbon budget.</span></div>
+          <div class="collision-stat-row"><span class="cs-num steel">Zero</span><span class="cs-desc">new oil and gas exploration consistent with Paris; yet 15 new licences were awarded in October 2025 alone</span></div>
+          <div class="collision-verdict steel">Direction: <strong>Urgent reversal required</strong></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="collision-analysis">
+      <div class="ca-heading">The Missing Country in Every Climate Model</div>
+      <p class="ca-body">Every NDC submitted to the UNFCCC is built on a baseline. Those baselines are structurally incomplete. <strong>The 2,750 Mt CO₂e produced annually by the world's militaries does not appear in any of them.</strong> It is not attributed to any country. It is not covered by any target. It is not tracked in any verified inventory. It is, for the purposes of every climate commitment ever signed, as if it does not exist.</p>
+      <p class="ca-body">To understand what that means in practice: 2,750 Mt CO₂e is larger than India's entire annual emissions. It exceeds Russia's. It is more than the combined output of every nation in Africa and South America combined. The world's governments have collectively pledged to reach net zero, while leaving an emission source the size of a major industrial nation entirely outside the accounting. Every percentage reduction target, every carbon budget, every 1.5°C pathway is calculated against a number that is wrong by the equivalent of a G3 economy.</p>
+      <div class="ca-verdict">The climate models are not broken. They are working exactly as designed: with one country-sized hole in the data that 195 signatories agreed, in writing, to leave unfilled.</div>
+    </div>
+  </div>
+
+</div>
+
+<!-- ═════════════════════════════════════ -->
+<!-- SECTION 03: ASYMMETRIC COSTS         -->
+<!-- ═════════════════════════════════════ -->
+<div class="section-sep"></div>
+<div class="section-wrap">
+  <div class="section-head">
+    <span class="section-num">03</span>
+    <h2 class="section-title steel">Who Pays? <em>Asymmetric Costs</em> of War on Climate and Living Conditions</h2>
+  </div>
+
+  <p class="article-body">
+    Wars are rarely paid for by those who start them. The United States has initiated or directly participated in military engagements producing an estimated <strong>1.2 billion tonnes of greenhouse gas emissions</strong> across the post-9/11 period alone (Brown University Costs of War Project, 2023). The populations bearing the accumulated environmental cost of that figure are almost entirely outside American borders - in Iraq, Afghanistan, Yemen, Somalia, and Syria.
+  </p>
+  <p class="article-body">
+    India bears <strong>18% of total CBAM costs</strong> from Europe's carbon border mechanism - facing a carbon pricing bill rooted in decades of industrial development - while contributing minimally to the wars that have systematically deprioritised global climate finance. Bangladesh, with per-capita emissions a fraction of the US, faces existential sea-level risk by 2050. These are the nations paying the climate invoice for wars they did not commission.
+  </p>
+
+  <div class="chart-box steel-top">
+    <div class="chart-title">Carbon Cost of Major US-Led Conflicts: Who Emitted, Who Suffered</div>
+    <div class="chart-sub">Emission estimates from Brown University Costs of War Project · CEOBS · Queen Mary University London · 2003–2025</div>
+    <div class="bar-chart">
+      <div class="bar-row">
+        <div class="bar-label">Iraq War (total)<small>2003–2021 · US + Coalition</small></div>
+        <div class="bar-track"><div class="bar-fill steel" style="width:60%"></div></div>
+        <div class="bar-val steel">141–254 Mt</div>
+      </div>
+      <div class="bar-row">
+        <div class="bar-label">War on Terror (total)<small>Post-9/11 · Full period</small></div>
+        <div class="bar-track"><div class="bar-fill steel" style="width:100%"></div></div>
+        <div class="bar-val steel">1,200 Mt</div>
+      </div>
+      <div class="bar-row">
+        <div class="bar-label">Ukraine War<small>2022–2024 · All parties tracked</small></div>
+        <div class="bar-track"><div class="bar-fill" style="width:19%;background:#555"></div></div>
+        <div class="bar-val">~230 Mt</div>
+      </div>
+      <div class="bar-row">
+        <div class="bar-label">Gaza - 120 Days<small>Oct 2023–Feb 2024 · Direct only</small></div>
+        <div class="bar-track"><div class="bar-fill red" style="width:4.5%"></div></div>
+        <div class="bar-val red">420–653 Kt</div>
+      </div>
+      <div class="bar-row">
+        <div class="bar-label">Gaza - Reconstruction<small>Projected total lifecycle</small></div>
+        <div class="bar-track"><div class="bar-fill red" style="width:50%"></div></div>
+        <div class="bar-val red">47–61 Mt</div>
+      </div>
+    </div>
+    <div class="chart-src">Sources: Brown University Costs of War (Crawford 2019, 2023) · Oil Change International "Climate of War" (2008) · Queen Mary University London / Lancaster (2024) · CEOBS 2024</div>
+  </div>
+
+  <p class="article-body">
+    <strong>The Gaza Case: Environmental Ecocide in Real Time.</strong> The urban conflict that escalated from October 2023 offers the world's most granular peer-reviewed data on the environmental cost of concentrated modern warfare. A study from Queen Mary University London estimated that the first 120 days of active operations produced between <strong>420,265 and 652,552 tonnes of CO₂ equivalent</strong>, exceeding the annual emissions of 26 individual countries. But direct carbon is the most measurable, and least representative, dimension of what satellite and field data reveals.
+  </p>
+
+  <div class="chart-box red-top">
+    <div class="chart-title">Gaza's Environmental Collapse: Six Indicators Post-October 2023</div>
+    <div class="chart-sub">UNEP · WHO EMRO · Palestinian Environmental NGOs Network · World Bank · 2024–2025</div>
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th>Indicator</th>
+          <th>Before War</th>
+          <th>During / After</th>
+          <th>Impact</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="highlight-row">
+          <td>Debris Generated</td>
+          <td>Negligible</td>
+          <td>50 million tonnes (UNEP Dec 2024)</td>
+          <td>Asbestos, UXO, chemical contamination; 80,000t CO₂ to process fraction of it</td>
+        </tr>
+        <tr class="highlight-row">
+          <td>Water per Person / Day</td>
+          <td>85 litres</td>
+          <td>2–8 litres (Apr 2024)</td>
+          <td>Below WHO emergency minimum of 15L; 162 wells damaged, 2 desalination lines severed</td>
+        </tr>
+        <tr class="highlight-row">
+          <td>Sewage Treatment</td>
+          <td>8 plants operational</td>
+          <td>73 of 84 pumping stations destroyed (Feb 2025)</td>
+          <td>130,000 m³/day untreated sewage into Mediterranean Sea (Norwegian Refugee Council)</td>
+        </tr>
+        <tr>
+          <td>Air Quality (AQI)</td>
+          <td>Moderate baseline</td>
+          <td>Sharp sustained rise in UVAI + CO (satellite, Sentinel-5P)</td>
+          <td>Combustion particulates, white phosphorus contamination, waste burning - no functioning monitoring infrastructure</td>
+        </tr>
+        <tr>
+          <td>Agricultural Land</td>
+          <td>Full pre-war capacity</td>
+          <td>50% destroyed by Mar 2024; 80% tree cover by Jan 2025</td>
+          <td>Heavy metal soil contamination; white phosphorus reduces crop productivity for years</td>
+        </tr>
+        <tr>
+          <td>Reconstruction Carbon Cost</td>
+          <td>-</td>
+          <td>47–61 million tonnes CO₂e (projected)</td>
+          <td>Higher than annual emissions of 135+ countries. Equivalent to Sweden + Portugal combined.</td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="chart-src">Sources: UNEP Environmental Impact Assessment Gaza (June 2024) · WHO EMRO "War and Environmental Health in Gaza" (2025) · Queen Mary University London (2024) · World Bank / UN / EU Interim Damage Assessment (Mar 2024) · ScienceDirect "Air Pollution in Gaza" (2025) · Norwegian Refugee Council</div>
+  </div>
+
+  <p class="article-body">
+    The satellite data tells a precise story. A peer-reviewed study in ScienceDirect (2025), combining Sentinel-5P TROPOMI observations with SARIMAX and machine learning models, documented <strong>sharp and sustained increases in UV aerosol index and carbon monoxide</strong> from October 2023, linked directly to widespread combustion and infrastructure collapse. Methane levels rose steadily as waste management systems disintegrated. The data shows not a single pollution event, but a cascading environmental systems failure; one that does not respect borders. Contaminated groundwater, particulate dispersal, and untreated sewage flows into the Mediterranean affect regional ecosystems across Israel, Egypt, Jordan, and the wider Levant. The ecological damage is not contained within the conflict zone. It never is.
+  </p>
+  <p class="article-body">
+    None of this appears in any NDC. None appears in any national climate risk register or ESG disclosure framework of any party to this conflict or any nation supplying material support to it. The environmental destruction of an urban ecosystem, measured in peer-reviewed journals, documented by satellite, verified by international agencies; yet invisible to the entire architecture of global climate accountability.
+  </p>
+
+  <div class="callout steel-border">
+    <div class="callout-title steel">The Accountability Gap</div>
+    <p>The environmental destruction documented above: 50 million tonnes of contaminated debris, 73 of 84 sewage stations destroyed, 50% of agricultural land degraded, reconstruction emissions exceeding 135 countries' annual output; none of it appears in the climate reporting of no nation involved. Not in emissions inventories. Not in adaptation risk registers. Not in loss-and-damage frameworks. The gap between what science can measure and what diplomacy chooses to count has never been more precisely illustrated.</p>
+  </div>
+</div>
+
+<!-- ═════════════════════════════════════ -->
+<!-- SECTION 04: THE PEACE DIVIDEND       -->
+<!-- ═════════════════════════════════════ -->
+<div class="section-sep"></div>
+<div class="section-wrap">
+  <div class="section-head">
+    <span class="section-num">04</span>
+    <h2 class="section-title gold">The Peace Dividend: <em>China and India</em> as Climate Investment Case Studies</h2>
+  </div>
+
+  <p class="article-body">
+    The most important climate data point that no climate report discusses is this: <strong>the country that has become the world's dominant clean energy investor has not initiated a foreign war in over four decades</strong>. China's last military initiation was a brief border conflict with Vietnam in 1979. Since then, it has deployed strategic patience and economic statecraft rather than kinetic force - and used the resulting fiscal and political stability to build the most ambitious clean energy infrastructure programme in human history.
+  </p>
+  <p class="article-body">
+    The correlation is not coincidental. Countries that redirect defence spending into economic and technological development compound those advantages over time. Countries that export military force export capital, attention, and institutional focus - and import blowback, instability, and the fiscal weight of prolonged campaigns.
+  </p>
+
+  <div class="chart-box gold-top">
+    <div class="chart-title">China's Clean Energy Decade: The Compounding Effect of Strategic Stability</div>
+    <div class="chart-sub">China vs Global Clean Energy Investment · IEA · BNEF · Ember · 2015–2025</div>
+    <div class="bar-chart">
+      <div class="bar-row">
+        <div class="bar-label">China 2015<small>Clean Energy Investment</small></div>
+        <div class="bar-track"><div class="bar-fill gold" style="width:32%"></div></div>
+        <div class="bar-val" style="color:var(--gold)">$316B</div>
+      </div>
+      <div class="bar-row">
+        <div class="bar-label">China 2021<small>Clean Energy Investment</small></div>
+        <div class="bar-track"><div class="bar-fill gold" style="width:42%"></div></div>
+        <div class="bar-val" style="color:var(--gold)">$266B*</div>
+      </div>
+      <div class="bar-row">
+        <div class="bar-label">China 2024<small>Clean Energy Investment</small></div>
+        <div class="bar-track"><div class="bar-fill gold" style="width:100%"></div></div>
+        <div class="bar-val" style="color:var(--gold)">$625B</div>
+      </div>
+      <div class="bar-row">
+        <div class="bar-label">USA 2024<small>Clean Energy Investment</small></div>
+        <div class="bar-track"><div class="bar-fill faded" style="width:23%"></div></div>
+        <div class="bar-val">~$145B</div>
+      </div>
+      <div class="bar-row">
+        <div class="bar-label">EU 2024<small>Clean Energy Investment</small></div>
+        <div class="bar-track"><div class="bar-fill faded" style="width:26%"></div></div>
+        <div class="bar-val">~$165B</div>
+      </div>
+      <div class="bar-row">
+        <div class="bar-label">Rest of World<small>2024</small></div>
+        <div class="bar-track"><div class="bar-fill faded" style="width:18%"></div></div>
+        <div class="bar-val">~$112B</div>
+      </div>
+    </div>
+    <div class="chart-src">*2021 figure includes energy transition measures broadly. 2024 figure from IEA "China – World Energy Investment 2025" / Ember "China Energy Transition Review 2025" / BNEF Energy Transition Investment Trends 2025. Note: China 2021 global share was 35%.</div>
+  </div>
+
+  <div class="chart-box gold-top">
+    <div class="chart-title">China vs. USA: A Climate Investment Divergence - The Strategic Stability Dividend</div>
+    <div class="chart-sub">Selected indicators · IEA · Ember · BNEF · 2024–2025 data</div>
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th>Indicator</th>
+          <th>China</th>
+          <th>United States</th>
+          <th>Ratio</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="highlight-gold">
+          <td>Clean Energy Investment 2024</td>
+          <td>$625 billion</td>
+          <td>~$145 billion</td>
+          <td><span class="badge badge-gold">4.3× China leads</span></td>
+        </tr>
+        <tr class="highlight-gold">
+          <td>Clean Energy as % of GDP</td>
+          <td>4.5% of GDP</td>
+          <td>1.2% of GDP</td>
+          <td><span class="badge badge-gold">3.75× China leads</span></td>
+        </tr>
+        <tr>
+          <td>Share of Global Clean Energy Investment</td>
+          <td>31%</td>
+          <td>~7%</td>
+          <td><span class="badge badge-dark">4× China leads</span></td>
+        </tr>
+        <tr class="highlight-gold">
+          <td>Wind/Solar 2030 Target - Achievement</td>
+          <td>Hit target 6 years early (2024)</td>
+          <td>IRA rollback - targets cut 2025</td>
+          <td><span class="badge badge-gold">China ahead by decade</span></td>
+        </tr>
+        <tr>
+          <td>Clean Energy Patent Applications (global share)</td>
+          <td>75%</td>
+          <td>~9%</td>
+          <td><span class="badge badge-dark">8× China leads</span></td>
+        </tr>
+        <tr>
+          <td>Solar + Wind Share of Electricity (2024)</td>
+          <td>18% (doubled since 2020)</td>
+          <td>~15%</td>
+          <td><span class="badge badge-dark">Comparable - China accelerating</span></td>
+        </tr>
+        <tr>
+          <td>Global Clean Energy Supply Chain</td>
+          <td>81% share (BNEF 2024)</td>
+          <td>&lt;5%</td>
+          <td><span class="badge badge-gold">China dominant</span></td>
+        </tr>
+        <tr class="highlight-row">
+          <td>Military Spending 2024</td>
+          <td>$314 billion</td>
+          <td>$997 billion</td>
+          <td><span class="badge badge-red">USA spends 3.2× more</span></td>
+        </tr>
+        <tr class="highlight-row">
+          <td>Wars Initiated Since 1980</td>
+          <td>0</td>
+          <td>12+ (Iraq ×2, Afghanistan, Libya, Syria, Yemen proxy, Somalia, Pakistan drone, Serbia, Panama, Grenada)</td>
+          <td><span class="badge badge-red">Stark contrast</span></td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="chart-src">Sources: IEA World Energy Investment 2025 · Ember China Energy Transition Review 2025 · BNEF Energy Transition Investment Trends 2025 · WEF "How China is Helping Power the World's Green Transition" (2025) · SIPRI Military Expenditure Database 2025</div>
+  </div>
+
+  <p class="article-body">
+    The numbers speak with uncomfortable clarity. China now accounts for <strong>31% of all global clean energy investment</strong> - more than double any other economy. It has achieved its 2030 solar and wind capacity targets six years ahead of schedule. Its companies file <strong>75% of all global clean energy patent applications</strong>. Its battery manufacturers hold 60% of global EV battery market share. In 2024, more wind turbines and solar panels were installed in China than in the rest of the world combined.
+  </p>
+  <p class="article-body">
+    China is, simultaneously, still the world's largest coal user and largest emitter by volume - the transition is real but incomplete. The analytical point is not that China is a climate paragon. It is that the fiscal, institutional, and political capital not consumed by military adventurism has been redirectable - and has been redirected - into economic and technological infrastructure that is materially reshaping the global energy economy.
+  </p>
+
+  <div class="chart-box steel-top">
+    <div class="chart-title">India: The Emerging Divergence - Climate Rankings vs. Military Spending Growth</div>
+    <div class="chart-sub">India-specific data · CCPI · SIPRI · IEA · 2023–2025</div>
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th>Indicator</th>
+          <th>Figure</th>
+          <th>Context</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="highlight-steel">
+          <td>CCPI 2024 Climate Ranking</td>
+          <td>7th globally</td>
+          <td>Highest-ranked major emerging economy. Performance driven by renewables deployment and policy ambition.</td>
+        </tr>
+        <tr class="highlight-steel">
+          <td>Non-Fossil Electricity Capacity (2024)</td>
+          <td>51.5%</td>
+          <td>Achieved 5 years ahead of schedule - significant structural transition underway.</td>
+        </tr>
+        <tr>
+          <td>Renewable Capacity Target (2030)</td>
+          <td>500 GW</td>
+          <td>On track; solar auctions accelerating. India among top 5 solar capacity globally.</td>
+        </tr>
+        <tr class="highlight-row">
+          <td>Military Spending 2024</td>
+          <td>$83.6 billion</td>
+          <td>4th largest globally. Sustained 6–8% annual growth since 2015.</td>
+        </tr>
+        <tr class="highlight-row">
+          <td>Military Emissions Reported (UNFCCC)</td>
+          <td>Zero</td>
+          <td>Non-Annex I country; no military GHG data in national communications. Structural blind spot.</td>
+        </tr>
+        <tr>
+          <td>CBAM Exposure (India share)</td>
+          <td>18% of global CBAM cost</td>
+          <td>Largest single-country burden from EU carbon border mechanism - trade penalty for emissions partly driven by industrial base serving export markets.</td>
+        </tr>
+        <tr>
+          <td>Climate Finance Fair Share</td>
+          <td>Recipient, not contributor</td>
+          <td>India receives climate adaptation finance; does not bear contributor obligations under current frameworks - creating a fiscal asymmetry in its favour relative to the CBAM pressure it faces.</td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="chart-src">Sources: CCPI 2024 (Germanwatch / CAN International) · SIPRI 2025 · IEA India Energy Outlook · CEOBS Military Emissions Gap 2025 · Carbon Brief CBAM analysis 2024</div>
+  </div>
+
+  <p class="article-body">
+    India's trajectory is more complex. Its climate performance is genuinely strong - CCPI ranks it 7th globally, it achieved its 51.5% non-fossil electricity milestone five years early, and its renewable deployment pipeline is one of the world's most ambitious. But India also has a $84 billion military budget growing at 6–8% annually, with zero military emissions reported to the UNFCCC. The investment case for India's clean energy sector is compelling. The geopolitical risk premium - from regional conflicts with Pakistan and China that intermittently reshape the security calculus - is a factor that climate investment models do not yet price.
+  </p>
+
+  <div class="pull-quote">
+    <p>"Countries can simultaneously rank highly for climate action whilst also having large military budgets, making them responsible for significant volumes of under-reported or uncategorised military emissions."</p>
+    <cite>- Climate Change Performance Index (CCPI) x Military Emissions Gap, November 2024</cite>
+  </div>
+</div>
+
+<!-- ═════════════════════════════════════ -->
+<!-- SECTION 05: THE COLLATERAL VICTIM    -->
+<!-- ═════════════════════════════════════ -->
+<div class="section-sep"></div>
+<div class="section-wrap">
+  <div class="section-head">
+    <span class="section-num">05</span>
+    <h2 class="section-title"><em>Collateral Damage:</em> The Middle East, the UAE, and the War on Water</h2>
+  </div>
+
+  <p class="article-body">
+    The most strategically revealing dimension of war's climate cost is not what happens to combatants - it is what happens to the infrastructure of survival in nations that neither started nor can end the conflicts raging around them. Nowhere is this clearer than in the Gulf, where the UAE, Saudi Arabia, and Kuwait have built their modern existence on a foundation of desalinated water and oil infrastructure - and both are now in the direct line of fire.
+  </p>
+  <p class="article-body">
+    The Middle East accounts for <strong>46.9% of the world's total contracted desalination capacity</strong> (Nature, npj Clean Water, 2026). In the UAE, 42% of water supply comes from desalination. In Kuwait, 90%. In Saudi Arabia, 70%. These are not amenity systems - they are primary survival infrastructure in a region where <strong>freshwater aquifer depletion is accelerating and rainfall is negligible</strong>. A successful strike on a major desalination complex is, in hydrological terms, an act of civilisational disruption.
+  </p>
+
+  <div class="chart-box red-top">
+    <div class="chart-title">Gulf Nations' Water Dependency: Desalination as Survival Infrastructure</div>
+    <div class="chart-sub">Share of national water supply from desalination · Nature / AGSI / Carnegie Endowment · 2024</div>
+    <div class="bar-chart">
+      <div class="bar-row">
+        <div class="bar-label">Kuwait<small>90% desalinated</small></div>
+        <div class="bar-track"><div class="bar-fill red" style="width:90%"></div></div>
+        <div class="bar-val red">90%</div>
+      </div>
+      <div class="bar-row">
+        <div class="bar-label">Saudi Arabia<small>70% desalinated</small></div>
+        <div class="bar-track"><div class="bar-fill red" style="width:70%"></div></div>
+        <div class="bar-val red">70%</div>
+      </div>
+      <div class="bar-row">
+        <div class="bar-label">Oman<small>86% desalinated</small></div>
+        <div class="bar-track"><div class="bar-fill" style="width:86%;background:var(--gold)"></div></div>
+        <div class="bar-val" style="color:var(--gold)">86%</div>
+      </div>
+      <div class="bar-row">
+        <div class="bar-label">UAE<small>42% desalinated</small></div>
+        <div class="bar-track"><div class="bar-fill" style="width:42%;background:var(--gold)"></div></div>
+        <div class="bar-val" style="color:var(--gold)">42%</div>
+      </div>
+      <div class="bar-row">
+        <div class="bar-label">Qatar<small>~100% desalinated</small></div>
+        <div class="bar-track"><div class="bar-fill red" style="width:100%"></div></div>
+        <div class="bar-val red">&gt;95%</div>
+      </div>
+    </div>
+    <div class="chart-src">Sources: French Institute of International Relations 2022 · AGSI "Gulf Countries Explore Water Solutions" 2025 · npj Clean Water Nature 2026 · Carnegie Endowment MENA Water Crisis Report 2024</div>
+  </div>
+
+  <p class="article-body">
+    This infrastructure has already been targeted. In 2019, Houthi forces launched drone attacks that came within critical proximity of Saudi Arabia's Shuqaiq desalination plant on the Red Sea coast - a facility serving millions. In March 2022, a coordinated Houthi barrage struck the Shuqaiq plant directly, alongside an Aramco LNG facility in Yanbu and a petroleum distribution centre in Jeddah. The UAE has faced drone attacks on its territory from Houthi forces, and its $DP World-operated Red Sea port infrastructure has been impacted by shipping disruptions from Houthi maritime campaigns.
+  </p>
+  <p class="article-body">
+    The environmental cascade from these attacks extends far beyond immediate damage. The Houthi campaign in the Red Sea has forced shipping rerouting around the Cape of Good Hope - adding approximately 3,000 nautical miles per voyage. A single container ship on the Shanghai–Hamburg route via the Cape emits <strong>38% more CO₂</strong> than via Suez (Frontiers in Political Science, December 2025). Asia-to-Mediterranean route emissions surged <strong>63% in Q1 2024 versus Q4 2023</strong> as rerouting accelerated.
+  </p>
+
+  <div class="chart-box">
+    <div class="chart-title">The Houthi Red Sea Campaign: Compounding Environmental Costs</div>
+    <div class="chart-sub">Maritime emissions escalation · Oil spill risk · Desalination threat · 2024–2025</div>
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th>Impact Vector</th>
+          <th>Metric</th>
+          <th>Source</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="highlight-row">
+          <td>Additional CO₂ per ship rerouted via Cape of Good Hope</td>
+          <td>+38% emissions; ~4.32 million kg more CO₂ per vessel (Shanghai–Hamburg)</td>
+          <td>Xeneta / GNET 2025</td>
+        </tr>
+        <tr class="highlight-row">
+          <td>Q1 2024 Asia–Mediterranean route emission spike</td>
+          <td>+63% vs Q4 2023</td>
+          <td>Xeneta / Frontiers in Political Science 2025</td>
+        </tr>
+        <tr>
+          <td>Rubymar cargo ship sunk (Feb 2024)</td>
+          <td>22,000 tonnes ammonium phosphate-sulphate + 280t heavy fuel oil spilled into Red Sea</td>
+          <td>AGBI / GNET 2025</td>
+        </tr>
+        <tr>
+          <td>Oil tanker incident (avoided)</td>
+          <td>1 million barrels crude oil rerouted from stricken vessel</td>
+          <td>Multiple sources</td>
+        </tr>
+        <tr>
+          <td>Desalination plants at risk</td>
+          <td>Red Sea coastline plants in Saudi Arabia, UAE, Yemen face direct attack risk; algal blooms from pollution could trigger shutdowns</td>
+          <td>npj Clean Water 2026 / AGSI 2025</td>
+        </tr>
+        <tr class="highlight-row">
+          <td>Suez Canal global trade share disrupted</td>
+          <td>12% of global trade + 30% of global container volume impacted by route uncertainty</td>
+          <td>US EIA / Frontiers 2025</td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="chart-src">Sources: Frontiers in Political Science "Environmental Impacts of Houthi Attacks" (Dec 2025) · GNET "Ecology as Collateral" (Apr 2025) · AGBI (Sep 2024) · Middle East Institute · Xeneta freight analytics · US EIA</div>
+  </div>
+
+  <p class="article-body">
+    The UAE presents the paradigmatic case of a nation at the intersection of climate vulnerability, energy transition ambition, and conflict proximity. It has launched Masdar - one of the world's largest state-owned renewable energy companies, with active projects across 40 countries. It hosted COP28 in 2023. Its Vision 2050 targets full decarbonisation. And yet: it sits in a region where its oil and water infrastructure are active military targets, where its Red Sea investments are under sustained attack, and where the carbon emissions of proximate conflicts - none of which it initiated - are accumulating in its atmosphere, its coastal waters, and its economic risk register.
+  </p>
+
+  <div class="callout">
+    <div class="callout-title">AQI Impact of Bombing: What the Science Shows</div>
+    <p>Satellite-based studies of Gaza, Yemen, and Ukraine consistently document the same pollution signature post-bombardment: sharp spikes in UV aerosol index (combustion particles), sustained rises in carbon monoxide (building fire residue), episodic SO₂ from fuel depot destruction, and steady methane increases from waste system collapse. These are not temporary events - they persist for months to years as infrastructure remains non-functional. The 1991 Kuwait oil well fires - 600+ wells burning simultaneously - affected air quality across multiple Gulf states. Kuwait's respiratory disease rate elevated for a full decade post-conflict. War does not just emit carbon. It degrades the atmospheric commons for everyone within thousands of kilometres.</p>
+  </div>
+</div>
+
+<!-- ═════════════════════════════════════ -->
+<!-- INVESTMENT THESIS                    -->
+<!-- ═════════════════════════════════════ -->
+<div class="section-sep"></div>
+<div class="section-wrap">
+  <div class="section-head">
+    <span class="section-num">06</span>
+    <h2 class="section-title steel">The <em>Investment Implication</em>: Pricing War Risk into Climate Strategy</h2>
+  </div>
+
+  <p class="article-body">
+    Climate investment frameworks have developed sophisticated tools for pricing physical climate risk: sea-level projections, heat stress indices, water scarcity maps, transition risk assessments. They have not, as a class, developed comparable tools for pricing <strong>war-initiation risk as a climate variable</strong>. This is a structural gap in the analytical architecture of sustainable finance.
+  </p>
+  <p class="article-body">
+    The argument for closing it is not ideological. It is financial. A nation's propensity to initiate or sustain military conflict directly affects:
+    its fiscal capacity for climate investment; the stability of its regulatory environment for renewables; the security of the physical infrastructure underpinning clean energy transitions; the carbon intensity of its allied supply chains; and its credibility as a long-term climate partner for institutional investors.
+  </p>
+
+  <div class="thesis-box">
+    <div class="thesis-label">Investment Thesis · Bombay Breed Intelligence</div>
+    <h3>"The cost of a country's war-mongering thirst must be a line item in its climate investment risk profile."</h3>
+    <p>Nations that systematically direct capital toward military aggression rather than climate infrastructure are not just geopolitical risks - they are climate investment risks. The opportunity cost of every dollar spent on a foreign military campaign is measurable: it is a dollar unavailable for the energy transition, a unit of institutional attention diverted from NDC implementation, and a structural signal about the durability of climate commitments under stress.</p>
+  </div>
+
+  <div class="chart-box steel-top">
+    <div class="chart-title">War-Initiation Risk Framework: A Proposed Climate Investment Lens</div>
+    <div class="chart-sub">Illustrative scoring across five dimensions · Bombay Breed / sourced data · 2025</div>
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th>Country</th>
+          <th>Wars Initiated (post-1980)</th>
+          <th>Military Spend as % GDP</th>
+          <th>Clean Energy Investment Rank</th>
+          <th>Climate Commitment Stability</th>
+          <th>Investor Signal</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="highlight-gold">
+          <td>China</td>
+          <td>0 (border skirmishes only)</td>
+          <td>1.7% GDP</td>
+          <td>#1 globally ($625B)</td>
+          <td>High - dual carbon goals embedded in 5-year plans</td>
+          <td><span class="badge badge-gold">Strong</span></td>
+        </tr>
+        <tr class="highlight-steel">
+          <td>India</td>
+          <td>Defensive only</td>
+          <td>2.4% GDP</td>
+          <td>Top 5, accelerating</td>
+          <td>Strong - 2030 targets ahead of schedule</td>
+          <td><span class="badge badge-steel">Positive</span></td>
+        </tr>
+        <tr>
+          <td>Germany</td>
+          <td>NATO only, defensive basis</td>
+          <td>2.1% GDP (rising)</td>
+          <td>Top 5 EU</td>
+          <td>Moderate - Energiewende under fiscal pressure</td>
+          <td><span class="badge badge-dark">Watch</span></td>
+        </tr>
+        <tr>
+          <td>UAE</td>
+          <td>Yemen coalition (partial)</td>
+          <td>~5.6% GDP</td>
+          <td>Masdar - high ambition</td>
+          <td>High stated - geopolitical proximity risk</td>
+          <td><span class="badge badge-dark">Conditional</span></td>
+        </tr>
+        <tr class="highlight-row">
+          <td>United States</td>
+          <td>12+ initiated post-1980</td>
+          <td>3.4% GDP ($997B)</td>
+          <td>~$145B - IRA rollback 2025</td>
+          <td>Low - Paris withdrawal ×2, IRA cut 2025</td>
+          <td><span class="badge badge-red">High Risk</span></td>
+        </tr>
+        <tr class="highlight-row">
+          <td>Russia</td>
+          <td>Chechnya, Georgia, Ukraine</td>
+          <td>~6% GDP and rising</td>
+          <td>Minimal, sanctioned</td>
+          <td>None - climate commitments suspended</td>
+          <td><span class="badge badge-red">Avoid</span></td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="chart-src">Note: This is an analytical framework, not an investment recommendation. Illustrative scoring based on documented data from SIPRI, IEA, CCPI, BNEF, and World Bank 2024–2025. All investment decisions require full due diligence.</div>
+  </div>
+
+  <p class="article-body">
+    The framework surfaces a counterintuitive insight for capital allocators: the most climate-credible sovereign investment environments may not be found in the G7. They may be found in countries that have chosen economic statecraft over military statecraft - that have used geopolitical stability as a platform for industrial compounding, rather than consuming it in foreign campaigns. <strong>The peace dividend is, in the 21st century, increasingly a climate dividend.</strong>
+  </p>
+  <p class="article-body">
+    For institutional investors with climate mandates, the practical implication is specific: ESG sovereign risk assessments should incorporate a military-initiation risk premium. Countries with high war-initiation histories, volatile climate policy frameworks, and large military expenditures relative to clean energy investment represent a structural misallocation risk - not because of ethical concerns alone, but because the opportunity cost of that military spending is measurable in delayed transitions, abandoned NDCs, and undermined multilateral climate frameworks.
+  </p>
+</div>
+
+<!-- CLOSING -->
+<div class="closing">
+  <div class="closing-label">Conclusion · Bombay Breed Intelligence</div>
+  <h2>Paris Named Every Emitter<br><em>Except the One</em> That Chose<br>to Stay Unnamed.</h2>
+  <p>The climate crisis and the security crisis are not parallel problems competing for the same budget. They are the same problem, viewed from different angles. Every war emits carbon that no climate treaty accounts for. Every military base consumes fuel that no NDC includes. Every conflict redirects fiscal capacity from transition infrastructure to destruction infrastructure. The Paris Agreement did not forget this emitter. It was written to exclude it - and every signatory let that exclusion stand.</p>
+  <p>The world is on course for 2.7°C of warming by 2100, according to UNEP's 2025 Emissions Gap Report. The 42% emissions reduction required by 2030 to remain on a 1.5°C pathway demands not just energy transition - it demands that the emitter no treaty has named finally be counted. Defence budgets are climate budgets spent in reverse. The $2.7 trillion spent annually on military forces is the world's most expensive barrier to meeting Paris - and the most expertly hidden one.</p>
+  <p>This has a precise implication for how climate risk must be analysed. <strong>War-initiation risk is a climate variable.</strong> A nation's institutional propensity to initiate, sustain, or finance military conflict is not a geopolitical footnote to its climate profile - it is a direct input into its emissions trajectory, its fiscal capacity for transition, and the integrity of its NDC baseline. <strong><em>A country that goes to war generates unaccounted emissions, destroys transition-relevant infrastructure, diverts capital from clean investment, and destabilises the regional ecosystems its neighbours depend on. None of this is currently priced into any sovereign climate risk framework, any ESG rating, or any transition finance model. It should be.</em></strong></p>
+  <p>The nations that will lead the clean energy economy of the 21st century are not the ones that negotiated the most exemptions. They are the ones that never needed them. The data already shows who that is - and what it costs everyone else.</p>
+  <div class="closing-sig">
+    <strong>Bombay Breed</strong> · India's Strategic Carbon Communications Advisory · <strong>bombaybreed.com</strong> · March 2026<br>
+    All figures sourced from peer-reviewed research, UNFCCC submissions, and authoritative institutional databases. Full source list in footnotes.
+  </div>
+</div>
+
+<!-- FOOTNOTES -->
+<div class="footnotes">
+  <div class="footnotes-title">Sources &amp; Methodological Notes</div>
+  <p>1. Global military emissions 5.5% figure: Conflict and Environment Observatory (CEOBS), "The Military Emissions Gap", 2022. This is a conservative estimate; actual figure likely higher given significant reporting non-compliance.</p>
+  <p>2. Military emissions ranking (3rd globally): Based on CEOBS 2022 estimated 2,750 Mt CO₂e compared to Global Carbon Project 2024 national figures. India 2,720 Mt, Russia 1,990 Mt. Military figure sits between.</p>
+  <p>3. US military fuel consumption: 269,230 barrels/day (2017, Defense Logistics Agency via Freedom of Information Act). US military Kyoto Protocol exemption lobbying: multiple congressional records, 1997.</p>
+  <p>4. Military spending 2024: SIPRI Military Expenditure Database 2025. 9.4% increase described as steepest since Cold War.</p>
+  <p>5. Oil and conflict: Jeff D. Colgan, "Fueling the Fire: Pathways from Oil to War," International Security, Fall 2013. Belfer Center policy brief 2013. 25–50% of interstate wars since 1973 oil-linked.</p>
+  <p>6. Gaza emissions: Queen Mary University London / Lancaster University study (2024): 420,265–652,552 tCO₂e first 120 days. Reconstruction: 47–61 Mt (exceeds annual emissions of 135+ countries). CEOBS 120-day figure: 600,000+ tonnes including cargo flights.</p>
+  <p>7. Gaza environmental data: UNEP Environmental Impact Assessment (June 2024, updated Dec 2024); WHO EMRO "War and Environmental Health in Gaza" (2025); World Bank/UN/EU Interim Damage Assessment (March 2024); ScienceDirect "Air pollution in Gaza during the post-October 7 era" (2025).</p>
+  <p>8. China clean energy: IEA "China – World Energy Investment 2025"; Ember "China Energy Transition Review 2025"; BNEF "Energy Transition Investment Trends 2025"; WEF January 2025; Yale Environment 360.</p>
+  <p>9. India climate data: CCPI 2024 (Germanwatch/CAN); SIPRI 2025; CEOBS Military Emissions Gap 2025; Carbon Brief CBAM analysis 2024.</p>
+  <p>10. Desalination data: npj Clean Water, Nature, "Desalination and the Middle East" (January 2026); AGSI "Gulf Countries Explore Water Solutions" (2025); Carnegie Endowment MENA Water Crisis (2024); French Institute of International Relations 2022.</p>
+  <p>11. Houthi maritime emissions: Frontiers in Political Science "Environmental Impacts of Houthi Attacks" (December 2025); GNET "Ecology as Collateral" (April 2025); Xeneta freight analytics; US EIA Bab al-Mandab data.</p>
+  <p>12. Climate finance gap: OECD 2024 (first $100B goal met 2022, two years late); Transform Defence analysis; Overseas Development Institute US fair share calculation.</p>
+</div>
+
+</body>
+</html>
