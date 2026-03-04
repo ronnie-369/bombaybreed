@@ -102,7 +102,7 @@ const ReportsCarousel = () => {
             Autoplay({
               delay: 5000,
               stopOnInteraction: false,
-            }),
+            }) as any,
           ]}
         >
           <CarouselContent>

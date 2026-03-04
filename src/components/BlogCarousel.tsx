@@ -117,7 +117,7 @@ const BlogCarousel = () => {
               Autoplay({
                 delay: 6000,
                 stopOnInteraction: true,
-              }),
+              }) as any,
             ]}
           >
             <CarouselContent>

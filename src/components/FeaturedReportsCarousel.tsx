@@ -61,7 +61,7 @@ const FeaturedReportsCarousel: React.FC<FeaturedReportsCarouselProps> = ({
           Autoplay({
             delay: 6000,
             stopOnInteraction: true,
-          }),
+          }) as any,
         ]}
       >
         <CarouselContent>
