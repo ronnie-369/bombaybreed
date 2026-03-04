@@ -4,6 +4,7 @@ const BRSRReportingAdvisory = () => {
   return (
     <ServicePageTemplate
       slug="brsr-reporting-advisory-india"
+      og_image="https://bombaybreed.com/og/og-brsr.png"
       meta_title="BRSR Reporting Advisory India — SEBI-Compliant Sustainability Disclosure | Bombay Breed"
       meta_description="Expert BRSR reporting advisory for Indian listed companies. Navigate SEBI's Business Responsibility and Sustainability Reporting (BRSR) Core & Leadership frameworks with confidence."
       h1_headline="BRSR Reporting Advisory for Indian Listed Companies"

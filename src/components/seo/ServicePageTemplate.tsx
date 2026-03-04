@@ -1,4 +1,5 @@
 import { useEffect } from 'react';
+import { setOGMeta } from '@/utils/og-meta';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import BreadcrumbNav from './BreadcrumbNav';
@@ -59,6 +60,7 @@ interface ServicePageTemplateProps {
   typical_roles?: string[];
   urgency_triggers?: string[];
   conversion_cta?: string;
+  og_image?: string;
 }
 
 const AuthorBox = () => (
@@ -93,7 +95,8 @@ const ServicePageTemplate = ({
   internal_links = [],
   typical_roles,
   urgency_triggers,
-  conversion_cta
+  conversion_cta,
+  og_image
 }: ServicePageTemplateProps) => {
   
   const breadcrumbItems = [];
@@ -142,12 +145,20 @@ const ServicePageTemplate = ({
     const breadcrumbSchema = generateBreadcrumbSchema(`/${slug}`, meta_title);
     injectSchema(breadcrumbSchema, 'schema-breadcrumb');
 
+    const ogCleanup = setOGMeta({
+      title: meta_title,
+      description: meta_description || h1_headline,
+      image: og_image || 'https://bombaybreed.com/og/og-home.png',
+      url: `https://bombaybreed.com/${slug}`,
+    });
+
     return () => {
       removeSchema('schema-service');
       removeSchema('schema-faq');
       removeSchema('schema-breadcrumb');
+      ogCleanup();
     };
-  }, [slug, meta_title, meta_description, h1_headline, capability, industry, geography, regulation, faq_items]);
+  }, [slug, meta_title, meta_description, h1_headline, capability, industry, geography, regulation, faq_items, og_image]);
 
   const subtitleParts = [];
   if (industry) subtitleParts.push(industry.name);
