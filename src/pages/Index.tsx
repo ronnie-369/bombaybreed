@@ -32,11 +32,11 @@ const Index = () => {
     <div className="min-h-screen bg-background flex flex-col">
       <Header />
       <ExecutiveHero />
+      <SpecialFeatureHighlight />
       <ClientLogoStrip />
       <ProofStat />
       <ServicePillars />
       <FeaturedInsight />
-      <SpecialFeatureHighlight />
 
       {/* Testimonial */}
       <section className="py-20 md:py-28 px-6 md:px-8 border-t border-border/50">
