@@ -38,7 +38,7 @@ const TrackRecord = () => {
               "It will take all of us, to do this for all of us"
             </blockquote>
             <p className="text-sm text-muted-foreground tracking-wide mb-8">
-              — Theresa Ronnie
+              - Theresa Ronnie
             </p>
             <p className="text-sm font-medium text-accent tracking-wide uppercase mb-3">
               Experience

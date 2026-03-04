@@ -83,7 +83,7 @@ const ReportLandingPage: React.FC<ReportLandingPageProps> = ({ data }) => {
                   <div className="w-[280px] md:w-full max-w-[400px]">
                     <img
                       src={data.coverImage}
-                      alt={`${data.title} — Report Cover`}
+                      alt={`${data.title}: Report Cover`}
                       className="w-full aspect-[5/7] object-cover rounded-lg border border-border"
                       style={{ boxShadow: '0 4px 24px rgba(0,0,0,0.08)' }}
                     />

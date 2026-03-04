@@ -11,7 +11,7 @@ const SpecialFeatureHighlight = () => {
           rel="noopener noreferrer"
           className="group block relative overflow-hidden rounded-sm border border-border/20 hover:border-border/40 transition-all duration-500"
         >
-          {/* Cover — matches the original HTML cover block exactly */}
+          {/* Cover - matches the original HTML cover block exactly */}
           <div
             className="relative px-8 md:px-12 pt-12 md:pt-16 pb-10 md:pb-14 overflow-hidden"
             style={{ background: '#0f1f3d' }}
@@ -50,7 +50,7 @@ const SpecialFeatureHighlight = () => {
               className="font-sans text-base md:text-[17px] font-light leading-relaxed max-w-[600px] mb-8 md:mb-9"
               style={{ color: 'rgba(247,243,236,0.72)' }}
             >
-              Every climate treaty ever signed has a missing line. The world's militaries collectively emit more greenhouse gases than all but two nations on earth — and appear in none of them. This is not an oversight. It was a choice. And the world is paying for it.
+              Every climate treaty ever signed has a missing line. The world's militaries collectively emit more greenhouse gases than all but two nations on earth - and appear in none of them. This is not an oversight. It was a choice. And the world is paying for it.
             </p>
 
             {/* Meta bar */}
@@ -70,7 +70,7 @@ const SpecialFeatureHighlight = () => {
               </span>
             </div>
 
-            {/* Read CTA — appears on hover */}
+            {/* Read CTA - appears on hover */}
             <div className="absolute top-6 right-6 md:top-8 md:right-8 flex items-center gap-2 font-mono text-[11px] tracking-wider uppercase opacity-0 group-hover:opacity-100 transition-opacity duration-300" style={{ color: 'rgba(247,243,236,0.7)' }}>
               Read
               <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-1" />

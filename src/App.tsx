@@ -74,7 +74,7 @@ const AppContent = () => {
               <Route path="/carbon-market-outlook" element={<Navigate to="/insights/carbon-market-outlook" replace />} />
               <Route path="/compliance-to-credibility" element={<Navigate to="/insights/compliance-to-credibility" replace />} />
 
-              {/* Special pages (custom interactive layouts — not template-driven) */}
+              {/* Special pages (custom interactive layouts - not template-driven) */}
               <Route path="/green-jobs-guide" element={<GreenJobsGuide />} />
               <Route path="/working-for-the-earth" element={<WorkingForTheEarth />} />
               <Route path="/india-renewable-grid-analysis" element={<GridAnalysis />} />

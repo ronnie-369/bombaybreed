@@ -320,10 +320,10 @@ const CarbonMarketTracker = () => {
                             </Badge>
                           </TableCell>
                           <TableCell className="text-right font-semibold">{formatINR(row.price_inr)}</TableCell>
-                          <TableCell className="text-right text-muted-foreground">{row.price_usd ? `$${row.price_usd}` : '—'}</TableCell>
-                          <TableCell className="text-right">{row.volume_tonnes?.toLocaleString() || '—'}</TableCell>
-                          <TableCell className="text-xs text-muted-foreground">{row.source || '—'}</TableCell>
-                          <TableCell className="text-xs text-muted-foreground max-w-[200px] truncate">{row.notes || '—'}</TableCell>
+                          <TableCell className="text-right text-muted-foreground">{row.price_usd ? `$${row.price_usd}` : '-'}</TableCell>
+                          <TableCell className="text-right">{row.volume_tonnes?.toLocaleString() || '-'}</TableCell>
+                          <TableCell className="text-xs text-muted-foreground">{row.source || '-'}</TableCell>
+                          <TableCell className="text-xs text-muted-foreground max-w-[200px] truncate">{row.notes || '-'}</TableCell>
                         </TableRow>
                       ))}
                     </TableBody>

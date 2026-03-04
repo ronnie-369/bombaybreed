@@ -275,7 +275,7 @@ const SEOIndustriesTab = () => {
                 <TableRow key={item.id}>
                   <TableCell className="font-medium">{item.name}</TableCell>
                   <TableCell className="text-muted-foreground">{item.slug}</TableCell>
-                  <TableCell className="capitalize">{item.energy_intensity || "—"}</TableCell>
+                  <TableCell className="capitalize">{item.energy_intensity || "-"}</TableCell>
                   <TableCell>{item.is_active ? "Active" : "Inactive"}</TableCell>
                   <TableCell className="text-right">
                     <Button variant="ghost" size="icon" onClick={() => handleEdit(item)}>

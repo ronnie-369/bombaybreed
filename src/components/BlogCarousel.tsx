@@ -24,7 +24,7 @@ const staticBlogPosts: BlogPost[] = [
     id: 'circular-business-models',
     title: 'Why Circular Business Models Keep Failing',
     subtitle: '(and How to Fix Them)',
-    description: "We've heard the promise before: circular business models can unlock new revenue, reduce risk, and cut emissions. But implementation keeps failing. Here's why—and how to scale them right.",
+    description: "We've heard the promise before: circular business models can unlock new revenue, reduce risk, and cut emissions. But implementation keeps failing. Here's why - and how to scale them right.",
     date: 'Oct 2, 2025',
     url: 'https://theclimatedesk.substack.com/p/how-circular-business-models-fail',
     image: 'https://images.unsplash.com/photo-1571377160222-7b1043110482?w=800&auto=format&fit=crop',
