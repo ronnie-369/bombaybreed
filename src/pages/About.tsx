@@ -70,11 +70,10 @@ const testimonials = [
 ];
 
 const milestones = [
-  { year: "2008", event: "Began C-suite advisory career" },
-  { year: "2015", event: "Founded Bombay Breed" },
-  { year: "2020", event: "First Fortune 500 carbon advisory" },
-  { year: "2023", event: "Carbon Playbook published" },
-  { year: "2025", event: "Board advisory for listed companies" },
+  { year: "2012", event: "First Fortune 500 client advisory" },
+  { year: "2020", event: "Founded Bombay Breed" },
+  { year: "2023", event: "Carbon Markets Advisory" },
+  { year: "2025", event: "The Climate Desk" },
 ];
 
 const About = () => {
