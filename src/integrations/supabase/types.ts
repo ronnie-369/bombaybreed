@@ -14,6 +14,48 @@ export type Database = {
   }
   public: {
     Tables: {
+      bookings: {
+        Row: {
+          company: string | null
+          created_at: string
+          email: string
+          id: string
+          message: string | null
+          name: string
+          phone: string | null
+          preferred_date: string
+          preferred_time: string
+          status: string
+          updated_at: string
+        }
+        Insert: {
+          company?: string | null
+          created_at?: string
+          email: string
+          id?: string
+          message?: string | null
+          name: string
+          phone?: string | null
+          preferred_date: string
+          preferred_time: string
+          status?: string
+          updated_at?: string
+        }
+        Update: {
+          company?: string | null
+          created_at?: string
+          email?: string
+          id?: string
+          message?: string | null
+          name?: string
+          phone?: string | null
+          preferred_date?: string
+          preferred_time?: string
+          status?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
       cached_blog_posts: {
         Row: {
           created_at: string
