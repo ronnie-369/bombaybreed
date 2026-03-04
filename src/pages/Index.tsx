@@ -12,6 +12,7 @@ import BoardValueSkeleton from '@/components/skeletons/BoardValueSkeleton';
 import TrackRecordSkeleton from '@/components/skeletons/TrackRecordSkeleton';
 import DirectContactSkeleton from '@/components/skeletons/DirectContactSkeleton';
 import ReportsCarousel from '@/components/ReportsCarousel';
+import SpecialFeatureHighlight from '@/components/SpecialFeatureHighlight';
 import Footer from '@/components/Footer';
 import ScrollReveal from '@/components/ui/ScrollReveal';
 import ServicesHub from '@/components/ServicesHub';
@@ -37,6 +38,7 @@ const Index = () => {
       <ContentLoader isLoading={isLoading} skeleton={<BoardValueSkeleton />}>
         <BoardValue />
       </ContentLoader>
+      <SpecialFeatureHighlight />
       <ReportsCarousel />
       
       {/* Services Hub Section */}
