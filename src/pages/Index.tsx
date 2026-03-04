@@ -6,6 +6,7 @@ import ClientLogoStrip from '@/components/ClientLogoStrip';
 import ProofStat from '@/components/ProofStat';
 import ServicePillars from '@/components/ServicePillars';
 import FeaturedInsight from '@/components/FeaturedInsight';
+import SpecialFeatureHighlight from '@/components/SpecialFeatureHighlight';
 import DirectContact from '@/components/DirectContact';
 import Footer from '@/components/Footer';
 import ScrollReveal from '@/components/ui/ScrollReveal';
@@ -35,6 +36,7 @@ const Index = () => {
       <ProofStat />
       <ServicePillars />
       <FeaturedInsight />
+      <SpecialFeatureHighlight />
 
       {/* Testimonial */}
       <section className="py-20 md:py-28 px-6 md:px-8 border-t border-border/50">
