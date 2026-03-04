@@ -1,40 +1,47 @@
 
 
-# Remove All Em Dashes (—) Sitewide
+# Custom Booking System with Scarcity Slots
 
-## Scope
-504 occurrences across 26 files. Each `—` will be replaced contextually:
+## Why Custom
+The current Google Calendar iframe doesn't allow programmatic control over slot availability patterns. To enforce "no slots before 12:30pm", "2 per day max", and rotating weekly patterns, we need a custom booking UI.
 
-- **Title separators** (`Bombay Breed — Strategic Carbon Advisory`) → use `: ` or ` | `
-- **Attribution** (`— Theresa Ronnie`, `— Erik Solheim`) → use `– ` (en dash) or just remove the dash
-- **Inline pauses** (`both worlds — and can translate`) → use ` - ` (hyphen with spaces)
-- **Table empty cells** (`item.jurisdiction || "—"`) → use `"-"`
-- **Content prose** (mid-sentence dramatic pauses) → use ` - `, `;`, or `:` depending on context
+## Slot Algorithm
 
-## Files to Edit (26 files)
+A deterministic function generates available slots per day using a seeded pseudo-random approach based on the date, so slots look different week-to-week but are consistent for all visitors on the same day:
 
-All `.tsx` and `.ts` files in `src/` containing `—`. Key files include:
-- `src/pages/About.tsx`, `src/pages/Index.tsx`, `src/pages/Services.tsx`
-- `src/pages/CarbonCreditTradingScheme.tsx`, `src/pages/BRSRReportingAdvisory.tsx`
-- `src/pages/GridAnalysis.tsx`, `src/pages/WorkingForTheEarth.tsx`
-- `src/pages/Insights.tsx`, `src/pages/InsightDetail.tsx`
-- `src/data/insights.ts` (bulk of content)
-- `src/components/StickyCtaBar.tsx`, `src/components/TrackRecord.tsx`
-- `src/components/BlogCarousel.tsx`, `src/components/GreenJobsReport.tsx`
-- `src/components/insights/*.tsx` templates
-- `src/components/admin/seo/*.tsx` (table placeholders)
-- Other component files
+- **No slots before 12:30pm** - all slots are afternoon/evening only
+- **Exactly 2 slots per day** - picked from a pool of 5 possible times (12:30, 13:30, 14:30, 15:30, 16:30)
+- **Week rotation** - the seed uses `weekNumber % 4` so the pattern repeats every 4 weeks but varies within
+- **Weekends blocked** - no Saturday/Sunday slots
+- **Past dates blocked**
 
-## Replacement Rules
+Example output for a given week:
+- Monday: 13:30, 15:30
+- Tuesday: 12:30, 16:30
+- Wednesday: 14:30, 15:30
+- Thursday: 12:30, 13:30
+- Friday: 14:30, 16:30
 
-| Context | Example | Replacement |
-|---|---|---|
-| Page titles / meta | `Bombay Breed — About` | `Bombay Breed: About` |
-| Attribution lines | `— Theresa Ronnie` | `- Theresa Ronnie` |
-| Mid-sentence pause | `both worlds — and can` | `both worlds - and can` |
-| List item lead-in | `**Phase 1 — Materiality**` | `**Phase 1: Materiality**` |
-| Empty table cell | `"—"` | `"-"` |
-| Explanatory clause | `the result — inconsistent data` | `the result: inconsistent data` |
+## What Gets Built
 
-Each replacement will be chosen contextually for readability. No em dashes will remain.
+### `src/utils/booking-slots.ts`
+Deterministic slot generator function. No randomness at runtime - uses date-based seed so all visitors see the same slots.
+
+### Updated `BookingDialog.tsx`
+Replaces the Google Calendar iframe with:
+1. A calendar date picker (using existing shadcn Calendar component)
+2. Available time slots shown as buttons below the calendar
+3. A booking form (Name, Email, Phone, Message) shown after selecting a slot
+4. Submit stores to existing Supabase `bookings` table (or creates one if missing)
+5. Confirmation state with selected date/time
+
+### Supabase
+Uses existing booking infrastructure. Booked slots are checked against the database so the same slot can't be double-booked.
+
+## Files
+
+```
+Created:  src/utils/booking-slots.ts
+Modified: src/components/BookingDialog.tsx
+```
 
