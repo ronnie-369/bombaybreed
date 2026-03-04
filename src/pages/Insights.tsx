@@ -43,7 +43,7 @@ const publications: Publication[] = [
     topic: 'Carbon Markets',
     publishedDate: "2026-03-01",
     readTimeMinutes: 12,
-    link: "/carbon-playbook",
+    link: "/insights/carbon-playbook",
   },
   {
     title: "WEF Global Risks Report 2026: Climate & Geopolitical Volatility",
@@ -52,7 +52,7 @@ const publications: Publication[] = [
     topic: 'Board Governance',
     publishedDate: "2026-01-20",
     readTimeMinutes: 10,
-    link: "/wef-global-risks-2026",
+    link: "/insights/wef-global-risks-2026",
   },
   {
     title: "The One Emitter the Paris Agreement Forgot to Name",
@@ -71,7 +71,7 @@ const publications: Publication[] = [
     topic: 'Carbon Markets',
     publishedDate: "2026-02-09",
     readTimeMinutes: 8,
-    link: "/india-renewable-grid-analysis",
+    link: "/insights/india-renewable-grid-analysis",
   },
   {
     title: "Working for the Earth — A Dialectic Discourse",
@@ -80,7 +80,7 @@ const publications: Publication[] = [
     topic: 'ESG Communications',
     publishedDate: "2026-02-06",
     readTimeMinutes: 14,
-    link: "/working-for-the-earth",
+    link: "/insights/working-for-the-earth",
   },
   {
     title: "India Power Sector Investment Presentation",
@@ -97,7 +97,7 @@ const publications: Publication[] = [
     topic: 'ESG Communications',
     publishedDate: "2026-01-17",
     readTimeMinutes: 9,
-    link: "/green-jobs-india-2026",
+    link: "/insights/green-jobs-india-2026",
   },
   {
     title: "Mining the Transition: A Climate-Critical Minerals Risk Framework",
@@ -130,7 +130,7 @@ const publications: Publication[] = [
     topic: 'Carbon Markets',
     publishedDate: "2025-10-20",
     readTimeMinutes: 8,
-    link: "/compliance-to-credibility",
+    link: "/insights/compliance-to-credibility",
   },
   {
     title: "Carbon Market Outlook 2025-2030: An Investor's Deep Dive",
@@ -139,7 +139,7 @@ const publications: Publication[] = [
     topic: 'Carbon Markets',
     publishedDate: "2025-10-15",
     readTimeMinutes: 10,
-    link: "/carbon-market-outlook",
+    link: "/insights/carbon-market-outlook",
   },
   {
     title: "Energy Transition Playbook",
@@ -148,7 +148,7 @@ const publications: Publication[] = [
     topic: 'Carbon Markets',
     publishedDate: "2025-08-15",
     readTimeMinutes: 9,
-    link: "/energy-transition-playbook",
+    link: "/insights/energy-transition-playbook",
   },
 ];
 
