@@ -72,15 +72,13 @@ const BookingDialog = ({
     setAvailableSlots(slots);
     setSelectedSlot(null);
 
-    // Check which slots are already booked
+    // Check which slots are already booked via edge function (no PII exposed)
     const dateStr = format(selectedDate, 'yyyy-MM-dd');
-    supabase
-      .from('bookings' as any)
-      .select('preferred_time')
-      .eq('preferred_date', dateStr)
+    supabase.functions
+      .invoke('check-availability', { body: { date: dateStr } })
       .then(({ data }) => {
-        if (data) {
-          setBookedSlots((data as any[]).map((b: any) => b.preferred_time));
+        if (data?.bookedTimes) {
+          setBookedSlots(data.bookedTimes);
         }
       });
   }, [selectedDate]);
