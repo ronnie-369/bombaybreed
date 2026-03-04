@@ -11,6 +11,7 @@ import { Badge } from '@/components/ui/badge';
 import { ArrowRight, FileText, TrendingUp, Newspaper, ExternalLink, Search, X, ChevronRight } from 'lucide-react';
 import ScrollReveal from '@/components/ui/ScrollReveal';
 import LeadCaptureForm from '@/components/shared/LeadCaptureForm';
+import SpecialFeatureHighlight from '@/components/SpecialFeatureHighlight';
 import { format } from 'date-fns';
 import wefCoverImage from '@/assets/wef-global-risks-2026-cover.jpg';
 import greenJobsCoverImage from '@/assets/green-jobs-india-2026-cover.jpg';
@@ -72,6 +73,15 @@ const topicClusters = [
 ];
 
 const featuredInsights = [
+  {
+    title: "The One Emitter the Paris Agreement Forgot to Name",
+    description: "Every climate treaty ever signed has a missing line. The world's militaries collectively emit more greenhouse gases than all but two nations — and appear in none of them.",
+    category: "Special Investigation",
+    readTime: "25 min read",
+    date: "March 2026",
+    link: "/special-features/war-climate.html",
+    external: true
+  },
   {
     title: "India's Renewable Grid at Breaking Point",
     description: "Strategic analysis of the 203 GW grid crisis, thermal-RE gaps, and the ₹3.4 lakh crore infrastructure investment required for stabilization.",
@@ -263,6 +273,9 @@ const Insights = () => {
           </div>
         </section>
 
+        {/* Special Feature Banner */}
+        <SpecialFeatureHighlight />
+
         {/* Featured Insights */}
         <section className="py-20 px-6 md:px-8">
           <div className="container mx-auto max-w-6xl">
@@ -276,7 +289,7 @@ const Insights = () => {
               </div>
 
               <div className="grid md:grid-cols-3 gap-6">
-                {featuredInsights.map((insight, index) => (
+                {featuredInsights.filter(i => !(i as any).external).map((insight, index) => (
                   <Link key={index} to={insight.link}>
                     <Card className="h-full group cursor-pointer hover:border-primary/50 transition-colors">
                       <CardHeader>

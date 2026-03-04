@@ -59,6 +59,12 @@ const generateSitemapXml = (pages: SitemapPage[], changefreq = 'weekly'): string
     <lastmod>${new Date().toISOString().split('T')[0]}</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.70</priority>
+  </url>
+  <url>
+    <loc>${SITE_URL}/special-features/war-climate.html</loc>
+    <lastmod>2026-03-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.90</priority>
   </url>${urls}
 </urlset>`;
 };
