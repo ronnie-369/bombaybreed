@@ -63,7 +63,7 @@ const Header = () => {
   };
 
   return (
-    <header className="fixed w-full bg-background/90 backdrop-blur-sm z-50 border-b border-border/50">
+    <header className="fixed w-full bg-background z-50 border-b border-border/50">
       <div className="container mx-auto px-6 md:px-8 py-4 flex items-center justify-between">
         <div className="flex items-center">
           <Link to="/" className="flex items-center gap-3 bg-transparent">

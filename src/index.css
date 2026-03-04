@@ -82,15 +82,15 @@
 
 @layer components {
   .glass-card {
-    @apply bg-card/80 backdrop-blur-sm border border-border/30;
-    @apply transition-all duration-300 ease-out;
-    @apply hover:border-border/50 hover:shadow-hover hover:-translate-y-0.5;
+    @apply bg-card border border-border;
+    @apply transition-colors duration-200 ease-out;
+    @apply hover:border-border;
   }
   
   .feature-card {
-    @apply p-8 rounded-lg bg-card border border-border/50;
-    @apply transition-all duration-300 ease-out;
-    @apply hover:border-border hover:shadow-card-hover hover:-translate-y-1 hover:scale-[1.01];
+    @apply p-8 rounded-lg bg-card border border-border;
+    @apply transition-colors duration-200 ease-out;
+    @apply hover:border-muted-foreground/30;
   }
   
   .sustainability-gradient {

@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useMemo } from 'react';
 import { setOGMeta } from '@/utils/og-meta';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
@@ -15,15 +15,22 @@ import {
   injectSchema,
   removeSchema
 } from '@/utils/schema-generators';
-import { AlertTriangle, Target, TrendingUp, Lightbulb, MapPin } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import SectionLabel from '@/components/ui/SectionLabel';
 import BookingDialog from '@/components/BookingDialog';
 import ScrollReveal from '@/components/ui/ScrollReveal';
+import LeadCaptureForm from '@/components/shared/LeadCaptureForm';
 
 interface FAQItem {
   question: string;
   answer: string;
+}
+
+interface ContentSectionItem {
+  key: string;
+  title: string;
+  content: string;
+  variant?: 'default' | 'highlight' | 'warning';
 }
 
 interface ContentSections {
@@ -44,6 +51,11 @@ interface RelatedPage {
   type?: string;
 }
 
+interface StatItem {
+  value: string;
+  label: string;
+}
+
 interface ServicePageTemplateProps {
   slug: string;
   meta_title: string;
@@ -56,11 +68,13 @@ interface ServicePageTemplateProps {
   regulation?: { name: string; slug: string };
   faq_items?: FAQItem[];
   content_sections?: ContentSections;
+  content_section_overrides?: ContentSectionItem[];
   internal_links?: RelatedPage[];
   typical_roles?: string[];
   urgency_triggers?: string[];
   conversion_cta?: string;
   og_image?: string;
+  stats?: StatItem[];
 }
 
 const AuthorBox = () => (
@@ -92,11 +106,13 @@ const ServicePageTemplate = ({
   regulation,
   faq_items = [],
   content_sections = {},
+  content_section_overrides,
   internal_links = [],
   typical_roles,
   urgency_triggers,
   conversion_cta,
-  og_image
+  og_image,
+  stats,
 }: ServicePageTemplateProps) => {
   
   const breadcrumbItems = [];
@@ -115,6 +131,24 @@ const ServicePageTemplate = ({
   if (breadcrumbItems.length > 0) {
     breadcrumbItems[breadcrumbItems.length - 1].href = undefined;
   }
+
+  // Build ordered content sections for TOC
+  const defaultSectionOrder: ContentSectionItem[] = [
+    { key: 'the_problem', title: 'The Problem', content: '', variant: 'default' },
+    { key: 'why_this_fails', title: 'Why This Fails Today', content: '', variant: 'warning' },
+    { key: 'what_changes', title: 'What Changes When Done Right', content: '', variant: 'highlight' },
+    { key: 'our_approach', title: 'How Bombay Breed Approaches It', content: '', variant: 'default' },
+    { key: 'market_risks', title: 'Market-Specific Risks', content: '', variant: 'default' },
+    { key: 'introduction', title: 'Introduction', content: '', variant: 'default' },
+    { key: 'main_content', title: 'Overview', content: '', variant: 'default' },
+  ];
+
+  const activeSections = useMemo(() => {
+    if (content_section_overrides) return content_section_overrides.filter(s => s.content);
+    return defaultSectionOrder
+      .filter(s => content_sections?.[s.key])
+      .map(s => ({ ...s, content: content_sections![s.key]! }));
+  }, [content_sections, content_section_overrides]);
 
   useEffect(() => {
     document.title = meta_title;
@@ -198,69 +232,66 @@ const ServicePageTemplate = ({
           </div>
         </section>
 
+        {/* Stats Bar */}
+        {stats && stats.length > 0 && (
+          <section className="px-6 md:px-8 pb-12">
+            <div className="container mx-auto max-w-[680px]">
+              <div className="grid grid-cols-3 gap-6 py-6 border-t border-b border-border/50">
+                {stats.map((stat, i) => (
+                  <div key={i} className="text-center">
+                    <div className="font-serif text-2xl md:text-3xl font-bold text-primary">{stat.value}</div>
+                    <div className="text-xs text-muted-foreground mt-1">{stat.label}</div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </section>
+        )}
+
         {/* Main Content */}
         <div className="container mx-auto px-6 md:px-8 max-w-[680px]">
           {direct_answer_block && (
             <DirectAnswerBlock content={direct_answer_block} />
           )}
 
-          {content_sections?.the_problem && (
-            <ContentSection 
-              title="The Problem" 
-              content={content_sections.the_problem}
-              icon={AlertTriangle}
-            />
+          {/* Table of Contents */}
+          {activeSections.length > 2 && (
+            <nav className="py-6 mb-6 border-b border-border/30">
+              <p className="text-xs font-semibold tracking-wider uppercase text-muted-foreground mb-3">Contents</p>
+              <ul className="space-y-1.5">
+                {activeSections.map((section) => {
+                  const sectionId = section.title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+                  return (
+                    <li key={section.key}>
+                      <a href={`#${sectionId}`} className="text-sm text-primary hover:text-primary/80 transition-colors">
+                        {section.title}
+                      </a>
+                    </li>
+                  );
+                })}
+              </ul>
+            </nav>
           )}
 
-          {content_sections?.why_this_fails && (
+          {/* Content sections */}
+          {activeSections.map((section) => (
             <ContentSection 
-              title="Why This Fails Today" 
-              content={content_sections.why_this_fails}
-              icon={Target}
-              variant="warning"
+              key={section.key}
+              title={section.title}
+              content={section.content}
+              variant={section.variant as 'default' | 'highlight' | 'warning'}
             />
-          )}
+          ))}
 
-          {content_sections?.what_changes && (
-            <ContentSection 
-              title="What Changes When Done Right" 
-              content={content_sections.what_changes}
-              icon={TrendingUp}
-              variant="highlight"
+          {/* Mid-page download CTA */}
+          <div className="py-10 my-8 bg-secondary/30 rounded-xl px-6 text-center">
+            <h3 className="font-serif text-lg mb-2">Download the full brief (PDF)</h3>
+            <p className="text-sm text-muted-foreground mb-4">Get the complete analysis with data tables and frameworks.</p>
+            <LeadCaptureForm 
+              reportTitle={h1_headline} 
+              reportDescription={meta_description || ''} 
             />
-          )}
-
-          {content_sections?.our_approach && (
-            <ContentSection 
-              title="How Bombay Breed Approaches It" 
-              content={content_sections.our_approach}
-              icon={Lightbulb}
-            />
-          )}
-
-          {content_sections?.market_risks && (
-            <ContentSection 
-              title="Market-Specific Risks" 
-              content={content_sections.market_risks}
-              icon={MapPin}
-            />
-          )}
-
-          {content_sections?.introduction && (
-            <ContentSection 
-              title="Introduction" 
-              content={content_sections.introduction}
-              icon={Lightbulb}
-            />
-          )}
-
-          {content_sections?.main_content && (
-            <ContentSection 
-              title="Overview" 
-              content={content_sections.main_content}
-              icon={Target}
-            />
-          )}
+          </div>
 
           {/* Conversion Modules */}
           <WhoHiresUs roles={typical_roles} industry={industry?.name} />

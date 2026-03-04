@@ -4,125 +4,162 @@ import { Link } from 'react-router-dom';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import { Button } from '@/components/ui/button';
-import { ArrowRight, ExternalLink } from 'lucide-react';
+import { ArrowRight, ExternalLink, Search } from 'lucide-react';
+import { Input } from '@/components/ui/input';
 import ScrollReveal from '@/components/ui/ScrollReveal';
 import SectionLabel from '@/components/ui/SectionLabel';
 import LeadCaptureForm from '@/components/shared/LeadCaptureForm';
 import { format } from 'date-fns';
 
-import wefCoverImage from '@/assets/wef-global-risks-2026-cover.jpg';
-import greenJobsCoverImage from '@/assets/green-jobs-india-2026-cover.jpg';
-import miningTransitionCover from '@/assets/mining-transition-cover.jpg';
-import asiaClimateArticle6Cover from '@/assets/asia-climate-article6-cover.jpg';
-import indiaClimateInflectionCover from '@/assets/india-climate-inflection-cover.jpg';
-import complianceCredibilityCover from '@/assets/compliance-credibility-cover.jpg';
-import carbonMarketOutlookCover from '@/assets/carbon-market-outlook-cover.jpg';
-import energyTransitionPlaybookCover from '@/assets/energy-transition-playbook-cover.jpg';
-import indiaPowerSectorCover from '@/assets/india-power-sector-cover.jpg';
+type ContentType = 'Flagship Report' | 'Intelligence Brief' | 'Regulatory Alert' | 'Perspective';
+type Topic = 'Carbon Markets' | 'Board Governance' | 'ESG Communications' | 'Regulatory Intel';
 
 interface Publication {
   title: string;
   description: string;
-  type: string;
+  contentType: ContentType;
+  topic: Topic;
   publishedDate: string;
+  readTimeMinutes: number;
   link?: string;
   external?: boolean;
 }
 
-const flagshipBriefs = [
+const contentTypeColors: Record<ContentType, string> = {
+  'Flagship Report': 'text-primary border-primary/30',
+  'Intelligence Brief': 'text-foreground border-border',
+  'Regulatory Alert': 'text-destructive border-destructive/30',
+  'Perspective': 'text-accent border-accent/30',
+};
+
+const allTopics: Topic[] = ['Carbon Markets', 'Board Governance', 'ESG Communications', 'Regulatory Intel'];
+const allContentTypes: ContentType[] = ['Flagship Report', 'Intelligence Brief', 'Regulatory Alert', 'Perspective'];
+
+const publications: Publication[] = [
   {
     title: "India's Carbon Playbook: PAT Lessons, CCTS Rules & the Article 6 Opportunity",
-    takeaway: "The definitive strategic guide for Indian boards navigating carbon compliance and international market opportunities.",
-    date: "March 2026",
+    description: "The definitive strategic guide for Indian boards navigating carbon compliance and international market opportunities.",
+    contentType: 'Flagship Report',
+    topic: 'Carbon Markets',
+    publishedDate: "2026-03-01",
+    readTimeMinutes: 12,
     link: "/carbon-playbook",
   },
   {
     title: "WEF Global Risks Report 2026: Climate & Geopolitical Volatility",
-    takeaway: "How the intersection of climate, geopolitics, and economic fragility reshapes risk for Indian enterprises.",
-    date: "January 2026",
+    description: "How the intersection of climate, geopolitics, and economic fragility reshapes risk for Indian enterprises.",
+    contentType: 'Flagship Report',
+    topic: 'Board Governance',
+    publishedDate: "2026-01-20",
+    readTimeMinutes: 10,
     link: "/wef-global-risks-2026",
   },
-];
-
-const allBriefs: Publication[] = [
   {
     title: "The One Emitter the Paris Agreement Forgot to Name",
     description: "Every climate treaty ever signed has a missing line — the world's militaries collectively emit more greenhouse gases than all but two nations.",
-    type: "Special Investigation",
+    contentType: 'Perspective',
+    topic: 'Regulatory Intel',
     publishedDate: "2026-03-01",
+    readTimeMinutes: 18,
     link: "/special-features/war-climate.html",
     external: true,
   },
   {
     title: "India's Renewable Grid at Breaking Point",
     description: "Strategic analysis of the 203 GW grid crisis, thermal-RE gaps, and the ₹3.4 lakh crore infrastructure investment required.",
-    type: "Energy Transition",
+    contentType: 'Intelligence Brief',
+    topic: 'Carbon Markets',
     publishedDate: "2026-02-09",
+    readTimeMinutes: 8,
     link: "/india-renewable-grid-analysis",
   },
   {
     title: "Working for the Earth — A Dialectic Discourse",
     description: "The planet's most urgent crisis demands its most essential workers. Yet those who protect the Earth are among the least protected.",
-    type: "Green Jobs",
+    contentType: 'Intelligence Brief',
+    topic: 'ESG Communications',
     publishedDate: "2026-02-06",
+    readTimeMinutes: 14,
     link: "/working-for-the-earth",
   },
   {
     title: "India Power Sector Investment Presentation",
     description: "India's ₹4.5 lakh crore power revolution: generation transition, nuclear targets, and grid-scale storage opportunities.",
-    type: "Investment Analysis",
+    contentType: 'Intelligence Brief',
+    topic: 'Carbon Markets',
     publishedDate: "2026-01-22",
+    readTimeMinutes: 7,
   },
   {
     title: "Jobs on the Rise 2026: India Green Jobs Outlook",
     description: "Comprehensive analysis of India's green jobs landscape aligned with Net-Zero 2070 goals.",
-    type: "Workforce Analysis",
+    contentType: 'Intelligence Brief',
+    topic: 'ESG Communications',
     publishedDate: "2026-01-17",
+    readTimeMinutes: 9,
     link: "/green-jobs-india-2026",
   },
   {
     title: "Mining the Transition: A Climate-Critical Minerals Risk Framework",
     description: "Risk framework for climate-critical minerals investment — lithium, cobalt, nickel, copper, and rare earths.",
-    type: "Investor Framework",
+    contentType: 'Intelligence Brief',
+    topic: 'Carbon Markets',
     publishedDate: "2025-12-15",
+    readTimeMinutes: 6,
   },
   {
     title: "Asia Climate Emissions and Article 6: Comparative Policy Grade",
     description: "Asia's climate emissions landscape and comparative policy grading under Article 6 of the Paris Agreement.",
-    type: "Policy Analysis",
+    contentType: 'Intelligence Brief',
+    topic: 'Regulatory Intel',
     publishedDate: "2025-12-10",
+    readTimeMinutes: 7,
   },
   {
     title: "India's Climate Inflection Point",
     description: "Critical analysis of India's pivotal moment in climate transition.",
-    type: "Strategic Analysis",
+    contentType: 'Perspective',
+    topic: 'Board Governance',
     publishedDate: "2025-11-15",
+    readTimeMinutes: 5,
   },
   {
     title: "From Compliance to Credibility: A CXO Guide to CCTS & CBAM",
     description: "Strategic frameworks to transform carbon compliance into competitive advantage.",
-    type: "CXO Strategic Guide",
+    contentType: 'Intelligence Brief',
+    topic: 'Carbon Markets',
     publishedDate: "2025-10-20",
+    readTimeMinutes: 8,
     link: "/compliance-to-credibility",
   },
   {
     title: "Carbon Market Outlook 2025-2030: An Investor's Deep Dive",
     description: "Complete investor's guide to India's $1.4B carbon market opportunity.",
-    type: "Investor's Deep Dive",
+    contentType: 'Intelligence Brief',
+    topic: 'Carbon Markets',
     publishedDate: "2025-10-15",
+    readTimeMinutes: 10,
     link: "/carbon-market-outlook",
   },
   {
     title: "Energy Transition Playbook",
     description: "Strategic roadmap for India's energy transition and decarbonisation pathways.",
-    type: "Strategic Playbook",
+    contentType: 'Intelligence Brief',
+    topic: 'Carbon Markets',
     publishedDate: "2025-08-15",
+    readTimeMinutes: 9,
     link: "/energy-transition-playbook",
   },
 ];
 
+const ITEMS_PER_PAGE = 6;
+
 const Insights = () => {
-  const [selectedReport, setSelectedReport] = useState(allBriefs[0]);
+  const [searchQuery, setSearchQuery] = useState('');
+  const [selectedTopic, setSelectedTopic] = useState<Topic | 'All'>('All');
+  const [selectedType, setSelectedType] = useState<ContentType | 'All Types'>('All Types');
+  const [currentPage, setCurrentPage] = useState(1);
+  const [selectedReport, setSelectedReport] = useState(publications[0]);
   const formSectionRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -140,110 +177,256 @@ const Insights = () => {
     return cleanup;
   }, []);
 
-  const formatDate = (dateString: string) => format(new Date(dateString), 'MMMM yyyy');
+  // Reset page when filters change
+  useEffect(() => {
+    setCurrentPage(1);
+  }, [searchQuery, selectedTopic, selectedType]);
+
+  const flagshipReports = publications.filter(p => p.contentType === 'Flagship Report');
+
+  const filteredPublications = useMemo(() => {
+    return publications.filter(pub => {
+      if (searchQuery) {
+        const q = searchQuery.toLowerCase();
+        if (!pub.title.toLowerCase().includes(q) && !pub.description.toLowerCase().includes(q)) return false;
+      }
+      if (selectedTopic !== 'All' && pub.topic !== selectedTopic) return false;
+      if (selectedType !== 'All Types' && pub.contentType !== selectedType) return false;
+      return true;
+    });
+  }, [searchQuery, selectedTopic, selectedType]);
+
+  const totalPages = Math.ceil(filteredPublications.length / ITEMS_PER_PAGE);
+  const paginatedItems = filteredPublications.slice(
+    (currentPage - 1) * ITEMS_PER_PAGE,
+    currentPage * ITEMS_PER_PAGE
+  );
+
+  const formatDate = (dateString: string) => format(new Date(dateString), 'MMM yyyy');
+
+  const renderListingCard = (pub: Publication, index: number) => {
+    const inner = (
+      <div className="flex items-start justify-between py-5 border-b border-border/30 group-hover:border-primary/30 transition-colors">
+        <div className="min-w-0 pr-6">
+          <div className="flex items-center gap-2 mb-2">
+            <span className={`px-2 py-0.5 border rounded text-[10px] font-semibold tracking-wider uppercase ${contentTypeColors[pub.contentType]}`}>
+              {pub.contentType}
+            </span>
+            <span className="px-2 py-0.5 border border-border rounded text-[10px] text-muted-foreground">
+              {pub.topic}
+            </span>
+          </div>
+          <h3 className="font-semibold text-[15px] text-foreground group-hover:text-primary transition-colors">
+            {pub.title}
+          </h3>
+          <p className="text-[13px] text-muted-foreground mt-1 line-clamp-1">{pub.description}</p>
+        </div>
+        <div className="flex-shrink-0 text-right text-[11px] text-muted-foreground/60 pl-5">
+          {formatDate(pub.publishedDate)}
+          <br />
+          {pub.readTimeMinutes} min
+        </div>
+      </div>
+    );
+
+    if (pub.external) {
+      return <a key={index} href={pub.link} target="_blank" rel="noopener noreferrer" className="block group">{inner}</a>;
+    }
+    if (pub.link) {
+      return <Link key={index} to={pub.link} className="block group">{inner}</Link>;
+    }
+    return (
+      <div
+        key={index}
+        className="block group cursor-pointer"
+        onClick={() => {
+          setSelectedReport(pub);
+          formSectionRef.current?.scrollIntoView({ behavior: 'smooth' });
+        }}
+      >
+        {inner}
+      </div>
+    );
+  };
 
   return (
     <div className="min-h-screen bg-background flex flex-col">
       <Header />
-      
+
       <main className="flex-1 pt-24 pb-16">
         {/* Hero */}
-        <section className="pt-16 pb-20 md:pt-20 md:pb-28 px-6 md:px-8">
-          <div className="container mx-auto max-w-[680px]">
+        <section className="pt-16 pb-12 md:pt-20 md:pb-16 px-6 md:px-8">
+          <div className="container mx-auto max-w-[900px]">
             <ScrollReveal direction="up">
-              <SectionLabel number="00" label="Research" />
+              <SectionLabel label="Research & Analysis" />
               <h1 className="text-display font-serif tracking-tight mt-6 mb-6">
                 Intelligence Briefs
               </h1>
-              <p className="text-lede text-muted-foreground">
-                Original research and strategic analysis on carbon markets, ESG governance, 
+              <p className="text-lede text-muted-foreground max-w-[560px]">
+                Original research and strategic analysis on carbon markets, ESG governance,
                 and sustainability communications in India.
               </p>
             </ScrollReveal>
           </div>
         </section>
 
-        {/* Flagship Briefs */}
-        <section className="pb-16 md:pb-24 px-6 md:px-8">
-          <div className="container mx-auto max-w-[680px]">
-            <ScrollReveal direction="up">
-              <SectionLabel number="01" label="Flagship Research" />
-              <div className="mt-6 space-y-6">
-                {flagshipBriefs.map((brief, index) => (
-                  <Link key={index} to={brief.link} className="block group">
-                    <div className="py-6 border-b border-border/50 group-hover:border-primary/50 transition-colors">
-                      <p className="text-xs text-muted-foreground mb-2">{brief.date}</p>
-                      <h3 className="text-xl md:text-2xl font-serif text-foreground group-hover:text-primary transition-colors mb-2">
-                        {brief.title}
-                      </h3>
-                      <p className="text-sm text-muted-foreground mb-3">{brief.takeaway}</p>
-                      <span className="inline-flex items-center gap-1 text-sm text-primary">
-                        Read the Brief <ArrowRight className="w-4 h-4" />
-                      </span>
-                    </div>
-                  </Link>
-                ))}
-              </div>
-            </ScrollReveal>
+        {/* Search */}
+        <section className="px-6 md:px-8 pb-4">
+          <div className="container mx-auto max-w-[900px]">
+            <div className="relative">
+              <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
+              <Input
+                placeholder="Search intelligence briefs..."
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                className="pl-10 bg-background"
+              />
+            </div>
           </div>
         </section>
 
-        {/* All Briefs — Text-only list */}
-        <section className="py-16 md:py-24 px-6 md:px-8 border-t border-border/50">
-          <div className="container mx-auto max-w-[680px]">
-            <ScrollReveal direction="up">
-              <SectionLabel number="02" label="All Briefs" />
-              <div className="mt-6 space-y-0">
-                {allBriefs.map((brief, index) => {
-                  const inner = (
-                    <div className="flex items-start justify-between py-5 border-b border-border/30 group-hover:border-primary/30 transition-colors">
-                      <div className="min-w-0 pr-6">
-                        <h3 className="font-medium text-foreground group-hover:text-primary transition-colors">
-                          {brief.title}
+        {/* Filters */}
+        <section className="px-6 md:px-8 pb-8">
+          <div className="container mx-auto max-w-[900px] space-y-3">
+            {/* Topic filter */}
+            <div className="flex gap-2 flex-wrap">
+              <button
+                onClick={() => setSelectedTopic('All')}
+                className={`px-4 py-1.5 rounded-full text-[13px] font-medium transition-colors ${
+                  selectedTopic === 'All'
+                    ? 'bg-foreground text-background'
+                    : 'border border-border text-foreground hover:bg-secondary'
+                }`}
+              >
+                All
+              </button>
+              {allTopics.map(topic => (
+                <button
+                  key={topic}
+                  onClick={() => setSelectedTopic(topic)}
+                  className={`px-4 py-1.5 rounded-full text-[13px] font-medium transition-colors ${
+                    selectedTopic === topic
+                      ? 'bg-foreground text-background'
+                      : 'border border-border text-foreground hover:bg-secondary'
+                  }`}
+                >
+                  {topic}
+                </button>
+              ))}
+            </div>
+
+            {/* Content type filter */}
+            <div className="flex gap-2 flex-wrap">
+              <button
+                onClick={() => setSelectedType('All Types')}
+                className={`px-3 py-1 rounded-2xl text-xs font-medium transition-colors ${
+                  selectedType === 'All Types'
+                    ? 'bg-foreground text-background'
+                    : 'border border-border text-foreground hover:bg-secondary'
+                }`}
+              >
+                All Types
+              </button>
+              {allContentTypes.map(type => (
+                <button
+                  key={type}
+                  onClick={() => setSelectedType(type)}
+                  className={`px-3 py-1 rounded-2xl text-xs font-medium transition-colors ${
+                    selectedType === type
+                      ? 'bg-foreground text-background'
+                      : `border border-border hover:bg-secondary ${contentTypeColors[type]}`
+                  }`}
+                >
+                  {type === 'Flagship Report' ? 'Flagship Reports' :
+                   type === 'Intelligence Brief' ? 'Intelligence Briefs' :
+                   type === 'Regulatory Alert' ? 'Regulatory Alerts' : 'Perspectives'}
+                </button>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Flagship Research */}
+        {selectedTopic === 'All' && selectedType === 'All Types' && !searchQuery && (
+          <section className="px-6 md:px-8 pb-8">
+            <div className="container mx-auto max-w-[900px]">
+              <span className="text-[10px] font-bold tracking-widest uppercase text-accent mb-3 block pl-1">
+                Flagship Research
+              </span>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+                {flagshipReports.map((report, i) => {
+                  const content = (
+                    <div className="bg-secondary/30 border border-border rounded-xl p-8 h-full flex flex-col justify-between group-hover:border-primary/30 transition-colors">
+                      <div>
+                        <span className={`inline-block px-2.5 py-0.5 rounded text-[10px] font-semibold tracking-wider uppercase bg-primary text-primary-foreground mb-3`}>
+                          Flagship Report
+                        </span>
+                        <h3 className="font-serif text-lg text-foreground mb-2 group-hover:text-primary transition-colors">
+                          {report.title}
                         </h3>
-                        <p className="text-sm text-muted-foreground mt-1 line-clamp-1">{brief.description}</p>
+                        <p className="text-xs text-muted-foreground">{report.description}</p>
                       </div>
-                      <span className="text-xs text-muted-foreground whitespace-nowrap shrink-0 mt-1">
-                        {formatDate(brief.publishedDate)}
-                      </span>
+                      <div className="text-[11px] text-muted-foreground/50 mt-4">
+                        {formatDate(report.publishedDate)} · {report.readTimeMinutes} min read
+                      </div>
                     </div>
                   );
-
-                  if (brief.external) {
-                    return (
-                      <a key={index} href={brief.link} className="block group">
-                        {inner}
-                      </a>
-                    );
-                  }
-                  if (brief.link) {
-                    return (
-                      <Link key={index} to={brief.link} className="block group">
-                        {inner}
-                      </Link>
-                    );
-                  }
-                  return (
-                    <div 
-                      key={index} 
-                      className="block group cursor-pointer" 
-                      onClick={() => {
-                        setSelectedReport(brief);
-                        formSectionRef.current?.scrollIntoView({ behavior: 'smooth' });
-                      }}
-                    >
-                      {inner}
-                    </div>
+                  return report.link ? (
+                    <Link key={i} to={report.link} className="block group">{content}</Link>
+                  ) : (
+                    <div key={i} className="group">{content}</div>
                   );
                 })}
               </div>
-            </ScrollReveal>
+            </div>
+          </section>
+        )}
+
+        {/* All Intelligence Listing */}
+        <section className="py-8 px-6 md:px-8 border-t border-border/50">
+          <div className="container mx-auto max-w-[900px]">
+            <span className="text-[10px] font-bold tracking-widest uppercase text-muted-foreground mb-3 block pl-1">
+              All Intelligence · {filteredPublications.length} items
+            </span>
+
+            <div>
+              {paginatedItems.map((pub, index) => renderListingCard(pub, index))}
+            </div>
+
+            {/* Pagination */}
+            {totalPages > 1 && (
+              <div className="flex items-center justify-center gap-4 pt-8 text-sm text-muted-foreground">
+                <button
+                  onClick={() => setCurrentPage(p => Math.max(1, p - 1))}
+                  disabled={currentPage === 1}
+                  className="hover:text-foreground disabled:opacity-30 transition-colors"
+                >
+                  ← Previous
+                </button>
+                {Array.from({ length: totalPages }, (_, i) => (
+                  <button
+                    key={i + 1}
+                    onClick={() => setCurrentPage(i + 1)}
+                    className={`px-2 ${currentPage === i + 1 ? 'text-foreground font-semibold' : 'hover:text-foreground'} transition-colors`}
+                  >
+                    {i + 1}
+                  </button>
+                ))}
+                <button
+                  onClick={() => setCurrentPage(p => Math.min(totalPages, p + 1))}
+                  disabled={currentPage === totalPages}
+                  className="hover:text-foreground disabled:opacity-30 transition-colors"
+                >
+                  Next →
+                </button>
+              </div>
+            )}
           </div>
         </section>
 
         {/* Newsletter CTA */}
         <section className="py-16 md:py-24 px-6 md:px-8 border-t border-border/50">
-          <div className="container mx-auto max-w-[680px] text-center">
+          <div className="container mx-auto max-w-[900px] text-center">
             <ScrollReveal direction="up">
               <h2 className="text-section font-serif tracking-tight mb-3">
                 Subscribe to Intelligence Briefs
@@ -264,7 +447,7 @@ const Insights = () => {
         <section ref={formSectionRef} className="py-20 px-6 md:px-8 border-t border-border/50">
           <div className="container mx-auto max-w-[680px]">
             <div className="text-center mb-12">
-              <SectionLabel number="03" label="Download" className="text-center block" />
+              <SectionLabel label="Download" className="text-center block" />
               <h2 className="text-section font-serif tracking-tight mt-6 mb-4">{selectedReport.title}</h2>
               <p className="text-body text-muted-foreground">{selectedReport.description}</p>
             </div>

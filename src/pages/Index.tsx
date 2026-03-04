@@ -4,25 +4,14 @@ import Header from '@/components/Header';
 import ExecutiveHero from '@/components/ExecutiveHero';
 import ClientLogoStrip from '@/components/ClientLogoStrip';
 import ProofStat from '@/components/ProofStat';
-import BoardValue from '@/components/BoardValue';
-import TrackRecord from '@/components/TrackRecord';
+import ServicePillars from '@/components/ServicePillars';
+import FeaturedInsight from '@/components/FeaturedInsight';
 import DirectContact from '@/components/DirectContact';
-import ContentLoader from '@/components/ui/ContentLoader';
-import { useContentLoading } from '@/hooks/use-content-loading';
-import HeroSkeleton from '@/components/skeletons/HeroSkeleton';
-import BoardValueSkeleton from '@/components/skeletons/BoardValueSkeleton';
-import TrackRecordSkeleton from '@/components/skeletons/TrackRecordSkeleton';
-import DirectContactSkeleton from '@/components/skeletons/DirectContactSkeleton';
-import ReportsCarousel from '@/components/ReportsCarousel';
-import SpecialFeatureHighlight from '@/components/SpecialFeatureHighlight';
 import Footer from '@/components/Footer';
 import ScrollReveal from '@/components/ui/ScrollReveal';
-import ServicesHub from '@/components/ServicesHub';
 import StickyCtaBar from '@/components/StickyCtaBar';
 
 const Index = () => {
-  const { isLoading } = useContentLoading({ delay: 600 });
-
   useEffect(() => {
     document.title = "Bombay Breed — Strategic Carbon Advisory for Indian Boards";
     const metaDescription = document.querySelector('meta[name="description"]');
@@ -41,38 +30,29 @@ const Index = () => {
   return (
     <div className="min-h-screen bg-background flex flex-col">
       <Header />
-      <ContentLoader isLoading={isLoading} skeleton={<HeroSkeleton />}>
-        <ExecutiveHero />
-      </ContentLoader>
-      
+      <ExecutiveHero />
       <ClientLogoStrip />
       <ProofStat />
-      
-      <ContentLoader isLoading={isLoading} skeleton={<BoardValueSkeleton />}>
-        <BoardValue />
-      </ContentLoader>
-      <SpecialFeatureHighlight />
-      <ReportsCarousel />
-      
-      <ServicesHub />
-      
-      {/* Testimonial Quote Section */}
-      <section className="py-16 md:py-24 px-6 md:px-8 bg-background">
-        <div className="container mx-auto max-w-3xl text-center">
+      <ServicePillars />
+      <FeaturedInsight />
+
+      {/* Testimonial */}
+      <section className="py-20 md:py-28 px-6 md:px-8 border-t border-border/50">
+        <div className="container mx-auto max-w-[640px] text-center">
           <ScrollReveal direction="up">
-            <blockquote className="font-serif text-xl md:text-2xl lg:text-3xl italic text-foreground/80 leading-relaxed">
-              "Theresa won't oversell. She doesn't simplify irresponsibly. She is trustworthy to find the right answers."
+            <blockquote className="font-serif text-xl md:text-2xl italic text-foreground leading-relaxed mb-8">
+              "Theresa brings a rare combination of deep carbon market expertise and the ability to translate complexity into board-ready strategy. She changed how we think about climate risk."
             </blockquote>
+            <div className="text-sm text-muted-foreground">
+              <strong className="text-foreground font-semibold">Senior Partner</strong>
+              <br />
+              Leading Management Consultancy, India
+            </div>
           </ScrollReveal>
         </div>
       </section>
 
-      <ContentLoader isLoading={isLoading} skeleton={<TrackRecordSkeleton />}>
-        <TrackRecord />
-      </ContentLoader>
-      <ContentLoader isLoading={isLoading} skeleton={<DirectContactSkeleton />}>
-        <DirectContact />
-      </ContentLoader>
+      <DirectContact />
       <Footer />
       <StickyCtaBar />
     </div>
