@@ -2,7 +2,6 @@
 import type { Config } from "tailwindcss";
 
 export default {
-	darkMode: ["class"],
 	content: [
 		"./pages/**/*.{ts,tsx}",
 		"./components/**/*.{ts,tsx}",
@@ -53,6 +52,10 @@ export default {
 					DEFAULT: 'hsl(var(--card))',
 					foreground: 'hsl(var(--card-foreground))'
 				},
+				ink: 'hsl(var(--ink))',
+				paper: 'hsl(var(--paper))',
+				'deep-blue': 'hsl(var(--deep-blue))',
+				warm: 'hsl(var(--warm))',
 				sidebar: {
 					DEFAULT: 'hsl(var(--sidebar-background))',
 					foreground: 'hsl(var(--sidebar-foreground))',
@@ -123,10 +126,10 @@ export default {
 				'reveal-scale': 'reveal-scale 0.5s ease-out forwards'
 			},
 			fontFamily: {
-				sans: ['Plus Jakarta Sans', 'system-ui', 'sans-serif'],
-				heading: ['Plus Jakarta Sans', 'system-ui', 'sans-serif'],
-				logo: ['Plus Jakarta Sans', 'system-ui', 'sans-serif'],
-				serif: ['Georgia', 'serif']
+				sans: ['Inter', 'system-ui', 'sans-serif'],
+				heading: ['Inter', 'system-ui', 'sans-serif'],
+				logo: ['Inter', 'system-ui', 'sans-serif'],
+				serif: ['Playfair Display', 'Georgia', 'serif']
 			},
 			transitionTimingFunction: {
 				'out-expo': 'cubic-bezier(0.16, 1, 0.3, 1)',

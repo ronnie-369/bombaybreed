@@ -4,7 +4,6 @@ import { Button } from "@/components/ui/button";
 import { useIsMobile } from '@/hooks/use-mobile';
 import { Link, useLocation } from 'react-router-dom';
 import AnimatedLogo from '@/components/ui/AnimatedLogo';
-import { ThemeToggle } from '@/components/ui/ThemeToggle';
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -178,7 +177,6 @@ const Header = () => {
           <Link to="/insights" className="text-sm text-muted-foreground hover:text-foreground transition-colors story-link">
             Insights
           </Link>
-          <ThemeToggle />
           {location.pathname === '/' ? (
             <Button variant="default" size="sm" onClick={scrollToContact}>
               Contact
@@ -193,7 +191,6 @@ const Header = () => {
         </nav>
 
         <div className="md:hidden flex items-center gap-2">
-          <ThemeToggle />
           <button className="text-foreground" onClick={toggleMenu} aria-label="Toggle Menu">
             {isMenuOpen ? <X size={20} /> : <Menu size={20} />}
           </button>
