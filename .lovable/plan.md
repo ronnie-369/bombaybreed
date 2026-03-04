@@ -1,81 +1,131 @@
 
 
-# Image Treatment Implementation Plan
+# Inner Pages: Report Landing + Read Analysis Templates
 
-Based on the uploaded `LOVABLE-IMAGE-INSTRUCTIONS.md`, here's what needs to change across the site.
+## Current State
 
-## Current Violations Found
+The site has ~10 individual report/analysis pages, each hand-coded with gradient heroes, icon cards, and inconsistent layouts. The instructions define **two reusable templates** that all Intelligence Hub content should use:
 
-### 1. Case Studies page uses stock photos (BANNED)
-`src/pages/CaseStudies.tsx` uses:
-- An Unsplash stock photo of a forest (`unsplash.com/photo-...`) — explicitly banned
-- `green-hydrogen-case-study.jpg` and `creative-workshop-case-study.webp` — likely stock or generic images
-- Gradient overlays on images (`bg-gradient-to-t from-foreground/20`) — banned
-- Hover scale transforms on images — not in the allowed interaction set
+1. **Report Landing Page** — for Flagship Reports (gated, PDF download, conversion-focused)
+2. **Read Analysis Page** — for Intelligence Briefs, Regulatory Alerts, Perspectives (open access, full read)
 
-**Fix:** Remove all images from case study cards. Make them text-only (challenge → approach → outcomes). Remove the image column from the grid layout entirely. Remove image imports.
+## What We'll Build
 
-### 2. Client logo strip opacity too high
-Guide specifies `opacity: 0.3` at rest, `opacity: 0.8` on hover. Current code uses `opacity-50` (0.5) and `hover:opacity-100`.
+### New Shared Components (6 files)
 
-**Fix:** Change to `opacity-30 hover:opacity-80` on both `ClientLogoStrip.tsx` and the About page logo grid. Also apply `grayscale` (already done) and ensure `hover:grayscale-0`.
+| Component | Purpose |
+|---|---|
+| `ContentTypeBadge` | Colored pill badge per content type |
+| `TopicTag` | Border-pill for topic taxonomy |
+| `KeyStatsBar` | 3-4 column large numbers section |
+| `AuthorBox` | Horizontal author card (Theresa, 56px circle, bio, link) |
+| `RelatedIntelligence` | 3 text-only sibling cards |
+| `NewsletterCapture` | Dark ink-background email capture section |
 
-### 3. Client logo strip has too many logos
-Guide says max 6–7. Homepage strip has 8, About page has 15. Also, guide says no "Our Clients" or "Trusted By" header — About page's section label "04" implies a header context.
+### Two Template Components
 
-**Fix:** Trim homepage strip to 7 logos (drop least recognizable). Trim About page to 7 as well or keep as a "Featured In" secondary strip if justified.
+**`ReportLandingPage.tsx`** — Flagship Reports
+- Two-column hero: cover image (400x560) left, title/CTA right
+- Key Findings stats bar
+- Executive Summary (ungated, 150-200 words)
+- "What's Inside" table of contents (numbered chapters)
+- Download gate form (Name, Email, Organisation only — simplified from current 6-field LeadCaptureForm)
+- Author box, Related Intelligence, Series Navigation
 
-### 4. Theresa's portrait needs editorial treatment
-Guide specifies `filter: saturate(0.85)` and `max-width: 480px`. Current About page renders the portrait at full width in a `16/9` or `2/1` aspect container with no desaturation filter.
+**`ReadAnalysisPage.tsx`** — Briefs, Alerts, Perspectives
+- Single-column centered hero, typography-only, no image
+- Content type badge + topic tag
+- Key Stats Bar (optional)
+- Executive Summary (featured snippet target)
+- Table of Contents with optional sticky sidebar on desktop
+- Full article body (max-width 680px, proper prose styling)
+- Mid-article CTA at ~60% (consultation or flagship promotion)
+- FAQ with schema markup
+- Author box, Related Intelligence, Newsletter CTA
+- Content-type variations: urgency banner + action checklist for Regulatory Alerts; no stats/FAQ for Perspectives
 
-**Fix:** Apply `saturate(0.85)` filter, constrain to `max-w-[480px]`, use roughly 3:4 portrait aspect ratio. Add proper descriptive alt text.
+### Data Model
 
-### 5. FeaturedReportsCarousel still has cover images
-`src/components/FeaturedReportsCarousel.tsx` renders `coverImage` with hover scale. This component may still be used on report detail pages.
+Create an `insightData` registry mapping slugs to structured data:
 
-**Fix:** Verify if this component is still imported anywhere. If only on Flagship Report detail pages, cover images are allowed there per the guide. If used on listing pages, remove images.
+```typescript
+interface InsightData {
+  slug: string;
+  title: string;
+  subtitle?: string;
+  contentType: ContentType;
+  topic: Topic;
+  metaLine: string;          // "By Theresa Ronnie · March 2026 · 28 pages"
+  readTimeMinutes: number;
+  coverImage?: string;       // Flagship only
+  stats?: { value: string; label: string }[];
+  executiveSummary: string;
+  tableOfContents?: { title: string; description: string }[];
+  bodyContent?: string;      // HTML for Read Analysis
+  faq?: { question: string; answer: string }[];
+  siblings: string[];        // slugs of related content
+  series?: { name: string; items: { slug: string; title: string; year: string }[] };
+  pdfUrl?: string;           // Flagship only
+  complianceDeadline?: string; // Regulatory Alert only
+}
+```
 
-### 6. Logo.tsx uses canvas-based background removal (unnecessary complexity)
-The `Logo.tsx` component and `imageProcessing.ts` utility do runtime pixel manipulation to remove white backgrounds. Guide says logos should be SVG or high-res PNG with transparent backgrounds.
+### Routing Changes
 
-**Fix:** This is dead code if not imported anywhere on the live site. Verify usage — if unused, delete both `Logo.tsx` and `imageProcessing.ts`.
+- Add a dynamic route `/insights/:slug` in `App.tsx`
+- Create `InsightDetail.tsx` page that loads data by slug, checks `contentType`, renders either `ReportLandingPage` or `ReadAnalysisPage`
+- Keep existing routes as redirects to `/insights/[slug]` for backward compatibility (e.g., `/carbon-playbook` → `/insights/carbon-playbook`)
 
-### 7. Services page — zero images required
-Guide says Services page should have zero images. Need to verify current state.
+### Download Form Simplification
 
-### 8. Insights listing — no thumbnails
-Already implemented as text-only cards in the recent rebuild. Compliant.
+The current `LeadCaptureForm` has 6 fields (name, email, designation, company, phone, consent checkbox). The instructions say **3 fields only**: Full Name, Work Email, Organisation. Will create a new `ReportDownloadForm` component that:
+- Has only 3 fields
+- Auto-subscribes (no consent checkbox)
+- Shows success state with auto-download trigger
+- Posts to existing Supabase edge function
 
-### 9. Homepage — no hero image, no background images
-Already compliant — `ExecutiveHero` is typography-only.
+### Schema Markup
 
----
+- Report Landing: Article (Report) + BreadcrumbList + Organization
+- Read Analysis: Article + FAQPage (if FAQ exists) + BreadcrumbList + Organization
+- Injected via `react-helmet-async`
 
-## Implementation Steps
+### Files Changed/Created
 
-### Step 1: Case Studies — Remove all stock images
-- Remove Unsplash URL, `greenHydrogenImg`, `creativeWorkshopImg` imports
-- Convert the two-column image+text grid to a single-column text-only layout
-- Remove gradient overlays and hover scale on images
-- Keep: sector label, title, challenge bullets, approach bullets, outcomes
+```
+Created:
+  src/components/insights/ContentTypeBadge.tsx
+  src/components/insights/TopicTag.tsx
+  src/components/insights/KeyStatsBar.tsx
+  src/components/insights/AuthorBox.tsx
+  src/components/insights/RelatedIntelligence.tsx
+  src/components/insights/NewsletterCapture.tsx
+  src/components/insights/ReportDownloadForm.tsx
+  src/components/insights/MidArticleCta.tsx
+  src/components/insights/UrgencyBanner.tsx
+  src/components/insights/ActionChecklist.tsx
+  src/components/insights/StickyToc.tsx
+  src/components/insights/SeriesNavigation.tsx
+  src/components/insights/ReportLandingPage.tsx
+  src/components/insights/ReadAnalysisPage.tsx
+  src/data/insights.ts              (content registry)
+  src/pages/InsightDetail.tsx        (slug router)
 
-### Step 2: Client logos — Fix opacity + trim count
-- `ClientLogoStrip.tsx`: Change `opacity-50` → `opacity-30`, `hover:opacity-100` → `hover:opacity-80`
-- Trim to 7 logos max (keep Microsoft, KPMG, Ford, Volkswagen, Heineken, ITC, Apollo)
-- `About.tsx` logo grid: Same opacity fix, trim to top 7
+Modified:
+  src/App.tsx                        (add /insights/:slug route + redirects)
+  src/pages/Insights.tsx             (update links to /insights/[slug])
+  src/index.css                      (article body prose styles, badge colors, callout-bg token)
+```
 
-### Step 3: Theresa's portrait — Editorial treatment
-- Add `saturate-[0.85]` filter class
-- Constrain container to `max-w-[480px]` with `aspect-[3/4]`
-- Update alt text to "Theresa Ronnie, Strategic Carbon Communications Advisor"
+Existing individual report pages (CarbonPlaybook.tsx, WEFGlobalRisksReport.tsx, etc.) will be replaced by the template system. Their content moves into `src/data/insights.ts`.
 
-### Step 4: Delete dead image utilities
-- Verify `Logo.tsx` and `imageProcessing.ts` are not imported anywhere
-- If unused, delete both files
+### Implementation Order
 
-### Step 5: Verify FeaturedReportsCarousel usage
-- If only used on Flagship detail pages, cover images are allowed — no change needed
-- If used on listing/homepage, remove images
-
-Total: ~4 files edited, ~2 files deleted
+1. Shared components (Badge, Tag, Stats, Author, Related, Newsletter, Download Form)
+2. Data registry with content for all existing reports
+3. `ReportLandingPage` template (for Carbon Playbook + WEF)
+4. `ReadAnalysisPage` template (for all Briefs, Alerts, Perspectives)
+5. `InsightDetail` router page + App.tsx routing + redirects
+6. CSS tokens (callout-bg, badge colors, prose styles)
+7. Schema markup injection
 
