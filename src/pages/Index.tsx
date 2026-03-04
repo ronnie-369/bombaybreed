@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import { setOGMeta } from '@/utils/og-meta';
 import Header from '@/components/Header';
 import ExecutiveHero from '@/components/ExecutiveHero';
 import ClientLogoStrip from '@/components/ClientLogoStrip';
@@ -28,6 +29,13 @@ const Index = () => {
     if (metaDescription) {
       metaDescription.setAttribute('content', "I ensure climate transition strategy is credible, compliant, and investable in India. Strategic advisor to CEOs & boards including Microsoft, KPMG India, Ford & Volkswagen.");
     }
+    const cleanup = setOGMeta({
+      title: 'Bombay Breed — Strategic Carbon Advisory for Indian Boards',
+      description: 'I ensure climate transition strategy is credible, compliant, and investable in India.',
+      image: 'https://bombaybreed.com/og/og-home.png',
+      url: 'https://bombaybreed.com/',
+    });
+    return cleanup;
   }, []);
 
   return (

@@ -1,4 +1,5 @@
 import React, { useState, useRef, useMemo, useEffect } from 'react';
+import { setOGMeta } from '@/utils/og-meta';
 import { Link } from 'react-router-dom';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
@@ -130,6 +131,13 @@ const Insights = () => {
     if (metaDescription) {
       metaDescription.setAttribute('content', "Original research and strategic analysis on carbon markets, ESG governance, and sustainability communications in India.");
     }
+    const cleanup = setOGMeta({
+      title: 'Bombay Breed — Intelligence Briefs',
+      description: 'Climate Policy · Carbon Markets · ESG Research for Indian boards.',
+      image: 'https://bombaybreed.com/og/og-insights.png',
+      url: 'https://bombaybreed.com/insights',
+    });
+    return cleanup;
   }, []);
 
   const formatDate = (dateString: string) => format(new Date(dateString), 'MMMM yyyy');

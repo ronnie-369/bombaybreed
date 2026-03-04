@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import { setOGMeta } from '@/utils/og-meta';
 import { Link } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
 import { supabase } from '@/integrations/supabase/client';
@@ -81,6 +82,13 @@ const Services = () => {
     if (metaDescription) {
       metaDescription.setAttribute('content', "Strategic carbon market advisory, ESG communications, and board governance services for Indian enterprises. Expert climate strategy consulting.");
     }
+    const cleanup = setOGMeta({
+      title: 'Bombay Breed — Advisory Services',
+      description: 'Carbon Strategy · Board Governance · ESG Communications for Indian enterprises.',
+      image: 'https://bombaybreed.com/og/og-services.png',
+      url: 'https://bombaybreed.com/services',
+    });
+    return cleanup;
   }, []);
 
   const { data: seoPages } = useQuery({

@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import { setOGMeta } from '@/utils/og-meta';
 import { Link } from 'react-router-dom';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
@@ -83,6 +84,13 @@ const About = () => {
     if (metaDescription) {
       metaDescription.setAttribute('content', "Founded by Theresa Ronnie, Bombay Breed is India's only strategic carbon communications advisory. 18+ years of C-suite experience in sustainability, ESG, and climate strategy.");
     }
+    const cleanup = setOGMeta({
+      title: 'Bombay Breed — About Theresa Ronnie',
+      description: "18+ years of C-suite advisory in sustainability, ESG, and climate strategy.",
+      image: 'https://bombaybreed.com/og/og-about.png',
+      url: 'https://bombaybreed.com/about',
+    });
+    return cleanup;
   }, []);
 
   return (

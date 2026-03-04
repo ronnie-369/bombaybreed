@@ -4,6 +4,7 @@ const CarbonCreditTradingScheme = () => {
   return (
     <ServicePageTemplate
       slug="carbon-credit-trading-scheme-india"
+      og_image="https://bombaybreed.com/og/og-ccts.png"
       meta_title="Carbon Credit Trading Scheme India — CCTS Advisory & Strategy | Bombay Breed"
       meta_description="Navigate India's Carbon Credit Trading Scheme (CCTS) with expert advisory. Understand compliance obligations, market mechanics, and strategic positioning for Indian companies."
       h1_headline="India's Carbon Credit Trading Scheme: What Your Board Needs to Know"
