@@ -273,9 +273,6 @@ const Insights = () => {
           </div>
         </section>
 
-        {/* Special Feature Banner */}
-        <SpecialFeatureHighlight />
-
         {/* Featured Insights */}
         <section className="py-20 px-6 md:px-8">
           <div className="container mx-auto max-w-6xl">
@@ -286,6 +283,11 @@ const Insights = () => {
                   Featured Analysis
                 </h2>
                 <p className="text-muted-foreground">Latest research and strategic analysis</p>
+              </div>
+
+              {/* Special Feature Banner */}
+              <div className="mb-8">
+                <SpecialFeatureHighlight />
               </div>
 
               <div className="grid md:grid-cols-3 gap-6">
