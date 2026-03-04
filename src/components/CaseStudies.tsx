@@ -43,8 +43,8 @@ const CaseStudies = () => {
     duration: "Ongoing",
     impact: "300K+ engagement",
     brief: "India is home to 1.55 lakh species. And 1 species celebrates its Independence Day. How do we bring awareness to the fact that India has 1.55 lakh species of birds, insects, fish, mammals, and plants that call India their home?",
-    challenge: "Climate action remains opaque, technical, and distant for everyday people. It lives in policy papers, boardrooms, and scientific journals — not in everyday conversations. If we can't make it relatable, we can't build the mass awareness and action we desperately need.",
-    solution: "India celebrates 1 Independence Day. But 1.55 lakh species call this land home. Every bird, insect, fish, mammal, and plant depends on the same earth we do. When we talk about climate action, we're talking about them too — and about us. Let's make it personal.",
+    challenge: "Climate action remains opaque, technical, and distant for everyday people. It lives in policy papers, boardrooms, and scientific journals - not in everyday conversations. If we can't make it relatable, we can't build the mass awareness and action we desperately need.",
+    solution: "India celebrates 1 Independence Day. But 1.55 lakh species call this land home. Every bird, insect, fish, mammal, and plant depends on the same earth we do. When we talk about climate action, we're talking about them too - and about us. Let's make it personal.",
     result: "YouTube engagement: 300,000+ likes, Campaign felicitated at IIT Rourkee, Showcased to the Minister of Environment, Featured track played to A.R. Rahman",
     image: "/lovable-uploads/pexels-veeterzy-38136.jpg"
   }];

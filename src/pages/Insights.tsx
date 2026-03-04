@@ -74,7 +74,7 @@ const publications: Publication[] = [
     link: "/insights/india-renewable-grid-analysis",
   },
   {
-    title: "Working for the Earth — A Dialectic Discourse",
+    title: "Working for the Earth: A Dialectic Discourse",
     description: "The planet's most urgent crisis demands its most essential workers. Yet those who protect the Earth are among the least protected.",
     contentType: 'Intelligence Brief',
     topic: 'ESG Communications',
@@ -163,13 +163,13 @@ const Insights = () => {
   const formSectionRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    document.title = "Bombay Breed — Intelligence Briefs";
+    document.title = "Bombay Breed: Intelligence Briefs";
     const metaDescription = document.querySelector('meta[name="description"]');
     if (metaDescription) {
       metaDescription.setAttribute('content', "Original research and strategic analysis on carbon markets, ESG governance, and sustainability communications in India.");
     }
     const cleanup = setOGMeta({
-      title: 'Bombay Breed — Intelligence Briefs',
+      title: 'Bombay Breed: Intelligence Briefs',
       description: 'Climate Policy · Carbon Markets · ESG Research for Indian boards.',
       image: 'https://bombaybreed.com/og/og-insights.png',
       url: 'https://bombaybreed.com/insights',

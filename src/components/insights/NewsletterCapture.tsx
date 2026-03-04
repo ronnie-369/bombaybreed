@@ -33,7 +33,7 @@ const NewsletterCapture: React.FC = () => {
           Stay ahead of India's carbon transition.
         </h2>
         <p className="text-[15px] text-background/70 mb-8">
-          Intelligence briefs, regulatory alerts, and flagship research — delivered when it matters.
+          Intelligence briefs, regulatory alerts, and flagship research - delivered when it matters.
         </p>
 
         {isSuccess ? (

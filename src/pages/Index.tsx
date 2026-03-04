@@ -13,13 +13,13 @@ import StickyCtaBar from '@/components/StickyCtaBar';
 
 const Index = () => {
   useEffect(() => {
-    document.title = "Bombay Breed — Strategic Carbon Advisory for Indian Boards";
+    document.title = "Bombay Breed: Strategic Carbon Advisory for Indian Boards";
     const metaDescription = document.querySelector('meta[name="description"]');
     if (metaDescription) {
       metaDescription.setAttribute('content', "I ensure climate transition strategy is credible, compliant, and investable in India. Strategic advisor to CEOs & boards including Microsoft, KPMG India, Ford & Volkswagen.");
     }
     const cleanup = setOGMeta({
-      title: 'Bombay Breed — Strategic Carbon Advisory for Indian Boards',
+      title: 'Bombay Breed: Strategic Carbon Advisory for Indian Boards',
       description: 'I ensure climate transition strategy is credible, compliant, and investable in India.',
       image: 'https://bombaybreed.com/og/og-home.png',
       url: 'https://bombaybreed.com/',

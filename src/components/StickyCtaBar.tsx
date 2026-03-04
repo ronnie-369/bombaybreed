@@ -27,7 +27,7 @@ const StickyCtaBar = () => {
     >
       <div className="container mx-auto px-6 py-3 flex items-center justify-between">
         <p className="hidden md:block text-sm text-muted-foreground">
-          Theresa Ronnie — Strategic Carbon Advisory
+          Theresa Ronnie: Strategic Carbon Advisory
         </p>
         <div className="w-full md:w-auto flex justify-center md:justify-end">
           <BookingDialog triggerText="Schedule Consultation →" />

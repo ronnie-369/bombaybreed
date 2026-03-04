@@ -279,8 +279,8 @@ const SEOCapabilitiesTab = () => {
                 <TableRow key={item.id}>
                   <TableCell className="font-medium">{item.name}</TableCell>
                   <TableCell className="text-muted-foreground">{item.slug}</TableCell>
-                  <TableCell>{item.decision_maker || "—"}</TableCell>
-                  <TableCell className="capitalize">{item.buyer_intent || "—"}</TableCell>
+                  <TableCell>{item.decision_maker || "-"}</TableCell>
+                  <TableCell className="capitalize">{item.buyer_intent || "-"}</TableCell>
                   <TableCell>{item.is_active ? "Active" : "Inactive"}</TableCell>
                   <TableCell className="text-right">
                     <Button variant="ghost" size="icon" onClick={() => handleEdit(item)}>

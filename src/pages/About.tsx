@@ -9,7 +9,7 @@ import ScrollReveal from '@/components/ui/ScrollReveal';
 import SectionLabel from '@/components/ui/SectionLabel';
 import theresaPortrait from '@/assets/theresa-portrait.jpg';
 
-// Import client logos — max 7
+// Import client logos - max 7
 import microsoftLogo from '@/assets/client-logos/microsoft.png';
 import kpmgLogo from '@/assets/client-logos/kpmg.png';
 import fordLogo from '@/assets/client-logos/ford.png';
@@ -30,7 +30,7 @@ const clientLogos = [
 
 const testimonials = [
   {
-    quote: "Landing strategy, delivering creative excellence, and driving business growth—it's a rare combination. Theresa brings all three with a sharp mind and an energy that makes even the toughest boardroom conversations productive.",
+    quote: "Landing strategy, delivering creative excellence, and driving business growth - it's a rare combination. Theresa brings all three with a sharp mind and an energy that makes even the toughest boardroom conversations productive.",
     author: "CEO",
     company: "ITC Foods"
   },
@@ -40,7 +40,7 @@ const testimonials = [
     company: "ProClime"
   },
   {
-    quote: "A razor sharp mind, an insatiable appetite for learning, deep knowledge of diverse fields including business, strategy, marketing, communication, technology and consumers — an asset to whichever team she belongs.",
+    quote: "A razor sharp mind, an insatiable appetite for learning, deep knowledge of diverse fields including business, strategy, marketing, communication, technology and consumers - an asset to whichever team she belongs.",
     author: "CMO",
     company: "United Breweries"
   }
@@ -55,13 +55,13 @@ const milestones = [
 
 const About = () => {
   useEffect(() => {
-    document.title = "Bombay Breed — About Theresa Ronnie";
+    document.title = "Bombay Breed: About Theresa Ronnie";
     const metaDescription = document.querySelector('meta[name="description"]');
     if (metaDescription) {
       metaDescription.setAttribute('content', "Founded by Theresa Ronnie, Bombay Breed is India's only strategic carbon communications advisory. 18+ years of C-suite experience in sustainability, ESG, and climate strategy.");
     }
     const cleanup = setOGMeta({
-      title: 'Bombay Breed — About Theresa Ronnie',
+      title: 'Bombay Breed: About Theresa Ronnie',
       description: "18+ years of C-suite advisory in sustainability, ESG, and climate strategy.",
       image: 'https://bombaybreed.com/og/og-about.png',
       url: 'https://bombaybreed.com/about',
@@ -88,7 +88,7 @@ const About = () => {
                 <p>
                   I saw a gap no one was filling. Climate consultancies speak in technical jargon. 
                   Communications agencies lack carbon market expertise. Indian enterprises need advisors 
-                  who understand both worlds — and can translate between them at the board level.
+                  who understand both worlds - and can translate between them at the board level.
                 </p>
                 <p>
                   Sustainability communications is not a compliance checkbox. It's a strategic function. 
@@ -97,7 +97,7 @@ const About = () => {
                   competitive advantage.
                 </p>
                 <p>
-                  That's what I built Bombay Breed to do — bridge the gap between climate expertise 
+                  That's what I built Bombay Breed to do - bridge the gap between climate expertise 
                   and C-suite communication, specifically for Indian enterprises navigating carbon markets, 
                   ESG governance, and the energy transition.
                 </p>
@@ -106,7 +106,7 @@ const About = () => {
           </div>
         </section>
 
-        {/* Portrait — editorial treatment */}
+        {/* Portrait - editorial treatment */}
         <section className="px-6 md:px-8 pb-20 md:pb-28">
           <div className="container mx-auto max-w-[480px]">
             <ScrollReveal direction="up">
@@ -208,7 +208,7 @@ const About = () => {
           </div>
         </section>
 
-        {/* Client Logos — max 7, no header */}
+        {/* Client Logos - max 7, no header */}
         <section className="py-16 px-6 md:px-8 border-t border-border/50">
           <div className="container mx-auto max-w-4xl">
             <ScrollReveal direction="up">
@@ -241,7 +241,7 @@ const About = () => {
                       "{testimonial.quote}"
                     </p>
                     <footer className="mt-4 text-sm text-muted-foreground">
-                      — {testimonial.author}, {testimonial.company}
+                      - {testimonial.author}, {testimonial.company}
                     </footer>
                   </blockquote>
                 </ScrollReveal>
@@ -253,7 +253,7 @@ const About = () => {
                     "The most trustworthy person on the Subcontinent"
                   </p>
                   <footer className="mt-4 text-sm text-muted-foreground">
-                    — Erik Solheim
+                    - Erik Solheim
                   </footer>
                 </blockquote>
               </ScrollReveal>

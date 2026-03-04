@@ -77,13 +77,13 @@ const engagementModels = [
 
 const Services = () => {
   useEffect(() => {
-    document.title = "Bombay Breed — Advisory Services";
+    document.title = "Bombay Breed: Advisory Services";
     const metaDescription = document.querySelector('meta[name="description"]');
     if (metaDescription) {
       metaDescription.setAttribute('content', "Strategic carbon market advisory, ESG communications, and board governance services for Indian enterprises. Expert climate strategy consulting.");
     }
     const cleanup = setOGMeta({
-      title: 'Bombay Breed — Advisory Services',
+      title: 'Bombay Breed: Advisory Services',
       description: 'Carbon Strategy · Board Governance · ESG Communications for Indian enterprises.',
       image: 'https://bombaybreed.com/og/og-services.png',
       url: 'https://bombaybreed.com/services',
@@ -141,7 +141,7 @@ const Services = () => {
                     <ul className="space-y-2">
                       {pillar.scope.map((item, i) => (
                         <li key={i} className="text-foreground/80 flex items-start gap-2">
-                          <span className="text-accent mt-1">—</span>
+                          <span className="text-accent mt-1">-</span>
                           <span>{item}</span>
                         </li>
                       ))}

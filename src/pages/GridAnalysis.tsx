@@ -331,11 +331,11 @@ export default function GridAnalysis() {
   return (
     <>
       <Helmet>
-        <title>India's Renewable Grid at Breaking Point — Strategic Intelligence Briefing | Bombay Breed</title>
+        <title>India's Renewable Grid at Breaking Point: Strategic Intelligence Briefing | Bombay Breed</title>
         <meta name="description" content="India's 203 GW renewable grid is hitting structural limits. Analysis of the thermal-RE gap, grid stabilisation solutions, and the ₹3.4 lakh crore infrastructure question." />
         <meta name="keywords" content="renewable energy India, grid stability, energy transition, solar curtailment India, BESS, pumped hydro, India power sector, grid infrastructure investment" />
         <link rel="canonical" href="https://bombaybreed.com/india-renewable-grid-analysis" />
-        <meta property="og:title" content="India's Renewable Grid at Breaking Point — Strategic Intelligence Briefing" />
+        <meta property="og:title" content="India's Renewable Grid at Breaking Point: Strategic Intelligence Briefing" />
         <meta property="og:description" content="Strategic analysis of the 203 GW grid crisis, thermal-RE gaps, and the ₹3.4 lakh crore infrastructure investment required for stabilization." />
         <meta property="og:type" content="article" />
         <meta property="og:url" content="https://bombaybreed.com/india-renewable-grid-analysis" />
@@ -367,7 +367,7 @@ export default function GridAnalysis() {
             <div className="ga-source-card">
               <div className="ga-source-card-label">SOURCE ARTICLE</div>
               <div className="ga-source-card-title">
-                Mint — Centre steps in to resolve electricity curtailment issue, tasks CEA and national grid operator to find a resolution
+                Mint: Centre steps in to resolve electricity curtailment issue, tasks CEA and national grid operator to find a resolution
               </div>
               <a
                 href="https://www.livemint.com/industry/energy/centre-steps-in-to-resolve-electricity-curtailment-issue-tasks-cea-and-national-grid-operator-to-find-a-resolution-11770376761817.html"
