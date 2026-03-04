@@ -15,13 +15,16 @@ import {
   removeSchema
 } from '@/utils/schema-generators';
 import { AlertTriangle, Target, TrendingUp, Lightbulb, MapPin } from 'lucide-react';
+import { Link } from 'react-router-dom';
+import SectionLabel from '@/components/ui/SectionLabel';
+import BookingDialog from '@/components/BookingDialog';
+import ScrollReveal from '@/components/ui/ScrollReveal';
 
 interface FAQItem {
   question: string;
   answer: string;
 }
 
-// Allow any string keys for content sections to handle varied database entries
 interface ContentSections {
   the_problem?: string;
   why_this_fails?: string;
@@ -58,6 +61,23 @@ interface ServicePageTemplateProps {
   conversion_cta?: string;
 }
 
+const AuthorBox = () => (
+  <div className="py-10 border-t border-border/50 mt-16">
+    <div className="flex items-start gap-4">
+      <div>
+        <p className="font-semibold text-foreground">Theresa Ronnie</p>
+        <p className="text-sm text-muted-foreground">Strategic Carbon Advisory</p>
+        <p className="text-sm text-muted-foreground mt-1">
+          Advisor to Microsoft, KPMG, Ford, Volkswagen
+        </p>
+        <Link to="/about" className="text-sm text-primary hover:text-primary/80 transition-colors mt-2 inline-block">
+          About Theresa →
+        </Link>
+      </div>
+    </div>
+  </div>
+);
+
 const ServicePageTemplate = ({
   slug,
   meta_title,
@@ -76,7 +96,6 @@ const ServicePageTemplate = ({
   conversion_cta
 }: ServicePageTemplateProps) => {
   
-  // Build breadcrumb items
   const breadcrumbItems = [];
   if (capability) {
     breadcrumbItems.push({ label: capability.name, href: `/${capability.slug}` });
@@ -90,21 +109,17 @@ const ServicePageTemplate = ({
   if (regulation) {
     breadcrumbItems.push({ label: regulation.name });
   }
-  // Current page (no href)
   if (breadcrumbItems.length > 0) {
     breadcrumbItems[breadcrumbItems.length - 1].href = undefined;
   }
 
-  // Inject schemas and SEO meta tags
   useEffect(() => {
-    // Update document title and meta
     document.title = meta_title;
     const metaDesc = document.querySelector('meta[name="description"]');
     if (metaDesc && meta_description) {
       metaDesc.setAttribute('content', meta_description);
     }
 
-    // Add self-referencing canonical tag to prevent duplicate content issues
     let canonical = document.querySelector('link[rel="canonical"]') as HTMLLinkElement;
     if (!canonical) {
       canonical = document.createElement('link');
@@ -113,29 +128,17 @@ const ServicePageTemplate = ({
     }
     canonical.setAttribute('href', `https://bombaybreed.com/${slug}`);
 
-    // Inject Service schema
     const serviceSchema = generateServiceSchema({
-      slug,
-      meta_title,
-      meta_description,
-      h1_headline,
-      capability,
-      industry,
-      geography,
-      regulation,
-      faq_items
+      slug, meta_title, meta_description, h1_headline,
+      capability, industry, geography, regulation, faq_items
     });
     injectSchema(serviceSchema, 'schema-service');
 
-    // Inject FAQ schema if FAQs exist
     if (faq_items && faq_items.length > 0) {
       const faqSchema = generateFAQSchema(faq_items);
-      if (faqSchema) {
-        injectSchema(faqSchema, 'schema-faq');
-      }
+      if (faqSchema) injectSchema(faqSchema, 'schema-faq');
     }
 
-    // Inject Breadcrumb schema
     const breadcrumbSchema = generateBreadcrumbSchema(`/${slug}`, meta_title);
     injectSchema(breadcrumbSchema, 'schema-breadcrumb');
 
@@ -143,54 +146,53 @@ const ServicePageTemplate = ({
       removeSchema('schema-service');
       removeSchema('schema-faq');
       removeSchema('schema-breadcrumb');
-      // Don't remove canonical on cleanup - let the next page handle it
     };
   }, [slug, meta_title, meta_description, h1_headline, capability, industry, geography, regulation, faq_items]);
 
-  // Build subtitle from context
   const subtitleParts = [];
   if (industry) subtitleParts.push(industry.name);
   if (geography) subtitleParts.push(geography.name);
   if (regulation) subtitleParts.push(regulation.name);
-  const subtitle = subtitleParts.join(' • ');
+  const subtitle = subtitleParts.join(' · ');
 
   return (
     <div className="min-h-screen bg-background">
       <Header />
       
-      <main className="pt-20">
-        {/* Hero Section */}
-        <section className="bg-gradient-to-b from-secondary/30 to-background py-16 md:py-24">
-          <div className="container mx-auto px-6 md:px-8 max-w-5xl">
+      <main className="pt-24">
+        {/* Hero */}
+        <section className="pt-12 pb-16 md:pt-16 md:pb-20 px-6 md:px-8">
+          <div className="container mx-auto max-w-[680px]">
             <BreadcrumbNav items={breadcrumbItems} />
             
             {subtitle && (
-              <div className="flex items-center gap-2 text-sm text-primary mb-4">
-                <MapPin className="h-4 w-4" />
-                <span className="uppercase tracking-wider font-medium">{subtitle}</span>
+              <div className="mt-4 mb-4">
+                <SectionLabel number="" label={subtitle} />
               </div>
             )}
             
-            <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground leading-tight mb-6">
+            <h1 className="text-display font-serif tracking-tight text-foreground mb-6">
               {h1_headline}
             </h1>
             
             {meta_description && (
-              <p className="text-lg md:text-xl text-muted-foreground max-w-3xl">
+              <p className="text-lede text-muted-foreground">
                 {meta_description}
               </p>
             )}
+
+            <p className="text-xs text-muted-foreground mt-6">
+              By Theresa Ronnie · Bombay Breed
+            </p>
           </div>
         </section>
 
         {/* Main Content */}
-        <div className="container mx-auto px-6 md:px-8 max-w-5xl">
-          {/* Direct Answer Block (AEO) */}
+        <div className="container mx-auto px-6 md:px-8 max-w-[680px]">
           {direct_answer_block && (
             <DirectAnswerBlock content={direct_answer_block} />
           )}
 
-          {/* Content Sections - Predefined sections with specific styling */}
           {content_sections?.the_problem && (
             <ContentSection 
               title="The Problem" 
@@ -233,7 +235,6 @@ const ServicePageTemplate = ({
             />
           )}
 
-          {/* Handle additional content sections not in predefined list */}
           {content_sections?.introduction && (
             <ContentSection 
               title="Introduction" 
@@ -260,16 +261,28 @@ const ServicePageTemplate = ({
             <FAQSection items={faq_items} />
           )}
 
-          {/* Related Pages */}
+          {/* Related Intelligence */}
           {internal_links && internal_links.length > 0 && (
             <RelatedPages pages={internal_links} />
           )}
 
-          {/* Diagnostic CTA */}
-          <DiagnosticCTA 
-            ctaText={conversion_cta || 'Request a Diagnostic Review'}
-            capability={capability?.name}
-          />
+          {/* Author Box */}
+          <AuthorBox />
+
+          {/* Final CTA */}
+          <div className="py-16 text-center border-t border-border/50">
+            <ScrollReveal direction="up">
+              <h2 className="text-section font-serif tracking-tight mb-4">
+                Ready to build a credible carbon strategy for your board?
+              </h2>
+              <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mt-6">
+                <BookingDialog triggerText="Schedule a Consultation" />
+                <Link to="/insights" className="text-sm text-primary hover:text-primary/80 transition-colors">
+                  Subscribe to Intelligence Briefs →
+                </Link>
+              </div>
+            </ScrollReveal>
+          </div>
         </div>
       </main>
 
