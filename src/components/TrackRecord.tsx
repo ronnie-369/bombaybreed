@@ -34,6 +34,12 @@ const TrackRecord = () => {
       <div className="container mx-auto max-w-6xl">
         <ScrollReveal direction="up">
           <div className="text-center mb-16">
+            <blockquote className="font-serif text-xl md:text-2xl lg:text-3xl italic text-foreground/80 leading-relaxed mb-4 max-w-3xl mx-auto">
+              "It will take all of us, to do this for all of us"
+            </blockquote>
+            <p className="text-sm text-muted-foreground tracking-wide mb-8">
+              — Theresa Ronnie
+            </p>
             <p className="text-sm font-medium text-accent tracking-wide uppercase mb-3">
               Experience
             </p>
