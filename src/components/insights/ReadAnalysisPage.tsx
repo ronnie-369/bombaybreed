@@ -70,6 +70,20 @@ const ReadAnalysisPage: React.FC<ReadAnalysisPageProps> = ({ data }) => {
         <title>{data.metaTitle}</title>
         <meta name="description" content={data.metaDescription} />
         <link rel="canonical" href={`https://bombaybreed.com/insights/${data.slug}`} />
+        <meta property="og:type" content="article" />
+        <meta property="og:url" content={`https://bombaybreed.com/insights/${data.slug}`} />
+        <meta property="og:title" content={data.metaTitle} />
+        <meta property="og:description" content={data.metaDescription} />
+        <meta property="og:image" content="https://bombaybreed.com/og/og-insights.png" />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
+        <meta property="og:site_name" content="Bombay Breed" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content={data.metaTitle} />
+        <meta name="twitter:description" content={data.metaDescription} />
+        <meta name="twitter:image" content="https://bombaybreed.com/og/og-insights.png" />
+        <meta property="article:published_time" content={data.publishedDate} />
+        <meta property="article:author" content="Theresa Ronnie" />
         <script type="application/ld+json">{JSON.stringify(articleSchema)}</script>
         <script type="application/ld+json">{JSON.stringify(breadcrumbSchema)}</script>
         {faqSchema && <script type="application/ld+json">{JSON.stringify(faqSchema)}</script>}
