@@ -1,5 +1,5 @@
-import React, { useEffect } from 'react';
-import { setOGMeta } from '@/utils/og-meta';
+import React from 'react';
+import PageHead from '@/components/PageHead';
 import { Link } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
 import { supabase } from '@/integrations/supabase/client';
@@ -76,20 +76,6 @@ const engagementModels = [
 ];
 
 const Services = () => {
-  useEffect(() => {
-    document.title = "Bombay Breed: Advisory Services";
-    const metaDescription = document.querySelector('meta[name="description"]');
-    if (metaDescription) {
-      metaDescription.setAttribute('content', "Strategic carbon market advisory, ESG communications, and board governance services for Indian enterprises. Expert climate strategy consulting.");
-    }
-    const cleanup = setOGMeta({
-      title: 'Bombay Breed: Advisory Services',
-      description: 'Carbon Strategy · Board Governance · ESG Communications for Indian enterprises.',
-      image: 'https://bombaybreed.com/og/og-services.png',
-      url: 'https://bombaybreed.com/services',
-    });
-    return cleanup;
-  }, []);
 
   const { data: seoPages } = useQuery({
     queryKey: ['seo-pages-all'],
@@ -106,6 +92,12 @@ const Services = () => {
 
   return (
     <div className="min-h-screen bg-background flex flex-col">
+      <PageHead
+        title="Bombay Breed: Advisory Services"
+        description="Strategic carbon market advisory, ESG communications, and board governance services for Indian enterprises. Expert climate strategy consulting."
+        path="/services"
+        ogImage="og-services"
+      />
       <Header />
       
       <main className="flex-1 pt-24 pb-16">

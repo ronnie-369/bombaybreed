@@ -1,5 +1,5 @@
 import { useEffect, useMemo } from 'react';
-import { setOGMeta } from '@/utils/og-meta';
+import PageHead from '@/components/PageHead';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import BreadcrumbNav from './BreadcrumbNav';
@@ -151,20 +151,6 @@ const ServicePageTemplate = ({
   }, [content_sections, content_section_overrides]);
 
   useEffect(() => {
-    document.title = meta_title;
-    const metaDesc = document.querySelector('meta[name="description"]');
-    if (metaDesc && meta_description) {
-      metaDesc.setAttribute('content', meta_description);
-    }
-
-    let canonical = document.querySelector('link[rel="canonical"]') as HTMLLinkElement;
-    if (!canonical) {
-      canonical = document.createElement('link');
-      canonical.setAttribute('rel', 'canonical');
-      document.head.appendChild(canonical);
-    }
-    canonical.setAttribute('href', `https://bombaybreed.com/${slug}`);
-
     const serviceSchema = generateServiceSchema({
       slug, meta_title, meta_description, h1_headline,
       capability, industry, geography, regulation, faq_items
@@ -179,20 +165,12 @@ const ServicePageTemplate = ({
     const breadcrumbSchema = generateBreadcrumbSchema(`/${slug}`, meta_title);
     injectSchema(breadcrumbSchema, 'schema-breadcrumb');
 
-    const ogCleanup = setOGMeta({
-      title: meta_title,
-      description: meta_description || h1_headline,
-      image: og_image || 'https://bombaybreed.com/og/og-home.png',
-      url: `https://bombaybreed.com/${slug}`,
-    });
-
     return () => {
       removeSchema('schema-service');
       removeSchema('schema-faq');
       removeSchema('schema-breadcrumb');
-      ogCleanup();
     };
-  }, [slug, meta_title, meta_description, h1_headline, capability, industry, geography, regulation, faq_items, og_image]);
+  }, [slug, meta_title, meta_description, h1_headline, capability, industry, geography, regulation, faq_items]);
 
   const subtitleParts = [];
   if (industry) subtitleParts.push(industry.name);
@@ -202,6 +180,13 @@ const ServicePageTemplate = ({
 
   return (
     <div className="min-h-screen bg-background">
+      <PageHead
+        title={meta_title}
+        description={meta_description || h1_headline}
+        path={`/${slug}`}
+        ogType="article"
+        ogImage={og_image || 'og-home'}
+      />
       <Header />
       
       <main className="pt-24">

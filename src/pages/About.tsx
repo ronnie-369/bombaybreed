@@ -1,5 +1,5 @@
-import React, { useEffect } from 'react';
-import { setOGMeta } from '@/utils/og-meta';
+import React from 'react';
+import PageHead from '@/components/PageHead';
 import { Link } from 'react-router-dom';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
@@ -54,23 +54,16 @@ const milestones = [
 ];
 
 const About = () => {
-  useEffect(() => {
-    document.title = "Bombay Breed: About Theresa Ronnie";
-    const metaDescription = document.querySelector('meta[name="description"]');
-    if (metaDescription) {
-      metaDescription.setAttribute('content', "Founded by Theresa Ronnie, Bombay Breed is India's only strategic carbon communications advisory. 18+ years of C-suite experience in sustainability, ESG, and climate strategy.");
-    }
-    const cleanup = setOGMeta({
-      title: 'Bombay Breed: About Theresa Ronnie',
-      description: "18+ years of C-suite advisory in sustainability, ESG, and climate strategy.",
-      image: 'https://bombaybreed.com/og/og-about.png',
-      url: 'https://bombaybreed.com/about',
-    });
-    return cleanup;
-  }, []);
 
   return (
     <div className="min-h-screen bg-background flex flex-col">
+      <PageHead
+        title="Bombay Breed: About Theresa Ronnie"
+        description="Founded by Theresa Ronnie, Bombay Breed is India's only strategic carbon communications advisory. 18+ years of C-suite experience in sustainability, ESG, and climate strategy."
+        path="/about"
+        ogType="profile"
+        ogImage="og-about"
+      />
       <Header />
       
       <main className="flex-1 pt-24 pb-16">
