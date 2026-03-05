@@ -62,14 +62,14 @@ const ReportLandingPage: React.FC<ReportLandingPageProps> = ({ data }) => {
         <meta property="og:url" content={`https://bombaybreed.com/insights/${data.slug}`} />
         <meta property="og:title" content={data.metaTitle} />
         <meta property="og:description" content={data.metaDescription} />
-        <meta property="og:image" content="https://bombaybreed.com/og/og-insights.png" />
+        <meta property="og:image" content="https://bombaybreed.com/og/og-home.png" />
         <meta property="og:image:width" content="1200" />
         <meta property="og:image:height" content="630" />
         <meta property="og:site_name" content="Bombay Breed" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content={data.metaTitle} />
         <meta name="twitter:description" content={data.metaDescription} />
-        <meta name="twitter:image" content="https://bombaybreed.com/og/og-insights.png" />
+        <meta name="twitter:image" content="https://bombaybreed.com/og/og-home.png" />
         <meta property="article:published_time" content={data.publishedDate} />
         <meta property="article:author" content="Theresa Ronnie" />
         <script type="application/ld+json">{JSON.stringify(articleSchema)}</script>
