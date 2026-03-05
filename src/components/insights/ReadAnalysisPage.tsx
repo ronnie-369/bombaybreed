@@ -1,5 +1,7 @@
 import React from 'react';
 import { Helmet } from 'react-helmet-async';
+import { Link } from 'react-router-dom';
+import { ArrowLeft } from 'lucide-react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import ContentTypeBadge from './ContentTypeBadge';
@@ -11,7 +13,6 @@ import NewsletterCapture from './NewsletterCapture';
 import MidArticleCta from './MidArticleCta';
 import UrgencyBanner from './UrgencyBanner';
 import ActionChecklist from './ActionChecklist';
-import BreadcrumbNav from '@/components/seo/BreadcrumbNav';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
 import type { InsightData } from '@/data/insights';
 import { getRelatedInsights } from '@/data/insights';
@@ -97,57 +98,71 @@ const ReadAnalysisPage: React.FC<ReadAnalysisPageProps> = ({ data }) => {
       )}
 
       <main className="min-h-screen bg-background">
-        {/* Breadcrumb */}
-        <div className="container mx-auto max-w-[900px] px-6 pt-28 md:pt-32">
-          <BreadcrumbNav items={[
-            { label: 'Home', href: '/' },
-            { label: 'Insights', href: '/insights' },
-            { label: data.title },
-          ]} />
-        </div>
+        {/* Dark Editorial Hero */}
+        <section className="bg-primary text-primary-foreground pt-28 md:pt-36 pb-14 md:pb-20 px-6 md:px-8">
+          <div className="container mx-auto max-w-[780px]">
+            {/* Back navigation */}
+            <nav className="flex items-center gap-6 mb-10">
+              <Link
+                to="/"
+                className="text-primary-foreground/60 hover:text-primary-foreground transition-colors text-[12px] font-semibold uppercase tracking-[0.15em] flex items-center gap-1.5"
+              >
+                <ArrowLeft className="w-3.5 h-3.5" />
+                Home
+              </Link>
+              <Link
+                to="/insights"
+                className="text-primary-foreground/60 hover:text-primary-foreground transition-colors text-[12px] font-semibold uppercase tracking-[0.15em]"
+              >
+                Insights
+              </Link>
+            </nav>
 
-        {/* Section 1: Article Hero */}
-        <section className="pt-8 pb-12 md:pt-12 md:pb-20 px-6 md:px-8">
-          <div className="container mx-auto max-w-[780px] text-center">
-            <ContentTypeBadge type={data.contentType} />
+            <div className="text-center">
+              <ContentTypeBadge type={data.contentType} />
 
-            <h1 className="font-serif text-[34px] md:text-[48px] leading-[1.1] tracking-tight text-foreground mt-6 mb-4">
-              {data.title}
-            </h1>
+              <h1 className="font-serif text-[34px] md:text-[48px] leading-[1.08] tracking-tight text-primary-foreground mt-6 mb-4">
+                {data.title}
+              </h1>
 
-            {data.subtitle && (
-              <p className="text-lg text-muted-foreground max-w-[680px] mx-auto mb-4">{data.subtitle}</p>
-            )}
+              {data.subtitle && (
+                <p className="text-lg text-primary-foreground/70 max-w-[680px] mx-auto mb-4 font-serif italic">
+                  {data.subtitle}
+                </p>
+              )}
 
-            {/* Perspective: larger author attribution */}
-            {isPerspective ? (
-              <div className="flex items-center justify-center gap-3 mt-6">
-                <img src={theresaPortrait} alt="Theresa Ronnie" className="w-10 h-10 rounded-full grayscale saturate-[0.85]" />
-                <span className="text-[15px] font-medium text-foreground">By Theresa Ronnie</span>
+              {/* Perspective: larger author attribution */}
+              {isPerspective ? (
+                <div className="flex items-center justify-center gap-3 mt-6">
+                  <img src={theresaPortrait} alt="Theresa Ronnie" className="w-10 h-10 rounded-full grayscale saturate-[0.85] border border-primary-foreground/20" />
+                  <span className="text-[15px] font-medium text-primary-foreground/90">By Theresa Ronnie</span>
+                </div>
+              ) : (
+                <p className="text-[13px] text-primary-foreground/50 mt-4 tracking-wide uppercase">
+                  {data.metaLine}
+                </p>
+              )}
+
+              <div className="mt-5">
+                <TopicTag topic={data.topic} />
               </div>
-            ) : (
-              <p className="text-[13px] text-muted-foreground/70 mt-4">{data.metaLine}</p>
-            )}
-
-            <div className="mt-4">
-              <TopicTag topic={data.topic} />
             </div>
           </div>
         </section>
 
-        {/* Section 2: Key Stats */}
+        {/* Key Stats */}
         {showStats && <KeyStatsBar stats={data.stats!} source={data.statsSource} />}
 
-        {/* Section 3: Executive Summary */}
-        <section className="py-10 px-6 md:px-8 border-t border-b border-border">
+        {/* Executive Summary */}
+        <section className="py-12 px-6 md:px-8 border-t border-b border-border">
           <div className="container mx-auto max-w-[680px]">
-            <p className="text-base leading-[1.8] text-foreground font-medium">
+            <p className="text-base leading-[1.85] text-foreground font-medium">
               {data.executiveSummary}
             </p>
           </div>
         </section>
 
-        {/* Section 4: Body Content (placeholder for now) */}
+        {/* Body Content */}
         {data.bodyContent && (
           <section className="py-16 px-6 md:px-8">
             <div className="container mx-auto max-w-[680px] insight-prose" dangerouslySetInnerHTML={{ __html: data.bodyContent }} />
@@ -167,7 +182,7 @@ const ReadAnalysisPage: React.FC<ReadAnalysisPageProps> = ({ data }) => {
         {/* Action Checklist (Regulatory Alerts) */}
         {isAlert && data.actionItems && <ActionChecklist items={data.actionItems} />}
 
-        {/* Section 6: FAQ */}
+        {/* FAQ */}
         {showFaq && (
           <section className="py-16 px-6 md:px-8">
             <div className="container mx-auto max-w-[680px]">
@@ -190,13 +205,13 @@ const ReadAnalysisPage: React.FC<ReadAnalysisPageProps> = ({ data }) => {
           </section>
         )}
 
-        {/* Section 7: Author */}
+        {/* Author */}
         <AuthorBox />
 
-        {/* Section 8: Related Intelligence */}
+        {/* Related Intelligence */}
         <RelatedIntelligence items={relatedItems} />
 
-        {/* Section 9: Newsletter CTA */}
+        {/* Newsletter CTA */}
         <NewsletterCapture />
       </main>
       <Footer />
