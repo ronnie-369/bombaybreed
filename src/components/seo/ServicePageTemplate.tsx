@@ -75,6 +75,7 @@ interface ServicePageTemplateProps {
   conversion_cta?: string;
   og_image?: string;
   stats?: StatItem[];
+  children?: React.ReactNode;
 }
 
 const AuthorBox = () => (
