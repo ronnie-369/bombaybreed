@@ -280,6 +280,9 @@ const ServicePageTemplate = ({
             />
           </div>
 
+          {/* Custom children content (e.g. sector downloads) */}
+          {children}
+
           {/* Conversion Modules */}
           <WhoHiresUs roles={typical_roles} industry={industry?.name} />
           <UrgencyTriggers triggers={urgency_triggers} />
