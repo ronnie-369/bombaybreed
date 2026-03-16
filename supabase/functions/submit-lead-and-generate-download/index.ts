@@ -174,6 +174,11 @@ serve(async (req: Request) => {
       "Jobs on the Rise 2026: India Green Jobs Outlook": "linkedin_jobs_on_the_rise_2026_india_green_jobs_20260117180846.pdf",
       "WEF Global Risks Report 2026: Climate & Geopolitical Volatility": "The-Global-Risks-Report-2026-was-written-assuming-instability-What-it-did-not-fully-price-in-was-spe (1).pdf",
       "India Power Sector Investment Presentation": "India_Power_Sector_Investment_Presentation (1).pdf",
+      // CCTS Sector Exposure Snapshots
+      "CCTS Exposure Snapshot — Steel Sector": "BB_Steel_CCTS_Exposure_Snapshot.pdf",
+      "CCTS Exposure Snapshot — Cement Sector": "BB_Cement_CCTS_Exposure_Snapshot.pdf",
+      "CCTS Exposure Snapshot — Petrochemicals Sector": "BB_Petrochemicals_CCTS_Exposure_Snapshot.pdf",
+      "CCTS Exposure Snapshot — Refinery Sector": "BB_Refinery_CCTS_Exposure_Snapshot.pdf",
     };
 
     const ensurePdf = (s: string) => (s.toLowerCase().endsWith(".pdf") ? s : `${s}.pdf`);
