@@ -1,4 +1,5 @@
 import ServicePageTemplate from '@/components/seo/ServicePageTemplate';
+import SectorSnapshotDownloads from '@/components/SectorSnapshotDownloads';
 
 const CarbonCreditTradingScheme = () => {
   return (
@@ -11,6 +12,11 @@ const CarbonCreditTradingScheme = () => {
       direct_answer_block="The Indian Carbon Credit Trading Scheme (CCTS), notified under the Energy Conservation Act 2001 (amended 2022), establishes India's first regulated carbon market. The Bureau of Energy Efficiency (BEE) administers the scheme, which includes both a compliance market (for obligated entities) and a voluntary offset market. The scheme introduces Carbon Credit Certificates (CCCs) tradeable on designated exchanges."
       capability={{ name: 'Carbon Market Advisory', slug: 'carbon-market-advisory' }}
       regulation={{ name: 'Carbon Credit Trading Scheme', slug: 'carbon-credit-trading-scheme' }}
+      stats={[
+        { value: '490', label: 'Obligated entities mapped' },
+        { value: '9', label: 'Sectors covered' },
+        { value: '2×', label: 'Penalty multiplier on credit shortfall' },
+      ]}
       content_sections={{
         the_problem: `India's Carbon Credit Trading Scheme represents the most significant regulatory shift in Indian climate policy since the PAT Scheme. Yet most companies are approaching it the way they approached early GST implementation - waiting for final rules, hoping for extensions, and treating it as a compliance burden rather than a strategic opportunity.\n\nThe problem: the CCTS will create winners and losers. Companies that understand the market mechanics early - who can quantify their exposure, model different allocation scenarios, and position themselves strategically - will extract value. Companies that wait will face higher compliance costs and miss the window to influence sector benchmarks.`,
         why_this_fails: `**Regulatory uncertainty is not a reason to wait - it's the reason to prepare.** Companies that delayed PAT Scheme preparation lost years of potential certificate value. The same pattern is emerging with CCTS.\n\nCommon failures:\n\n**1. Treating carbon as an operations cost, not a board-level risk.** Carbon pricing will affect capital allocation, project economics, and competitive positioning. Finance teams, not just sustainability teams, need to be involved.\n\n**2. Ignoring the voluntary market opportunity.** The CCTS creates a parallel voluntary offset market. Companies with credible emission reduction projects can generate Carbon Credit Certificates - but only if methodologies are established early.\n\n**3. No scenario planning.** Without modelling different carbon price trajectories (₹500/tCO₂e to ₹3,000/tCO₂e), companies cannot assess the financial materiality of their exposure.`,
@@ -66,7 +72,9 @@ const CarbonCreditTradingScheme = () => {
         { slug: 'carbon-playbook', title: 'The Carbon Playbook', type: 'report' },
         { slug: 'brsr-reporting-advisory-india', title: 'BRSR Reporting Advisory', type: 'page' }
       ]}
-    />
+    >
+      <SectorSnapshotDownloads />
+    </ServicePageTemplate>
   );
 };
 

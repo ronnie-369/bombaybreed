@@ -75,6 +75,7 @@ interface ServicePageTemplateProps {
   conversion_cta?: string;
   og_image?: string;
   stats?: StatItem[];
+  children?: React.ReactNode;
 }
 
 const AuthorBox = () => (
@@ -113,6 +114,7 @@ const ServicePageTemplate = ({
   conversion_cta,
   og_image,
   stats,
+  children,
 }: ServicePageTemplateProps) => {
   
   const breadcrumbItems = [];
@@ -277,6 +279,9 @@ const ServicePageTemplate = ({
               reportDescription={meta_description || ''} 
             />
           </div>
+
+          {/* Custom children content (e.g. sector downloads) */}
+          {children}
 
           {/* Conversion Modules */}
           <WhoHiresUs roles={typical_roles} industry={industry?.name} />
