@@ -114,6 +114,7 @@ const ServicePageTemplate = ({
   conversion_cta,
   og_image,
   stats,
+  children,
 }: ServicePageTemplateProps) => {
   
   const breadcrumbItems = [];
