@@ -170,12 +170,7 @@ export const generateWebSiteSchema = () => ({
   "@context": "https://schema.org",
   "@type": "WebSite",
   "name": "Bombay Breed",
-  "url": "https://bombaybreed.com",
-  "potentialAction": {
-    "@type": "SearchAction",
-    "target": "https://bombaybreed.com/services?q={search_term_string}",
-    "query-input": "required name=search_term_string"
-  }
+  "url": "https://bombaybreed.com"
 });
 
 export interface ArticleSchemaData {
