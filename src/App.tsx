@@ -74,6 +74,10 @@ const AppContent = () => {
               <Route path="/carbon-market-outlook" element={<Navigate to="/insights/carbon-market-outlook" replace />} />
               <Route path="/compliance-to-credibility" element={<Navigate to="/insights/compliance-to-credibility" replace />} />
 
+              {/* Renamed/deleted page redirects */}
+              <Route path="/article-6-advisory-uae" element={<Navigate to="/article-6-consulting-uae" replace />} />
+              <Route path="/green-jobs-report" element={<Navigate to="/insights/green-jobs-india-2026" replace />} />
+
               {/* Special pages (custom interactive layouts - not template-driven) */}
               <Route path="/green-jobs-guide" element={<GreenJobsGuide />} />
               <Route path="/working-for-the-earth" element={<WorkingForTheEarth />} />
