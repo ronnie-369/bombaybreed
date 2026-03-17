@@ -351,37 +351,27 @@ export default function GreenJobsGuide() {
     setSubmitting(true);
 
     try {
-      const { error } = await supabase.from('contact_submissions').insert({
-        name: leadForm.name.trim(),
-        email: leadForm.email.trim(),
-        phone: leadForm.phone.trim(),
-        form_type: 'green-jobs-quiz',
-        report_requested: `green-jobs-personality-${activePersonality}`,
-        marketing_consent: true,
+      const personalityName = PERSONALITIES.find(p => p.id === activePersonality)?.name || activePersonality || '';
+      
+      const response = await fetch('https://formspree.io/f/myknnoea', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          name: leadForm.name.trim(),
+          email: leadForm.email.trim(),
+          phone: leadForm.phone.trim(),
+          form_type: 'green-jobs-quiz',
+          personality: personalityName,
+          report_requested: `green-jobs-personality-${activePersonality}`,
+          marketing_consent: true,
+        }),
       });
-      if (error) throw error;
 
-      // Mark quiz interaction as form_completed
-      supabase.from('quiz_interactions').insert({
-        personality_selected: activePersonality || '',
-        form_completed: true,
-      }).then(() => {});
+      if (!response.ok) throw new Error('Submission failed');
 
       setLeadCaptured(true);
       setShowGate(false);
       toast({ title: 'Results unlocked!', description: 'Your personalised career matches are ready.' });
-
-      // Send inquiry notification email (fire-and-forget)
-      const personalityName = PERSONALITIES.find(p => p.id === activePersonality)?.name || activePersonality || '';
-      supabase.functions.invoke('send-inquiry-notification', {
-        body: {
-          type: 'green-jobs-quiz',
-          email: leadForm.email.trim(),
-          name: leadForm.name.trim(),
-          phone: leadForm.phone.trim(),
-          personality: personalityName,
-        },
-      }).catch((err) => console.error('Quiz notification error:', err));
       setTimeout(() => jobsRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' }), 200);
     } catch {
       setFormError('Something went wrong. Please try again.');
