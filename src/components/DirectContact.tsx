@@ -30,16 +30,17 @@ const DirectContact = () => {
   const onSubmit = async (values: FormValues) => {
     setIsSubmitting(true);
     try {
-      const sanitizedData = {
-        name: values.name.trim(),
-        email: values.email.trim().toLowerCase(),
-        company: null,
-        message: 'Consultation request from contact section'
-      };
-
-      const { supabase } = await import("@/integrations/supabase/client");
-      const { error } = await supabase.from('contact_inquiries').insert(sanitizedData);
-      if (error) throw error;
+      const response = await fetch('https://formspree.io/f/myknnoea', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          name: values.name.trim(),
+          email: values.email.trim().toLowerCase(),
+          message: 'Consultation request from contact section',
+          form_type: 'contact_quick',
+        }),
+      });
+      if (!response.ok) throw new Error('Failed');
 
       toast({
         title: "Request sent!",

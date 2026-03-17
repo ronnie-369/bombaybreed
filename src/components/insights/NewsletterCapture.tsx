@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
-import { supabase } from '@/integrations/supabase/client';
 import { useToast } from '@/hooks/use-toast';
+
+const FORMSPREE_URL = 'https://formspree.io/f/myknnoea';
 
 const NewsletterCapture: React.FC = () => {
   const [email, setEmail] = useState('');
@@ -15,10 +16,14 @@ const NewsletterCapture: React.FC = () => {
     if (!email) return;
     setIsLoading(true);
     try {
-      const { error } = await supabase.from('newsletter_subscribers').insert({ email });
-      if (error && error.code !== '23505') throw error;
+      const response = await fetch(FORMSPREE_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email: email.trim().toLowerCase(), form_type: 'newsletter' }),
+      });
+      if (!response.ok) throw new Error('Failed');
       setIsSuccess(true);
-      toast({ title: 'Subscribed', description: 'You\'ll hear from us when it matters.' });
+      toast({ title: 'Subscribed', description: "You'll hear from us when it matters." });
     } catch {
       toast({ variant: 'destructive', title: 'Error', description: 'Please try again.' });
     } finally {

@@ -43,59 +43,25 @@ const Contact = () => {
 
   const onSubmit = async (data: FormValues) => {
     try {
-      // Sanitize input data
-      const sanitizedData = {
-        name: data.name.trim(),
-        email: data.email.trim().toLowerCase(),
-        company: data.company?.trim() || '',
-        message: data.message.trim()
-      };
+      const response = await fetch('https://formspree.io/f/myknnoea', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          name: data.name.trim(),
+          email: data.email.trim().toLowerCase(),
+          company: data.company?.trim() || '',
+          message: data.message.trim(),
+          form_type: 'contact',
+        }),
+      });
 
-      // Import Supabase client
-      const { supabase } = await import("@/integrations/supabase/client");
-      
-      // Save to contact inquiries table
-      const { error } = await supabase
-        .from('contact_inquiries')
-        .insert({
-          name: sanitizedData.name,
-          email: sanitizedData.email,
-          company: sanitizedData.company,
-          message: sanitizedData.message,
-        });
+      if (!response.ok) throw new Error('Failed');
 
-      if (error) {
-        console.error('Contact form submission error:', error);
-        toast({
-          title: "Message failed to send",
-          description: "Please try again later.",
-          variant: "destructive",
-        });
-      } else {
-        // Send email notification in background (doesn't block user experience)
-        try {
-          const { error: emailError } = await supabase.functions.invoke('send-contact-email', {
-            body: {
-              ...sanitizedData,
-              submitted_at: new Date().toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' })
-            }
-          });
-          
-          if (emailError) {
-            console.error('Email notification error:', emailError);
-            // Don't show error to user - data is still saved
-          }
-        } catch (emailErr) {
-          console.error('Email function invocation error:', emailErr);
-          // Don't show error to user - data is still saved
-        }
-        
-        toast({
-          title: "Message sent successfully!",
-          description: "We'll get back to you as soon as possible."
-        });
-        form.reset();
-      }
+      toast({
+        title: "Message sent successfully!",
+        description: "We'll get back to you as soon as possible."
+      });
+      form.reset();
     } catch (error) {
       console.error('Contact form submission error:', error);
       toast({

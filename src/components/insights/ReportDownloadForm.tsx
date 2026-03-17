@@ -3,8 +3,16 @@ import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { Label } from '@/components/ui/label';
 import { Check, Download } from 'lucide-react';
-import { supabase } from '@/integrations/supabase/client';
 import { useToast } from '@/hooks/use-toast';
+
+const FORMSPREE_URL = 'https://formspree.io/f/myknnoea';
+
+const REPORT_FILE_MAP: Record<string, string> = {
+  'CCTS Exposure Snapshot — Steel Sector': '/reports/BB_Steel_CCTS_Exposure_Snapshot.pdf',
+  'CCTS Exposure Snapshot — Cement Sector': '/reports/BB_Cement_CCTS_Exposure_Snapshot.pdf',
+  'CCTS Exposure Snapshot — Refinery Sector': '/reports/BB_Refinery_CCTS_Exposure_Snapshot.pdf',
+  'CCTS Exposure Snapshot — Petrochemicals Sector': '/reports/BB_Petrochemicals_CCTS_Exposure_Snapshot.pdf',
+};
 
 interface ReportDownloadFormProps {
   reportTitle: string;
@@ -14,8 +22,9 @@ const ReportDownloadForm: React.FC<ReportDownloadFormProps> = ({ reportTitle }) 
   const [formData, setFormData] = useState({ name: '', email: '', org: '' });
   const [isLoading, setIsLoading] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
-  const [downloadUrl, setDownloadUrl] = useState('');
   const { toast } = useToast();
+
+  const downloadPath = REPORT_FILE_MAP[reportTitle] || Object.values(REPORT_FILE_MAP)[0] || '';
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -29,28 +38,26 @@ const ReportDownloadForm: React.FC<ReportDownloadFormProps> = ({ reportTitle }) 
 
     setIsLoading(true);
     try {
-      const { data, error } = await supabase.functions.invoke('submit-lead-and-generate-download', {
-        body: {
-          name: formData.name,
-          email: formData.email,
-          company_name: formData.org,
-          marketing_consent: true,
-          reportTitle,
-          form_type: 'download_report_form',
-        },
+      const response = await fetch(FORMSPREE_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          name: formData.name.trim(),
+          email: formData.email.trim().toLowerCase(),
+          organisation: formData.org.trim(),
+          report_requested: reportTitle,
+          form_type: 'report_download',
+        }),
       });
 
-      if (error) throw new Error(error.message);
-      if (data?.error) throw new Error(data.error);
-      if (!data?.downloadUrl) throw new Error('Failed to generate download link');
+      if (!response.ok) throw new Error('Submission failed');
 
-      setDownloadUrl(data.downloadUrl);
       setIsSuccess(true);
 
       // Auto-trigger download
       const link = document.createElement('a');
-      link.href = data.downloadUrl;
-      link.download = data.fileName || reportTitle;
+      link.href = downloadPath;
+      link.download = downloadPath.split('/').pop() || 'report.pdf';
       document.body.appendChild(link);
       link.click();
       document.body.removeChild(link);
@@ -68,8 +75,8 @@ const ReportDownloadForm: React.FC<ReportDownloadFormProps> = ({ reportTitle }) 
           <Check className="w-8 h-8 text-primary" />
         </div>
         <h3 className="font-serif text-xl text-foreground mb-2">Your report is ready.</h3>
-        <p className="text-sm text-muted-foreground mb-4">A copy has also been sent to your email.</p>
-        <Button onClick={() => window.open(downloadUrl, '_blank')} className="bg-foreground text-background hover:bg-foreground/90">
+        <p className="text-sm text-muted-foreground mb-4">Download should start automatically.</p>
+        <Button onClick={() => window.open(downloadPath, '_blank')} className="bg-foreground text-background hover:bg-foreground/90">
           <Download className="w-4 h-4 mr-2" />
           Download PDF
         </Button>
@@ -85,52 +92,22 @@ const ReportDownloadForm: React.FC<ReportDownloadFormProps> = ({ reportTitle }) 
       <form onSubmit={handleSubmit} className="space-y-5">
         <div>
           <Label htmlFor="dl-name" className="text-[13px] font-medium text-foreground">Full Name</Label>
-          <Input
-            id="dl-name"
-            type="text"
-            placeholder="Jane Smith"
-            value={formData.name}
-            onChange={(e) => setFormData(d => ({ ...d, name: e.target.value }))}
-            required
-            className="mt-1.5 h-12 text-[15px]"
-          />
+          <Input id="dl-name" type="text" placeholder="Jane Smith" value={formData.name} onChange={(e) => setFormData(d => ({ ...d, name: e.target.value }))} required className="mt-1.5 h-12 text-[15px]" />
         </div>
         <div>
           <Label htmlFor="dl-email" className="text-[13px] font-medium text-foreground">Work Email</Label>
-          <Input
-            id="dl-email"
-            type="email"
-            placeholder="jane@company.com"
-            value={formData.email}
-            onChange={(e) => setFormData(d => ({ ...d, email: e.target.value }))}
-            required
-            className="mt-1.5 h-12 text-[15px]"
-          />
+          <Input id="dl-email" type="email" placeholder="jane@company.com" value={formData.email} onChange={(e) => setFormData(d => ({ ...d, email: e.target.value }))} required className="mt-1.5 h-12 text-[15px]" />
         </div>
         <div>
           <Label htmlFor="dl-org" className="text-[13px] font-medium text-foreground">Organisation</Label>
-          <Input
-            id="dl-org"
-            type="text"
-            placeholder="Company Ltd."
-            value={formData.org}
-            onChange={(e) => setFormData(d => ({ ...d, org: e.target.value }))}
-            required
-            className="mt-1.5 h-12 text-[15px]"
-          />
+          <Input id="dl-org" type="text" placeholder="Company Ltd." value={formData.org} onChange={(e) => setFormData(d => ({ ...d, org: e.target.value }))} required className="mt-1.5 h-12 text-[15px]" />
         </div>
 
-        <Button
-          type="submit"
-          disabled={isLoading || !formData.name || !formData.email || !formData.org}
-          className="w-full h-[52px] bg-foreground text-background hover:bg-foreground/90 text-[14px] font-semibold uppercase tracking-wider rounded-lg mt-2"
-        >
+        <Button type="submit" disabled={isLoading || !formData.name || !formData.email || !formData.org} className="w-full h-[52px] bg-foreground text-background hover:bg-foreground/90 text-[14px] font-semibold uppercase tracking-wider rounded-lg mt-2">
           {isLoading ? 'Processing...' : 'Download Report →'}
         </Button>
 
-        <p className="text-[12px] text-muted-foreground/60 text-center">
-          We respect your privacy. No spam, ever.
-        </p>
+        <p className="text-[12px] text-muted-foreground/60 text-center">We respect your privacy. No spam, ever.</p>
       </form>
     </div>
   );

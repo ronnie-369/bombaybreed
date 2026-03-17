@@ -4,6 +4,8 @@ import { Input } from "@/components/ui/input";
 import { Mail } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 
+const FORMSPREE_URL = 'https://formspree.io/f/myknnoea';
+
 const Newsletter = () => {
   const [email, setEmail] = useState('');
   const [isLoading, setIsLoading] = useState(false);
@@ -16,66 +18,28 @@ const Newsletter = () => {
     setIsLoading(true);
     
     try {
-      // Sanitize and validate email
       const sanitizedEmail = email.trim().toLowerCase();
       
-      // Basic email validation
       const emailRegex = /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/;
       if (!emailRegex.test(sanitizedEmail)) {
-        toast({
-          title: "Invalid email",
-          description: "Please enter a valid email address.",
-          variant: "destructive",
-        });
+        toast({ title: "Invalid email", description: "Please enter a valid email address.", variant: "destructive" });
         setIsLoading(false);
         return;
       }
 
-      // Import Supabase client
-      const { supabase } = await import("@/integrations/supabase/client");
-      
-      // Save to newsletter subscribers table
-      const { error } = await supabase
-        .from('newsletter_subscribers')
-        .insert({
-          email: sanitizedEmail,
-        });
+      const response = await fetch(FORMSPREE_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email: sanitizedEmail, form_type: 'newsletter' }),
+      });
 
-      if (error) {
-        console.error('Newsletter subscription error:', error);
-        
-        // Handle duplicate email error
-        if (error.code === '23505') {
-          toast({
-            title: "Already subscribed!",
-            description: "This email is already subscribed to our newsletter.",
-          });
-        } else {
-          toast({
-            title: "Subscription failed",
-            description: "Please try again later.",
-            variant: "destructive",
-          });
-        }
-      } else {
-      toast({
-          title: "Subscription successful!",
-          description: "You'll receive updates from The Climate Desk.",
-        });
-        setEmail('');
+      if (!response.ok) throw new Error('Subscription failed');
 
-        // Send inquiry notification email (fire-and-forget)
-        supabase.functions.invoke('send-inquiry-notification', {
-          body: { type: 'newsletter', email: sanitizedEmail },
-        }).catch((err) => console.error('Newsletter notification error:', err));
-      }
+      toast({ title: "Subscription successful!", description: "You'll receive updates from The Climate Desk." });
+      setEmail('');
     } catch (error) {
       console.error('Newsletter subscription error:', error);
-      toast({
-        title: "Subscription failed",
-        description: "Please try again later.",
-        variant: "destructive",
-      });
+      toast({ title: "Subscription failed", description: "Please try again later.", variant: "destructive" });
     } finally {
       setIsLoading(false);
     }
@@ -107,12 +71,7 @@ const Newsletter = () => {
                 className="bg-white/50 border-white/30 text-foreground placeholder:text-foreground/70 focus:border-primary focus:bg-white/80"
                 required
               />
-              <Button 
-                type="submit" 
-                disabled={isLoading}
-                variant="gradient"
-                className="font-medium px-8"
-              >
+              <Button type="submit" disabled={isLoading} variant="gradient" className="font-medium px-8">
                 {isLoading ? 'Subscribing...' : 'Subscribe'}
               </Button>
             </form>
