@@ -3,19 +3,10 @@ project_id = "zjiwmdrtuhsrymsuvpfb"
 [functions.generate-download]
 verify_jwt = false
 
-[functions.submit-lead-and-generate-download]
-verify_jwt = false
-
-[functions.send-contact-email]
-verify_jwt = false
-
 [functions.fetch-blog-posts]
 verify_jwt = false
 
 [functions.generate-sitemap]
-verify_jwt = false
-
-[functions.send-inquiry-notification]
 verify_jwt = false
 
 [functions.send-weekly-digest]
