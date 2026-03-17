@@ -14,8 +14,9 @@ import { Calendar as CalendarIcon, Clock, CheckCircle2, ArrowLeft } from 'lucide
 import { cn } from '@/lib/utils';
 import { format } from 'date-fns';
 import { getSlotsForDate, isBookableDate, formatSlotTime } from '@/utils/booking-slots';
-import { supabase } from '@/integrations/supabase/client';
 import { toast } from '@/hooks/use-toast';
+
+const FORMSPREE_URL = 'https://formspree.io/f/myknnoea';
 
 interface BookingDialogProps {
   trigger?: React.ReactNode;
@@ -37,13 +38,11 @@ const BookingDialog = ({
   const [selectedDate, setSelectedDate] = useState<Date | undefined>();
   const [selectedSlot, setSelectedSlot] = useState<string | null>(null);
   const [availableSlots, setAvailableSlots] = useState<string[]>([]);
-  const [bookedSlots, setBookedSlots] = useState<string[]>([]);
   const [submitting, setSubmitting] = useState(false);
   const [form, setForm] = useState({ name: '', email: '', phone: '', message: '' });
 
   const handleOpenChange = (newOpen: boolean) => {
     if (!newOpen) {
-      // Reset state when closing
       setStep('calendar');
       setSelectedDate(undefined);
       setSelectedSlot(null);
@@ -59,28 +58,15 @@ const BookingDialog = ({
   const controlled = open !== undefined;
   const dialogOpen = controlled ? open : isOpen;
 
-  // When date changes, compute slots and check booked ones
   useEffect(() => {
     if (!selectedDate) {
       setAvailableSlots([]);
-      setBookedSlots([]);
       setSelectedSlot(null);
       return;
     }
-
     const slots = getSlotsForDate(selectedDate);
     setAvailableSlots(slots);
     setSelectedSlot(null);
-
-    // Check which slots are already booked via edge function (no PII exposed)
-    const dateStr = format(selectedDate, 'yyyy-MM-dd');
-    supabase.functions
-      .invoke('check-availability', { body: { date: dateStr } })
-      .then(({ data }) => {
-        if (data?.bookedTimes) {
-          setBookedSlots(data.bookedTimes);
-        }
-      });
   }, [selectedDate]);
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -89,16 +75,21 @@ const BookingDialog = ({
 
     setSubmitting(true);
     try {
-      const { error } = await supabase.from('bookings' as any).insert({
-        name: form.name.trim(),
-        email: form.email.trim(),
-        phone: form.phone.trim() || null,
-        message: form.message.trim() || null,
-        preferred_date: format(selectedDate, 'yyyy-MM-dd'),
-        preferred_time: selectedSlot,
-      } as any);
+      const response = await fetch(FORMSPREE_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          name: form.name.trim(),
+          email: form.email.trim().toLowerCase(),
+          phone: form.phone.trim() || null,
+          message: form.message.trim() || null,
+          preferred_date: format(selectedDate, 'yyyy-MM-dd'),
+          preferred_time: selectedSlot,
+          form_type: 'booking',
+        }),
+      });
 
-      if (error) throw error;
+      if (!response.ok) throw new Error('Booking failed');
       setStep('confirmed');
     } catch (err: any) {
       toast({
@@ -110,8 +101,6 @@ const BookingDialog = ({
       setSubmitting(false);
     }
   };
-
-  const openSlots = availableSlots.filter(s => !bookedSlots.includes(s));
 
   return (
     <Dialog open={dialogOpen} onOpenChange={handleOpenChange}>
@@ -146,11 +135,11 @@ const BookingDialog = ({
                     <Clock className="h-3.5 w-3.5 text-muted-foreground" />
                     {format(selectedDate, 'EEEE, MMMM d')}
                   </p>
-                  {openSlots.length === 0 ? (
+                  {availableSlots.length === 0 ? (
                     <p className="text-sm text-muted-foreground">No slots available — try another date.</p>
                   ) : (
                     <div className="flex gap-2">
-                      {openSlots.map(slot => (
+                      {availableSlots.map(slot => (
                         <Button
                           key={slot}
                           variant={selectedSlot === slot ? 'default' : 'outline'}
@@ -192,31 +181,10 @@ const BookingDialog = ({
               </p>
             </DialogHeader>
             <form onSubmit={handleSubmit} className="px-6 pb-6 space-y-3">
-              <Input
-                placeholder="Full Name *"
-                value={form.name}
-                onChange={e => setForm(f => ({ ...f, name: e.target.value }))}
-                required
-              />
-              <Input
-                type="email"
-                placeholder="Email *"
-                value={form.email}
-                onChange={e => setForm(f => ({ ...f, email: e.target.value }))}
-                required
-              />
-              <Input
-                type="tel"
-                placeholder="Phone (optional)"
-                value={form.phone}
-                onChange={e => setForm(f => ({ ...f, phone: e.target.value }))}
-              />
-              <Textarea
-                placeholder="Brief message (optional)"
-                value={form.message}
-                onChange={e => setForm(f => ({ ...f, message: e.target.value }))}
-                rows={3}
-              />
+              <Input placeholder="Full Name *" value={form.name} onChange={e => setForm(f => ({ ...f, name: e.target.value }))} required />
+              <Input type="email" placeholder="Email *" value={form.email} onChange={e => setForm(f => ({ ...f, email: e.target.value }))} required />
+              <Input type="tel" placeholder="Phone (optional)" value={form.phone} onChange={e => setForm(f => ({ ...f, phone: e.target.value }))} />
+              <Textarea placeholder="Brief message (optional)" value={form.message} onChange={e => setForm(f => ({ ...f, message: e.target.value }))} rows={3} />
               <Button type="submit" className="w-full" disabled={submitting}>
                 {submitting ? 'Booking…' : 'Confirm Booking'}
               </Button>
