@@ -4,6 +4,7 @@ import Header from '@/components/Header';
 import ExecutiveHero from '@/components/ExecutiveHero';
 import ClientLogoStrip from '@/components/ClientLogoStrip';
 import ProofStat from '@/components/ProofStat';
+import TrackRecord from '@/components/TrackRecord';
 import ServicePillars from '@/components/ServicePillars';
 import FeaturedInsight from '@/components/FeaturedInsight';
 import SpecialFeatureHighlight from '@/components/SpecialFeatureHighlight';
@@ -26,6 +27,7 @@ const Index = () => {
       <ExecutiveHero />
       <ClientLogoStrip />
       <ProofStat />
+      <TrackRecord />
       <ServicePillars />
       <SpecialFeatureHighlight />
       <FeaturedInsight />
