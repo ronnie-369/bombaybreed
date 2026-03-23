@@ -27,6 +27,7 @@ const Index = () => {
       <ExecutiveHero />
       <ClientLogoStrip />
       <ProofStat />
+      <TrackRecord />
       <ServicePillars />
       <SpecialFeatureHighlight />
       <FeaturedInsight />
