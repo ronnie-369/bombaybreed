@@ -278,6 +278,33 @@ export const insights: Record<string, InsightData> = {
     ],
     midArticleCta: { type: 'flagship', flagshipSlug: 'green-jobs-india-2026', flagshipTitle: 'Jobs on the Rise 2026: India Green Jobs Outlook' },
   },
+
+  'india-ndc-3': {
+    slug: 'india-ndc-3',
+    title: 'India NDC 3.0 — Complete Visual Analysis',
+    subtitle: 'What India Promised the World at COP30',
+    contentType: 'Intelligence Brief',
+    topic: 'Regulatory Intel',
+    metaTitle: 'India NDC 3.0: Complete Visual Analysis | Bombay Breed',
+    metaDescription: "India's third Nationally Determined Contribution decoded — targets, timelines, sector pledges, and what it means for corporate India's climate strategy.",
+    metaLine: 'By Theresa Ronnie · April 2026 · 12 min read',
+    readTimeMinutes: 12,
+    publishedDate: '2026-04-01',
+    stats: [
+      { value: '45%', label: 'Emissions intensity reduction target by 2030' },
+      { value: '500 GW', label: 'Non-fossil fuel capacity commitment' },
+      { value: '2070', label: 'Net-zero target year reaffirmed' },
+    ],
+    statsSource: 'PIB Press Release 2245209; UNFCCC NDC Registry; MoEFCC',
+    executiveSummary: "India's third NDC submission marks a decisive shift from aspirational pledges to sector-specific commitments. This visual analysis decodes the full scope of India's climate promises — from the 45% emissions intensity reduction and 500 GW non-fossil capacity to nuclear expansion, forest carbon sinks, and the diplomatic architecture of climate justice. For corporate India, NDC 3.0 is the clearest regulatory signal yet.",
+    siblings: ['carbon-playbook', 'compliance-to-credibility', 'energy-transition-playbook'],
+    faq: [
+      { question: 'What is NDC 3.0?', answer: "India's third Nationally Determined Contribution under the Paris Agreement, submitted ahead of COP30, outlining enhanced climate targets for 2030 and the pathway to net-zero by 2070." },
+      { question: 'How does NDC 3.0 affect Indian businesses?', answer: 'NDC 3.0 signals tighter regulatory frameworks including CCTS expansion, enhanced BRSR requirements, and sector-specific decarbonisation mandates that directly impact compliance and capital allocation decisions.' },
+      { question: 'What are the key targets in NDC 3.0?', answer: '45% emissions intensity reduction from 2005 levels by 2030, 500 GW non-fossil fuel capacity, 50% cumulative electric power from non-fossil sources, and creation of additional carbon sink of 2.5-3 billion tonnes CO₂ equivalent.' },
+    ],
+    midArticleCta: { type: 'flagship', flagshipSlug: 'carbon-playbook', flagshipTitle: "India's Carbon Playbook" },
+  },
 };
 
 export function getInsight(slug: string): InsightData | undefined {

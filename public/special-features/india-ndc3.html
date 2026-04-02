@@ -1,0 +1,1413 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>India NDC 3.0 — Complete Visual Analysis · The Climate Desk</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  /* ═══════════════════════════════════════
+     BB BRAND TOKENS — exact from brand book
+  ═══════════════════════════════════════ */
+  :root {
+    --off-white:   #FBFBF9;   /* page background */
+    --near-black:  #0A0A0A;   /* primary text, footer bg */
+    --slate-blue:  #1A3C5B;   /* CTA, interactive accent */
+    --copper:      #C0946D;   /* section labels, numbering */
+    --gray:        #6B7280;   /* body text, secondary copy */
+    --border:      #E5E5E1;   /* dividers, card borders — 1px only */
+    --white:       #FFFFFF;   /* card background only */
+
+    /* Chart accent palette — stays within BB spirit */
+    --ndc1:        #4A7A9B;   /* muted steel blue */
+    --ndc2:        #8C6D3F;   /* warm brown — copper family */
+    --ndc3:        #1A3C5B;   /* slate blue = BB primary */
+    --actual:      #3D6B52;   /* forest green — neutral authority */
+  }
+
+  *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    background: var(--off-white);
+    color: var(--near-black);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ─── TYPE HELPERS ─── */
+  .t-section-label {
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+    font-size: 11px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--copper);
+  }
+  .t-display {
+    font-family: 'Playfair Display', serif;
+    font-weight: 400;
+    letter-spacing: -0.025em;
+  }
+  .t-display-italic {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-weight: 400;
+    letter-spacing: -0.025em;
+  }
+  .t-body {
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
+    font-size: 16px;
+    color: var(--gray);
+    line-height: 1.7;
+  }
+  .t-meta {
+    font-family: ui-monospace, 'Cascadia Code', 'Source Code Pro', monospace;
+    font-weight: 500;
+    font-size: 12px;
+    color: var(--gray);
+  }
+  .t-nav {
+    font-family: 'Inter', sans-serif;
+    font-weight: 500;
+    font-size: 14px;
+  }
+
+  /* ─── MASTHEAD ─── */
+  .masthead {
+    background: var(--near-black);
+    padding: 18px 52px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .masthead-brand {
+    font-family: 'Inter', sans-serif;
+    font-weight: 500;
+    font-size: 14px;
+    color: var(--off-white);
+    letter-spacing: 0.02em;
+  }
+  .masthead-brand span {
+    color: var(--copper);
+    margin: 0 10px;
+    font-weight: 400;
+  }
+  .masthead-meta {
+    font-family: ui-monospace, monospace;
+    font-weight: 500;
+    font-size: 12px;
+    color: rgba(251,251,249,0.4);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  /* ─── PAGE HEADER ─── */
+  .page-header {
+    background: var(--white);
+    padding: 72px 52px 64px;
+    border-bottom: 1px solid var(--border);
+  }
+  .page-header .kicker {
+    margin-bottom: 24px;
+  }
+  .page-title {
+    font-size: 54px;
+    letter-spacing: -1.35px;
+    line-height: 1.08;
+    color: var(--near-black);
+    max-width: 720px;
+    margin-bottom: 24px;
+  }
+  .page-deck {
+    font-size: 16px;
+    color: var(--gray);
+    max-width: 600px;
+    line-height: 1.75;
+    font-weight: 400;
+  }
+
+  /* ─── GLOBAL LEGEND ─── */
+  .legend-row {
+    background: var(--off-white);
+    border-bottom: 1px solid var(--border);
+    padding: 16px 52px;
+    display: flex;
+    gap: 32px;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+  .legend-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-family: ui-monospace, monospace;
+    font-size: 11px;
+    font-weight: 500;
+    color: var(--gray);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+  .legend-dot {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  /* ─── PART BANNER ─── */
+  .part-banner {
+    background: var(--near-black);
+    padding: 18px 52px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
+  .part-banner-num {
+    font-family: ui-monospace, monospace;
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--copper);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+  .part-banner-sep {
+    width: 1px; height: 20px;
+    background: rgba(255,255,255,0.15);
+    flex-shrink: 0;
+  }
+  .part-banner-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 16px;
+    font-weight: 400;
+    color: var(--off-white);
+    letter-spacing: -0.025em;
+  }
+  .part-banner.alt { background: var(--slate-blue); }
+
+  /* ─── SECTION WRAPPER ─── */
+  .section-wrap {
+    padding: 56px 52px;
+    border-bottom: 1px solid var(--border);
+  }
+  .section-wrap.bg-off { background: var(--off-white); }
+  .section-wrap.bg-white { background: var(--white); }
+
+  .section-head {
+    display: flex;
+    align-items: flex-start;
+    gap: 20px;
+    margin-bottom: 40px;
+    padding-bottom: 24px;
+    border-bottom: 1px solid var(--border);
+  }
+  .section-num-badge {
+    width: 36px; height: 36px;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+    background: var(--white);
+  }
+  .section-num-badge span {
+    font-family: 'Playfair Display', serif;
+    font-size: 15px;
+    font-weight: 400;
+    color: var(--copper);
+  }
+  .section-head-text {}
+  .section-head-label {
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+    font-size: 11px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--copper);
+    margin-bottom: 6px;
+    display: block;
+  }
+  .section-head-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 28px;
+    font-weight: 400;
+    color: var(--near-black);
+    letter-spacing: -0.7px;
+    line-height: 1.2;
+  }
+
+  /* ─── CHARTS GRID ─── */
+  .charts-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+  }
+  .charts-grid.single { grid-template-columns: 1fr; }
+
+  /* ─── CHART CARD ─── */
+  .chart-card {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 32px;
+    position: relative;
+  }
+  .chart-card.wide { grid-column: 1 / -1; }
+  .chart-card-label {
+    font-family: ui-monospace, monospace;
+    font-size: 11px;
+    font-weight: 500;
+    color: var(--copper);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+    display: block;
+  }
+  .chart-card-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 20px;
+    font-weight: 400;
+    color: var(--near-black);
+    letter-spacing: -0.5px;
+    margin-bottom: 4px;
+    line-height: 1.3;
+  }
+  .chart-card-sub {
+    font-family: ui-monospace, monospace;
+    font-size: 11px;
+    font-weight: 500;
+    color: var(--gray);
+    margin-bottom: 28px;
+    letter-spacing: 0.04em;
+    opacity: 0.75;
+  }
+
+  /* ─── BAR CHART ─── */
+  .bar-chart { display: flex; flex-direction: column; gap: 20px; }
+  .bar-group { display: flex; flex-direction: column; gap: 6px; }
+  .bar-row-label {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--copper);
+  }
+  .bar-row {
+    display: grid;
+    grid-template-columns: 1fr 56px 72px;
+    align-items: center;
+    gap: 12px;
+  }
+  .bar-track {
+    height: 28px;
+    background: var(--off-white);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    overflow: hidden;
+  }
+  .bar-fill {
+    height: 100%;
+    border-radius: 3px;
+    display: flex;
+    align-items: center;
+    padding-left: 10px;
+  }
+  .bar-fill .bar-inner-label {
+    font-family: ui-monospace, monospace;
+    font-size: 11px;
+    font-weight: 500;
+    color: rgba(255,255,255,0.85);
+  }
+  .bar-fill.f-ndc1   { background: var(--ndc1); }
+  .bar-fill.f-ndc2   { background: var(--ndc2); }
+  .bar-fill.f-ndc3   { background: var(--ndc3); }
+  .bar-fill.f-actual { background: var(--actual); }
+  .bar-value {
+    font-family: 'Playfair Display', serif;
+    font-size: 16px;
+    font-weight: 400;
+    color: var(--near-black);
+    text-align: right;
+    letter-spacing: -0.3px;
+  }
+  .bar-badge {
+    font-family: 'Inter', sans-serif;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    padding: 4px 8px;
+    border-radius: 4px;
+    text-align: center;
+  }
+  .bar-badge.achieved { background: rgba(61,107,82,0.08); color: var(--actual); border: 1px solid rgba(61,107,82,0.2); }
+  .bar-badge.target   { background: rgba(26,60,91,0.07); color: var(--slate-blue); border: 1px solid rgba(26,60,91,0.18); }
+  .bar-badge.actual-b { background: rgba(140,109,63,0.08); color: var(--ndc2); border: 1px solid rgba(140,109,63,0.2); }
+
+  /* ─── SINK CHART ─── */
+  .sink-chart { display: flex; flex-direction: column; }
+  .sink-row {
+    display: grid;
+    grid-template-columns: 100px 1fr 80px;
+    align-items: center;
+    gap: 16px;
+    padding: 12px 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .sink-row:last-child { border-bottom: none; }
+  .sink-label {
+    font-family: ui-monospace, monospace;
+    font-size: 11px;
+    font-weight: 500;
+    color: var(--gray);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    line-height: 1.4;
+  }
+  .sink-track {
+    height: 28px;
+    background: var(--off-white);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    overflow: hidden;
+  }
+  .sink-fill {
+    height: 100%;
+    border-radius: 3px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding-right: 10px;
+  }
+  .sink-fill .inner { font-family: ui-monospace, monospace; font-size: 10px; font-weight: 500; color: rgba(255,255,255,0.8); }
+  .sink-val {
+    font-family: 'Playfair Display', serif;
+    font-size: 17px;
+    font-weight: 400;
+    color: var(--near-black);
+    text-align: right;
+    letter-spacing: -0.4px;
+  }
+  .sink-note {
+    grid-column: 1 / -1;
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    font-weight: 400;
+    color: var(--copper);
+    letter-spacing: 0.02em;
+    padding: 4px 0 2px 116px;
+    font-style: italic;
+  }
+
+  /* ─── SCORECARD ─── */
+  .scorecard { display: flex; flex-direction: column; gap: 12px; }
+  .sc-row {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 16px;
+    align-items: center;
+    padding: 16px 20px;
+    background: var(--off-white);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+  }
+  .sc-label {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--copper);
+    margin-bottom: 4px;
+  }
+  .sc-value {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px;
+    font-weight: 400;
+    color: var(--near-black);
+    letter-spacing: -0.55px;
+    line-height: 1.1;
+    margin-bottom: 3px;
+  }
+  .sc-detail {
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    font-weight: 400;
+    color: var(--gray);
+    line-height: 1.5;
+  }
+  .sc-pill {
+    font-family: 'Inter', sans-serif;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    padding: 5px 10px;
+    border-radius: 6px;
+    white-space: nowrap;
+  }
+  .pill-green  { background: rgba(61,107,82,0.08); color: #3D6B52; border: 1px solid rgba(61,107,82,0.2); }
+  .pill-amber  { background: rgba(192,148,109,0.12); color: #956B3A; border: 1px solid rgba(192,148,109,0.3); }
+  .pill-red    { background: rgba(160,50,40,0.07); color: #A03228; border: 1px solid rgba(160,50,40,0.18); }
+
+  /* ─── TRAJECTORY SVG CARD ─── */
+  .traj-svg { width: 100%; height: auto; display: block; overflow: visible; }
+
+  /* ─── INSIGHT BOX ─── */
+  .insight {
+    margin-top: 24px;
+    padding: 16px 20px;
+    border-left: 2px solid var(--copper);
+    background: var(--off-white);
+  }
+  .insight p {
+    font-family: 'Playfair Display', serif;
+    font-size: 14px;
+    font-style: italic;
+    color: var(--gray);
+    line-height: 1.65;
+    letter-spacing: -0.1px;
+  }
+  .insight p strong {
+    font-style: normal;
+    color: var(--near-black);
+    font-weight: 400;
+  }
+
+  /* ═══════════════════════════════════════
+     PILLAR VISUALS
+  ═══════════════════════════════════════ */
+
+  /* QUAL STRIP */
+  .qual-strip {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    overflow: hidden;
+  }
+  .qual-cell {
+    background: var(--white);
+    padding: 28px 20px;
+    position: relative;
+    text-align: center;
+  }
+  .qual-cell::before {
+    content: attr(data-num);
+    position: absolute;
+    top: 12px; left: 14px;
+    font-family: 'Playfair Display', serif;
+    font-size: 13px;
+    color: var(--copper);
+    font-weight: 400;
+  }
+  .qual-icon { font-size: 1.6rem; display: block; margin-bottom: 12px; line-height: 1; }
+  .qual-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 14px;
+    font-weight: 400;
+    color: var(--near-black);
+    margin-bottom: 8px;
+    line-height: 1.35;
+    letter-spacing: -0.2px;
+  }
+  .qual-body {
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    font-weight: 400;
+    color: var(--gray);
+    line-height: 1.6;
+  }
+
+  /* ADAPT GRID */
+  .adapt-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    overflow: hidden;
+  }
+  .adapt-cell {
+    background: var(--white);
+    padding: 28px 24px;
+    position: relative;
+  }
+  .adapt-cell::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: var(--copper);
+    opacity: 0.35;
+  }
+  .adapt-icon { font-size: 1.5rem; display: block; margin-bottom: 14px; line-height: 1; }
+  .adapt-label {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--copper);
+    margin-bottom: 6px;
+    display: block;
+  }
+  .adapt-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 16px;
+    font-weight: 400;
+    color: var(--near-black);
+    margin-bottom: 10px;
+    line-height: 1.3;
+    letter-spacing: -0.3px;
+  }
+  .adapt-body {
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    font-weight: 400;
+    color: var(--gray);
+    line-height: 1.65;
+  }
+
+  /* ENERGY STACK */
+  .energy-stack { display: flex; flex-direction: column; border: 1px solid var(--border); border-radius: 12px; overflow: hidden; }
+  .energy-row {
+    display: grid;
+    grid-template-columns: 210px 1fr 110px;
+    border-bottom: 1px solid var(--border);
+  }
+  .energy-row:last-child { border-bottom: none; }
+  .energy-left {
+    background: var(--off-white);
+    padding: 18px 20px;
+    border-right: 1px solid var(--border);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .energy-scheme-tag {
+    font-family: 'Inter', sans-serif;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: var(--copper);
+    margin-bottom: 4px;
+  }
+  .energy-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 14px;
+    font-weight: 400;
+    color: var(--near-black);
+    line-height: 1.35;
+    letter-spacing: -0.2px;
+  }
+  .energy-mid {
+    background: var(--white);
+    padding: 18px 20px;
+    display: flex;
+    align-items: center;
+  }
+  .energy-desc {
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    font-weight: 400;
+    color: var(--gray);
+    line-height: 1.6;
+  }
+  .energy-right {
+    background: var(--off-white);
+    border-left: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 14px;
+  }
+  .energy-tag {
+    font-family: 'Inter', sans-serif;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    padding: 5px 9px;
+    border-radius: 6px;
+    text-align: center;
+    line-height: 1.4;
+  }
+  .et-scale   { background: rgba(61,107,82,0.08); color: #3D6B52; border: 1px solid rgba(61,107,82,0.2); }
+  .et-new     { background: rgba(160,50,40,0.07); color: #A03228; border: 1px solid rgba(160,50,40,0.18); }
+  .et-ind     { background: rgba(192,148,109,0.12); color: #7A5830; border: 1px solid rgba(192,148,109,0.28); }
+  .et-sec     { background: rgba(26,60,91,0.08); color: var(--slate-blue); border: 1px solid rgba(26,60,91,0.18); }
+  .et-rural   { background: rgba(61,107,82,0.08); color: #3D6B52; border: 1px solid rgba(61,107,82,0.2); }
+
+  /* GOVERNANCE CASCADE */
+  .gov-cascade { display: flex; flex-direction: column; gap: 0; border: 1px solid var(--border); border-radius: 12px; overflow: hidden; }
+  .gov-tier { display: flex; border-bottom: 1px solid var(--border); }
+  .gov-tier:last-child { border-bottom: none; }
+  .tier-label-col {
+    width: 140px;
+    flex-shrink: 0;
+    background: var(--slate-blue);
+    padding: 20px 18px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border-right: 1px solid rgba(255,255,255,0.08);
+  }
+  .tier-lv {
+    font-family: ui-monospace, monospace;
+    font-size: 10px;
+    font-weight: 500;
+    color: rgba(251,251,249,0.45);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin-bottom: 5px;
+  }
+  .tier-nm {
+    font-family: 'Playfair Display', serif;
+    font-size: 13px;
+    font-weight: 400;
+    color: var(--off-white);
+    line-height: 1.3;
+    letter-spacing: -0.1px;
+  }
+  .tier-items-row {
+    flex: 1;
+    display: flex;
+    flex-wrap: wrap;
+  }
+  .tier-item {
+    flex: 1;
+    min-width: 160px;
+    background: var(--white);
+    border-right: 1px solid var(--border);
+    padding: 18px 16px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .tier-item:last-child { border-right: none; }
+  .tier-item-name {
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--near-black);
+    line-height: 1.35;
+    margin-bottom: 3px;
+  }
+  .tier-item-sub {
+    font-family: ui-monospace, monospace;
+    font-size: 10px;
+    font-weight: 500;
+    color: var(--gray);
+    letter-spacing: 0.04em;
+    opacity: 0.75;
+  }
+  .tier-item.hi-copper { border-top: 2px solid var(--copper); }
+  .tier-item.hi-green  { border-top: 2px solid #3D6B52; }
+  .tier-item.hi-blue   { border-top: 2px solid var(--slate-blue); }
+  .tier-item.hi-rust   { border-top: 2px solid #8A4A35; }
+  .gov-arrow-row {
+    padding: 8px 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    background: var(--off-white);
+    border-bottom: 1px solid var(--border);
+  }
+  .gov-arrow-row span {
+    font-family: ui-monospace, monospace;
+    font-size: 10px;
+    font-weight: 500;
+    color: var(--copper);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+  .gov-arrow-row::before,
+  .gov-arrow-row::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+  }
+
+  /* GLOBE GRID */
+  .globe-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    overflow: hidden;
+  }
+  .globe-card {
+    background: var(--white);
+    padding: 28px 22px;
+    position: relative;
+  }
+  .globe-card::after {
+    content: attr(data-acr);
+    position: absolute;
+    bottom: 12px; right: 16px;
+    font-family: 'Playfair Display', serif;
+    font-size: 3rem;
+    font-weight: 400;
+    color: rgba(26,60,91,0.05);
+    line-height: 1;
+    pointer-events: none;
+    user-select: none;
+    letter-spacing: -1px;
+  }
+  .globe-tag {
+    font-family: 'Inter', sans-serif;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: var(--copper);
+    margin-bottom: 8px;
+    display: block;
+  }
+  .globe-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 15px;
+    font-weight: 400;
+    color: var(--near-black);
+    line-height: 1.35;
+    margin-bottom: 10px;
+    letter-spacing: -0.2px;
+  }
+  .globe-desc {
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    font-weight: 400;
+    color: var(--gray);
+    line-height: 1.65;
+  }
+  .globe-members {
+    margin-top: 12px;
+    font-family: ui-monospace, monospace;
+    font-size: 10px;
+    font-weight: 500;
+    color: var(--copper);
+    letter-spacing: 0.06em;
+  }
+
+  /* LIFE SPLIT */
+  .life-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+  }
+  .life-panel {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 36px 32px;
+    position: relative;
+    overflow: hidden;
+  }
+  .life-panel.green { border-top: 3px solid #3D6B52; }
+  .life-panel.amber { border-top: 3px solid var(--copper); }
+  .life-panel::after {
+    content: attr(data-watermark);
+    position: absolute;
+    bottom: -16px; right: -8px;
+    font-family: 'Playfair Display', serif;
+    font-size: 8rem;
+    font-weight: 400;
+    color: rgba(26,60,91,0.03);
+    line-height: 1;
+    pointer-events: none;
+    user-select: none;
+    letter-spacing: -2px;
+  }
+  .life-panel-tag {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+    display: block;
+  }
+  .life-panel.green .life-panel-tag { color: #3D6B52; }
+  .life-panel.amber .life-panel-tag { color: var(--copper); }
+  .life-panel-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px;
+    font-weight: 400;
+    color: var(--near-black);
+    margin-bottom: 14px;
+    line-height: 1.25;
+    letter-spacing: -0.55px;
+  }
+  .life-panel-body {
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+    color: var(--gray);
+    line-height: 1.7;
+  }
+  .life-list { margin-top: 20px; display: flex; flex-direction: column; gap: 12px; }
+  .life-list-item { display: flex; gap: 12px; align-items: flex-start; }
+  .life-list-dot {
+    width: 5px; height: 5px;
+    border-radius: 50%;
+    margin-top: 7px;
+    flex-shrink: 0;
+  }
+  .life-list.green-list .life-list-dot { background: #3D6B52; }
+  .life-list.amber-list .life-list-dot { background: var(--copper); }
+  .life-list-text {
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    font-weight: 400;
+    color: var(--gray);
+    line-height: 1.6;
+  }
+  .life-list-text strong {
+    font-weight: 600;
+    color: var(--near-black);
+  }
+
+  /* ─── FOOTER ─── */
+  .site-footer {
+    background: var(--near-black);
+    padding: 28px 52px;
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+  .footer-label {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--copper);
+    flex-shrink: 0;
+    padding-top: 1px;
+  }
+  .footer-sources {
+    font-family: ui-monospace, monospace;
+    font-size: 11px;
+    font-weight: 500;
+    color: rgba(251,251,249,0.3);
+    line-height: 1.7;
+    letter-spacing: 0.02em;
+  }
+
+  /* ─── DIVIDER ─── */
+  .section-divider {
+    height: 1px;
+    background: var(--border);
+    margin: 0 52px;
+  }
+
+  @media(max-width:900px){
+    .masthead,.page-header,.legend-row,.part-banner,.section-wrap,.section-divider,.site-footer{ padding-left:24px; padding-right:24px; }
+    .charts-grid{ grid-template-columns:1fr; }
+    .chart-card.wide{ grid-column:1; }
+    .qual-strip{ grid-template-columns:1fr 1fr; }
+    .adapt-grid{ grid-template-columns:1fr 1fr; }
+    .globe-grid{ grid-template-columns:1fr 1fr; }
+    .life-grid{ grid-template-columns:1fr; }
+    .energy-row{ grid-template-columns:1fr; }
+    .energy-right{ border-left:none; border-top:1px solid var(--border); }
+    .tier-items-row{ flex-direction:column; }
+  }
+</style>
+</head>
+<body>
+
+<!-- MASTHEAD -->
+<header class="masthead">
+  <div class="masthead-brand">The Climate Desk <span>|</span> Bombay Breed</div>
+  <div class="masthead-meta">NDC 3.0 Visual Analysis &nbsp;&middot;&nbsp; March 2026</div>
+</header>
+
+<!-- PAGE HEADER -->
+<div class="page-header">
+  <div class="kicker t-section-label" style="margin-bottom:24px">India's Climate Commitments &nbsp;&middot;&nbsp; Complete Review</div>
+  <h1 class="page-title t-display">Three NDC Cycles.<br><span class="t-display-italic">One Emerging Pattern.</span></h1>
+  <p class="page-deck" style="margin-top:24px">A complete visual account of India's Nationally Determined Contribution 3.0 (2031-2035): three quantitative targets tracked across all NDC cycles, and the six structural pillars the numbers alone do not capture.</p>
+</div>
+
+<!-- LEGEND -->
+<div class="legend-row">
+  <div class="legend-item"><div class="legend-dot" style="background:var(--ndc1)"></div>NDC 1.0 &nbsp;&middot;&nbsp; 2015</div>
+  <div class="legend-item"><div class="legend-dot" style="background:var(--ndc2)"></div>NDC 2.0 &nbsp;&middot;&nbsp; 2022</div>
+  <div class="legend-item"><div class="legend-dot" style="background:var(--ndc3)"></div>NDC 3.0 &nbsp;&middot;&nbsp; 2026</div>
+  <div class="legend-item"><div class="legend-dot" style="background:var(--actual)"></div>Actual / Achieved</div>
+</div>
+
+
+<!-- ════════════════════════════════
+     PART I — QUANTITATIVE TARGETS
+════════════════════════════════ -->
+<div class="part-banner">
+  <div class="part-banner-num">Part I</div>
+  <div class="part-banner-sep"></div>
+  <div class="part-banner-title">Quantitative Targets — NDC 1.0 to 3.0 Compared</div>
+</div>
+
+<div class="section-wrap bg-off">
+  <div class="charts-grid">
+
+    <!-- CHART 01: Emissions Intensity -->
+    <div class="chart-card">
+      <span class="chart-card-label">Chart 01 &nbsp;&middot;&nbsp; Mitigation</span>
+      <div class="chart-card-title t-display">Emissions Intensity Reduction</div>
+      <div class="chart-card-sub">% reduction from 2005 GDP baseline &nbsp;&middot;&nbsp; Excludes LULUCF</div>
+      <div class="bar-chart">
+        <div class="bar-group">
+          <div class="bar-row-label">NDC 1.0 &nbsp;&middot;&nbsp; Target 2030</div>
+          <div class="bar-row">
+            <div class="bar-track"><div class="bar-fill f-ndc1" style="width:0%" data-w="70%"><span class="bar-inner-label">33-35%</span></div></div>
+            <div class="bar-value">33-35%</div>
+            <div class="bar-badge achieved">Achieved</div>
+          </div>
+        </div>
+        <div class="bar-group">
+          <div class="bar-row-label">Actual Achieved &nbsp;&middot;&nbsp; 2020</div>
+          <div class="bar-row">
+            <div class="bar-track"><div class="bar-fill f-actual" style="width:0%" data-w="76.6%"></div></div>
+            <div class="bar-value" style="color:var(--actual)">36%</div>
+            <div class="bar-badge actual-b">Actual</div>
+          </div>
+        </div>
+        <div class="bar-group">
+          <div class="bar-row-label">NDC 2.0 &nbsp;&middot;&nbsp; Target 2030</div>
+          <div class="bar-row">
+            <div class="bar-track"><div class="bar-fill f-ndc2" style="width:0%" data-w="95.7%"></div></div>
+            <div class="bar-value">45%</div>
+            <div class="bar-badge target">Target</div>
+          </div>
+        </div>
+        <div class="bar-group">
+          <div class="bar-row-label">NDC 3.0 &nbsp;&middot;&nbsp; Target 2035</div>
+          <div class="bar-row">
+            <div class="bar-track"><div class="bar-fill f-ndc3" style="width:0%" data-w="100%"></div></div>
+            <div class="bar-value">47%</div>
+            <div class="bar-badge target">Target</div>
+          </div>
+        </div>
+      </div>
+      <div class="insight"><p>NDC 3.0 adds only <strong>2 percentage points</strong> above NDC 2.0's target, while India was already at 36% in 2020 — well ahead of the prior commitment's pace.</p></div>
+    </div>
+
+    <!-- CHART 02: Non-Fossil Power -->
+    <div class="chart-card">
+      <span class="chart-card-label">Chart 02 &nbsp;&middot;&nbsp; Energy</span>
+      <div class="chart-card-title t-display">Non-Fossil Power Capacity</div>
+      <div class="chart-card-sub">% of cumulative installed electricity capacity</div>
+      <div class="bar-chart">
+        <div class="bar-group">
+          <div class="bar-row-label">NDC 1.0 &nbsp;&middot;&nbsp; Target 2030</div>
+          <div class="bar-row">
+            <div class="bar-track"><div class="bar-fill f-ndc1" style="width:0%" data-w="66.7%"></div></div>
+            <div class="bar-value">40%</div>
+            <div class="bar-badge achieved">Achieved</div>
+          </div>
+        </div>
+        <div class="bar-group">
+          <div class="bar-row-label">Actual &nbsp;&middot;&nbsp; February 2026</div>
+          <div class="bar-row">
+            <div class="bar-track"><div class="bar-fill f-actual" style="width:0%" data-w="87.6%"></div></div>
+            <div class="bar-value" style="color:var(--actual)">52.6%</div>
+            <div class="bar-badge actual-b">Actual</div>
+          </div>
+        </div>
+        <div class="bar-group">
+          <div class="bar-row-label">NDC 2.0 &nbsp;&middot;&nbsp; Target 2030</div>
+          <div class="bar-row">
+            <div class="bar-track"><div class="bar-fill f-ndc2" style="width:0%" data-w="83.3%"></div></div>
+            <div class="bar-value">50%</div>
+            <div class="bar-badge achieved">Achieved</div>
+          </div>
+        </div>
+        <div class="bar-group">
+          <div class="bar-row-label">NDC 3.0 &nbsp;&middot;&nbsp; Target 2035</div>
+          <div class="bar-row">
+            <div class="bar-track"><div class="bar-fill f-ndc3" style="width:0%" data-w="100%"></div></div>
+            <div class="bar-value">60%</div>
+            <div class="bar-badge target">Target</div>
+          </div>
+        </div>
+      </div>
+      <div class="insight"><p>At 52.6% today, India needs only <strong>7.4 percentage points more</strong> to meet its 2035 NDC 3.0 target — with nine years remaining. The NDC 2.0 target was surpassed five years early.</p></div>
+    </div>
+
+    <!-- CHART 03: Carbon Sink -->
+    <div class="chart-card">
+      <span class="chart-card-label">Chart 03 &nbsp;&middot;&nbsp; Land Use</span>
+      <div class="chart-card-title t-display">Carbon Sink Target</div>
+      <div class="chart-card-sub">Billion tonnes CO₂ equivalent &nbsp;&middot;&nbsp; Forest and tree cover &nbsp;&middot;&nbsp; From 2005 baseline</div>
+      <div class="sink-chart">
+        <div class="sink-row">
+          <div class="sink-label">NDC 1.0<br>2015 / 2030</div>
+          <div class="sink-track"><div class="sink-fill" style="width:0%;background:var(--ndc1)" data-w="62.5%"><span class="inner">2.5-3 Bn t</span></div></div>
+          <div class="sink-val" style="color:var(--ndc1)">2.5-3.0</div>
+        </div>
+        <div class="sink-row">
+          <div class="sink-label">NDC 2.0<br>2022 / 2030</div>
+          <div class="sink-track"><div class="sink-fill" style="width:0%;background:var(--ndc2)" data-w="62.5%"><span class="inner">2.5-3 Bn t</span></div></div>
+          <div class="sink-val" style="color:var(--ndc2)">2.5-3.0</div>
+        </div>
+        <div class="sink-note">Unchanged from NDC 1.0 — frozen for 11 years</div>
+        <div class="sink-row">
+          <div class="sink-label">Actual<br>2021 / MoEFCC</div>
+          <div class="sink-track"><div class="sink-fill" style="width:0%;background:var(--actual)" data-w="57.25%"><span class="inner">2.29 Bn t</span></div></div>
+          <div class="sink-val" style="color:var(--actual)">2.29</div>
+        </div>
+        <div class="sink-row">
+          <div class="sink-label">NDC 3.0<br>2026 / 2035</div>
+          <div class="sink-track"><div class="sink-fill" style="width:0%;background:var(--ndc3)" data-w="93.75%"><span class="inner">3.5-4 Bn t</span></div></div>
+          <div class="sink-val" style="color:var(--ndc3)">3.5-4.0</div>
+        </div>
+      </div>
+      <div class="insight"><p>The carbon sink is the <strong>only target with a substantive revision</strong> in NDC 3.0: a 40% increase after NDC 2.0 left it entirely unchanged from the 2015 original.</p></div>
+    </div>
+
+    <!-- CHART 04: Scorecard -->
+    <div class="chart-card">
+      <span class="chart-card-label">Chart 04 &nbsp;&middot;&nbsp; Ambition Scorecard</span>
+      <div class="chart-card-title t-display">NDC 3.0 — Status of All Commitments</div>
+      <div class="chart-card-sub">Current status against each dimension of India's NDC 3.0</div>
+      <div class="scorecard">
+        <div class="sc-row">
+          <div><div class="sc-label">Emissions Intensity</div><div class="sc-value t-display">47%</div><div class="sc-detail">Target by 2035 &nbsp;&middot;&nbsp; At 36% in 2020 &nbsp;&middot;&nbsp; Pace required: approx. 1.1pp per year</div></div>
+          <div class="sc-pill pill-amber">Achievable</div>
+        </div>
+        <div class="sc-row">
+          <div><div class="sc-label">Non-Fossil Power Capacity</div><div class="sc-value t-display">60%</div><div class="sc-detail">Target by 2035 &nbsp;&middot;&nbsp; At 52.6% today &nbsp;&middot;&nbsp; Gap: 7.4pp over 9 years</div></div>
+          <div class="sc-pill pill-green">Near Achieved</div>
+        </div>
+        <div class="sc-row">
+          <div><div class="sc-label">Carbon Sink</div><div class="sc-value t-display">3.5-4.0 Bn t</div><div class="sc-detail">Target by 2035 &nbsp;&middot;&nbsp; At 2.29Bn t in 2021 &nbsp;&middot;&nbsp; FAO ranks India 3rd net gain</div></div>
+          <div class="sc-pill pill-amber">On Track</div>
+        </div>
+        <div class="sc-row">
+          <div><div class="sc-label">Absolute Emissions Cap</div><div class="sc-value t-display">None</div><div class="sc-detail">No economy-wide GHG target in any NDC version &nbsp;&middot;&nbsp; Flagged by Climate Action Tracker</div></div>
+          <div class="sc-pill pill-red">Absent</div>
+        </div>
+        <div class="sc-row">
+          <div><div class="sc-label">Net Zero Commitment</div><div class="sc-value t-display">2070</div><div class="sc-detail">Announced COP26 &nbsp;&middot;&nbsp; Not included in formal NDC text across all three versions</div></div>
+          <div class="sc-pill pill-amber">Informal</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CHART 05: Trajectory (wide) -->
+    <div class="chart-card wide">
+      <span class="chart-card-label">Chart 05 &nbsp;&middot;&nbsp; Trajectory Analysis</span>
+      <div class="chart-card-title t-display">The Ambition-Reality Gap — Non-Fossil Capacity Across Three NDC Cycles</div>
+      <div class="chart-card-sub">Actual trajectory (solid) vs. NDC target lines (dashed) &nbsp;&middot;&nbsp; 2005-2035</div>
+      <svg class="traj-svg" viewBox="0 0 880 260" preserveAspectRatio="xMidYMid meet">
+        <defs>
+          <linearGradient id="areaGrad" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#3D6B52" stop-opacity="0.12"/>
+            <stop offset="100%" stop-color="#3D6B52" stop-opacity="0.01"/>
+          </linearGradient>
+        </defs>
+        <!-- Grid lines -->
+        <line x1="72" y1="20"  x2="72"  y2="215" stroke="#E5E5E1" stroke-width="1"/>
+        <line x1="72" y1="20"  x2="862" y2="20"  stroke="#E5E5E1" stroke-width="1" stroke-dasharray="4,6"/>
+        <line x1="72" y1="68"  x2="862" y2="68"  stroke="#E5E5E1" stroke-width="1" stroke-dasharray="4,6"/>
+        <line x1="72" y1="116" x2="862" y2="116" stroke="#E5E5E1" stroke-width="1" stroke-dasharray="4,6"/>
+        <line x1="72" y1="164" x2="862" y2="164" stroke="#E5E5E1" stroke-width="1" stroke-dasharray="4,6"/>
+        <line x1="72" y1="215" x2="862" y2="215" stroke="#E5E5E1" stroke-width="1"/>
+        <!-- Y labels -->
+        <text x="60" y="24"  text-anchor="end" fill="#6B7280" font-family="ui-monospace,monospace" font-size="10" font-weight="500">60%</text>
+        <text x="60" y="72"  text-anchor="end" fill="#6B7280" font-family="ui-monospace,monospace" font-size="10" font-weight="500">50%</text>
+        <text x="60" y="120" text-anchor="end" fill="#6B7280" font-family="ui-monospace,monospace" font-size="10" font-weight="500">40%</text>
+        <text x="60" y="168" text-anchor="end" fill="#6B7280" font-family="ui-monospace,monospace" font-size="10" font-weight="500">30%</text>
+        <text x="60" y="219" text-anchor="end" fill="#6B7280" font-family="ui-monospace,monospace" font-size="10" font-weight="500">20%</text>
+        <!-- X labels — 2005=72, 2015=232, 2020=392, 2026=552, 2030=712, 2035=862 -->
+        <text x="72"  y="235" text-anchor="middle" fill="#6B7280" font-family="ui-monospace,monospace" font-size="10" font-weight="500">2005</text>
+        <text x="232" y="235" text-anchor="middle" fill="#6B7280" font-family="ui-monospace,monospace" font-size="10" font-weight="500">2015</text>
+        <text x="392" y="235" text-anchor="middle" fill="#6B7280" font-family="ui-monospace,monospace" font-size="10" font-weight="500">2020</text>
+        <text x="552" y="235" text-anchor="middle" fill="#6B7280" font-family="ui-monospace,monospace" font-size="10" font-weight="500">2026</text>
+        <text x="712" y="235" text-anchor="middle" fill="#6B7280" font-family="ui-monospace,monospace" font-size="10" font-weight="500">2030</text>
+        <text x="862" y="235" text-anchor="middle" fill="#6B7280" font-family="ui-monospace,monospace" font-size="10" font-weight="500">2035</text>
+        <!-- y = 215 - ((val-20)/40)*195 | 25%=189 32%=155 40%=116 52.6%=55 -->
+        <!-- Actual area -->
+        <polygon points="72,189 232,155 392,116 552,55 552,215 72,215" fill="url(#areaGrad)"/>
+        <!-- Actual line -->
+        <polyline points="72,189 232,155 392,116 552,55" fill="none" stroke="#3D6B52" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/>
+        <!-- NDC1: 40% by 2030 = (712,116) -->
+        <line x1="232" y1="215" x2="712" y2="116" stroke="#4A7A9B" stroke-width="1.5" stroke-dasharray="6,4" opacity="0.7"/>
+        <!-- NDC2: 50% by 2030 = (712,68) -->
+        <line x1="392" y1="116" x2="712" y2="68" stroke="#8C6D3F" stroke-width="1.5" stroke-dasharray="6,4" opacity="0.7"/>
+        <!-- NDC3: 60% by 2035 = (862,20) -->
+        <line x1="552" y1="55" x2="862" y2="20" stroke="#1A3C5B" stroke-width="2" stroke-dasharray="8,4" opacity="0.85"/>
+        <!-- Endpoint dots -->
+        <circle cx="552" cy="55" r="5" fill="#3D6B52" stroke="#FBFBF9" stroke-width="2"/>
+        <circle cx="862" cy="20" r="5" fill="#1A3C5B" stroke="#FBFBF9" stroke-width="2"/>
+        <circle cx="712" cy="116" r="4" fill="#4A7A9B" stroke="#FBFBF9" stroke-width="2"/>
+        <circle cx="712" cy="68"  r="4" fill="#8C6D3F" stroke="#FBFBF9" stroke-width="2"/>
+        <!-- Inline labels -->
+        <text x="564" y="50"  fill="#3D6B52" font-family="ui-monospace,monospace" font-size="10" font-weight="500">52.6% today</text>
+        <text x="720" y="112" fill="#4A7A9B" font-family="ui-monospace,monospace" font-size="9"  font-weight="500">NDC 1: 40%</text>
+        <text x="720" y="64"  fill="#8C6D3F" font-family="ui-monospace,monospace" font-size="9"  font-weight="500">NDC 2: 50%</text>
+        <text x="720" y="17"  fill="#1A3C5B" font-family="ui-monospace,monospace" font-size="9"  font-weight="500">NDC 3: 60%</text>
+        <!-- Milestone verticals -->
+        <line x1="232" y1="20" x2="232" y2="220" stroke="#4A7A9B" stroke-width="1" stroke-dasharray="3,5" opacity="0.35"/>
+        <text x="236" y="249" fill="#4A7A9B" font-family="ui-monospace,monospace" font-size="9">NDC 1.0</text>
+        <line x1="392" y1="20" x2="392" y2="220" stroke="#8C6D3F" stroke-width="1" stroke-dasharray="3,5" opacity="0.35"/>
+        <text x="340" y="249" fill="#8C6D3F" font-family="ui-monospace,monospace" font-size="9">NDC 2.0 (2022)</text>
+        <line x1="552" y1="20" x2="552" y2="220" stroke="#1A3C5B" stroke-width="1" stroke-dasharray="3,5" opacity="0.35"/>
+        <text x="500" y="249" fill="#1A3C5B" font-family="ui-monospace,monospace" font-size="9">NDC 3.0 (2026)</text>
+        <!-- Y-axis title -->
+        <text x="16" y="118" text-anchor="middle" fill="#C0946D" font-family="ui-monospace,monospace" font-size="9" font-weight="500" transform="rotate(-90,16,118)" letter-spacing="2">NON-FOSSIL %</text>
+      </svg>
+      <div style="display:flex;gap:24px;margin-top:16px;flex-wrap:wrap;align-items:center">
+        <div style="display:flex;align-items:center;gap:8px"><div style="width:20px;height:2.5px;background:#3D6B52;border-radius:2px"></div><span style="font-family:ui-monospace,monospace;font-size:11px;font-weight:500;color:var(--gray);text-transform:uppercase;letter-spacing:0.08em">Actual trajectory</span></div>
+        <div style="display:flex;align-items:center;gap:8px"><div style="width:20px;height:0;border-top:1.5px dashed var(--gray)"></div><span style="font-family:ui-monospace,monospace;font-size:11px;font-weight:500;color:var(--gray);text-transform:uppercase;letter-spacing:0.08em">NDC target lines (dashed)</span></div>
+      </div>
+      <div class="insight"><p>In each NDC cycle, <strong>actual performance outran stated targets before the deadline</strong>. NDC 3.0's 60% non-fossil goal was effectively within reach at the moment of announcement. India consistently sets its NDCs as a floor, not a ceiling.</p></div>
+    </div>
+
+  </div><!-- /charts-grid -->
+</div><!-- /section-wrap -->
+
+
+<!-- ════════════════════════════════
+     PART II — STRUCTURAL PILLARS
+════════════════════════════════ -->
+<div class="part-banner alt">
+  <div class="part-banner-num">Part II</div>
+  <div class="part-banner-sep"></div>
+  <div class="part-banner-title">Structural Pillars — What the Numbers Don't Show</div>
+</div>
+
+<!-- PILLAR A -->
+<div class="section-wrap bg-white">
+  <div class="section-head">
+    <div class="section-num-badge"><span>A</span></div>
+    <div class="section-head-text">
+      <span class="section-head-label">Qualitative Commitments</span>
+      <div class="section-head-title t-display">The Five Targets Behind the Numbers</div>
+    </div>
+  </div>
+  <div class="qual-strip">
+    <div class="qual-cell" data-num="01"><span class="qual-icon">🌱</span><div class="qual-title t-display">Sustainable Living</div><div class="qual-body">Embed sustainability into everyday life and governance systems at all levels of administration</div></div>
+    <div class="qual-cell" data-num="02"><span class="qual-icon">🛡️</span><div class="qual-title t-display">Climate-Resilient Development</div><div class="qual-body">Promote resilient development pathways across all key sectors of the economy</div></div>
+    <div class="qual-cell" data-num="03"><span class="qual-icon">⚖️</span><div class="qual-title t-display">Just and Inclusive Transition</div><div class="qual-body">Ensure no section of society is left behind in the green transition</div></div>
+    <div class="qual-cell" data-num="04"><span class="qual-icon">👩‍🔬</span><div class="qual-title t-display">Youth and Women as Partners</div><div class="qual-body">Generate green employment; make youth and women central partners in the transition</div></div>
+    <div class="qual-cell" data-num="05"><span class="qual-icon">🤝</span><div class="qual-title t-display">CBDR-RC and Equity</div><div class="qual-body">Uphold common but differentiated responsibilities; demand international climate finance as a precondition for higher ambition</div></div>
+  </div>
+</div>
+
+<div class="section-divider"></div>
+
+<!-- PILLAR B -->
+<div class="section-wrap bg-off">
+  <div class="section-head">
+    <div class="section-num-badge"><span>B</span></div>
+    <div class="section-head-text">
+      <span class="section-head-label">Climate Adaptation</span>
+      <div class="section-head-title t-display">Six Frontlines of Resilience</div>
+    </div>
+  </div>
+  <div class="adapt-grid">
+    <div class="adapt-cell"><span class="adapt-icon">🌴</span><span class="adapt-label">Coastal and Marine</span><div class="adapt-title t-display">Shoreline Protection</div><div class="adapt-body">Mangrove restoration via MISHTI scheme, coastal regulation zones, and climate-resilient infrastructure defending vulnerable communities from sea-level rise and storm surge.</div></div>
+    <div class="adapt-cell"><span class="adapt-icon">🌀</span><span class="adapt-label">Extreme Weather</span><div class="adapt-title t-display">Early Warning Systems</div><div class="adapt-body">Expanded cyclone and storm surge early warning infrastructure. National Disaster Management Plan operationalised at community level with preparedness programmes nationwide.</div></div>
+    <div class="adapt-cell"><span class="adapt-icon">🏔️</span><span class="adapt-label">Himalayan Ecosystem</span><div class="adapt-title t-display">Glacier and GLOF Risk</div><div class="adapt-body">Targeted programmes for glacier monitoring, biodiversity conservation, sustainable livelihoods, and climate-resilient infrastructure against landslides and glacial lake outburst floods.</div></div>
+    <div class="adapt-cell"><span class="adapt-icon">🌡️</span><span class="adapt-label">Urban Heat</span><div class="adapt-title t-display">Heat Action Plans</div><div class="adapt-body">State-level Heat Action Plans implemented across all states. Sustainable Habitat Mission integrates heat resilience into urban planning, building standards, and city governance.</div></div>
+    <div class="adapt-cell"><span class="adapt-icon">🌾</span><span class="adapt-label">Food and Water Security</span><div class="adapt-title t-display">Agricultural Resilience</div><div class="adapt-body">National Mission on Sustainable Agriculture, Soil Health Card, PM Krishi Sinchayee Yojana, and Jal Jeevan Mission combine to protect food and water systems under climate stress.</div></div>
+    <div class="adapt-cell"><span class="adapt-icon">🏘️</span><span class="adapt-label">Community Level</span><div class="adapt-title t-display">Grassroots Preparedness</div><div class="adapt-body">Community-based disaster preparedness through State Action Plans on Climate Change (SAPCC), reaching local governance structures and the most vulnerable populations directly.</div></div>
+  </div>
+</div>
+
+<div class="section-divider"></div>
+
+<!-- PILLAR C -->
+<div class="section-wrap bg-white">
+  <div class="section-head">
+    <div class="section-num-badge"><span>C</span></div>
+    <div class="section-head-text">
+      <span class="section-head-label">Clean Energy Delivery</span>
+      <div class="section-head-title t-display">The Seven Policy Vehicles</div>
+    </div>
+  </div>
+  <div class="energy-stack">
+    <div class="energy-row">
+      <div class="energy-left"><div class="energy-scheme-tag">Green Hydrogen</div><div class="energy-name t-display">National Green Hydrogen Mission</div></div>
+      <div class="energy-mid"><div class="energy-desc">Targets 5 million tonnes annual production by 2030 with a ₹19,744 Cr allocation. Positions India as a global green hydrogen export hub and decarbonises hard-to-abate sectors including steel, fertilisers, and heavy transport.</div></div>
+      <div class="energy-right"><div class="energy-tag et-new">Nascent<br>High Stakes</div></div>
+    </div>
+    <div class="energy-row">
+      <div class="energy-left"><div class="energy-scheme-tag">Rooftop Solar</div><div class="energy-name t-display">PM Surya Ghar: Muft Bijli Yojana</div></div>
+      <div class="energy-mid"><div class="energy-desc">Subsidised rooftop solar across 10 million households. Installations doubled in FY2023-24; cumulative capacity reached 22 GW. Directly drives the non-fossil 60% target at the household level.</div></div>
+      <div class="energy-right"><div class="energy-tag et-scale">Scaling Fast</div></div>
+    </div>
+    <div class="energy-row">
+      <div class="energy-left"><div class="energy-scheme-tag">Manufacturing</div><div class="energy-name t-display">PLI Schemes for Clean Technology</div></div>
+      <div class="energy-mid"><div class="energy-desc">Production Linked Incentive schemes covering solar PV modules, advanced chemistry batteries, and EVs. Reduces import dependence while building a domestic clean technology industrial base.</div></div>
+      <div class="energy-right"><div class="energy-tag et-ind">Industrial</div></div>
+    </div>
+    <div class="energy-row">
+      <div class="energy-left"><div class="energy-scheme-tag">Agriculture and Solar</div><div class="energy-name t-display">PM-KUSUM</div></div>
+      <div class="energy-mid"><div class="energy-desc">Solarises 3.5 million agricultural pumps and installs distributed solar capacity on barren land, reducing diesel use and grid load in rural areas — bridging clean energy with agricultural resilience.</div></div>
+      <div class="energy-right"><div class="energy-tag et-rural">Rural Reach</div></div>
+    </div>
+    <div class="energy-row">
+      <div class="energy-left"><div class="energy-scheme-tag">Hard-to-Abate</div><div class="energy-name t-display">Carbon Capture, Utilization and Storage (CCUS)</div></div>
+      <div class="energy-mid"><div class="energy-desc">First formal NDC mention of CCUS as a technology pathway. Signals intent to decarbonise cement, steel, and refining — sectors where direct electrification remains technically or economically constrained at present.</div></div>
+      <div class="energy-right"><div class="energy-tag et-new">New in NDC 3.0</div></div>
+    </div>
+    <div class="energy-row">
+      <div class="energy-left"><div class="energy-scheme-tag">Baseload Clean Power</div><div class="energy-name t-display">Nuclear Energy Expansion</div></div>
+      <div class="energy-mid"><div class="energy-desc">Nuclear explicitly named in the non-fossil mix for the first time. Currently approximately 7 GW; Nuclear Power Corporation targets 22 GW by 2031. Provides dispatchable zero-carbon baseload to complement variable renewables.</div></div>
+      <div class="energy-right"><div class="energy-tag et-sec">Energy Security</div></div>
+    </div>
+    <div class="energy-row">
+      <div class="energy-left"><div class="energy-scheme-tag">Grid Infrastructure</div><div class="energy-name t-display">Battery Storage and Green Energy Corridors</div></div>
+      <div class="energy-mid"><div class="energy-desc">Large-scale battery energy storage systems and dedicated green energy transmission corridors to integrate high shares of variable renewables without grid instability — the essential enabling layer for the 60% target.</div></div>
+      <div class="energy-right"><div class="energy-tag et-ind">Enabling Infra</div></div>
+    </div>
+  </div>
+</div>
+
+<div class="section-divider"></div>
+
+<!-- PILLAR D -->
+<div class="section-wrap bg-off">
+  <div class="section-head">
+    <div class="section-num-badge"><span>D</span></div>
+    <div class="section-head-text">
+      <span class="section-head-label">Implementation Architecture</span>
+      <div class="section-head-title t-display">How India Operationalises Its NDC</div>
+    </div>
+  </div>
+  <div class="gov-cascade">
+    <div class="gov-tier">
+      <div class="tier-label-col"><div class="tier-lv">Tier 1</div><div class="tier-nm t-display">National Framework</div></div>
+      <div class="tier-items-row">
+        <div class="tier-item hi-copper"><div class="tier-item-name">National Action Plan on Climate Change (NAPCC)</div><div class="tier-item-sub">Apex coordination framework &nbsp;&middot;&nbsp; Enacted 2008 &nbsp;&middot;&nbsp; Covers 9 national missions</div></div>
+        <div class="tier-item hi-copper"><div class="tier-item-name">NITI Aayog — 10 Working Groups</div><div class="tier-item-sub">Led NDC 3.0 consultations &nbsp;&middot;&nbsp; Ministries, industry, civil society, domain experts</div></div>
+      </div>
+    </div>
+    <div class="gov-arrow-row"><span>flows into</span></div>
+    <div class="gov-tier">
+      <div class="tier-label-col"><div class="tier-lv">Tier 2</div><div class="tier-nm t-display">Nine National Missions</div></div>
+      <div class="tier-items-row">
+        <div class="tier-item hi-green"><div class="tier-item-name">Solar Energy</div><div class="tier-item-sub">JNNSM &nbsp;&middot;&nbsp; 500 GW by 2030</div></div>
+        <div class="tier-item hi-green"><div class="tier-item-name">Enhanced Energy Efficiency</div><div class="tier-item-sub">BEE &nbsp;&middot;&nbsp; PAT scheme</div></div>
+        <div class="tier-item hi-green"><div class="tier-item-name">Sustainable Habitat</div><div class="tier-item-sub">Green buildings &nbsp;&middot;&nbsp; Urban heat</div></div>
+        <div class="tier-item hi-green"><div class="tier-item-name">Water and Agriculture</div><div class="tier-item-sub">PMKSY &nbsp;&middot;&nbsp; Soil health</div></div>
+        <div class="tier-item hi-green"><div class="tier-item-name">Himalayan and Strategic Knowledge</div><div class="tier-item-sub">Forestry &nbsp;&middot;&nbsp; Biodiversity &nbsp;&middot;&nbsp; 4 further missions</div></div>
+      </div>
+    </div>
+    <div class="gov-arrow-row"><span>implemented by</span></div>
+    <div class="gov-tier">
+      <div class="tier-label-col"><div class="tier-lv">Tier 3</div><div class="tier-nm t-display">State Action Plans</div></div>
+      <div class="tier-items-row">
+        <div class="tier-item hi-blue"><div class="tier-item-name">State Action Plans on Climate Change (SAPCC)</div><div class="tier-item-sub">All 28 states and 8 UTs &nbsp;&middot;&nbsp; Localised adaptation and mitigation plans</div></div>
+        <div class="tier-item hi-blue"><div class="tier-item-name">Heat Action Plans</div><div class="tier-item-sub">State-level extreme heat response protocols</div></div>
+        <div class="tier-item hi-blue"><div class="tier-item-name">State Disaster Management Plans</div><div class="tier-item-sub">NDMA and state bodies &nbsp;&middot;&nbsp; Community preparedness</div></div>
+      </div>
+    </div>
+    <div class="gov-arrow-row"><span>delivered through</span></div>
+    <div class="gov-tier">
+      <div class="tier-label-col"><div class="tier-lv">Tier 4</div><div class="tier-nm t-display">Local Delivery Schemes</div></div>
+      <div class="tier-items-row">
+        <div class="tier-item hi-rust"><div class="tier-item-name">Jal Jeevan Mission</div><div class="tier-item-sub">Safe water &nbsp;&middot;&nbsp; Climate-resilient supply</div></div>
+        <div class="tier-item hi-rust"><div class="tier-item-name">MISHTI</div><div class="tier-item-sub">Mangrove restoration &nbsp;&middot;&nbsp; Coastal livelihoods</div></div>
+        <div class="tier-item hi-rust"><div class="tier-item-name">Soil Health Card</div><div class="tier-item-sub">Sustainable agriculture</div></div>
+        <div class="tier-item hi-rust"><div class="tier-item-name">PM-KUSUM</div><div class="tier-item-sub">Solar agri-pumps &nbsp;&middot;&nbsp; Rural energy</div></div>
+        <div class="tier-item hi-rust"><div class="tier-item-name">Ek Ped Maa Ke Naam</div><div class="tier-item-sub">Mass tree plantation &nbsp;&middot;&nbsp; Carbon sink target</div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="section-divider"></div>
+
+<!-- PILLAR E -->
+<div class="section-wrap bg-white">
+  <div class="section-head">
+    <div class="section-num-badge"><span>E</span></div>
+    <div class="section-head-text">
+      <span class="section-head-label">International Climate Leadership</span>
+      <div class="section-head-title t-display">India's Four Global Coalitions</div>
+    </div>
+  </div>
+  <div class="globe-grid">
+    <div class="globe-card" data-acr="ISA"><span class="globe-tag">Founded 2015 &nbsp;&middot;&nbsp; Headquarters: Gurugram</span><div class="globe-name t-display">International Solar Alliance</div><div class="globe-desc">India's flagship multilateral initiative, co-founded with France at COP21. Mobilises solar finance and technology transfer for tropical nations. Targets $1 trillion in solar investments by 2030 across member countries.</div><div class="globe-members">124 member countries</div></div>
+    <div class="globe-card" data-acr="CDRI"><span class="globe-tag">Founded 2019 &nbsp;&middot;&nbsp; COP25</span><div class="globe-name t-display">Coalition for Disaster Resilient Infrastructure</div><div class="globe-desc">Co-founded with the United Kingdom. Promotes standards and financing for infrastructure that withstands climate shocks — directly supporting NDC 3.0's emphasis on climate-resilient development.</div><div class="globe-members">39 countries &nbsp;&middot;&nbsp; 7 international organisations</div></div>
+    <div class="globe-card" data-acr="GBA"><span class="globe-tag">Founded 2023 &nbsp;&middot;&nbsp; India G20 Presidency</span><div class="globe-name t-display">Global Biofuel Alliance</div><div class="globe-desc">Launched at India's G20 summit. Accelerates global biofuel adoption to decarbonise transport and aviation. Links to India's 20% ethanol blending programme and sustainable aviation fuel roadmap.</div><div class="globe-members">22 countries &nbsp;&middot;&nbsp; 12 international organisations</div></div>
+    <div class="globe-card" data-acr="LIT"><span class="globe-tag">Founded 2019 &nbsp;&middot;&nbsp; COP25</span><div class="globe-name t-display">Leadership Group for Industry Transition (Lead-IT)</div><div class="globe-desc">Co-led with Sweden. Decarbonises hard-to-abate sectors: steel, cement, chemicals, aluminium. A critical link to NDC 3.0's first explicit mention of CCUS as India's tool for industrial decarbonisation.</div><div class="globe-members">40+ industry and government members</div></div>
+  </div>
+</div>
+
+<div class="section-divider"></div>
+
+<!-- PILLAR F -->
+<div class="section-wrap bg-off">
+  <div class="section-head">
+    <div class="section-num-badge"><span>F</span></div>
+    <div class="section-head-text">
+      <span class="section-head-label">Normative Foundations</span>
+      <div class="section-head-title t-display">The Vision That Frames Everything</div>
+    </div>
+  </div>
+  <div class="life-grid">
+    <div class="life-panel green" data-watermark="LiFE">
+      <span class="life-panel-tag">People's Movement</span>
+      <div class="life-panel-title t-display">Lifestyle for Environment (LiFE)</div>
+      <div class="life-panel-body">Introduced at COP26 by Prime Minister Modi, LiFE is India's attempt to embed climate consciousness into daily behaviour at mass scale. It rejects conspicuous consumption and invokes traditional Indian values of conservation and moderation as cultural anchors for sustainable living.</div>
+      <div class="life-list green-list">
+        <div class="life-list-item"><div class="life-list-dot"></div><div class="life-list-text"><strong>Mission LiFE</strong> — Targets mobilisation of 1 billion people by 2028 through behavioural nudges: reduce single-use plastic, save energy, choose sustainable products</div></div>
+        <div class="life-list-item"><div class="life-list-dot"></div><div class="life-list-text"><strong>Ek Ped Maa Ke Naam</strong> — "One Tree in Mother's Name." Mass tree plantation reframed as an emotional, cultural act to drive the 3.5-4 billion tonne carbon sink target from the ground up</div></div>
+        <div class="life-list-item"><div class="life-list-dot"></div><div class="life-list-text"><strong>Green Credits Programme</strong> — Voluntary market mechanism rewarding individuals, communities, and industries for pro-environment actions including tree planting and water conservation</div></div>
+      </div>
+    </div>
+    <div class="life-panel amber" data-watermark="2047">
+      <span class="life-panel-tag">Strategic Horizon</span>
+      <div class="life-panel-title t-display">Viksit Bharat @2047 and Net Zero 2070</div>
+      <div class="life-panel-body">NDC 3.0 is explicitly framed not as a standalone climate document, but as a waypoint in two longer arcs: Viksit Bharat (Developed India) by 2047 — India's centenary of independence — and net zero by 2070. For investors and carbon market participants, this frames India's climate action as structurally permanent, not politically contingent.</div>
+      <div class="life-list amber-list">
+        <div class="life-list-item"><div class="life-list-dot"></div><div class="life-list-text"><strong>NDC 3.0 (2031-35)</strong> is the second leg of a four-step ladder: NDC 1.0, NDC 2.0, NDC 3.0, Net Zero 2070 — each rung set to be higher but achievable under the existing trajectory</div></div>
+        <div class="life-list-item"><div class="life-list-dot"></div><div class="life-list-text"><strong>Climate Justice framing</strong> — CBDR-RC is treated as non-negotiable: developed countries must provide new and additional financial resources. International climate finance is stated as a formal condition for higher ambition</div></div>
+        <div class="life-list-item"><div class="life-list-dot"></div><div class="life-list-text"><strong>Global Stocktake (GST 2023) formally incorporated</strong> — The first Indian NDC to acknowledge GST findings and respond to the gap between collective ambition and 1.5°C-compatible pathways</div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer class="site-footer">
+  <div class="footer-label">Sources</div>
+  <div class="footer-sources">PIB Press Release ID 2245209, 25 March 2026 &nbsp;&middot;&nbsp; UNFCCC NDC Registry &nbsp;&middot;&nbsp; Climate Action Tracker &nbsp;&middot;&nbsp; MoEFCC Third National Communication, 2023 &nbsp;&middot;&nbsp; NITI Aayog &nbsp;&middot;&nbsp; ISA &nbsp;&middot;&nbsp; CDRI &nbsp;&middot;&nbsp; GBA &nbsp;&middot;&nbsp; Lead-IT Secretariat &nbsp;&middot;&nbsp; Bureau of Energy Efficiency &nbsp;&middot;&nbsp; Nuclear Power Corporation of India &nbsp;&middot;&nbsp; FAO Global Forest Resources Assessment &nbsp;&middot;&nbsp; IISD</div>
+</footer>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const io = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (!e.isIntersecting) return;
+        const el = e.target;
+        const w = el.dataset.w;
+        if (w) el.style.width = w;
+        io.unobserve(el);
+      });
+    }, { threshold: 0.15 });
+
+    document.querySelectorAll('[data-w]').forEach(el => {
+      el.style.width = '0%';
+      el.style.transition = 'width 1s cubic-bezier(0.16,1,0.3,1)';
+      io.observe(el);
+    });
+  });
+</script>
+</body>
+</html>
