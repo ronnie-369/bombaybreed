@@ -37,6 +37,16 @@ const allContentTypes: ContentType[] = ['Flagship Report', 'Intelligence Brief',
 
 const publications: Publication[] = [
   {
+    title: "India NDC 3.0 — Complete Visual Analysis",
+    description: "India's third Nationally Determined Contribution decoded in charts and data — targets, timelines, sector pledges, and what it means for corporate India.",
+    contentType: 'Intelligence Brief',
+    topic: 'Regulatory Intel',
+    publishedDate: "2026-04-01",
+    readTimeMinutes: 12,
+    link: "/special-features/india-ndc3.html",
+    external: true,
+  },
+  {
     title: "India's Carbon Playbook: PAT Lessons, CCTS Rules & the Article 6 Opportunity",
     description: "The definitive strategic guide for Indian boards navigating carbon compliance and international market opportunities.",
     contentType: 'Flagship Report',
