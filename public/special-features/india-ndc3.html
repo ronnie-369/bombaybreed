@@ -1073,7 +1073,7 @@
           <div class="sink-val" style="color:var(--ndc3)">3.5-4.0</div>
         </div>
       </div>
-      <div class="insight"><p>The carbon sink is the <strong>only target with a substantive revision</strong> in NDC 3.0: a 40% increase after NDC 2.0 left it entirely unchanged from the 2015 original.</p></div>
+      <div class="insight"><p>The carbon sink is the <strong>only target with a substantive revision</strong> in NDC 3.0: up to 40% increase after NDC 2.0 left it entirely unchanged from the 2015 original.</p></div>
     </div>
 
     <!-- CHART 04: Scorecard -->
@@ -1083,7 +1083,7 @@
       <div class="chart-card-sub">Current status against each dimension of India's NDC 3.0</div>
       <div class="scorecard">
         <div class="sc-row">
-          <div><div class="sc-label">Emissions Intensity</div><div class="sc-value t-display">47%</div><div class="sc-detail">Target by 2035 &nbsp;&middot;&nbsp; At 36% in 2020 &nbsp;&middot;&nbsp; Pace required: approx. 1.1pp per year</div></div>
+          <div><div class="sc-label">Emissions Intensity</div><div class="sc-value t-display">47%</div><div class="sc-detail">Target by 2035 &nbsp;&middot;&nbsp; At 36% in 2020 &nbsp;&middot;&nbsp; Pace required: approx. 0.73pp per year from 2020 baseline</div></div>
           <div class="sc-pill pill-amber">Achievable</div>
         </div>
         <div class="sc-row">
@@ -1109,7 +1109,7 @@
     <div class="chart-card wide">
       <span class="chart-card-label">Chart 05 &nbsp;&middot;&nbsp; Trajectory Analysis</span>
       <div class="chart-card-title t-display">The Ambition-Reality Gap — Non-Fossil Capacity Across Three NDC Cycles</div>
-      <div class="chart-card-sub">Actual trajectory (solid) vs. NDC target lines (dashed) &nbsp;&middot;&nbsp; 2005-2035</div>
+      <div class="chart-card-sub">Actual trajectory (solid) vs. NDC target lines (dashed) &nbsp;&middot;&nbsp; 2005-2035 &nbsp;&middot;&nbsp; Actual data: CEA, BUR-4 (MoEFCC), PIB</div>
       <svg class="traj-svg" viewBox="0 0 880 260" preserveAspectRatio="xMidYMid meet">
         <defs>
           <linearGradient id="areaGrad" x1="0" y1="0" x2="0" y2="1">
@@ -1137,24 +1137,25 @@
         <text x="552" y="235" text-anchor="middle" fill="#6B7280" font-family="ui-monospace,monospace" font-size="10" font-weight="500">2026</text>
         <text x="712" y="235" text-anchor="middle" fill="#6B7280" font-family="ui-monospace,monospace" font-size="10" font-weight="500">2030</text>
         <text x="862" y="235" text-anchor="middle" fill="#6B7280" font-family="ui-monospace,monospace" font-size="10" font-weight="500">2035</text>
-        <!-- y = 215 - ((val-20)/40)*195 | 25%=189 32%=155 40%=116 52.6%=55 -->
+        <!-- y = 215 - ((val-20)/40)*195 | 30%=166 30%=166 38%=127 52.6%=56 -->
+        <!-- Actual: 2005=30%, 2015=30%, 2020=38%, 2026=52.6% — sources: CEA/BUR4/PIB -->
         <!-- Actual area -->
-        <polygon points="72,189 232,155 392,116 552,55 552,215 72,215" fill="url(#areaGrad)"/>
+        <polygon points="72,166 232,166 392,127 552,56 552,215 72,215" fill="url(#areaGrad)"/>
         <!-- Actual line -->
-        <polyline points="72,189 232,155 392,116 552,55" fill="none" stroke="#3D6B52" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/>
-        <!-- NDC1: 40% by 2030 = (712,116) -->
+        <polyline points="72,166 232,166 392,127 552,56" fill="none" stroke="#3D6B52" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/>
+        <!-- NDC1: 40% by 2030 = (712,116); line starts from 2015 baseline -->
         <line x1="232" y1="215" x2="712" y2="116" stroke="#4A7A9B" stroke-width="1.5" stroke-dasharray="6,4" opacity="0.7"/>
-        <!-- NDC2: 50% by 2030 = (712,68) -->
-        <line x1="392" y1="116" x2="712" y2="68" stroke="#8C6D3F" stroke-width="1.5" stroke-dasharray="6,4" opacity="0.7"/>
+        <!-- NDC2: 50% by 2030 = (712,68); line starts from 2020 actual -->
+        <line x1="392" y1="127" x2="712" y2="68" stroke="#8C6D3F" stroke-width="1.5" stroke-dasharray="6,4" opacity="0.7"/>
         <!-- NDC3: 60% by 2035 = (862,20) -->
-        <line x1="552" y1="55" x2="862" y2="20" stroke="#1A3C5B" stroke-width="2" stroke-dasharray="8,4" opacity="0.85"/>
+        <line x1="552" y1="56" x2="862" y2="20" stroke="#1A3C5B" stroke-width="2" stroke-dasharray="8,4" opacity="0.85"/>
         <!-- Endpoint dots -->
-        <circle cx="552" cy="55" r="5" fill="#3D6B52" stroke="#FBFBF9" stroke-width="2"/>
+        <circle cx="552" cy="56" r="5" fill="#3D6B52" stroke="#FBFBF9" stroke-width="2"/>
         <circle cx="862" cy="20" r="5" fill="#1A3C5B" stroke="#FBFBF9" stroke-width="2"/>
         <circle cx="712" cy="116" r="4" fill="#4A7A9B" stroke="#FBFBF9" stroke-width="2"/>
         <circle cx="712" cy="68"  r="4" fill="#8C6D3F" stroke="#FBFBF9" stroke-width="2"/>
         <!-- Inline labels -->
-        <text x="564" y="50"  fill="#3D6B52" font-family="ui-monospace,monospace" font-size="10" font-weight="500">52.6% today</text>
+        <text x="564" y="51"  fill="#3D6B52" font-family="ui-monospace,monospace" font-size="10" font-weight="500">52.6% today</text>
         <text x="720" y="112" fill="#4A7A9B" font-family="ui-monospace,monospace" font-size="9"  font-weight="500">NDC 1: 40%</text>
         <text x="720" y="64"  fill="#8C6D3F" font-family="ui-monospace,monospace" font-size="9"  font-weight="500">NDC 2: 50%</text>
         <text x="720" y="17"  fill="#1A3C5B" font-family="ui-monospace,monospace" font-size="9"  font-weight="500">NDC 3: 60%</text>
