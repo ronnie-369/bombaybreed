@@ -37,6 +37,15 @@ const allContentTypes: ContentType[] = ['Flagship Report', 'Intelligence Brief',
 
 const publications: Publication[] = [
   {
+    title: "India's CCUS Gap Is Not About Money",
+    description: "Five regulatory instruments the ₹20,000 crore CCUS Mission cannot substitute — policy analysis on pore space law, sequestration incentives, and test infrastructure.",
+    contentType: 'Flagship Report',
+    topic: 'Regulatory Intel',
+    publishedDate: "2026-04-06",
+    readTimeMinutes: 10,
+    link: "/insights/ccus-policy-gap",
+  },
+  {
     title: "India NDC 3.0 — Complete Visual Analysis",
     description: "India's third Nationally Determined Contribution decoded in charts and data — targets, timelines, sector pledges, and what it means for corporate India.",
     contentType: 'Intelligence Brief',
@@ -169,7 +178,6 @@ const Insights = () => {
   const [selectedTopic, setSelectedTopic] = useState<Topic | 'All'>('All');
   const [selectedType, setSelectedType] = useState<ContentType | 'All Types'>('All Types');
   const [currentPage, setCurrentPage] = useState(1);
-  const [selectedReport, setSelectedReport] = useState(publications[0]);
   const formSectionRef = useRef<HTMLDivElement>(null);
 
 
@@ -229,18 +237,7 @@ const Insights = () => {
     if (pub.link) {
       return <Link key={index} to={pub.link} className="block group">{inner}</Link>;
     }
-    return (
-      <div
-        key={index}
-        className="block group cursor-pointer"
-        onClick={() => {
-          setSelectedReport(pub);
-          formSectionRef.current?.scrollIntoView({ behavior: 'smooth' });
-        }}
-      >
-        {inner}
-      </div>
-    );
+    return <div key={index} className="block group cursor-default">{inner}</div>;
   };
 
   return (
@@ -443,15 +440,15 @@ const Insights = () => {
           </div>
         </section>
 
-        {/* Download CTA */}
+        {/* Download CTA — CCUS Report */}
         <section ref={formSectionRef} className="py-20 px-6 md:px-8 border-t border-border/50">
           <div className="container mx-auto max-w-[680px]">
             <div className="text-center mb-12">
-              <SectionLabel label="Download" className="text-center block" />
-              <h2 className="text-section font-serif tracking-tight mt-6 mb-4">{selectedReport.title}</h2>
-              <p className="text-body text-muted-foreground">{selectedReport.description}</p>
+              <SectionLabel label="Download Report" className="text-center block" />
+              <h2 className="text-section font-serif tracking-tight mt-6 mb-4">India's CCUS Gap Is Not About Money</h2>
+              <p className="text-body text-muted-foreground">Five regulatory instruments the ₹20,000 crore CCUS Mission cannot substitute — a policy analysis by The Climate Desk.</p>
             </div>
-            <LeadCaptureForm reportTitle={selectedReport.title} reportDescription={selectedReport.description} />
+            <LeadCaptureForm reportTitle="India's CCUS Gap Is Not About Money" reportDescription="Five regulatory instruments the ₹20,000 crore CCUS Mission cannot substitute." />
           </div>
         </section>
       </main>
