@@ -8,10 +8,10 @@ import { useToast } from '@/hooks/use-toast';
 const FORMSPREE_URL = 'https://formspree.io/f/myknnoea';
 
 const REPORT_FILE_MAP: Record<string, string> = {
-  'CCTS Exposure Snapshot — Steel Sector': '/reports/BB_Steel_CCTS_Exposure_Snapshot.pdf',
-  'CCTS Exposure Snapshot — Cement Sector': '/reports/BB_Cement_CCTS_Exposure_Snapshot.pdf',
-  'CCTS Exposure Snapshot — Refinery Sector': '/reports/BB_Refinery_CCTS_Exposure_Snapshot.pdf',
-  'CCTS Exposure Snapshot — Petrochemicals Sector': '/reports/BB_Petrochemicals_CCTS_Exposure_Snapshot.pdf',
+  'CCTS Exposure Snapshot - Steel Sector': '/reports/BB_Steel_CCTS_Exposure_Snapshot.pdf',
+  'CCTS Exposure Snapshot - Cement Sector': '/reports/BB_Cement_CCTS_Exposure_Snapshot.pdf',
+  'CCTS Exposure Snapshot - Refinery Sector': '/reports/BB_Refinery_CCTS_Exposure_Snapshot.pdf',
+  'CCTS Exposure Snapshot - Petrochemicals Sector': '/reports/BB_Petrochemicals_CCTS_Exposure_Snapshot.pdf',
   "India's CCUS Gap Is Not About Money": '/reports/TCD_CCUS_Policy_April2026.pdf',
 };
 

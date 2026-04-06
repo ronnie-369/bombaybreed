@@ -38,7 +38,7 @@ const allContentTypes: ContentType[] = ['Flagship Report', 'Intelligence Brief',
 const publications: Publication[] = [
   {
     title: "India's CCUS Gap Is Not About Money",
-    description: "Five regulatory instruments the ₹20,000 crore CCUS Mission cannot substitute — policy analysis on pore space law, sequestration incentives, and test infrastructure.",
+    description: "Five regulatory instruments the ₹20,000 crore CCUS Mission cannot substitute - policy analysis on pore space law, sequestration incentives, and test infrastructure.",
     contentType: 'Flagship Report',
     topic: 'Regulatory Intel',
     publishedDate: "2026-04-06",
@@ -46,8 +46,8 @@ const publications: Publication[] = [
     link: "/insights/ccus-policy-gap",
   },
   {
-    title: "India NDC 3.0 — Complete Visual Analysis",
-    description: "India's third Nationally Determined Contribution decoded in charts and data — targets, timelines, sector pledges, and what it means for corporate India.",
+    title: "India NDC 3.0 - Complete Visual Analysis",
+    description: "India's third Nationally Determined Contribution decoded in charts and data - targets, timelines, sector pledges, and what it means for corporate India.",
     contentType: 'Intelligence Brief',
     topic: 'Regulatory Intel',
     publishedDate: "2026-04-01",
@@ -440,13 +440,13 @@ const Insights = () => {
           </div>
         </section>
 
-        {/* Download CTA — CCUS Report */}
+        {/* Download CTA - CCUS Report */}
         <section ref={formSectionRef} className="py-20 px-6 md:px-8 border-t border-border/50">
           <div className="container mx-auto max-w-[680px]">
             <div className="text-center mb-12">
               <SectionLabel label="Download Report" className="text-center block" />
               <h2 className="text-section font-serif tracking-tight mt-6 mb-4">India's CCUS Gap Is Not About Money</h2>
-              <p className="text-body text-muted-foreground">Five regulatory instruments the ₹20,000 crore CCUS Mission cannot substitute — a policy analysis by The Climate Desk.</p>
+              <p className="text-body text-muted-foreground">Five regulatory instruments the ₹20,000 crore CCUS Mission cannot substitute - a policy analysis by The Climate Desk.</p>
             </div>
             <LeadCaptureForm reportTitle="India's CCUS Gap Is Not About Money" reportDescription="Five regulatory instruments the ₹20,000 crore CCUS Mission cannot substitute." />
           </div>

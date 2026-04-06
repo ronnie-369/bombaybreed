@@ -121,7 +121,7 @@ serve(async (req: Request) => {
     const { error: emailError } = await resend.emails.send({
       from: 'Bombay Breed <onboarding@resend.dev>',
       to: ['theresa.ronnie@bombaybreed.com'],
-      subject: `Bombay Breed Weekly Dashboard — ${dateRange}`,
+      subject: `Bombay Breed Weekly Dashboard - ${dateRange}`,
       html,
     });
 

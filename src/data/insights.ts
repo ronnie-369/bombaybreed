@@ -299,7 +299,7 @@ export const insights: Record<string, InsightData> = {
       { value: '5', label: 'Missing regulatory instruments blocking deployment' },
     ],
     statsSource: 'DST CCUS R&D Roadmap, December 2025; Union Budget 2026-27; V. Subramanian, Former Secretary MNRE',
-    executiveSummary: "The Union Budget allocated Rs 20,000 crore. A national roadmap was published. The obligated industry base is real and growing. And still, the sector cannot move. The obstacle is not capital. It is the absence of five regulatory instruments that no allocation can substitute for — a milestone-based deployment plan, subsurface pore space legislation, indicative CCTS cycle targets, a per-tonne sequestration incentive, and open-access test infrastructure. This policy analysis, drawing on primary interviews with DST Task Force members, former MNRE secretaries, ONGC exploration heads, and CCUS investors, maps each gap and the precedents that exist to close them.",
+    executiveSummary: "The Union Budget allocated Rs 20,000 crore. A national roadmap was published. The obligated industry base is real and growing. And still, the sector cannot move. The obstacle is not capital. It is the absence of five regulatory instruments that no allocation can substitute for - a milestone-based deployment plan, subsurface pore space legislation, indicative CCTS cycle targets, a per-tonne sequestration incentive, and open-access test infrastructure. This policy analysis, drawing on primary interviews with DST Task Force members, former MNRE secretaries, ONGC exploration heads, and CCUS investors, maps each gap and the precedents that exist to close them.",
     tableOfContents: [
       { title: 'A Deployment Plan, Not Just an Allocation', description: 'Why Rs 20,000 crore needs annual targets by sector and technology.' },
       { title: 'Geological Storage Has No Legal Owner', description: 'Subsurface pore space legislation: the US, Australia, and EU have it. India does not.' },
@@ -314,12 +314,12 @@ export const insights: Record<string, InsightData> = {
 
   'india-ndc-3': {
     slug: 'india-ndc-3',
-    title: 'India NDC 3.0 — Complete Visual Analysis',
+    title: 'India NDC 3.0 - Complete Visual Analysis',
     subtitle: 'What India Promised the World at COP30',
     contentType: 'Intelligence Brief',
     topic: 'Regulatory Intel',
     metaTitle: 'India NDC 3.0: Complete Visual Analysis | Bombay Breed',
-    metaDescription: "India's third Nationally Determined Contribution decoded — targets, timelines, sector pledges, and what it means for corporate India's climate strategy.",
+    metaDescription: "India's third Nationally Determined Contribution decoded - targets, timelines, sector pledges, and what it means for corporate India's climate strategy.",
     metaLine: 'By Theresa Ronnie · April 2026 · 12 min read',
     readTimeMinutes: 12,
     publishedDate: '2026-04-01',
@@ -329,7 +329,7 @@ export const insights: Record<string, InsightData> = {
       { value: '2070', label: 'Net-zero target year reaffirmed' },
     ],
     statsSource: 'PIB Press Release 2245209; UNFCCC NDC Registry; MoEFCC',
-    executiveSummary: "India's third NDC submission marks a decisive shift from aspirational pledges to sector-specific commitments. This visual analysis decodes the full scope of India's climate promises — from the 45% emissions intensity reduction and 500 GW non-fossil capacity to nuclear expansion, forest carbon sinks, and the diplomatic architecture of climate justice. For corporate India, NDC 3.0 is the clearest regulatory signal yet.",
+    executiveSummary: "India's third NDC submission marks a decisive shift from aspirational pledges to sector-specific commitments. This visual analysis decodes the full scope of India's climate promises - from the 45% emissions intensity reduction and 500 GW non-fossil capacity to nuclear expansion, forest carbon sinks, and the diplomatic architecture of climate justice. For corporate India, NDC 3.0 is the clearest regulatory signal yet.",
     siblings: ['carbon-playbook', 'compliance-to-credibility', 'energy-transition-playbook'],
     faq: [
       { question: 'What is NDC 3.0?', answer: "India's third Nationally Determined Contribution under the Paris Agreement, submitted ahead of COP30, outlining enhanced climate targets for 2030 and the pathway to net-zero by 2070." },

@@ -10,11 +10,11 @@ const SpecialFeatureHighlight = () => {
         <ScrollReveal direction="up">
           <SectionLabel label="Policy Analysis · New" />
           <h2 className="text-section font-serif tracking-tight mt-4 mb-5 max-w-[600px]">
-            India's CCUS Gap Is Not About Money —{' '}
+            India's CCUS Gap Is Not About Money -{' '}
             <em className="italic">Five Regulatory Instruments the ₹20,000 Crore Mission Cannot Substitute</em>
           </h2>
           <p className="text-body text-muted-foreground max-w-[580px] mb-3">
-            The budget allocated ₹20,000 crore. The roadmap was published. The sector still cannot move. This policy analysis maps the five regulatory gaps blocking CCUS deployment — and the global precedents to close them.
+            The budget allocated ₹20,000 crore. The roadmap was published. The sector still cannot move. This policy analysis maps the five regulatory gaps blocking CCUS deployment - and the global precedents to close them.
           </p>
           <p className="text-xs text-muted-foreground/60 font-mono tracking-wide uppercase mb-7">
             Policy Analysis · April 2026 · The Climate Desk

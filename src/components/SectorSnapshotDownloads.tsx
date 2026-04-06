@@ -8,28 +8,28 @@ import ScrollReveal from '@/components/ui/ScrollReveal';
 const sectors = [
   {
     name: 'Iron & Steel',
-    reportTitle: 'CCTS Exposure Snapshot — Steel Sector',
+    reportTitle: 'CCTS Exposure Snapshot - Steel Sector',
     entities: '253',
     geiSpread: '64%',
     description: 'GEI baselines, FY2027 targets, and credit exposure for all 253 obligated steel entities.',
   },
   {
     name: 'Cement',
-    reportTitle: 'CCTS Exposure Snapshot — Cement Sector',
+    reportTitle: 'CCTS Exposure Snapshot - Cement Sector',
     entities: '90+',
     geiSpread: '45%',
     description: 'Compliance exposure profile across cement plants with GEI intensity benchmarking.',
   },
   {
     name: 'Petrochemicals',
-    reportTitle: 'CCTS Exposure Snapshot — Petrochemicals Sector',
+    reportTitle: 'CCTS Exposure Snapshot - Petrochemicals Sector',
     entities: '40+',
     geiSpread: '52%',
     description: 'Carbon liability mapping for petrochemical facilities under CCTS obligations.',
   },
   {
     name: 'Petroleum Refineries',
-    reportTitle: 'CCTS Exposure Snapshot — Refinery Sector',
+    reportTitle: 'CCTS Exposure Snapshot - Refinery Sector',
     entities: '23',
     geiSpread: '38%',
     description: 'Refinery-specific GEI analysis with credit surplus/deficit projections.',
@@ -52,7 +52,7 @@ const SectorSnapshotDownloads: React.FC = () => {
             </h2>
             <p className="text-sm text-muted-foreground leading-relaxed">
               Confidential intelligence briefs mapping GEI baselines, FY2027 targets, and credit exposure 
-              for obligated entities — sourced from MoEFCC gazette notifications.
+              for obligated entities - sourced from MoEFCC gazette notifications.
             </p>
           </div>
         </ScrollReveal>
@@ -82,7 +82,7 @@ const SectorSnapshotDownloads: React.FC = () => {
                     <DialogContent className="sm:max-w-lg">
                       <DialogHeader>
                         <DialogTitle className="font-serif text-xl">
-                          {sector.name} — CCTS Exposure Snapshot
+                          {sector.name} - CCTS Exposure Snapshot
                         </DialogTitle>
                       </DialogHeader>
                       <LeadCaptureForm
@@ -100,7 +100,7 @@ const SectorSnapshotDownloads: React.FC = () => {
 
         <p className="text-xs text-muted-foreground mt-6 leading-relaxed">
           Data sourced from MoEFCC gazette notifications, October 2025 and January 2026. 
-          Your details go directly to Theresa Ronnie. Confidential — not shared with other entities in your sector.
+          Your details go directly to Theresa Ronnie. Confidential - not shared with other entities in your sector.
         </p>
       </div>
     </section>
