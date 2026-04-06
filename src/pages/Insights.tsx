@@ -37,6 +37,15 @@ const allContentTypes: ContentType[] = ['Flagship Report', 'Intelligence Brief',
 
 const publications: Publication[] = [
   {
+    title: "India's CCUS Gap Is Not About Money",
+    description: "Five regulatory instruments the ₹20,000 crore CCUS Mission cannot substitute — policy analysis on pore space law, sequestration incentives, and test infrastructure.",
+    contentType: 'Flagship Report',
+    topic: 'Regulatory Intel',
+    publishedDate: "2026-04-06",
+    readTimeMinutes: 10,
+    link: "/insights/ccus-policy-gap",
+  },
+  {
     title: "India NDC 3.0 — Complete Visual Analysis",
     description: "India's third Nationally Determined Contribution decoded in charts and data — targets, timelines, sector pledges, and what it means for corporate India.",
     contentType: 'Intelligence Brief',
