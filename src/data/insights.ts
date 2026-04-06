@@ -280,6 +280,38 @@ export const insights: Record<string, InsightData> = {
     midArticleCta: { type: 'flagship', flagshipSlug: 'green-jobs-india-2026', flagshipTitle: 'Jobs on the Rise 2026: India Green Jobs Outlook' },
   },
 
+  'ccus-policy-gap': {
+    slug: 'ccus-policy-gap',
+    title: "India's CCUS Gap Is Not About Money",
+    subtitle: 'Five Regulatory Instruments the Rs 20,000 Crore Mission Cannot Substitute',
+    contentType: 'Flagship Report',
+    topic: 'Regulatory Intel',
+    metaTitle: "India's CCUS Policy Gap: Five Missing Regulatory Instruments | The Climate Desk",
+    metaDescription: "Rs 20,000 crore allocated, but five regulatory gaps block India's CCUS deployment. Policy analysis on pore space law, sequestration incentives, and test infrastructure.",
+    metaLine: 'By The Climate Desk · April 2026 · 12 pages',
+    readTimeMinutes: 10,
+    publishedDate: '2026-04-06',
+    coverImage: ccusPolicyCover,
+    stats: [
+      { value: '₹20,000 Cr', label: 'CCUS Mission allocation, Union Budget 2026-27' },
+      { value: '<₹2,000 Cr', label: 'Estimated actual deployment by March 2027' },
+      { value: '750 MTPA', label: 'DST capture target by 2050' },
+      { value: '5', label: 'Missing regulatory instruments blocking deployment' },
+    ],
+    statsSource: 'DST CCUS R&D Roadmap, December 2025; Union Budget 2026-27; V. Subramanian, Former Secretary MNRE',
+    executiveSummary: "The Union Budget allocated Rs 20,000 crore. A national roadmap was published. The obligated industry base is real and growing. And still, the sector cannot move. The obstacle is not capital. It is the absence of five regulatory instruments that no allocation can substitute for — a milestone-based deployment plan, subsurface pore space legislation, indicative CCTS cycle targets, a per-tonne sequestration incentive, and open-access test infrastructure. This policy analysis, drawing on primary interviews with DST Task Force members, former MNRE secretaries, ONGC exploration heads, and CCUS investors, maps each gap and the precedents that exist to close them.",
+    tableOfContents: [
+      { title: 'A Deployment Plan, Not Just an Allocation', description: 'Why Rs 20,000 crore needs annual targets by sector and technology.' },
+      { title: 'Geological Storage Has No Legal Owner', description: 'Subsurface pore space legislation: the US, Australia, and EU have it. India does not.' },
+      { title: 'Industry Needs to Know What Cycle Two Looks Like', description: 'CCTS compliance timeline and why indicative GEI trajectories are urgent.' },
+      { title: 'The Economics Need a Bridging Instrument', description: 'Sequestration cost vs. carbon price: the Rs 3,000-5,000/t gap.' },
+      { title: 'The Technology Must Be Tested Before Scaled', description: 'Zero public CCUS test beds in India vs. global benchmarks.' },
+      { title: 'Policy Readiness Assessment', description: 'Status of five critical regulatory prerequisites.' },
+    ],
+    siblings: ['carbon-playbook', 'compliance-to-credibility', 'energy-transition-playbook'],
+    pdfUrl: 'TCD_CCUS_Policy_April2026.pdf',
+  },
+
   'india-ndc-3': {
     slug: 'india-ndc-3',
     title: 'India NDC 3.0 — Complete Visual Analysis',
