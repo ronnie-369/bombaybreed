@@ -237,18 +237,7 @@ const Insights = () => {
     if (pub.link) {
       return <Link key={index} to={pub.link} className="block group">{inner}</Link>;
     }
-    return (
-      <div
-        key={index}
-        className="block group cursor-pointer"
-        onClick={() => {
-          setSelectedReport(pub);
-          formSectionRef.current?.scrollIntoView({ behavior: 'smooth' });
-        }}
-      >
-        {inner}
-      </div>
-    );
+    return <div key={index} className="block group cursor-default">{inner}</div>;
   };
 
   return (
