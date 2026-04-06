@@ -452,15 +452,15 @@ const Insights = () => {
           </div>
         </section>
 
-        {/* Download CTA */}
+        {/* Download CTA — CCUS Report */}
         <section ref={formSectionRef} className="py-20 px-6 md:px-8 border-t border-border/50">
           <div className="container mx-auto max-w-[680px]">
             <div className="text-center mb-12">
-              <SectionLabel label="Download" className="text-center block" />
-              <h2 className="text-section font-serif tracking-tight mt-6 mb-4">{selectedReport.title}</h2>
-              <p className="text-body text-muted-foreground">{selectedReport.description}</p>
+              <SectionLabel label="Download Report" className="text-center block" />
+              <h2 className="text-section font-serif tracking-tight mt-6 mb-4">India's CCUS Gap Is Not About Money</h2>
+              <p className="text-body text-muted-foreground">Five regulatory instruments the ₹20,000 crore CCUS Mission cannot substitute — a policy analysis by The Climate Desk.</p>
             </div>
-            <LeadCaptureForm reportTitle={selectedReport.title} reportDescription={selectedReport.description} />
+            <LeadCaptureForm reportTitle="India's CCUS Gap Is Not About Money" reportDescription="Five regulatory instruments the ₹20,000 crore CCUS Mission cannot substitute." />
           </div>
         </section>
       </main>
