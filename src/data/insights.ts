@@ -3,7 +3,7 @@ import wefCover from '@/assets/wef-global-risks-2026-cover.jpg';
 import energyTransitionCover from '@/assets/energy-transition-playbook-cover.jpg';
 import complianceCover from '@/assets/compliance-credibility-cover.jpg';
 import greenJobsCover from '@/assets/green-jobs-india-2026-cover.jpg';
-import ccusPolicyCover from '@/assets/ccus-policy-cover.png';
+const ccusPolicyCover = 'https://zjiwmdrtuhsrymsuvpfb.supabase.co/storage/v1/object/public/brand%20assets/Screenshot%202026-04-06%20at%2012.44.23%20PM.png';
 
 export type ContentType = 'Flagship Report' | 'Intelligence Brief' | 'Regulatory Alert' | 'Perspective';
 export type Topic = 'Carbon Markets' | 'Board Governance' | 'ESG Communications' | 'Regulatory Intel';
