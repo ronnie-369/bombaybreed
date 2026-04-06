@@ -178,7 +178,6 @@ const Insights = () => {
   const [selectedTopic, setSelectedTopic] = useState<Topic | 'All'>('All');
   const [selectedType, setSelectedType] = useState<ContentType | 'All Types'>('All Types');
   const [currentPage, setCurrentPage] = useState(1);
-  const [selectedReport, setSelectedReport] = useState(publications[0]);
   const formSectionRef = useRef<HTMLDivElement>(null);
 
 
