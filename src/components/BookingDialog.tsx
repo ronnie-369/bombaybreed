@@ -117,7 +117,7 @@ const BookingDialog = ({
           <>
             <DialogHeader className="p-6 pb-3">
               <DialogTitle className="text-lg font-medium">Schedule Your Consultation</DialogTitle>
-              <p className="text-sm text-muted-foreground mt-1">Select a date and time — limited slots available.</p>
+              <p className="text-sm text-muted-foreground mt-1">Select a date and time - limited slots available.</p>
             </DialogHeader>
             <div className="px-6 pb-4 flex flex-col items-center gap-4">
               <Calendar
@@ -136,7 +136,7 @@ const BookingDialog = ({
                     {format(selectedDate, 'EEEE, MMMM d')}
                   </p>
                   {availableSlots.length === 0 ? (
-                    <p className="text-sm text-muted-foreground">No slots available — try another date.</p>
+                    <p className="text-sm text-muted-foreground">No slots available - try another date.</p>
                   ) : (
                     <div className="flex gap-2">
                       {availableSlots.map(slot => (
