@@ -133,7 +133,7 @@ const About = () => {
                 <p>
                   Possessing an easy-going yet highly professional demeanour, Theresa brings bottom-line 
                   impact and effectiveness metrics to board-level oversight. She is a student of climate 
-                  sciences, mythology, behaviour studies, socio-economics, and an active investor in the stock market.
+                  sciences, mythology, socio-cultural behavioural economics, and an active investor in the stock market.
                 </p>
               </div>
             </ScrollReveal>
