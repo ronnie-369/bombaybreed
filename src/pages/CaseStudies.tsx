@@ -156,7 +156,24 @@ const CaseStudies = () => {
       "@type": "Organization",
       "name": "Bombay Breed Consulting",
       "url": "https://bombaybreed.com"
-    }
+    },
+    "hasPart": caseStudies.map(study => ({
+      "@type": "CreativeWork",
+      "name": study.title,
+      "description": study.subtitle,
+      "about": study.keywords.map(kw => ({ "@type": "Thing", "name": kw })),
+      "url": `https://bombaybreed.com/case-studies#${study.id}`,
+      ...('testimonial' in study && (study as any).testimonial ? {
+        "review": {
+          "@type": "Review",
+          "reviewBody": (study as any).testimonial.quote,
+          "author": {
+            "@type": "Person",
+            "name": (study as any).testimonial.attribution,
+          }
+        }
+      } : {})
+    }))
   };
 
   return (
@@ -281,13 +298,22 @@ const CaseStudies = () => {
                   </div>
                 )}
 
-                {/* Keywords */}
+                {/* Keywords - linked to SEO pages for internal linking */}
                 <div className="flex flex-wrap items-center gap-2">
-                  {study.keywords.map((kw) => (
-                    <Badge key={kw} variant="secondary" className="text-xs">
-                      {kw}
-                    </Badge>
-                  ))}
+                  {study.keywords.map((kw) => {
+                    const href = keywordLinks[kw];
+                    return href ? (
+                      <Link key={kw} to={href}>
+                        <Badge variant="secondary" className="text-xs cursor-pointer hover:bg-primary/10 hover:text-primary transition-colors">
+                          {kw}
+                        </Badge>
+                      </Link>
+                    ) : (
+                      <Badge key={kw} variant="secondary" className="text-xs">
+                        {kw}
+                      </Badge>
+                    );
+                  })}
                 </div>
 
                 {/* Divider between case studies */}
