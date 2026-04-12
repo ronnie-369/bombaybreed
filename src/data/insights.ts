@@ -338,6 +338,115 @@ export const insights: Record<string, InsightData> = {
     ],
     midArticleCta: { type: 'flagship', flagshipSlug: 'carbon-playbook', flagshipTitle: "India's Carbon Playbook" },
   },
+  },
+
+  'microsoft-cdr-market-pause': {
+    slug: 'microsoft-cdr-market-pause',
+    title: 'The Market That Ran on One Buyer',
+    subtitle: "Microsoft's pause on carbon removal purchases is not a corporate anomaly. The data show the concentration risk was documented, quantified, and reported for three years before it arrived.",
+    contentType: 'Intelligence Brief',
+    topic: 'Carbon Markets',
+    metaTitle: 'The Market That Ran on One Buyer: Microsoft CDR Pause | Bombay Breed',
+    metaDescription: "Microsoft accounted for 90% of durable CDR volume in 2025. Its purchasing pause is not a surprise - it is the consequence of documented concentration risk. Intelligence brief by Bombay Breed.",
+    metaLine: 'By Theresa Ronnie · 12 April 2026 · 7 min read',
+    readTimeMinutes: 7,
+    publishedDate: '2026-04-12',
+    stats: [
+      { value: '90%', label: "Microsoft's share of durable CDR volume in 2025" },
+      { value: '45M t', label: 'CDR tonnes contracted by Microsoft in 2025' },
+      { value: '16', label: 'Project developers with no other buyer' },
+    ],
+    statsSource: 'CDR.fyi; ClimeFi 2025 CDR Market Review, January 2026',
+    executiveSummary: "On 11 April 2026, Microsoft paused new carbon dioxide removal purchases. The company offered no timeline. The CDR market's concentration problem was documented, quantified, and publicly reported for three consecutive years before this pause arrived. This analysis maps the data, the regulatory divergence between the US and EU, and why India's compliance market expansion may be the structural answer the voluntary market could not provide.",
+    siblings: ['ccus-policy-gap', 'carbon-playbook', 'compliance-to-credibility'],
+    faq: [
+      { question: 'Why did Microsoft pause CDR purchases?', answer: "Microsoft offered no public explanation beyond stating it 'continually reviews and assesses its carbon removal portfolio along with market conditions.' The pause follows a period where Microsoft's total GHG emissions rose 23.4% from its 2020 baseline, driven by AI data centre expansion, while CDR purchasing surged to 45 million tonnes in 2025." },
+      { question: 'How concentrated is the CDR market?', answer: "Extremely. Microsoft accounted for 90% of all durable CDR contracted volume in 2025. The next largest buyer, the Frontier advance market commitment, has contracted approximately 1.8 million tonnes across its entire lifetime. 25 CDR project developers named Microsoft as their first-ever buyer, and 16 had no other buyer on record." },
+      { question: 'What does this mean for Indian carbon markets?', answer: "India's CCTS expansion in January 2026 added 208 obligated entities, bringing the total to 490 across nine sectors. This creates the first domestic compliance demand channel structurally independent of voluntary purchasing decisions. Indian developers with approved MRV systems will be positioned when compliance trading begins." },
+      { question: 'Will compliance markets replace voluntary CDR demand?', answer: "The data suggests compliance markets are becoming the primary demand driver. China's national ETS now prices approximately 8 billion tonnes of CO2. India's CCTS carries penalties at twice the prevailing carbon credit price for non-compliance. This regulatory demand does not pause when a technology company reassesses its portfolio." },
+    ],
+    midArticleCta: { type: 'flagship', flagshipSlug: 'ccus-policy-gap', flagshipTitle: "India's CCUS Gap Is Not About Money" },
+    bodyContent: `
+      <div class="insight-prose">
+        <div class="signal-block">
+          <span class="signal-label">THE SIGNAL</span>
+          <p>On 11 April 2026, Bloomberg reported that Microsoft staff had contacted carbon dioxide removal project developers to communicate a pause on new purchases. The company offered no timeline, stating only that it "continually reviews and assesses its carbon removal portfolio along with market conditions." Existing contracts are confirmed intact: Svante stated its recently signed 626,000-tonne bioenergy with carbon capture and storage agreement in Saskatchewan is unaffected.</p>
+          <p>The pause arrives three days after Microsoft's most recent CDR purchase and two weeks after it closed what was described as the largest soil carbon removal deal ever signed, a 2.85 million-tonne agreement with Indigo Ag.</p>
+          <p>According to CDR.fyi and ClimeFi's 2025 annual data, Microsoft accounted for 90% of all durable CDR contracted volume in 2025, purchasing approximately 45 million tonnes across the year. The next largest buyer, the Frontier advance market commitment, has contracted approximately 1.8 million tonnes across its entire lifetime.</p>
+        </div>
+
+        <h2>Microsoft vs. All Other Buyers</h2>
+        <p class="chart-subtitle">Share of Annual Durable CDR Contracted Volume, 2022-2025</p>
+        <figure class="insight-chart">
+          <img src="/charts/microsoft-cdr-share.jpg" alt="Microsoft vs All Other Buyers - Share of Annual Durable CDR Contracted Volume, 2022-2025" loading="lazy" />
+          <figcaption>Figure 1: Microsoft's share of annual durable CDR contracted volume did not decrease as the market grew. It increased to 90% in 2025, up from 64% in 2024. Source: CDR.fyi 2024 Year in Review, Feb 2025; ClimeFi 2025 CDR Market Review, Jan 2026.</figcaption>
+        </figure>
+
+        <h2>Theresa's View</h2>
+        <p>The CDR market's concentration problem was documented, quantified, and publicly reported for three consecutive years before this pause arrived. CDR.fyi's own 2024 year-in-review called it "alarming," flagging that Microsoft had singlehandedly accounted for 64% of total purchase volume that year, and that roughly 80% of 2024 volume came from Microsoft, Google, and Frontier buyers combined. The pause is the consequence, not the surprise.</p>
+
+        <p>The underlying driver is Microsoft's own emissions arithmetic, which stopped working in the direction the 2020 pledge required around 2022. The carbon-negative commitment, announced by CEO Satya Nadella in January 2020, was built on a projected emissions decline curve. The business that made that pledge had not yet deployed generative AI at scale, had not yet committed to the data centre construction cycle now underway, and was not yet consuming electricity at the rate required to power Copilot, Azure AI, and the OpenAI partnership. By fiscal year 2024, total GHG emissions had increased 23.4% from the 2020 baseline. Scope 3 emissions, accounting for 97% of the total footprint, rose 26% over five years. Brian Marrs, Microsoft's Senior Director of Energy Markets, acknowledged in December 2025 that hyperscalers "may need carbon removal to backstop 2030 net zero targets" because decarbonising full data centre supply chains on that timeline "will be very challenging." Three months later, the programme is paused.</p>
+
+        <h2>Microsoft: GHG Emissions vs. CDR Contracted Volume</h2>
+        <p class="chart-subtitle">2021-2025</p>
+        <figure class="insight-chart">
+          <img src="/charts/microsoft-ghg-vs-cdr.jpg" alt="Microsoft GHG Emissions vs CDR Contracted Volume, 2021-2025" loading="lazy" />
+          <figcaption>Figure 2: GHG emissions rose steadily as CDR contracted volume surged. The strategy of buying removal credits to bridge a widening emissions gap is what the pause now puts in question. Sources: Microsoft Environmental Sustainability Reports 2024, 2025; CDR.fyi; ClimeFi 2025 CDR Market Review.</figcaption>
+        </figure>
+
+        <p>The Q2 2025 quarter made the imbalance structural rather than theoretical. In a single quarter, Microsoft contracted 14.5 million tonnes across five mega-deals, accounting for 93.8% of total market volume, making it the largest quarter in the history of durable CDR. According to AlliedOffsets' State of the Market report from September 2025, 25 CDR project developers had named Microsoft as their first-ever buyer, and 16 of those had no other buyer on record. When a single company accounts for 90% of a market's annual volume and is the sole offtake counterparty for 16 active projects, a pause is not a market correction. It is a market event.</p>
+
+        <h2>Durable CDR Market: Quarterly Contracted Volume by Buyer</h2>
+        <p class="chart-subtitle">2024-2025</p>
+        <figure class="insight-chart">
+          <img src="/charts/cdr-quarterly-volume.jpg" alt="Durable CDR Market Quarterly Contracted Volume by Buyer, 2024-2025" loading="lazy" />
+          <figcaption>Figure 3: Non-Microsoft volume, while growing 73% year on year in 2025 to 3.3 million tonnes, remained a fraction of total market activity. The record Q2 2025 quarter was 93.8% Microsoft. Source: CDR.fyi quarterly market updates, Q1 2024 to Q3 2025.</figcaption>
+        </figure>
+
+        <blockquote>
+          <p>"That Microsoft was going to slow down their carbon removal purchasing was known. They had already contracted most of what they needed. But a hard pause, and so soon, was a bit of a surprise."</p>
+          <cite>Robert Hoglund, CDR Market Analyst, LinkedIn, 11 April 2026</cite>
+        </blockquote>
+
+        <p>The regulatory environment that framed Microsoft's 2020 pledge has simultaneously changed in two opposite directions. In the United States: the Securities and Exchange Commission ceased defending its climate risk disclosure rules in court; the Paris Agreement exit took formal effect in January 2026; more than $500 million in previously authorised federal CDR funding was redirected toward coal plant support. A voluntary commitment to be carbon negative carries different board-level weight in a regulatory vacuum than it did when mandatory climate disclosure appeared imminent.</p>
+
+        <p>In Europe, the trajectory is the reverse. The Carbon Border Adjustment Mechanism entered full operational status on 1 January 2026, requiring importers to purchase carbon certificates at rates linked to the EU Emissions Trading System price, currently approximately 80 euros per tonne. The mechanism applies to steel, cement, aluminium, fertilisers, electricity, and hydrogen, and expands to downstream products from 2028. The Corporate Sustainability Reporting Directive remains binding for companies above revised thresholds. These are not soft signals. They are compliance costs that compound annually through 2034.</p>
+
+        <figure class="insight-chart">
+          <img src="/charts/regulatory-divergence.jpg" alt="Regulatory Divergence: EU, US and Asia Carbon Frameworks, 2020-2026" loading="lazy" />
+          <figcaption>Figure 4: Three simultaneous regulatory trajectories have diverged since 2020. EU compliance architecture has tightened continuously. US federal climate policy reversed from 2025. Asia's response is driven primarily by the trade economics of CBAM, not domestic climate ambition. Sources: European Commission; US EPA; MoEFCC; IEEFA; Carbon Direct. Compiled by Bombay Breed, April 2026.</figcaption>
+        </figure>
+
+        <blockquote>
+          <p>"When Microsoft is stepping aside, who will step up? The biggest risk in the voluntary market for durable CDR seems to have materialised."</p>
+          <cite>Eve Tamme, Climate Policy Advisor, LinkedIn, 11 April 2026</cite>
+        </blockquote>
+
+        <p>The answer, supported by the data, is compliance markets rather than corporate voluntarism. China's national ETS, which expanded in 2024 to cover cement, steel, and aluminium in addition to the power sector, now prices approximately 8 billion tonnes of CO2, roughly 20% of global emissions, and is on a stated pathway to shift from intensity-based to absolute cap by 2027. In India, the Ministry of Environment, Forest and Climate Change expanded mandatory GHG emission intensity targets under the Carbon Credit Trading Scheme in January 2026 to 490 obligated entities, formally adding petroleum refineries, petrochemicals, textiles, and secondary aluminium. These are regulatory obligations with penalties set at twice the prevailing carbon credit price for non-compliance. That demand does not pause when a technology company's board reassesses its sustainability portfolio.</p>
+
+        <p>For CDR developers, particularly those with biochar, enhanced rock weathering, and nature-based removal methodologies, Jason Grillo, a CDR market participant, stated the new operating reality directly on 11 April: survive on smaller purchases, government grants, and philanthropic capital. Focus on bringing down costs and proving MRV at smaller scale. Do not bet your runway on the next mega-offtake. For investors, the structural shift points toward compliance-linked assets rather than purely voluntary CDR credits. Ikarus Janzen, CEO of Varaha, the India-based carbon project developer that secured a 100,000-tonne biochar deal with Microsoft in January 2026, framed the new buyer qualification standard plainly: "Buyers are looking much deeper into the financial health of project developers. If your financial stability depends on a single project, contract, buyer, or subsidy, signing a multi-year agreement with you is a massive risk."</p>
+
+        <div class="big-stat">
+          <span class="big-stat-value">90%</span>
+          <p class="big-stat-description">Microsoft's share of all durable CDR contracted volume in 2025, purchasing approximately 45 million tonnes. The next largest buyer, Frontier, has contracted 1.8 million tonnes across its entire lifetime.</p>
+          <span class="big-stat-source">Source: CDR.fyi; ClimeFi 2025 CDR Market Review, January 2026</span>
+        </div>
+
+        <div class="what-others-miss">
+          <h3>What Others Miss</h3>
+          <p>Coverage of the Microsoft pause has focused entirely on the voluntary CDR market's buyer-concentration problem. What has not been reported is the coincidence of timing with India's domestic compliance expansion.</p>
+          <p>In January 2026, the same month Microsoft completed its last four major CDR purchases before announcing the pause, the MoEFCC formally notified expanded GHG emission intensity targets under the Carbon Credit Trading Scheme, adding 208 obligated entities and bringing the total to 490 across nine sectors. The Indian Carbon Market Portal, the digital infrastructure for credit registration, MRV, and trading, launched at the Prakriti 2026 conference in March 2026, with Union Power Minister Manohar Lal stating that formal credit trading is expected to begin within four months.</p>
+          <p>This creates the first domestic compliance demand channel for Indian project developers that is structurally independent of voluntary purchasing decisions made in Redmond. Varaha, Ecoex, and other India-based developers now have a domestic buyer base opening at precisely the moment the global voluntary anchor has stepped back. The developers who establish MRV systems and methodology approvals in the next twelve months will be positioned when that market opens. Those waiting for Microsoft to resume may find the compliance queue has moved ahead of them.</p>
+          <p class="what-others-miss-sources">Sources: MoEFCC GHG Emission Intensity Target Rules notification, January 2026. IEEFA, Strengthening India's Carbon Market, October 2025. Indian Carbon Market Portal launch, Prakriti 2026 conference, March 2026.</p>
+        </div>
+
+        <div class="article-footer-note">
+          <p>Boards and project developers navigating CCTS compliance obligations and voluntary carbon portfolio exposure can request a strategic review with Bombay Breed at bombaybreed.com.</p>
+          <p><strong>Sources:</strong> Bloomberg, 11 April 2026; Heatmap News, 11 April 2026; Carbon Herald, 11 April 2026; CaptainDrawdown.com, 11 April 2026 (citing LinkedIn reactions from Robert Hoglund, Eve Tamme, Jason Grillo, Ikarus Janzen); CDR.fyi 2024 Year in Review, February 2025; CDR.fyi quarterly market updates Q1 2024 to Q3 2025; ClimeFi 2025 CDR Market Review, January 2026; AlliedOffsets State of the CDR Market 2025, September 2025; Latitude Media, February 2026; Microsoft Environmental Sustainability Reports 2024 and 2025; ESG Dive, July 2025; MoEFCC GHG Emission Intensity Target Rules, January 2026; IEEFA, October 2025; Indian Carbon Market Portal, Prakriti 2026 conference, March 2026; World Economic Forum, CBAM analysis, December 2025.</p>
+        </div>
+      </div>
+    `,
+  },
 };
 
 export function getInsight(slug: string): InsightData | undefined {
