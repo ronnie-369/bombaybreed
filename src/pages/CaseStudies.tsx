@@ -249,7 +249,7 @@ const CaseStudies = () => {
                       "{(study as any).testimonial.quote}"
                     </blockquote>
                     <cite className="text-xs font-semibold text-muted-foreground uppercase tracking-[0.12em] not-italic">
-                      — {(study as any).testimonial.attribution}
+                      - {(study as any).testimonial.attribution}
                     </cite>
                   </div>
                 )}
