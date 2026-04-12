@@ -8,6 +8,25 @@ import { ArrowRight, CheckCircle2 } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import BookingDialog from '@/components/BookingDialog';
 
+// Map keywords to internal SEO/service pages for link equity
+const keywordLinks: Record<string, string> = {
+  'Biodiversity': '/services/biodiversity-advisory',
+  'Climate Awareness': '/services/climate-communications',
+  'Creative Campaigning': '/services/climate-communications',
+  'Creative Strategy': '/services/climate-communications',
+  'Capability Building': '/services/climate-communications',
+  'Brand Transformation': '/services/climate-communications',
+  'Sustainability Communications': '/services/sustainability-communications-india',
+  'Green Hydrogen': '/services/green-hydrogen-advisory-india',
+  'Annual Report': '/services/sustainability-reporting-advisory',
+  'Policy Communications': '/services/climate-policy-advisory',
+  'Industrial Advocacy': '/services/industrial-decarbonisation-advisory',
+  'ESG Technology': '/services/esg-advisory-india',
+  'Content Strategy': '/services/climate-communications',
+  'Feedstock Intelligence': '/services/esg-advisory-india',
+  'SEO Architecture': '/services/climate-communications',
+};
+
 const caseStudies = [
   {
     id: 'proclime-biodiversity-campaign',
