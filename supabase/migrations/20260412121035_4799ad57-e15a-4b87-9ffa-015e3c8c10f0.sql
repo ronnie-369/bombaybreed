@@ -1,0 +1,1 @@
+ALTER TABLE contact_submissions ALTER COLUMN marketing_consent SET DEFAULT false;
