@@ -37,6 +37,15 @@ const allContentTypes: ContentType[] = ['Flagship Report', 'Intelligence Brief',
 
 const publications: Publication[] = [
   {
+    title: "The Market That Ran on One Buyer",
+    description: "Microsoft's pause on carbon removal purchases is not a corporate anomaly. The data show the concentration risk was documented, quantified, and reported for three years before it arrived.",
+    contentType: 'Intelligence Brief',
+    topic: 'Carbon Markets',
+    publishedDate: "2026-04-12",
+    readTimeMinutes: 7,
+    link: "/insights/microsoft-cdr-market-pause",
+  },
+  {
     title: "India's CCUS Gap Is Not About Money",
     description: "Five regulatory instruments the ₹20,000 crore CCUS Mission cannot substitute - policy analysis on pore space law, sequestration incentives, and test infrastructure.",
     contentType: 'Flagship Report',

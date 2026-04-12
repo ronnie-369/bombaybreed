@@ -343,6 +343,77 @@
     @apply focus:shadow-[0_0_0_3px_hsl(var(--primary)/0.15)];
   }
 
+  /* Insight prose styles */
+  .insight-prose h2 {
+    @apply text-xl md:text-2xl font-serif tracking-tight text-foreground mt-12 mb-4;
+  }
+  .insight-prose h3 {
+    @apply text-lg font-serif tracking-tight text-foreground mt-10 mb-3;
+  }
+  .insight-prose p {
+    @apply text-[15px] leading-relaxed text-muted-foreground mb-4;
+  }
+  .insight-prose .chart-subtitle {
+    @apply text-xs text-muted-foreground/60 font-mono tracking-wide uppercase mb-4 mt-0;
+  }
+  .insight-prose .signal-block {
+    @apply border-l-2 border-accent pl-6 py-4 mb-10 bg-secondary/30 rounded-r-lg;
+  }
+  .insight-prose .signal-label {
+    @apply text-[10px] font-bold tracking-[0.2em] uppercase text-accent block mb-3;
+  }
+  .insight-prose .signal-block p {
+    @apply text-[14px] text-foreground/80;
+  }
+  .insight-prose .insight-chart {
+    @apply my-8;
+  }
+  .insight-prose .insight-chart img {
+    @apply w-full rounded-lg border border-border/50;
+  }
+  .insight-prose .insight-chart figcaption {
+    @apply text-xs text-muted-foreground/60 mt-3 italic leading-relaxed;
+  }
+  .insight-prose blockquote {
+    @apply border-l-2 border-primary/30 pl-6 py-2 my-8;
+  }
+  .insight-prose blockquote p {
+    @apply text-base font-serif italic text-foreground leading-relaxed mb-2;
+  }
+  .insight-prose blockquote cite {
+    @apply text-xs text-muted-foreground/60 not-italic font-mono tracking-wide uppercase block mt-2;
+  }
+  .insight-prose .big-stat {
+    @apply text-center py-12 my-10 border-y border-border/50;
+  }
+  .insight-prose .big-stat-value {
+    @apply text-6xl md:text-7xl font-serif text-primary block mb-4;
+  }
+  .insight-prose .big-stat-description {
+    @apply text-sm text-muted-foreground max-w-md mx-auto mb-3;
+  }
+  .insight-prose .big-stat-source {
+    @apply text-[10px] text-muted-foreground/50 font-mono tracking-wide uppercase;
+  }
+  .insight-prose .what-others-miss {
+    @apply bg-primary/5 border border-primary/10 rounded-xl p-6 md:p-8 my-10;
+  }
+  .insight-prose .what-others-miss h3 {
+    @apply text-sm font-bold tracking-[0.15em] uppercase text-primary mt-0 mb-4;
+  }
+  .insight-prose .what-others-miss p {
+    @apply text-[14px] text-foreground/80;
+  }
+  .insight-prose .what-others-miss-sources {
+    @apply text-[11px] text-muted-foreground/50 italic mt-4;
+  }
+  .insight-prose .article-footer-note {
+    @apply border-t border-border/50 pt-8 mt-12;
+  }
+  .insight-prose .article-footer-note p {
+    @apply text-xs text-muted-foreground/60;
+  }
+
   /* Reduced motion support */
   @media (prefers-reduced-motion: reduce) {
     .scroll-reveal,
