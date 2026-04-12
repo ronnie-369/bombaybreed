@@ -33,6 +33,10 @@ const caseStudies = [
       'Showcased to the Minister of Environment; featured track played to A.R. Rahman',
     ],
     keywords: ['Biodiversity', 'Climate Awareness', 'Creative Campaigning'],
+    testimonial: {
+      quote: 'Theresa is a powerhouse of talent and discipline. She brings razor focus to our industry and steers teams towards accountability and high integrity. She is systems thinking and strategic in her approach.',
+      attribution: 'CEO, ProClime',
+    },
   },
   {
     id: 'creative-effectiveness-sprint',
