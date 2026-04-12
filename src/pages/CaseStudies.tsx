@@ -89,6 +89,10 @@ const caseStudies = [
       'Report timed for the GPSN launch event in New Delhi, January 2026',
     ],
     keywords: ['Green Hydrogen', 'Annual Report', 'Policy Communications', 'Industrial Advocacy'],
+    testimonial: {
+      quote: 'We reached out to Bombay Breed on very short notice, and they stepped in without hesitation. What they delivered was a stunning annual report that captured the essence of our work with clarity and visual impact. The response from the industry has been overwhelmingly positive - it set a new benchmark for how we communicate our mission.',
+      attribution: 'CEO, GH2 India',
+    },
   },
   {
     id: 'feedstock-intelligence-content-strategy',
