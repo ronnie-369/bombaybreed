@@ -10,20 +10,20 @@ import BookingDialog from '@/components/BookingDialog';
 
 // Map keywords to internal SEO/service pages for link equity
 const keywordLinks: Record<string, string> = {
-  'Climate Awareness': '/services/carbon-communications-strategy-india',
-  'Creative Campaigning': '/services/sustainability-storytelling-brands-india',
-  'Creative Strategy': '/services/sustainability-communications-strategy',
-  'Capability Building': '/services/c-suite-sustainability-advisory-india',
-  'Brand Transformation': '/services/sustainability-communications-strategy',
-  'Sustainability Communications': '/services/sustainability-communications-strategy',
-  'Green Hydrogen': '/services/green-hydrogen-strategy',
-  'Annual Report': '/services/sustainability-reporting-india',
-  'Policy Communications': '/services/climate-policy-analysis-india',
-  'Industrial Advocacy': '/services/industrial-decarbonisation-strategy',
-  'ESG Technology': '/services/esg-materiality-assessment-india',
-  'Content Strategy': '/services/carbon-strategy-communications-advisory',
-  'Feedstock Intelligence': '/services/energy-transition-advisory-india',
-  'SEO Architecture': '/services/carbon-communications-strategy-india',
+  'Climate Awareness': '/carbon-communications-strategy-india',
+  'Creative Campaigning': '/sustainability-storytelling-brands-india',
+  'Creative Strategy': '/sustainability-communications-strategy',
+  'Capability Building': '/c-suite-sustainability-advisory-india',
+  'Brand Transformation': '/sustainability-communications-strategy',
+  'Sustainability Communications': '/sustainability-communications-strategy',
+  'Green Hydrogen': '/green-hydrogen-strategy',
+  'Annual Report': '/sustainability-reporting-india',
+  'Policy Communications': '/climate-policy-analysis-india',
+  'Industrial Advocacy': '/industrial-decarbonisation-strategy',
+  'ESG Technology': '/esg-materiality-assessment-india',
+  'Content Strategy': '/carbon-strategy-communications-advisory',
+  'Feedstock Intelligence': '/energy-transition-advisory-india',
+  'SEO Architecture': '/carbon-communications-strategy-india',
 };
 
 const caseStudies = [
