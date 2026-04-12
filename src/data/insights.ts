@@ -404,7 +404,7 @@ export const insights: Record<string, InsightData> = {
 
         <blockquote>
           <p>"That Microsoft was going to slow down their carbon removal purchasing was known. They had already contracted most of what they needed. But a hard pause, and so soon, was a bit of a surprise."</p>
-          <cite>Robert Hoglund, CDR Market Analyst, LinkedIn, 11 April 2026</cite>
+          <cite>Robert Hoglund, Co-Founder, CDR.fyi</cite>
         </blockquote>
 
         <p>The regulatory environment that framed Microsoft's 2020 pledge has simultaneously changed in two opposite directions. In the United States: the Securities and Exchange Commission ceased defending its climate risk disclosure rules in court; the Paris Agreement exit took formal effect in January 2026; more than $500 million in previously authorised federal CDR funding was redirected toward coal plant support. A voluntary commitment to be carbon negative carries different board-level weight in a regulatory vacuum than it did when mandatory climate disclosure appeared imminent.</p>
