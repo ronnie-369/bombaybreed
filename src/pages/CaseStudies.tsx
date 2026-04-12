@@ -59,6 +59,10 @@ const caseStudies = [
       'Reduced dependence on external agencies for strategic creative direction',
     ],
     keywords: ['Creative Strategy', 'Capability Building', 'Brand Transformation', 'Sustainability Communications'],
+    testimonial: {
+      quote: 'We were looking for a partner who could help future-proof our creative team by aligning creativity more closely with business impact—and this workshop has been a strong step in that direction. The team now has the tools and frameworks to think beyond habitual patterns, collaborate more effectively, and approach work with a sharper strategic lens. We expect to see stronger, more cohesive ideas that not only elevate the brand but also drive measurable outcomes. Importantly, the emphasis on execution—whether through better prioritization, stakeholder alignment, or more confident presentations—sets the team up to operate with greater clarity and influence going forward.',
+      attribution: 'CMO, WeWork India',
+    },
   },
   {
     id: 'gh2-india-annual-report',
