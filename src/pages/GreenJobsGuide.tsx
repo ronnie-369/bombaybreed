@@ -363,7 +363,7 @@ export default function GreenJobsGuide() {
           form_type: 'green-jobs-quiz',
           personality: personalityName,
           report_requested: `green-jobs-personality-${activePersonality}`,
-          marketing_consent: true,
+          marketing_consent: false,
         }),
       });
 

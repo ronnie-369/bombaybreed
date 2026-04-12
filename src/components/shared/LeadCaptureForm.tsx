@@ -33,7 +33,7 @@ const LeadCaptureForm: React.FC<LeadCaptureFormProps> = ({
     designation: '',
     company_name: '',
     phone: '',
-    consent: true,
+    consent: false,
   });
   const [isLoading, setIsLoading] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
