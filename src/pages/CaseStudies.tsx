@@ -242,6 +242,18 @@ const CaseStudies = () => {
                   </div>
                 </div>
 
+                {/* Testimonial */}
+                {'testimonial' in study && (study as any).testimonial && (
+                  <div className="mb-8 mt-10 border-l-2 border-accent/50 pl-6 md:pl-8">
+                    <blockquote className="text-foreground/75 leading-relaxed italic text-[15px] mb-3">
+                      "{(study as any).testimonial.quote}"
+                    </blockquote>
+                    <cite className="text-xs font-semibold text-muted-foreground uppercase tracking-[0.12em] not-italic">
+                      — {(study as any).testimonial.attribution}
+                    </cite>
+                  </div>
+                )}
+
                 {/* Keywords */}
                 <div className="flex flex-wrap items-center gap-2">
                   {study.keywords.map((kw) => (
