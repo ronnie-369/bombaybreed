@@ -338,7 +338,6 @@ export const insights: Record<string, InsightData> = {
     ],
     midArticleCta: { type: 'flagship', flagshipSlug: 'carbon-playbook', flagshipTitle: "India's Carbon Playbook" },
   },
-  },
 
   'microsoft-cdr-market-pause': {
     slug: 'microsoft-cdr-market-pause',
