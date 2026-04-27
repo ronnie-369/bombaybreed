@@ -227,6 +227,24 @@ const Insights = () => {
 
   
 
+  /**
+   * Static-asset paths (e.g. /special-features/foo.html) MUST be served by
+   * the hosting layer, not by React Router. Detect them so we render a real
+   * <a> tag and a full document load - this is correct for both same-tab
+   * clicks AND modifier-key (cmd/ctrl/middle-click) "open in new tab".
+   *
+   * A path is treated as a static asset when:
+   *  - the publication is flagged `external: true`, OR
+   *  - the link starts with /special-features/, OR
+   *  - the link ends with .html / .pdf
+   */
+  const isStaticAssetLink = (pub: Publication): boolean => {
+    if (!pub.link) return false;
+    if (pub.external) return true;
+    if (pub.link.startsWith('/special-features/')) return true;
+    return /\.(html?|pdf)$/i.test(pub.link);
+  };
+
   const renderListingCard = (pub: Publication, index: number) => {
     const inner = (
       <div className="flex items-start justify-between py-5 border-b border-border/30 group-hover:border-primary/30 transition-colors">
@@ -250,13 +268,28 @@ const Insights = () => {
       </div>
     );
 
-    if (pub.external) {
-      return <a key={index} href={pub.link} target="_blank" rel="noopener noreferrer" className="block group">{inner}</a>;
+    if (!pub.link) {
+      return <div key={index} className="block group cursor-default">{inner}</div>;
     }
-    if (pub.link) {
-      return <Link key={index} to={pub.link} className="block group">{inner}</Link>;
+
+    if (isStaticAssetLink(pub)) {
+      // Real <a>: triggers a full document load so the hosting layer serves
+      // the static file. target="_blank" keeps the synthesis page intact.
+      return (
+        <a
+          key={index}
+          href={pub.link}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="block group"
+        >
+          {inner}
+        </a>
+      );
     }
-    return <div key={index} className="block group cursor-default">{inner}</div>;
+
+    // Internal SPA route - use React Router for client-side navigation.
+    return <Link key={index} to={pub.link} className="block group">{inner}</Link>;
   };
 
   return (
@@ -387,11 +420,23 @@ const Insights = () => {
                       </div>
                     </div>
                   );
-                  return report.link ? (
-                    <Link key={i} to={report.link} className="block group">{content}</Link>
-                  ) : (
-                    <div key={i} className="group">{content}</div>
-                  );
+                  if (!report.link) {
+                    return <div key={i} className="group">{content}</div>;
+                  }
+                  if (isStaticAssetLink(report)) {
+                    return (
+                      <a
+                        key={i}
+                        href={report.link}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="block group"
+                      >
+                        {content}
+                      </a>
+                    );
+                  }
+                  return <Link key={i} to={report.link} className="block group">{content}</Link>;
                 })}
               </div>
             </div>
