@@ -466,7 +466,7 @@ const PremiumAccessLounge: React.FC = () => {
               tabIndex={-1}
               className="group bg-foreground text-background border border-foreground rounded-xl p-7 md:p-8 flex flex-col relative transition-all duration-300 ease-out outline-none data-[active=true]:border-accent data-[active=true]:shadow-[0_12px_40px_-12px_hsl(var(--accent)/0.55)] data-[active=true]:-translate-y-0.5"
             >
-              <span className="absolute -top-3 right-6 inline-flex items-center px-3 py-1 rounded-full text-[10px] font-semibold tracking-widest uppercase bg-accent text-accent-foreground shadow-md">
+              <span className="absolute -top-2.5 sm:-top-3 right-4 sm:right-6 inline-flex items-center px-2.5 sm:px-3 py-1 rounded-full text-[9px] sm:text-[10px] font-semibold tracking-widest uppercase bg-accent text-accent-foreground shadow-md whitespace-nowrap">
                 Capacity capped
               </span>
               <div className="pb-5 border-b border-background/20 mb-6">
