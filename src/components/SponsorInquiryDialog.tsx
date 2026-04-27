@@ -62,6 +62,10 @@ const SponsorInquiryDialog = ({ open, onOpenChange, project }: SponsorInquiryDia
   const [referenceId, setReferenceId] = useState<string | null>(null);
   const [copied, setCopied] = useState(false);
 
+  // Track which element opened the dialog so we can return focus to it on
+  // close - critical for keyboard users navigating the project cards.
+  const triggerRef = useRef<HTMLElement | null>(null);
+
   const form = useForm<InquiryValues>({
     resolver: zodResolver(inquirySchema),
     defaultValues: {
@@ -77,22 +81,35 @@ const SponsorInquiryDialog = ({ open, onOpenChange, project }: SponsorInquiryDia
 
   useEffect(() => {
     if (open) {
+      if (typeof document !== 'undefined' && document.activeElement instanceof HTMLElement) {
+        triggerRef.current = document.activeElement;
+      }
       form.setValue('project', project);
     }
   }, [open, project, form]);
 
-  // Reset success/transient state shortly after the dialog closes so the next
-  // open shows a fresh form rather than the previous success screen.
+  // Reset transient state after close + restore focus to the trigger card.
   useEffect(() => {
     if (!open) {
       const t = window.setTimeout(() => {
         setReferenceId(null);
         setCopied(false);
         form.reset();
+        const el = triggerRef.current;
+        if (el && typeof el.focus === 'function' && document.contains(el)) {
+          try { el.focus({ preventScroll: true }); } catch { el.focus(); }
+        }
+        triggerRef.current = null;
       }, 200);
       return () => window.clearTimeout(t);
     }
   }, [open, form]);
+
+  // Block dismissal while a submission is in flight.
+  const handleOpenChange = (next: boolean) => {
+    if (submitting && !next) return;
+    onOpenChange(next);
+  };
 
   const handleCopyReference = async () => {
     if (!referenceId) return;
