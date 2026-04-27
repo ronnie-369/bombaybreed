@@ -9,6 +9,7 @@ import { Input } from '@/components/ui/input';
 import ScrollReveal from '@/components/ui/ScrollReveal';
 import SectionLabel from '@/components/ui/SectionLabel';
 import LeadCaptureForm from '@/components/shared/LeadCaptureForm';
+import PremiumAccessLounge from '@/pages/insights/PremiumAccessLounge';
 
 
 type ContentType = 'Flagship Report' | 'Intelligence Brief' | 'Regulatory Alert' | 'Perspective';
@@ -242,6 +243,14 @@ const Insights = () => {
   const showFlagship = selectedTopic === 'All' && selectedType === 'All Types' && !searchQuery;
   const sections = useMemo(() => {
     const s: { id: string; label: string }[] = [];
+    // Premium Access Lounge — paid funnel sits at the top of the page.
+    // These ids exist regardless of search/filter state.
+    s.push({ id: 'lounge', label: 'Lounge' });
+    s.push({ id: 'what-you-get', label: 'What you get' });
+    s.push({ id: 'industry', label: 'Industry' });
+    s.push({ id: 'readers', label: 'Readers' });
+    s.push({ id: 'sponsor', label: 'Sponsor' });
+    // Editorial hub below — flagship is conditional on no active filter.
     if (showFlagship) s.push({ id: 'flagship', label: 'Flagship' });
     s.push({ id: 'all-intelligence', label: 'All Intelligence' });
     s.push({ id: 'subscribe', label: 'Subscribe' });
@@ -366,8 +375,8 @@ const Insights = () => {
   return (
     <div className="min-h-screen bg-background flex flex-col">
       <PageHead
-        title="Bombay Breed: Intelligence Briefs"
-        description="Original research and strategic analysis on carbon markets, ESG governance, and sustainability communications in India."
+        title="TCD Intelligence — Premium Access Lounge & Briefs"
+        description="Membership and corporate sponsorship for original India-focused research on carbon markets, regulation, and climate exposure. Plus the full library of intelligence briefs."
         path="/insights"
         ogImage="og-insights"
       />
@@ -496,9 +505,12 @@ const Insights = () => {
           </div>
         </nav>
 
+        {/* Premium Access Lounge — paid funnel stacked on top of the editorial hub */}
+        <PremiumAccessLounge />
+
         {/* Flagship Research */}
         {showFlagship && (
-          <section id="flagship" className="px-6 md:px-8 pb-8 pt-8 scroll-mt-32">
+          <section id="flagship" className="px-6 md:px-8 pb-8 pt-8 scroll-mt-32 border-t border-border/50">
             <div className="container mx-auto max-w-[900px]">
               <span className="text-[10px] font-bold tracking-widest uppercase text-accent mb-3 block pl-1">
                 Flagship Research
