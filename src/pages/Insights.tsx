@@ -246,7 +246,6 @@ const Insights = () => {
     // These ids exist regardless of search/filter state.
     s.push({ id: 'lounge', label: 'Lounge' });
     s.push({ id: 'tiers', label: 'Tiers' });
-    s.push({ id: 'what-you-get', label: 'What you get' });
     s.push({ id: 'industry', label: 'Industry' });
     s.push({ id: 'readers', label: 'Readers' });
     s.push({ id: 'sponsor', label: 'Sponsor' });
