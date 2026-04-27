@@ -22,17 +22,17 @@ const isChunkLoadError = (msg: string): boolean => {
   );
 };
 
-const triggerReload = (): void => {
+const notifyUser = (): void => {
   try {
-    if (sessionStorage.getItem(RELOAD_FLAG)) return; // already tried, give up
-    sessionStorage.setItem(RELOAD_FLAG, '1');
-  } catch {
-    // sessionStorage unavailable - bail rather than risk a loop
-    return;
-  }
-  const url = new URL(window.location.href);
-  url.searchParams.set('_r', Date.now().toString(36));
-  window.location.replace(url.toString());
+    window.dispatchEvent(new CustomEvent('lov:chunk-error'));
+  } catch { /* noop */ }
+};
+
+const triggerReload = (): void => {
+  // Show the banner so the user can recover with a single click. We no longer
+  // auto-reload silently - that masked legitimate failures and caused surprise
+  // page jumps. The banner's Reload button performs the cache-busted reload.
+  notifyUser();
 };
 
 export const installChunkReload = (): void => {
