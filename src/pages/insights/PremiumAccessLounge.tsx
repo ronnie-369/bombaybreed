@@ -688,12 +688,21 @@ const PremiumAccessLounge: React.FC = () => {
             </h3>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               {SPONSOR_OPEN_PROJECTS.map((line, i) => (
-                <div key={line} className="text-sm text-foreground border-l-2 border-foreground/40 pl-3 py-1">
+                <button
+                  key={line}
+                  type="button"
+                  onClick={() => openInquiry(line)}
+                  className="group text-left text-sm text-foreground border-l-2 border-foreground/40 pl-3 py-1 transition-colors hover:border-foreground hover:bg-foreground/[0.03] focus:outline-none focus-visible:ring-2 focus-visible:ring-foreground/40 rounded-r"
+                  aria-label={`Register interest in: ${line}`}
+                >
                   <span className="text-muted-foreground/70 mr-2 font-mono text-xs">
                     {String(i + 1).padStart(2, '0')}
                   </span>
                   {line}
-                </div>
+                  <span className="ml-2 text-xs text-muted-foreground/60 group-hover:text-foreground transition-colors">
+                    Register interest →
+                  </span>
+                </button>
               ))}
             </div>
           </div>
