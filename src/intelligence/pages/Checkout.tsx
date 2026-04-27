@@ -97,10 +97,10 @@ const Checkout = () => {
 
             <div className="mt-6 rounded-[10px] bg-bb-off-white border border-bb-border p-5">
               <p className="text-[13px] text-bb-gray leading-relaxed">
-                Razorpay is not wired in yet. This step records a pending order and a pending
-                payment in your account. An administrator will mark the subscription active in the
-                admin dashboard. The full Razorpay flow can be plugged in here later without
-                changing the rest of the experience.
+                Payments are mocked while Razorpay is being wired in. Placing this order activates
+                your {tier.name} membership immediately for one year and records a successful mock
+                payment, so gated reports unlock right away. The real provider will replace this
+                step without changing the rest of the experience.
               </p>
             </div>
 
