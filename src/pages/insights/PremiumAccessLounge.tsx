@@ -335,7 +335,7 @@ const PremiumAccessLounge: React.FC = () => {
                 Members only zone
               </span>
               <h3 className="font-serif text-xl mt-3 mb-2">
-                Experience hassle-free intelligence in the carbon markets and energy transition, starting at INR 10,000 per month
+                Carbon markets and energy transition, decoded for you - starting at INR 10,000 per month
               </h3>
               <p className="text-sm text-background/70 mb-6">
                 Two tiers. From INR 10,000 a month. The same desk that briefs
