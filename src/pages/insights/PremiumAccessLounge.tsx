@@ -482,11 +482,15 @@ const PremiumAccessLounge: React.FC = () => {
               </div>
 
               <div className="mb-6">
+                <span className="inline-flex items-center px-2.5 py-1 rounded-full text-[10px] font-semibold tracking-widest uppercase bg-accent/20 text-accent border border-accent/40 mb-3">
+                  Launch offer - 30% off year one
+                </span>
                 <div className="font-serif text-3xl">
-                  INR 50,000<span className="text-base text-background/60 font-sans"> / month</span>
+                  INR 35,000<span className="text-base text-background/60 font-sans"> / month</span>
+                  <span className="ml-2 text-base text-background/40 font-sans line-through">INR 50,000</span>
                 </div>
                 <div className="text-xs text-background/60 tracking-wide mt-1">
-                  INR 6 lakh / year - one named user - the cost of an intern, the output of a desk
+                  INR 4.2 lakh / year - founding rate, locked while your subscription stays active
                 </div>
               </div>
 
