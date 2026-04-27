@@ -1,10 +1,35 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useMemo, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { ArrowRight } from 'lucide-react';
 import ScrollReveal from '@/components/ui/ScrollReveal';
 import SectionLabel from '@/components/ui/SectionLabel';
 import { trackSponsorEvent } from '@/utils/sponsorAnalytics';
+import {
+  getVariant,
+  logAssignmentOnce,
+  logClick,
+  type Variant,
+} from '@/lib/abTest';
+
+/**
+ * A/B test config for the two tier CTAs. Control = 'A' = current copy.
+ * Challenger = 'B' = new copy. Variants are sticky per visitor (localStorage)
+ * and 50/50 randomised. See src/lib/abTest.ts for the wiring.
+ */
+const CTA_COPY: Record<
+  'industry_reader' | 'analyst_lens',
+  Record<Variant, string>
+> = {
+  industry_reader: {
+    A: 'Join the Industry Reader',
+    B: 'Read the market with us',
+  },
+  analyst_lens: {
+    A: 'Take the Analyst Lens',
+    B: 'Get the read before the price moves',
+  },
+};
 
 /**
  * Premium Access Lounge — the conversion stack on top of /insights.
@@ -189,6 +214,24 @@ const PremiumAccessLounge: React.FC = () => {
     return () => observer.disconnect();
   }, []);
 
+  // Sticky variant assignment for the two subscribe-CTA experiments.
+  // useMemo so we read localStorage exactly once per mount; getVariant itself
+  // is idempotent for the same visitor.
+  const industryVariant = useMemo<Variant>(
+    () => getVariant('subscribe_cta_industry_reader'),
+    []
+  );
+  const analystVariant = useMemo<Variant>(
+    () => getVariant('subscribe_cta_analyst_lens'),
+    []
+  );
+
+  // Log a one-per-session 'assignment' event for each tier the visitor sees.
+  useEffect(() => {
+    logAssignmentOnce('subscribe_cta_industry_reader', industryVariant);
+    logAssignmentOnce('subscribe_cta_analyst_lens', analystVariant);
+  }, [industryVariant, analystVariant]);
+
   return (
     <>
       {/* ── HEADER + DUAL CTA ────────────────────────────────────────── */}
@@ -353,10 +396,16 @@ const PremiumAccessLounge: React.FC = () => {
 
               <Button asChild variant="outline">
                 <Link
-                  to="/intelligence/membership?tier=industry-reader"
+                  to={`/intelligence/membership?tier=industry-reader&v=${industryVariant}&ref=insights`}
                   className="inline-flex items-center justify-center gap-2"
+                  onClick={() =>
+                    logClick('subscribe_cta_industry_reader', industryVariant, {
+                      tier: 'industry-reader',
+                    })
+                  }
                 >
-                  Join the Industry Reader <ArrowRight className="w-4 h-4" />
+                  {CTA_COPY.industry_reader[industryVariant]}{' '}
+                  <ArrowRight className="w-4 h-4" />
                 </Link>
               </Button>
             </div>
@@ -405,10 +454,16 @@ const PremiumAccessLounge: React.FC = () => {
 
               <Button asChild variant="secondary">
                 <Link
-                  to="/intelligence/membership?tier=analyst-lens"
+                  to={`/intelligence/membership?tier=analyst-lens&v=${analystVariant}&ref=insights`}
                   className="inline-flex items-center justify-center gap-2"
+                  onClick={() =>
+                    logClick('subscribe_cta_analyst_lens', analystVariant, {
+                      tier: 'analyst-lens',
+                    })
+                  }
                 >
-                  Take the Analyst Lens <ArrowRight className="w-4 h-4" />
+                  {CTA_COPY.analyst_lens[analystVariant]}{' '}
+                  <ArrowRight className="w-4 h-4" />
                 </Link>
               </Button>
             </div>

@@ -14,6 +14,42 @@ export type Database = {
   }
   public: {
     Tables: {
+      ab_experiments: {
+        Row: {
+          created_at: string
+          device_type: string | null
+          event_type: string
+          experiment: string
+          id: string
+          metadata: Json
+          page_path: string | null
+          variant: string
+          visitor_id: string
+        }
+        Insert: {
+          created_at?: string
+          device_type?: string | null
+          event_type: string
+          experiment: string
+          id?: string
+          metadata?: Json
+          page_path?: string | null
+          variant: string
+          visitor_id: string
+        }
+        Update: {
+          created_at?: string
+          device_type?: string | null
+          event_type?: string
+          experiment?: string
+          id?: string
+          metadata?: Json
+          page_path?: string | null
+          variant?: string
+          visitor_id?: string
+        }
+        Relationships: []
+      }
       bookings: {
         Row: {
           company: string | null

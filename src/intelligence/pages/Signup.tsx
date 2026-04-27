@@ -6,6 +6,7 @@ import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
 import IntelligenceLayout from "../components/IntelligenceLayout";
 import SectionLabel from "../components/SectionLabel";
+import { logSubscribeConversion } from "@/lib/abTest";
 
 const passwordSchema = z
   .string()
@@ -83,6 +84,10 @@ const Signup = () => {
           { onConflict: "user_id" }
         );
       }
+
+      // A/B: attribute the conversion to whichever subscribe-CTA variant
+      // brought this visitor in (within the 7-day attribution window).
+      logSubscribeConversion({ tier, source: 'signup' });
 
       toast({ title: "Account created", description: "Continue to membership selection." });
       navigate(`/intelligence/checkout?tier=${tier}`);
