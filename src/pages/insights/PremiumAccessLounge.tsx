@@ -312,7 +312,7 @@ const PremiumAccessLounge: React.FC = () => {
       </section>
 
       {/* TIERS — Industry Reader vs Analyst Lens */}
-      <section id="tiers" className="px-6 md:px-8 py-16 border-t border-border/50 scroll-mt-32 bg-secondary/20">
+      <section id="tiers" className="px-6 md:px-8 py-20 md:py-16 border-t border-border/50 scroll-mt-32 bg-secondary/20">
         <div className="container mx-auto max-w-[900px]">
           <SectionLabel label="The two tiers" />
           <h2 className="text-section font-serif tracking-tight mt-6 mb-4">
@@ -326,7 +326,7 @@ const PremiumAccessLounge: React.FC = () => {
           </p>
 
           {/* What you get — shared editorial line. No deliverables here; those live in the cards. */}
-          <div className="border-y border-border/60 py-5 mb-10 grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
+          <div className="border-y border-border/60 py-8 md:py-5 mb-12 md:mb-10 grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-8">
             {[
               {
                 k: 'One desk',
@@ -341,20 +341,20 @@ const PremiumAccessLounge: React.FC = () => {
                 v: 'Pick the read that fits the seat you sit in - the cards below set out what each delivers.',
               },
             ].map((item) => (
-              <div key={item.k} className="grid grid-cols-[auto_1fr] gap-3 items-baseline">
+              <div key={item.k} className="flex flex-col gap-2 md:grid md:grid-cols-[auto_1fr] md:gap-3 md:items-baseline">
                 <span className="text-[10px] font-bold tracking-widest uppercase text-accent whitespace-nowrap">
                   {item.k}
                 </span>
-                <span className="text-sm text-foreground/80 leading-snug">
+                <span className="text-[15px] md:text-sm text-foreground/80 leading-relaxed md:leading-snug">
                   {item.v}
                 </span>
               </div>
             ))}
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-5">
             {/* Tier 1 — Industry Reader (supply side) */}
-            <div className="bg-background border border-border rounded-xl p-8 flex flex-col">
+            <div className="bg-background border border-border rounded-xl p-7 md:p-8 flex flex-col">
               <div className="pb-5 border-b border-border/60 mb-6">
                 <span className="text-[10px] font-bold tracking-widest uppercase text-muted-foreground">
                   Tier 01 - Supply side
@@ -408,7 +408,7 @@ const PremiumAccessLounge: React.FC = () => {
             </div>
 
             {/* Tier 2 — Analyst Lens (demand side / money) */}
-            <div className="bg-foreground text-background border border-foreground rounded-xl p-8 flex flex-col relative">
+            <div className="bg-foreground text-background border border-foreground rounded-xl p-7 md:p-8 flex flex-col relative">
               <span className="absolute -top-3 right-6 inline-flex items-center px-3 py-1 rounded-full text-[10px] font-semibold tracking-widest uppercase bg-accent text-accent-foreground shadow-md">
                 Capacity capped
               </span>
