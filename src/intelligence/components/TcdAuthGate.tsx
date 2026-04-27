@@ -6,13 +6,15 @@ import type { Session } from "@supabase/supabase-js";
 interface Props {
   children: ReactNode;
   requireAdmin?: boolean;
+  requireActiveMembership?: boolean;
 }
 
-const TcdAuthGate = ({ children, requireAdmin = false }: Props) => {
+const TcdAuthGate = ({ children, requireAdmin = false, requireActiveMembership = false }: Props) => {
   const location = useLocation();
   const [loading, setLoading] = useState(true);
   const [session, setSession] = useState<Session | null>(null);
   const [isAdmin, setIsAdmin] = useState(false);
+  const [hasActiveMembership, setHasActiveMembership] = useState(false);
 
   useEffect(() => {
     let active = true;
@@ -27,14 +29,26 @@ const TcdAuthGate = ({ children, requireAdmin = false }: Props) => {
       if (!active) return;
       setSession(data.session);
 
-      if (data.session && requireAdmin) {
-        const { data: roleRow } = await supabase
-          .from("user_roles")
-          .select("role")
-          .eq("user_id", data.session.user.id)
-          .eq("role", "admin")
-          .maybeSingle();
-        setIsAdmin(!!roleRow);
+      if (data.session) {
+        // Check admin first — admins bypass membership requirement
+        let admin = false;
+        if (requireAdmin || requireActiveMembership) {
+          const { data: roleRow } = await supabase
+            .from("user_roles")
+            .select("role")
+            .eq("user_id", data.session.user.id)
+            .eq("role", "admin")
+            .maybeSingle();
+          admin = !!roleRow;
+          setIsAdmin(admin);
+        }
+
+        if (requireActiveMembership && !admin) {
+          const { data: rank } = await supabase.rpc("tcd_current_tier_rank");
+          setHasActiveMembership(((rank as number | null) ?? 0) > 0);
+        } else if (admin) {
+          setHasActiveMembership(true);
+        }
       }
       setLoading(false);
     })();
@@ -43,7 +57,7 @@ const TcdAuthGate = ({ children, requireAdmin = false }: Props) => {
       active = false;
       sub.subscription.unsubscribe();
     };
-  }, [requireAdmin]);
+  }, [requireAdmin, requireActiveMembership]);
 
   if (loading) {
     return (
@@ -64,6 +78,15 @@ const TcdAuthGate = ({ children, requireAdmin = false }: Props) => {
 
   if (requireAdmin && !isAdmin) {
     return <Navigate to="/intelligence/dashboard" replace />;
+  }
+
+  if (requireActiveMembership && !hasActiveMembership) {
+    return (
+      <Navigate
+        to={`/intelligence/membership?reason=inactive&redirect=${encodeURIComponent(location.pathname + location.search)}`}
+        replace
+      />
+    );
   }
 
   return <>{children}</>;

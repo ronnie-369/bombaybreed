@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Helmet } from "react-helmet-async";
-import { Link } from "react-router-dom";
+import { Link, useSearchParams } from "react-router-dom";
 import { supabase } from "@/integrations/supabase/client";
 import IntelligenceLayout from "../components/IntelligenceLayout";
 import SectionLabel from "../components/SectionLabel";
@@ -24,6 +24,8 @@ const formatPrice = (n: number) =>
 const Membership = () => {
   const [tiers, setTiers] = useState<Tier[]>([]);
   const [loading, setLoading] = useState(true);
+  const [params] = useSearchParams();
+  const inactiveNotice = params.get("reason") === "inactive";
 
   useEffect(() => {
     (async () => {
@@ -52,6 +54,14 @@ const Membership = () => {
           Annual billing. All tiers include the published intelligence layer. Higher tiers add
           flagship reports, sector deep dives, and direct analyst access.
         </p>
+        {inactiveNotice && (
+          <div className="mt-8 max-w-xl border border-bb-copper/40 bg-bb-copper/5 rounded-xl p-5">
+            <p className="text-[11px] uppercase tracking-[0.3em] text-bb-copper">Membership required</p>
+            <p className="mt-2 text-[14px] text-bb-near-black leading-relaxed">
+              That area is reserved for active members. Choose a tier below to continue.
+            </p>
+          </div>
+        )}
       </section>
 
       <section className="max-w-[1200px] mx-auto px-6 md:px-10 pb-24">
