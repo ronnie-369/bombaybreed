@@ -45,9 +45,21 @@ interface SponsorInquiryDialogProps {
   project: string;
 }
 
+const generateReferenceId = (): string => {
+  // Short, human-friendly ref: BB-YYYYMMDD-XXXX (uppercase alphanumeric)
+  const d = new Date();
+  const yyyymmdd = `${d.getFullYear()}${String(d.getMonth() + 1).padStart(2, '0')}${String(
+    d.getDate(),
+  ).padStart(2, '0')}`;
+  const rand = Math.random().toString(36).slice(2, 6).toUpperCase();
+  return `BB-${yyyymmdd}-${rand}`;
+};
+
 const SponsorInquiryDialog = ({ open, onOpenChange, project }: SponsorInquiryDialogProps) => {
   const { toast } = useToast();
   const [submitting, setSubmitting] = useState(false);
+  const [referenceId, setReferenceId] = useState<string | null>(null);
+  const [copied, setCopied] = useState(false);
 
   const form = useForm<InquiryValues>({
     resolver: zodResolver(inquirySchema),
@@ -67,6 +79,34 @@ const SponsorInquiryDialog = ({ open, onOpenChange, project }: SponsorInquiryDia
       form.setValue('project', project);
     }
   }, [open, project, form]);
+
+  // Reset success/transient state shortly after the dialog closes so the next
+  // open shows a fresh form rather than the previous success screen.
+  useEffect(() => {
+    if (!open) {
+      const t = window.setTimeout(() => {
+        setReferenceId(null);
+        setCopied(false);
+        form.reset();
+      }, 200);
+      return () => window.clearTimeout(t);
+    }
+  }, [open, form]);
+
+  const handleCopyReference = async () => {
+    if (!referenceId) return;
+    try {
+      await navigator.clipboard.writeText(referenceId);
+      setCopied(true);
+      window.setTimeout(() => setCopied(false), 2000);
+    } catch {
+      toast({
+        title: 'Could not copy',
+        description: 'Please copy the reference manually.',
+        variant: 'destructive',
+      });
+    }
+  };
 
   const onSubmit = async (data: InquiryValues) => {
     setSubmitting(true);
