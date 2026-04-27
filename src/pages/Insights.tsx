@@ -257,16 +257,26 @@ const Insights = () => {
   };
 
   const renderListingCard = (pub: Publication, index: number) => {
+    const fresh = isNewPublication(pub.publishedDate);
     const inner = (
-      <div className="flex items-start justify-between py-5 border-b border-border/30 group-hover:border-primary/30 transition-colors">
+      <div className={`flex items-start justify-between py-5 border-b transition-colors ${fresh ? 'border-accent/40 group-hover:border-accent' : 'border-border/30 group-hover:border-primary/30'}`}>
         <div className="min-w-0 pr-6">
-          <div className="flex items-center gap-2 mb-2">
+          <div className="flex items-center gap-2 mb-2 flex-wrap">
             <span className={`px-2 py-0.5 border rounded text-[10px] font-semibold tracking-wider uppercase ${contentTypeColors[pub.contentType]}`}>
               {pub.contentType}
             </span>
             <span className="px-2 py-0.5 border border-border rounded text-[10px] text-muted-foreground">
               {pub.topic}
             </span>
+            {fresh && (
+              <span className="inline-flex items-center gap-1.5 px-2 py-0.5 rounded text-[10px] font-semibold tracking-wider uppercase bg-accent text-accent-foreground">
+                <span className="relative flex h-1.5 w-1.5">
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-accent-foreground opacity-60"></span>
+                  <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-accent-foreground"></span>
+                </span>
+                New
+              </span>
+            )}
           </div>
           <h3 className="font-semibold text-[15px] text-foreground group-hover:text-primary transition-colors">
             {pub.title}
