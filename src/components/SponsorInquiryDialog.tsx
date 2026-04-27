@@ -228,8 +228,12 @@ const SponsorInquiryDialog = ({ open, onOpenChange, project }: SponsorInquiryDia
           </div>
         ) : (
           <Form {...form}>
-            <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
-            <fieldset disabled={submitting} aria-busy={submitting} className="space-y-4 contents">
+            <form
+              onSubmit={form.handleSubmit(onSubmit)}
+              className={`space-y-4 ${submitting ? 'pointer-events-none select-none opacity-60' : ''}`}
+              aria-busy={submitting}
+            >
+            <fieldset disabled={submitting} className="space-y-4 m-0 p-0 border-0">
             <FormField
               control={form.control}
               name="project"
