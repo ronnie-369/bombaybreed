@@ -229,6 +229,43 @@ const PremiumAccessLounge: React.FC = () => {
     logAssignmentOnce('subscribe_cta_analyst_lens', analystVariant);
   }, [industryVariant, analystVariant]);
 
+  // Active-tier highlight: hover/focus on desktop, scroll-spy on mobile.
+  // Defaults to 'analyst-lens' since it is the recommended (capacity-capped) tier.
+  const [activeTier, setActiveTier] = useState<'industry-reader' | 'analyst-lens'>('analyst-lens');
+  const industryCardRef = useRef<HTMLDivElement | null>(null);
+  const analystCardRef = useRef<HTMLDivElement | null>(null);
+
+  useEffect(() => {
+    // Only run scroll-spy on narrow viewports where cards stack vertically.
+    if (typeof window === 'undefined') return;
+    const mql = window.matchMedia('(max-width: 767px)');
+    if (!mql.matches) return;
+
+    const cards: Array<[HTMLDivElement | null, 'industry-reader' | 'analyst-lens']> = [
+      [industryCardRef.current, 'industry-reader'],
+      [analystCardRef.current, 'analyst-lens'],
+    ];
+    const observed = cards.filter(([el]) => el) as Array<[HTMLDivElement, 'industry-reader' | 'analyst-lens']>;
+    if (!observed.length) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        // Pick the card with the largest intersection ratio currently in view.
+        const visible = entries
+          .filter((e) => e.isIntersecting)
+          .sort((a, b) => b.intersectionRatio - a.intersectionRatio);
+        if (!visible.length) return;
+        const top = visible[0].target as HTMLDivElement;
+        const match = observed.find(([el]) => el === top);
+        if (match) setActiveTier(match[1]);
+      },
+      { root: null, rootMargin: '-30% 0px -30% 0px', threshold: [0.25, 0.5, 0.75] },
+    );
+
+    observed.forEach(([el]) => observer.observe(el));
+    return () => observer.disconnect();
+  }, []);
+
   return (
     <>
       {/* ── HEADER + DUAL CTA ────────────────────────────────────────── */}
