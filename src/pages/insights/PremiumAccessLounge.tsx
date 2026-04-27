@@ -498,10 +498,6 @@ const PremiumAccessLounge: React.FC = () => {
               </figure>
             ))}
           </div>
-          <p className="text-xs text-muted-foreground/60 mt-6 italic">
-            Placeholder quotes. Replace strings in PremiumAccessLounge.tsx as real
-            testimonials come in.
-          </p>
         </div>
       </section>
 
