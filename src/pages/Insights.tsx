@@ -397,20 +397,7 @@ const Insights = () => {
           </div>
         </section>
 
-        {/* Search */}
-        <section className="px-6 md:px-8 pb-4">
-          <div className="container mx-auto max-w-[900px]">
-            <div className="relative">
-              <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
-              <Input
-                placeholder="Search intelligence briefs..."
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                className="pl-10 bg-background"
-              />
-            </div>
-          </div>
-        </section>
+        {/* Search has been moved to the bottom of the listing — see below */}
 
         {/* Filters */}
         <section className="px-6 md:px-8 pb-8">
@@ -683,6 +670,25 @@ const Insights = () => {
                 </button>
               </div>
             )}
+          </div>
+        </section>
+
+        {/* Search — placed at the end of the listing for users who want to look up a specific brief after browsing */}
+        <section id="search" className="px-6 md:px-8 py-10 border-t border-border/50 scroll-mt-32">
+          <div className="container mx-auto max-w-[900px]">
+            <label htmlFor="insights-search" className="block text-[11px] font-bold tracking-widest uppercase text-muted-foreground mb-3">
+              Search the archive
+            </label>
+            <div className="relative">
+              <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
+              <Input
+                id="insights-search"
+                placeholder="Search intelligence briefs..."
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                className="pl-10 bg-background"
+              />
+            </div>
           </div>
         </section>
 
