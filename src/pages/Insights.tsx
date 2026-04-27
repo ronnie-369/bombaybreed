@@ -229,7 +229,7 @@ const Insights = () => {
     // Editorial hub below — flagship is conditional on no active filter.
     if (showFlagship) s.push({ id: 'flagship', label: 'Flagship' });
     s.push({ id: 'all-intelligence', label: 'All Intelligence' });
-    s.push({ id: 'search', label: 'Search' });
+    s.push({ id: 'all-intelligence', label: 'All Intelligence' });
     s.push({ id: 'subscribe', label: 'Subscribe' });
     return s;
   }, [showFlagship]);
