@@ -650,7 +650,7 @@ img { max-width: 100%; display: block; }
   font-size: 11px;
   letter-spacing: 0.5px;
   color: var(--gray);
-  max-width: 720px;
+  max-width: 100%;
   line-height: 1.55;
 }
 
@@ -1318,6 +1318,67 @@ img { max-width: 100%; display: block; }
   padding-bottom: 2px;
 }
 .tldr-jump:hover { color: var(--near-black); border-bottom-color: var(--near-black); }
+
+/* ============== MITIGATION CATEGORIES INDEX ============== */
+.mit-index {
+  margin: 0 0 40px;
+  padding: 22px 26px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--copper);
+  border-radius: 0 4px 4px 0;
+}
+.mit-index-kicker {
+  font-family: ui-monospace, monospace;
+  font-size: 10px;
+  letter-spacing: 2px;
+  color: var(--copper);
+  text-transform: uppercase;
+  margin-bottom: 14px;
+}
+.mit-index-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+}
+.mit-index-link {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 12px 14px;
+  background: var(--paper);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  text-decoration: none;
+  color: var(--near-black);
+  transition: border-color 0.15s ease, transform 0.15s ease, background 0.15s ease;
+}
+.mit-index-link:hover {
+  border-color: var(--copper);
+  background: var(--tint-warm);
+  transform: translateY(-1px);
+}
+.mit-index-acronym {
+  font-family: ui-monospace, monospace;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  color: var(--copper);
+}
+.mit-index-name {
+  font-family: 'Inter', sans-serif;
+  font-size: 12.5px;
+  line-height: 1.4;
+  color: var(--near-black);
+}
+@media (max-width: 768px) {
+  .mit-index { padding: 18px; }
+  .mit-index-grid { grid-template-columns: 1fr 1fr; gap: 8px; }
+  .mit-index-link { padding: 10px 12px; }
+}
+@media (max-width: 420px) {
+  .mit-index-grid { grid-template-columns: 1fr; }
+}
 
 /* ============== H3 UTILITIES ============== */
 .section-h3 {
@@ -2042,8 +2103,31 @@ details.collapsible-section:not([open]) .collapsible-toggle::after { content: " 
 
   <p style="font-size:16px; line-height:1.7; max-width:780px; margin-bottom:32px;">This is the section where the report's central thesis lives. A hectare of restored mid-altitude forest sequesters 2-5 tonnes CO2e per year (mitigation). The same hectare reduces slope failure on the highway corridor below, holds soil moisture for the orchard adjacent, and slows runoff into the GLOF-vulnerable basin downstream (adaptation). Mitigation and adaptation in the same instrument. The accounting frameworks already exist. The capital aggregation does not.</p>
 
+  <!-- MITIGATION CATEGORIES INDEX -->
+  <nav class="mit-index" aria-label="Mitigation categories">
+    <div class="mit-index-kicker">Mitigation categories &middot; jump to</div>
+    <div class="mit-index-grid">
+      <a class="mit-index-link" href="#mitigation-arr">
+        <span class="mit-index-acronym">ARR</span>
+        <span class="mit-index-name">Afforestation, Reforestation, Revegetation</span>
+      </a>
+      <a class="mit-index-link" href="#mitigation-afolu">
+        <span class="mit-index-acronym">AFOLU</span>
+        <span class="mit-index-name">Agriculture, Forestry, Other Land Use</span>
+      </a>
+      <a class="mit-index-link" href="#mitigation-wetlands">
+        <span class="mit-index-acronym">Wetlands</span>
+        <span class="mit-index-name">High-altitude wetland and bog restoration</span>
+      </a>
+      <a class="mit-index-link" href="#mitigation-salm">
+        <span class="mit-index-acronym">SALM</span>
+        <span class="mit-index-name">Sustainable Agricultural Land Management</span>
+      </a>
+    </div>
+  </nav>
+
   <div class="pathway-grid">
-    <div class="pathway-card">
+    <div class="pathway-card" id="mitigation-arr" style="scroll-margin-top:160px;">
       <div class="pathway-acronym">ARR</div>
       <div class="pathway-name">Afforestation, Reforestation, Revegetation</div>
       <div class="pathway-meta">
@@ -2058,7 +2142,7 @@ details.collapsible-section:not([open]) .collapsible-toggle::after { content: " 
       </div>
       <div class="pathway-body"><strong>50,000 to 100,000 hectare</strong> portfolio realistic across landslide-scarred slopes in Kullu, Mandi, Chamba and Shimla. Mitigation via biomass carbon, adaptation via slope stabilisation and soil retention. Strong fit with native broadleaf species.</div>
     </div>
-    <div class="pathway-card">
+    <div class="pathway-card" id="mitigation-afolu" style="scroll-margin-top:160px;">
       <div class="pathway-acronym">AFOLU</div>
       <div class="pathway-name">Agriculture, Forestry, Other Land Use (bundled)</div>
       <div class="pathway-meta">
@@ -2073,7 +2157,7 @@ details.collapsible-section:not([open]) .collapsible-toggle::after { content: " 
       </div>
       <div class="pathway-body">Combines ARR, improved forest management and agroforestry in a single project structure. Applicable across <strong>all 12 HP districts</strong>, particularly Kangra, Mandi and Shimla integrated landscapes. Higher transaction complexity, higher per-hectare revenue.</div>
     </div>
-    <div class="pathway-card">
+    <div class="pathway-card" id="mitigation-wetlands" style="scroll-margin-top:160px;">
       <div class="pathway-acronym">Wetlands</div>
       <div class="pathway-name">High-altitude wetland and bog restoration</div>
       <div class="pathway-meta">
@@ -2088,7 +2172,7 @@ details.collapsible-section:not([open]) .collapsible-toggle::after { content: " 
       </div>
       <div class="pathway-body">Pong, Renuka, Khajjiar, Chandratal plus hundreds of smaller alpine lakes and bogs. Premium credit pricing because wetland sequestration rates are high and methodologies are conservative. Direct GLOF buffering across the <strong>1,048-lake Sutlej basin</strong>.</div>
     </div>
-    <div class="pathway-card">
+    <div class="pathway-card" id="mitigation-salm" style="scroll-margin-top:160px;">
       <div class="pathway-acronym">SALM</div>
       <div class="pathway-name">Sustainable Agricultural Land Management</div>
       <div class="pathway-meta">
@@ -2232,7 +2316,7 @@ details.collapsible-section:not([open]) .collapsible-toggle::after { content: " 
      ============================================================ -->
 <section class="section" id="part-ix">
   <div class="section-label">Part IX &middot; The Playbook</div>
-  <h2 class="section-title">Eight moves, sequenced</h2>
+  <h2 class="section-title">The 8-step playbook</h2>
   <p class="section-stand">Four asset-protection moves for portfolios with existing HP exposure. Four restoration-investment moves for capital entering the geography.</p>
 
   <div class="playbook">
