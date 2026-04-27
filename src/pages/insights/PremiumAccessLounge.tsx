@@ -478,7 +478,7 @@ const PremiumAccessLounge: React.FC = () => {
                         href={q.orgHref}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="underline decoration-border underline-offset-2 hover:decoration-foreground hover:text-foreground transition-colors"
+                        className="text-foreground/80 no-underline hover:text-foreground hover:underline focus-visible:underline decoration-foreground/30 decoration-[0.5px] underline-offset-[5px] transition-colors duration-200"
                       >
                         {q.org}
                       </a>
@@ -736,7 +736,7 @@ const PremiumAccessLounge: React.FC = () => {
                           href={item.href}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="inline whitespace-nowrap underline decoration-border/50 decoration-[0.5px] underline-offset-[5px] hover:decoration-foreground hover:text-foreground transition-colors"
+                          className="inline whitespace-nowrap text-foreground/80 no-underline hover:text-foreground hover:underline focus-visible:underline decoration-foreground/30 decoration-[0.5px] underline-offset-[5px] transition-colors duration-200"
                         >
                           {item.label}
                         </a>
