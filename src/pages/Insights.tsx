@@ -8,7 +8,6 @@ import { ArrowRight, ExternalLink, Search } from 'lucide-react';
 import { Input } from '@/components/ui/input';
 import ScrollReveal from '@/components/ui/ScrollReveal';
 import SectionLabel from '@/components/ui/SectionLabel';
-import LeadCaptureForm from '@/components/shared/LeadCaptureForm';
 import PremiumAccessLounge from '@/pages/insights/PremiumAccessLounge';
 
 
