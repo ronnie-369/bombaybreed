@@ -156,15 +156,56 @@ const SponsorInquiryDialog = ({ open, onOpenChange, project }: SponsorInquiryDia
       <DialogContent className="max-w-lg">
         <DialogHeader>
           <DialogTitle className="font-serif text-2xl tracking-tight">
-            Register interest
+            {referenceId ? 'Inquiry received' : 'Register interest'}
           </DialogTitle>
           <DialogDescription className="text-sm text-muted-foreground">
-            Tell us a little about you and we will come back with a shape and a number.
+            {referenceId
+              ? 'Thank you. We will reply within two business days.'
+              : 'Tell us a little about you and we will come back with a shape and a number.'}
           </DialogDescription>
         </DialogHeader>
 
-        <Form {...form}>
-          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
+        {referenceId ? (
+          <div className="space-y-5 py-2">
+            <div className="rounded-md border border-border/70 bg-muted/30 p-4">
+              <p className="text-[10px] font-bold tracking-widest uppercase text-muted-foreground mb-2">
+                Reference ID
+              </p>
+              <div className="flex items-center justify-between gap-3">
+                <code className="font-mono text-base text-foreground tracking-wider select-all">
+                  {referenceId}
+                </code>
+                <Button
+                  type="button"
+                  variant="outline"
+                  size="sm"
+                  onClick={handleCopyReference}
+                  aria-label="Copy reference ID"
+                >
+                  {copied ? 'Copied' : 'Copy'}
+                </Button>
+              </div>
+              <p className="text-xs text-muted-foreground mt-3 leading-relaxed">
+                Quote this reference if you need to follow up at{' '}
+                <a
+                  href="mailto:theresa.ronnie@bombaybreed.com"
+                  className="underline underline-offset-2 hover:text-foreground"
+                >
+                  theresa.ronnie@bombaybreed.com
+                </a>
+                .
+              </p>
+            </div>
+
+            <DialogFooter>
+              <Button type="button" onClick={() => onOpenChange(false)}>
+                Close
+              </Button>
+            </DialogFooter>
+          </div>
+        ) : (
+          <Form {...form}>
+            <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
             <FormField
               control={form.control}
               name="project"
@@ -316,6 +357,7 @@ const SponsorInquiryDialog = ({ open, onOpenChange, project }: SponsorInquiryDia
             </DialogFooter>
           </form>
         </Form>
+        )}
       </DialogContent>
     </Dialog>
   );
