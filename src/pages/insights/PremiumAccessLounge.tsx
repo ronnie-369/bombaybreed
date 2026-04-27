@@ -356,7 +356,11 @@ const PremiumAccessLounge: React.FC = () => {
       </section>
 
       {/* ── 4. SPONSOR THE RESEARCH ──────────────────────────────────── */}
-      <section id="sponsor" className="px-6 md:px-8 py-20 border-t border-border/50 bg-secondary/20 scroll-mt-32">
+      <section
+        ref={sponsorRef}
+        id="sponsor"
+        className="px-6 md:px-8 py-20 border-t border-border/50 bg-secondary/20 scroll-mt-32"
+      >
         <div className="container mx-auto max-w-[900px]">
           <SectionLabel label="04 — Sponsor the research" />
           <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-4 mt-6 mb-10">
