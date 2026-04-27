@@ -425,8 +425,18 @@ const Insights = () => {
               </span>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
                 {flagshipReports.map((report, i) => {
+                  const fresh = isNewPublication(report.publishedDate);
                   const content = (
-                    <div className="bg-secondary/30 border border-border rounded-xl p-8 h-full flex flex-col justify-between group-hover:border-primary/30 transition-colors">
+                    <div className={`relative bg-secondary/30 border rounded-xl p-8 h-full flex flex-col justify-between transition-colors ${fresh ? 'border-accent ring-1 ring-accent/30 shadow-[0_8px_24px_-12px_hsl(var(--accent)/0.4)] group-hover:border-accent group-hover:ring-accent/50' : 'border-border group-hover:border-primary/30'}`}>
+                      {fresh && (
+                        <span className="absolute -top-2.5 right-5 inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[10px] font-semibold tracking-widest uppercase bg-accent text-accent-foreground shadow-md">
+                          <span className="relative flex h-1.5 w-1.5">
+                            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-accent-foreground opacity-60"></span>
+                            <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-accent-foreground"></span>
+                          </span>
+                          New
+                        </span>
+                      )}
                       <div>
                         <span className={`inline-block px-2.5 py-0.5 rounded text-[10px] font-semibold tracking-wider uppercase bg-primary text-primary-foreground mb-3`}>
                           Flagship Report
