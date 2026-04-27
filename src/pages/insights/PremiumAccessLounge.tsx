@@ -683,6 +683,202 @@ const PremiumAccessLounge: React.FC = () => {
         </div>
       </section>
 
+      {/* ── WHO IS READING OUR REPORTS ────────────────────────────── */}
+      <section id="readers" className="px-6 md:px-8 py-16 border-t border-border/50 scroll-mt-32">
+        <div className="container mx-auto max-w-[900px]">
+          <SectionLabel label="02 - Who is reading" />
+          <h2 className="text-section font-serif tracking-tight mt-6 mb-4">
+            Investors and companies on the list
+          </h2>
+          <p className="font-serif text-lg md:text-xl text-foreground/80 leading-relaxed mb-12 max-w-[680px]">
+            14,946 subscribers across 81 countries.
+            <span className="text-muted-foreground"> 1,270+ in investor and climate finance.</span>
+          </p>
+
+          <div className="space-y-8">
+            {READERSHIP.map((bloc) => (
+              <div
+                key={bloc.group}
+                className="grid md:grid-cols-[200px_1fr] gap-3 md:gap-8 pb-8 border-b border-border/40 last:border-b-0 last:pb-0"
+              >
+                <h3 className="text-[11px] font-semibold tracking-widest uppercase text-muted-foreground pt-1">
+                  {bloc.group}
+                </h3>
+                <p className="font-serif text-[15px] md:text-lg text-foreground leading-[1.9] [text-wrap:pretty]">
+                  {bloc.names.map((item, idx) => (
+                    <React.Fragment key={item.label}>
+                      {idx > 0 && (
+                        <span
+                          aria-hidden="true"
+                          className="mx-2 text-muted-foreground/50 select-none"
+                        >
+                          ·
+                        </span>
+                      )}
+                      {item.href ? (
+                        <a
+                          href={item.href}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline whitespace-nowrap underline decoration-border/50 decoration-[0.5px] underline-offset-[5px] hover:decoration-foreground hover:text-foreground transition-colors"
+                        >
+                          {item.label}
+                        </a>
+                      ) : (
+                        <span className="inline whitespace-nowrap text-foreground/85">
+                          {item.label}
+                        </span>
+                      )}
+                    </React.Fragment>
+                  ))}
+                </p>
+              </div>
+            ))}
+          </div>
+
+          <p className="text-xs text-muted-foreground/70 mt-10 italic">
+            Source: The Climate Desk Partnership Deck, 2026. Organisations
+            listed have confirmed institutional readership.
+          </p>
+        </div>
+      </section>
+
+      {/* ── SPONSOR THE RESEARCH ──────────────────────────────────── */}
+      <section
+        ref={sponsorRef}
+        id="sponsor"
+        className="px-6 md:px-8 py-20 border-t border-border/50 bg-secondary/20 scroll-mt-32"
+      >
+        <div className="container mx-auto max-w-[900px]">
+          <SectionLabel label="03 — Sponsor a study" />
+          <div className="mt-6 mb-10">
+            <h2 className="text-section font-serif tracking-tight mb-5">
+              Commission the work. Put your name on the report.
+            </h2>
+            <p className="font-serif text-lg md:text-xl text-foreground/85 leading-relaxed max-w-[680px]">
+              If your work requires running diligence on Article 6 pipelines,
+              CBAM-exposed portfolios, energy transition assets or the resource
+              footprint of the next data centre - Team BB does the work end to
+              end: methodology audit, fieldwork, ground-truthing, writing. Your
+              business name is attached to the published report as the sponsor.
+            </p>
+          </div>
+
+          {/* What it delivers + how it works */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-5 mb-12">
+            <div className="bg-background border border-border rounded-xl p-6">
+              <span className="text-[10px] font-bold tracking-widest uppercase text-muted-foreground">
+                What it delivers
+              </span>
+              <h3 className="font-serif text-lg text-foreground mt-3 mb-4 pb-3 border-b border-border/60">
+                The output
+              </h3>
+              <ul className="space-y-3">
+                {SPONSOR_DELIVERABLES.map((line) => (
+                  <li key={line} className="grid grid-cols-[auto_1fr] gap-3 text-sm text-foreground">
+                    <span className="text-muted-foreground/70 pt-0.5">·</span>
+                    <span>{line}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <div className="bg-background border border-border rounded-xl p-6">
+              <span className="text-[10px] font-bold tracking-widest uppercase text-muted-foreground">
+                How it works
+              </span>
+              <h3 className="font-serif text-lg text-foreground mt-3 mb-4 pb-3 border-b border-border/60">
+                The arrangement
+              </h3>
+              <ul className="space-y-3">
+                {SPONSOR_HOW_IT_WORKS.map((line) => (
+                  <li key={line} className="grid grid-cols-[auto_1fr] gap-3 text-sm text-foreground">
+                    <span className="text-muted-foreground/70 pt-0.5">·</span>
+                    <span>{line}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+
+          {/* Currently open projects */}
+          <div className="mb-12">
+            <h3 className="text-[11px] font-semibold tracking-widest uppercase text-muted-foreground mb-4">
+              Currently open projects
+            </h3>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              {SPONSOR_OPEN_PROJECTS.map((proj, i) => (
+                <button
+                  key={proj.title}
+                  type="button"
+                  onClick={() => openInquiry(proj)}
+                  className="group text-left border border-border/60 rounded-lg p-4 transition-colors hover:border-foreground/70 hover:bg-foreground/[0.02] focus:outline-none focus-visible:ring-2 focus-visible:ring-foreground/40"
+                  aria-label={`Register interest in: ${proj.title}`}
+                >
+                  <div className="flex items-start gap-3">
+                    <span className="text-muted-foreground/70 font-mono text-xs pt-0.5 shrink-0">
+                      {String(i + 1).padStart(2, '0')}
+                    </span>
+                    <div className="min-w-0 flex-1">
+                      <div className="font-serif text-base text-foreground leading-snug mb-2">
+                        {proj.title}
+                      </div>
+                      <p className="text-xs text-muted-foreground leading-relaxed mb-3">
+                        {proj.angle}
+                      </p>
+                      <div className="flex items-center justify-between gap-3 text-[11px]">
+                        <span className="text-muted-foreground/80 font-mono">
+                          {proj.effort}
+                        </span>
+                        <span className="text-foreground/70 group-hover:text-foreground transition-colors">
+                          Register interest →
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </button>
+              ))}
+            </div>
+          </div>
+
+          {/* CTA - price band disclosed, scope by conversation */}
+          <div className="bg-background border border-border rounded-xl p-8">
+            <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
+              <div className="max-w-[520px]">
+                <div className="font-serif text-2xl text-foreground mb-1">
+                  INR 6,00,000 - 48,00,000
+                  <span className="text-base text-muted-foreground font-sans"> + GST</span>
+                </div>
+                <p className="text-sm text-muted-foreground leading-relaxed">
+                  Indicative range. Each engagement is scoped to the depth of
+                  fieldwork, methodology and final output. Tell us what you
+                  want investigated and we will come back with a shape and a
+                  number.
+                </p>
+              </div>
+              <div className="flex flex-col gap-2 md:items-end">
+                <Button asChild>
+                  <Link
+                    to="/contact?topic=intelligence-sponsorship"
+                    className="inline-flex items-center gap-2"
+                    onClick={() =>
+                      trackSponsorEvent('sponsor_cta_click', {
+                        location: 'premium_access_lounge',
+                        link_url: '/contact?topic=intelligence-sponsorship',
+                        link_text: 'Open a sponsorship conversation',
+                      })
+                    }
+                  >
+                    Open a sponsorship conversation <ArrowRight className="w-4 h-4" />
+                  </Link>
+                </Button>
+                <span className="text-xs text-muted-foreground">
+                  Reply within two business days.
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
 
 
       <SponsorInquiryDialog
