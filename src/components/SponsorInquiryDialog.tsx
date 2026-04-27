@@ -110,11 +110,13 @@ const SponsorInquiryDialog = ({ open, onOpenChange, project }: SponsorInquiryDia
 
   const onSubmit = async (data: InquiryValues) => {
     setSubmitting(true);
+    const ref = generateReferenceId();
     try {
       const response = await fetch('https://formspree.io/f/myknnoea', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
+          reference_id: ref,
           name: data.name.trim(),
           email: data.email.trim().toLowerCase(),
           organisation: data.organisation?.trim() || '',
@@ -124,7 +126,7 @@ const SponsorInquiryDialog = ({ open, onOpenChange, project }: SponsorInquiryDia
           consent: data.consent,
           consent_text: 'User agreed to be contacted about this inquiry and to our privacy practices.',
           form_type: 'sponsor_open_project_inquiry',
-          _subject: `Sponsor inquiry: ${data.project.trim()}`,
+          _subject: `Sponsor inquiry [${ref}]: ${data.project.trim()}`,
         }),
       });
 
@@ -135,13 +137,8 @@ const SponsorInquiryDialog = ({ open, onOpenChange, project }: SponsorInquiryDia
         project: data.project.trim(),
       });
 
-      toast({
-        title: 'Inquiry sent',
-        description: 'We will reply within two business days.',
-      });
-
-      form.reset();
-      onOpenChange(false);
+      // Show the in-dialog success screen with the reference ID; do NOT close.
+      setReferenceId(ref);
     } catch (error) {
       console.error('Sponsor inquiry submission error:', error);
       toast({
