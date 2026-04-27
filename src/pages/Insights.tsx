@@ -33,6 +33,17 @@ const contentTypeColors: Record<ContentType, string> = {
 };
 
 const allTopics: Topic[] = ['Carbon Markets', 'Board Governance', 'ESG Communications', 'Regulatory Intel'];
+
+// A publication is treated as "new" for 14 days after its publishedDate.
+// This drives a visual highlight (accent border + pulsing badge) so
+// freshly published reports break visually from the back catalogue.
+const NEW_WINDOW_DAYS = 14;
+const isNewPublication = (publishedDate: string): boolean => {
+  const published = new Date(publishedDate).getTime();
+  if (Number.isNaN(published)) return false;
+  const ageMs = Date.now() - published;
+  return ageMs >= 0 && ageMs <= NEW_WINDOW_DAYS * 24 * 60 * 60 * 1000;
+};
 const allContentTypes: ContentType[] = ['Flagship Report', 'Intelligence Brief', 'Regulatory Alert', 'Perspective'];
 
 const publications: Publication[] = [
