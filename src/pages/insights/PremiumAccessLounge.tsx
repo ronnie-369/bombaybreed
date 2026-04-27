@@ -401,7 +401,7 @@ const PremiumAccessLounge: React.FC = () => {
             >
               <div className="pb-5 border-b border-border/60 mb-6">
                 <span className="text-[10px] font-bold tracking-widest uppercase text-muted-foreground">
-                  Tier 01 - Supply side
+                  Tier 01
                 </span>
                 <h3 className="font-serif text-2xl text-foreground mt-3 mb-1">
                   The Industry Reader
@@ -471,7 +471,7 @@ const PremiumAccessLounge: React.FC = () => {
               </span>
               <div className="pb-5 border-b border-background/20 mb-6">
                 <span className="text-[10px] font-bold tracking-widest uppercase text-background/60">
-                  Tier 02 - Demand side
+                  Tier 02
                 </span>
                 <h3 className="font-serif text-2xl mt-3 mb-1">
                   The Analyst Lens
