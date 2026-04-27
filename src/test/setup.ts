@@ -1,41 +1,41 @@
 import '@testing-library/jest-dom/vitest';
+import { vi } from 'vitest';
 
 // jsdom polyfills - several Radix UI primitives used inside <Insights /> read
-// these globals at mount time.
+// these globals at mount time. Force-assign so we always win, even if jsdom
+// later defines partial implementations.
 class ResizeObserverMock {
-  observe() {}
-  unobserve() {}
-  disconnect() {}
+  observe(): void {}
+  unobserve(): void {}
+  disconnect(): void {}
 }
 class IntersectionObserverMock {
-  root = null;
+  root: Element | null = null;
   rootMargin = '';
-  thresholds: number[] = [];
-  observe() {}
-  unobserve() {}
-  disconnect() {}
-  takeRecords() { return []; }
-}
-// @ts-expect-error - jsdom env
-globalThis.ResizeObserver = globalThis.ResizeObserver ?? ResizeObserverMock;
-// @ts-expect-error - jsdom env
-globalThis.IntersectionObserver = globalThis.IntersectionObserver ?? IntersectionObserverMock;
-
-if (typeof window !== 'undefined' && !window.matchMedia) {
-  // @ts-expect-error - assigning a partial implementation
-  window.matchMedia = (query: string) => ({
-    matches: false,
-    media: query,
-    onchange: null,
-    addListener: () => {},
-    removeListener: () => {},
-    addEventListener: () => {},
-    removeEventListener: () => {},
-    dispatchEvent: () => false,
-  });
+  thresholds: ReadonlyArray<number> = [];
+  observe(): void {}
+  unobserve(): void {}
+  disconnect(): void {}
+  takeRecords(): IntersectionObserverEntry[] { return []; }
 }
 
-if (typeof window !== 'undefined' && !('scrollTo' in window)) {
-  // @ts-expect-error - jsdom env
-  window.scrollTo = () => {};
+(globalThis as unknown as { ResizeObserver: typeof ResizeObserverMock }).ResizeObserver = ResizeObserverMock;
+(globalThis as unknown as { IntersectionObserver: typeof IntersectionObserverMock }).IntersectionObserver = IntersectionObserverMock;
+
+if (typeof window !== 'undefined') {
+  if (!window.matchMedia) {
+    window.matchMedia = vi.fn().mockImplementation((query: string) => ({
+      matches: false,
+      media: query,
+      onchange: null,
+      addListener: vi.fn(),
+      removeListener: vi.fn(),
+      addEventListener: vi.fn(),
+      removeEventListener: vi.fn(),
+      dispatchEvent: vi.fn(),
+    }));
+  }
+  if (!('scrollTo' in window)) {
+    (window as unknown as { scrollTo: () => void }).scrollTo = () => {};
+  }
 }
