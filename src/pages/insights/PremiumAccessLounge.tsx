@@ -403,15 +403,18 @@ const PremiumAccessLounge: React.FC = () => {
       {/* TIERS — Industry Reader vs Analyst Lens */}
       <section id="tiers" className="px-6 md:px-8 py-20 md:py-16 border-t border-border/50 scroll-mt-32 bg-secondary/20">
         <div className="container mx-auto max-w-[900px]">
-          <SectionLabel label="The two tiers" />
+          <SectionLabel label="Knowledge you can use" />
           <h2 className="text-section font-serif tracking-tight mt-6 mb-4">
-            One desk. Two ways to read the market.
+            Lounge Access that puts you in the centre of the market.
           </h2>
           <p className="font-serif text-lg text-foreground/80 leading-relaxed max-w-[680px] mb-4">
-            Signal over noise. Short reports that take a position - on the
-            CCTS auction, the next CBAM step-down, the EU-ETS spread, the
-            Article 6.2 bilaterals India is actually closing. No hype cycles,
-            no PR rewrites, no house view dressed up as research.
+            We deliver signal over noise. And we offer short reports that take
+            a position - on the CCTS auction, the next CBAM step-down, the
+            EU-ETS spread, the Article 6.2 bilaterals India is actually
+            closing. We don't follow hype cycles, don't chase PR stories, and
+            we are non-partisan. Our work is sharply angled towards shaping
+            India as the global south leader for high-integrity projects and
+            the energy transition.
           </p>
           <p className="text-body text-muted-foreground max-w-[680px] mb-12">
             One tier is built for those <em>building</em> in the carbon and
