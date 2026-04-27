@@ -504,16 +504,26 @@ const Insights = () => {
               }}
             />
 
-            <div className="flex items-baseline justify-between mb-3 pl-1">
-              <span className="text-[10px] font-bold tracking-widest uppercase text-muted-foreground">
-                All Intelligence · {filteredPublications.length} items
-              </span>
-              {showFlagship && (
-                <span className="text-[10px] font-bold tracking-widest uppercase text-muted-foreground/70 hidden md:block">
-                  Grouped by topic cluster
-                </span>
-              )}
-            </div>
+            {/* In the clustered (unfiltered) view, flagships live exclusively in
+                the Flagship band above. The cluster shelves below show only the
+                non-flagship library to avoid double-listing. */}
+            {(() => {
+              const clusterPool = showFlagship
+                ? filteredPublications.filter(p => p.contentType !== 'Flagship Report')
+                : filteredPublications;
+              return (
+                <div className="flex items-baseline justify-between mb-3 pl-1">
+                  <span className="text-[10px] font-bold tracking-widest uppercase text-muted-foreground">
+                    All Intelligence · {clusterPool.length} {clusterPool.length === 1 ? 'item' : 'items'}
+                  </span>
+                  {showFlagship && (
+                    <span className="text-[10px] font-bold tracking-widest uppercase text-muted-foreground/70 hidden md:block">
+                      Grouped by topic cluster
+                    </span>
+                  )}
+                </div>
+              );
+            })()}
 
             {/* Sponsored research callout — non-duplicating link to the existing #sponsor block */}
             <a
@@ -532,7 +542,7 @@ const Insights = () => {
                   Sponsored research
                 </div>
                 <div className="text-[13px] text-foreground line-clamp-1">
-                  Underwrite a topic cluster — your name on a year of original India research.
+                  Underwrite a topic cluster - your name on a year of original India research.
                 </div>
               </div>
               <span className="flex-shrink-0 text-[12px] text-foreground/80 group-hover:text-foreground transition-colors">
@@ -541,12 +551,23 @@ const Insights = () => {
             </a>
 
             {showFlagship ? (
-              // Topic-cluster grouping for SEO — each cluster gets a real H2
+              // Topic-cluster grouping for SEO - each cluster gets a real H2.
+              // Flagships are excluded here (rendered in the band above).
               <div className="space-y-10">
                 {allTopics.map(topic => {
-                  const clusterItems = filteredPublications.filter(p => p.topic === topic);
+                  const clusterItems = filteredPublications.filter(
+                    p => p.topic === topic && p.contentType !== 'Flagship Report'
+                  );
                   if (clusterItems.length === 0) return null;
                   const clusterId = `cluster-${topic.toLowerCase().replace(/\s+/g, '-')}`;
+
+                  // Carbon Markets is large enough to warrant sub-shelves.
+                  // Other topics render as a single ordered list.
+                  const subOrder: SubCluster[] = ['Markets & Compliance', 'Power & Transition'];
+                  const hasSubClusters =
+                    topic === 'Carbon Markets' &&
+                    clusterItems.some(p => !!p.subCluster);
+
                   return (
                     <div key={topic} id={clusterId} className="scroll-mt-32">
                       <div className="flex items-baseline justify-between border-b border-border/60 pb-2 mb-3">
@@ -557,9 +578,43 @@ const Insights = () => {
                           {clusterItems.length} {clusterItems.length === 1 ? 'brief' : 'briefs'}
                         </span>
                       </div>
-                      <div>
-                        {clusterItems.map((pub, index) => renderListingCard(pub, `${topic}-${index}`))}
-                      </div>
+
+                      {hasSubClusters ? (
+                        <div className="space-y-5">
+                          {subOrder.map(sub => {
+                            const subItems = clusterItems.filter(p => p.subCluster === sub);
+                            if (subItems.length === 0) return null;
+                            return (
+                              <div key={sub}>
+                                <h3 className="text-[12px] italic font-serif text-muted-foreground mb-1 mt-2">
+                                  {sub}
+                                </h3>
+                                <div>
+                                  {subItems.map((pub, index) =>
+                                    renderListingCard(pub, `${topic}-${sub}-${index}`)
+                                  )}
+                                </div>
+                              </div>
+                            );
+                          })}
+                          {/* Any briefs in Carbon Markets without an explicit sub-cluster */}
+                          {(() => {
+                            const orphans = clusterItems.filter(p => !p.subCluster);
+                            if (orphans.length === 0) return null;
+                            return (
+                              <div>
+                                {orphans.map((pub, index) =>
+                                  renderListingCard(pub, `${topic}-orphan-${index}`)
+                                )}
+                              </div>
+                            );
+                          })()}
+                        </div>
+                      ) : (
+                        <div>
+                          {clusterItems.map((pub, index) => renderListingCard(pub, `${topic}-${index}`))}
+                        </div>
+                      )}
                     </div>
                   );
                 })}
