@@ -468,6 +468,13 @@ const PremiumAccessLounge: React.FC = () => {
                 <Link
                   to="/contact?topic=intelligence-sponsorship"
                   className="inline-flex items-center gap-2"
+                  onClick={() =>
+                    trackSponsorEvent('sponsor_cta_click', {
+                      location: 'premium_access_lounge',
+                      link_url: '/contact?topic=intelligence-sponsorship',
+                      link_text: 'Talk to us about sponsorship',
+                    })
+                  }
                 >
                   Talk to us about sponsorship <ArrowRight className="w-4 h-4" />
                 </Link>
