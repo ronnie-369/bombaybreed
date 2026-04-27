@@ -170,8 +170,13 @@ const SponsorInquiryDialog = ({ open, onOpenChange, project }: SponsorInquiryDia
   };
 
   return (
-    <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="max-w-lg">
+    <Dialog open={open} onOpenChange={handleOpenChange}>
+      <DialogContent
+        className="max-w-lg relative"
+        onInteractOutside={(e) => { if (submitting) e.preventDefault(); }}
+        onEscapeKeyDown={(e) => { if (submitting) e.preventDefault(); }}
+        aria-busy={submitting}
+      >
         <DialogHeader>
           <DialogTitle className="font-serif text-2xl tracking-tight">
             {referenceId ? 'Inquiry received' : 'Register interest'}
@@ -216,7 +221,7 @@ const SponsorInquiryDialog = ({ open, onOpenChange, project }: SponsorInquiryDia
             </div>
 
             <DialogFooter>
-              <Button type="button" onClick={() => onOpenChange(false)}>
+              <Button type="button" onClick={() => handleOpenChange(false)}>
                 Close
               </Button>
             </DialogFooter>
