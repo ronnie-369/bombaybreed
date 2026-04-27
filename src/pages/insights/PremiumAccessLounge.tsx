@@ -5,6 +5,7 @@ import { ArrowRight } from 'lucide-react';
 import { Document, Earth, ChartLineSmooth } from '@carbon/icons-react';
 import ScrollReveal from '@/components/ui/ScrollReveal';
 import SectionLabel from '@/components/ui/SectionLabel';
+import SponsorInquiryDialog from '@/components/SponsorInquiryDialog';
 import { trackSponsorEvent } from '@/utils/sponsorAnalytics';
 import {
   getVariant,
