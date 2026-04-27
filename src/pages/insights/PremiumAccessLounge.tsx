@@ -862,6 +862,12 @@ const PremiumAccessLounge: React.FC = () => {
           </div>
         </div>
       </section>
+
+      <SponsorInquiryDialog
+        open={inquiryOpen}
+        onOpenChange={setInquiryOpen}
+        project={inquiryProject}
+      />
     </>
   );
 };
