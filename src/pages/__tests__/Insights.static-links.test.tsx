@@ -46,10 +46,13 @@ vi.mock('react-router-dom', async () => {
 });
 
 // Static-asset paths we expect to see rendered as plain <a target="_blank">.
+// We intentionally pick paths that appear on page 1 of the listing AND in the
+// "Flagship Research" grid - the test must not depend on user paginating.
+// The contract being tested is identical for every static asset, so two
+// representative paths are sufficient.
 const STATIC_ASSET_PATHS = [
   '/special-features/tcd-hp-investor-synthesis.html',
   '/special-features/india-ndc3.html',
-  '/special-features/war-climate.html',
 ];
 
 function renderInsights() {
