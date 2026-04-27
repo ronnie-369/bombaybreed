@@ -391,7 +391,14 @@ const PremiumAccessLounge: React.FC = () => {
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-5">
             {/* Tier 1 — Industry Reader (supply side) */}
-            <div className="bg-background border border-border rounded-xl p-7 md:p-8 flex flex-col">
+            <div
+              ref={industryCardRef}
+              data-active={activeTier === 'industry-reader'}
+              onMouseEnter={() => setActiveTier('industry-reader')}
+              onFocus={() => setActiveTier('industry-reader')}
+              tabIndex={-1}
+              className="group bg-background border border-border rounded-xl p-7 md:p-8 flex flex-col transition-all duration-300 ease-out outline-none data-[active=true]:border-accent data-[active=true]:shadow-[0_8px_30px_-12px_hsl(var(--accent)/0.35)] data-[active=true]:-translate-y-0.5"
+            >
               <div className="pb-5 border-b border-border/60 mb-6">
                 <span className="text-[10px] font-bold tracking-widest uppercase text-muted-foreground">
                   Tier 01 - Supply side
