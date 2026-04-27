@@ -612,21 +612,84 @@ const Insights = () => {
           </div>
         </section>
 
-        {/* Search — placed at the end of the listing for users who want to look up a specific brief after browsing */}
+        {/* Search & filter — placed at the end of the listing for users who want to refine or look up specific briefs after browsing */}
         <section id="search" className="px-6 md:px-8 py-10 border-t border-border/50 scroll-mt-32">
-          <div className="container mx-auto max-w-[900px]">
-            <label htmlFor="insights-search" className="block text-[11px] font-bold tracking-widest uppercase text-muted-foreground mb-3">
-              Search the archive
-            </label>
-            <div className="relative">
-              <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
-              <Input
-                id="insights-search"
-                placeholder="Search intelligence briefs..."
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                className="pl-10 bg-background"
-              />
+          <div className="container mx-auto max-w-[900px] space-y-6">
+            <div>
+              <label htmlFor="insights-search" className="block text-[11px] font-bold tracking-widest uppercase text-muted-foreground mb-3">
+                Search the archive
+              </label>
+              <div className="relative">
+                <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
+                <Input
+                  id="insights-search"
+                  placeholder="Search intelligence briefs..."
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                  className="pl-10 bg-background"
+                />
+              </div>
+            </div>
+
+            <div className="space-y-3">
+              <span className="block text-[11px] font-bold tracking-widest uppercase text-muted-foreground">
+                Filter by topic & type
+              </span>
+              {/* Topic filter */}
+              <div className="flex gap-2 flex-wrap">
+                <button
+                  onClick={() => setSelectedTopic('All')}
+                  className={`px-4 py-1.5 rounded-full text-[13px] font-medium transition-colors ${
+                    selectedTopic === 'All'
+                      ? 'bg-foreground text-background'
+                      : 'border border-border text-foreground hover:bg-secondary'
+                  }`}
+                >
+                  All
+                </button>
+                {allTopics.map(topic => (
+                  <button
+                    key={topic}
+                    onClick={() => setSelectedTopic(topic)}
+                    className={`px-4 py-1.5 rounded-full text-[13px] font-medium transition-colors ${
+                      selectedTopic === topic
+                        ? 'bg-foreground text-background'
+                        : 'border border-border text-foreground hover:bg-secondary'
+                    }`}
+                  >
+                    {topic}
+                  </button>
+                ))}
+              </div>
+
+              {/* Content type filter */}
+              <div className="flex gap-2 flex-wrap">
+                <button
+                  onClick={() => setSelectedType('All Types')}
+                  className={`px-3 py-1 rounded-2xl text-xs font-medium transition-colors ${
+                    selectedType === 'All Types'
+                      ? 'bg-foreground text-background'
+                      : 'border border-border text-foreground hover:bg-secondary'
+                  }`}
+                >
+                  All Types
+                </button>
+                {allContentTypes.map(type => (
+                  <button
+                    key={type}
+                    onClick={() => setSelectedType(type)}
+                    className={`px-3 py-1 rounded-2xl text-xs font-medium transition-colors ${
+                      selectedType === type
+                        ? 'bg-foreground text-background'
+                        : `border border-border hover:bg-secondary ${contentTypeColors[type]}`
+                    }`}
+                  >
+                    {type === 'Flagship Report' ? 'Flagship Reports' :
+                     type === 'Intelligence Brief' ? 'Intelligence Briefs' :
+                     type === 'Regulatory Alert' ? 'Regulatory Alerts' : 'Perspectives'}
+                  </button>
+                ))}
+              </div>
             </div>
           </div>
         </section>
