@@ -357,7 +357,12 @@ const PremiumAccessLounge: React.FC = () => {
           <h2 className="text-section font-serif tracking-tight mt-6 mb-4">
             One desk. Two ways to read the market.
           </h2>
-          <p className="font-serif text-lg text-foreground/80 leading-relaxed max-w-[680px] mb-12">
+          <p className="font-serif text-lg text-foreground/80 leading-relaxed max-w-[680px] mb-4">
+            Signal over noise. Short reports that take a position. No hype
+            cycles, no PR rewrites, no house view dressed up as research. If it
+            does not change a decision, it does not appear.
+          </p>
+          <p className="text-body text-muted-foreground max-w-[680px] mb-12">
             One tier is built for those <em>building</em> in the carbon and
             energy transition economy - founders, developers and SMEs stepping
             into the market for the first time. The other is built for those
