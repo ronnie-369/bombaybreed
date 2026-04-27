@@ -632,7 +632,35 @@ const Insights = () => {
               </span>
             </a>
 
-            {showFlagship ? (
+            {filteredPublications.length === 0 ? (
+              <div className="border border-border/60 bg-secondary/20 px-6 py-12 md:py-16 text-center">
+                <div className="text-[10px] font-bold tracking-widest uppercase text-muted-foreground mb-3">
+                  No matches
+                </div>
+                <h2 className="font-serif text-xl md:text-2xl text-foreground mb-3">
+                  Nothing in the library matches that combination.
+                </h2>
+                <p className="text-sm text-muted-foreground max-w-[52ch] mx-auto mb-6">
+                  {searchQuery
+                    ? <>We could not find a brief for <span className="text-foreground">"{searchQuery}"</span>{(selectedTopic !== 'All' || selectedType !== 'All Types') && ' under the current filters'}. Try a broader keyword, or reset to browse the full archive.</>
+                    : <>The current topic and type combination has no published briefs yet. Reset filters to see the full archive, or pick a different topic.</>}
+                </p>
+                <div className="flex flex-wrap items-center justify-center gap-3">
+                  <button
+                    onClick={() => { setSearchQuery(''); setSelectedTopic('All'); setSelectedType('All Types'); }}
+                    className="inline-flex items-center px-4 py-2 text-[12px] font-medium tracking-wide bg-foreground text-background hover:bg-foreground/90 transition-colors rounded-full"
+                  >
+                    Reset search & filters
+                  </button>
+                  <a
+                    href="#subscribe"
+                    className="inline-flex items-center px-4 py-2 text-[12px] font-medium tracking-wide border border-border text-foreground hover:bg-secondary transition-colors rounded-full"
+                  >
+                    Subscribe for new briefs
+                  </a>
+                </div>
+              </div>
+            ) : showFlagship ? (
               // Topic-cluster grouping for SEO - each cluster gets a real H2.
               // Flagships are excluded here (rendered in the band above).
               <div className="space-y-10">
