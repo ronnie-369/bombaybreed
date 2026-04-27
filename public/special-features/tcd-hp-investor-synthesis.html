@@ -2670,14 +2670,14 @@ new Chart(cryoCtx, {
     if (el) observer.observe(el);
   });
 
-  function jumpTo(id) {
+  function jumpTo(id, opts) {
     var el = document.getElementById(id);
     if (!el) return;
     var det = el.closest('details');
     if (det && !det.open) det.open = true;
-    // Use scroll-margin-top via scrollIntoView for sub-anchors; manual offset for main parts
     var y = el.getBoundingClientRect().top + window.scrollY - 140;
-    window.scrollTo({ top: y, behavior: 'smooth' });
+    var behavior = (opts && opts.instant) ? 'auto' : 'smooth';
+    window.scrollTo({ top: y, behavior: behavior });
     history.replaceState(null, '', '#' + id);
   }
 
