@@ -193,6 +193,57 @@ const Insights = () => {
     setCurrentPage(1);
   }, [searchQuery, selectedTopic, selectedType]);
 
+  /**
+   * Search-query intelligence: when the user types a meaningful query (>= 3 chars)
+   * and stops for 1.2s, log the query + active filters + result count to Formspree.
+   * This gives Theresa a feed of what readers are actually trying to find -
+   * surfacing demand for new briefs and content gaps - without storing PII or
+   * spamming an event per keystroke.
+   *
+   * Re-fires only when the (query, topic, type) tuple changes.
+   */
+  const FORMSPREE_ENDPOINT = 'https://formspree.io/f/myknnoea';
+  const lastLoggedRef = React.useRef<string>('');
+  useEffect(() => {
+    const trimmed = searchQuery.trim();
+    if (trimmed.length < 3) return;
+
+    const signature = `${trimmed.toLowerCase()}|${selectedTopic}|${selectedType}`;
+    if (signature === lastLoggedRef.current) return;
+
+    const timer = window.setTimeout(() => {
+      // Recompute result count locally to avoid coupling to render order
+      const q = trimmed.toLowerCase();
+      const matches = publications.filter(pub => {
+        if (!pub.title.toLowerCase().includes(q) && !pub.description.toLowerCase().includes(q)) return false;
+        if (selectedTopic !== 'All' && pub.topic !== selectedTopic) return false;
+        if (selectedType !== 'All Types' && pub.contentType !== selectedType) return false;
+        return true;
+      }).length;
+
+      lastLoggedRef.current = signature;
+
+      // Fire-and-forget; failures are silent (this is observability, not UX).
+      fetch(FORMSPREE_ENDPOINT, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+        body: JSON.stringify({
+          _subject: `Insights search: "${trimmed}" (${matches} results)`,
+          form_type: 'insights_search_query',
+          query: trimmed,
+          topic: selectedTopic,
+          content_type: selectedType,
+          result_count: matches,
+          page_path: typeof window !== 'undefined' ? window.location.pathname : '/insights',
+          referrer: typeof document !== 'undefined' ? document.referrer || '(direct)' : '',
+          logged_at: new Date().toISOString(),
+        }),
+      }).catch(() => { /* silent */ });
+    }, 1200);
+
+    return () => window.clearTimeout(timer);
+  }, [searchQuery, selectedTopic, selectedType]);
+
   const flagshipReports = publications.filter(p => p.contentType === 'Flagship Report');
 
   const filteredPublications = useMemo(() => {
@@ -375,97 +426,18 @@ const Insights = () => {
       <Header />
 
       <main className="flex-1 pt-24 pb-16">
-        {/* Hero - H1 plus a compact search + filter bar.
-            Active filters switch the listing below into a flat paginated
-            view; cleared filters return to the topic-clustered view. */}
+        {/* Hero - H1 only. Search + filters now sit directly above the
+            "All Intelligence" library, where readers actually scan resources. */}
         <section className="pt-12 pb-6 md:pt-16 md:pb-8 px-6 md:px-8">
           <div className="container mx-auto max-w-[900px]">
             <ScrollReveal direction="up">
-              <h1 className="text-display font-serif tracking-tight mb-6 md:mb-8">
+              <h1 className="text-display font-serif tracking-tight mb-2">
                 Intelligence Briefs
               </h1>
+              <p className="text-sm text-muted-foreground max-w-[60ch]">
+                Original India research on carbon markets, board governance, ESG communications, and regulatory intelligence.
+              </p>
             </ScrollReveal>
-
-            <div className="space-y-4">
-              <div className="relative">
-                <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
-                <Input
-                  id="insights-search"
-                  aria-label="Search intelligence briefs"
-                  placeholder="Search the library - title, topic, or theme..."
-                  value={searchQuery}
-                  onChange={(e) => setSearchQuery(e.target.value)}
-                  className="pl-10 bg-background"
-                />
-              </div>
-
-              <div className="flex flex-wrap items-center gap-x-4 gap-y-2">
-                <div className="flex gap-1.5 flex-wrap">
-                  <button
-                    onClick={() => setSelectedTopic('All')}
-                    className={`px-3 py-1 rounded-full text-[12px] font-medium transition-colors ${
-                      selectedTopic === 'All'
-                        ? 'bg-foreground text-background'
-                        : 'border border-border text-foreground hover:bg-secondary'
-                    }`}
-                  >
-                    All topics
-                  </button>
-                  {allTopics.map(topic => (
-                    <button
-                      key={topic}
-                      onClick={() => setSelectedTopic(topic)}
-                      className={`px-3 py-1 rounded-full text-[12px] font-medium transition-colors ${
-                        selectedTopic === topic
-                          ? 'bg-foreground text-background'
-                          : 'border border-border text-foreground hover:bg-secondary'
-                      }`}
-                    >
-                      {topic}
-                    </button>
-                  ))}
-                </div>
-
-                <span className="hidden md:inline text-border" aria-hidden>·</span>
-
-                <div className="flex gap-1.5 flex-wrap">
-                  <button
-                    onClick={() => setSelectedType('All Types')}
-                    className={`px-3 py-1 rounded-full text-[12px] font-medium transition-colors ${
-                      selectedType === 'All Types'
-                        ? 'bg-foreground text-background'
-                        : 'border border-border text-foreground hover:bg-secondary'
-                    }`}
-                  >
-                    All types
-                  </button>
-                  {allContentTypes.map(type => (
-                    <button
-                      key={type}
-                      onClick={() => setSelectedType(type)}
-                      className={`px-3 py-1 rounded-full text-[12px] font-medium transition-colors ${
-                        selectedType === type
-                          ? 'bg-foreground text-background'
-                          : `border border-border hover:bg-secondary ${contentTypeColors[type]}`
-                      }`}
-                    >
-                      {type === 'Flagship Report' ? 'Flagship' :
-                       type === 'Intelligence Brief' ? 'Brief' :
-                       type === 'Regulatory Alert' ? 'Alert' : 'Perspective'}
-                    </button>
-                  ))}
-                </div>
-
-                {(searchQuery || selectedTopic !== 'All' || selectedType !== 'All Types') && (
-                  <button
-                    onClick={() => { setSearchQuery(''); setSelectedTopic('All'); setSelectedType('All Types'); }}
-                    className="ml-auto text-[11px] tracking-wider uppercase text-muted-foreground hover:text-foreground transition-colors"
-                  >
-                    Clear filters
-                  </button>
-                )}
-              </div>
-            </div>
           </div>
         </section>
 
@@ -582,6 +554,89 @@ const Insights = () => {
                 }),
               }}
             />
+
+            {/* Search + filter bar - sits directly on top of the resources so
+                readers can scan by topic / type or full-text the library. */}
+            <div className="mb-6 space-y-4">
+              <div className="relative">
+                <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
+                <Input
+                  id="insights-search"
+                  aria-label="Search intelligence briefs"
+                  placeholder="Search the library - title, topic, or theme..."
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                  className="pl-10 bg-background"
+                />
+              </div>
+
+              <div className="flex flex-wrap items-center gap-x-4 gap-y-2">
+                <div className="flex gap-1.5 flex-wrap">
+                  <button
+                    onClick={() => setSelectedTopic('All')}
+                    className={`px-3 py-1 rounded-full text-[12px] font-medium transition-colors ${
+                      selectedTopic === 'All'
+                        ? 'bg-foreground text-background'
+                        : 'border border-border text-foreground hover:bg-secondary'
+                    }`}
+                  >
+                    All topics
+                  </button>
+                  {allTopics.map(topic => (
+                    <button
+                      key={topic}
+                      onClick={() => setSelectedTopic(topic)}
+                      className={`px-3 py-1 rounded-full text-[12px] font-medium transition-colors ${
+                        selectedTopic === topic
+                          ? 'bg-foreground text-background'
+                          : 'border border-border text-foreground hover:bg-secondary'
+                      }`}
+                    >
+                      {topic}
+                    </button>
+                  ))}
+                </div>
+
+                <span className="hidden md:inline text-border" aria-hidden>·</span>
+
+                <div className="flex gap-1.5 flex-wrap">
+                  <button
+                    onClick={() => setSelectedType('All Types')}
+                    className={`px-3 py-1 rounded-full text-[12px] font-medium transition-colors ${
+                      selectedType === 'All Types'
+                        ? 'bg-foreground text-background'
+                        : 'border border-border text-foreground hover:bg-secondary'
+                    }`}
+                  >
+                    All types
+                  </button>
+                  {allContentTypes.map(type => (
+                    <button
+                      key={type}
+                      onClick={() => setSelectedType(type)}
+                      className={`px-3 py-1 rounded-full text-[12px] font-medium transition-colors ${
+                        selectedType === type
+                          ? 'bg-foreground text-background'
+                          : `border border-border hover:bg-secondary ${contentTypeColors[type]}`
+                      }`}
+                    >
+                      {type === 'Flagship Report' ? 'Flagship' :
+                       type === 'Intelligence Brief' ? 'Brief' :
+                       type === 'Regulatory Alert' ? 'Alert' : 'Perspective'}
+                    </button>
+                  ))}
+                </div>
+
+                {(searchQuery || selectedTopic !== 'All' || selectedType !== 'All Types') && (
+                  <button
+                    onClick={() => { setSearchQuery(''); setSelectedTopic('All'); setSelectedType('All Types'); }}
+                    className="ml-auto text-[11px] tracking-wider uppercase text-muted-foreground hover:text-foreground transition-colors"
+                  >
+                    Clear filters
+                  </button>
+                )}
+              </div>
+            </div>
 
             {/* In the clustered (unfiltered) view, flagships live exclusively in
                 the Flagship band above. The cluster shelves below show only the
