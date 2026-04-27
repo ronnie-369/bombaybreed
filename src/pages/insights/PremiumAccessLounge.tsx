@@ -209,12 +209,18 @@ const PremiumAccessLounge: React.FC = () => {
         <div className="container mx-auto max-w-[900px]">
           <ScrollReveal direction="up">
             <SectionLabel label="Premium Access Lounge" />
-            <h2 className="text-section font-serif tracking-tight mt-6 mb-4">
-              Membership and sponsored research
+            <h2 className="text-section font-serif tracking-tight mt-6 mb-5">
+              The room behind the room.
             </h2>
-            <p className="text-body text-muted-foreground max-w-[620px] mb-10">
-              Read what we have published, or join the readers who get the next brief
-              before it goes public.
+            <p className="font-serif text-lg md:text-xl text-foreground/85 leading-relaxed max-w-[680px] mb-4">
+              Most of what we know about India&rsquo;s carbon markets does not get
+              published. It moves between desks, before committees, inside drafting
+              rooms - and then it shows up, six weeks later, as a price.
+            </p>
+            <p className="text-body text-muted-foreground max-w-[640px] mb-10">
+              The Lounge is the small, paid list that gets the read first. Two
+              tiers. No advertising. No house view dressed up as research. The
+              library below is open - the next brief is not.
             </p>
           </ScrollReveal>
 
@@ -233,14 +239,14 @@ const PremiumAccessLounge: React.FC = () => {
               className="group block bg-secondary/30 border border-border rounded-xl p-8 transition-colors hover:border-primary/30"
             >
               <span className="text-[10px] font-bold tracking-widest uppercase text-muted-foreground">
-                Free
+                The open shelf - free
               </span>
               <h3 className="font-serif text-xl text-foreground mt-3 mb-2 group-hover:text-primary transition-colors">
-                View past reports
+                Read what we have already published
               </h3>
               <p className="text-sm text-muted-foreground mb-6">
-                Browse the full library of flagship reports, intelligence briefs,
-                regulatory alerts, and perspectives.
+                Every flagship report, intelligence brief, regulatory alert, and
+                perspective we have released to the public.
               </p>
               <span className="inline-flex items-center gap-1.5 text-sm font-medium text-foreground group-hover:text-primary transition-colors">
                 Open the library <ArrowRight className="w-4 h-4" />
@@ -248,22 +254,32 @@ const PremiumAccessLounge: React.FC = () => {
             </a>
 
             {/* Sign up for reports — into the paid tier funnel */}
-            <Link
-              to="/intelligence/membership"
+            <a
+              href="#tiers"
+              onClick={(e) => {
+                e.preventDefault();
+                const el = document.getElementById('tiers');
+                if (!el) return;
+                const top = el.getBoundingClientRect().top + window.pageYOffset - 140;
+                window.scrollTo({ top, behavior: 'smooth' });
+                history.replaceState(null, '', '#tiers');
+              }}
               className="group block bg-foreground text-background rounded-xl p-8 transition-colors hover:bg-foreground/90"
             >
               <span className="text-[10px] font-bold tracking-widest uppercase text-background/60">
-                Members
+                The closed list - members
               </span>
-              <h3 className="font-serif text-xl mt-3 mb-2">Sign up for reports</h3>
+              <h3 className="font-serif text-xl mt-3 mb-2">
+                Get the next brief before it goes public
+              </h3>
               <p className="text-sm text-background/70 mb-6">
-                Choose a tier. Get every report, brief, and alert as it ships, plus
-                analyst access on the higher tiers.
+                Two tiers. From INR 10,000 a month. The same desk that briefs
+                boards and committees, on retainer to your inbox.
               </p>
               <span className="inline-flex items-center gap-1.5 text-sm font-medium">
-                See membership tiers <ArrowRight className="w-4 h-4" />
+                See the two tiers <ArrowRight className="w-4 h-4" />
               </span>
-            </Link>
+            </a>
           </div>
         </div>
       </section>
