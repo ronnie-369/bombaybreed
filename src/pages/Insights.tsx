@@ -555,7 +555,7 @@ const Insights = () => {
         )}
 
         {/* All Intelligence Listing */}
-        <section className="py-8 px-6 md:px-8 border-t border-border/50">
+        <section id="all-intelligence" className="py-8 px-6 md:px-8 border-t border-border/50 scroll-mt-32">
           <div className="container mx-auto max-w-[900px]">
             <span className="text-[10px] font-bold tracking-widest uppercase text-muted-foreground mb-3 block pl-1">
               All Intelligence · {filteredPublications.length} items
@@ -597,7 +597,7 @@ const Insights = () => {
         </section>
 
         {/* Newsletter CTA */}
-        <section className="py-16 md:py-24 px-6 md:px-8 border-t border-border/50">
+        <section id="subscribe" className="py-16 md:py-24 px-6 md:px-8 border-t border-border/50 scroll-mt-32">
           <div className="container mx-auto max-w-[900px] text-center">
             <ScrollReveal direction="up">
               <h2 className="text-section font-serif tracking-tight mb-3">
@@ -616,7 +616,7 @@ const Insights = () => {
         </section>
 
         {/* Download CTA - CCUS Report */}
-        <section ref={formSectionRef} className="py-20 px-6 md:px-8 border-t border-border/50">
+        <section id="download" ref={formSectionRef} className="py-20 px-6 md:px-8 border-t border-border/50 scroll-mt-32">
           <div className="container mx-auto max-w-[680px]">
             <div className="text-center mb-12">
               <SectionLabel label="Download Report" className="text-center block" />
