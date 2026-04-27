@@ -378,11 +378,11 @@ const PremiumAccessLounge: React.FC = () => {
                 v: 'Pick the read that fits the seat you sit in - the cards below set out what each delivers.',
               },
             ].map((item) => (
-              <div key={item.k} className="flex flex-col gap-2 md:grid md:grid-cols-[auto_1fr] md:gap-3 md:items-baseline">
-                <span className="text-[10px] font-bold tracking-widest uppercase text-accent whitespace-nowrap">
+              <div key={item.k} className="flex flex-col gap-1.5 md:grid md:grid-cols-[auto_1fr] md:gap-3 md:items-baseline">
+                <span className="text-[10px] font-bold tracking-widest uppercase text-accent whitespace-nowrap leading-snug">
                   {item.k}
                 </span>
-                <span className="text-[15px] md:text-sm text-foreground/80 leading-relaxed md:leading-snug">
+                <span className="text-[15px] md:text-sm text-foreground/80 leading-snug md:leading-snug">
                   {item.v}
                 </span>
               </div>
