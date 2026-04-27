@@ -135,18 +135,24 @@ const READERSHIP: { group: string; names: string[] }[] = [
   },
 ];
 
-const SPONSOR_ANALYST: string[] = [
-  'A dedicated analyst on call for your team',
-  'Bespoke research on your portfolio or sector',
-  'Investment thesis vetting before committee',
-  'Co-branded research where it makes sense',
+/**
+ * Sponsorship is bespoke, not packaged. The two columns below describe
+ * what a sponsor's name attaches to (left) and what we build alongside
+ * the public research stream for the sponsor's own use (right). No
+ * price - every sponsorship is scoped in conversation.
+ */
+const SPONSOR_NAME_ON: string[] = [
+  'A year-long topic cluster - your name on every brief in the series',
+  'Flagship reports published into the public record, not behind your gate',
+  'Methodology and data choices stay with us - editorial independence is the point',
+  'Co-presentation at the report launch, on stage with the analyst',
 ];
 
-const SPONSOR_READER: string[] = [
-  'Every report, every brief, every regulatory alert',
-  'Sectoral deep-dives shipped to your team',
-  'Quarterly briefings with the lead analyst',
-  'Priority access to flagship research embargoes',
+const SPONSOR_FOR_YOU: string[] = [
+  'Bespoke research scoped to your portfolio or thesis - not a SKU',
+  'A standing line to the desk for follow-ups, sized to the engagement',
+  'Closed-door briefings for your team or LPs around each release',
+  'First read on findings before they hit the public archive',
 ];
 
 const SPONSOR_WHY: string[] = [
