@@ -1,4 +1,4 @@
-import React, { useState, useRef, useMemo, useEffect, useCallback } from 'react';
+import React, { useState, useMemo, useEffect, useCallback } from 'react';
 import PageHead from '@/components/PageHead';
 import { Link } from 'react-router-dom';
 import Header from '@/components/Header';
@@ -8,7 +8,6 @@ import { ArrowRight, ExternalLink, Search } from 'lucide-react';
 import { Input } from '@/components/ui/input';
 import ScrollReveal from '@/components/ui/ScrollReveal';
 import SectionLabel from '@/components/ui/SectionLabel';
-import LeadCaptureForm from '@/components/shared/LeadCaptureForm';
 import PremiumAccessLounge from '@/pages/insights/PremiumAccessLounge';
 
 
@@ -209,7 +208,6 @@ const Insights = () => {
   const [selectedTopic, setSelectedTopic] = useState<Topic | 'All'>('All');
   const [selectedType, setSelectedType] = useState<ContentType | 'All Types'>('All Types');
   const [currentPage, setCurrentPage] = useState(1);
-  const formSectionRef = useRef<HTMLDivElement>(null);
 
 
   // Reset page when filters change
@@ -254,7 +252,6 @@ const Insights = () => {
     if (showFlagship) s.push({ id: 'flagship', label: 'Flagship' });
     s.push({ id: 'all-intelligence', label: 'All Intelligence' });
     s.push({ id: 'subscribe', label: 'Subscribe' });
-    s.push({ id: 'download', label: 'Download Report' });
     return s;
   }, [showFlagship]);
 
@@ -624,18 +621,6 @@ const Insights = () => {
                 </a>
               </Button>
             </ScrollReveal>
-          </div>
-        </section>
-
-        {/* Download CTA - CCUS Report */}
-        <section id="download" ref={formSectionRef} className="py-20 px-6 md:px-8 border-t border-border/50 scroll-mt-32">
-          <div className="container mx-auto max-w-[680px]">
-            <div className="text-center mb-12">
-              <SectionLabel label="Download Report" className="text-center block" />
-              <h2 className="text-section font-serif tracking-tight mt-6 mb-4">India's CCUS Gap Is Not About Money</h2>
-              <p className="text-body text-muted-foreground">Five regulatory instruments the ₹20,000 crore CCUS Mission cannot substitute - a policy analysis by The Climate Desk.</p>
-            </div>
-            <LeadCaptureForm reportTitle="India's CCUS Gap Is Not About Money" reportDescription="Five regulatory instruments the ₹20,000 crore CCUS Mission cannot substitute." />
           </div>
         </section>
       </main>
