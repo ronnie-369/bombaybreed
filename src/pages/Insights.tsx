@@ -247,7 +247,6 @@ const Insights = () => {
     s.push({ id: 'lounge', label: 'Lounge' });
     s.push({ id: 'tiers', label: 'Tiers' });
     s.push({ id: 'industry', label: 'Industry' });
-    s.push({ id: 'industry', label: 'Industry' });
     s.push({ id: 'readers', label: 'Readers' });
     s.push({ id: 'sponsor', label: 'Sponsor' });
     // Editorial hub below — flagship is conditional on no active filter.
