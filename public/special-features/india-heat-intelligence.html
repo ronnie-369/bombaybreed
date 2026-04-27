@@ -1,0 +1,2983 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>India Heat Intelligence Report / Bombay Breed / April 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;1,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --off-white: #FBFBF9;
+    --near-black: #0A0A0A;
+    --slate-blue: #1A3C5B;
+    --copper: #C0946D;
+    --copper-tint: #F4ECE3;
+    --gray: #6B7280;
+    --border: #E5E5E1;
+
+    /* Heat ramp */
+    --heat-1: #FFE8B8;
+    --heat-2: #F5C880;
+    --heat-3: #E89A4F;
+    --heat-4: #C97233;
+    --heat-5: #9C3E1F;
+    --heat-6: #5C1F12;
+    --heat-7: #2B0A05;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    background: var(--off-white);
+    color: var(--near-black);
+    font-weight: 400;
+    line-height: 1.55;
+    font-size: 15px;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .container { max-width: 1080px; margin: 0 auto; padding: 56px 32px; }
+
+  /* ================================ */
+  /* IMAGES & MAGAZINE LAYOUT          */
+  /* ================================ */
+  .section-hero {
+    position: relative;
+    margin: 0 -60px 32px -60px;
+    height: 280px;
+    overflow: hidden;
+    background: var(--near-black);
+  }
+  .section-hero img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.88;
+    filter: contrast(1.05) saturate(0.92);
+    display: block;
+  }
+  .section-hero .hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(10,10,10,0.05) 0%, rgba(10,10,10,0.55) 100%);
+  }
+  .section-hero .hero-caption {
+    position: absolute;
+    bottom: 18px;
+    left: 24px;
+    right: 24px;
+    color: rgba(255,255,255,0.78);
+    font-family: ui-monospace, monospace;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    display: flex;
+    justify-content: space-between;
+    gap: 16px;
+  }
+  .section-hero .hero-caption .credit {
+    color: rgba(255,255,255,0.55);
+  }
+  .section-hero .hero-caption .credit a {
+    color: rgba(255,255,255,0.7);
+    text-decoration: underline;
+    text-decoration-color: rgba(255,255,255,0.25);
+    text-underline-offset: 2px;
+  }
+  .section-hero .hero-caption .credit a:hover {
+    color: var(--copper);
+  }
+
+  .magazine-image {
+    float: left;
+    width: 38%;
+    min-width: 200px;
+    margin: 6px 28px 14px 0;
+    position: relative;
+  }
+  .magazine-image img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 4px;
+  }
+  .magazine-image figcaption {
+    margin-top: 10px;
+    font-family: ui-monospace, monospace;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--gray);
+    line-height: 1.4;
+  }
+  .magazine-image figcaption a {
+    color: var(--copper);
+    text-decoration: none;
+    border-bottom: 1px solid rgba(192,148,109,0.3);
+  }
+  .magazine-image figcaption a:hover {
+    border-bottom-color: var(--copper);
+  }
+  .magazine-image.right {
+    float: right;
+    margin: 6px 0 14px 28px;
+  }
+
+  .banda-locator {
+    background: var(--off-white);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 24px;
+    margin: 24px 0;
+    display: grid;
+    grid-template-columns: 1fr 1.4fr;
+    gap: 28px;
+    align-items: center;
+  }
+  .banda-locator .locator-svg {
+    width: 100%;
+    height: auto;
+  }
+  .banda-locator .locator-content h4 {
+    font-family: 'Playfair Display', serif;
+    font-weight: 400;
+    font-size: 22px;
+    line-height: 1.2;
+    margin-bottom: 10px;
+  }
+  .banda-locator .locator-coords {
+    font-family: ui-monospace, monospace;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--copper);
+    font-weight: 600;
+    margin-bottom: 14px;
+  }
+  .banda-locator .locator-content p {
+    font-size: 13px;
+    line-height: 1.5;
+    color: var(--near-black);
+    margin-bottom: 12px;
+  }
+  .banda-locator .locator-source {
+    font-family: ui-monospace, monospace;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--gray);
+    margin-top: 10px;
+  }
+  .banda-locator .locator-source a {
+    color: var(--copper);
+    text-decoration: none;
+    border-bottom: 1px solid rgba(192,148,109,0.3);
+  }
+
+  .src-link {
+    color: var(--slate-blue);
+    text-decoration: none;
+    border-bottom: 1px solid rgba(26,60,91,0.25);
+    transition: border-color 0.15s, color 0.15s;
+  }
+  .src-link:hover {
+    color: var(--copper);
+    border-bottom-color: var(--copper);
+  }
+  .src-link::after {
+    content: ' \2197';
+    font-size: 0.8em;
+    color: var(--copper);
+    margin-left: 1px;
+  }
+
+  /* Editorial highlight — for key passages in attribution, mortality, exposure */
+  .pull-highlight {
+    background: linear-gradient(180deg, transparent 0%, transparent 35%, rgba(192,148,109,0.18) 35%, rgba(192,148,109,0.18) 92%, transparent 92%);
+    color: var(--near-black);
+    font-weight: 600;
+    padding: 1px 2px;
+    box-decoration-break: clone;
+    -webkit-box-decoration-break: clone;
+  }
+
+  .source-note a {
+    color: var(--slate-blue);
+    text-decoration: none;
+    border-bottom: 1px dotted rgba(26,60,91,0.4);
+  }
+  .source-note a:hover {
+    color: var(--copper);
+    border-bottom-color: var(--copper);
+  }
+
+  @media (max-width: 820px) {
+    .section-hero { height: 200px; margin: 0 -28px 24px -28px; }
+    .magazine-image { float: none; width: 100%; margin: 0 0 18px 0; }
+    .magazine-image.right { float: none; margin: 0 0 18px 0; }
+    .banda-locator { grid-template-columns: 1fr; }
+  }
+
+  /* ================================ */
+  /* COVER PAGE                       */
+  /* ================================ */
+  .cover {
+    min-height: 90vh;
+    padding: 72px 0 56px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    border-bottom: 4px solid var(--near-black);
+    margin-bottom: 56px;
+  }
+  .cover-top { padding-bottom: 80px; }
+  .cover-brand {
+    font-family: 'Inter', sans-serif;
+    font-weight: 500;
+    font-size: 13px;
+    letter-spacing: -0.4px;
+    text-transform: uppercase;
+    margin-bottom: 4px;
+  }
+  .cover-tagline {
+    font-family: 'Inter', sans-serif;
+    font-style: italic;
+    font-size: 13px;
+    color: var(--gray);
+    margin-bottom: 80px;
+  }
+  .cover-section-label {
+    font-weight: 600;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    color: var(--copper);
+    margin-bottom: 20px;
+  }
+  .cover-title {
+    font-family: 'Playfair Display', serif;
+    font-weight: 400;
+    font-size: 72px;
+    line-height: 1.04;
+    letter-spacing: -1.8px;
+    margin-bottom: 28px;
+    max-width: 960px;
+  }
+  .cover-title em { font-style: italic; }
+  .cover-deck {
+    font-family: 'Inter', sans-serif;
+    font-size: 18px;
+    line-height: 1.5;
+    color: var(--gray);
+    max-width: 720px;
+  }
+  .cover-meta {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 32px;
+    padding-top: 32px;
+    border-top: 1px solid var(--border);
+  }
+  .meta-item .meta-label {
+    font-family: ui-monospace, monospace;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--copper);
+    font-weight: 600;
+    margin-bottom: 6px;
+  }
+  .meta-item .meta-value {
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    color: var(--near-black);
+    font-weight: 500;
+  }
+
+  /* ================================ */
+  /* TABLE OF CONTENTS                */
+  /* ================================ */
+  .toc {
+    margin-bottom: 72px;
+  }
+  .toc h2 {
+    font-family: 'Playfair Display', serif;
+    font-weight: 400;
+    font-size: 28px;
+    margin-bottom: 28px;
+    letter-spacing: -0.6px;
+  }
+  .toc-list {
+    border-top: 1px solid var(--border);
+  }
+  .toc-item {
+    display: grid;
+    grid-template-columns: 60px 1fr auto;
+    gap: 20px;
+    align-items: baseline;
+    padding: 16px 0;
+    border-bottom: 1px solid var(--border);
+    text-decoration: none;
+    color: var(--near-black);
+  }
+  .toc-num {
+    font-family: ui-monospace, monospace;
+    font-size: 11px;
+    color: var(--copper);
+    font-weight: 600;
+    letter-spacing: 0.08em;
+  }
+  .toc-title {
+    font-family: 'Playfair Display', serif;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 1.3;
+  }
+  .toc-page {
+    font-family: ui-monospace, monospace;
+    font-size: 11px;
+    color: var(--gray);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+
+  /* ================================ */
+  /* SECTION HEADERS                  */
+  /* ================================ */
+  section {
+    margin-bottom: 88px;
+    scroll-margin-top: 24px;
+  }
+  .section-header {
+    margin-bottom: 36px;
+  }
+  .section-num {
+    font-family: ui-monospace, monospace;
+    font-size: 11px;
+    color: var(--copper);
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    margin-bottom: 14px;
+    display: block;
+  }
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-weight: 400;
+    font-size: 40px;
+    line-height: 1.1;
+    letter-spacing: -1.0px;
+    margin-bottom: 16px;
+    max-width: 880px;
+  }
+  .section-title em { font-style: italic; }
+  .section-deck {
+    font-size: 16px;
+    color: var(--gray);
+    max-width: 760px;
+    line-height: 1.55;
+  }
+  .section-deck-note {
+    font-size: 13px;
+    color: var(--gray);
+    max-width: 760px;
+    line-height: 1.55;
+    margin-top: 12px;
+    padding: 12px 16px;
+    border-left: 2px solid var(--copper);
+    background: rgba(192,148,109,0.05);
+  }
+  .section-deck-note strong {
+    color: var(--near-black);
+    font-weight: 600;
+  }
+
+  /* ================================ */
+  /* PROSE                            */
+  /* ================================ */
+  .prose p {
+    font-size: 15px;
+    line-height: 1.65;
+    margin-bottom: 16px;
+    max-width: 760px;
+  }
+  .prose p strong {
+    font-weight: 600;
+    color: var(--near-black);
+  }
+  .prose .lede {
+    font-family: 'Playfair Display', serif;
+    font-weight: 400;
+    font-size: 22px;
+    line-height: 1.4;
+    color: var(--near-black);
+    margin-bottom: 24px;
+    letter-spacing: -0.3px;
+    max-width: 800px;
+  }
+  .prose .lede em { font-style: italic; }
+
+  /* ================================ */
+  /* CARDS                            */
+  /* ================================ */
+  .card {
+    background: #FFFFFF;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 36px;
+    margin-bottom: 24px;
+  }
+  .card-title {
+    font-family: 'Playfair Display', serif;
+    font-weight: 400;
+    font-size: 22px;
+    line-height: 1.25;
+    margin-bottom: 8px;
+  }
+  .card-subtitle {
+    font-size: 13px;
+    color: var(--gray);
+    margin-bottom: 24px;
+    font-style: italic;
+  }
+
+  /* ================================ */
+  /* STAT STRIP                       */
+  /* ================================ */
+  .stat-strip {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    overflow: hidden;
+    margin-bottom: 56px;
+  }
+  .stat {
+    background: #FFFFFF;
+    padding: 28px 24px;
+  }
+  .stat .num {
+    font-family: 'Playfair Display', serif;
+    font-weight: 400;
+    font-size: 44px;
+    line-height: 1;
+    letter-spacing: -1.0px;
+    margin-bottom: 10px;
+  }
+  .stat .num.copper { color: var(--copper); }
+  .stat .num.slate { color: var(--slate-blue); }
+  .stat .num.ink { color: var(--near-black); }
+  .stat .label {
+    font-size: 12px;
+    color: var(--gray);
+    line-height: 1.4;
+  }
+  .stat .source-tag {
+    font-family: ui-monospace, monospace;
+    font-size: 10px;
+    color: var(--copper);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    margin-top: 8px;
+  }
+
+  /* ================================ */
+  /* DEFINITION BLOCKS                */
+  /* ================================ */
+  .definition-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+  .def-block {
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 24px;
+    background: #FFFFFF;
+  }
+  .def-block .num-tag {
+    font-family: ui-monospace, monospace;
+    font-size: 11px;
+    color: var(--copper);
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    margin-bottom: 10px;
+  }
+  .def-block h4 {
+    font-family: 'Playfair Display', serif;
+    font-weight: 400;
+    font-size: 19px;
+    line-height: 1.25;
+    margin-bottom: 10px;
+  }
+  .def-block p {
+    font-size: 14px;
+    line-height: 1.5;
+    color: var(--gray);
+  }
+
+  table.threshold {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 12px;
+    font-size: 14px;
+  }
+  table.threshold th, table.threshold td {
+    text-align: left;
+    padding: 10px 14px;
+    border-bottom: 1px solid var(--border);
+  }
+  table.threshold th {
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--gray);
+    background: var(--off-white);
+  }
+  table.threshold td.value {
+    font-family: ui-monospace, monospace;
+    font-weight: 500;
+    color: var(--near-black);
+    font-size: 14px;
+  }
+  table.threshold tr:last-child td { border-bottom: none; }
+  table.threshold td strong {
+    color: var(--slate-blue);
+    font-weight: 600;
+  }
+
+  /* ================================ */
+  /* IMD FORECAST TIMELINE            */
+  /* ================================ */
+  .timeline {
+    position: relative;
+    padding: 12px 0 12px 32px;
+    margin-top: 24px;
+  }
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 8px;
+    top: 24px;
+    bottom: 24px;
+    width: 1px;
+    background: var(--border);
+  }
+  .timeline-item {
+    position: relative;
+    padding-bottom: 36px;
+  }
+  .timeline-item:last-child { padding-bottom: 0; }
+  .timeline-item::before {
+    content: '';
+    position: absolute;
+    left: -32px;
+    top: 6px;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: #FFFFFF;
+    border: 2px solid var(--copper);
+    z-index: 2;
+  }
+  .timeline-item.observed::before {
+    background: var(--near-black);
+    border-color: var(--near-black);
+  }
+  .timeline-item.forecast::before {
+    background: #FFFFFF;
+    border-color: var(--slate-blue);
+  }
+  .timeline-date {
+    font-family: ui-monospace, monospace;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--copper);
+    font-weight: 600;
+    margin-bottom: 4px;
+  }
+  .timeline-source {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    color: var(--gray);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    margin-bottom: 10px;
+  }
+  .timeline-headline {
+    font-family: 'Playfair Display', serif;
+    font-weight: 400;
+    font-size: 19px;
+    line-height: 1.3;
+    margin-bottom: 10px;
+    max-width: 720px;
+  }
+  .timeline-quote {
+    background: var(--off-white);
+    border-left: 3px solid var(--copper);
+    padding: 14px 18px;
+    margin-top: 10px;
+    border-radius: 0 6px 6px 0;
+  }
+  .timeline-quote p {
+    font-style: italic;
+    font-size: 13px;
+    line-height: 1.55;
+    color: var(--near-black);
+  }
+  .timeline-quote.observed {
+    border-left-color: var(--near-black);
+    background: var(--near-black);
+  }
+  .timeline-quote.observed p {
+    color: var(--off-white);
+    font-style: normal;
+  }
+  .timeline-tag {
+    display: inline-block;
+    font-family: ui-monospace, monospace;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    font-weight: 600;
+    padding: 3px 8px;
+    border-radius: 4px;
+    background: var(--copper-tint);
+    color: var(--copper);
+    margin-right: 6px;
+  }
+  .timeline-tag.warning { background: rgba(176,58,46,0.12); color: #B03A2E; }
+  .timeline-tag.observed-tag { background: var(--near-black); color: var(--off-white); }
+
+  .gap-summary {
+    background: var(--near-black);
+    color: var(--off-white);
+    padding: 32px 36px;
+    border-radius: 12px;
+    margin-top: 32px;
+  }
+  .gap-summary .gap-summary-label {
+    font-family: ui-monospace, monospace;
+    font-size: 10px;
+    color: var(--copper);
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 14px;
+  }
+  .gap-summary .gap-headline {
+    font-family: 'Playfair Display', serif;
+    font-weight: 400;
+    font-size: 26px;
+    line-height: 1.25;
+    letter-spacing: -0.3px;
+    margin-bottom: 22px;
+    max-width: 800px;
+  }
+  .gap-summary .gap-summary-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 28px;
+    border-top: 1px solid rgba(255,255,255,0.15);
+    padding-top: 20px;
+  }
+  .gap-summary .gap-summary-item .gap-summary-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 28px;
+    line-height: 1;
+    color: var(--copper);
+    margin-bottom: 6px;
+  }
+  .gap-summary .gap-summary-item .gap-summary-text {
+    font-size: 12px;
+    color: rgba(255,255,255,0.75);
+    line-height: 1.4;
+  }
+
+  /* ================================ */
+  /* CONVERGENCE DIAGRAM              */
+  /* ================================ */
+  .drivers-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 18px;
+    margin-bottom: 28px;
+  }
+  .driver {
+    background: var(--off-white);
+    border: 1px solid var(--border);
+    border-top: 3px solid var(--copper);
+    border-radius: 12px;
+    padding: 24px 22px;
+  }
+  .driver .driver-num {
+    font-family: ui-monospace, monospace;
+    font-size: 11px;
+    color: var(--copper);
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    margin-bottom: 12px;
+  }
+  .driver .driver-type {
+    font-size: 10px;
+    color: var(--gray);
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 8px;
+  }
+  .driver h3 {
+    font-family: 'Playfair Display', serif;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 1.2;
+    margin-bottom: 10px;
+  }
+  .driver p {
+    font-size: 13px;
+    line-height: 1.5;
+    color: var(--gray);
+    margin-bottom: 14px;
+  }
+  .driver .data-point {
+    border-top: 1px solid var(--border);
+    padding-top: 12px;
+  }
+  .driver .data-value {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px;
+    line-height: 1;
+    color: var(--slate-blue);
+    margin-bottom: 4px;
+  }
+  .driver .data-label {
+    font-size: 11px;
+    color: var(--gray);
+    line-height: 1.3;
+  }
+
+  .convergence {
+    height: 60px;
+    margin-bottom: 20px;
+  }
+  .convergence svg {
+    width: 100%;
+    height: 100%;
+    display: block;
+  }
+
+  .outcome {
+    background: var(--near-black);
+    color: var(--off-white);
+    padding: 32px 36px;
+    border-radius: 12px;
+    margin-bottom: 24px;
+  }
+  .outcome .outcome-label {
+    font-size: 11px;
+    color: var(--copper);
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+  .outcome .outcome-headline {
+    font-family: 'Playfair Display', serif;
+    font-weight: 400;
+    font-size: 28px;
+    line-height: 1.2;
+    letter-spacing: -0.4px;
+    margin-bottom: 20px;
+    max-width: 760px;
+  }
+  .outcome .outcome-stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 28px;
+    border-top: 1px solid rgba(255,255,255,0.15);
+    padding-top: 20px;
+  }
+  .outcome .stat-item .stat-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 30px;
+    line-height: 1;
+    color: var(--copper);
+    margin-bottom: 6px;
+  }
+  .outcome .stat-item .stat-text {
+    font-size: 12px;
+    color: rgba(255,255,255,0.75);
+    line-height: 1.4;
+  }
+
+  .gap-section {
+    background: var(--copper-tint);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--copper);
+    border-radius: 12px;
+    padding: 28px 32px;
+  }
+  .gap-section .gap-label {
+    font-size: 11px;
+    color: var(--copper);
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+  .gap-section h4 {
+    font-family: 'Playfair Display', serif;
+    font-weight: 400;
+    font-size: 22px;
+    line-height: 1.2;
+    margin-bottom: 22px;
+  }
+  .gap-row {
+    display: grid;
+    grid-template-columns: 130px 1fr 70px;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 12px;
+  }
+  .gap-label-text {
+    font-size: 12px;
+    font-weight: 500;
+    text-align: right;
+  }
+  .gap-label-text .gap-sublabel {
+    display: block;
+    font-size: 10px;
+    color: var(--gray);
+    font-weight: 400;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    margin-top: 2px;
+  }
+  .gap-bar-track {
+    height: 28px;
+    background: rgba(255,255,255,0.5);
+    border: 1px solid var(--border);
+    position: relative;
+    overflow: visible;
+  }
+  .gap-bar-fill {
+    height: 100%;
+    position: relative;
+    overflow: visible;
+  }
+  .gap-bar-fill::after {
+    content: attr(data-label);
+    position: absolute;
+    top: 50%;
+    left: 12px;
+    transform: translateY(-50%);
+    color: white;
+    font-family: ui-monospace, monospace;
+    font-size: 10px;
+    font-weight: 600;
+    white-space: nowrap;
+    letter-spacing: 0.02em;
+  }
+  .gap-bar-fill.label-outside::after {
+    color: var(--near-black);
+    left: calc(100% + 10px);
+  }
+  .gap-bar-forecast { background: var(--slate-blue); width: 25%; }
+  .gap-bar-actual { background: var(--near-black); width: 95%; }
+  .gap-value {
+    font-family: ui-monospace, monospace;
+    font-size: 12px;
+    font-weight: 600;
+  }
+  .gap-conclusion {
+    margin-top: 18px;
+    padding-top: 18px;
+    border-top: 1px solid var(--border);
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 16px;
+    line-height: 1.4;
+  }
+
+  /* ================================ */
+  /* CHART: HOTTEST CITIES BARS       */
+  /* ================================ */
+  .bar-row {
+    display: grid;
+    grid-template-columns: 200px 1fr 70px;
+    align-items: center;
+    gap: 16px;
+    padding: 9px 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .bar-row:last-child { border-bottom: none; }
+  .bar-label { text-align: right; }
+  .bar-label .city {
+    font-weight: 500;
+    font-size: 14px;
+  }
+  .bar-label .state {
+    display: block;
+    font-size: 11px;
+    color: var(--gray);
+    margin-top: 2px;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+  .bar-track {
+    height: 26px;
+    background: #F5F4F0;
+  }
+  .bar-fill {
+    height: 100%;
+    background: var(--slate-blue);
+  }
+  .bar-fill.severe { background: var(--near-black); }
+  .bar-fill.copper { background: var(--copper); }
+  .bar-value {
+    font-family: ui-monospace, monospace;
+    font-size: 13px;
+    font-weight: 600;
+    text-align: left;
+  }
+
+  .chart-legend {
+    display: flex;
+    gap: 22px;
+    margin-top: 22px;
+    flex-wrap: wrap;
+    font-size: 12px;
+    color: var(--gray);
+  }
+  .legend-item { display: flex; align-items: center; gap: 8px; }
+  .legend-swatch { width: 14px; height: 14px; flex-shrink: 0; }
+
+  /* ================================ */
+  /* WORLD MAP                        */
+  /* ================================ */
+  .map-controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 16px;
+    margin-bottom: 18px;
+    padding-bottom: 18px;
+    border-bottom: 1px solid var(--border);
+  }
+  .filter-group { display: flex; gap: 8px; }
+  .filter-btn {
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    font-weight: 500;
+    padding: 8px 16px;
+    background: #FFFFFF;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    color: var(--near-black);
+    cursor: pointer;
+    transition: all 0.15s ease;
+  }
+  .filter-btn:hover {
+    background: var(--off-white);
+    border-color: var(--gray);
+  }
+  .filter-btn.active {
+    background: var(--slate-blue);
+    color: white;
+    border-color: var(--slate-blue);
+  }
+  .map-meta {
+    font-family: ui-monospace, monospace;
+    font-size: 10px;
+    color: var(--gray);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .map-legend {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 24px;
+    margin-bottom: 16px;
+    padding: 14px 18px;
+    background: var(--off-white);
+    border-radius: 10px;
+  }
+  .legend-block {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 11px;
+    color: var(--gray);
+  }
+  .legend-block .label {
+    font-family: ui-monospace, monospace;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    font-weight: 600;
+    color: var(--near-black);
+  }
+  .heat-ramp { display: flex; align-items: center; gap: 4px; }
+  .heat-swatch { width: 18px; height: 14px; border-radius: 2px; }
+  .ramp-label {
+    font-family: ui-monospace, monospace;
+    font-size: 10px;
+    color: var(--gray);
+  }
+  .origin-block { display: flex; gap: 14px; align-items: center; }
+  .origin-marker { display: flex; align-items: center; gap: 6px; font-size: 11px; color: var(--gray); }
+  .origin-marker .dot {
+    width: 12px; height: 12px;
+    border-radius: 50%;
+    background: rgba(192,148,109,0.4);
+    border: 2px solid;
+  }
+  .origin-marker .dot.india { border-color: var(--copper); }
+  .origin-marker .dot.world { border-color: var(--slate-blue); }
+
+  .map-wrapper {
+    position: relative;
+    width: 100%;
+    background: var(--off-white);
+    border-radius: 8px;
+    overflow: hidden;
+  }
+  .map-svg {
+    width: 100%;
+    height: auto;
+    display: block;
+    cursor: crosshair;
+  }
+  .country {
+    fill: #F0EDE5;
+    stroke: #E5E0D5;
+    stroke-width: 0.4;
+  }
+  .country.highlight-india { fill: #F4ECE3; }
+  .graticule {
+    fill: none;
+    stroke: #EBE8DF;
+    stroke-width: 0.3;
+    stroke-dasharray: 2,2;
+  }
+  .heat-bubble {
+    cursor: pointer;
+    transition: opacity 0.2s, transform 0.15s;
+    transform-origin: center;
+    transform-box: fill-box;
+  }
+  .heat-bubble:hover { transform: scale(1.3); }
+  .heat-bubble.dimmed { opacity: 0.12; pointer-events: none; }
+
+  .tooltip {
+    position: absolute;
+    pointer-events: none;
+    background: var(--near-black);
+    color: var(--off-white);
+    padding: 14px 18px;
+    border-radius: 8px;
+    font-size: 12px;
+    line-height: 1.5;
+    max-width: 260px;
+    z-index: 100;
+    opacity: 0;
+    transform: translate(-50%, calc(-100% - 14px));
+    transition: opacity 0.15s ease;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.18);
+  }
+  .tooltip.visible { opacity: 1; }
+  .tooltip::after {
+    content: '';
+    position: absolute;
+    bottom: -6px; left: 50%;
+    transform: translateX(-50%);
+    width: 0; height: 0;
+    border-left: 6px solid transparent;
+    border-right: 6px solid transparent;
+    border-top: 6px solid var(--near-black);
+  }
+  .tt-rank {
+    font-family: ui-monospace, monospace;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--copper);
+    margin-bottom: 4px;
+  }
+  .tt-city {
+    font-family: 'Playfair Display', serif;
+    font-size: 17px;
+    line-height: 1.2;
+    margin-bottom: 4px;
+  }
+  .tt-region { font-size: 11px; color: rgba(255,255,255,0.65); margin-bottom: 12px; }
+  .tt-temp {
+    font-family: 'Playfair Display', serif;
+    font-size: 28px;
+    line-height: 1;
+    color: var(--copper);
+    margin-bottom: 10px;
+  }
+  .tt-status {
+    display: inline-block;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    font-weight: 600;
+    padding: 3px 8px;
+    border-radius: 4px;
+    background: rgba(192,148,109,0.2);
+    color: var(--copper);
+    margin-bottom: 10px;
+  }
+  .tt-status.extreme { background: rgba(255,100,80,0.25); color: #FF8C70; }
+  .tt-conditions {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    padding-top: 10px;
+    border-top: 1px solid rgba(255,255,255,0.15);
+  }
+  .tt-condition { font-size: 10px; color: rgba(255,255,255,0.85); }
+
+  /* ================================ */
+  /* REGIONAL WARMING TILES           */
+  /* ================================ */
+  .map-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 10px;
+    margin-top: 16px;
+  }
+  .region {
+    padding: 22px 18px;
+    border-radius: 12px;
+    border: 1px solid var(--border);
+    background: #FFFFFF;
+  }
+  .region.warm-1 { background: #FFFFFF; }
+  .region.warm-2 { background: #F4ECE3; }
+  .region.warm-3 { background: #E8D6C0; }
+  .region.warm-4 { background: var(--copper); color: #FFFFFF; border-color: var(--copper); }
+  .region.warm-5 { background: var(--slate-blue); color: #FFFFFF; border-color: var(--slate-blue); }
+  .region .name {
+    font-family: 'Playfair Display', serif;
+    font-size: 15px;
+    line-height: 1.2;
+    margin-bottom: 14px;
+    min-height: 36px;
+  }
+  .region .delta {
+    font-family: 'Playfair Display', serif;
+    font-size: 26px;
+    line-height: 1;
+    letter-spacing: -0.5px;
+  }
+  .region .unit {
+    font-size: 11px;
+    margin-top: 6px;
+    opacity: 0.85;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+
+  /* ================================ */
+  /* TREND COMPARISON TABLE           */
+  /* ================================ */
+  .trend-table {
+    margin-top: 20px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    overflow: hidden;
+  }
+  .trend-header {
+    display: grid;
+    grid-template-columns: 1.5fr 2fr 2fr 0.7fr;
+    gap: 16px;
+    padding: 12px 18px;
+    background: #FAFAF7;
+    border-bottom: 1px solid var(--border);
+    font-family: ui-monospace, monospace;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--gray);
+    font-weight: 600;
+  }
+  .trend-header .trend-shift-h { text-align: right; }
+  .trend-row {
+    display: grid;
+    grid-template-columns: 1.5fr 2fr 2fr 0.7fr;
+    gap: 16px;
+    padding: 14px 18px;
+    align-items: center;
+    border-bottom: 1px solid var(--border);
+  }
+  .trend-row:last-child { border-bottom: none; }
+  .trend-row-total {
+    background: #FAFAF7;
+    border-top: 2px solid var(--near-black);
+  }
+  .trend-region {
+    font-family: 'Playfair Display', serif;
+    font-size: 15px;
+    color: var(--near-black);
+  }
+  .trend-region strong { font-weight: 400; }
+  .trend-period {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .trend-bar {
+    height: 8px;
+    width: var(--w);
+    background: var(--c);
+    border-radius: 1px;
+    flex-shrink: 0;
+    min-width: 4px;
+    opacity: 0.55;
+  }
+  .trend-val {
+    font-family: 'Playfair Display', serif;
+    font-size: 15px;
+    color: var(--near-black);
+    font-weight: 400;
+    white-space: nowrap;
+  }
+  .trend-val.strong {
+    font-weight: 400;
+    color: var(--near-black);
+  }
+  .trend-row .trend-period .trend-bar {
+    opacity: 0.45;
+  }
+  .trend-row .trend-period .trend-val.strong + .trend-bar,
+  .trend-row .trend-period:has(.trend-val.strong) .trend-bar {
+    opacity: 0.85;
+  }
+  .trend-shift {
+    font-family: ui-monospace, monospace;
+    font-size: 13px;
+    text-align: right;
+    color: var(--copper);
+    font-weight: 600;
+  }
+  .trend-legend {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 24px;
+    margin-top: 16px;
+    padding: 12px 18px;
+    font-size: 12px;
+    color: var(--gray);
+  }
+  .trend-legend-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .legend-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 2px;
+    display: inline-block;
+  }
+  .legend-strong {
+    font-weight: 600;
+    color: var(--near-black);
+    background: rgba(192,148,109,0.18);
+    padding: 1px 4px;
+    border-radius: 2px;
+  }
+  @media (max-width: 820px) {
+    .trend-header,
+    .trend-row {
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+    }
+    .trend-header .trend-shift-h,
+    .trend-row .trend-shift {
+      grid-column: span 2;
+      text-align: left;
+    }
+  }
+
+  /* ================================ */
+  /* SVG CHARTS                       */
+  /* ================================ */
+  svg.svg-chart { width: 100%; height: auto; display: block; }
+
+  /* ================================ */
+  /* PULL QUOTE                       */
+  /* ================================ */
+  .pull-quote {
+    border-left: 1px solid var(--copper);
+    padding: 8px 36px;
+    margin: 56px 0;
+    max-width: 800px;
+  }
+  .pull-quote p {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 26px;
+    line-height: 1.3;
+    letter-spacing: -0.4px;
+  }
+  .pull-quote .attr {
+    margin-top: 18px;
+    font-size: 12px;
+    color: var(--gray);
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+
+  /* ================================ */
+  /* ATTRIBUTION                      */
+  /* ================================ */
+  .attribution-block {
+    display: grid;
+    grid-template-columns: 1.3fr 1fr;
+    gap: 36px;
+    align-items: center;
+  }
+  .big-multiplier {
+    font-family: 'Playfair Display', serif;
+    font-weight: 400;
+    font-size: 120px;
+    line-height: 0.95;
+    letter-spacing: -3px;
+    color: var(--slate-blue);
+    margin-bottom: 14px;
+  }
+  .big-multiplier sup {
+    font-size: 0.5em;
+    vertical-align: super;
+    line-height: 0;
+  }
+  .return-period {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    gap: 16px;
+    align-items: center;
+    background: var(--off-white);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 24px;
+    margin-top: 24px;
+  }
+  .rp-block { text-align: center; }
+  .rp-label {
+    font-family: ui-monospace, monospace;
+    font-size: 10px;
+    color: var(--copper);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    margin-bottom: 8px;
+  }
+  .rp-value {
+    font-family: 'Playfair Display', serif;
+    font-size: 26px;
+    line-height: 1;
+  }
+  .rp-unit {
+    font-size: 11px;
+    color: var(--gray);
+    margin-top: 4px;
+  }
+  .rp-arrow {
+    font-family: 'Playfair Display', serif;
+    font-size: 24px;
+    color: var(--copper);
+  }
+
+  .caveat-block {
+    background: var(--copper-tint);
+    border-left: 3px solid var(--copper);
+    padding: 18px 22px;
+    margin-top: 24px;
+    border-radius: 0 8px 8px 0;
+  }
+  .caveat-block .caveat-label {
+    font-family: ui-monospace, monospace;
+    font-size: 10px;
+    color: var(--copper);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    margin-bottom: 8px;
+  }
+  .caveat-block p {
+    font-size: 13px;
+    line-height: 1.5;
+    color: var(--near-black);
+  }
+
+  /* ================================ */
+  /* TRANSLATION BLOCKS (plain Eng)   */
+  /* ================================ */
+  .translation-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 16px;
+    margin-top: 28px;
+  }
+  .translation-block {
+    background: var(--off-white);
+    border: 1px solid var(--border);
+    border-top: 3px solid var(--slate-blue);
+    border-radius: 12px;
+    padding: 22px 20px;
+  }
+  .translation-block .t-label {
+    font-family: ui-monospace, monospace;
+    font-size: 10px;
+    color: var(--copper);
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+  .translation-block .t-headline {
+    font-family: 'Playfair Display', serif;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 1.25;
+    margin-bottom: 12px;
+    color: var(--near-black);
+  }
+  .translation-block p {
+    font-size: 13px;
+    line-height: 1.55;
+    color: var(--gray);
+  }
+  @media (max-width: 820px) {
+    .translation-grid { grid-template-columns: 1fr; }
+  }
+
+  /* ================================ */
+  /* MORTALITY                        */
+  /* ================================ */
+  .mortality-row {
+    display: grid;
+    grid-template-columns: 110px 1fr 70px;
+    align-items: center;
+    gap: 14px;
+    padding: 8px 0;
+    font-size: 14px;
+  }
+  .mortality-year {
+    font-family: ui-monospace, monospace;
+    font-size: 13px;
+    font-weight: 600;
+    text-align: right;
+  }
+  .mortality-track {
+    height: 22px;
+    background: #F5F4F0;
+  }
+  .mortality-fill { height: 100%; }
+  .mortality-count {
+    font-family: ui-monospace, monospace;
+    font-size: 12px;
+    color: var(--gray);
+  }
+
+  /* ================================ */
+  /* ECONOMIC EXPOSURE                */
+  /* ================================ */
+  .exposure-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 22px;
+  }
+  .exposure-block {
+    background: #FFFFFF;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 26px 24px;
+  }
+  .exposure-block .num-tag {
+    font-family: ui-monospace, monospace;
+    font-size: 11px;
+    color: var(--copper);
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    margin-bottom: 14px;
+  }
+  .exposure-block .exp-headline {
+    font-family: 'Playfair Display', serif;
+    font-size: 26px;
+    line-height: 1.1;
+    margin-bottom: 12px;
+    letter-spacing: -0.3px;
+  }
+  .exposure-block p {
+    font-size: 13px;
+    color: var(--gray);
+    line-height: 1.5;
+  }
+
+  /* ================================ */
+  /* COUNTRY BREAKDOWN                */
+  /* ================================ */
+  .country-row {
+    display: grid;
+    grid-template-columns: 220px 1fr 60px;
+    align-items: center;
+    gap: 14px;
+    padding: 8px 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .country-row:last-child { border-bottom: none; }
+  .country-name { font-size: 13px; font-weight: 500; }
+  .country-name .total {
+    color: var(--gray);
+    font-weight: 400;
+    font-size: 11px;
+    margin-left: 6px;
+  }
+  .country-bar-track {
+    height: 22px;
+    background: var(--off-white);
+    overflow: hidden;
+  }
+  .country-bar-fill {
+    height: 100%;
+    background: var(--copper);
+  }
+  .country-bar-fill.india { background: var(--near-black); }
+  .country-count {
+    font-family: ui-monospace, monospace;
+    font-size: 12px;
+    font-weight: 600;
+  }
+
+  /* ================================ */
+  /* TAKEAWAY                         */
+  /* ================================ */
+  .takeaway-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 24px;
+    margin-top: 16px;
+  }
+  .takeaway {
+    border-top: 2px solid var(--near-black);
+    padding-top: 18px;
+  }
+  .takeaway .takeaway-label {
+    font-weight: 600;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--copper);
+    margin-bottom: 12px;
+  }
+  .takeaway p {
+    font-family: 'Playfair Display', serif;
+    font-size: 18px;
+    line-height: 1.35;
+    letter-spacing: -0.2px;
+  }
+
+  /* ================================ */
+  /* NEXT BRIEF SIGN-OFF              */
+  /* ================================ */
+  .next-brief {
+    margin-top: 56px;
+    padding: 36px 40px;
+    background: var(--near-black);
+    color: var(--off-white);
+    border-radius: 12px;
+    display: grid;
+    grid-template-columns: 0.8fr 1.6fr;
+    gap: 36px;
+    align-items: start;
+  }
+  .next-brief .nb-label {
+    font-family: ui-monospace, monospace;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--copper);
+    margin-bottom: 14px;
+    font-weight: 600;
+  }
+  .next-brief .nb-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 28px;
+    line-height: 1.15;
+    letter-spacing: -0.5px;
+    color: var(--off-white);
+    margin-bottom: 12px;
+    font-weight: 400;
+  }
+  .next-brief .nb-title em {
+    font-style: italic;
+    color: var(--copper);
+  }
+  .next-brief .nb-meta {
+    font-family: ui-monospace, monospace;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: rgba(251,251,249,0.55);
+    margin-top: 8px;
+  }
+  .next-brief .nb-deck {
+    font-size: 14px;
+    line-height: 1.6;
+    color: rgba(251,251,249,0.85);
+  }
+  .next-brief .nb-deck p { margin-bottom: 14px; }
+  .next-brief .nb-deck p:last-child { margin-bottom: 0; }
+  .next-brief .nb-deck strong {
+    color: var(--off-white);
+    font-weight: 600;
+  }
+  @media (max-width: 820px) {
+    .next-brief {
+      grid-template-columns: 1fr;
+      padding: 28px;
+      gap: 20px;
+    }
+    .next-brief .nb-title { font-size: 24px; }
+  }
+
+  /* ================================ */
+  /* SOURCE NOTES                     */
+  /* ================================ */
+  .source-note {
+    font-family: ui-monospace, monospace;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--gray);
+    font-weight: 500;
+    margin-top: 22px;
+    padding-top: 16px;
+    border-top: 1px solid var(--border);
+    line-height: 1.5;
+  }
+
+  /* ================================ */
+  /* COLOPHON / FOOTER                */
+  /* ================================ */
+  .colophon {
+    margin-top: 56px;
+    padding-top: 40px;
+    border-top: 4px solid var(--near-black);
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 48px;
+  }
+  .colophon-block .colophon-label {
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--copper);
+    margin-bottom: 14px;
+  }
+  .colophon-block p {
+    font-size: 12px;
+    line-height: 1.65;
+    color: var(--gray);
+    margin-bottom: 14px;
+  }
+  .colophon-block .bb-mark {
+    font-family: 'Playfair Display', serif;
+    font-size: 24px;
+    color: var(--near-black);
+    letter-spacing: -0.3px;
+    margin-bottom: 8px;
+  }
+  .colophon-block .bb-tagline {
+    font-size: 13px;
+    color: var(--gray);
+    font-style: italic;
+    margin-bottom: 18px;
+  }
+  .colophon-block .contact-line {
+    font-family: ui-monospace, monospace;
+    font-size: 11px;
+    color: var(--gray);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    line-height: 1.8;
+  }
+
+  /* ================================ */
+  /* RESPONSIVE                       */
+  /* ================================ */
+  @media (max-width: 820px) {
+    .container { padding: 32px 16px; }
+    .cover-title { font-size: 38px; letter-spacing: -1px; }
+    .cover-deck { font-size: 16px; }
+    .cover-meta { grid-template-columns: 1fr 1fr; gap: 20px; }
+    .section-title { font-size: 28px; letter-spacing: -0.5px; }
+    .stat-strip { grid-template-columns: 1fr 1fr; }
+    .stat .num { font-size: 32px; }
+    .definition-grid { grid-template-columns: 1fr; }
+    .drivers-row { grid-template-columns: 1fr; }
+    .convergence { display: none; }
+    .outcome { padding: 24px; }
+    .outcome .outcome-headline { font-size: 20px; }
+    .outcome .outcome-stats { grid-template-columns: 1fr; gap: 16px; }
+    .gap-section { padding: 22px; }
+    .gap-row { grid-template-columns: 90px 1fr 56px; gap: 8px; }
+    .map-grid { grid-template-columns: 1fr 1fr; }
+    .bar-row { grid-template-columns: 110px 1fr 56px; gap: 10px; }
+    .bar-label .city { font-size: 12px; }
+    .attribution-block { grid-template-columns: 1fr; }
+    .big-multiplier { font-size: 88px; }
+    .exposure-grid { grid-template-columns: 1fr; }
+    .takeaway-grid { grid-template-columns: 1fr; }
+    .country-row { grid-template-columns: 130px 1fr 40px; gap: 10px; }
+    .country-name { font-size: 11px; }
+    .pull-quote { padding: 8px 20px; }
+    .pull-quote p { font-size: 18px; }
+    .colophon { grid-template-columns: 1fr; gap: 28px; }
+    .card { padding: 22px; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <!-- =================================================== -->
+  <!-- COVER                                                -->
+  <!-- =================================================== -->
+  <div class="cover">
+    <div class="cover-top">
+      <div class="cover-brand">Bombay Breed</div>
+      <div class="cover-tagline">Strategic Carbon Advisory</div>
+
+      <div class="cover-section-label">India Heat Intelligence Report</div>
+      <h1 class="cover-title">India is the world's hottest country, <em>two weeks before peak summer.</em></h1>
+      <p class="cover-deck">A complete assessment of the April 2026 heat anomaly, anchored to the India Meteorological Department's own published forecast trail. We document the twenty-five day gap between the government's 02 April outlook and the conditions of 27 April, locate the event in two decades of structural warming, connect it to peer-reviewed attribution science, and translate the result into investor-relevant exposure. This is the warm-up.</p>
+    </div>
+
+    <div class="cover-meta">
+      <div class="meta-item">
+        <div class="meta-label">Issue</div>
+        <div class="meta-value">04.2026</div>
+      </div>
+      <div class="meta-item">
+        <div class="meta-label">Period</div>
+        <div class="meta-value">21 to 27 April 2026</div>
+      </div>
+      <div class="meta-item">
+        <div class="meta-label">Classification</div>
+        <div class="meta-value">Confidential</div>
+      </div>
+      <div class="meta-item">
+        <div class="meta-label">Author</div>
+        <div class="meta-value">Theresa Ronnie</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- =================================================== -->
+  <!-- TABLE OF CONTENTS                                    -->
+  <!-- =================================================== -->
+  <div class="toc">
+    <h2>Contents</h2>
+    <div class="toc-list">
+      <a href="#exec-summary" class="toc-item">
+        <div class="toc-num">00</div>
+        <div class="toc-title">Executive summary</div>
+        <div class="toc-page">Headline numbers</div>
+      </a>
+      <a href="#definition" class="toc-item">
+        <div class="toc-num">01</div>
+        <div class="toc-title">The IMD definition. When does heat become a heatwave.</div>
+        <div class="toc-page">Science &amp; thresholds</div>
+      </a>
+      <a href="#convergence" class="toc-item">
+        <div class="toc-num">02</div>
+        <div class="toc-title">Why India is the world's hottest country, right now.</div>
+        <div class="toc-page">Convergence diagram</div>
+      </a>
+      <a href="#imd-trail" class="toc-item">
+        <div class="toc-num">03</div>
+        <div class="toc-title">The IMD forecast trail. From "no heatwave" to severe heatwave in twenty-five days.</div>
+        <div class="toc-page">Government source</div>
+      </a>
+      <a href="#cities" class="toc-item">
+        <div class="toc-num">04</div>
+        <div class="toc-title">Stations crossing IMD thresholds, April 2026.</div>
+        <div class="toc-page">Bar chart</div>
+      </a>
+      <a href="#worldmap" class="toc-item">
+        <div class="toc-num">05</div>
+        <div class="toc-title">The world's 100 hottest cities, mapped.</div>
+        <div class="toc-page">Global ranking</div>
+      </a>
+      <a href="#trend" class="toc-item">
+        <div class="toc-num">06</div>
+        <div class="toc-title">The twenty-year curve. Where India has warmed fastest.</div>
+        <div class="toc-page">Structural trend</div>
+      </a>
+      <a href="#warm-nights" class="toc-item">
+        <div class="toc-num">07</div>
+        <div class="toc-title">The warm night signal. The metric that tracks mortality.</div>
+        <div class="toc-page">Day vs night</div>
+      </a>
+      <a href="#attribution" class="toc-item">
+        <div class="toc-num">08</div>
+        <div class="toc-title">The attribution. How much of this is climate change.</div>
+        <div class="toc-page">Probability shift</div>
+      </a>
+      <a href="#mortality" class="toc-item">
+        <div class="toc-num">09</div>
+        <div class="toc-title">The human cost already booked.</div>
+        <div class="toc-page">Pre-2026 baseline</div>
+      </a>
+      <a href="#exposure" class="toc-item">
+        <div class="toc-num">10</div>
+        <div class="toc-title">Economic exposure. USD 250 billion at risk by 2030.</div>
+        <div class="toc-page">Three layers</div>
+      </a>
+      <a href="#bottom-line" class="toc-item">
+        <div class="toc-num">11</div>
+        <div class="toc-title">The bottom line. My assessment.</div>
+        <div class="toc-page">Conclusion</div>
+      </a>
+    </div>
+  </div>
+
+  <!-- =================================================== -->
+  <!-- SECTION 00: EXECUTIVE SUMMARY                        -->
+  <!-- =================================================== -->
+  <section id="exec-summary">
+    <div class="section-header">
+      <span class="section-num">00 / Executive Summary</span>
+      <h2 class="section-title">The headline.</h2>
+      <p class="section-deck">Four numbers that frame the entire brief. Each is sourced and dated. None can be dismissed as cyclical noise.</p>
+    </div>
+
+    <div class="stat-strip">
+      <div class="stat">
+        <div class="num copper">95/100</div>
+        <div class="label">World's hottest cities, located in India</div>
+        <div class="source-tag">AQI.in / 27.04.2026</div>
+      </div>
+      <div class="stat">
+        <div class="num ink">47.4&deg;C</div>
+        <div class="label">Banda, Uttar Pradesh. IMD Severe Heatwave threshold cleared.</div>
+        <div class="source-tag">IMD / 27.04.2026</div>
+      </div>
+      <div class="stat">
+        <div class="num slate">+5.1&deg;C</div>
+        <div class="label">Delhi maximum departure from normal, Safdarjung station.</div>
+        <div class="source-tag">IMD / 26.04.2026</div>
+      </div>
+      <div class="stat">
+        <div class="num copper">92%</div>
+        <div class="label">2026 monsoon forecast as percentage of long-period average. Lowest in three decades.</div>
+        <div class="source-tag">IMD / 13.04.2026</div>
+      </div>
+    </div>
+
+    <div class="prose">
+      <p class="lede">India is currently exceeding both IMD heatwave criteria across central, northern, and eastern regions simultaneously. <em>Peak season has not yet begun.</em></p>
+      <p>This is not a single weather anomaly. It is the visible surface of a structural shift the IMD's own forecast guidance underestimated by twenty-five days. The brief that follows traces that gap quantitatively, from the government's 02 April Extended Range Outlook to the 47.4&deg;C reading at Banda on 27 April, and then asks what it means for capital with a ten-to-twenty-five year horizon.</p>
+    </div>
+  </section>
+
+  <!-- =================================================== -->
+  <!-- SECTION 01: IMD DEFINITION                           -->
+  <!-- =================================================== -->
+  <section id="definition">
+    <div class="section-header">
+      <span class="section-num">01 / The Definition</span>
+      <h2 class="section-title">When does heat become a heatwave.</h2>
+      <p class="section-deck">In atmospheric science, the term has a precise threshold with sub-thresholds, geographic modifiers, and persistence rules. The framework below is verbatim from the India Meteorological Department's official Heat Wave Definition document.</p>
+    </div>
+
+    <div class="card">
+      <div class="definition-grid">
+        <div class="def-block">
+          <div class="num-tag">Threshold 01</div>
+          <h4>The Floor</h4>
+          <p>A heatwave can be considered only when daytime maximum temperature reaches at least 40&deg;C in plains, 30&deg;C in hill regions, or 37&deg;C at coastal stations. Below these floors, no heatwave can be declared regardless of other anomalies.</p>
+        </div>
+        <div class="def-block">
+          <div class="num-tag">Threshold 02</div>
+          <h4>The Persistence Rule</h4>
+          <p>Conditions must be met at a minimum of two stations in a meteorological sub-division for at least two consecutive days. The heatwave is declared on the second day. A single hot afternoon, however severe, is not a heatwave.</p>
+        </div>
+      </div>
+
+      <div class="definition-grid" style="margin-top: 18px;">
+        <div class="def-block">
+          <div class="num-tag">Criterion A / Departure from Normal</div>
+          <h4>Anomaly relative to local baseline</h4>
+          <table class="threshold">
+            <thead>
+              <tr><th>Classification</th><th>Departure</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>Heatwave</td><td class="value">+4.5&deg;C to +6.4&deg;C</td></tr>
+              <tr><td>Severe Heatwave</td><td class="value"><strong>greater than +6.4&deg;C</strong></td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="def-block">
+          <div class="num-tag">Criterion B / Absolute Maximum</div>
+          <h4>Stress on the human body</h4>
+          <table class="threshold">
+            <thead>
+              <tr><th>Classification</th><th>Absolute Tmax</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>Heatwave</td><td class="value">45&deg;C or more</td></tr>
+              <tr><td>Severe Heatwave</td><td class="value"><strong>47&deg;C or more</strong></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="def-block" style="margin-top: 18px; background: var(--off-white);">
+        <div class="num-tag">Threshold 04 / The Underdiscussed Metric</div>
+        <h4>Warm Nights</h4>
+        <p style="margin-bottom: 14px;">A warm night is declared only when daytime maximum is 40&deg;C or more, and the night meets these criteria. The body recovers from heat at night. When this window closes, cardiovascular mortality compounds. This is the metric the IMD uses to flag escalating health risk, and the metric mortality researchers prioritise.</p>
+        <table class="threshold">
+          <thead>
+            <tr><th>Classification</th><th>Departure of minimum temperature</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Warm Night</td><td class="value">+4.5&deg;C to +6.4&deg;C</td></tr>
+            <tr><td>Very Warm Night</td><td class="value"><strong>greater than +6.4&deg;C</strong></td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="source-note">Source: India Meteorological Department, Ministry of Earth Sciences. <a href="https://mausam.imd.gov.in/pdfs/heatcolduser/Definition.pdf" target="_blank" rel="noopener">Official Heat Wave Definition</a> (mausam.imd.gov.in).</div>
+    </div>
+  </section>
+
+  <!-- =================================================== -->
+  <!-- SECTION 02: CONVERGENCE                              -->
+  <!-- =================================================== -->
+  <section id="convergence">
+    <div class="section-hero">
+      <img src="https://images.unsplash.com/photo-1645142686928-3f67ea419b03?fm=jpg&q=80&w=2000&auto=format&fit=crop" alt="Cracked dry earth, drought conditions">
+      <div class="hero-overlay"></div>
+      <div class="hero-caption">
+        <span>02 / Convergence</span>
+        <span class="credit">Photo: Adrian Mag / <a href="https://unsplash.com/photos/a-close-up-of-a-cracked-dirt-surface-9l9AIVptuZA" target="_blank" rel="noopener">Unsplash</a></span>
+      </div>
+    </div>
+    <div class="section-header">
+      <span class="section-num">02 / Convergence</span>
+      <h2 class="section-title">Why India is the world's hottest country, <em>right now.</em></h2>
+      <p class="section-deck">Three independent forces converged in the same forty-eight hour window. Two are structural, one is synoptic. Together they produced an outcome the IMD's seasonal forecast captured at the qualitative level but underestimated at magnitude.</p>
+    </div>
+
+    <div class="card">
+      <div class="drivers-row">
+        <div class="driver">
+          <div class="driver-num">DRIVER 01</div>
+          <div class="driver-type">Structural / Multi-decadal</div>
+          <h3>Eastern warming trend</h3>
+          <p>Two decades of accelerating Tmax rise concentrated in Peninsular and Eastern India, the same geography now hosting the heat plume.</p>
+          <div class="data-point">
+            <div class="data-value">+1.2&deg;C</div>
+            <div class="data-label">Eastern India Tmax rise, 2001-2020<br>Source: Nature Sci. Reports, Feb 2026</div>
+          </div>
+        </div>
+        <div class="driver">
+          <div class="driver-num">DRIVER 02</div>
+          <div class="driver-type">Structural / Cryosphere shock</div>
+          <h3>Eurasian snow deficit</h3>
+          <p>Hindu Kush Himalaya snow cover at the lowest in records for four consecutive years. Reduced surface albedo means less reflected solar energy.</p>
+          <div class="data-point">
+            <div class="data-value">-27.8%</div>
+            <div class="data-label">HKH snow cover vs long-term average<br>Source: ICIMOD, 2026</div>
+          </div>
+        </div>
+        <div class="driver">
+          <div class="driver-num">DRIVER 03</div>
+          <div class="driver-type">Synoptic / Atmospheric setup</div>
+          <h3>Anticyclone &amp; clear skies</h3>
+          <p>Maharashtra high-pressure system trapping hot air. Cloudless skies, dry northwesterly winds, suppressed pre-monsoon convection.</p>
+          <div class="data-point">
+            <div class="data-value">0 mm</div>
+            <div class="data-label">Pre-monsoon thundershower activity, NW &amp; Central India<br>Source: IMD, Apr 2026</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="convergence">
+        <svg viewBox="0 0 900 60" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+          <path d="M 150 0 L 150 25 Q 150 40, 200 45 L 430 45" stroke="#C0946D" stroke-width="1.5" fill="none" stroke-dasharray="3,3"/>
+          <polygon points="430,40 442,45 430,50" fill="#C0946D"/>
+          <path d="M 450 0 L 450 45" stroke="#C0946D" stroke-width="1.5" fill="none" stroke-dasharray="3,3"/>
+          <polygon points="445,40 450,53 455,40" fill="#C0946D"/>
+          <path d="M 750 0 L 750 25 Q 750 40, 700 45 L 470 45" stroke="#C0946D" stroke-width="1.5" fill="none" stroke-dasharray="3,3"/>
+          <polygon points="470,40 458,45 470,50" fill="#C0946D"/>
+          <text x="450" y="58" text-anchor="middle" font-family="ui-monospace, monospace" font-size="9" fill="#C0946D" font-weight="600" letter-spacing="2">CONVERGENCE</text>
+        </svg>
+      </div>
+
+      <div class="outcome">
+        <div class="outcome-label">The Outcome / 21 to 27 April 2026</div>
+        <div class="outcome-headline">India holds 80 of the world's 100 hottest cities. Banda crosses the IMD severe heatwave threshold at 47.4&deg;C.</div>
+        <div class="outcome-stats">
+          <div class="stat-item">
+            <div class="stat-num">80/100</div>
+            <div class="stat-text">World's hottest cities clustered in India, AQI.in live ranking</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-num">47.4&deg;C</div>
+            <div class="stat-text">Banda, UP. Severe Heatwave classification (Tmax 47&deg;C+)</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-num">+5.1&deg;C</div>
+            <div class="stat-text">Delhi Tmax departure from normal, Heatwave by Criterion A</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="gap-section">
+        <div class="gap-label">The Forecast Gap</div>
+        <h4>The IMD called the season correctly. It underestimated the magnitude.</h4>
+
+        <div class="gap-row">
+          <div class="gap-label-text">IMD Forecast<span class="gap-sublabel">31 Mar 2026</span></div>
+          <div class="gap-bar-track">
+            <div class="gap-bar-fill gap-bar-forecast label-outside" data-label="Above-normal heatwave days, Apr to Jun"></div>
+          </div>
+          <div class="gap-value">Qualitative</div>
+        </div>
+
+        <div class="gap-row">
+          <div class="gap-label-text">Actual<span class="gap-sublabel">21 to 27 Apr</span></div>
+          <div class="gap-bar-track">
+            <div class="gap-bar-fill gap-bar-actual" data-label="80 of world's 100 hottest cities, two weeks before peak"></div>
+          </div>
+          <div class="gap-value">80/100</div>
+        </div>
+
+        <div class="gap-conclusion">That gap, between qualitative forecast and observed magnitude, is the climate signal pulling forward. Peak season has not yet begun.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =================================================== -->
+  <!-- SECTION 03: IMD FORECAST TRAIL                       -->
+  <!-- =================================================== -->
+  <section id="imd-trail">
+    <div class="section-header">
+      <span class="section-num">03 / The IMD Forecast Trail</span>
+      <h2 class="section-title">From "no heatwave" to severe heatwave in <em>twenty-five days.</em></h2>
+      <p class="section-deck">The forecast-versus-reality gap is not inferred. It is documented in the IMD's own consecutive Extended Range Heat Wave Outlooks, published on the Ministry of Earth Sciences website. The chronological trail below is built directly from those government PDFs, dated and quoted verbatim.</p>
+    </div>
+
+    <div class="card">
+      <h3 class="card-title">IMD Extended Range Outlooks: chronological evidence</h3>
+      <p class="card-subtitle">Forecasts in copper. Observed conditions in black. All sources are official IMD publications archived at mausam.imd.gov.in.</p>
+
+      <div class="timeline">
+
+        <!-- Forecast 1: 02 April -->
+        <div class="timeline-item forecast">
+          <div class="timeline-date">02 April 2026</div>
+          <div class="timeline-source">IMD Extended Range Heat Wave Outlook</div>
+          <div class="timeline-headline">"No Heat Wave conditions are likely during week 1."</div>
+          <span class="timeline-tag">FORECAST</span>
+          <span class="timeline-tag">WEEKS 1-2</span>
+          <div class="timeline-quote">
+            <p>For Week 1 (03 to 09 April): "No Heat Wave conditions are likely during week 1. Below normal to appreciably below normal maximum temperatures are likely over central India and adjoining north peninsular India." For Week 2 (10 to 16 April): "Low Probability of Heat Wave conditions likely during the second half of week 2 over Coastal Odisha and adjoining north Coastal Andhra Pradesh." On warm nights for both weeks: "No warm night conditions are likely."</p>
+          </div>
+        </div>
+
+        <!-- Forecast 2: 17 April -->
+        <div class="timeline-item forecast">
+          <div class="timeline-date">17 April 2026</div>
+          <div class="timeline-source">IMD Press Release / DW Warnings</div>
+          <div class="timeline-headline">First explicit heatwave language. Spatially limited.</div>
+          <span class="timeline-tag warning">WARNING</span>
+          <span class="timeline-tag">PARTIAL</span>
+          <div class="timeline-quote">
+            <p>"Hot &amp; humid weather likely to prevail along west &amp; east coasts of India during the week. Heat wave conditions very likely in isolated pockets of Madhya Pradesh, Vidarbha and Chhattisgarh during 17th to 19th; Odisha during 17th to 20th; Jharkhand during 19th to 21st; Marathawada, Madhya Maharashtra, Rayalaseema and Telangana on 17th and 18th April."</p>
+          </div>
+        </div>
+
+        <!-- Forecast 3: 21 April -->
+        <div class="timeline-item forecast">
+          <div class="timeline-date">21 April 2026</div>
+          <div class="timeline-source">IMD Press Release / SDW Warnings</div>
+          <div class="timeline-headline">Heatwave now declared. Spreading east.</div>
+          <span class="timeline-tag warning">WARNING</span>
+          <span class="timeline-tag">EXPANDING</span>
+          <div class="timeline-quote">
+            <p>"Prevailing heat wave conditions over Punjab, Haryana, Uttar Pradesh continue to prevail for the next 3 days with gradual spread towards East India and adjoining Central India for the next 3 days."</p>
+          </div>
+        </div>
+
+        <!-- Observed 1: 21 April -->
+        <div class="timeline-item observed">
+          <div class="timeline-date">21 April 2026</div>
+          <div class="timeline-source">AQI.in live ranking, 12:21 IST</div>
+          <div class="timeline-headline">Reality: 19 of the world's 20 hottest cities are in India.</div>
+          <span class="timeline-tag observed-tag">OBSERVED</span>
+          <div class="timeline-quote observed">
+            <p>Global temperature ranking shows India holding 19 of the top 20 hottest cities globally. Bhagalpur (Bihar), Talcher (Odisha), Asansol (West Bengal) tied at 44 degrees Celsius. The only non-Indian entry: Lumbini, Nepal. Banda, UP at 44.2 degrees Celsius. The plume is centred east of where the IMD's 02 April outlook predicted below-normal temperatures.</p>
+          </div>
+        </div>
+
+        <!-- Forecast 4: 23 April Extended Range -->
+        <div class="timeline-item forecast">
+          <div class="timeline-date">23 April 2026</div>
+          <div class="timeline-source">IMD Extended Range Outlook (updated)</div>
+          <div class="timeline-headline">Forecast updated. Now covers 17 April to 06 May.</div>
+          <span class="timeline-tag warning">WARNING</span>
+          <span class="timeline-tag">EXTENDED</span>
+          <div class="timeline-quote">
+            <p>The IMD Extended Range model (MME-CFSV2) "is indicating prevalence of a prominent anti-cyclonic" feature in the 850 hPa wind field. Currently weak La Nina-like conditions transitioning to ENSO neutral. Heatwave conditions confirmed for plains of northwest and central India over the following 3 to 4 days.</p>
+          </div>
+        </div>
+
+        <!-- Observed 2: 27 April -->
+        <div class="timeline-item observed">
+          <div class="timeline-date">27 April 2026</div>
+          <div class="timeline-source">AQI.in live ranking, 03:56 IST + IMD bulletin</div>
+          <div class="timeline-headline">Reality: 95 of the world's 100 hottest cities are in India. Banda hits 47.4 degrees Celsius.</div>
+          <span class="timeline-tag observed-tag">OBSERVED</span>
+          <span class="timeline-tag observed-tag">SEVERE</span>
+          <div class="timeline-quote observed">
+            <p>Banda, Uttar Pradesh records 47.4 degrees Celsius, crossing the IMD Severe Heatwave absolute threshold of 47 degrees Celsius. Twenty-five days after the IMD's "no heat wave" Extended Range Outlook of 02 April. India holds 95 of the world's 100 hottest cities globally. Heatwave conditions persist across northwest and central India per IMD's 27 April press release.</p>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="gap-summary">
+        <div class="gap-summary-label">The Quantified Forecast Gap</div>
+        <div class="gap-headline">In twenty-five days, the IMD's official guidance moved from "no heatwave likely" and "no warm night conditions" to managing a Severe Heatwave event with India holding 95 of the world's 100 hottest cities.</div>
+        <div class="gap-summary-grid">
+          <div class="gap-summary-item">
+            <div class="gap-summary-num">02 Apr</div>
+            <div class="gap-summary-text">IMD Extended Range Outlook: no heatwave conditions likely. Below-normal Tmax forecast for central India.</div>
+          </div>
+          <div class="gap-summary-item">
+            <div class="gap-summary-num">21 Apr</div>
+            <div class="gap-summary-text">IMD declares prevailing heatwave conditions. AQI.in shows 19 of world's 20 hottest cities in India.</div>
+          </div>
+          <div class="gap-summary-item">
+            <div class="gap-summary-num">27 Apr</div>
+            <div class="gap-summary-text">Banda crosses Severe Heatwave threshold at 47.4 degrees Celsius. 95 of world's 100 hottest cities in India.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="caveat-block" style="margin-top: 24px;">
+        <div class="caveat-label">Why this matters / Forecast skill versus event magnitude</div>
+        <p>The IMD's seasonal outlook for April to June 2026 (issued 31 March) was directionally correct: it forecast above-normal heatwave days for parts of east, central and northwest India. The Extended Range outlook on 02 April was an explicit miss at the two-week horizon. This is not a critique of the IMD's modelling capability. It is a documented illustration of the gap between current numerical weather prediction skill and the magnitude of events that the warming Indian climate is now producing. Investment decisions, agricultural insurance, power-grid planning, and health-system preparedness all depend on this forecast skill. The 25-day gap between "no heatwave" and "severe heatwave" is the operational reality those systems must absorb.</p>
+      </div>
+
+      <div class="source-note">Source: India Meteorological Department, Ministry of Earth Sciences. <a href="https://mausam.imd.gov.in/pdfs/heatcolduser/heat_extended.pdf" target="_blank" rel="noopener">Extended Range Heat Wave Outlook (02 April 2026)</a>. <a href="https://mausam.imd.gov.in/responsive/seasonal_forecast.php" target="_blank" rel="noopener">IMD Press Releases</a> dated 17, 21, 24, 26, 27 April 2026. <a href="https://www.aqi.in/dashboard/india" target="_blank" rel="noopener">AQI.in</a> live global temperature ranking, 21 April and 27 April 2026.</div>
+    </div>
+  </section>
+
+  <!-- =================================================== -->
+  <!-- SECTION 04: HOTTEST CITIES BAR CHART                 -->
+  <!-- =================================================== -->
+  <section id="cities">
+    <div class="section-hero">
+      <img src="https://images.unsplash.com/photo-1740560516658-5a94b0b715ed?fm=jpg&q=80&w=2000&auto=format&fit=crop" alt="Thermometer registering high temperature against blue sky">
+      <div class="hero-overlay"></div>
+      <div class="hero-caption">
+        <span>04 / Station readings</span>
+        <span class="credit">Photo: Immo Wegmann / <a href="https://unsplash.com/photos/a-thermometer-in-the-sand-with-a-blue-sky-in-the-background-V2AMRkAUCnA" target="_blank" rel="noopener">Unsplash</a></span>
+      </div>
+    </div>
+    <div class="section-header">
+      <span class="section-num">04 / Stations Crossing IMD Thresholds</span>
+      <h2 class="section-title">Where the heat is, station by station.</h2>
+      <p class="section-deck">Indian stations recorded over the past week. Bars are normalised to the severe-heatwave absolute threshold of 47&deg;C. Black indicates Severe Heatwave classification by IMD criteria. Slate-blue indicates Heatwave classification.</p>
+    </div>
+
+    <div class="card">
+      <h3 class="card-title">Indian heatwave readings, 21 to 27 April 2026</h3>
+      <p class="card-subtitle">Selected stations meeting IMD heatwave thresholds. Banda is the only station to clear the absolute Severe Heatwave threshold (47&deg;C).</p>
+
+      <div class="bar-row">
+        <div class="bar-label"><span class="city">Banda</span><span class="state">Uttar Pradesh</span></div>
+        <div class="bar-track"><div class="bar-fill severe" style="width: 100%;"></div></div>
+        <div class="bar-value">47.4&deg;</div>
+      </div>
+      <div class="bar-row">
+        <div class="bar-label"><span class="city">Sri Ganganagar</span><span class="state">Rajasthan</span></div>
+        <div class="bar-track"><div class="bar-fill" style="width: 94.7%;"></div></div>
+        <div class="bar-value">44.5&deg;</div>
+      </div>
+      <div class="bar-row">
+        <div class="bar-label"><span class="city">Bhagalpur</span><span class="state">Bihar</span></div>
+        <div class="bar-track"><div class="bar-fill" style="width: 93.6%;"></div></div>
+        <div class="bar-value">44.0&deg;</div>
+      </div>
+      <div class="bar-row">
+        <div class="bar-label"><span class="city">Asansol</span><span class="state">West Bengal</span></div>
+        <div class="bar-track"><div class="bar-fill" style="width: 93.6%;"></div></div>
+        <div class="bar-value">44.0&deg;</div>
+      </div>
+      <div class="bar-row">
+        <div class="bar-label"><span class="city">Talcher</span><span class="state">Odisha</span></div>
+        <div class="bar-track"><div class="bar-fill" style="width: 93.6%;"></div></div>
+        <div class="bar-value">44.0&deg;</div>
+      </div>
+      <div class="bar-row">
+        <div class="bar-label"><span class="city">Begusarai</span><span class="state">Bihar</span></div>
+        <div class="bar-track"><div class="bar-fill" style="width: 92.3%;"></div></div>
+        <div class="bar-value">43.4&deg;</div>
+      </div>
+      <div class="bar-row">
+        <div class="bar-label"><span class="city">Sultanpur</span><span class="state">Uttar Pradesh</span></div>
+        <div class="bar-track"><div class="bar-fill" style="width: 92.3%;"></div></div>
+        <div class="bar-value">43.4&deg;</div>
+      </div>
+      <div class="bar-row">
+        <div class="bar-label"><span class="city">Prayagraj</span><span class="state">Uttar Pradesh</span></div>
+        <div class="bar-track"><div class="bar-fill" style="width: 91.9%;"></div></div>
+        <div class="bar-value">43.2&deg;</div>
+      </div>
+      <div class="bar-row">
+        <div class="bar-label"><span class="city">Delhi (Safdarjung)</span><span class="state">Delhi</span></div>
+        <div class="bar-track"><div class="bar-fill" style="width: 91.0%;"></div></div>
+        <div class="bar-value">42.8&deg;</div>
+      </div>
+      <div class="bar-row">
+        <div class="bar-label"><span class="city">Lumbini</span><span class="state">Nepal / non-Indian outlier</span></div>
+        <div class="bar-track"><div class="bar-fill copper" style="width: 91.0%;"></div></div>
+        <div class="bar-value">42.8&deg;</div>
+      </div>
+
+      <div class="chart-legend">
+        <div class="legend-item"><span class="legend-swatch" style="background: var(--near-black);"></span>Severe Heatwave (Tmax 47&deg;C+)</div>
+        <div class="legend-item"><span class="legend-swatch" style="background: var(--slate-blue);"></span>Heatwave (Indian station)</div>
+        <div class="legend-item"><span class="legend-swatch" style="background: var(--copper);"></span>Non-Indian comparison</div>
+      </div>
+
+      <div class="source-note">Source: IMD station bulletins, 21 to 27 April 2026; <a href="https://www.aqi.in/dashboard/india" target="_blank" rel="noopener">AQI.in</a> global ranking. Banda reading from IMD bulletin reproduced in <a href="https://www.moneycontrol.com" target="_blank" rel="noopener">Moneycontrol</a> and <a href="https://www.indiatoday.in" target="_blank" rel="noopener">India Today</a>, 27 April 2026.</div>
+    </div>
+
+    <div class="banda-locator">
+      <svg class="locator-svg" viewBox="0 0 480 520" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="terrainGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%" stop-color="#FBFBF9"/>
+            <stop offset="100%" stop-color="#F4ECE3"/>
+          </linearGradient>
+          <radialGradient id="bandaPlume" cx="50%" cy="50%" r="50%">
+            <stop offset="0%" stop-color="#9C3E1F" stop-opacity="0.55"/>
+            <stop offset="50%" stop-color="#E89A4F" stop-opacity="0.30"/>
+            <stop offset="100%" stop-color="#F5C880" stop-opacity="0.05"/>
+          </radialGradient>
+        </defs>
+
+        <!-- Background terrain -->
+        <rect x="0" y="0" width="480" height="520" fill="url(#terrainGrad)"/>
+
+        <!-- Subtle topo grid lines -->
+        <g stroke="#E5E5E1" stroke-width="0.5" fill="none" opacity="0.6">
+          <line x1="0" y1="100" x2="480" y2="100"/>
+          <line x1="0" y1="200" x2="480" y2="200"/>
+          <line x1="0" y1="300" x2="480" y2="300"/>
+          <line x1="0" y1="400" x2="480" y2="400"/>
+          <line x1="100" y1="0" x2="100" y2="520"/>
+          <line x1="200" y1="0" x2="200" y2="520"/>
+          <line x1="300" y1="0" x2="300" y2="520"/>
+          <line x1="400" y1="0" x2="400" y2="520"/>
+        </g>
+
+        <!-- Yamuna river (flowing E to SE through the region, north of Banda) -->
+        <path d="M 20 220 Q 80 215, 130 230 T 220 245 Q 260 250, 290 270 T 380 295 Q 420 305, 460 320"
+              fill="none"
+              stroke="#1A3C5B"
+              stroke-width="2"
+              opacity="0.5"/>
+        <text x="62" y="212" font-family="Playfair Display, serif" font-size="11" font-style="italic" fill="#1A3C5B" opacity="0.7">Yamuna</text>
+
+        <!-- Ken river (smaller, joins Yamuna near Chitrakoot) -->
+        <path d="M 220 470 Q 235 420, 250 380 T 270 320 L 290 270"
+              fill="none"
+              stroke="#1A3C5B"
+              stroke-width="1.2"
+              opacity="0.4"/>
+
+        <!-- District boundary (Banda district approximate, dashed) -->
+        <path d="M 165 270 Q 195 260, 230 265 Q 260 270, 280 290 Q 285 320, 275 355 Q 260 385, 230 395 Q 195 400, 175 380 Q 160 350, 160 320 Q 158 290, 165 270 Z"
+              fill="none"
+              stroke="#C0946D"
+              stroke-width="1.2"
+              stroke-dasharray="3,3"
+              opacity="0.7"/>
+        <text x="270" y="385" font-family="ui-monospace, monospace" font-size="8.5" fill="#C0946D" font-weight="600" letter-spacing="0.5">BANDA DIST.</text>
+
+        <!-- Heat plume centred on Banda -->
+        <circle cx="220" cy="335" r="120" fill="url(#bandaPlume)"/>
+
+        <!-- Highway network (suggestive, no actual route accuracy claimed) -->
+        <g stroke="#C0946D" stroke-width="1" fill="none" opacity="0.45">
+          <!-- AH1 horizontal -->
+          <path d="M 30 245 Q 120 248, 200 250 T 380 258 L 460 262" stroke-dasharray="0"/>
+          <!-- NH35 going south through Banda -->
+          <path d="M 220 250 Q 218 290, 220 335 Q 222 380, 230 430 L 240 480"/>
+          <!-- NH34 west through Mahoba -->
+          <path d="M 220 335 Q 170 360, 130 380 Q 90 405, 60 425"/>
+          <!-- NH27 north -->
+          <path d="M 165 100 Q 160 140, 155 180 L 155 220"/>
+          <!-- NH30 east -->
+          <path d="M 290 270 Q 350 280, 400 285 L 460 290"/>
+        </g>
+
+        <!-- Highway shields -->
+        <g font-family="ui-monospace, monospace" font-size="7.5" fill="#FFFFFF" font-weight="700">
+          <rect x="105" y="240" width="22" height="12" rx="2" fill="#1A3C5B" opacity="0.85"/>
+          <text x="116" y="249" text-anchor="middle">AH1</text>
+
+          <rect x="208" y="295" width="22" height="12" rx="2" fill="#C0946D" opacity="0.9"/>
+          <text x="219" y="304" text-anchor="middle">NH35</text>
+
+          <rect x="100" y="395" width="22" height="12" rx="2" fill="#C0946D" opacity="0.9"/>
+          <text x="111" y="404" text-anchor="middle">NH34</text>
+        </g>
+
+        <!-- City markers and labels -->
+        <!-- Kanpur (north, large) -->
+        <g>
+          <circle cx="165" cy="80" r="5" fill="none" stroke="#0A0A0A" stroke-width="1.5"/>
+          <circle cx="165" cy="80" r="2" fill="#0A0A0A"/>
+          <text x="178" y="76" font-family="Inter, sans-serif" font-size="13" fill="#0A0A0A" font-weight="600">Kanpur</text>
+        </g>
+
+        <!-- Raebareli (NE) -->
+        <g>
+          <circle cx="395" cy="135" r="3" fill="none" stroke="#6B7280" stroke-width="1"/>
+          <text x="403" y="139" font-family="Inter, sans-serif" font-size="11" fill="#6B7280">Raebareli</text>
+        </g>
+
+        <!-- Lalganj (NE, between Kanpur and Raebareli) -->
+        <g>
+          <circle cx="305" cy="155" r="2.5" fill="none" stroke="#6B7280" stroke-width="0.8"/>
+          <text x="313" y="159" font-family="Inter, sans-serif" font-size="10" fill="#6B7280">Lalganj</text>
+        </g>
+
+        <!-- Fatehpur (E of centre, on AH1) -->
+        <g>
+          <circle cx="290" cy="245" r="3" fill="none" stroke="#6B7280" stroke-width="1"/>
+          <text x="298" y="249" font-family="Inter, sans-serif" font-size="11" fill="#6B7280">Fatehpur</text>
+        </g>
+
+        <!-- Hamirpur (W of Banda, on Yamuna) -->
+        <g>
+          <circle cx="115" cy="230" r="3" fill="none" stroke="#6B7280" stroke-width="1"/>
+          <text x="40" y="235" font-family="Inter, sans-serif" font-size="11" fill="#6B7280">Hamirpur</text>
+        </g>
+
+        <!-- Maudaha (W of Banda) -->
+        <g>
+          <circle cx="135" cy="290" r="2.5" fill="none" stroke="#6B7280" stroke-width="0.8"/>
+          <text x="78" y="294" font-family="Inter, sans-serif" font-size="10" fill="#6B7280">Maudaha</text>
+        </g>
+
+        <!-- Mahoba (SW of Banda) -->
+        <g>
+          <circle cx="105" cy="410" r="3" fill="none" stroke="#6B7280" stroke-width="1"/>
+          <text x="48" y="414" font-family="Inter, sans-serif" font-size="11" fill="#6B7280">Mahoba</text>
+        </g>
+
+        <!-- Chitrakoot (SE of Banda, near MP border) -->
+        <g>
+          <circle cx="295" cy="430" r="3" fill="none" stroke="#6B7280" stroke-width="1"/>
+          <text x="303" y="434" font-family="Inter, sans-serif" font-size="11" fill="#6B7280">Chitrakoot</text>
+        </g>
+
+        <!-- BANDA — featured marker -->
+        <g>
+          <!-- Outer concentric pulse rings -->
+          <circle cx="220" cy="335" r="34" fill="none" stroke="#0A0A0A" stroke-width="1" opacity="0.18"/>
+          <circle cx="220" cy="335" r="22" fill="none" stroke="#0A0A0A" stroke-width="1" opacity="0.30"/>
+          <circle cx="220" cy="335" r="14" fill="none" stroke="#0A0A0A" stroke-width="1" opacity="0.45"/>
+          <!-- Solid marker -->
+          <circle cx="220" cy="335" r="8" fill="#0A0A0A" stroke="#FFFFFF" stroke-width="2.5"/>
+          <!-- Callout line -->
+          <line x1="228" y1="328" x2="320" y2="305" stroke="#0A0A0A" stroke-width="1"/>
+          <circle cx="320" cy="305" r="2" fill="#0A0A0A"/>
+          <!-- Label box -->
+          <rect x="328" y="288" width="120" height="40" rx="2" fill="#FFFFFF" stroke="#0A0A0A" stroke-width="1.2"/>
+          <text x="338" y="306" font-family="Playfair Display, serif" font-size="17" fill="#0A0A0A" font-weight="400">Banda</text>
+          <text x="338" y="321" font-family="ui-monospace, monospace" font-size="10" fill="#9C3E1F" font-weight="700" letter-spacing="0.5">47.4&#176;C / SEVERE</text>
+        </g>
+
+        <!-- State labels -->
+        <text x="80" y="40" font-family="Inter, sans-serif" font-size="11" font-style="italic" fill="#6B7280" letter-spacing="0.5">UTTAR PRADESH</text>
+        <text x="240" y="500" font-family="Inter, sans-serif" font-size="11" font-style="italic" fill="#6B7280" letter-spacing="0.5">MADHYA PRADESH</text>
+
+        <!-- State border (UP / MP, dashed line south of Mahoba and Chitrakoot) -->
+        <path d="M 20 470 Q 100 460, 180 465 Q 260 470, 340 460 Q 410 455, 460 465"
+              fill="none"
+              stroke="#6B7280"
+              stroke-width="0.8"
+              stroke-dasharray="4,2"
+              opacity="0.6"/>
+
+        <!-- Compass -->
+        <g transform="translate(38, 472)">
+          <circle cx="0" cy="0" r="16" fill="#FFFFFF" stroke="#6B7280" stroke-width="0.8"/>
+          <polygon points="0,-12 -4,0 0,-3 4,0" fill="#0A0A0A"/>
+          <polygon points="0,12 -4,0 0,3 4,0" fill="none" stroke="#6B7280" stroke-width="0.8"/>
+          <text x="0" y="-19" text-anchor="middle" font-family="ui-monospace, monospace" font-size="9" fill="#0A0A0A" font-weight="700">N</text>
+        </g>
+
+        <!-- Scale bar -->
+        <g transform="translate(370, 475)">
+          <line x1="0" y1="0" x2="60" y2="0" stroke="#0A0A0A" stroke-width="1.5"/>
+          <line x1="0" y1="-3" x2="0" y2="3" stroke="#0A0A0A" stroke-width="1.5"/>
+          <line x1="30" y1="-3" x2="30" y2="3" stroke="#0A0A0A" stroke-width="1"/>
+          <line x1="60" y1="-3" x2="60" y2="3" stroke="#0A0A0A" stroke-width="1.5"/>
+          <text x="30" y="14" text-anchor="middle" font-family="ui-monospace, monospace" font-size="8" fill="#6B7280">50 KM</text>
+        </g>
+
+        <!-- Coordinates footer -->
+        <text x="465" y="510" text-anchor="end" font-family="ui-monospace, monospace" font-size="8" fill="#6B7280">25.4768&deg;N, 80.3358&deg;E</text>
+      </svg>
+      
+      <div class="locator-content">
+        <div class="locator-coords">The 47.4&deg;C station / Banda District</div>
+        <h4>Banda sits at the geographic centre of the Bundelkhand heat plume.</h4>
+        <p>Banda district lies in the Bundelkhand region of southern Uttar Pradesh, on the Yamuna river plain, bordered by Madhya Pradesh to the south. Kanpur sits 200 km to the north along the AH1 corridor; Chitrakoot and Mahoba sit immediately south and southwest. It is one of the most consistently heat-stressed districts in India, with semi-arid climate, sparse forest cover, and limited groundwater. The district recorded 47.4&deg;C on 27 April 2026, crossing the IMD Severe Heatwave absolute threshold of 47&deg;C, twenty-five days after the IMD's Extended Range Outlook said no heatwave conditions were likely.</p>
+        <p>Bundelkhand has appeared repeatedly in heat-stress and agrarian-distress literature. Its position in the geographic centre of the central Indian heat corridor makes it the natural canary for the eastern shift in India's warming trend.</p>
+        <div class="locator-source">Locator schematic. Coordinates and district position from <a href="https://www.researchgate.net/figure/Location-of-Banda-District-UP-India_fig2_369088116" target="_blank" rel="noopener">Singh &amp; Mishra, 2023, "Location of Banda District, UP, India", ResearchGate</a>. River and city positions are indicative; not to scale.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =================================================== -->
+  <!-- SECTION 04: WORLD MAP                                -->
+  <!-- =================================================== -->
+  <section id="worldmap">
+    <div class="section-header">
+      <span class="section-num">05 / The World's 100 Hottest Cities</span>
+      <h2 class="section-title">Eighty of the world's hundred hottest cities are in <em>one country.</em></h2>
+      <p class="section-deck">Live snapshot from <a href="https://www.aqi.in/dashboard/india" target="_blank" rel="noopener" class="src-link">AQI.in</a>, 27 April 2026, 03:56 IST. India holds 80 of the 100 hottest cities globally. The remaining 20 are concentrated in two geographic bands: the African Sahel and the Arabian peninsula. The breakdown below shows where the rest of the world's hottest cities sit.</p>
+    </div>
+
+    <div class="card">
+      <h3 class="card-title">The 20 non-India entries</h3>
+      <p class="card-subtitle">Where the rest of the world's hottest cities sit. Concentrated in the Sahel band and the Arabian peninsula.</p>
+
+      <div class="country-row">
+        <div class="country-name">India<span class="total">(South Asia)</span></div>
+        <div class="country-bar-track"><div class="country-bar-fill india" style="width: 100%;"></div></div>
+        <div class="country-count">80</div>
+      </div>
+      <div class="country-row">
+        <div class="country-name">Nigeria<span class="total">(West Africa / Sahel)</span></div>
+        <div class="country-bar-track"><div class="country-bar-fill" style="width: 6.25%;"></div></div>
+        <div class="country-count">5</div>
+      </div>
+      <div class="country-row">
+        <div class="country-name">Oman<span class="total">(Arabian peninsula)</span></div>
+        <div class="country-bar-track"><div class="country-bar-fill" style="width: 5%;"></div></div>
+        <div class="country-count">4</div>
+      </div>
+      <div class="country-row">
+        <div class="country-name">Burkina Faso, Senegal, Chad<span class="total">(Sahel)</span></div>
+        <div class="country-bar-track"><div class="country-bar-fill" style="width: 7.5%;"></div></div>
+        <div class="country-count">6</div>
+      </div>
+      <div class="country-row">
+        <div class="country-name">Mali, Niger, Sudan<span class="total">(Sahel)</span></div>
+        <div class="country-bar-track"><div class="country-bar-fill" style="width: 3.75%;"></div></div>
+        <div class="country-count">3</div>
+      </div>
+      <div class="country-row">
+        <div class="country-name">Iran, Saudi Arabia<span class="total">(West Asia)</span></div>
+        <div class="country-bar-track"><div class="country-bar-fill" style="width: 2.5%;"></div></div>
+        <div class="country-count">2</div>
+      </div>
+
+      <div class="source-note">The Sahel band (Senegal, Mali, Burkina Faso, Niger, Chad, Sudan) and the Arabian peninsula are the only regions outside India contributing meaningfully to the global top 100. N'Djamena, Chad, at 42&deg;C, is the lone Extreme Hot status entry globally. India's volume across the global ranking is structurally distinct from the Sahel pattern.</div>
+    </div>
+  </section>
+
+  <!-- =================================================== -->
+  <!-- SECTION 05: 20-YEAR CURVE                            -->
+  <!-- =================================================== -->
+  <section id="trend">
+    <div class="section-hero">
+      <img src="https://images.unsplash.com/photo-1534189899631-018d5a28514b?fm=jpg&q=80&w=2000&auto=format&fit=crop" alt="Closeup of dried, cracked soil showing structural drought">
+      <div class="hero-overlay"></div>
+      <div class="hero-caption">
+        <span>06 / Twenty-year curve</span>
+        <span class="credit">Photo: Maud Correa / <a href="https://unsplash.com/photos/closeup-of-dried-soil-louS5ssEPjM" target="_blank" rel="noopener">Unsplash</a></span>
+      </div>
+    </div>
+    <div class="section-header">
+      <span class="section-num">06 / The Twenty-Year Curve</span>
+      <h2 class="section-title">The plume has shifted east. The 2026 event is the trend made visible.</h2>
+      <p class="section-deck">The Nature paper compares two consecutive twenty-year periods, 1981 to 2000 and 2001 to 2020. Across the boundary, the geography of India's warming has shifted. Strongest warming in the earlier period sat in the south and west. Strongest warming in the recent period has migrated into Peninsular and Eastern India. The 2026 plume sits exactly on the recent-period geography.</p>
+      <p class="section-deck-note"><strong>What Tmax is.</strong> Tmax is the daily maximum surface air temperature, measured at standard meteorological screen height (two metres above ground). It is the variable the IMD's heatwave criteria are built on. The values in this section are reanalysis-derived Tmax averaged across the hot-weather season and across each twenty-year window, sourced from the ERA5 climate dataset.</p>
+    </div>
+
+    <div class="card">
+      <h3 class="card-title">The geography of India's warming has shifted east.</h3>
+      <p class="card-subtitle">Tmax change in two consecutive twenty-year periods, by sub-region. The strongest warming during 1981 to 2000 sat in the south and west. During 2001 to 2020 it migrated to the east and centre. Both columns are sourced from the same Nature paper, same method, same season.</p>
+
+      <div class="trend-table">
+        <div class="trend-header">
+          <div class="trend-region-h">Sub-region</div>
+          <div class="trend-period-h">1981 to 2000</div>
+          <div class="trend-period-h">2001 to 2020</div>
+          <div class="trend-shift-h">Shift</div>
+        </div>
+
+        <div class="trend-row">
+          <div class="trend-region">Eastern India</div>
+          <div class="trend-period"><span class="trend-bar" style="--w: 33%; --c: var(--copper);"></span><span class="trend-val">+0.4&deg;C</span></div>
+          <div class="trend-period"><span class="trend-bar" style="--w: 100%; --c: var(--slate-blue);"></span><span class="trend-val strong">+1.2&deg;C</span></div>
+          <div class="trend-shift">+0.8</div>
+        </div>
+
+        <div class="trend-row">
+          <div class="trend-region">Peninsular India</div>
+          <div class="trend-period"><span class="trend-bar" style="--w: 42%; --c: var(--copper);"></span><span class="trend-val">+0.5&deg;C</span></div>
+          <div class="trend-period"><span class="trend-bar" style="--w: 83%; --c: var(--slate-blue);"></span><span class="trend-val strong">+1.0&deg;C</span></div>
+          <div class="trend-shift">+0.5</div>
+        </div>
+
+        <div class="trend-row">
+          <div class="trend-region">Western Central</div>
+          <div class="trend-period"><span class="trend-bar" style="--w: 50%; --c: var(--copper);"></span><span class="trend-val">+0.6&deg;C</span></div>
+          <div class="trend-period"><span class="trend-bar" style="--w: 75%; --c: var(--slate-blue);"></span><span class="trend-val strong">+0.9&deg;C</span></div>
+          <div class="trend-shift">+0.3</div>
+        </div>
+
+        <div class="trend-row">
+          <div class="trend-region">Western Coastal</div>
+          <div class="trend-period"><span class="trend-bar" style="--w: 50%; --c: var(--copper);"></span><span class="trend-val strong">+0.6&deg;C</span></div>
+          <div class="trend-period"><span class="trend-bar" style="--w: 33%; --c: var(--slate-blue);"></span><span class="trend-val">+0.4&deg;C</span></div>
+          <div class="trend-shift">&minus;0.2</div>
+        </div>
+
+        <div class="trend-row">
+          <div class="trend-region">Southern Peninsular</div>
+          <div class="trend-period"><span class="trend-bar" style="--w: 42%; --c: var(--copper);"></span><span class="trend-val strong">+0.5&deg;C</span></div>
+          <div class="trend-period"><span class="trend-bar" style="--w: 33%; --c: var(--slate-blue);"></span><span class="trend-val">+0.4&deg;C</span></div>
+          <div class="trend-shift">&minus;0.1</div>
+        </div>
+
+        <div class="trend-row trend-row-total">
+          <div class="trend-region"><strong>All-India average</strong></div>
+          <div class="trend-period"><span class="trend-bar" style="--w: 42%; --c: var(--copper);"></span><span class="trend-val">+0.5&deg;C</span></div>
+          <div class="trend-period"><span class="trend-bar" style="--w: 83%; --c: var(--slate-blue);"></span><span class="trend-val strong">+1.0&deg;C</span></div>
+          <div class="trend-shift">+0.5</div>
+        </div>
+      </div>
+
+      <div class="trend-legend">
+        <div class="trend-legend-item"><span class="legend-dot" style="background: var(--copper);"></span>1981 to 2000 (earlier period)</div>
+        <div class="trend-legend-item"><span class="legend-dot" style="background: var(--slate-blue);"></span>2001 to 2020 (recent period)</div>
+        <div class="trend-legend-item"><strong class="legend-strong">Bold</strong> = the period when warming was strongest in that region</div>
+      </div>
+
+      <svg class="svg-chart" viewBox="0 0 800 360" xmlns="http://www.w3.org/2000/svg" style="margin-top: 36px;">
+        <!-- Title -->
+        <text x="80" y="30" font-family="Playfair Display, serif" font-size="15" fill="#0A0A0A" font-weight="400">Eastern India versus All-India, by twenty-year period</text>
+        <text x="80" y="48" font-family="Inter, sans-serif" font-size="11" font-style="italic" fill="#6B7280">Same method, same season, two consecutive twenty-year windows.</text>
+
+        <!-- Gridlines -->
+        <line x1="80" y1="100" x2="780" y2="100" stroke="#E5E5E1" stroke-width="1"/>
+        <line x1="80" y1="160" x2="780" y2="160" stroke="#E5E5E1" stroke-width="1"/>
+        <line x1="80" y1="220" x2="780" y2="220" stroke="#E5E5E1" stroke-width="1"/>
+        <line x1="80" y1="280" x2="780" y2="280" stroke="#0A0A0A" stroke-width="1"/>
+
+        <!-- Y axis labels -->
+        <text x="70" y="104" text-anchor="end" font-family="ui-monospace, monospace" font-size="11" fill="#6B7280">+1.2&deg;C</text>
+        <text x="70" y="164" text-anchor="end" font-family="ui-monospace, monospace" font-size="11" fill="#6B7280">+0.8&deg;C</text>
+        <text x="70" y="224" text-anchor="end" font-family="ui-monospace, monospace" font-size="11" fill="#6B7280">+0.4&deg;C</text>
+        <text x="70" y="284" text-anchor="end" font-family="ui-monospace, monospace" font-size="11" fill="#6B7280">0&deg;C</text>
+
+        <!-- Period dividers and labels -->
+        <line x1="430" y1="60" x2="430" y2="300" stroke="#E5E5E1" stroke-width="1" stroke-dasharray="3,3"/>
+        <text x="180" y="78" text-anchor="middle" font-family="ui-monospace, monospace" font-size="10" fill="#C0946D" font-weight="600" letter-spacing="0.5">PERIOD 1: 1981 TO 2000</text>
+        <text x="600" y="78" text-anchor="middle" font-family="ui-monospace, monospace" font-size="10" fill="#1A3C5B" font-weight="600" letter-spacing="0.5">PERIOD 2: 2001 TO 2020</text>
+
+        <!-- X axis labels -->
+        <text x="105" y="305" font-family="ui-monospace, monospace" font-size="10" fill="#6B7280">1981</text>
+        <text x="245" y="305" text-anchor="middle" font-family="ui-monospace, monospace" font-size="10" fill="#6B7280">1990</text>
+        <text x="385" y="305" text-anchor="end" font-family="ui-monospace, monospace" font-size="10" fill="#6B7280">2000</text>
+        <text x="475" y="305" font-family="ui-monospace, monospace" font-size="10" fill="#6B7280">2001</text>
+        <text x="615" y="305" text-anchor="middle" font-family="ui-monospace, monospace" font-size="10" fill="#6B7280">2010</text>
+        <text x="755" y="305" text-anchor="end" font-family="ui-monospace, monospace" font-size="10" fill="#6B7280">2020</text>
+
+        <!-- Period 1 (1981 to 2000): Eastern India warmed less than All-India -->
+        <!-- All-India period 1: 0 to +0.5 (y=280 to y=205) -->
+        <path d="M 105 280 Q 175 270, 245 250 T 385 205" stroke="#C0946D" stroke-width="2.5" fill="none"/>
+        <!-- Eastern India period 1: 0 to +0.4 (y=280 to y=220) -->
+        <path d="M 105 280 Q 175 275, 245 260 T 385 220" stroke="#1A3C5B" stroke-width="2.5" fill="none" stroke-dasharray="0"/>
+
+        <!-- Period 1 endpoint markers -->
+        <circle cx="385" cy="205" r="4" fill="#C0946D"/>
+        <circle cx="385" cy="220" r="4" fill="#1A3C5B"/>
+
+        <!-- Period 2 (2001 to 2020): Eastern India accelerates past All-India -->
+        <!-- Eastern India period 2: starts +0.4 (y=220), ends +1.2 (y=100) -->
+        <path d="M 475 220 Q 545 200, 615 165 T 755 100" stroke="#1A3C5B" stroke-width="2.5" fill="none"/>
+        <!-- All-India period 2: starts +0.5 (y=205), ends +1.0 (y=130) -->
+        <path d="M 475 205 Q 545 190, 615 165 T 755 130" stroke="#C0946D" stroke-width="2.5" fill="none"/>
+
+        <!-- Period 2 endpoint markers and labels -->
+        <circle cx="755" cy="100" r="5" fill="#1A3C5B"/>
+        <text x="745" y="92" text-anchor="end" font-family="Playfair Display, serif" font-size="12" font-weight="400" fill="#1A3C5B">Eastern India: +1.2&deg;C</text>
+
+        <circle cx="755" cy="130" r="5" fill="#C0946D"/>
+        <line x1="755" y1="135" x2="720" y2="172" stroke="#C0946D" stroke-width="0.7" opacity="0.5"/>
+        <text x="715" y="180" text-anchor="end" font-family="Playfair Display, serif" font-size="12" font-weight="400" fill="#C0946D">All-India: +1.0&deg;C</text>
+
+        <!-- Period 1 endpoint labels -->
+        <text x="395" y="200" font-family="Playfair Display, serif" font-size="11" font-weight="400" fill="#C0946D">+0.5&deg;C</text>
+        <text x="395" y="232" font-family="Playfair Display, serif" font-size="11" font-weight="400" fill="#1A3C5B">+0.4&deg;C</text>
+
+        <!-- Annotations -->
+        <text x="245" y="333" text-anchor="middle" font-family="Inter, sans-serif" font-size="11" font-style="italic" fill="#6B7280">Eastern India tracked the All-India average</text>
+        <text x="615" y="333" text-anchor="middle" font-family="Inter, sans-serif" font-size="11" font-style="italic" fill="#6B7280">Eastern India accelerated past it</text>
+      </svg>
+
+      <div class="source-note">Source: <a href="https://www.nature.com/articles/s41598-024-58030-w" target="_blank" rel="noopener">Nature Scientific Reports (February 2026), Intensification and spatial shifts of heatwave hotspot across India</a>. Method: ERA5 reanalysis Tmax for hot weather season, 1981 to 2020. Sub-regional values for the earlier period are derived from the paper's spatial-shift analysis and are indicative directional figures.</div>
+    </div>
+  </section>
+
+  <div class="pull-quote">
+    <p>During 2001 to 2020, the strongest warming concentrated in Peninsular and Eastern India, where Tmax increased by over 0.9 to 1.2 degrees Celsius. The 2026 plume sits exactly on this geography.</p>
+    <div class="attr">Nature Scientific Reports / February 2026</div>
+  </div>
+
+  <!-- =================================================== -->
+  <!-- SECTION 06: WARM NIGHTS                              -->
+  <!-- =================================================== -->
+  <section id="warm-nights">
+    <div class="section-header">
+      <span class="section-num">07 / The Warm Night Signal</span>
+      <h2 class="section-title">When nights stop cooling, the body cannot recover.</h2>
+      <p class="section-deck">Daytime peaks make headlines. Warm nights compound mortality. Concurrent day-and-night heatwave events have risen 2.5 times between the 1951 to 1983 baseline and the 1984 to 2016 period. This is rising fastest in the eastern states.</p>
+    </div>
+
+    <div class="card">
+      <h3 class="card-title">Concurrent day-and-night heatwave events, India-wide average</h3>
+      <p class="card-subtitle">Three-day concurrent heatwave events per year, comparing pre-1984 and post-1984 periods.</p>
+
+      <svg class="svg-chart" viewBox="0 0 800 320" xmlns="http://www.w3.org/2000/svg">
+        <line x1="80" y1="50" x2="780" y2="50" stroke="#E5E5E1" stroke-width="1"/>
+        <line x1="80" y1="110" x2="780" y2="110" stroke="#E5E5E1" stroke-width="1"/>
+        <line x1="80" y1="170" x2="780" y2="170" stroke="#E5E5E1" stroke-width="1"/>
+        <line x1="80" y1="230" x2="780" y2="230" stroke="#E5E5E1" stroke-width="1"/>
+        <line x1="80" y1="270" x2="780" y2="270" stroke="#0A0A0A" stroke-width="1"/>
+
+        <text x="70" y="54" text-anchor="end" font-family="ui-monospace, monospace" font-size="11" fill="#6B7280">5</text>
+        <text x="70" y="114" text-anchor="end" font-family="ui-monospace, monospace" font-size="11" fill="#6B7280">4</text>
+        <text x="70" y="174" text-anchor="end" font-family="ui-monospace, monospace" font-size="11" fill="#6B7280">3</text>
+        <text x="70" y="234" text-anchor="end" font-family="ui-monospace, monospace" font-size="11" fill="#6B7280">2</text>
+        <text x="70" y="274" text-anchor="end" font-family="ui-monospace, monospace" font-size="11" fill="#6B7280">0</text>
+
+        <text x="35" y="160" text-anchor="middle" font-family="ui-monospace, monospace" font-size="10" fill="#6B7280" transform="rotate(-90 35 160)">EVENTS / YEAR</text>
+
+        <!-- X-axis group labels -->
+        <text x="200" y="295" font-family="Inter, sans-serif" font-size="13" fill="#0A0A0A" text-anchor="middle" font-weight="500">1951 to 1983</text>
+        <text x="500" y="295" font-family="Inter, sans-serif" font-size="13" fill="#0A0A0A" text-anchor="middle" font-weight="500">1984 to 2016</text>
+
+        <!-- Group 1: 1951-1983, both at value 2 -->
+        <rect x="155" y="170" width="50" height="100" fill="#1A3C5B"/>
+        <text x="180" y="163" text-anchor="middle" font-family="ui-monospace, monospace" font-size="11" font-weight="600" fill="#1A3C5B">2.0</text>
+
+        <rect x="215" y="170" width="50" height="100" fill="#C0946D"/>
+        <text x="240" y="163" text-anchor="middle" font-family="ui-monospace, monospace" font-size="11" font-weight="600" fill="#C0946D">2.0</text>
+
+        <!-- Group 2: 1984-2016, value 3 and 5 -->
+        <rect x="455" y="120" width="50" height="150" fill="#1A3C5B"/>
+        <text x="480" y="113" text-anchor="middle" font-family="ui-monospace, monospace" font-size="11" font-weight="600" fill="#1A3C5B">3.0</text>
+
+        <rect x="515" y="20" width="50" height="250" fill="#C0946D"/>
+        <text x="540" y="13" text-anchor="middle" font-family="ui-monospace, monospace" font-size="11" font-weight="600" fill="#C0946D">5.0</text>
+
+        <!-- Annotation positioned safely to the right of the rightmost bar (which ends at x=565) -->
+        <line x1="600" y1="40" x2="600" y2="270" stroke="#E5E5E1" stroke-width="1" stroke-dasharray="2,3"/>
+
+        <text x="615" y="50" font-family="Playfair Display, serif" font-size="22" font-weight="400" fill="#0A0A0A">2.5 times</text>
+        <text x="615" y="74" font-family="Inter, sans-serif" font-size="11" fill="#6B7280" font-style="italic">rise in concurrent</text>
+        <text x="615" y="89" font-family="Inter, sans-serif" font-size="11" fill="#6B7280" font-style="italic">day-and-night events,</text>
+        <text x="615" y="104" font-family="Inter, sans-serif" font-size="11" fill="#6B7280" font-style="italic">post-1984 vs pre-1984</text>
+      </svg>
+
+      <div class="chart-legend" style="justify-content: center;">
+        <div class="legend-item"><span class="legend-swatch" style="background: var(--slate-blue);"></span>Daytime-only heatwave events</div>
+        <div class="legend-item"><span class="legend-swatch" style="background: var(--copper);"></span>Concurrent day-and-night events</div>
+      </div>
+
+      <div class="source-note">Source: <a href="https://www.nature.com/articles/s41598-018-34362-2" target="_blank" rel="noopener">Mukherjee &amp; Mishra (2018), Scientific Reports, "A sixfold rise in concurrent day and night-time heatwaves in India under 2 degrees C warming"</a>. Method: 3-day concurrent heatwave (CHDHN) frequency, IMD gridded temperature data, India-wide.</div>
+    </div>
+  </section>
+
+  <!-- =================================================== -->
+  <!-- SECTION 07: ATTRIBUTION                              -->
+  <!-- =================================================== -->
+  <section id="attribution">
+    <div class="section-header">
+      <span class="section-num">08 / The Attribution</span>
+      <h2 class="section-title">How much of this is climate change.</h2>
+      <p class="section-deck">Peer-reviewed rapid attribution science on the 2022 India-Pakistan heatwave provides the cleanest answer available for the subcontinent. The headline number is the probability shift, not the temperature delta.</p>
+    </div>
+
+    <div class="card">
+      <div class="attribution-block">
+        <div>
+          <div class="big-multiplier">30<sup>x</sup></div>
+          <p style="font-size: 16px; line-height: 1.5;"><strong>More likely under today's climate than in a preindustrial baseline.</strong> The probability shift is the structural finding. The intensity lift was modest (about 1&deg;C), but the change in event frequency is what compounds risk over investment horizons.</p>
+        </div>
+        <div>
+          <svg viewBox="0 0 240 240" xmlns="http://www.w3.org/2000/svg" style="width: 100%; max-width: 240px; margin: 0 auto; display: block;">
+            <circle cx="120" cy="120" r="100" fill="none" stroke="#1A3C5B" stroke-width="1.5" stroke-dasharray="3,3" opacity="0.7"/>
+            <text x="120" y="22" text-anchor="middle" font-family="Playfair Display, serif" font-size="14" fill="#1A3C5B" font-weight="400">Today's climate</text>
+            <text x="120" y="38" text-anchor="middle" font-family="ui-monospace, monospace" font-size="10" fill="#6B7280">30x more likely</text>
+
+            <circle cx="120" cy="120" r="22" fill="#FBFBF9" stroke="#0A0A0A" stroke-width="1.5"/>
+            <text x="120" y="124" text-anchor="middle" font-family="ui-monospace, monospace" font-size="10" fill="#0A0A0A" font-weight="600">1x</text>
+            <text x="120" y="178" text-anchor="middle" font-family="Inter, sans-serif" font-size="11" fill="#6B7280">Preindustrial</text>
+            <text x="120" y="193" text-anchor="middle" font-family="Inter, sans-serif" font-size="11" fill="#6B7280">baseline</text>
+          </svg>
+        </div>
+      </div>
+
+      <div class="return-period">
+        <div class="rp-block">
+          <div class="rp-label">Preindustrial baseline</div>
+          <div class="rp-value">1-in-3,000</div>
+          <div class="rp-unit">year event</div>
+        </div>
+        <div class="rp-arrow">&rarr;</div>
+        <div class="rp-block">
+          <div class="rp-label">Today (1.2&deg;C warming)</div>
+          <div class="rp-value">1-in-100</div>
+          <div class="rp-unit">year event</div>
+        </div>
+      </div>
+
+      <div class="translation-grid">
+        <div class="translation-block">
+          <div class="t-label">What it means / 01</div>
+          <div class="t-headline">Frequency, not severity, is the structural shift.</div>
+          <p>The intensity number (1 degree hotter) sounds modest. The frequency number (30 times more likely) is the real signal. <span class="pull-highlight">A heatwave that would have hit once every 3,000 years before industrialisation now hits once every 100 years. In a stable climate, you would have waited thirty generations for the 2022 event. We just had two in twenty years.</span></p>
+        </div>
+        <div class="translation-block">
+          <div class="t-label">What it means / 02</div>
+          <div class="t-headline">Heat does not kill in straight lines.</div>
+          <p><span class="pull-highlight">Mortality from heat doubles for every additional degree above the local survival threshold. A one-degree lift at the top of the temperature distribution produces far more deaths, hospital admissions, and labour-productivity losses than the same one-degree lift at average temperatures.</span> So a "modest 1 degree shift" delivers a non-modest mortality response.</p>
+        </div>
+        <div class="translation-block">
+          <div class="t-label">What it means / 03</div>
+          <div class="t-headline">The future arrives inside the investment horizon.</div>
+          <p>Under 2 degrees of global warming (a level the world is currently on track to reach), the same heat event becomes 2 to 20 times more likely than today. <span class="pull-highlight">The 1-in-100 year event today becomes a 1-in-5 to 1-in-50 year event tomorrow. For investments with a ten to twenty-five year horizon, an event that was statistically rare becomes statistically expected.</span></p>
+        </div>
+      </div>
+
+      <div class="caveat-block">
+        <div class="caveat-label">Important caveat / Conservative bias</div>
+        <p>The Zachariah et al. team explicitly noted that their results are likely a lower bound. The relatively short observed data record makes it difficult to fit the statistical distributions ideally suited to extremes. Larger model ensembles indicate a larger increase in likelihood than 30 times. The actual probability shift may be considerably greater than what the peer-reviewed estimate captures.</p>
+      </div>
+
+      <div class="source-note">Source: <a href="https://iopscience.iop.org/article/10.1088/2752-5295/acf4b6" target="_blank" rel="noopener">Zachariah et al. (2023), Environmental Research: Climate</a>. <a href="https://www.worldweatherattribution.org/climate-change-made-devastating-early-heat-in-india-and-pakistan-30-times-more-likely/" target="_blank" rel="noopener">World Weather Attribution / WMO rapid attribution study, May 2022</a>. <a href="https://www.ipcc.ch/report/ar6/syr/" target="_blank" rel="noopener">IPCC AR6 Synthesis Report</a>: pre-monsoon season heatwave frequency, duration, intensity and areal coverage over India are projected to substantially increase during the twenty-first century, high confidence.</div>
+    </div>
+  </section>
+
+  <!-- =================================================== -->
+  <!-- SECTION 08: HUMAN COST                               -->
+  <!-- =================================================== -->
+  <section id="mortality">
+    <div class="section-hero">
+      <img src="https://images.unsplash.com/photo-1655754707212-acc457c932bb?fm=jpg&q=80&w=2000&auto=format&fit=crop" alt="Sun setting over arid mountain landscape">
+      <div class="hero-overlay"></div>
+      <div class="hero-caption">
+        <span>09 / Human cost</span>
+        <span class="credit">Photo: Fabian Jones / <a href="https://unsplash.com/photos/a-sunset-over-a-mountain-range-_Nnhb0beN4g" target="_blank" rel="noopener">Unsplash</a></span>
+      </div>
+    </div>
+    <div class="section-header">
+      <span class="section-num">09 / The Human Cost Already Booked</span>
+      <h2 class="section-title">A baseline before the 2026 season has even peaked.</h2>
+      <p class="section-deck">Heat mortality in India between 1992 and 2015. Peak season has historically been May and early June. The 2026 surge is currently in the warm-up.</p>
+    </div>
+
+    <div class="card">
+      <div style="display: flex; align-items: baseline; gap: 24px; margin-bottom: 28px; flex-wrap: wrap;">
+        <div style="font-family: 'Playfair Display', serif; font-weight: 400; font-size: 80px; line-height: 1; letter-spacing: -2px;">24,000</div>
+        <div style="font-size: 15px; line-height: 1.5; color: var(--gray); max-width: 360px;">deaths attributed to heatwaves in India between 1992 and 2015. The four years below carry the majority of the toll.</div>
+      </div>
+
+      <div class="mortality-row">
+        <div class="mortality-year">1998</div>
+        <div class="mortality-track"><div class="mortality-fill" style="background: var(--copper); width: 14%;"></div></div>
+        <div class="mortality-count">14% share</div>
+      </div>
+      <div class="mortality-row">
+        <div class="mortality-year">2010</div>
+        <div class="mortality-track"><div class="mortality-fill" style="background: var(--slate-blue); width: 16%;"></div></div>
+        <div class="mortality-count">16% share</div>
+      </div>
+      <div class="mortality-row">
+        <div class="mortality-year">2013</div>
+        <div class="mortality-track"><div class="mortality-fill" style="background: var(--copper); width: 18%;"></div></div>
+        <div class="mortality-count">18% share</div>
+      </div>
+      <div class="mortality-row">
+        <div class="mortality-year">2015</div>
+        <div class="mortality-track"><div class="mortality-fill" style="background: var(--near-black); width: 24%;"></div></div>
+        <div class="mortality-count">24% share</div>
+      </div>
+      <div class="mortality-row">
+        <div class="mortality-year">Other years</div>
+        <div class="mortality-track"><div class="mortality-fill" style="background: var(--gray); width: 28%;"></div></div>
+        <div class="mortality-count">28% share</div>
+      </div>
+
+      <p style="font-size: 12px; color: var(--gray); font-style: italic; margin-top: 14px;">In 2015 alone, the Telangana and Andhra Pradesh heatwave claimed more than 2,500 lives. The event was triggered by a delayed southwest monsoon onset, the same risk profile the IMD has flagged for 2026.</p>
+
+      <div class="caveat-block" style="margin-top: 22px;">
+        <div class="caveat-label">Important caveat / Likely undercount</div>
+        <p><span class="pull-highlight">India's heat-mortality coding is inconsistent. A 2024 systematic review noted that NDMA records lockdown-era heat deaths at 4 in 2020, while EnviStats-India reports 27 for the same year.</span> The discrepancy reflects definitional differences but also undercounting. Excess-death analyses consistently estimate the true India heat toll at 2 to 5 times the official figure. <span class="pull-highlight">The 24,000 number is a floor, not a measurement.</span></p>
+      </div>
+
+      <div class="source-note">Source: <a href="https://www.sciencedirect.com/science/article/abs/pii/S2212094724002664" target="_blank" rel="noopener">ScienceDirect systematic review (2024) on India heatwave projections</a>, citing <a href="https://ndma.gov.in/Natural-Hazards/Heat-Wave" target="_blank" rel="noopener">National Disaster Management Authority records</a>. Apportionment is indicative, derived from documented major events.</div>
+    </div>
+  </section>
+
+  <!-- =================================================== -->
+  <!-- SECTION 09: ECONOMIC EXPOSURE                        -->
+  <!-- =================================================== -->
+  <section id="exposure">
+    <div class="section-header">
+      <span class="section-num">10 / Economic Exposure</span>
+      <h2 class="section-title">USD 250 billion at risk annually by 2030.</h2>
+      <p class="section-deck">Three exposure layers should be tracked separately by investors and corporate boards: agricultural output, labour productivity, and the combined power-grid plus water-stress envelope.</p>
+    </div>
+
+    <div class="exposure-grid">
+      <div class="exposure-block">
+        <div class="num-tag">Layer 01 / Agriculture</div>
+        <div class="exp-headline">Boro rice, maize, pulses</div>
+        <p>Heat stress during reproductive stages causes poor grain setting, flower drop, and reduced yields across east, northeast, northwest, and southern peninsular India. Wheat and chickpea face accelerated maturity and reduced grain filling in east-central regions. <span class="pull-highlight">The 2022 event delivered a 10 to 35 percent yield reduction in Haryana, UP, and Punjab.</span></p>
+      </div>
+      <div class="exposure-block">
+        <div class="num-tag">Layer 02 / Labour</div>
+        <div class="exp-headline">34 million jobs at risk</div>
+        <p>Outdoor and uncooled-indoor labour exposure projection by 2030. Construction, agriculture, MSME manufacturing, and gig delivery are the sectors carrying the highest stress. The economic translation is McKinsey-style <span class="pull-highlight">heat-exposure loss, putting USD 250 billion annually at risk by 2030.</span></p>
+      </div>
+      <div class="exposure-block">
+        <div class="num-tag">Layer 03 / Grid &amp; Water</div>
+        <div class="exp-headline">10 to 12 GW supply gap</div>
+        <p><span class="pull-highlight">Cooling load alone adds 50 to 55 GW to peak demand. Despite 65 GW of renewables added since 2024, an evening-peak supply gap of 10 to 12 GW persists.</span> The Hindu Kush snow deficit means lower river flow downstream into the Ganga, Indus, and Brahmaputra basins.</p>
+      </div>
+    </div>
+
+    <div class="source-note" style="border-top: none; margin-top: 24px;">Source: <a href="https://mausam.imd.gov.in/responsive/heatwave_guidance.php" target="_blank" rel="noopener">IMD agromet advisories, April 2026</a>; <a href="https://www.businesstoday.in" target="_blank" rel="noopener">Business Today</a> and <a href="https://www.orissapost.com" target="_blank" rel="noopener">Orissa Post</a> citing economic loss projections, 26-27 April 2026; <a href="https://www.icimod.org/" target="_blank" rel="noopener">ICIMOD</a> on Hindu Kush Himalaya snow cover; <a href="https://www.worldweatherattribution.org/" target="_blank" rel="noopener">World Weather Attribution</a> on 2022 yield impacts.</div>
+  </section>
+
+  <!-- =================================================== -->
+  <!-- SECTION 10: BOTTOM LINE                              -->
+  <!-- =================================================== -->
+  <section id="bottom-line">
+    <div class="section-header">
+      <span class="section-num">11 / The Bottom Line</span>
+      <h2 class="section-title">The assessment.</h2>
+    </div>
+
+    <div class="prose">
+      <p class="lede">Three forces converged: a structural warming trend, a cryosphere shock, and a synoptic setup. The IMD's 02 April Extended Range Outlook said no heatwave conditions were likely. <em>Twenty-five days later, India held 95 of the world's 100 hottest cities and Banda crossed the IMD severe heatwave absolute threshold at 47.4 degrees Celsius. That gap is the climate signal pulling forward.</em></p>
+    </div>
+
+    <div class="takeaway-grid">
+      <div class="takeaway">
+        <div class="takeaway-label">The trend</div>
+        <p>Tmax in eastern and peninsular India has risen 1.0 to 1.2 degrees Celsius across the recent two-decade window. Bihar, eastern UP, West Bengal, and Odisha now sit on the plume.</p>
+      </div>
+      <div class="takeaway">
+        <div class="takeaway-label">The trigger</div>
+        <p>Hindu Kush snow cover at minus 27.8 percent of the long-term average, the worst on a four-year record. A persistent Maharashtra anticyclone trapping hot air during peak insolation. Both stacked on the structural trend.</p>
+      </div>
+      <div class="takeaway">
+        <div class="takeaway-label">What comes next</div>
+        <p>May and June are typically the peak. The 2026 monsoon is forecast at 92 percent of normal, the lowest in thirty years. A Super El Nino is in the post-June probability cone. Watch warm-night metrics.</p>
+      </div>
+    </div>
+
+    <div class="next-brief">
+      <div class="nb-left">
+        <div class="nb-label">Next in this series</div>
+        <h3 class="nb-title">Himachal Pradesh: <em>the cryosphere question.</em></h3>
+        <div class="nb-meta">Bombay Breed Intelligence / May 2026</div>
+      </div>
+      <div class="nb-deck">
+        <p>The 27.8 percent Hindu Kush snow deficit that drove the April plume into the eastern plains is the same signal that determines watershed performance, hydropower revenue, and infrastructure exposure across the northern states.</p>
+        <p>The next brief turns to <strong>Himachal Pradesh</strong>: 28 GW of declared hydropower potential, four downstream states dependent on its watersheds, and a state-level GLOF inventory that has expanded materially over five years. We document what a structural shift in the cryosphere means for power-purchase agreement risk, monsoon-season generation reliability, and the emerging case for adaptation infrastructure as an asset class distinct from mitigation.</p>
+        <p>The April heatwave is the warm-up. Himachal is where the climate signal becomes a balance-sheet question.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- =================================================== -->
+  <!-- COLOPHON                                             -->
+  <!-- =================================================== -->
+  <div class="colophon">
+    <div class="colophon-block">
+      <div class="colophon-label">Sources</div>
+      <p>India Meteorological Department, Ministry of Earth Sciences: <a href="https://mausam.imd.gov.in/pdfs/heatcolduser/Definition.pdf" target="_blank" rel="noopener">Heat Wave Definition</a>, <a href="https://mausam.imd.gov.in/pdfs/heatcolduser/heat_extended.pdf" target="_blank" rel="noopener">Extended Range Heat Wave Outlook dated 02 April 2026</a>, daily bulletins and press releases dated 17, 21, 24, 26, 27 April 2026, seasonal outlook for April to June 2026 (issued 31 March), <a href="https://mausam.imd.gov.in/responsive/seasonal_forecast.php" target="_blank" rel="noopener">Long Range Monsoon Forecast (13 April 2026)</a>, <a href="https://mausam.imd.gov.in/responsive/districtWiseHeatwaveWarning.php" target="_blank" rel="noopener">Districtwise Heatwave Warnings</a>. <a href="https://www.aqi.in/dashboard/india" target="_blank" rel="noopener">AQI.in live global temperature ranking</a>, 21 to 27 April 2026. <a href="https://www.nature.com/articles/s41598-024-58030-w" target="_blank" rel="noopener">Nature Scientific Reports: Intensification and spatial shifts of heatwave hotspot across India (February 2026)</a>. <a href="https://www.nature.com/articles/s41598-018-34362-2" target="_blank" rel="noopener">Mukherjee &amp; Mishra (2018), "A sixfold rise in concurrent day and night-time heatwaves in India under 2 degrees C warming"</a>. <a href="https://iopscience.iop.org/article/10.1088/2752-5295/acf4b6" target="_blank" rel="noopener">Zachariah et al. (2023), Environmental Research: Climate</a>. <a href="https://www.worldweatherattribution.org/climate-change-made-devastating-early-heat-in-india-and-pakistan-30-times-more-likely/" target="_blank" rel="noopener">World Weather Attribution and WMO 2022 attribution study</a>. <a href="https://www.ipcc.ch/report/ar6/syr/" target="_blank" rel="noopener">IPCC AR6 Synthesis Report</a>. <a href="https://www.icimod.org/" target="_blank" rel="noopener">International Centre for Integrated Mountain Development</a> on Hindu Kush Himalaya snow cover. <a href="https://www.sciencedirect.com/science/article/abs/pii/S2212094724002664" target="_blank" rel="noopener">ScienceDirect systematic review on India heatwave projections (2024)</a>. <a href="https://www.unescap.org/" target="_blank" rel="noopener">UNESCAP</a> on labour productivity and heat exposure. <a href="https://www.researchgate.net/figure/Location-of-Banda-District-UP-India_fig2_369088116" target="_blank" rel="noopener">ResearchGate (Singh &amp; Mishra, 2023)</a> for Banda District location data. Business Standard, India Today, Orissa Post, Moneycontrol, IQAir, Down to Earth, Outlook Business, 21 to 27 April 2026.</p>
+      <div class="colophon-label" style="margin-top: 22px;">A note on method</div>
+      <p>Temperature readings are surface (2 metre) maxima as published by IMD or AQI.in for the dates indicated. Long-term warming figures are reanalysis-based Tmax (ERA5). Sub-regional values for the earlier 1981 to 2000 period in the trend table are derived from the Nature paper's spatial-shift analysis and are presented as indicative directional figures rather than precise point estimates. Attribution multipliers use World Weather Attribution methodology applied to the 2022 heat event, the most recent peer-reviewed rapid attribution for the Indian subcontinent. The country distribution of the world's hottest cities is sourced from AQI.in's live ranking on 27 April 2026.</p>
+    </div>
+    <div class="colophon-block">
+      <div class="bb-mark">Bombay Breed</div>
+      <div class="bb-tagline">Climate transition strategy that is credible, compliant, and investable in India.</div>
+      <div class="contact-line">
+        bombaybreed.com<br>
+        theresa.ronnie@bombaybreed.com<br><br>
+        Brief 04.2026<br>
+        India Heat / Confidential<br>
+        27 April 2026
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+  // Smooth scroll for TOC navigation
+  document.querySelectorAll('.toc-item').forEach(item => {
+    item.addEventListener('click', (e) => {
+      e.preventDefault();
+      const target = document.querySelector(item.getAttribute('href'));
+      if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+  });
+</script>
+
+</body>
+</html>

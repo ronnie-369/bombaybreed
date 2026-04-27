@@ -51,7 +51,7 @@ vi.mock('react-router-dom', async () => {
 // The contract being tested is identical for every static asset, so two
 // representative paths are sufficient.
 const STATIC_ASSET_PATHS = [
-  '/special-features/tcd-hp-investor-synthesis.html',
+  '/special-features/india-heat-intelligence.html',
   '/special-features/india-ndc3.html',
 ];
 
@@ -134,7 +134,7 @@ describe('Insights → static-HTML cards: open the real static file on every cli
       .find(
         (el) =>
           (el as HTMLAnchorElement).getAttribute('href') ===
-          '/special-features/tcd-hp-investor-synthesis.html',
+          '/special-features/india-heat-intelligence.html',
       )!;
 
     fireEvent.click(a, { button: 0 });
