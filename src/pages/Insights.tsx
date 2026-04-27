@@ -245,9 +245,9 @@ const Insights = () => {
     // Premium Access Lounge — paid funnel sits at the top of the page.
     // These ids exist regardless of search/filter state.
     s.push({ id: 'lounge', label: 'Lounge' });
+    s.push({ id: 'industry', label: 'Readers say' });
     s.push({ id: 'tiers', label: 'Tiers' });
-    s.push({ id: 'industry', label: 'Industry' });
-    s.push({ id: 'readers', label: 'Readers' });
+    s.push({ id: 'readers', label: 'Who reads' });
     s.push({ id: 'sponsor', label: 'Sponsor' });
     // Editorial hub below — flagship is conditional on no active filter.
     if (showFlagship) s.push({ id: 'flagship', label: 'Flagship' });
