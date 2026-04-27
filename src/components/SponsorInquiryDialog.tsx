@@ -32,8 +32,8 @@ const inquirySchema = z.object({
   role: z.string().trim().max(100).optional(),
   project: z.string().trim().min(1).max(300),
   message: z.string().trim().max(1500).optional(),
-  consent: z.literal(true, {
-    errorMap: () => ({ message: 'Please confirm to continue.' }),
+  consent: z.boolean().refine((v) => v === true, {
+    message: 'Please confirm to continue.',
   }),
 });
 
@@ -58,6 +58,7 @@ const SponsorInquiryDialog = ({ open, onOpenChange, project }: SponsorInquiryDia
       role: '',
       project,
       message: '',
+      consent: false,
     },
   });
 
@@ -80,6 +81,8 @@ const SponsorInquiryDialog = ({ open, onOpenChange, project }: SponsorInquiryDia
           role: data.role?.trim() || '',
           project_of_interest: data.project.trim(),
           message: data.message?.trim() || '',
+          consent: data.consent,
+          consent_text: 'User agreed to be contacted about this inquiry and to our privacy practices.',
           form_type: 'sponsor_open_project_inquiry',
           _subject: `Sponsor inquiry: ${data.project.trim()}`,
         }),
