@@ -45,9 +45,21 @@ interface SponsorInquiryDialogProps {
   project: string;
 }
 
+const generateReferenceId = (): string => {
+  // Short, human-friendly ref: BB-YYYYMMDD-XXXX (uppercase alphanumeric)
+  const d = new Date();
+  const yyyymmdd = `${d.getFullYear()}${String(d.getMonth() + 1).padStart(2, '0')}${String(
+    d.getDate(),
+  ).padStart(2, '0')}`;
+  const rand = Math.random().toString(36).slice(2, 6).toUpperCase();
+  return `BB-${yyyymmdd}-${rand}`;
+};
+
 const SponsorInquiryDialog = ({ open, onOpenChange, project }: SponsorInquiryDialogProps) => {
   const { toast } = useToast();
   const [submitting, setSubmitting] = useState(false);
+  const [referenceId, setReferenceId] = useState<string | null>(null);
+  const [copied, setCopied] = useState(false);
 
   const form = useForm<InquiryValues>({
     resolver: zodResolver(inquirySchema),
@@ -68,13 +80,43 @@ const SponsorInquiryDialog = ({ open, onOpenChange, project }: SponsorInquiryDia
     }
   }, [open, project, form]);
 
+  // Reset success/transient state shortly after the dialog closes so the next
+  // open shows a fresh form rather than the previous success screen.
+  useEffect(() => {
+    if (!open) {
+      const t = window.setTimeout(() => {
+        setReferenceId(null);
+        setCopied(false);
+        form.reset();
+      }, 200);
+      return () => window.clearTimeout(t);
+    }
+  }, [open, form]);
+
+  const handleCopyReference = async () => {
+    if (!referenceId) return;
+    try {
+      await navigator.clipboard.writeText(referenceId);
+      setCopied(true);
+      window.setTimeout(() => setCopied(false), 2000);
+    } catch {
+      toast({
+        title: 'Could not copy',
+        description: 'Please copy the reference manually.',
+        variant: 'destructive',
+      });
+    }
+  };
+
   const onSubmit = async (data: InquiryValues) => {
     setSubmitting(true);
+    const ref = generateReferenceId();
     try {
       const response = await fetch('https://formspree.io/f/myknnoea', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
+          reference_id: ref,
           name: data.name.trim(),
           email: data.email.trim().toLowerCase(),
           organisation: data.organisation?.trim() || '',
@@ -84,7 +126,7 @@ const SponsorInquiryDialog = ({ open, onOpenChange, project }: SponsorInquiryDia
           consent: data.consent,
           consent_text: 'User agreed to be contacted about this inquiry and to our privacy practices.',
           form_type: 'sponsor_open_project_inquiry',
-          _subject: `Sponsor inquiry: ${data.project.trim()}`,
+          _subject: `Sponsor inquiry [${ref}]: ${data.project.trim()}`,
         }),
       });
 
@@ -95,13 +137,8 @@ const SponsorInquiryDialog = ({ open, onOpenChange, project }: SponsorInquiryDia
         project: data.project.trim(),
       });
 
-      toast({
-        title: 'Inquiry sent',
-        description: 'We will reply within two business days.',
-      });
-
-      form.reset();
-      onOpenChange(false);
+      // Show the in-dialog success screen with the reference ID; do NOT close.
+      setReferenceId(ref);
     } catch (error) {
       console.error('Sponsor inquiry submission error:', error);
       toast({
@@ -119,15 +156,56 @@ const SponsorInquiryDialog = ({ open, onOpenChange, project }: SponsorInquiryDia
       <DialogContent className="max-w-lg">
         <DialogHeader>
           <DialogTitle className="font-serif text-2xl tracking-tight">
-            Register interest
+            {referenceId ? 'Inquiry received' : 'Register interest'}
           </DialogTitle>
           <DialogDescription className="text-sm text-muted-foreground">
-            Tell us a little about you and we will come back with a shape and a number.
+            {referenceId
+              ? 'Thank you. We will reply within two business days.'
+              : 'Tell us a little about you and we will come back with a shape and a number.'}
           </DialogDescription>
         </DialogHeader>
 
-        <Form {...form}>
-          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
+        {referenceId ? (
+          <div className="space-y-5 py-2">
+            <div className="rounded-md border border-border/70 bg-muted/30 p-4">
+              <p className="text-[10px] font-bold tracking-widest uppercase text-muted-foreground mb-2">
+                Reference ID
+              </p>
+              <div className="flex items-center justify-between gap-3">
+                <code className="font-mono text-base text-foreground tracking-wider select-all">
+                  {referenceId}
+                </code>
+                <Button
+                  type="button"
+                  variant="outline"
+                  size="sm"
+                  onClick={handleCopyReference}
+                  aria-label="Copy reference ID"
+                >
+                  {copied ? 'Copied' : 'Copy'}
+                </Button>
+              </div>
+              <p className="text-xs text-muted-foreground mt-3 leading-relaxed">
+                Quote this reference if you need to follow up at{' '}
+                <a
+                  href="mailto:theresa.ronnie@bombaybreed.com"
+                  className="underline underline-offset-2 hover:text-foreground"
+                >
+                  theresa.ronnie@bombaybreed.com
+                </a>
+                .
+              </p>
+            </div>
+
+            <DialogFooter>
+              <Button type="button" onClick={() => onOpenChange(false)}>
+                Close
+              </Button>
+            </DialogFooter>
+          </div>
+        ) : (
+          <Form {...form}>
+            <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
             <FormField
               control={form.control}
               name="project"
@@ -279,6 +357,7 @@ const SponsorInquiryDialog = ({ open, onOpenChange, project }: SponsorInquiryDia
             </DialogFooter>
           </form>
         </Form>
+        )}
       </DialogContent>
     </Dialog>
   );
