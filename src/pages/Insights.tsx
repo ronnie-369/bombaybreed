@@ -555,6 +555,89 @@ const Insights = () => {
               }}
             />
 
+            {/* Search + filter bar - sits directly on top of the resources so
+                readers can scan by topic / type or full-text the library. */}
+            <div className="mb-6 space-y-4">
+              <div className="relative">
+                <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
+                <Input
+                  id="insights-search"
+                  aria-label="Search intelligence briefs"
+                  placeholder="Search the library - title, topic, or theme..."
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                  className="pl-10 bg-background"
+                />
+              </div>
+
+              <div className="flex flex-wrap items-center gap-x-4 gap-y-2">
+                <div className="flex gap-1.5 flex-wrap">
+                  <button
+                    onClick={() => setSelectedTopic('All')}
+                    className={`px-3 py-1 rounded-full text-[12px] font-medium transition-colors ${
+                      selectedTopic === 'All'
+                        ? 'bg-foreground text-background'
+                        : 'border border-border text-foreground hover:bg-secondary'
+                    }`}
+                  >
+                    All topics
+                  </button>
+                  {allTopics.map(topic => (
+                    <button
+                      key={topic}
+                      onClick={() => setSelectedTopic(topic)}
+                      className={`px-3 py-1 rounded-full text-[12px] font-medium transition-colors ${
+                        selectedTopic === topic
+                          ? 'bg-foreground text-background'
+                          : 'border border-border text-foreground hover:bg-secondary'
+                      }`}
+                    >
+                      {topic}
+                    </button>
+                  ))}
+                </div>
+
+                <span className="hidden md:inline text-border" aria-hidden>·</span>
+
+                <div className="flex gap-1.5 flex-wrap">
+                  <button
+                    onClick={() => setSelectedType('All Types')}
+                    className={`px-3 py-1 rounded-full text-[12px] font-medium transition-colors ${
+                      selectedType === 'All Types'
+                        ? 'bg-foreground text-background'
+                        : 'border border-border text-foreground hover:bg-secondary'
+                    }`}
+                  >
+                    All types
+                  </button>
+                  {allContentTypes.map(type => (
+                    <button
+                      key={type}
+                      onClick={() => setSelectedType(type)}
+                      className={`px-3 py-1 rounded-full text-[12px] font-medium transition-colors ${
+                        selectedType === type
+                          ? 'bg-foreground text-background'
+                          : `border border-border hover:bg-secondary ${contentTypeColors[type]}`
+                      }`}
+                    >
+                      {type === 'Flagship Report' ? 'Flagship' :
+                       type === 'Intelligence Brief' ? 'Brief' :
+                       type === 'Regulatory Alert' ? 'Alert' : 'Perspective'}
+                    </button>
+                  ))}
+                </div>
+
+                {(searchQuery || selectedTopic !== 'All' || selectedType !== 'All Types') && (
+                  <button
+                    onClick={() => { setSearchQuery(''); setSelectedTopic('All'); setSelectedType('All Types'); }}
+                    className="ml-auto text-[11px] tracking-wider uppercase text-muted-foreground hover:text-foreground transition-colors"
+                  >
+                    Clear filters
+                  </button>
+                )}
+              </div>
+            </div>
+
             {/* In the clustered (unfiltered) view, flagships live exclusively in
                 the Flagship band above. The cluster shelves below show only the
                 non-flagship library to avoid double-listing. */}
