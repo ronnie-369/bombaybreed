@@ -51,7 +51,7 @@ vi.mock('react-router-dom', async () => {
 // The contract being tested is identical for every static asset, so two
 // representative paths are sufficient.
 const STATIC_ASSET_PATHS = [
-  '/special-features/tcd-hp-investor-synthesis.html',
+  '/special-features/india-heat-intelligence.html',
   '/special-features/india-ndc3.html',
 ];
 
