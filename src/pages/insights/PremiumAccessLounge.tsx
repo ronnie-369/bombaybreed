@@ -166,7 +166,7 @@ const READERSHIP: { group: string; names: { label: string; href?: string }[] }[]
  * work; the sponsoring organisation gets its name attached to the
  * published output. Deliverables span video assets, due-diligence studies,
  * MRV / dMRV reviews, and feasibility / viability work. Pricing is
- * indicative: INR 6L to 48L depending on scope and intensity.
+ * indicative: INR 6L to 45L depending on scope and intensity.
  */
 const SPONSOR_DELIVERABLES: string[] = [
   'Due diligence on projects, developers and portfolios - including Article 6 and JCM-bound pipelines',
@@ -861,7 +861,7 @@ const PremiumAccessLounge: React.FC = () => {
             <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
               <div className="max-w-[520px]">
                 <div className="font-serif text-2xl text-foreground mb-1">
-                  INR 6,00,000 - 48,00,000
+                  INR 6,00,000 - 45,00,000
                   <span className="text-base text-muted-foreground font-sans"> + GST</span>
                 </div>
                 <p className="text-sm text-muted-foreground leading-relaxed">
