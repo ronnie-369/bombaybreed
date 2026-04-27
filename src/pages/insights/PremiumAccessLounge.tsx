@@ -178,7 +178,7 @@ const SPONSOR_HOW_IT_WORKS: string[] = [
   'You bring the question or thesis - we scope the work in conversation',
   'Team BB executes the research, fieldwork and writing end to end',
   'Your business name is attached to the report as the sponsor',
-  'Methodology and findings stay with us - editorial independence is the point',
+  'Editorial control, methodology and conclusions remain entirely with Team BB - sponsorship buys the work, not the verdict',
 ];
 
 const SPONSOR_OPEN_PROJECTS: string[] = [
