@@ -27,7 +27,7 @@ const CTA_COPY: Record<
   },
   analyst_lens: {
     A: 'Take the Analyst Lens',
-    B: 'Get the read before the price moves',
+    B: 'Exclusive access awaits',
   },
 };
 
