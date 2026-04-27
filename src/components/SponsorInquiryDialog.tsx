@@ -27,12 +27,32 @@ import { useToast } from '@/hooks/use-toast';
 import { trackSponsorEvent } from '@/utils/sponsorAnalytics';
 
 const inquirySchema = z.object({
-  name: z.string().trim().min(2, { message: 'Name must be at least 2 characters' }).max(100),
-  email: z.string().trim().email({ message: 'Please enter a valid email' }).max(255),
-  organisation: z.string().trim().max(150).optional(),
-  role: z.string().trim().max(100).optional(),
+  name: z
+    .string()
+    .trim()
+    .min(2, { message: 'Name must be at least 2 characters' })
+    .max(100, { message: 'Name must be 100 characters or fewer' }),
+  email: z
+    .string()
+    .trim()
+    .email({ message: 'Please enter a valid email' })
+    .max(255, { message: 'Email must be 255 characters or fewer' }),
+  organisation: z
+    .string()
+    .trim()
+    .max(150, { message: 'Organisation must be 150 characters or fewer' })
+    .optional(),
+  role: z
+    .string()
+    .trim()
+    .max(100, { message: 'Role must be 100 characters or fewer' })
+    .optional(),
   project: z.string().trim().min(1).max(300),
-  message: z.string().trim().max(1500).optional(),
+  message: z
+    .string()
+    .trim()
+    .max(1500, { message: 'Please keep your message under 1500 characters' })
+    .optional(),
   consent: z.boolean().refine((v) => v === true, {
     message: 'Please confirm to continue.',
   }),
@@ -61,6 +81,7 @@ const SponsorInquiryDialog = ({ open, onOpenChange, project }: SponsorInquiryDia
   const [submitting, setSubmitting] = useState(false);
   const [referenceId, setReferenceId] = useState<string | null>(null);
   const [copied, setCopied] = useState(false);
+  const [submitError, setSubmitError] = useState<string | null>(null);
 
   // Track which element opened the dialog so we can return focus to it on
   // close - critical for keyboard users navigating the project cards.
@@ -68,6 +89,8 @@ const SponsorInquiryDialog = ({ open, onOpenChange, project }: SponsorInquiryDia
 
   const form = useForm<InquiryValues>({
     resolver: zodResolver(inquirySchema),
+    mode: 'onBlur',
+    reValidateMode: 'onChange',
     defaultValues: {
       name: '',
       email: '',
@@ -94,6 +117,7 @@ const SponsorInquiryDialog = ({ open, onOpenChange, project }: SponsorInquiryDia
       const t = window.setTimeout(() => {
         setReferenceId(null);
         setCopied(false);
+        setSubmitError(null);
         form.reset();
         const el = triggerRef.current;
         if (el && typeof el.focus === 'function' && document.contains(el)) {
@@ -128,11 +152,25 @@ const SponsorInquiryDialog = ({ open, onOpenChange, project }: SponsorInquiryDia
 
   const onSubmit = async (data: InquiryValues) => {
     setSubmitting(true);
+    setSubmitError(null);
     const ref = generateReferenceId();
+
+    // Map Formspree's `field` values back onto our react-hook-form field names
+    // so a server-side validation problem highlights the right input.
+    const fieldMap: Record<string, keyof InquiryValues> = {
+      name: 'name',
+      email: 'email',
+      organisation: 'organisation',
+      role: 'role',
+      project_of_interest: 'project',
+      message: 'message',
+      consent: 'consent',
+    };
+
     try {
       const response = await fetch('https://formspree.io/f/myknnoea', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
         body: JSON.stringify({
           reference_id: ref,
           name: data.name.trim(),
@@ -148,7 +186,35 @@ const SponsorInquiryDialog = ({ open, onOpenChange, project }: SponsorInquiryDia
         }),
       });
 
-      if (!response.ok) throw new Error('Submission failed');
+      if (!response.ok) {
+        // Try to surface Formspree's structured field errors if present.
+        let body: { errors?: Array<{ field?: string; message?: string; code?: string }> } = {};
+        try { body = await response.json(); } catch { /* non-JSON response */ }
+
+        const errors = body?.errors ?? [];
+        let hadFieldError = false;
+        for (const err of errors) {
+          const target = err.field ? fieldMap[err.field] : undefined;
+          if (target) {
+            form.setError(target, { type: 'server', message: err.message || 'Invalid value.' });
+            hadFieldError = true;
+          }
+        }
+
+        if (hadFieldError) {
+          setSubmitError('Please review the highlighted fields and try again.');
+        } else if (response.status === 429) {
+          setSubmitError('Too many submissions. Please wait a moment and try again.');
+        } else if (response.status >= 500) {
+          setSubmitError('Our form service is temporarily unavailable. Please try again in a minute.');
+        } else {
+          setSubmitError(
+            errors[0]?.message ||
+              'We could not send your inquiry. Please try again, or email theresa.ronnie@bombaybreed.com.',
+          );
+        }
+        return;
+      }
 
       trackSponsorEvent('sponsor_inquiry_submitted', {
         location: 'premium_access_lounge_open_projects',
@@ -159,11 +225,12 @@ const SponsorInquiryDialog = ({ open, onOpenChange, project }: SponsorInquiryDia
       setReferenceId(ref);
     } catch (error) {
       console.error('Sponsor inquiry submission error:', error);
-      toast({
-        title: 'Could not send your inquiry',
-        description: 'Please try again, or email theresa.ronnie@bombaybreed.com.',
-        variant: 'destructive',
-      });
+      const isOffline = typeof navigator !== 'undefined' && navigator.onLine === false;
+      setSubmitError(
+        isOffline
+          ? 'You appear to be offline. Please reconnect and try again.'
+          : 'Network error. Please check your connection and try again, or email theresa.ronnie@bombaybreed.com.',
+      );
     } finally {
       setSubmitting(false);
     }
@@ -234,6 +301,15 @@ const SponsorInquiryDialog = ({ open, onOpenChange, project }: SponsorInquiryDia
               aria-busy={submitting}
             >
             <fieldset disabled={submitting} className="space-y-4 m-0 p-0 border-0">
+            {submitError && (
+              <div
+                role="alert"
+                aria-live="assertive"
+                className="rounded-md border border-destructive/40 bg-destructive/10 px-3 py-2 text-sm text-destructive"
+              >
+                {submitError}
+              </div>
+            )}
             <FormField
               control={form.control}
               name="project"
