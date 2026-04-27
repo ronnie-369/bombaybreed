@@ -354,13 +354,14 @@ const PremiumAccessLounge: React.FC = () => {
         <div className="container mx-auto max-w-[900px]">
           <SectionLabel label="The two tiers" />
           <h2 className="text-section font-serif tracking-tight mt-6 mb-4">
-            One desk. Invest, or be invested in.
+            One desk. Two ways to read the market.
           </h2>
           <p className="font-serif text-lg text-foreground/80 leading-relaxed max-w-[680px] mb-12">
-            One tier is built for the people <em>making</em> the carbon - founders,
-            developers, SMEs walking into the market for the first time. The other
-            is built for the people <em>pricing</em> it - investors, analysts, and
-            committees who need the read before the price moves.
+            One tier is built for those <em>building</em> in the carbon and
+            energy transition economy - founders, developers and SMEs stepping
+            into the market for the first time. The other is built for those
+            <em> backing</em> it - investors, analysts and committees who need
+            the read before the price moves.
           </p>
 
           {/* What you get — shared editorial line. No deliverables here; those live in the cards. */}
