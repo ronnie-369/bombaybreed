@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { z } from 'zod';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -22,6 +22,7 @@ import {
   FormLabel,
   FormMessage,
 } from '@/components/ui/form';
+import { Skeleton } from '@/components/ui/skeleton';
 import { useToast } from '@/hooks/use-toast';
 import { trackSponsorEvent } from '@/utils/sponsorAnalytics';
 
@@ -61,6 +62,10 @@ const SponsorInquiryDialog = ({ open, onOpenChange, project }: SponsorInquiryDia
   const [referenceId, setReferenceId] = useState<string | null>(null);
   const [copied, setCopied] = useState(false);
 
+  // Track which element opened the dialog so we can return focus to it on
+  // close - critical for keyboard users navigating the project cards.
+  const triggerRef = useRef<HTMLElement | null>(null);
+
   const form = useForm<InquiryValues>({
     resolver: zodResolver(inquirySchema),
     defaultValues: {
@@ -76,22 +81,35 @@ const SponsorInquiryDialog = ({ open, onOpenChange, project }: SponsorInquiryDia
 
   useEffect(() => {
     if (open) {
+      if (typeof document !== 'undefined' && document.activeElement instanceof HTMLElement) {
+        triggerRef.current = document.activeElement;
+      }
       form.setValue('project', project);
     }
   }, [open, project, form]);
 
-  // Reset success/transient state shortly after the dialog closes so the next
-  // open shows a fresh form rather than the previous success screen.
+  // Reset transient state after close + restore focus to the trigger card.
   useEffect(() => {
     if (!open) {
       const t = window.setTimeout(() => {
         setReferenceId(null);
         setCopied(false);
         form.reset();
+        const el = triggerRef.current;
+        if (el && typeof el.focus === 'function' && document.contains(el)) {
+          try { el.focus({ preventScroll: true }); } catch { el.focus(); }
+        }
+        triggerRef.current = null;
       }, 200);
       return () => window.clearTimeout(t);
     }
   }, [open, form]);
+
+  // Block dismissal while a submission is in flight.
+  const handleOpenChange = (next: boolean) => {
+    if (submitting && !next) return;
+    onOpenChange(next);
+  };
 
   const handleCopyReference = async () => {
     if (!referenceId) return;
@@ -152,8 +170,13 @@ const SponsorInquiryDialog = ({ open, onOpenChange, project }: SponsorInquiryDia
   };
 
   return (
-    <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="max-w-lg">
+    <Dialog open={open} onOpenChange={handleOpenChange}>
+      <DialogContent
+        className="max-w-lg relative"
+        onInteractOutside={(e) => { if (submitting) e.preventDefault(); }}
+        onEscapeKeyDown={(e) => { if (submitting) e.preventDefault(); }}
+        aria-busy={submitting}
+      >
         <DialogHeader>
           <DialogTitle className="font-serif text-2xl tracking-tight">
             {referenceId ? 'Inquiry received' : 'Register interest'}
@@ -198,14 +221,19 @@ const SponsorInquiryDialog = ({ open, onOpenChange, project }: SponsorInquiryDia
             </div>
 
             <DialogFooter>
-              <Button type="button" onClick={() => onOpenChange(false)}>
+              <Button type="button" onClick={() => handleOpenChange(false)}>
                 Close
               </Button>
             </DialogFooter>
           </div>
         ) : (
           <Form {...form}>
-            <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
+            <form
+              onSubmit={form.handleSubmit(onSubmit)}
+              className={`space-y-4 ${submitting ? 'pointer-events-none select-none opacity-60' : ''}`}
+              aria-busy={submitting}
+            >
+            <fieldset disabled={submitting} className="space-y-4 m-0 p-0 border-0">
             <FormField
               control={form.control}
               name="project"
@@ -346,7 +374,7 @@ const SponsorInquiryDialog = ({ open, onOpenChange, project }: SponsorInquiryDia
               <Button
                 type="button"
                 variant="ghost"
-                onClick={() => onOpenChange(false)}
+                onClick={() => handleOpenChange(false)}
                 disabled={submitting}
               >
                 Cancel
@@ -355,8 +383,29 @@ const SponsorInquiryDialog = ({ open, onOpenChange, project }: SponsorInquiryDia
                 {submitting ? 'Sending...' : 'Send inquiry'}
               </Button>
             </DialogFooter>
+            </fieldset>
           </form>
         </Form>
+        )}
+
+        {submitting && (
+          <div
+            className="absolute inset-0 z-10 flex flex-col gap-3 rounded-lg bg-background/85 backdrop-blur-sm p-6 pt-20"
+            role="status"
+            aria-live="polite"
+            aria-label="Sending your inquiry"
+          >
+            <Skeleton className="h-4 w-1/3" />
+            <Skeleton className="h-9 w-full" />
+            <div className="grid grid-cols-2 gap-3">
+              <Skeleton className="h-9 w-full" />
+              <Skeleton className="h-9 w-full" />
+            </div>
+            <Skeleton className="h-20 w-full" />
+            <p className="text-xs text-muted-foreground text-center mt-2">
+              Sending your inquiry...
+            </p>
+          </div>
         )}
       </DialogContent>
     </Dialog>
