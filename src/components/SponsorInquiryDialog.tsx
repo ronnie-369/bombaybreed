@@ -319,11 +319,41 @@ const SponsorInquiryDialog = ({ open, onOpenChange, project, projectDetails }: S
                 {submitError}
               </div>
             )}
+            {projectDetails && (
+              <div className="rounded-md border border-border/70 bg-muted/30 p-4 space-y-3">
+                <div>
+                  <p className="text-[10px] font-bold tracking-widest uppercase text-muted-foreground mb-1">
+                    Project
+                  </p>
+                  <p className="font-serif text-base text-foreground leading-snug">
+                    {projectDetails.title}
+                  </p>
+                </div>
+                <dl className="space-y-2 text-sm">
+                  <div className="grid grid-cols-[68px_1fr] gap-3">
+                    <dt className="text-[10px] font-bold tracking-widest uppercase text-muted-foreground pt-0.5">Angle</dt>
+                    <dd className="text-foreground/85 leading-relaxed">{projectDetails.angle}</dd>
+                  </div>
+                  <div className="grid grid-cols-[68px_1fr] gap-3">
+                    <dt className="text-[10px] font-bold tracking-widest uppercase text-muted-foreground pt-0.5">Scope</dt>
+                    <dd className="text-foreground/85 leading-relaxed">{projectDetails.scope}</dd>
+                  </div>
+                  <div className="grid grid-cols-[68px_1fr] gap-3">
+                    <dt className="text-[10px] font-bold tracking-widest uppercase text-muted-foreground pt-0.5">Output</dt>
+                    <dd className="text-foreground/85 leading-relaxed">{projectDetails.output}</dd>
+                  </div>
+                  <div className="grid grid-cols-[68px_1fr] gap-3">
+                    <dt className="text-[10px] font-bold tracking-widest uppercase text-muted-foreground pt-0.5">Effort</dt>
+                    <dd className="font-mono text-xs text-foreground/85 pt-1">{projectDetails.effort}</dd>
+                  </div>
+                </dl>
+              </div>
+            )}
             <FormField
               control={form.control}
               name="project"
               render={({ field }) => (
-                <FormItem>
+                <FormItem className={projectDetails ? 'sr-only' : ''}>
                   <FormLabel className="text-xs uppercase tracking-widest text-muted-foreground">
                     Interested in
                   </FormLabel>
