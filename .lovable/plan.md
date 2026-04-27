@@ -1,33 +1,25 @@
-# Members' room copy + hyperlink reader orgs on /insights
+# Apple-style hyperlink styling on /insights
 
-Two small, independent edits to `src/pages/insights/PremiumAccessLounge.tsx`. Both are content/UI only - no logic, no dependencies.
+Refine the two existing link styles on `/insights` to match the Apple-like editorial pattern used across light pages: foreground-toned text, no resting underline, hairline underline only on hover/focus.
 
-## 1. Replace Members Only zone body copy (locked)
+## Pattern
 
-Card on the hero of `/insights`. Headline and CTA stay as is.
+- Resting: text in `text-foreground/80` (slightly heavier than the surrounding muted body so the link is discoverable), no underline.
+- Hover/focus: text strengthens to `text-foreground`, a 0.5px underline appears in `decoration-foreground/30`, sitting `underline-offset-[5px]` below the baseline.
+- Transition: `duration-200`, colour and decoration only - no scale, no glow, no colour shift to blue.
+- Focus-visible: keyboard users get the same underline plus the global `focus-visible` ring already used elsewhere.
 
-**New body (lines 440-444):**
+## Edits
 
-> Carbon markets are hard. The right call is harder. The kind of call you would normally pay a sell-side desk six figures for - written for people who move capital. A small members' room, by design.
+Both in `src/pages/insights/PremiumAccessLounge.tsx`.
 
-Renders inside the existing `<p className="text-[15px] sm:text-base text-background/75 leading-relaxed mb-6 [text-wrap:pretty] max-w-[46ch]">`. Uses `&rsquo;` for the apostrophe in "members'" to match the existing CTA below it. Hyphens only, no em dashes (per project standard).
+1. **Line 481 - reader org link in Quotes from Readers** (Negative Emissions Platform, The Energy Mix). Replace the current always-on `underline decoration-border` with the resting/hover pattern above. Same className applies whether the card sits on the tinted band or, in future, on paper.
 
-## 2. Hyperlink the two reader orgs in Quotes from Readers
+2. **Line 739 - inline link in the Sponsor block.** Already uses a similar hover-underline pattern but with `decoration-border/50` which disappears on the tinted background. Align it to the same `decoration-foreground/30` token for consistency. Keep the existing `inline whitespace-nowrap` so it doesn't wrap mid-phrase.
 
-Make the org name under the reader quote clickable when a public URL exists.
-
-- **Negative Emissions Platform** -> `https://negativeemissionsplatform.eu`
-- **The Energy Mix** -> `https://www.theenergymix.com`
-- **EU** (Christian Haberli) -> stays as plain text (not a real org URL)
-
-Implementation:
-
-- Extend `QUOTES` (lines 52-71) with optional `orgHref?: string`; set on the two quotes above.
-- In the figure render (around line 474), wrap `q.org` in `<a target="_blank" rel="noopener noreferrer">` when `orgHref` is set.
-- Link styling: 1px underline in `decoration-border`, brightening to `decoration-foreground` and `text-foreground` on hover. Editorial tone, no SaaS-blue, no link icon.
+No structural, layout, or copy changes. No new dependencies.
 
 ## Out of scope
 
-- Touching the headline, CTA, padding, colours or layout of the Members Only card.
-- Linking the reader name itself - quotes endorse the publication, not a personal page.
-- Any other section of the page.
+- Tier-card CTAs and primary buttons - those are already typed buttons, not text links.
+- Any link on dark backgrounds (Members Only zone, Analyst Lens tier card) - those need a different inverted treatment and will be handled separately if asked.
