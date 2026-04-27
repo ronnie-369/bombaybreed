@@ -1,10 +1,35 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useMemo, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { ArrowRight } from 'lucide-react';
 import ScrollReveal from '@/components/ui/ScrollReveal';
 import SectionLabel from '@/components/ui/SectionLabel';
 import { trackSponsorEvent } from '@/utils/sponsorAnalytics';
+import {
+  getVariant,
+  logAssignmentOnce,
+  logClick,
+  type Variant,
+} from '@/lib/abTest';
+
+/**
+ * A/B test config for the two tier CTAs. Control = 'A' = current copy.
+ * Challenger = 'B' = new copy. Variants are sticky per visitor (localStorage)
+ * and 50/50 randomised. See src/lib/abTest.ts for the wiring.
+ */
+const CTA_COPY: Record<
+  'industry_reader' | 'analyst_lens',
+  Record<Variant, string>
+> = {
+  industry_reader: {
+    A: 'Join the Industry Reader',
+    B: 'Read the market with us',
+  },
+  analyst_lens: {
+    A: 'Take the Analyst Lens',
+    B: 'Get the read before the price moves',
+  },
+};
 
 /**
  * Premium Access Lounge — the conversion stack on top of /insights.
