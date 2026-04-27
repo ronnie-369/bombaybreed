@@ -399,7 +399,7 @@ const PremiumAccessLounge: React.FC = () => {
       {/* ── 2. WHAT THE INDUSTRY HAS TO SAY ──────────────────────────── */}
       <section id="industry" className="px-6 md:px-8 py-16 border-t border-border/50 scroll-mt-32">
         <div className="container mx-auto max-w-[900px]">
-          <SectionLabel label="02 — What the industry has to say" />
+          <SectionLabel label="01 — What the industry has to say" />
           <h2 className="text-section font-serif tracking-tight mt-6 mb-10">
             Quotes from readers
           </h2>
