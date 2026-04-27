@@ -2,6 +2,7 @@ import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { ArrowRight } from 'lucide-react';
+import { Document, Earth, ChartLineSmooth } from '@carbon/icons-react';
 import ScrollReveal from '@/components/ui/ScrollReveal';
 import SectionLabel from '@/components/ui/SectionLabel';
 import { trackSponsorEvent } from '@/utils/sponsorAnalytics';
@@ -365,28 +366,34 @@ const PremiumAccessLounge: React.FC = () => {
           </p>
 
           {/* What you get — shared editorial line. No deliverables here; those live in the cards. */}
-          <div className="border-y border-border/60 py-8 md:py-5 mb-12 md:mb-10 grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-8">
+          <div className="border-y border-border/60 py-8 md:py-7 mb-12 md:mb-10 grid grid-cols-1 md:grid-cols-3 gap-8">
             {[
               {
+                Icon: Document,
                 k: 'One desk',
                 v: 'From the team that publishes The Climate Desk and the Strategic Communications Advisory and Consulting of Bombay Breed.',
               },
               {
+                Icon: Earth,
                 k: 'India first',
                 v: 'Independent research from inside the market, for investments in India, with deep teams from India.',
               },
               {
+                Icon: ChartLineSmooth,
                 k: 'Two depths',
                 v: 'Pick the read that fits the seat you sit in - the cards below set out what each delivers.',
               },
-            ].map((item) => (
-              <div key={item.k} className="flex flex-col gap-1.5 md:grid md:grid-cols-[auto_1fr] md:gap-3 md:items-baseline">
-                <span className="text-[10px] font-bold tracking-widest uppercase text-accent whitespace-nowrap leading-snug">
-                  {item.k}
-                </span>
-                <span className="text-[15px] md:text-sm text-foreground/80 leading-snug md:leading-snug">
-                  {item.v}
-                </span>
+            ].map(({ Icon, k, v }) => (
+              <div key={k} className="flex flex-col gap-3">
+                <Icon size={20} className="text-accent" aria-hidden="true" />
+                <div className="flex flex-col gap-1.5">
+                  <span className="text-[10px] font-bold tracking-widest uppercase text-foreground leading-snug">
+                    {k}
+                  </span>
+                  <span className="text-[15px] md:text-sm text-foreground/75 leading-snug">
+                    {v}
+                  </span>
+                </div>
               </div>
             ))}
           </div>
