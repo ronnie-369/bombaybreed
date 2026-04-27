@@ -2663,8 +2663,8 @@ new Chart(cryoCtx, {
     var activeParent = subToParent[activeId] || activeId;
 
     allLinks.forEach(function(l) { l.classList.remove('is-active'); l.removeAttribute('aria-current'); });
-    if (linkMap[activeId]) linkMap[activeId].classList.add('is-active');
-    if (activeId !== activeParent && linkMap[activeParent]) linkMap[activeParent].classList.add('is-active');
+    if (linkMap[activeId]) { linkMap[activeId].classList.add('is-active'); linkMap[activeId].setAttribute('aria-current', 'location'); }
+    if (activeId !== activeParent && linkMap[activeParent]) { linkMap[activeParent].classList.add('is-active'); linkMap[activeParent].setAttribute('aria-current', 'location'); }
 
     // Reveal only the matching sub-row
     subRows.forEach(function(r) { r.classList.remove('is-visible'); });
