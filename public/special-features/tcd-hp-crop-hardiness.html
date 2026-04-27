@@ -1,0 +1,1257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>When the Climate Outgrows the Crop: HP Produce at Hardiness Limits | The Climate Desk</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+<style>
+  :root {
+    --off-white: #FBFBF9;
+    --near-black: #0A0A0A;
+    --slate-blue: #1A3C5B;
+    --copper: #C0946D;
+    --gray: #6B7280;
+    --border: #E5E5E1;
+    --surface: #FFFFFF;
+
+    /* Risk tier semantic colours (used sparingly, inside data viz only) */
+    --risk-critical: #8B3A2F;
+    --risk-high: #C0946D;
+    --risk-moderate: #D4B896;
+    --risk-stable: #1A3C5B;
+    --risk-beneficiary: #2D5F4A;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { background: var(--off-white); }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    color: var(--near-black);
+    font-size: 16px;
+    line-height: 1.6;
+    font-weight: 400;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ===== Nav ===== */
+  .nav {
+    border-bottom: 1px solid var(--border);
+    background: var(--off-white);
+    position: sticky;
+    top: 0;
+    z-index: 50;
+  }
+  .nav-inner {
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 18px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .brand-lockup { display: flex; align-items: center; gap: 10px; }
+  .brand-mark { width: 28px; height: 28px; }
+  .brand-mark svg { width: 100%; height: 100%; }
+  .brand-wordmark {
+    font-family: 'Inter', sans-serif;
+    font-weight: 500;
+    font-size: 14px;
+    letter-spacing: -0.5px;
+    color: var(--near-black);
+  }
+  .brand-tcd {
+    font-family: 'Playfair Display', serif;
+    font-weight: 400;
+    font-size: 15px;
+    letter-spacing: -0.2px;
+    font-style: italic;
+    padding-left: 14px;
+    border-left: 1px solid var(--border);
+    margin-left: 4px;
+  }
+  .nav-links {
+    display: flex;
+    gap: 28px;
+    align-items: center;
+    font-family: 'Inter', sans-serif;
+    font-weight: 500;
+    font-size: 13px;
+  }
+  .nav-links a {
+    color: var(--gray);
+    text-decoration: none;
+    transition: color 0.15s;
+  }
+  .nav-links a:hover { color: var(--near-black); }
+  .nav-cta {
+    background: var(--slate-blue);
+    color: var(--off-white) !important;
+    padding: 8px 16px;
+    border-radius: 10px;
+    font-weight: 500;
+  }
+
+  /* ===== Article ===== */
+  .article {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 56px 40px 40px;
+  }
+
+  .beat-kicker {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--copper);
+    margin-bottom: 24px;
+    display: inline-block;
+    text-decoration: none;
+  }
+
+  h1.headline {
+    font-family: 'Playfair Display', serif;
+    font-weight: 400;
+    font-size: 54px;
+    line-height: 1.05;
+    letter-spacing: -1.4px;
+    margin-bottom: 24px;
+  }
+
+  .standfirst {
+    font-family: 'Playfair Display', serif;
+    font-weight: 400;
+    font-style: italic;
+    font-size: 22px;
+    line-height: 1.45;
+    margin-bottom: 36px;
+    letter-spacing: -0.3px;
+    max-width: 780px;
+  }
+
+  .meta {
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--gray);
+    padding-bottom: 28px;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 40px;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .zone-label {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--copper);
+    margin-top: 56px;
+    margin-bottom: 16px;
+    padding-top: 28px;
+    border-top: 1px solid var(--border);
+    display: block;
+  }
+  .zone-label:first-of-type {
+    margin-top: 0;
+    padding-top: 0;
+    border-top: none;
+  }
+
+  .article p {
+    font-family: 'Inter', sans-serif;
+    font-size: 17px;
+    line-height: 1.7;
+    margin-bottom: 20px;
+    font-weight: 400;
+  }
+  .article p strong { font-weight: 600; }
+
+  .signal-zone p { font-size: 16px; color: var(--gray); }
+  .signal-zone p strong { color: var(--near-black); }
+
+  h3.sub {
+    font-family: 'Playfair Display', serif;
+    font-weight: 400;
+    font-size: 28px;
+    line-height: 1.22;
+    letter-spacing: -0.4px;
+    margin: 48px 0 14px;
+  }
+
+  h4.sub2 {
+    font-family: 'Playfair Display', serif;
+    font-weight: 400;
+    font-size: 22px;
+    line-height: 1.25;
+    letter-spacing: -0.3px;
+    margin: 32px 0 12px;
+  }
+
+  /* ===== Framework card (the mental model) ===== */
+  .framework {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 32px;
+    margin: 36px 0 48px;
+  }
+  .fw-label {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--copper);
+    margin-bottom: 16px;
+  }
+  .fw-title {
+    font-family: 'Playfair Display', serif;
+    font-weight: 400;
+    font-size: 26px;
+    line-height: 1.2;
+    letter-spacing: -0.4px;
+    margin-bottom: 20px;
+  }
+  .fw-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    margin-top: 20px;
+  }
+  .fw-item {
+    border-top: 2px solid var(--near-black);
+    padding-top: 14px;
+  }
+  .fw-item .fw-num {
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--copper);
+    letter-spacing: 1px;
+    margin-bottom: 8px;
+  }
+  .fw-item .fw-h {
+    font-family: 'Playfair Display', serif;
+    font-weight: 500;
+    font-size: 17px;
+    margin-bottom: 6px;
+    letter-spacing: -0.2px;
+  }
+  .fw-item .fw-desc {
+    font-size: 13px;
+    line-height: 1.55;
+    color: var(--gray);
+  }
+
+  /* ===== Master matrix table ===== */
+  .matrix-wrap {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 28px;
+    margin: 40px 0;
+    overflow-x: auto;
+  }
+  .matrix-title {
+    font-family: 'Playfair Display', serif;
+    font-weight: 400;
+    font-size: 24px;
+    line-height: 1.25;
+    letter-spacing: -0.4px;
+    margin-bottom: 6px;
+  }
+  .matrix-subtitle {
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    color: var(--gray);
+    margin-bottom: 24px;
+    max-width: 720px;
+  }
+  table.matrix {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+    min-width: 820px;
+  }
+  table.matrix thead th {
+    font-family: 'Inter', sans-serif;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: var(--copper);
+    padding: 12px 10px;
+    border-bottom: 1.5px solid var(--near-black);
+    text-align: left;
+    vertical-align: bottom;
+  }
+  table.matrix tbody td {
+    padding: 14px 10px;
+    border-bottom: 1px solid var(--border);
+    color: var(--near-black);
+    vertical-align: top;
+    line-height: 1.5;
+  }
+  table.matrix tbody td.crop {
+    font-family: 'Playfair Display', serif;
+    font-weight: 500;
+    font-size: 15px;
+    letter-spacing: -0.2px;
+  }
+  table.matrix tbody td.crop small {
+    display: block;
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    font-weight: 400;
+    color: var(--gray);
+    margin-top: 2px;
+    letter-spacing: 0;
+  }
+  table.matrix tbody td.num {
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    font-size: 12px;
+    font-weight: 500;
+  }
+  table.matrix tbody tr:last-child td { border-bottom: none; }
+
+  .risk-pill {
+    display: inline-block;
+    padding: 4px 10px;
+    border-radius: 100px;
+    font-family: 'Inter', sans-serif;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--off-white);
+  }
+  .risk-pill.critical { background: var(--risk-critical); }
+  .risk-pill.high { background: var(--risk-high); color: var(--near-black); }
+  .risk-pill.moderate { background: var(--risk-moderate); color: var(--near-black); }
+  .risk-pill.stable { background: var(--slate-blue); }
+  .risk-pill.beneficiary { background: var(--risk-beneficiary); }
+
+  .matrix-legend {
+    margin-top: 20px;
+    padding-top: 16px;
+    border-top: 1px solid var(--border);
+    display: flex;
+    gap: 18px;
+    flex-wrap: wrap;
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    color: var(--gray);
+  }
+  .matrix-legend span {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .matrix-source {
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    font-size: 11px;
+    font-weight: 500;
+    color: var(--gray);
+    margin-top: 14px;
+  }
+
+  /* ===== Chart card ===== */
+  .chart-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 28px;
+    margin: 40px 0;
+  }
+  .chart-title {
+    font-family: 'Playfair Display', serif;
+    font-weight: 400;
+    font-size: 22px;
+    line-height: 1.25;
+    letter-spacing: -0.3px;
+    margin-bottom: 6px;
+  }
+  .chart-subtitle {
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    color: var(--gray);
+    margin-bottom: 24px;
+  }
+  .chart-canvas-wrap {
+    position: relative;
+    height: 420px;
+  }
+  .chart-source {
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    font-size: 11px;
+    font-weight: 500;
+    color: var(--gray);
+    margin-top: 18px;
+    padding-top: 14px;
+    border-top: 1px solid var(--border);
+  }
+
+  /* ===== Data Point ===== */
+  .data-point {
+    background: var(--near-black);
+    color: var(--off-white);
+    border-radius: 12px;
+    padding: 44px 36px;
+    margin: 48px 0;
+  }
+  .data-point .dp-label {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--copper);
+    margin-bottom: 20px;
+  }
+  .data-point .dp-figure {
+    font-family: 'Playfair Display', serif;
+    font-weight: 400;
+    font-size: 72px;
+    line-height: 1;
+    letter-spacing: -2px;
+    margin-bottom: 16px;
+  }
+  .data-point .dp-context {
+    font-family: 'Playfair Display', serif;
+    font-weight: 400;
+    font-style: italic;
+    font-size: 22px;
+    line-height: 1.4;
+    max-width: 620px;
+    margin-bottom: 24px;
+    letter-spacing: -0.3px;
+  }
+  .data-point .dp-source {
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    font-size: 11px;
+    color: var(--border);
+  }
+
+  /* ===== Tiered list (the four exposure tiers) ===== */
+  .tier {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 28px 32px;
+    margin: 20px 0;
+    display: grid;
+    grid-template-columns: 180px 1fr;
+    gap: 32px;
+  }
+  .tier-left {
+    border-right: 1px solid var(--border);
+    padding-right: 24px;
+  }
+  .tier-label {
+    font-family: 'Inter', sans-serif;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--copper);
+    margin-bottom: 10px;
+  }
+  .tier-name {
+    font-family: 'Playfair Display', serif;
+    font-weight: 400;
+    font-size: 22px;
+    line-height: 1.2;
+    letter-spacing: -0.3px;
+    color: var(--near-black);
+    margin-bottom: 10px;
+  }
+  .tier-share {
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    font-size: 11px;
+    color: var(--gray);
+    line-height: 1.5;
+  }
+  .tier-right h5 {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--gray);
+    margin-bottom: 10px;
+  }
+  .tier-right p {
+    font-size: 15px;
+    line-height: 1.65;
+    margin-bottom: 14px;
+  }
+  .tier-right p:last-child { margin-bottom: 0; }
+  .tier-right .crops {
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    font-size: 12px;
+    color: var(--near-black);
+    background: var(--off-white);
+    padding: 12px 14px;
+    border-left: 3px solid var(--copper);
+    margin-top: 14px;
+    line-height: 1.6;
+  }
+
+  .tier.critical .tier-left { border-right-color: var(--risk-critical); }
+  .tier.critical .tier-name { color: var(--risk-critical); }
+  .tier.high .tier-name { color: var(--copper); }
+  .tier.moderate .tier-name { color: var(--near-black); }
+  .tier.beneficiary .tier-name { color: var(--risk-beneficiary); }
+
+  /* ===== Newsletter ===== */
+  .newsletter-inline {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 28px 32px;
+    margin: 48px 0;
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    flex-wrap: wrap;
+  }
+  .newsletter-inline .nl-copy { flex: 1; min-width: 260px; }
+  .newsletter-inline .nl-label {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--copper);
+    margin-bottom: 10px;
+  }
+  .newsletter-inline .nl-title {
+    font-family: 'Playfair Display', serif;
+    font-weight: 400;
+    font-size: 18px;
+    margin-bottom: 6px;
+    line-height: 1.3;
+    letter-spacing: -0.2px;
+  }
+  .newsletter-inline .nl-sub {
+    font-size: 13px;
+    color: var(--gray);
+  }
+  .nl-btn {
+    background: var(--slate-blue);
+    color: var(--off-white);
+    padding: 10px 20px;
+    border-radius: 10px;
+    font-weight: 500;
+    font-size: 14px;
+    text-decoration: none;
+    white-space: nowrap;
+  }
+  .nl-btn:hover { background: var(--near-black); }
+
+  /* ===== BB Advisory CTA ===== */
+  .bb-cta {
+    margin-top: 56px;
+    padding-top: 36px;
+    border-top: 1px solid var(--border);
+    font-family: 'Inter', sans-serif;
+    font-size: 15px;
+    line-height: 1.65;
+  }
+  .bb-cta a {
+    color: var(--slate-blue);
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 3px;
+    font-weight: 500;
+  }
+
+  /* ===== Footer / sources ===== */
+  .article-footer {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 40px 40px 80px;
+  }
+  .sources {
+    border-top: 1px solid var(--border);
+    padding-top: 32px;
+  }
+  .sources h4 {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--copper);
+    margin-bottom: 20px;
+  }
+  .sources ol {
+    padding-left: 20px;
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    color: var(--gray);
+    line-height: 1.7;
+  }
+  .sources li { margin-bottom: 8px; }
+
+  .site-footer {
+    border-top: 1px solid var(--border);
+    background: var(--near-black);
+    color: var(--off-white);
+    padding: 40px;
+  }
+  .footer-inner {
+    max-width: 1180px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+  .footer-brand {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 16px;
+  }
+  .footer-meta {
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    font-size: 11px;
+    color: var(--border);
+  }
+
+  @media (max-width: 720px) {
+    .nav-inner { padding: 14px 20px; }
+    .nav-links { display: none; }
+    .article { padding: 36px 22px 24px; }
+    .article-footer { padding: 32px 22px 60px; }
+    h1.headline { font-size: 34px; letter-spacing: -0.8px; }
+    .standfirst { font-size: 18px; }
+    .article p { font-size: 16px; }
+    .fw-grid { grid-template-columns: 1fr; gap: 16px; }
+    .tier { grid-template-columns: 1fr; gap: 16px; padding: 22px; }
+    .tier-left { border-right: none; border-bottom: 1px solid var(--border); padding-right: 0; padding-bottom: 14px; }
+    .data-point { padding: 32px 24px; }
+    .data-point .dp-figure { font-size: 52px; }
+    .data-point .dp-context { font-size: 18px; }
+    .chart-card, .matrix-wrap, .framework { padding: 20px; }
+  }
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <div class="brand-lockup">
+      <div class="brand-mark" aria-label="Bombay Breed">
+        <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+          <path fill="#0A0A0A" d="M6 10 L4 4 L10 8 C12 7 14 6.5 16 6.5 C18 6.5 20 7 22 8 L28 4 L26 10 C28 12 29 15 29 18 C29 23 25 27 20 28 L12 28 C7 27 3 23 3 18 C3 15 4 12 6 10 Z M11 15 C11 16 11.5 17 12.5 17 C13.5 17 14 16 14 15 C14 14 13.5 13 12.5 13 C11.5 13 11 14 11 15 Z M18 15 C18 16 18.5 17 19.5 17 C20.5 17 21 16 21 15 C21 14 20.5 13 19.5 13 C18.5 13 18 14 18 15 Z"/>
+        </svg>
+      </div>
+      <span class="brand-wordmark">BOMBAY BREED</span>
+      <span class="brand-tcd">The Climate Desk</span>
+    </div>
+    <div class="nav-links">
+      <a href="/special-features/tcd-hp-investor-synthesis.html" class="nav-cta" style="display:inline-flex;align-items:center;gap:8px;">
+        <span style="font-size:14px;line-height:1;">&larr;</span>
+        <span>Back to investor synthesis</span>
+      </a>
+    </div>
+  </div>
+</nav>
+
+<article class="article">
+
+  <a href="#" class="beat-kicker">ENERGY TRANSITION / PHYSICAL CLIMATE RISK</a>
+
+  <h1 class="headline">When the Climate Outgrows the Crop</h1>
+
+  <p class="standfirst">Every plant has a temperature envelope and a chilling-hour budget. I have mapped Himachal's full produce portfolio against its crop hardiness requirements and the state's projected warming. The result is a clear ranking of what the climate will break first, what it will not break, and what it will quietly favour.</p>
+
+  <div class="meta">
+    <span>BY THERESA RONNIE, FOUNDER &middot; BOMBAY BREED</span>
+    <span>APRIL 2026 &middot; 2,900 WORDS</span>
+  </div>
+
+  <!-- The Signal -->
+  <div class="zone-label">The Signal</div>
+  <div class="signal-zone">
+    <p>Himachal Pradesh's climate modelling projects an annual mean temperature increase of <strong>1.3 to 1.9 degrees Celsius for 2021-2050</strong> against the 1971-2000 baseline, with a larger rise in minimum temperatures (Report on Climate Modelling, HP Department of Environment, Science and Technology). Under IPCC high-emission scenarios, India's near-term warming is projected at <strong>0.5 to 2 degrees Celsius by 2049</strong>. CMIP6 projections specific to Himachal indicate that <strong>heatwave frequency and intensity increase with altitude</strong>, contrary to the assumption that higher elevations are protected (Rana et al., Environmental Quality Management, 2025). Apple requires 1,000 to 1,600 chilling hours below 7 degrees Celsius to fruit. Tea yields fall 4 percent for every 1 degree above 28 degrees Celsius. Saffron requires 1,000 to 1,200 chilling hours below 4 degrees Celsius for vernalisation. These are not adjustable parameters.</p>
+  </div>
+
+  <!-- Theresa's View -->
+  <div class="zone-label">Theresa's View</div>
+
+  <p>The Himalayan climate story is often told as one of retreating snow and melting glaciers. That framing is correct but incomplete. The economic mechanism by which warming converts into livelihood loss runs through <strong>crop hardiness</strong>: the non-negotiable temperature and chilling requirements that each species evolved to need. When a warming trajectory crosses a hardiness threshold, the crop does not yield a little less. It stops yielding usefully.</p>
+
+  <p>Himachal Pradesh is a useful test case because its produce portfolio spans almost the entire range of temperate and subtropical agriculture in a single state: apples that need nearly freezing winters, saffron that needs high-altitude cold deserts, tea that needs temperate humidity, off-season vegetables that exploit the very specific summer window when the plains cannot grow them, livestock systems that follow transhumance patterns tied to alpine meadow cycles. Every one of these systems has a hardiness limit that is now being tested.</p>
+
+  <p>I have cross-linked each major produce category from <a href="#" style="color:var(--slate-blue); text-decoration:underline;">our earlier map</a> against three things: its chilling hour or temperature requirement, Himachal's current position relative to that requirement, and the projected shift by 2030 and 2050. The matrix below is deliberately unsparing. It is not a forecast of catastrophe. It is an honest mapping of which parts of the produce economy are already at or past their hardiness threshold, which are in the transition zone, and which have headroom.</p>
+
+  <!-- ===== The framework card ===== -->
+  <div class="framework">
+    <div class="fw-label">The Framework</div>
+    <div class="fw-title">How climate intersects a crop's hardiness envelope</div>
+    <p style="font-size:14px; color:var(--gray); margin-bottom:0;">Three parameters determine whether a produce category is climate-resilient, at threshold, or in collapse.</p>
+    <div class="fw-grid">
+      <div class="fw-item">
+        <div class="fw-num">01</div>
+        <div class="fw-h">Chilling budget</div>
+        <div class="fw-desc">The hours below a species-specific temperature (typically 7 degrees Celsius for temperate fruits, 4 degrees for saffron) required to break dormancy and flower. Below threshold means no flowers, no fruit set, no yield.</div>
+      </div>
+      <div class="fw-item">
+        <div class="fw-num">02</div>
+        <div class="fw-h">Thermal ceiling</div>
+        <div class="fw-desc">The upper temperature above which photosynthesis stalls, pollen desiccates, or yield drops proportionally. Tea loses 4 percent yield per 1 degree Celsius above 28. Apples desiccate pollen at flowering above 30.</div>
+      </div>
+      <div class="fw-item">
+        <div class="fw-num">03</div>
+        <div class="fw-h">Moisture synchrony</div>
+        <div class="fw-desc">The match between rainfall timing and crop phenology. Winter snow for orchards, monsoon rhythm for vegetables, dry harvests for heeng and kala zeera. When monsoon and Western Disturbance timing shift, synchrony breaks.</div>
+      </div>
+    </div>
+  </div>
+
+  <p>The key scientific point is that these three parameters operate as <strong>hard floors and ceilings</strong>, not smooth gradients. A small excursion past threshold does not produce a proportional yield drop. It produces a step change. This is why the apple belt did not gradually thin in lower Kullu and Shimla over two decades; it collapsed, while new planting migrated 1,000 metres uphill into Lahaul-Spiti. The underlying signal is sharp even when the aggregate numbers look smooth.</p>
+
+  <!-- ===== Projected warming chart ===== -->
+  <div class="chart-card">
+    <div class="chart-title">Himachal Pradesh's projected warming, against crop hardiness floors</div>
+    <div class="chart-subtitle">Annual mean temperature trajectory versus the thermal thresholds at which each crop begins to fail</div>
+    <div class="chart-canvas-wrap">
+      <canvas id="warmingChart"></canvas>
+    </div>
+    <div class="chart-source">Source: HP Department of Environment, Science and Technology, Climate Modelling Report. CMIP6 projections (Rana et al., 2025). Crop thresholds from Journal of Agrometeorology (2011), Frontiers in Plant Science (2021), and international agronomy literature. Baseline represents observed warming of 1.8 to 4.1 degrees Celsius in Kullu and Shimla apple belt over 2000-2020.</div>
+  </div>
+
+  <!-- ===== THE MATRIX - the main deliverable ===== -->
+  <div class="matrix-wrap">
+    <div class="matrix-title">Crop hardiness cross-linked with Himachal's climate trajectory</div>
+    <div class="matrix-subtitle">Every major HP produce category, mapped against its hardiness requirement, current climate fit, and projected risk through 2050.</div>
+
+    <table class="matrix">
+      <thead>
+        <tr>
+          <th style="width: 180px;">Produce</th>
+          <th>Hardiness requirement</th>
+          <th>Current HP fit</th>
+          <th>Projected shift by 2050</th>
+          <th style="width: 120px;">Risk tier</th>
+        </tr>
+      </thead>
+      <tbody>
+
+        <tr>
+          <td class="crop">Apple<small>Traditional varieties</small></td>
+          <td class="num">1,000 - 1,600 chill hours below 7 degrees Celsius. USDA hardiness zones 4 to 8b.</td>
+          <td>Below 1,500 m now sub-threshold. Mid-elevation belt losing 25 to 40 percent yield.</td>
+          <td>Lower and mid belt (Solan, Sirmaur, Kullu valley floor) unviable. Commercial apples retreat to above 2,500 m.</td>
+          <td><span class="risk-pill critical">Critical</span></td>
+        </tr>
+
+        <tr>
+          <td class="crop">Stone fruits<small>Plum, peach, apricot, cherry</small></td>
+          <td class="num">400 - 1,050 chill hours depending on variety. High-chill varieties match apple threshold.</td>
+          <td>Most high-chill cultivars under stress; low-chill varieties (under 400 hours) still viable in lower belts.</td>
+          <td>High-chill stone fruits follow apple uphill. Low-chill varieties expand in lower Kullu and Mandi.</td>
+          <td><span class="risk-pill high">High</span></td>
+        </tr>
+
+        <tr>
+          <td class="crop">Walnut, almond<small>Nuts and dry fruits</small></td>
+          <td class="num">Walnut 700-1,000 chill hours. Almond 100-500. High altitude tolerant.</td>
+          <td>Walnut under stress in mid Kullu; almond holding in Kinnaur and Chamba.</td>
+          <td>Walnut belt contracts; almond less exposed. Both can migrate upslope.</td>
+          <td><span class="risk-pill high">High</span></td>
+        </tr>
+
+        <tr>
+          <td class="crop">Kangra tea<small>Camellia sinensis</small></td>
+          <td class="num">Optimal 21-29 degrees Celsius. Yield drops 4 percent per 1 degree above 28. Needs high humidity, pH 4.5-6.5.</td>
+          <td>Kangra valley summer temperatures already approach ceiling; monsoon variability a growing risk.</td>
+          <td>Yield compression of 6-12 percent. Quality shifts (higher catechin stress markers). Pest pressure rises.</td>
+          <td><span class="risk-pill high">High</span></td>
+        </tr>
+
+        <tr>
+          <td class="crop">Saffron<small>Kesar, recent pilots</small></td>
+          <td class="num">1,000 - 1,200 chill hours below 4 degrees Celsius for vernalisation. Flowers at 17 degrees.</td>
+          <td>Pilots across Kinnaur, Bharmour, Lahaul-Spiti meet threshold. Palampur and Kullu marginal.</td>
+          <td>High-altitude pilot sites remain viable. Mid-elevation pilots (Kullu, Palampur) become sub-threshold.</td>
+          <td><span class="risk-pill moderate">Moderate</span></td>
+        </tr>
+
+        <tr>
+          <td class="crop">Citrus, mango<small>Subtropical fruits</small></td>
+          <td class="num">Citrus: less than 300 chill hours, frost-sensitive. Mango: 24-30 degrees Celsius optimal.</td>
+          <td>Warming is presently favourable for the lower hill belt (Kangra, Una, Bilaspur).</td>
+          <td>Cultivation zone expands upslope into former apple territory. Pest and disease pressure rises.</td>
+          <td><span class="risk-pill beneficiary">Net beneficiary</span></td>
+        </tr>
+
+        <tr>
+          <td class="crop">Off-season vegetables<small>Tomato, peas, cabbage, cauliflower</small></td>
+          <td class="num">Cool-season window (June-Sep) when plains are too hot. Peas need 10-18 degrees. Tomato fruit set fails above 32.</td>
+          <td>The window is narrowing at both ends. Unseasonal monsoon spikes have hit Kullu and Mandi production hard.</td>
+          <td>The "off-season" premium window compresses by 3-5 weeks. Net returns compress by 15-25 percent.</td>
+          <td><span class="risk-pill high">High</span></td>
+        </tr>
+
+        <tr>
+          <td class="crop">Seed potato<small>Lahaul, upper Shimla, Kinnaur</small></td>
+          <td class="num">Tuber formation optimal at 15-20 degrees Celsius. Requires cool nights (below 15) for tuberisation.</td>
+          <td>High-altitude production zones still viable. Low-elevation seed multiplication losing reliability.</td>
+          <td>Seed potato quality migrates fully into Lahaul-Spiti and upper Kinnaur by 2050.</td>
+          <td><span class="risk-pill moderate">Moderate</span></td>
+        </tr>
+
+        <tr>
+          <td class="crop">Cereals<small>Wheat, maize, rice</small></td>
+          <td class="num">Wheat: yield loss of 6 percent per 1 degree above optimal grain-fill temperature. Maize and rice more heat-tolerant.</td>
+          <td>Indo-Gangetic wheat yields already reduced by about 8 percent. Himachal cereals follow the same pattern.</td>
+          <td>Yield compression of 10-18 percent for wheat. Maize and rice marginal impact.</td>
+          <td><span class="risk-pill moderate">Moderate</span></td>
+        </tr>
+
+        <tr>
+          <td class="crop">Ginger, turmeric, garlic<small>Rhizomatous spices</small></td>
+          <td class="num">Ginger: 25-30 degrees Celsius, high humidity, well-drained soil. Turmeric similar. Garlic needs cool maturation.</td>
+          <td>Kangra, Sirmaur, Mandi currently near optimal. Garlic facing declining chilling.</td>
+          <td>Ginger and turmeric stable to slightly favoured. Garlic belt migrates upslope.</td>
+          <td><span class="risk-pill stable">Stable</span></td>
+        </tr>
+
+        <tr>
+          <td class="crop">Himachali kala zeera<small>Bunium persicum</small></td>
+          <td class="num">Native to 1,850-3,100 m. Cold-hardy, drought-tolerant. Requires dry summer harvest window.</td>
+          <td>Current range remains climatically suitable. Dry harvest windows holding.</td>
+          <td>Range may shrink at lower elevations (1,850 m) but expands at upper end. Net neutral.</td>
+          <td><span class="risk-pill stable">Stable</span></td>
+        </tr>
+
+        <tr>
+          <td class="crop">Heeng, hops<small>Lahaul-Spiti pilots</small></td>
+          <td class="num">Heeng: cold, dry, high altitude. Hops: 4-8 hours frost tolerance, moderate summer heat.</td>
+          <td>Lahaul-Spiti conditions ideal; pilot sites match native climate envelopes.</td>
+          <td>Both remain viable in high-altitude pilot zones through 2050 under moderate warming scenarios.</td>
+          <td><span class="risk-pill stable">Stable</span></td>
+        </tr>
+
+        <tr>
+          <td class="crop">Medicinal plants<small>640 native species</small></td>
+          <td class="num">Diverse envelopes. Alpine species (above 2,500 m) most climate-sensitive. Subtropical species more tolerant.</td>
+          <td>Alpine species facing habitat compression. Mid-elevation species shifting upslope.</td>
+          <td>Estimated 20-35 percent of alpine medicinal species face range loss by 2050. Subtropical species expand.</td>
+          <td><span class="risk-pill high">High</span></td>
+        </tr>
+
+        <tr>
+          <td class="crop">Industrial hemp<small>Low-THC cultivars</small></td>
+          <td class="num">Wide thermal envelope (15-27 degrees Celsius optimal). Low water requirement. Tolerant of temperature variability.</td>
+          <td>Virtually all HP elevations below 2,500 m climatically suitable.</td>
+          <td>Remains viable across the widest elevation band of any commercial crop. Actively favoured as other crops retreat.</td>
+          <td><span class="risk-pill beneficiary">Net beneficiary</span></td>
+        </tr>
+
+        <tr>
+          <td class="crop">Dairy (milk)<small>Statewide</small></td>
+          <td class="num">Heat stress in dairy cattle above 25-27 degrees Celsius reduces milk yield 10-25 percent.</td>
+          <td>Mid and lower hill dairy already exposed to summer heat stress. Fodder scarcity follows drought.</td>
+          <td>Yield compression of 8-15 percent without intervention. Shift toward heat-tolerant breeds and housed systems.</td>
+          <td><span class="risk-pill high">High</span></td>
+        </tr>
+
+        <tr>
+          <td class="crop">Gaddi wool, pashmina<small>Migratory livestock</small></td>
+          <td class="num">Transhumance depends on alpine meadow cycles. Pashmina goats need cold winters for fibre development.</td>
+          <td>Alpine grazing seasons shortening; Gaddi pastoralists reporting reduced water along migration routes.</td>
+          <td>Alpine pasture productivity may shift but remains functional. Pashmina fibre quality at risk in warming trans-Himalaya.</td>
+          <td><span class="risk-pill high">High</span></td>
+        </tr>
+
+        <tr>
+          <td class="crop">Trout<small>Rainbow and brown</small></td>
+          <td class="num">Optimal 10-16 degrees Celsius water temperature. Thermal stress above 18, lethal above 22.</td>
+          <td>Kullu, Mandi, Chamba stream temperatures rising in summer months. Marginal conditions now documented.</td>
+          <td>Lower-elevation trout farms become thermally unviable in summer. Production migrates upstream to cold tributaries.</td>
+          <td><span class="risk-pill critical">Critical</span></td>
+        </tr>
+
+      </tbody>
+    </table>
+
+    <div class="matrix-legend">
+      <span><span class="risk-pill critical">Critical</span> Past or at hardiness threshold</span>
+      <span><span class="risk-pill high">High</span> Approaching threshold by 2050</span>
+      <span><span class="risk-pill moderate">Moderate</span> Partial exposure, manageable</span>
+      <span><span class="risk-pill stable">Stable</span> Low exposure within planning horizon</span>
+      <span><span class="risk-pill beneficiary">Net beneficiary</span> Climate-favoured in HP context</span>
+    </div>
+
+    <div class="matrix-source">Sources: HP Department of Environment, Science and Technology, Climate Modelling Report. IPCC AR6 Chapter 10: Asia (2022). Journal of Agrometeorology (2011), Frontiers in Plant Science (2021), Gardening Know How technical reference, ICAR technical literature. Projections assume moderate warming pathways (SSP2-4.5) through 2050.</div>
+  </div>
+
+  <!-- ===== Newsletter CTA mid-article ===== -->
+  <div class="newsletter-inline">
+    <div class="nl-copy">
+      <div class="nl-label">NEWSLETTER &middot; TCD CARBON MARKETS BRIEF</div>
+      <div class="nl-title">Registry data, credit prices and CCTS sector exposure, twice a week.</div>
+      <div class="nl-sub">Free. For investors, traders and compliance teams.</div>
+    </div>
+    <a href="#" class="nl-btn">Subscribe</a>
+  </div>
+
+  <!-- ===== Four tiers, narrative ===== -->
+  <div class="zone-label">What Others Miss / Four Exposure Tiers</div>
+
+  <p>The matrix above collapses into four operationally useful tiers. These are not a ranking of which crops I like; they are a ranking of how much climate adaptation capital each segment requires, and over what timescale.</p>
+
+  <!-- Tier 1 -->
+  <div class="tier critical">
+    <div class="tier-left">
+      <div class="tier-label">Tier 01</div>
+      <div class="tier-name">At or past threshold</div>
+      <div class="tier-share">Apple (lower belt). Trout (lower streams). Segments of the walnut and cherry belts.</div>
+    </div>
+    <div class="tier-right">
+      <h5>The crops already breaking</h5>
+      <p>The lower-elevation apple belt in Solan, Sirmaur and lower Kullu has effectively lost commercial viability. Traditional varieties needing 1,000 to 1,600 chilling hours cannot accumulate them at elevations below 1,500 metres. Yield losses of 25 to 40 percent in traditional belts, with production migrating 1,000 metres upslope into Lahaul-Spiti. Trout farms in Kullu, Mandi and Chamba report summer stream temperatures approaching the 18 degree Celsius thermal stress threshold, with lethal conditions above 22. <strong>The investment implication is that defending these crops in their current locations is not the right strategy. Capital should be routed to upslope relocation, low-chill varietal substitution, and alternative uses for former orchard land.</strong></p>
+      <div class="crops">RELOCATION-FIRST OR SUBSTITUTION-FIRST. NOT DEFEND-IN-PLACE.</div>
+    </div>
+  </div>
+
+  <!-- Tier 2 -->
+  <div class="tier high">
+    <div class="tier-left">
+      <div class="tier-label">Tier 02</div>
+      <div class="tier-name">Approaching threshold by 2050</div>
+      <div class="tier-share">Off-season vegetables, Kangra tea, dairy, most stone fruits, pashmina, alpine medicinal plants.</div>
+    </div>
+    <div class="tier-right">
+      <h5>The crops where adaptation still works</h5>
+      <p>This tier represents the bulk of Himachal's produce economy by value. Off-season vegetables (Rs 16,076 crore annual output) depend on a summer window that is compressing at both ends as the plains stay hot later into autumn and Himachal's summer heats earlier. Kangra tea is already measuring yield loss at every degree above the 28 degree Celsius ceiling. Dairy production faces heat stress compression of 8 to 15 percent without intervention. Alpine medicinal plant species face range loss estimated at 20 to 35 percent by 2050 (ICAR and CSIR-IHBT literature). <strong>The investment implication is that adaptation pathways exist but require active management. Shade netting, drip irrigation, heat-tolerant cultivars, shift to high-density planting, housed dairy systems, and protected cultivation of medicinal species.</strong></p>
+      <div class="crops">ADAPT-IN-PLACE WITH SIGNIFICANT CAPEX. REQUIRES STATE AND PRIVATE INVESTMENT.</div>
+    </div>
+  </div>
+
+  <!-- Tier 3 -->
+  <div class="tier moderate">
+    <div class="tier-left">
+      <div class="tier-label">Tier 03</div>
+      <div class="tier-name">Partial exposure, manageable</div>
+      <div class="tier-share">Seed potato, cereals, saffron pilots, Himachali kala zeera, heeng, hops.</div>
+    </div>
+    <div class="tier-right">
+      <h5>The crops that migrate within the state</h5>
+      <p>These crops have partial exposure at lower elevations but viable refugia at higher ones. Seed potato production is already consolidating into Lahaul-Spiti and upper Kinnaur. Saffron pilots in Kinnaur and Bharmour (above 2,000 m) meet the 1,000 to 1,200 chilling hour threshold; lower-elevation pilots in Palampur and Kullu do not. Himachali kala zeera, heeng and hops are native or well-suited to the trans-Himalayan cold desert belt and remain viable through 2050 under moderate warming. <strong>The investment implication is that these are the crops state agricultural policy should actively promote in the diversification portfolio, because they are genuinely climate-compatible with Himachal's future.</strong></p>
+      <div class="crops">FAVOUR INTERNAL MIGRATION. POLICY CAN CHANNEL CROP SHIFTS UPSLOPE.</div>
+    </div>
+  </div>
+
+  <!-- Tier 4 -->
+  <div class="tier beneficiary">
+    <div class="tier-left">
+      <div class="tier-label">Tier 04</div>
+      <div class="tier-name">Net beneficiaries</div>
+      <div class="tier-share">Citrus, mango and subtropical fruits in lower belts. Industrial hemp. Low-chill fruit varieties.</div>
+    </div>
+    <div class="tier-right">
+      <h5>The crops where warming is a tailwind</h5>
+      <p>Not every produce category loses. Citrus, mango and subtropical fruits in Kangra, Una and Bilaspur are currently in their optimal thermal envelope, and warming expands their viable zone upslope into former apple territory. Industrial hemp, legalised in September 2024 with a pilot licensing framework in 2026, has one of the widest thermal envelopes of any commercial crop and is genuinely climate-resilient. Low-chill fruit varieties (under 400 chilling hours) can replace high-chill apple and stone fruit in mid-elevation belts. <strong>The investment implication is that Himachal's diversification play is not just defensive. There is a genuine upside in the low-elevation subtropical expansion and in hemp, both of which map directly to the climate trajectory rather than fighting it.</strong></p>
+      <div class="crops">ACTIVE EXPANSION. THESE ARE THE CROPS TO UNDERWRITE FIRST.</div>
+    </div>
+  </div>
+
+  <!-- ===== Data Point ===== -->
+  <div class="data-point">
+    <div class="dp-label">DATA POINT</div>
+    <div class="dp-figure">1,500 m</div>
+    <div class="dp-context">The elevation below which Himachal's traditional apple varieties can no longer accumulate the 1,000 to 1,600 chilling hours they require. A generation ago, this figure was 800 metres.</div>
+    <div class="dp-source">SOURCE: JOURNAL OF AGROMETEOROLOGY (2011), HP HORTICULTURE DEPT. FIELD DATA</div>
+  </div>
+
+  <!-- ===== Projected shift chart 2 ===== -->
+  <div class="chart-card">
+    <div class="chart-title">Elevation migration of commercial crops in Himachal Pradesh</div>
+    <div class="chart-subtitle">Lower commercial viability boundary for each crop, observed shift from 2000 to projected 2050</div>
+    <div class="chart-canvas-wrap">
+      <canvas id="migrationChart"></canvas>
+    </div>
+    <div class="chart-source">Source: PLOS One (2020), Journal of Agrometeorology (2011), HP Department of Horticulture field observations, and projections based on observed warming of 1.8-4.1 degrees Celsius over 2000-2020 in Kullu and Shimla apple belts.</div>
+  </div>
+
+  <h3 class="sub">How to read this portfolio under climate stress</h3>
+
+  <p>Three observations compress the analysis into something boards and investors can actually act on.</p>
+
+  <p><strong>First, Himachal is not losing its produce economy. It is losing its current produce geography.</strong> Every crop category still exists somewhere in the state at 2050. Apples still exist, just 1,000 metres higher. Trout still exists, just in colder tributaries. Alpine medicinal plants still exist, just with smaller ranges. The planning challenge is not "how do we save the apple" but "how do we manage an orderly climate-driven migration of the produce economy". This is an infrastructure, land-use and capital-deployment problem, not an agricultural one.</p>
+
+  <p><strong>Second, the single-commodity story is the wrong story.</strong> Apple dominates the narrative because it dominates the headline economics and the political voice of the state. But the matrix above shows that the climate-resilient segments (saffron, heeng, hops, kala zeera, hemp, medicinal plants, low-elevation subtropical fruits) collectively represent a larger theoretical Rs-per-hectare opportunity than the incremental defence of apple at lower elevations. The HP State Cabinet's January 2025 cannabis pilot approval and the ongoing CSIR-IHBT aromatic crops mission are precisely this strategy. They are not diversification against apple; they are climate repositioning of the whole produce portfolio.</p>
+
+  <p><strong>Third, the crops in Tier 02 are where policy can still make a material difference.</strong> Tier 01 is largely a transition problem. Tier 04 will adapt itself given licensing and market linkages. Tier 02, the off-season vegetables, tea, dairy and stone fruits, sits on the decision margin where incremental adaptation capital (shade structures, cold chain, protected cultivation, heat-tolerant livestock breeds, irrigation storage, pest and disease surveillance) translates directly into preserved yield and preserved livelihoods. <strong>This is where the state's climate adaptation budget and development finance institutional capital should concentrate.</strong></p>
+
+  <h4 class="sub2">The broader implication for Indian climate investment</h4>
+
+  <p>Himachal is a microcosm of what will play out across India's entire temperate and subtropical agriculture belt. The Kashmir saffron industry, the Darjeeling tea industry, Uttarakhand's apple and pear belt, the Nilgiris tea estates, and Sikkim's large cardamom all face versions of the same crop-hardiness squeeze. The investors and DFIs who build frameworks now for evaluating agri-climate exposure at the crop-hardiness level, rather than at the broad sector level, will price risk more accurately than those still using aggregated GDP figures.</p>
+
+  <p>That framework is what I have tried to lay out above. It is deliberately unsentimental about which crops can be defended and which cannot. It is equally deliberate about identifying the categories that are genuinely climate-resilient and under-invested. The Himachal Pradesh produce economy through 2050 will be smaller in some categories and larger in others. Whether it ends up net expanded or net compressed is a function of how well the policy and capital decisions of the next decade match the hardiness map.</p>
+
+  <!-- BB CTA -->
+  <div class="bb-cta">
+    I advise CEOs, boards and development finance institutions on agri-climate risk at the crop and commodity level, including BRSR disclosures and natural capital exposure in Indian investment portfolios. If your team needs an analogous hardiness mapping for another commodity, state, or climate-sensitive supply chain, <a href="#">schedule a consultation with Bombay Breed</a>.
+  </div>
+
+</article>
+
+<div class="article-footer">
+  <aside class="sources">
+    <h4>SOURCES</h4>
+    <ol>
+      <li>HP Department of Environment, Science and Technology. Report on Climate Modelling for Himachal Pradesh. Annual mean temperature projection 1.3 to 1.9 degrees Celsius for 2021-2050.</li>
+      <li>Rana N. et al. Heatwave Magnitude Impact and Projected Changes Over Himachal Pradesh: CMIP6 Projections. Environmental Quality Management, 2025.</li>
+      <li>IPCC. Sixth Assessment Report. Working Group I, Climate Change 2021: The Physical Science Basis. Chapter 10: Asia.</li>
+      <li>Rana R.S., Bhagat R.M., Kalia V. Impact of Climate Change on Apple Crop in Himachal Pradesh. Journal of Agrometeorology, 13(2), 2011.</li>
+      <li>Basannagari B., Kala C.P. Why apple orchards are shifting to the higher altitudes of the Himalayas. PLOS One, 2020.</li>
+      <li>Bhatia V. et al. Agro-Climatic Suitability Evaluation for Saffron Production in Areas of Western Himalaya. Frontiers in Plant Science, 2021.</li>
+      <li>Bhat M.A. et al. Effect of Trigger Weather on Saffron Phenology Under Temperate Conditions of Jammu and Kashmir, 2022.</li>
+      <li>Climate Fact Checks. Explained: How the Indian Tea industry has been impacted by Climate Change, 2022.</li>
+      <li>Biswas A. et al. Impact of Changes in Rainfall and Temperature on Production of Darjeeling Tea. Atmosphere (MDPI), 2024.</li>
+      <li>Zhu X. et al. Recent progress and perspectives on physiological and molecular mechanisms underlying cold tolerance of tea plants. Frontiers in Plant Science, 2023.</li>
+      <li>Forest Survey of India and BITS Pilani Goa. Mapping of Climate Change Hotspots in Indian Forests. India State of Forests Report, 2021.</li>
+      <li>Chauhan et al. Important Medicinal and Aromatic Plants of Himachal Pradesh. Indian Forester, 2003.</li>
+      <li>CSIR-Institute of Himalayan Bioresource Technology, Palampur. Aroma Mission deployment data and high-value crop introductions.</li>
+      <li>HP Economic Survey 2022-23. Economics and Statistics Department, Government of Himachal Pradesh.</li>
+      <li>Gardening Know How technical reference on apple chilling requirements (Amy Grant, 2022).</li>
+      <li>World Bank Climate Change Knowledge Portal. India CMIP6 mean projections.</li>
+    </ol>
+  </aside>
+</div>
+
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-brand">Bombay Breed &middot; The Climate Desk</div>
+    <div class="footer-meta">BOMBAYBREED.COM &middot; THECLIMATEDESK.EARTH</div>
+  </div>
+</footer>
+
+<script>
+  Chart.defaults.font.family = "'Inter', sans-serif";
+  Chart.defaults.color = '#6B7280';
+  Chart.defaults.font.size = 11;
+
+  // Chart 1: Projected warming with crop hardiness floors
+  new Chart(document.getElementById('warmingChart'), {
+    type: 'line',
+    data: {
+      labels: ['2000', '2010', '2020', '2030', '2040', '2050'],
+      datasets: [
+        {
+          label: 'HP mean temperature rise (degrees Celsius above 1971-2000 baseline)',
+          data: [0.4, 0.8, 1.2, 1.5, 1.7, 2.0],
+          borderColor: '#0A0A0A',
+          backgroundColor: 'rgba(10, 10, 10, 0.05)',
+          borderWidth: 3,
+          tension: 0.2,
+          pointBackgroundColor: '#0A0A0A',
+          pointBorderColor: '#FBFBF9',
+          pointBorderWidth: 2,
+          pointRadius: 6,
+          fill: false
+        },
+        {
+          label: 'Apple hardiness floor breached (lower belts)',
+          data: [null, null, 1.2, 1.2, 1.2, 1.2],
+          borderColor: '#8B3A2F',
+          borderWidth: 1.5,
+          borderDash: [4, 4],
+          pointRadius: 0,
+          fill: false,
+          pointHoverRadius: 0
+        },
+        {
+          label: 'Kangra tea ceiling breached (Kangra valley)',
+          data: [null, null, null, 1.5, 1.5, 1.5],
+          borderColor: '#C0946D',
+          borderWidth: 1.5,
+          borderDash: [4, 4],
+          pointRadius: 0,
+          fill: false,
+          pointHoverRadius: 0
+        },
+        {
+          label: 'Trout thermal stress threshold (lower streams)',
+          data: [null, null, null, null, 1.7, 1.7],
+          borderColor: '#1A3C5B',
+          borderWidth: 1.5,
+          borderDash: [4, 4],
+          pointRadius: 0,
+          fill: false,
+          pointHoverRadius: 0
+        }
+      ]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: {
+        legend: {
+          display: true,
+          position: 'bottom',
+          labels: {
+            font: { family: "'Inter', sans-serif", size: 11 },
+            color: '#0A0A0A',
+            padding: 12,
+            usePointStyle: true,
+            boxWidth: 10
+          }
+        },
+        tooltip: {
+          backgroundColor: '#0A0A0A',
+          titleFont: { family: "'Inter', sans-serif", size: 11, weight: '600' },
+          bodyFont: { family: "'Inter', sans-serif", size: 12 },
+          padding: 10,
+          borderColor: '#C0946D',
+          borderWidth: 1,
+          callbacks: {
+            label: function(ctx) {
+              if (ctx.parsed.y === null) return null;
+              return ctx.dataset.label + ': +' + ctx.parsed.y + ' degrees Celsius';
+            }
+          }
+        }
+      },
+      scales: {
+        x: {
+          grid: { display: false },
+          border: { color: '#E5E5E1' },
+          ticks: {
+            font: { family: "'Inter', sans-serif", size: 12, weight: '500' },
+            color: '#0A0A0A'
+          }
+        },
+        y: {
+          beginAtZero: true,
+          max: 2.4,
+          grid: { color: '#E5E5E1', drawBorder: false },
+          border: { display: false },
+          title: {
+            display: true,
+            text: 'Degrees Celsius above baseline',
+            font: { family: "'Inter', sans-serif", size: 11, weight: '600' },
+            color: '#C0946D'
+          },
+          ticks: {
+            font: { family: "'Inter', sans-serif", size: 11 },
+            color: '#6B7280',
+            callback: function(v) { return '+' + v.toFixed(1); }
+          }
+        }
+      }
+    }
+  });
+
+  // Chart 2: Crop migration upslope
+  new Chart(document.getElementById('migrationChart'), {
+    type: 'bar',
+    data: {
+      labels: ['Apple', 'Walnut', 'Cherry', 'Peach', 'Seed potato', 'Garlic', 'Saffron (pilot)', 'Citrus'],
+      datasets: [
+        {
+          label: 'Year 2000 lower commercial limit (m)',
+          data: [800, 1200, 1500, 900, 1500, 900, 1600, 500],
+          backgroundColor: '#E5E5E1',
+          borderWidth: 0,
+          borderRadius: 2,
+          barThickness: 18
+        },
+        {
+          label: 'Year 2025 lower commercial limit (m)',
+          data: [1500, 1800, 2000, 1400, 2100, 1400, 2000, 500],
+          backgroundColor: '#C0946D',
+          borderWidth: 0,
+          borderRadius: 2,
+          barThickness: 18
+        },
+        {
+          label: 'Projected 2050 lower commercial limit (m)',
+          data: [2300, 2500, 2600, 2100, 2800, 1900, 2400, 500],
+          backgroundColor: '#1A3C5B',
+          borderWidth: 0,
+          borderRadius: 2,
+          barThickness: 18
+        }
+      ]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: {
+        legend: {
+          display: true,
+          position: 'bottom',
+          labels: {
+            font: { family: "'Inter', sans-serif", size: 11 },
+            color: '#0A0A0A',
+            padding: 12,
+            usePointStyle: true,
+            boxWidth: 10
+          }
+        },
+        tooltip: {
+          backgroundColor: '#0A0A0A',
+          titleFont: { family: "'Inter', sans-serif", size: 11, weight: '600' },
+          bodyFont: { family: "'Inter', sans-serif", size: 12 },
+          padding: 10,
+          borderColor: '#C0946D',
+          borderWidth: 1,
+          callbacks: {
+            label: function(ctx) {
+              return ctx.dataset.label + ': ' + ctx.parsed.y.toLocaleString('en-IN') + ' m';
+            }
+          }
+        }
+      },
+      scales: {
+        x: {
+          grid: { display: false },
+          border: { color: '#E5E5E1' },
+          ticks: {
+            font: { family: "'Inter', sans-serif", size: 11, weight: '500' },
+            color: '#0A0A0A'
+          }
+        },
+        y: {
+          beginAtZero: true,
+          max: 3000,
+          grid: { color: '#E5E5E1', drawBorder: false },
+          border: { display: false },
+          title: {
+            display: true,
+            text: 'Metres above mean sea level',
+            font: { family: "'Inter', sans-serif", size: 11, weight: '600' },
+            color: '#C0946D'
+          },
+          ticks: {
+            font: { family: "'Inter', sans-serif", size: 11 },
+            color: '#6B7280',
+            callback: function(v) { return v.toLocaleString('en-IN') + ' m'; }
+          }
+        }
+      }
+    }
+  });
+</script>
+
+</body>
+</html>

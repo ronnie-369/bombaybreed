@@ -1,0 +1,855 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>The Vanishing Winter: Manali and the Himalayan Snow Deficit | The Climate Desk</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+<style>
+  :root {
+    /* BB Brand tokens */
+    --off-white: #FBFBF9;
+    --near-black: #0A0A0A;
+    --slate-blue: #1A3C5B;
+    --copper: #C0946D;
+    --gray: #6B7280;
+    --border: #E5E5E1;
+
+    /* TCD body surface — pure white per BB article pages */
+    --surface: #FFFFFF;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html, body {
+    background: var(--off-white);
+  }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    color: var(--near-black);
+    font-size: 16px;
+    line-height: 1.6;
+    font-weight: 400;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ===== Top navigation bar ===== */
+  .nav {
+    border-bottom: 1px solid var(--border);
+    background: var(--off-white);
+    position: sticky;
+    top: 0;
+    z-index: 50;
+  }
+  .nav-inner {
+    max-width: 1080px;
+    margin: 0 auto;
+    padding: 18px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .brand-lockup {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .brand-mark {
+    width: 28px;
+    height: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .brand-mark svg { width: 100%; height: 100%; }
+  .brand-wordmark {
+    font-family: 'Inter', sans-serif;
+    font-weight: 500;
+    font-size: 14px;
+    letter-spacing: -0.5px;
+    color: var(--near-black);
+  }
+  .brand-tcd {
+    font-family: 'Playfair Display', serif;
+    font-weight: 400;
+    font-size: 15px;
+    letter-spacing: -0.2px;
+    color: var(--near-black);
+    font-style: italic;
+    padding-left: 14px;
+    border-left: 1px solid var(--border);
+    margin-left: 4px;
+  }
+  .nav-links {
+    display: flex;
+    gap: 28px;
+    align-items: center;
+    font-family: 'Inter', sans-serif;
+    font-weight: 500;
+    font-size: 13px;
+  }
+  .nav-links a {
+    color: var(--gray);
+    text-decoration: none;
+    transition: color 0.15s;
+  }
+  .nav-links a:hover { color: var(--near-black); }
+  .nav-cta {
+    background: var(--slate-blue);
+    color: var(--off-white) !important;
+    padding: 8px 16px;
+    border-radius: 10px;
+    font-weight: 500;
+  }
+
+  /* ===== Article frame ===== */
+  .article {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 56px 40px 40px;
+    background: var(--off-white);
+  }
+
+  /* Beat kicker */
+  .beat-kicker {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--copper);
+    margin-bottom: 24px;
+    display: inline-block;
+    text-decoration: none;
+  }
+  .beat-kicker:hover { color: var(--near-black); }
+
+  /* Headline */
+  h1.headline {
+    font-family: 'Playfair Display', serif;
+    font-weight: 400;
+    font-size: 52px;
+    line-height: 1.08;
+    letter-spacing: -1.3px;
+    color: var(--near-black);
+    margin-bottom: 24px;
+  }
+
+  .standfirst {
+    font-family: 'Playfair Display', serif;
+    font-weight: 400;
+    font-style: italic;
+    font-size: 22px;
+    line-height: 1.45;
+    color: var(--near-black);
+    margin-bottom: 36px;
+    letter-spacing: -0.3px;
+  }
+
+  /* Metadata line */
+  .meta {
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--gray);
+    padding-bottom: 28px;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 40px;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  /* Zone labels — the TCD structural signal */
+  .zone-label {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--copper);
+    margin-top: 56px;
+    margin-bottom: 16px;
+    padding-top: 28px;
+    border-top: 1px solid var(--border);
+    display: block;
+  }
+  .zone-label:first-of-type {
+    margin-top: 0;
+    padding-top: 0;
+    border-top: none;
+  }
+
+  /* Body copy */
+  .article p {
+    font-family: 'Inter', sans-serif;
+    font-size: 17px;
+    line-height: 1.7;
+    color: var(--near-black);
+    margin-bottom: 20px;
+    font-weight: 400;
+  }
+  .article p strong {
+    font-weight: 600;
+    color: var(--near-black);
+  }
+
+  /* Signal zone: compact, fact-only */
+  .signal-zone p {
+    font-size: 16px;
+    color: var(--gray);
+  }
+  .signal-zone p strong { color: var(--near-black); }
+
+  /* ===== Data card / chart block ===== */
+  .chart-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 28px;
+    margin: 40px 0;
+  }
+  .chart-card .chart-title {
+    font-family: 'Playfair Display', serif;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 1.25;
+    letter-spacing: -0.3px;
+    color: var(--near-black);
+    margin-bottom: 6px;
+  }
+  .chart-card .chart-subtitle {
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    color: var(--gray);
+    margin-bottom: 24px;
+    font-weight: 400;
+  }
+  .chart-canvas-wrap {
+    position: relative;
+    height: 320px;
+  }
+  .chart-source {
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    font-size: 11px;
+    font-weight: 500;
+    color: var(--gray);
+    margin-top: 18px;
+    padding-top: 14px;
+    border-top: 1px solid var(--border);
+    letter-spacing: 0.2px;
+  }
+
+  /* ===== Data Point (share card) ===== */
+  .data-point {
+    background: var(--near-black);
+    color: var(--off-white);
+    border-radius: 12px;
+    padding: 44px 36px;
+    margin: 40px 0;
+    text-align: left;
+  }
+  .data-point .dp-label {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--copper);
+    margin-bottom: 20px;
+  }
+  .data-point .dp-figure {
+    font-family: 'Playfair Display', serif;
+    font-weight: 400;
+    font-size: 72px;
+    line-height: 1;
+    letter-spacing: -2px;
+    color: var(--off-white);
+    margin-bottom: 16px;
+  }
+  .data-point .dp-context {
+    font-family: 'Playfair Display', serif;
+    font-weight: 400;
+    font-style: italic;
+    font-size: 22px;
+    line-height: 1.4;
+    color: var(--off-white);
+    max-width: 520px;
+    margin-bottom: 24px;
+    letter-spacing: -0.3px;
+  }
+  .data-point .dp-source {
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    font-size: 11px;
+    color: var(--border);
+    letter-spacing: 0.3px;
+  }
+
+  /* Data table */
+  .data-table-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 24px 28px;
+    margin: 32px 0;
+  }
+  .data-table-card .dt-title {
+    font-family: 'Playfair Display', serif;
+    font-weight: 400;
+    font-size: 18px;
+    color: var(--near-black);
+    margin-bottom: 16px;
+    letter-spacing: -0.2px;
+  }
+  .data-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+  }
+  .data-table th {
+    font-family: 'Inter', sans-serif;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    text-align: left;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--near-black);
+    color: var(--copper);
+  }
+  .data-table td {
+    padding: 14px 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 14px;
+    color: var(--near-black);
+    vertical-align: top;
+  }
+  .data-table td.num {
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    font-weight: 500;
+  }
+  .data-table tr:last-child td { border-bottom: none; }
+
+  /* ===== Mid-article newsletter CTA ===== */
+  .newsletter-inline {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 28px 32px;
+    margin: 48px 0;
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    flex-wrap: wrap;
+  }
+  .newsletter-inline .nl-copy { flex: 1; min-width: 280px; }
+  .newsletter-inline .nl-label {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--copper);
+    margin-bottom: 10px;
+  }
+  .newsletter-inline .nl-title {
+    font-family: 'Playfair Display', serif;
+    font-weight: 400;
+    font-size: 18px;
+    color: var(--near-black);
+    margin-bottom: 6px;
+    line-height: 1.3;
+    letter-spacing: -0.2px;
+  }
+  .newsletter-inline .nl-sub {
+    font-size: 13px;
+    color: var(--gray);
+  }
+  .nl-btn {
+    background: var(--slate-blue);
+    color: var(--off-white);
+    padding: 10px 20px;
+    border-radius: 10px;
+    font-family: 'Inter', sans-serif;
+    font-weight: 500;
+    font-size: 14px;
+    text-decoration: none;
+    white-space: nowrap;
+    transition: background 0.15s;
+  }
+  .nl-btn:hover { background: var(--near-black); }
+
+  /* ===== BB Advisory CTA at close ===== */
+  .bb-cta {
+    margin-top: 56px;
+    padding-top: 36px;
+    border-top: 1px solid var(--border);
+    font-family: 'Inter', sans-serif;
+    font-size: 15px;
+    color: var(--near-black);
+    line-height: 1.65;
+  }
+  .bb-cta a {
+    color: var(--slate-blue);
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 3px;
+    font-weight: 500;
+  }
+  .bb-cta a:hover { color: var(--near-black); }
+
+  /* Footer / sources */
+  .article-footer {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 40px 40px 80px;
+  }
+  .sources {
+    background: transparent;
+    border-top: 1px solid var(--border);
+    padding-top: 32px;
+  }
+  .sources h4 {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--copper);
+    margin-bottom: 20px;
+  }
+  .sources ol {
+    padding-left: 20px;
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    color: var(--gray);
+    line-height: 1.7;
+  }
+  .sources li { margin-bottom: 8px; }
+
+  /* Footer masthead */
+  .site-footer {
+    border-top: 1px solid var(--border);
+    background: var(--near-black);
+    color: var(--off-white);
+    padding: 40px;
+    margin-top: 40px;
+  }
+  .footer-inner {
+    max-width: 1080px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+  .footer-brand {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 16px;
+    color: var(--off-white);
+  }
+  .footer-meta {
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    font-size: 11px;
+    color: var(--border);
+    letter-spacing: 0.3px;
+  }
+
+  /* Responsive */
+  @media (max-width: 720px) {
+    .nav-inner { padding: 14px 20px; }
+    .nav-links { display: none; }
+    .article { padding: 36px 22px 24px; }
+    .article-footer { padding: 32px 22px 60px; }
+    h1.headline { font-size: 34px; letter-spacing: -0.8px; }
+    .standfirst { font-size: 18px; }
+    .article p { font-size: 16px; }
+    .data-point { padding: 32px 24px; }
+    .data-point .dp-figure { font-size: 52px; }
+    .data-point .dp-context { font-size: 18px; }
+    .chart-card, .data-table-card { padding: 20px; }
+    .newsletter-inline { padding: 22px; }
+    .meta { font-size: 11px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ===== Navigation ===== -->
+<nav class="nav">
+  <div class="nav-inner">
+    <div class="brand-lockup">
+      <div class="brand-mark" aria-label="Bombay Breed">
+        <!-- Simple cat silhouette mark -->
+        <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+          <path fill="#0A0A0A" d="M6 10 L4 4 L10 8 C12 7 14 6.5 16 6.5 C18 6.5 20 7 22 8 L28 4 L26 10 C28 12 29 15 29 18 C29 23 25 27 20 28 L12 28 C7 27 3 23 3 18 C3 15 4 12 6 10 Z M11 15 C11 16 11.5 17 12.5 17 C13.5 17 14 16 14 15 C14 14 13.5 13 12.5 13 C11.5 13 11 14 11 15 Z M18 15 C18 16 18.5 17 19.5 17 C20.5 17 21 16 21 15 C21 14 20.5 13 19.5 13 C18.5 13 18 14 18 15 Z"/>
+        </svg>
+      </div>
+      <span class="brand-wordmark">BOMBAY BREED</span>
+      <span class="brand-tcd">The Climate Desk</span>
+    </div>
+    <div class="nav-links">
+      <a href="/special-features/tcd-hp-investor-synthesis.html" class="nav-cta" style="display:inline-flex;align-items:center;gap:8px;">
+        <span style="font-size:14px;line-height:1;">&larr;</span>
+        <span>Back to investor synthesis</span>
+      </a>
+    </div>
+  </div>
+</nav>
+
+<!-- ===== Article ===== -->
+<article class="article">
+
+  <a href="#" class="beat-kicker">CLIMATE FINANCE / PHYSICAL RISK</a>
+
+  <h1 class="headline">The Vanishing Winter: Manali and the Himalayan Snow Deficit</h1>
+
+  <p class="standfirst">Residents in Manali have been telling me the snow is not what it was. The meteorological record, the ICIMOD satellite data and the apple trees all agree with them.</p>
+
+  <div class="meta">
+    <span>BY THERESA RONNIE, FOUNDER &middot; BOMBAY BREED</span>
+    <span>APRIL 2026 &middot; 1,850 WORDS</span>
+  </div>
+
+  <!-- ===== Zone 1: The Signal ===== -->
+  <div class="zone-label">The Signal</div>
+  <div class="signal-zone">
+    <p>Snow persistence across the Hindu Kush Himalaya in the 2024-25 winter was <strong>23.6 percent below normal</strong>, the lowest in 23 years of satellite monitoring, per the ICIMOD Snow Update 2025 (April 2025). Himachal Pradesh recorded a <strong>95 percent rainfall deficit in November 2025</strong> (9th lowest since 1901) and a <strong>93 percent deficit in the first half of January 2026</strong>, per India Meteorological Department bulletins. Shimla's official seasonal snowfall fell from 161.7 cm in 2021-22 to 6 cm in 2022-23 and roughly 9.5 cm so far in 2025-26.</p>
+  </div>
+
+  <!-- ===== Zone 2: Theresa's View ===== -->
+  <div class="zone-label">Theresa's View</div>
+
+  <p><strong>Local observation, when it spans a generation, is rarely wrong.</strong> The people telling me in Manali that winters have thinned are describing a signal that three independent data systems have already confirmed: IMD's precipitation record, ICIMOD's cryosphere monitoring, and two decades of peer-reviewed agronomy from Himachal's apple belt. The question is no longer whether the snow is declining. It is how fast, at what elevations, and what the downstream adjustment looks like.</p>
+
+  <p>Three mechanisms are compounding. The first is direct thermal. The western Himalayas have warmed faster than the global average for at least four decades. In Kullu and Shimla, studies from the Y.S. Parmar Horticulture University record a rise of 1.8 to 4.1 degrees Celsius in mean temperature over the past two decades. At the elevation band where Manali (2,050 m), Shimla, Mussoorie and Nainital all sit, between 1,500 and 3,000 metres, precipitation that would once have fallen as snow now falls increasingly as rain.</p>
+
+  <p>The second is atmospheric. Winter precipitation in the western Himalayas arrives not with the monsoon but through <strong>western disturbances</strong>, extra-tropical storms originating over the Mediterranean and tracking east across Iran and Afghanistan. These systems are structurally weakening. Mediterranean warming has reduced their moisture-carrying capacity. Shifts in the subtropical jet stream have altered their tracks. In December 2025, eight western disturbances crossed northern India against a normal of six, per IMD Dehradun, yet delivered little precipitation. Professor Muhammad Sultan Bhat of the University of Kashmir puts it plainly: the quantum of snowfall has declined significantly, while a larger share of precipitation is now falling as rain instead of snow.</p>
+
+  <p>The third is localised and underestimated in most India climate discourse: <strong>black carbon deposition</strong>. Clean snow reflects up to 80 percent of incoming solar radiation. Soot-dusted snow, from vehicular emissions, biomass burning and construction dust, absorbs far more heat. It shortens the season at both ends and accelerates glacier melt. Himachal's Chief Minister explicitly flagged this in his February 2026 statement on the state climate action plan. Black carbon is a short-lived climate pollutant with very high regional leverage, and India's CCTS currently does not account for it.</p>
+
+  <!-- Chart 1: Shimla collapse -->
+  <div class="chart-card">
+    <div class="chart-title">Shimla's disappearing winter</div>
+    <div class="chart-subtitle">Official seasonal snowfall at Shimla IMD station, 2020-21 to 2025-26</div>
+    <div class="chart-canvas-wrap">
+      <canvas id="shimlaChart"></canvas>
+    </div>
+    <div class="chart-source">Source: IMD Shimla station records, as reported by Ground Report, January 2026. 2025-26 figure is partial season through mid-January.</div>
+  </div>
+
+  <p>The scale of the 2025-26 deficit is not confined to Himachal. It spans every state in the western Himalayan arc. The pattern is regional, not local.</p>
+
+  <!-- Chart 2: Regional deficits -->
+  <div class="chart-card">
+    <div class="chart-title">A regional winter deficit, not a local anomaly</div>
+    <div class="chart-subtitle">Precipitation anomaly against long-period average, December 2025</div>
+    <div class="chart-canvas-wrap">
+      <canvas id="regionalChart"></canvas>
+    </div>
+    <div class="chart-source">Source: India Meteorological Department monthly bulletins, December 2025, compiled via Outlook India (January 2026) and Ground Report (January 2026).</div>
+  </div>
+
+  <!-- ===== Newsletter mid-article CTA ===== -->
+  <div class="newsletter-inline">
+    <div class="nl-copy">
+      <div class="nl-label">NEWSLETTER &middot; TCD DAILY SIGNAL</div>
+      <div class="nl-title">Three verified signals from India's climate beat, every morning.</div>
+      <div class="nl-sub">Free. 400 words. For climate professionals.</div>
+    </div>
+    <a href="#" class="nl-btn">Subscribe</a>
+  </div>
+
+  <!-- Data Point (share asset) -->
+  <div class="data-point">
+    <div class="dp-label">DATA POINT</div>
+    <div class="dp-figure">-23.6%</div>
+    <div class="dp-context">Snow persistence anomaly across the Hindu Kush Himalaya in 2024-25. A 23-year record low, and the third consecutive below-normal winter.</div>
+    <div class="dp-source">SOURCE: ICIMOD HKH SNOW UPDATE 2025</div>
+  </div>
+
+  <p>Water security is the first-order consequence, and it does not stop at Himachal's borders. Seasonal snow contributes roughly 25 percent of the runoff in the twelve major river basins originating in the Hindu Kush Himalaya, which together support nearly two billion people. For the Beas at Pandoh Dam, snow and glacier melt supply about 35 percent of annual flow, per hydrological modelling published in the Hydrological Sciences Journal. For the upper Indus, the figure reaches 72 percent. When the snowpack fails, the reservoir has no substitute.</p>
+
+  <p>The danger is not only volume but <strong>timing</strong>. Glaciers and snowpack function as slow-release storage. They accept precipitation in winter and release it steadily through the dry summer months, precisely when downstream agriculture needs it. Early or erratic melt breaks that synchrony. The hydrological pulse arrives in March instead of May, and by the time 600 million downstream farmers require it, the flow has already passed.</p>
+
+  <!-- ===== Zone 3: What Others Miss ===== -->
+  <div class="zone-label">What Others Miss</div>
+
+  <p>The apple data is the clearest proof that this is a multi-decade structural shift, not a single bad winter. It has largely stayed inside agricultural journals and outside the climate policy conversation.</p>
+
+  <p>Apples require between 1,000 and 1,600 chilling hours at or below 7 degrees Celsius to break dormancy and fruit properly. Agrometeorological studies from the Journal of Agrometeorology document an annual snowfall decline of 36.8 mm across Himachal's apple belt and a measurable reduction in chill unit hours at all elevations up to 2,400 metres. The apple belt has physically migrated uphill over three decades. It is a climate-change indicator written into the landscape.</p>
+
+  <div class="data-table-card">
+    <div class="dt-title">Himachal's apple belt has moved more than a kilometre uphill in a human lifetime</div>
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th>Period</th>
+          <th>Primary elevation</th>
+          <th>Districts expanding</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>1980s</td>
+          <td class="num">1,200 - 1,500 m</td>
+          <td>Solan, Sirmaur, lower Shimla</td>
+        </tr>
+        <tr>
+          <td>2000s</td>
+          <td class="num">1,500 - 2,500 m</td>
+          <td>Mid Kullu, Shimla, Mandi</td>
+        </tr>
+        <tr>
+          <td>2010s - present</td>
+          <td class="num">2,500 - 3,500+ m</td>
+          <td>Lahaul-Spiti, upper Kinnaur, Chamba</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <p>Traditional apple-growing areas in Kullu and Shimla have recorded yield declines of 25 to 40 percent. Orchardist income in these districts fell 27 percent relative to 1995, per Rana et al. in the Journal of Agrometeorology. Lahaul-Spiti, a cold desert across the Rohtang Pass that grew no apples a generation ago, is now a commercially viable apple district. Over four lakh families depend on apple farming in Himachal, contributing roughly 13 percent of state GDP. The upward migration runs out of mountain at some point.</p>
+
+  <p>The second underreported signal is wildlife. Uttarakhand recorded anomalously high forest fire activity in October to December 2025, detected by NASA's VIIRS satellite, correlating with the precipitation deficit. Himalayan black bears, which depend on late-autumn foraging before winter denning, are delaying hibernation. Bear attacks on humans have surged in Chamoli and other Uttarakhand districts as bears descend to lower, human-populated elevations in search of food. The Gaddi pastoralists of Himachal report shorter grazing seasons. The Bakarwals and Gujjars report drying springs along their migration routes. The ecology is rearranging itself faster than the policy apparatus is tracking.</p>
+
+  <p>The third: glacier mass balance. Snow is a glacier's annual deposit. Without reliable winter accumulation, glaciers enter a negative mass balance regime from which they do not recover at human timescales. The Parbati glacier in the Beas basin is in retreat. The Gangotri glacier is losing 22 to 27 metres of length per year. As glaciers retreat, they leave unstable moraine dams impounding meltwater, creating the conditions for glacial lake outburst floods. Depleted winter snow is the slow story; GLOF events are the fast one. Both are being written simultaneously.</p>
+
+  <!-- Chart 3: Trend -->
+  <div class="chart-card">
+    <div class="chart-title">Four of the last five winters have been below normal</div>
+    <div class="chart-subtitle">Snow persistence anomaly across Hindu Kush Himalaya, percentage deviation from 2003-2024 mean</div>
+    <div class="chart-canvas-wrap">
+      <canvas id="trendChart"></canvas>
+    </div>
+    <div class="chart-source">Source: ICIMOD HKH Snow Update 2025, Cryosphere Initiative, April 2025.</div>
+  </div>
+
+  <p>ICIMOD's Director General, Pema Gyamtsho, framed the trajectory with a precision that is uncomfortable to read. Carbon emissions, he said at the April 2025 launch, have already locked in an irreversible course of recurrent snow anomalies in the Hindu Kush Himalaya. Mitigation remains necessary, particularly on non-CO2 pollutants like methane and black carbon where regional leverage is highest. The near-term adjustment is adaptation: stronger high-elevation monitoring, seasonal water storage, crop diversification away from high-chill varieties, and transboundary cooperation on water management.</p>
+
+  <p>For Manali specifically, the signals are unambiguous. The town sits at the elevation band where warming has most aggressively converted snow into rain. Higher reaches around Solang, Rohtang and into Lahaul-Spiti will continue to receive snow, with increasing variability. The valley floor will not, at least not at the volume or duration of living memory. Residents and investors should not be asking whether the snow comes back. They should be asking what a Himalayan hill town looks like, economically and ecologically, when its winter identity no longer matches its climate.</p>
+
+  <!-- ===== BB Advisory CTA ===== -->
+  <div class="bb-cta">
+    I advise CEOs and boards on how Himalayan physical climate risk maps to Indian investment portfolios, BRSR disclosures, and CBAM-exposed supply chains. If your board is asking how to price this, <a href="#">schedule a consultation with Bombay Breed</a>.
+  </div>
+
+</article>
+
+<!-- ===== Sources ===== -->
+<div class="article-footer">
+  <aside class="sources">
+    <h4>SOURCES</h4>
+    <ol>
+      <li>India Meteorological Department. Winter Seasonal Weather Report, January-February 2025. Shimla Meteorological Centre.</li>
+      <li>ICIMOD. HKH Snow Update 2025. International Centre for Integrated Mountain Development, Kathmandu, April 2025.</li>
+      <li>Indian Institute of Remote Sensing (IIRS), ISRO. Alarming decline in winter precipitation in North Western Himalaya for 2025-2026. Sudoor Manthan, January 2026.</li>
+      <li>Outlook India. Climate Crisis in Himachal and Uttarakhand Mountains, January 2026.</li>
+      <li>Ground Report. What is Behind Jammu and Kashmir, Himachal Pradesh, Uttarakhand's Failing Snowfall, January 2026.</li>
+      <li>Dialogue Earth. As snowstorms batter the west, the Himalayas hardly see winter, January 2026.</li>
+      <li>Down to Earth. The Himalayas laid bare: How vanishing snow and ice are reshaping Asia's water tower, January 2026.</li>
+      <li>Rana R.S., Bhagat R.M., Kalia V. Impact of Climate Change on Apple Crop in Himachal Pradesh. Journal of Agrometeorology, 13(2), 2011.</li>
+      <li>Basannagari B., Kala C.P. Why apple orchards are shifting to the higher altitudes of the Himalayas. PLOS One, 2020.</li>
+      <li>Kumar V., Singh P. Snow and glacier melt contribution in the Beas River at Pandoh Dam. Hydrological Sciences Journal, 52(2), 2007.</li>
+      <li>IPCC. Sixth Assessment Report, Working Group II, Chapter 10: Asia, 2022.</li>
+      <li>Himachal Pradesh State Centre on Climate Change. Annual Progress Report 2024-25.</li>
+    </ol>
+  </aside>
+</div>
+
+<!-- ===== Footer ===== -->
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-brand">Bombay Breed &middot; The Climate Desk</div>
+    <div class="footer-meta">BOMBAYBREED.COM &middot; THECLIMATEDESK.EARTH</div>
+  </div>
+</footer>
+
+<script>
+  Chart.defaults.font.family = "'Inter', sans-serif";
+  Chart.defaults.color = '#6B7280';
+  Chart.defaults.font.size = 11;
+
+  // Chart 1: Shimla snowfall
+  new Chart(document.getElementById('shimlaChart'), {
+    type: 'bar',
+    data: {
+      labels: ['2020-21', '2021-22', '2022-23', '2023-24', '2024-25', '2025-26*'],
+      datasets: [{
+        data: [67, 161.7, 6, 7, 9.5, 9.5],
+        backgroundColor: ['#1A3C5B', '#1A3C5B', '#C0946D', '#C0946D', '#C0946D', '#C0946D'],
+        borderWidth: 0,
+        borderRadius: 2,
+        barThickness: 40
+      }]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: {
+        legend: { display: false },
+        tooltip: {
+          backgroundColor: '#0A0A0A',
+          titleFont: { family: "'Inter', sans-serif", size: 11, weight: '600' },
+          bodyFont: { family: "'Inter', sans-serif", size: 13 },
+          padding: 10,
+          borderColor: '#C0946D',
+          borderWidth: 1,
+          callbacks: {
+            label: function(ctx) {
+              const suffix = ctx.label === '2025-26*' ? ' cm (partial season)' : ' cm';
+              return ctx.parsed.y + suffix;
+            }
+          }
+        }
+      },
+      scales: {
+        x: {
+          grid: { display: false },
+          border: { color: '#E5E5E1' },
+          ticks: {
+            font: { family: "'Inter', sans-serif", size: 12, weight: '500' },
+            color: '#0A0A0A'
+          }
+        },
+        y: {
+          beginAtZero: true,
+          grid: { color: '#E5E5E1', drawBorder: false },
+          border: { display: false },
+          ticks: {
+            font: { family: "'Inter', sans-serif", size: 11 },
+            color: '#6B7280',
+            callback: function(v) { return v + ' cm'; }
+          }
+        }
+      }
+    }
+  });
+
+  // Chart 2: Regional deficit
+  new Chart(document.getElementById('regionalChart'), {
+    type: 'bar',
+    data: {
+      labels: ['Uttarakhand', 'Himachal Pradesh', 'Jammu & Kashmir', 'Ladakh'],
+      datasets: [{
+        data: [-100, -99, -78, -63],
+        backgroundColor: '#C0946D',
+        borderWidth: 0,
+        borderRadius: 2,
+        barThickness: 36
+      }]
+    },
+    options: {
+      indexAxis: 'y',
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: {
+        legend: { display: false },
+        tooltip: {
+          backgroundColor: '#0A0A0A',
+          titleFont: { family: "'Inter', sans-serif", size: 11, weight: '600' },
+          bodyFont: { family: "'Inter', sans-serif", size: 13 },
+          padding: 10,
+          borderColor: '#C0946D',
+          borderWidth: 1,
+          callbacks: {
+            label: function(ctx) {
+              return ctx.parsed.x + ' percent deviation from normal';
+            }
+          }
+        }
+      },
+      scales: {
+        x: {
+          min: -110,
+          max: 0,
+          grid: { color: '#E5E5E1', drawBorder: false },
+          border: { display: false },
+          ticks: {
+            font: { family: "'Inter', sans-serif", size: 11 },
+            color: '#6B7280',
+            callback: function(v) { return v + '%'; }
+          }
+        },
+        y: {
+          grid: { display: false },
+          border: { color: '#E5E5E1' },
+          ticks: {
+            font: { family: "'Inter', sans-serif", size: 13, weight: '500' },
+            color: '#0A0A0A'
+          }
+        }
+      }
+    }
+  });
+
+  // Chart 3: Trend line
+  new Chart(document.getElementById('trendChart'), {
+    type: 'line',
+    data: {
+      labels: ['2020-21', '2021-22', '2022-23', '2023-24', '2024-25'],
+      datasets: [{
+        data: [8.5, 3.2, -18.5, -15.0, -23.6],
+        borderColor: '#1A3C5B',
+        backgroundColor: 'rgba(26, 60, 91, 0.08)',
+        borderWidth: 2.5,
+        tension: 0.25,
+        pointBackgroundColor: '#1A3C5B',
+        pointBorderColor: '#FBFBF9',
+        pointBorderWidth: 2,
+        pointRadius: 6,
+        pointHoverRadius: 8,
+        fill: true
+      }]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: {
+        legend: { display: false },
+        tooltip: {
+          backgroundColor: '#0A0A0A',
+          titleFont: { family: "'Inter', sans-serif", size: 11, weight: '600' },
+          bodyFont: { family: "'Inter', sans-serif", size: 13 },
+          padding: 10,
+          borderColor: '#C0946D',
+          borderWidth: 1,
+          callbacks: {
+            label: function(ctx) {
+              return ctx.parsed.y + ' percent anomaly';
+            }
+          }
+        }
+      },
+      scales: {
+        x: {
+          grid: { display: false },
+          border: { color: '#E5E5E1' },
+          ticks: {
+            font: { family: "'Inter', sans-serif", size: 12, weight: '500' },
+            color: '#0A0A0A'
+          }
+        },
+        y: {
+          grid: { color: '#E5E5E1', drawBorder: false },
+          border: { display: false },
+          ticks: {
+            font: { family: "'Inter', sans-serif", size: 11 },
+            color: '#6B7280',
+            callback: function(v) { return (v > 0 ? '+' : '') + v + '%'; }
+          }
+        }
+      }
+    }
+  });
+</script>
+
+</body>
+</html>

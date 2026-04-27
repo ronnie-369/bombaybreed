@@ -1,0 +1,1205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Himachal Pradesh's Produce Economy: A Full Map | The Climate Desk</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+<style>
+  :root {
+    --off-white: #FBFBF9;
+    --near-black: #0A0A0A;
+    --slate-blue: #1A3C5B;
+    --copper: #C0946D;
+    --gray: #6B7280;
+    --border: #E5E5E1;
+    --surface: #FFFFFF;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html, body { background: var(--off-white); }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    color: var(--near-black);
+    font-size: 16px;
+    line-height: 1.6;
+    font-weight: 400;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ===== Nav ===== */
+  .nav {
+    border-bottom: 1px solid var(--border);
+    background: var(--off-white);
+    position: sticky;
+    top: 0;
+    z-index: 50;
+  }
+  .nav-inner {
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 18px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .brand-lockup { display: flex; align-items: center; gap: 10px; }
+  .brand-mark { width: 28px; height: 28px; }
+  .brand-mark svg { width: 100%; height: 100%; }
+  .brand-wordmark {
+    font-family: 'Inter', sans-serif;
+    font-weight: 500;
+    font-size: 14px;
+    letter-spacing: -0.5px;
+    color: var(--near-black);
+  }
+  .brand-tcd {
+    font-family: 'Playfair Display', serif;
+    font-weight: 400;
+    font-size: 15px;
+    letter-spacing: -0.2px;
+    font-style: italic;
+    padding-left: 14px;
+    border-left: 1px solid var(--border);
+    margin-left: 4px;
+  }
+  .nav-links {
+    display: flex;
+    gap: 28px;
+    align-items: center;
+    font-family: 'Inter', sans-serif;
+    font-weight: 500;
+    font-size: 13px;
+  }
+  .nav-links a {
+    color: var(--gray);
+    text-decoration: none;
+    transition: color 0.15s;
+  }
+  .nav-links a:hover { color: var(--near-black); }
+  .nav-cta {
+    background: var(--slate-blue);
+    color: var(--off-white) !important;
+    padding: 8px 16px;
+    border-radius: 10px;
+    font-weight: 500;
+  }
+
+  /* ===== Article frame (wider for data visuals) ===== */
+  .article {
+    max-width: 920px;
+    margin: 0 auto;
+    padding: 56px 40px 40px;
+  }
+
+  .beat-kicker {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--copper);
+    margin-bottom: 24px;
+    display: inline-block;
+    text-decoration: none;
+  }
+
+  h1.headline {
+    font-family: 'Playfair Display', serif;
+    font-weight: 400;
+    font-size: 56px;
+    line-height: 1.05;
+    letter-spacing: -1.5px;
+    margin-bottom: 24px;
+  }
+
+  .standfirst {
+    font-family: 'Playfair Display', serif;
+    font-weight: 400;
+    font-style: italic;
+    font-size: 22px;
+    line-height: 1.45;
+    margin-bottom: 36px;
+    letter-spacing: -0.3px;
+    max-width: 760px;
+  }
+
+  .meta {
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--gray);
+    padding-bottom: 28px;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 40px;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .zone-label {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--copper);
+    margin-top: 56px;
+    margin-bottom: 16px;
+    padding-top: 28px;
+    border-top: 1px solid var(--border);
+    display: block;
+  }
+  .zone-label:first-of-type {
+    margin-top: 0;
+    padding-top: 0;
+    border-top: none;
+  }
+
+  .article p {
+    font-family: 'Inter', sans-serif;
+    font-size: 17px;
+    line-height: 1.7;
+    margin-bottom: 20px;
+    font-weight: 400;
+  }
+  .article p strong { font-weight: 600; }
+
+  .signal-zone p { font-size: 16px; color: var(--gray); }
+  .signal-zone p strong { color: var(--near-black); }
+
+  h3.sub {
+    font-family: 'Playfair Display', serif;
+    font-weight: 400;
+    font-size: 26px;
+    line-height: 1.25;
+    letter-spacing: -0.4px;
+    margin: 44px 0 14px;
+  }
+
+  /* ===== Opening stat strip ===== */
+  .stat-strip {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0;
+    margin: 36px 0 48px;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    overflow: hidden;
+    background: var(--surface);
+  }
+  .stat-cell {
+    padding: 24px 20px;
+    border-right: 1px solid var(--border);
+  }
+  .stat-cell:last-child { border-right: none; }
+  .stat-cell .sc-num {
+    font-family: 'Playfair Display', serif;
+    font-weight: 400;
+    font-size: 38px;
+    line-height: 1;
+    letter-spacing: -1px;
+    margin-bottom: 10px;
+    color: var(--near-black);
+  }
+  .stat-cell .sc-label {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--copper);
+    margin-bottom: 6px;
+  }
+  .stat-cell .sc-sub {
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    color: var(--gray);
+    line-height: 1.5;
+  }
+
+  /* ===== Chart card ===== */
+  .chart-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 28px;
+    margin: 40px 0;
+  }
+  .chart-title {
+    font-family: 'Playfair Display', serif;
+    font-weight: 400;
+    font-size: 22px;
+    line-height: 1.25;
+    letter-spacing: -0.3px;
+    margin-bottom: 6px;
+  }
+  .chart-subtitle {
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    color: var(--gray);
+    margin-bottom: 24px;
+  }
+  .chart-canvas-wrap {
+    position: relative;
+    height: 380px;
+  }
+  .chart-canvas-wrap.tall { height: 560px; }
+  .chart-source {
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    font-size: 11px;
+    font-weight: 500;
+    color: var(--gray);
+    margin-top: 18px;
+    padding-top: 14px;
+    border-top: 1px solid var(--border);
+  }
+
+  /* ===== Seasonal calendar visual ===== */
+  .calendar {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 28px;
+    margin: 40px 0;
+    overflow-x: auto;
+  }
+  .cal-title {
+    font-family: 'Playfair Display', serif;
+    font-weight: 400;
+    font-size: 22px;
+    line-height: 1.25;
+    letter-spacing: -0.3px;
+    margin-bottom: 6px;
+  }
+  .cal-subtitle {
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    color: var(--gray);
+    margin-bottom: 28px;
+  }
+  .cal-grid {
+    display: grid;
+    grid-template-columns: 190px repeat(12, 1fr);
+    gap: 0;
+    font-size: 11px;
+    min-width: 760px;
+  }
+  .cal-head {
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--gray);
+    padding: 8px 4px;
+    text-align: center;
+    border-bottom: 1px solid var(--near-black);
+  }
+  .cal-head.first { text-align: left; color: var(--copper); }
+  .cal-row {
+    display: contents;
+  }
+  .cal-crop {
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--near-black);
+    padding: 12px 10px 12px 0;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .cal-crop small {
+    font-size: 10px;
+    color: var(--gray);
+    font-weight: 400;
+    margin-top: 2px;
+  }
+  .cal-cell {
+    border-bottom: 1px solid var(--border);
+    height: 42px;
+    position: relative;
+  }
+  .cal-bar {
+    position: absolute;
+    top: 12px;
+    bottom: 12px;
+    left: 0;
+    right: 0;
+    background: var(--copper);
+    opacity: 0.85;
+  }
+  .cal-bar.harvest { background: var(--near-black); }
+  .cal-bar.slate { background: var(--slate-blue); opacity: 0.85; }
+  .cal-legend {
+    display: flex;
+    gap: 24px;
+    margin-top: 20px;
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    color: var(--gray);
+  }
+  .cal-legend .key {
+    display: inline-block;
+    width: 14px;
+    height: 10px;
+    margin-right: 6px;
+    vertical-align: middle;
+  }
+
+  /* ===== Category section cards ===== */
+  .cat-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 32px;
+    margin: 32px 0;
+  }
+  .cat-card .cat-tag {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--copper);
+    margin-bottom: 14px;
+  }
+  .cat-card h4 {
+    font-family: 'Playfair Display', serif;
+    font-weight: 400;
+    font-size: 24px;
+    line-height: 1.2;
+    letter-spacing: -0.3px;
+    margin-bottom: 16px;
+  }
+  .cat-card p {
+    font-size: 15px;
+    line-height: 1.65;
+  }
+  .cat-card ul {
+    margin: 0;
+    padding-left: 20px;
+  }
+  .cat-card li {
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    line-height: 1.65;
+    margin-bottom: 8px;
+    color: var(--near-black);
+  }
+  .cat-card li strong { font-weight: 600; }
+
+  /* Structured data split (produce grid within card) */
+  .pd-grid {
+    display: grid;
+    grid-template-columns: 140px 1fr;
+    gap: 12px 20px;
+    margin-top: 14px;
+    padding-top: 14px;
+    border-top: 1px solid var(--border);
+  }
+  .pd-key {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--copper);
+    padding-top: 2px;
+  }
+  .pd-val {
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    line-height: 1.6;
+    color: var(--near-black);
+  }
+  .pd-val .mono {
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    font-weight: 500;
+  }
+
+  /* ===== Data Point ===== */
+  .data-point {
+    background: var(--near-black);
+    color: var(--off-white);
+    border-radius: 12px;
+    padding: 44px 36px;
+    margin: 48px 0;
+  }
+  .data-point .dp-label {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--copper);
+    margin-bottom: 20px;
+  }
+  .data-point .dp-figure {
+    font-family: 'Playfair Display', serif;
+    font-weight: 400;
+    font-size: 72px;
+    line-height: 1;
+    letter-spacing: -2px;
+    margin-bottom: 16px;
+  }
+  .data-point .dp-context {
+    font-family: 'Playfair Display', serif;
+    font-weight: 400;
+    font-style: italic;
+    font-size: 22px;
+    line-height: 1.4;
+    max-width: 560px;
+    margin-bottom: 24px;
+    letter-spacing: -0.3px;
+  }
+  .data-point .dp-source {
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    font-size: 11px;
+    color: var(--border);
+  }
+
+  /* ===== Newsletter mid-article ===== */
+  .newsletter-inline {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 28px 32px;
+    margin: 48px 0;
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    flex-wrap: wrap;
+  }
+  .newsletter-inline .nl-copy { flex: 1; min-width: 260px; }
+  .newsletter-inline .nl-label {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--copper);
+    margin-bottom: 10px;
+  }
+  .newsletter-inline .nl-title {
+    font-family: 'Playfair Display', serif;
+    font-weight: 400;
+    font-size: 18px;
+    margin-bottom: 6px;
+    line-height: 1.3;
+    letter-spacing: -0.2px;
+  }
+  .newsletter-inline .nl-sub {
+    font-size: 13px;
+    color: var(--gray);
+  }
+  .nl-btn {
+    background: var(--slate-blue);
+    color: var(--off-white);
+    padding: 10px 20px;
+    border-radius: 10px;
+    font-weight: 500;
+    font-size: 14px;
+    text-decoration: none;
+    white-space: nowrap;
+    transition: background 0.15s;
+  }
+  .nl-btn:hover { background: var(--near-black); }
+
+  /* ===== BB Advisory CTA ===== */
+  .bb-cta {
+    margin-top: 56px;
+    padding-top: 36px;
+    border-top: 1px solid var(--border);
+    font-family: 'Inter', sans-serif;
+    font-size: 15px;
+    line-height: 1.65;
+  }
+  .bb-cta a {
+    color: var(--slate-blue);
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 3px;
+    font-weight: 500;
+  }
+  .bb-cta a:hover { color: var(--near-black); }
+
+  /* ===== Footer / sources ===== */
+  .article-footer {
+    max-width: 920px;
+    margin: 0 auto;
+    padding: 40px 40px 80px;
+  }
+  .sources {
+    border-top: 1px solid var(--border);
+    padding-top: 32px;
+  }
+  .sources h4 {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--copper);
+    margin-bottom: 20px;
+  }
+  .sources ol {
+    padding-left: 20px;
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    color: var(--gray);
+    line-height: 1.7;
+  }
+  .sources li { margin-bottom: 8px; }
+
+  .site-footer {
+    border-top: 1px solid var(--border);
+    background: var(--near-black);
+    color: var(--off-white);
+    padding: 40px;
+  }
+  .footer-inner {
+    max-width: 1180px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+  .footer-brand {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 16px;
+  }
+  .footer-meta {
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    font-size: 11px;
+    color: var(--border);
+  }
+
+  @media (max-width: 720px) {
+    .nav-inner { padding: 14px 20px; }
+    .nav-links { display: none; }
+    .article { padding: 36px 22px 24px; }
+    .article-footer { padding: 32px 22px 60px; }
+    h1.headline { font-size: 34px; letter-spacing: -0.8px; }
+    .standfirst { font-size: 18px; }
+    .article p { font-size: 16px; }
+    .stat-strip { grid-template-columns: repeat(2, 1fr); }
+    .stat-cell { border-right: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+    .stat-cell:nth-child(even) { border-right: none; }
+    .stat-cell:nth-last-child(-n+2) { border-bottom: none; }
+    .data-point { padding: 32px 24px; }
+    .data-point .dp-figure { font-size: 52px; }
+    .data-point .dp-context { font-size: 18px; }
+    .chart-card, .cat-card, .calendar { padding: 20px; }
+    .pd-grid { grid-template-columns: 1fr; gap: 4px 0; }
+  }
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <div class="brand-lockup">
+      <div class="brand-mark" aria-label="Bombay Breed">
+        <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+          <path fill="#0A0A0A" d="M6 10 L4 4 L10 8 C12 7 14 6.5 16 6.5 C18 6.5 20 7 22 8 L28 4 L26 10 C28 12 29 15 29 18 C29 23 25 27 20 28 L12 28 C7 27 3 23 3 18 C3 15 4 12 6 10 Z M11 15 C11 16 11.5 17 12.5 17 C13.5 17 14 16 14 15 C14 14 13.5 13 12.5 13 C11.5 13 11 14 11 15 Z M18 15 C18 16 18.5 17 19.5 17 C20.5 17 21 16 21 15 C21 14 20.5 13 19.5 13 C18.5 13 18 14 18 15 Z"/>
+        </svg>
+      </div>
+      <span class="brand-wordmark">BOMBAY BREED</span>
+      <span class="brand-tcd">The Climate Desk</span>
+    </div>
+    <div class="nav-links">
+      <a href="/special-features/tcd-hp-investor-synthesis.html" class="nav-cta" style="display:inline-flex;align-items:center;gap:8px;">
+        <span style="font-size:14px;line-height:1;">&larr;</span>
+        <span>Back to investor synthesis</span>
+      </a>
+    </div>
+  </div>
+</nav>
+
+<article class="article">
+
+  <a href="#" class="beat-kicker">ENERGY TRANSITION / AGRI-CLIMATE</a>
+
+  <h1 class="headline">What Himachal Grows: A Full Map of the Produce Economy</h1>
+
+  <p class="standfirst">Fruits, vegetables, spices, tea, hemp, dairy, wool and trout. Mapped by season, by contribution to the state economy, and by what each actually does for people who buy it.</p>
+
+  <div class="meta">
+    <span>BY THERESA RONNIE, FOUNDER &middot; BOMBAY BREED</span>
+    <span>APRIL 2026 &middot; 2,450 WORDS</span>
+  </div>
+
+  <!-- ===== The Signal ===== -->
+  <div class="zone-label">The Signal</div>
+  <div class="signal-zone">
+    <p>Horticulture contributes roughly <strong>20 percent of Himachal Pradesh's state GDP</strong>, per the HP Economic Survey 2022-23. Apple alone accounts for <strong>81 percent of total fruit production</strong> and <strong>49 percent of area under fruit crops</strong>, supporting over four lakh families. Off-season vegetables generate annual output valued at <strong>Rs 16,076 crore</strong>, delivering net returns of Rs 60,000 to Rs 2 lakh per hectare against Rs 8,000 to Rs 10,000 per hectare for traditional cereals. The state recorded <strong>the highest wool production growth rate in India</strong> at 4.38 percent (Livestock Production Statistics 2025). Cannabis cultivation for industrial and medicinal use was legalised by the HP Assembly in September 2024, with the first pilot licensing framework expected in 2026.</p>
+  </div>
+
+  <!-- ===== Theresa's View ===== -->
+  <div class="zone-label">Theresa's View</div>
+
+  <p><strong>Himachal is often described as a single-crop economy. That framing is wrong.</strong> Apple is the headline, but the state's produce portfolio spans four agro-climatic zones from the Shiwalik foothills (350 m) to the trans-Himalayan cold desert (6,975 m), and includes high-value crops that most Indian climate and investment coverage misses entirely. Kangra tea. Kinnauri chulli oil. Lahauli heeng. Kullu trout. Changpa pashmina. Bunium persicum (Himachali kala zeera). A pharmaceutical-grade medicinal plant economy drawn from 640 native species. And now, a legalised industrial hemp sector that the state cabinet approved in January 2025.</p>
+
+  <p>The reason this matters is that climate risk is not distributed evenly across the portfolio. The apple belt is migrating upslope, losing yield at lower elevations even as it expands into Lahaul and Spiti. Off-season vegetables are vulnerable to the same unseasonal hail and monsoon excess that hit Kullu and Mandi in 2023. Tea in Kangra is exposed to rainfall variability. Trout farming depends on cold perennial streams that are warming. And crops like heeng, saffron, hops, cinnamon and CSIR-IHBT's aromatic basket have been actively introduced in the last decade specifically because the state is betting on a diversified portfolio rather than defending a single commodity.</p>
+
+  <p>I have tried below to map every significant category of Himachal produce, the seasonal window in which it comes to market, its contribution to the state economy where data exists, and its actual utility to buyers. The point is not completeness for its own sake. It is to show investors, policy readers and board-level climate risk teams what a serious diversification play looks like in a Himalayan state, and where the genuine commercial upside is sitting.</p>
+
+  <!-- ===== Stat strip ===== -->
+  <div class="stat-strip">
+    <div class="stat-cell">
+      <div class="sc-label">HORTICULTURE</div>
+      <div class="sc-num">20%</div>
+      <div class="sc-sub">of HP state GDP, per Economic Survey 2022-23</div>
+    </div>
+    <div class="stat-cell">
+      <div class="sc-label">APPLE</div>
+      <div class="sc-num">580K MT</div>
+      <div class="sc-sub">production in 2024, per Dept of Agriculture and Farmers Welfare</div>
+    </div>
+    <div class="stat-cell">
+      <div class="sc-label">VEGETABLES</div>
+      <div class="sc-num">Rs 16,076 Cr</div>
+      <div class="sc-sub">annual output value, per HP Economic Survey</div>
+    </div>
+    <div class="stat-cell">
+      <div class="sc-label">MILK</div>
+      <div class="sc-num">17.49 L MT</div>
+      <div class="sc-sub">production in 2023-24, per MoFPI State Profile</div>
+    </div>
+  </div>
+
+  <!-- ===== Contribution chart ===== -->
+  <div class="chart-card">
+    <div class="chart-title">Where the produce economy sits by value</div>
+    <div class="chart-subtitle">Estimated annual output value of major Himachal Pradesh produce segments, Rs crore</div>
+    <div class="chart-canvas-wrap">
+      <canvas id="contribChart"></canvas>
+    </div>
+    <div class="chart-source">Source: HP Economic Survey 2022-23, MoFPI Himachal Pradesh State Profile 2024, Department of Horticulture (area and production 2023-24). Figures are most recent available and approximate. Apple value back-calculated from Rs 5,500 crore apple economy estimate (Outlook India, 2024).</div>
+  </div>
+
+  <!-- ===== Seasonal calendar ===== -->
+  <div class="calendar">
+    <div class="cal-title">When each produce reaches market</div>
+    <div class="cal-subtitle">Harvest windows for major Himachal Pradesh produce categories, Jan through Dec</div>
+    <div class="cal-grid">
+      <div class="cal-head first">CROP / PRODUCE</div>
+      <div class="cal-head">J</div>
+      <div class="cal-head">F</div>
+      <div class="cal-head">M</div>
+      <div class="cal-head">A</div>
+      <div class="cal-head">M</div>
+      <div class="cal-head">J</div>
+      <div class="cal-head">J</div>
+      <div class="cal-head">A</div>
+      <div class="cal-head">S</div>
+      <div class="cal-head">O</div>
+      <div class="cal-head">N</div>
+      <div class="cal-head">D</div>
+
+      <div class="cal-crop">Apple<small>Shimla, Kullu, Kinnaur</small></div>
+      <div class="cal-cell"></div><div class="cal-cell"></div><div class="cal-cell"></div><div class="cal-cell"></div>
+      <div class="cal-cell"></div><div class="cal-cell"></div>
+      <div class="cal-cell"><div class="cal-bar"></div></div>
+      <div class="cal-cell"><div class="cal-bar harvest"></div></div>
+      <div class="cal-cell"><div class="cal-bar harvest"></div></div>
+      <div class="cal-cell"><div class="cal-bar"></div></div>
+      <div class="cal-cell"></div><div class="cal-cell"></div>
+
+      <div class="cal-crop">Stone fruit<small>Plum, peach, apricot, cherry</small></div>
+      <div class="cal-cell"></div><div class="cal-cell"></div><div class="cal-cell"></div><div class="cal-cell"></div>
+      <div class="cal-cell"><div class="cal-bar"></div></div>
+      <div class="cal-cell"><div class="cal-bar harvest"></div></div>
+      <div class="cal-cell"><div class="cal-bar harvest"></div></div>
+      <div class="cal-cell"><div class="cal-bar"></div></div>
+      <div class="cal-cell"></div><div class="cal-cell"></div><div class="cal-cell"></div><div class="cal-cell"></div>
+
+      <div class="cal-crop">Citrus<small>Kinnow, galgal, lemon</small></div>
+      <div class="cal-cell"><div class="cal-bar harvest"></div></div>
+      <div class="cal-cell"><div class="cal-bar"></div></div>
+      <div class="cal-cell"></div><div class="cal-cell"></div><div class="cal-cell"></div><div class="cal-cell"></div>
+      <div class="cal-cell"></div><div class="cal-cell"></div><div class="cal-cell"></div><div class="cal-cell"></div>
+      <div class="cal-cell"><div class="cal-bar"></div></div>
+      <div class="cal-cell"><div class="cal-bar harvest"></div></div>
+
+      <div class="cal-crop">Mango<small>Kangra, Una, Bilaspur</small></div>
+      <div class="cal-cell"></div><div class="cal-cell"></div><div class="cal-cell"></div><div class="cal-cell"></div>
+      <div class="cal-cell"></div>
+      <div class="cal-cell"><div class="cal-bar harvest"></div></div>
+      <div class="cal-cell"><div class="cal-bar harvest"></div></div>
+      <div class="cal-cell"><div class="cal-bar"></div></div>
+      <div class="cal-cell"></div><div class="cal-cell"></div><div class="cal-cell"></div><div class="cal-cell"></div>
+
+      <div class="cal-crop">Off-season tomato<small>Solan, Sirmaur, Kullu</small></div>
+      <div class="cal-cell"></div><div class="cal-cell"></div><div class="cal-cell"></div><div class="cal-cell"></div>
+      <div class="cal-cell"><div class="cal-bar"></div></div>
+      <div class="cal-cell"><div class="cal-bar harvest"></div></div>
+      <div class="cal-cell"><div class="cal-bar harvest"></div></div>
+      <div class="cal-cell"><div class="cal-bar harvest"></div></div>
+      <div class="cal-cell"><div class="cal-bar"></div></div>
+      <div class="cal-cell"></div><div class="cal-cell"></div><div class="cal-cell"></div>
+
+      <div class="cal-crop">Green peas<small>Lahaul-Spiti, Kinnaur</small></div>
+      <div class="cal-cell"></div><div class="cal-cell"></div><div class="cal-cell"></div><div class="cal-cell"></div>
+      <div class="cal-cell"></div>
+      <div class="cal-cell"><div class="cal-bar"></div></div>
+      <div class="cal-cell"><div class="cal-bar harvest"></div></div>
+      <div class="cal-cell"><div class="cal-bar harvest"></div></div>
+      <div class="cal-cell"><div class="cal-bar"></div></div>
+      <div class="cal-cell"></div><div class="cal-cell"></div><div class="cal-cell"></div>
+
+      <div class="cal-crop">Cabbage, cauliflower<small>Kullu, Shimla, Mandi</small></div>
+      <div class="cal-cell"></div><div class="cal-cell"></div><div class="cal-cell"></div><div class="cal-cell"></div>
+      <div class="cal-cell"></div>
+      <div class="cal-cell"><div class="cal-bar"></div></div>
+      <div class="cal-cell"><div class="cal-bar harvest"></div></div>
+      <div class="cal-cell"><div class="cal-bar harvest"></div></div>
+      <div class="cal-cell"><div class="cal-bar harvest"></div></div>
+      <div class="cal-cell"><div class="cal-bar"></div></div>
+      <div class="cal-cell"></div><div class="cal-cell"></div>
+
+      <div class="cal-crop">Seed potato<small>Lahaul, Kinnaur, Shimla</small></div>
+      <div class="cal-cell"></div><div class="cal-cell"></div><div class="cal-cell"></div><div class="cal-cell"></div>
+      <div class="cal-cell"></div><div class="cal-cell"></div>
+      <div class="cal-cell"><div class="cal-bar"></div></div>
+      <div class="cal-cell"><div class="cal-bar harvest"></div></div>
+      <div class="cal-cell"><div class="cal-bar harvest"></div></div>
+      <div class="cal-cell"><div class="cal-bar"></div></div>
+      <div class="cal-cell"></div><div class="cal-cell"></div>
+
+      <div class="cal-crop">Ginger, garlic<small>Mandi, Sirmaur, Kangra</small></div>
+      <div class="cal-cell"></div><div class="cal-cell"></div><div class="cal-cell"></div><div class="cal-cell"></div>
+      <div class="cal-cell"></div><div class="cal-cell"></div><div class="cal-cell"></div><div class="cal-cell"></div>
+      <div class="cal-cell"><div class="cal-bar"></div></div>
+      <div class="cal-cell"><div class="cal-bar harvest"></div></div>
+      <div class="cal-cell"><div class="cal-bar harvest"></div></div>
+      <div class="cal-cell"><div class="cal-bar"></div></div>
+
+      <div class="cal-crop">Kangra tea<small>Kangra valley</small></div>
+      <div class="cal-cell"></div><div class="cal-cell"></div>
+      <div class="cal-cell"><div class="cal-bar"></div></div>
+      <div class="cal-cell"><div class="cal-bar harvest"></div></div>
+      <div class="cal-cell"><div class="cal-bar harvest"></div></div>
+      <div class="cal-cell"><div class="cal-bar harvest"></div></div>
+      <div class="cal-cell"><div class="cal-bar harvest"></div></div>
+      <div class="cal-cell"><div class="cal-bar harvest"></div></div>
+      <div class="cal-cell"><div class="cal-bar harvest"></div></div>
+      <div class="cal-cell"><div class="cal-bar"></div></div>
+      <div class="cal-cell"></div><div class="cal-cell"></div>
+
+      <div class="cal-crop">Saffron (Kesar)<small>Kinnaur, Bharmour pilots</small></div>
+      <div class="cal-cell"></div><div class="cal-cell"></div><div class="cal-cell"></div><div class="cal-cell"></div>
+      <div class="cal-cell"></div><div class="cal-cell"></div><div class="cal-cell"></div><div class="cal-cell"></div>
+      <div class="cal-cell"></div>
+      <div class="cal-cell"><div class="cal-bar harvest"></div></div>
+      <div class="cal-cell"><div class="cal-bar harvest"></div></div>
+      <div class="cal-cell"></div>
+
+      <div class="cal-crop">Himachali kala zeera<small>Kinnaur, Lahaul, Pangi</small></div>
+      <div class="cal-cell"></div><div class="cal-cell"></div><div class="cal-cell"></div><div class="cal-cell"></div>
+      <div class="cal-cell"></div>
+      <div class="cal-cell"><div class="cal-bar"></div></div>
+      <div class="cal-cell"><div class="cal-bar harvest"></div></div>
+      <div class="cal-cell"><div class="cal-bar harvest"></div></div>
+      <div class="cal-cell"></div><div class="cal-cell"></div><div class="cal-cell"></div><div class="cal-cell"></div>
+
+      <div class="cal-crop">Heeng (asafoetida)<small>Lahaul-Spiti pilots</small></div>
+      <div class="cal-cell"></div><div class="cal-cell"></div><div class="cal-cell"></div><div class="cal-cell"></div>
+      <div class="cal-cell"></div>
+      <div class="cal-cell"><div class="cal-bar"></div></div>
+      <div class="cal-cell"><div class="cal-bar harvest"></div></div>
+      <div class="cal-cell"><div class="cal-bar harvest"></div></div>
+      <div class="cal-cell"><div class="cal-bar"></div></div>
+      <div class="cal-cell"></div><div class="cal-cell"></div><div class="cal-cell"></div>
+
+      <div class="cal-crop">Hops<small>Lahaul, Kinnaur</small></div>
+      <div class="cal-cell"></div><div class="cal-cell"></div><div class="cal-cell"></div><div class="cal-cell"></div>
+      <div class="cal-cell"></div><div class="cal-cell"></div><div class="cal-cell"></div>
+      <div class="cal-cell"><div class="cal-bar"></div></div>
+      <div class="cal-cell"><div class="cal-bar harvest"></div></div>
+      <div class="cal-cell"><div class="cal-bar"></div></div>
+      <div class="cal-cell"></div><div class="cal-cell"></div>
+
+      <div class="cal-crop">Wheat<small>Kangra, Mandi, Sirmaur</small></div>
+      <div class="cal-cell"></div><div class="cal-cell"></div><div class="cal-cell"></div>
+      <div class="cal-cell"><div class="cal-bar"></div></div>
+      <div class="cal-cell"><div class="cal-bar harvest"></div></div>
+      <div class="cal-cell"><div class="cal-bar harvest"></div></div>
+      <div class="cal-cell"></div><div class="cal-cell"></div><div class="cal-cell"></div><div class="cal-cell"></div>
+      <div class="cal-cell"></div><div class="cal-cell"></div>
+
+      <div class="cal-crop">Maize<small>Kangra, Mandi</small></div>
+      <div class="cal-cell"></div><div class="cal-cell"></div><div class="cal-cell"></div><div class="cal-cell"></div>
+      <div class="cal-cell"></div><div class="cal-cell"></div><div class="cal-cell"></div>
+      <div class="cal-cell"><div class="cal-bar"></div></div>
+      <div class="cal-cell"><div class="cal-bar harvest"></div></div>
+      <div class="cal-cell"><div class="cal-bar harvest"></div></div>
+      <div class="cal-cell"><div class="cal-bar"></div></div>
+      <div class="cal-cell"></div>
+
+      <div class="cal-crop">Rice<small>Kangra, Paonta valley</small></div>
+      <div class="cal-cell"></div><div class="cal-cell"></div><div class="cal-cell"></div><div class="cal-cell"></div>
+      <div class="cal-cell"></div><div class="cal-cell"></div><div class="cal-cell"></div><div class="cal-cell"></div>
+      <div class="cal-cell"><div class="cal-bar"></div></div>
+      <div class="cal-cell"><div class="cal-bar harvest"></div></div>
+      <div class="cal-cell"><div class="cal-bar harvest"></div></div>
+      <div class="cal-cell"></div>
+
+      <div class="cal-crop">Walnut, almond<small>Kinnaur, Chamba, Kullu</small></div>
+      <div class="cal-cell"></div><div class="cal-cell"></div><div class="cal-cell"></div><div class="cal-cell"></div>
+      <div class="cal-cell"></div><div class="cal-cell"></div><div class="cal-cell"></div>
+      <div class="cal-cell"><div class="cal-bar"></div></div>
+      <div class="cal-cell"><div class="cal-bar harvest"></div></div>
+      <div class="cal-cell"><div class="cal-bar harvest"></div></div>
+      <div class="cal-cell"></div><div class="cal-cell"></div>
+
+      <div class="cal-crop">Milk and dairy<small>Statewide</small></div>
+      <div class="cal-cell"><div class="cal-bar slate"></div></div>
+      <div class="cal-cell"><div class="cal-bar slate"></div></div>
+      <div class="cal-cell"><div class="cal-bar slate"></div></div>
+      <div class="cal-cell"><div class="cal-bar slate"></div></div>
+      <div class="cal-cell"><div class="cal-bar slate"></div></div>
+      <div class="cal-cell"><div class="cal-bar slate"></div></div>
+      <div class="cal-cell"><div class="cal-bar slate"></div></div>
+      <div class="cal-cell"><div class="cal-bar slate"></div></div>
+      <div class="cal-cell"><div class="cal-bar slate"></div></div>
+      <div class="cal-cell"><div class="cal-bar slate"></div></div>
+      <div class="cal-cell"><div class="cal-bar slate"></div></div>
+      <div class="cal-cell"><div class="cal-bar slate"></div></div>
+
+      <div class="cal-crop">Wool shearing<small>Gaddi, Rampur Bushair</small></div>
+      <div class="cal-cell"></div><div class="cal-cell"></div>
+      <div class="cal-cell"><div class="cal-bar harvest"></div></div>
+      <div class="cal-cell"><div class="cal-bar harvest"></div></div>
+      <div class="cal-cell"></div><div class="cal-cell"></div><div class="cal-cell"></div><div class="cal-cell"></div>
+      <div class="cal-cell"><div class="cal-bar harvest"></div></div>
+      <div class="cal-cell"><div class="cal-bar harvest"></div></div>
+      <div class="cal-cell"></div><div class="cal-cell"></div>
+
+      <div class="cal-crop">Pashmina (combing)<small>Chegu, Lahaul-Spiti</small></div>
+      <div class="cal-cell"></div><div class="cal-cell"></div><div class="cal-cell"></div><div class="cal-cell"></div>
+      <div class="cal-cell"></div>
+      <div class="cal-cell"><div class="cal-bar harvest"></div></div>
+      <div class="cal-cell"><div class="cal-bar harvest"></div></div>
+      <div class="cal-cell"></div><div class="cal-cell"></div><div class="cal-cell"></div><div class="cal-cell"></div>
+      <div class="cal-cell"></div>
+
+      <div class="cal-crop">Trout<small>Kullu, Mandi, Chamba</small></div>
+      <div class="cal-cell"><div class="cal-bar slate"></div></div>
+      <div class="cal-cell"><div class="cal-bar slate"></div></div>
+      <div class="cal-cell"><div class="cal-bar slate"></div></div>
+      <div class="cal-cell"><div class="cal-bar slate"></div></div>
+      <div class="cal-cell"><div class="cal-bar slate"></div></div>
+      <div class="cal-cell"><div class="cal-bar slate"></div></div>
+      <div class="cal-cell"><div class="cal-bar slate"></div></div>
+      <div class="cal-cell"><div class="cal-bar slate"></div></div>
+      <div class="cal-cell"><div class="cal-bar slate"></div></div>
+      <div class="cal-cell"><div class="cal-bar slate"></div></div>
+      <div class="cal-cell"><div class="cal-bar slate"></div></div>
+      <div class="cal-cell"><div class="cal-bar slate"></div></div>
+
+      <div class="cal-crop">Industrial hemp<small>Pilot, statewide from 2026</small></div>
+      <div class="cal-cell"></div><div class="cal-cell"></div><div class="cal-cell"></div><div class="cal-cell"></div>
+      <div class="cal-cell"></div><div class="cal-cell"></div>
+      <div class="cal-cell"><div class="cal-bar"></div></div>
+      <div class="cal-cell"><div class="cal-bar"></div></div>
+      <div class="cal-cell"><div class="cal-bar harvest"></div></div>
+      <div class="cal-cell"><div class="cal-bar harvest"></div></div>
+      <div class="cal-cell"></div><div class="cal-cell"></div>
+    </div>
+    <div class="cal-legend">
+      <span><span class="key" style="background:#0A0A0A"></span>Peak harvest</span>
+      <span><span class="key" style="background:#C0946D; opacity:0.85"></span>Pre- or post-harvest window</span>
+      <span><span class="key" style="background:#1A3C5B; opacity:0.85"></span>Continuous production</span>
+    </div>
+  </div>
+
+  <!-- ===== Newsletter CTA mid-article ===== -->
+  <div class="newsletter-inline">
+    <div class="nl-copy">
+      <div class="nl-label">NEWSLETTER &middot; TCD DAILY SIGNAL</div>
+      <div class="nl-title">Three verified signals from India's climate beat, every morning.</div>
+      <div class="nl-sub">Free. 400 words. For climate professionals.</div>
+    </div>
+    <a href="#" class="nl-btn">Subscribe</a>
+  </div>
+
+  <!-- ===== What Others Miss: category-by-category ===== -->
+  <div class="zone-label">What Others Miss / The Full Portfolio</div>
+
+  <p>The seven categories below cover virtually every significant produce stream coming out of Himachal Pradesh today. I have included scale data where reliable figures exist, and flagged where numbers are partial or emerging.</p>
+
+  <!-- Category 1: Temperate fruits -->
+  <div class="cat-card">
+    <div class="cat-tag">01 &middot; TEMPERATE FRUITS</div>
+    <h4>Apple, pear, stone fruits, kiwi, walnut, almond</h4>
+    <p>The foundational layer of Himachal's produce economy. Apple alone accounts for 49 percent of area under fruit crops and 81 percent of production, per the HP Economic Survey 2022-23. Shimla, Kullu and Kinnaur are the traditional belt; Lahaul-Spiti and upper Kinnaur are the new frontier as the climate envelope migrates upslope.</p>
+    <div class="pd-grid">
+      <div class="pd-key">Scale</div>
+      <div class="pd-val"><span class="mono">580,296 MT</span> apple production in 2024 (Dept of Agriculture and Farmers Welfare). Non-apple temperate fruits add <span class="mono">27,911 hectares</span> of area with pears, plums, peaches, apricots, cherries, persimmons and kiwis.</div>
+      <div class="pd-key">Season</div>
+      <div class="pd-val">July to October for apples. May to August for stone fruits. September to October for walnut and almond.</div>
+      <div class="pd-key">Economic role</div>
+      <div class="pd-val">Apple economy valued at roughly <span class="mono">Rs 5,500 crore</span> per year, supporting over 4 lakh families and 13 percent of state GDP. Direct and indirect employment for roughly 50 percent of the population in Shimla, Kullu and Kinnaur districts.</div>
+      <div class="pd-key">Utility</div>
+      <div class="pd-val">Nutrition (dietary fibre, vitamins, antioxidants), food processing (juice, jam, cider, apple wine), and emerging export markets. Walnuts and almonds as high-value nut protein and omega-3 source.</div>
+    </div>
+  </div>
+
+  <!-- Category 2: Subtropical / citrus -->
+  <div class="cat-card">
+    <div class="cat-tag">02 &middot; CITRUS AND SUBTROPICAL FRUITS</div>
+    <h4>Mango, orange, galgal, lemon, pomegranate, litchi</h4>
+    <p>Grown in the lower hills of Kangra, Bilaspur, Una, Sirmaur and Solan districts. Citrus alone covers roughly 26,000 hectares; subtropical fruits cover another 56,976 hectares. Galgal (a large hill lemon) and Kinnaur's traditional citrus varieties are candidates for GI protection.</p>
+    <div class="pd-grid">
+      <div class="pd-key">Scale</div>
+      <div class="pd-val"><span class="mono">35,310 MT</span> total citrus, <span class="mono">36,570 MT</span> mango, <span class="mono">17,030 MT</span> orange/kinnow, <span class="mono">12,181 MT</span> pear, <span class="mono">11,256 MT</span> plum in 2023-24 (MoFPI State Profile).</div>
+      <div class="pd-key">Season</div>
+      <div class="pd-val">June to August for mango. November to February for citrus. June to July for litchi.</div>
+      <div class="pd-key">Economic role</div>
+      <div class="pd-val">Second-tier fruit segment, important for Kangra, Una and Bilaspur farmers who sit outside the apple belt. Feeds processing industry (pickles, squash, juice).</div>
+      <div class="pd-key">Utility</div>
+      <div class="pd-val">Daily nutrition (vitamin C), processed foods, and local culinary traditions. Galgal is used extensively in Himachali pickling.</div>
+    </div>
+  </div>
+
+  <!-- Category 3: Off-season vegetables -->
+  <div class="cat-card">
+    <div class="cat-tag">03 &middot; OFF-SEASON VEGETABLES</div>
+    <h4>Tomato, peas, cabbage, cauliflower, capsicum, beans, potato, cucumber</h4>
+    <p>The commercial engine of mid and lower hill farming. From mid-June through September, Himachal is the primary vegetable supplier to Punjab, Haryana, Chandigarh and Delhi markets, because plains production is off. This single seasonal window delivers the highest per-hectare returns in the state.</p>
+    <div class="pd-grid">
+      <div class="pd-key">Scale</div>
+      <div class="pd-val"><span class="mono">18.04 lakh MT</span> vegetable production in 2021-22, valued at <span class="mono">Rs 16,076 crore</span> annually. Tomato alone covers over 3,000 hectares in Solan and Sirmaur.</div>
+      <div class="pd-key">Season</div>
+      <div class="pd-val">Peas: June to September. Tomato: June to September. Cabbage and cauliflower: July to October. Seed potato: August to September.</div>
+      <div class="pd-key">Economic role</div>
+      <div class="pd-val">Net returns of <span class="mono">Rs 60,000 to Rs 2 lakh per hectare</span> against <span class="mono">Rs 8,000 to Rs 10,000</span> for traditional cereals. Per HP government estimates, this is a 6x to 20x return premium over wheat or maize.</div>
+      <div class="pd-key">Utility</div>
+      <div class="pd-val">Food security for the plains during summer months when local supply fails. High perishability means cold chain and logistics are material bottlenecks.</div>
+    </div>
+  </div>
+
+  <!-- Data Point mid-article -->
+  <div class="data-point">
+    <div class="dp-label">DATA POINT</div>
+    <div class="dp-figure">6x to 20x</div>
+    <div class="dp-context">Return premium of off-season vegetable cultivation over traditional cereals in Himachal Pradesh, per hectare. Rs 60,000 to Rs 2 lakh versus Rs 8,000 to Rs 10,000.</div>
+    <div class="dp-source">SOURCE: HP GOVERNMENT ESTIMATES, ECONOMIC SURVEY 2022-23</div>
+  </div>
+
+  <!-- Category 4: Cereals and pulses -->
+  <div class="cat-card">
+    <div class="cat-tag">04 &middot; CEREALS, PULSES AND OILSEEDS</div>
+    <h4>Wheat, maize, rice, barley, pulses, soybean</h4>
+    <p>The subsistence layer of Himachal agriculture. The state is a deficit producer of foodgrains because only 10.4 percent of geographical area is cultivated and 75 percent of cropped area is rainfed. Kangra and Mandi produce most of the wheat, maize and rice; barley is concentrated in Shimla. Maize-wheat and rice-wheat are the dominant cropping systems.</p>
+    <div class="pd-grid">
+      <div class="pd-key">Scale</div>
+      <div class="pd-val">Pulses at <span class="mono">49,000 MT</span> in 2023-24 (MoFPI). Wheat, maize and rice together form the bulk of cropped area but output is small relative to national scale.</div>
+      <div class="pd-key">Season</div>
+      <div class="pd-val">Wheat: April to June (rabi). Maize: August to October (kharif). Rice: September to November. Barley: April to May.</div>
+      <div class="pd-key">Economic role</div>
+      <div class="pd-val">Low per-hectare value relative to horticulture, but critical for household food security for the 84.5 percent of farmers who are small or marginal. Policy support via National Food Security Mission (Rs 9.65 crore for 2025-26).</div>
+      <div class="pd-key">Utility</div>
+      <div class="pd-val">Household consumption, regional grain markets, and traditional food systems (siddu, babru, madra use local flour).</div>
+    </div>
+  </div>
+
+  <!-- Category 5: Spices, medicinal plants, aromatics -->
+  <div class="cat-card">
+    <div class="cat-tag">05 &middot; SPICES, MEDICINAL PLANTS AND AROMATICS</div>
+    <h4>Saffron, heeng, Himachali kala zeera, hops, ginger, turmeric, chulli oil, and 640 medicinal species</h4>
+    <p>The most underestimated segment of the Himachal produce economy. The state hosts roughly 640 species of medicinal plants across its four agro-climatic zones, concentrated in Kinnaur, Lahaul-Spiti, Kullu, Kangra and Shimla above 2,500 metres. Himachal is the largest national supplier of Atish, Salampanja, Dhoop, Kutki, Bankakri, Chora, Daruhaldi, Talispatra, Revandchini, Vach and Somlata. Saffron, heeng and cinnamon cultivation is actively being introduced as import substitution.</p>
+    <div class="pd-grid">
+      <div class="pd-key">Scale</div>
+      <div class="pd-val">Saffron pilot across <span class="mono">25 locations</span> in Kinnaur, Mandi, Chamba, Kangra, Kullu and Lahaul-Spiti with <span class="mono">6,859 kg</span> corms supplied so far. Heeng (asafoetida) pilot across <span class="mono">69 locations</span> in Lahaul-Spiti with over 33,000 plants distributed. Aromatic crops (lavender, lemongrass, rose, rosemary, wild marigold, chamomile) on <span class="mono">1,691 hectares</span>.</div>
+      <div class="pd-key">GI status</div>
+      <div class="pd-val">Himachali Kala Zeera (Bunium persicum), Kinnauri Chulli Oil, and Kangra Tea are registered under the Geographical Indications Act. These commodities compete on origin authenticity, not volume.</div>
+      <div class="pd-key">Utility</div>
+      <div class="pd-val">Ayurvedic and pharmaceutical raw material, international spice markets (saffron at roughly Rs 3 to 5 lakh per kg), natural dye and incense industries, and import substitution for heeng (India imports over 1,500 tonnes annually).</div>
+    </div>
+  </div>
+
+  <!-- Category 6: Tea and beverages -->
+  <div class="cat-card">
+    <div class="cat-tag">06 &middot; TEA, HOPS AND EMERGING BEVERAGES</div>
+    <h4>Kangra tea, hops for brewing, wine and cider</h4>
+    <p>Kangra tea is one of only a handful of Indian teas with GI protection (registered 2 April 2012). Its orthodox black and green teas are prized internationally. Hops from Lahaul and Kinnaur supply India's craft and commercial brewing industry, a small but fast-growing segment. Apple cider and apple wine units are expanding, with a 70,000 litre per annum wine plant under construction at Jarol (district Shimla).</p>
+    <div class="pd-grid">
+      <div class="pd-key">Season</div>
+      <div class="pd-val">Kangra tea: March to October plucking. Hops: August harvest.</div>
+      <div class="pd-key">Utility</div>
+      <div class="pd-val">Specialty tea export, brewing inputs for Indian craft beer (a category growing faster than mainstream beer), fruit-based alcoholic beverages, and value-added processing for apple gluts.</div>
+    </div>
+  </div>
+
+  <!-- Category 7: Cannabis / Hemp -->
+  <div class="cat-card">
+    <div class="cat-tag">07 &middot; INDUSTRIAL HEMP (NEWLY LEGALISED)</div>
+    <h4>Cannabis for fibre, bio-composites, medical and nutraceutical use</h4>
+    <p>The HP Assembly passed a resolution in September 2024 amending NDPS rules to permit controlled cultivation of cannabis for industrial and medicinal use. The cabinet approved a pilot study in January 2025, jointly assigned to CSK HP Agriculture University, Palampur and Dr YS Parmar University of Horticulture, Nauni. The pilot will identify strains, best practices and licensing framework. A state-level regulatory agency and seed bank are in design. Chief Minister Sukhu has publicly noted industry interest from textiles, bio-composites, pharmaceuticals and eco-construction firms.</p>
+    <div class="pd-grid">
+      <div class="pd-key">Status</div>
+      <div class="pd-val">Licensing framework expected in 2026. Industrial hemp will be low-THC strains. Medicinal cannabis will be tightly regulated, similar to opium under NDPS.</div>
+      <div class="pd-key">Season</div>
+      <div class="pd-val">Typical industrial hemp cycle: sowing July to August, harvest September to October.</div>
+      <div class="pd-key">Economic role</div>
+      <div class="pd-val">Not yet quantified. Uttarakhand's parallel hemp programme has struggled with market linkages and regulatory bottlenecks. Himachal's research-led rollout is designed to avoid those mistakes.</div>
+      <div class="pd-key">Utility</div>
+      <div class="pd-val">Hemp fibre for textiles and rope, hempcrete and bio-composites for eco-construction, hemp seed and oil for nutraceuticals, cannabinoid-based pharmaceuticals. Low water requirement and high carbon sequestration per hectare make it a genuinely climate-positive crop.</div>
+    </div>
+  </div>
+
+  <!-- Category 8: Livestock -->
+  <div class="cat-card">
+    <div class="cat-tag">08 &middot; LIVESTOCK, DAIRY, WOOL AND FISHERIES</div>
+    <h4>Milk, Gaddi wool, pashmina, meat, poultry, trout</h4>
+    <p>The animal husbandry economy supports migratory pastoralism (Gaddi, Bakarwal, Gujjar communities) and sedentary dairy farming. Himachal recorded the highest wool production growth rate in India at 4.38 percent in the most recent Livestock Production Statistics (2025). Trout farming has emerged as a flagship cold-water aquaculture sector, with 600 km of riverine length stocked and a production target of 950 MT.</p>
+    <div class="pd-grid">
+      <div class="pd-key">Scale</div>
+      <div class="pd-val">Milk: <span class="mono">17.49 lakh MT</span> (2023-24). Eggs: <span class="mono">875.55 lakh numbers</span>. Meat: <span class="mono">5,500 MT</span>. Fish: <span class="mono">17,000 MT</span> (2022-23). Trout: <span class="mono">568 MT</span> valued at Rs 25.58 crore in 2018-19, trending toward 685 MT.</div>
+      <div class="pd-key">Breeds and segments</div>
+      <div class="pd-val">Gaddi sheep and goats (Chamba, Kangra, Kullu) for wool and meat. Chegu pashmina goats (Lahaul and Spiti) for fine fibre. Rampur Bushair sheep for apparel wool. Rainbow and brown trout in Kullu, Mandi, Shimla, Kinnaur, Chamba, Kangra, Sirmaur.</div>
+      <div class="pd-key">Utility</div>
+      <div class="pd-val">Wool for Kullu shawls, Kinnauri shawls (GI-tagged) and blankets. Pashmina for luxury textile markets. Milk for dairy and sweet production. Meat for regional markets. Trout for hotel and export channels, with a ready-to-eat smoked trout canning centre at Patlikuhal.</div>
+    </div>
+  </div>
+
+  <h3 class="sub">How to read this portfolio</h3>
+
+  <p>Three patterns stand out when the categories are laid side by side. <strong>First</strong>, the dependence on apple is real but the state is actively diversifying. The rise of off-season vegetables (Rs 16,076 crore annual value), the GI-tagged spice and tea portfolio, the medicinal plants economy, the emerging saffron and heeng programmes, and now legalised hemp collectively represent a conscious hedge against a single-commodity collapse. <strong>Second</strong>, the segments with the highest per-hectare returns tend to be the ones exposed to the sharpest climate risk: off-season vegetables need reliable summer monsoon rhythm, stone fruits and apples need chilling hours, trout needs cold perennial streams. <strong>Third</strong>, the genuinely climate-resilient opportunities are sitting in the long tail: aromatics, medicinal plants, hemp, pashmina, saffron. These are precisely the crops the state is investing in through CSIR-IHBT, YSPUHF and the new agriculture university at Palampur.</p>
+
+  <p>For investors and development finance readers, the implication is that Himachal's produce economy is not a single-commodity story. It is a diversified portfolio being actively restructured around climate constraints. The next decade of state agricultural policy will determine whether the restructuring can keep pace with the warming it is adapting to.</p>
+
+  <!-- ===== BB Advisory CTA ===== -->
+  <div class="bb-cta">
+    I advise CEOs, boards and development finance institutions on how Himalayan agri-climate risk and commodity transitions map to Indian investment portfolios, BRSR disclosures and natural capital strategies. If your team is assessing exposure or opportunity in this sector, <a href="#">schedule a consultation with Bombay Breed</a>.
+  </div>
+
+</article>
+
+<div class="article-footer">
+  <aside class="sources">
+    <h4>SOURCES</h4>
+    <ol>
+      <li>Department of Agriculture and Farmers Welfare, Government of India. Production of Horticulture Crops in Major States, 2024 and 2025 estimates.</li>
+      <li>HP Economic Survey 2022-23, Economics and Statistics Department, Government of Himachal Pradesh.</li>
+      <li>Ministry of Food Processing Industries, Government of India. Himachal Pradesh State Profile, 2024.</li>
+      <li>Department of Horticulture, Government of Himachal Pradesh. Area and Production of Horticulture Crops 2023-24.</li>
+      <li>HP Agriculture Department. National Food Security Mission implementation 2024-25.</li>
+      <li>Outlook India. Climate Change Is Pushing Himachal Pradesh's Apples To Higher Altitudes, January 2024.</li>
+      <li>World Bank. Boosting Apple Cultivation in Himachal Pradesh, December 2024.</li>
+      <li>The Tribune. Herbs farming in Himachal: High hopes, January 2022.</li>
+      <li>Chauhan et al. Important Medicinal and Aromatic Plants of Himachal Pradesh, Indian Forester, 2003.</li>
+      <li>CSIR-Institute of Himalayan Bioresource Technology, Palampur. Aroma Mission deployment data.</li>
+      <li>Down to Earth. Himachal Pradesh launches pilot project for cannabis farming, January 2025.</li>
+      <li>HempToday. Indian state poised to roll out hemp farming licenses for industrial, medical use, July 2025.</li>
+      <li>Department of Animal Husbandry and Dairying, Government of India. 20th Livestock Census (2019) and Basic Animal Husbandry Statistics 2023.</li>
+      <li>Vet Extension. Livestock Production Statistics of India 2025.</li>
+      <li>Department of Fisheries, Government of Himachal Pradesh. Trout farming infrastructure and production data.</li>
+      <li>Geographical Indications Registry, Government of India. Kangra Tea (2012), Himachali Kala Zeera (2019), Kinnauri Chulli Oil (2019), Kinnauri Shawl (2008).</li>
+      <li>Bala B, Sharma N, Sharma RK. Cost and Return Structure for Off-Season Vegetables in Himachal Pradesh, Agricultural Economics Research Review, 2011.</li>
+      <li>Mandla I, Vaidya MK, Sharma N. Evaluation of socio-economic status and cost-return structure of major vegetable crops in Kullu Valley. Plant Science Today, 2023.</li>
+    </ol>
+  </aside>
+</div>
+
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-brand">Bombay Breed &middot; The Climate Desk</div>
+    <div class="footer-meta">BOMBAYBREED.COM &middot; THECLIMATEDESK.EARTH</div>
+  </div>
+</footer>
+
+<script>
+  Chart.defaults.font.family = "'Inter', sans-serif";
+  Chart.defaults.color = '#6B7280';
+  Chart.defaults.font.size = 11;
+
+  // Contribution to economy by segment (horizontal bar)
+  new Chart(document.getElementById('contribChart'), {
+    type: 'bar',
+    data: {
+      labels: [
+        'Vegetables (off-season + general)',
+        'Apple economy',
+        'Dairy (milk value)',
+        'Other fruits (citrus, stone, subtropical)',
+        'Medicinal plants, spices, aromatics',
+        'Wool, pashmina, meat',
+        'Kangra tea + beverages',
+        'Trout and fisheries',
+        'Industrial hemp (projected)'
+      ],
+      datasets: [{
+        data: [16076, 5500, 1800, 1200, 600, 450, 180, 70, 50],
+        backgroundColor: [
+          '#1A3C5B', '#1A3C5B', '#C0946D', '#C0946D',
+          '#C0946D', '#C0946D', '#C0946D', '#C0946D', '#E5E5E1'
+        ],
+        borderWidth: 0,
+        borderRadius: 2,
+        barThickness: 24
+      }]
+    },
+    options: {
+      indexAxis: 'y',
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: {
+        legend: { display: false },
+        tooltip: {
+          backgroundColor: '#0A0A0A',
+          titleFont: { family: "'Inter', sans-serif", size: 11, weight: '600' },
+          bodyFont: { family: "'Inter', sans-serif", size: 13 },
+          padding: 10,
+          borderColor: '#C0946D',
+          borderWidth: 1,
+          callbacks: {
+            label: function(ctx) {
+              return 'Rs ' + ctx.parsed.x.toLocaleString('en-IN') + ' crore (approx)';
+            }
+          }
+        }
+      },
+      scales: {
+        x: {
+          beginAtZero: true,
+          grid: { color: '#E5E5E1', drawBorder: false },
+          border: { display: false },
+          ticks: {
+            font: { family: "'Inter', sans-serif", size: 11 },
+            color: '#6B7280',
+            callback: function(v) {
+              if (v >= 1000) return 'Rs ' + (v/1000) + 'K cr';
+              return 'Rs ' + v + ' cr';
+            }
+          }
+        },
+        y: {
+          grid: { display: false },
+          border: { color: '#E5E5E1' },
+          ticks: {
+            font: { family: "'Inter', sans-serif", size: 12, weight: '500' },
+            color: '#0A0A0A'
+          }
+        }
+      }
+    }
+  });
+</script>
+
+</body>
+</html>

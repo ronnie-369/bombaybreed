@@ -37,6 +37,16 @@ const allContentTypes: ContentType[] = ['Flagship Report', 'Intelligence Brief',
 
 const publications: Publication[] = [
   {
+    title: "Mitigation and Adaptation, Working as One: An Investor's View of Himachal Pradesh",
+    description: "Why Himachal Pradesh's climate exposure is India's exposure. A restoration-economy thesis with four supporting interactive briefs on produce, crop hardiness, compounding losses, and the vanishing winter.",
+    contentType: 'Flagship Report',
+    topic: 'Carbon Markets',
+    publishedDate: "2026-04-25",
+    readTimeMinutes: 18,
+    link: "/special-features/tcd-hp-investor-synthesis.html",
+    external: true,
+  },
+  {
     title: "The Market That Ran on One Buyer",
     description: "Microsoft's pause on carbon removal purchases is not a corporate anomaly. The data show the concentration risk was documented, quantified, and reported for three years before it arrived.",
     contentType: 'Intelligence Brief',

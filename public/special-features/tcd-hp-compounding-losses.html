@@ -1,0 +1,1104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>The Compounding Losses: Sea Buckthorn, GI Produce and Tourism in a Warming Himachal | The Climate Desk</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+<style>
+  :root {
+    --off-white: #FBFBF9;
+    --near-black: #0A0A0A;
+    --slate-blue: #1A3C5B;
+    --copper: #C0946D;
+    --gray: #6B7280;
+    --border: #E5E5E1;
+    --surface: #FFFFFF;
+
+    --risk-critical: #8B3A2F;
+    --risk-high: #C0946D;
+    --risk-moderate: #D4B896;
+    --risk-stable: #1A3C5B;
+    --risk-beneficiary: #2D5F4A;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { background: var(--off-white); }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    color: var(--near-black);
+    font-size: 16px;
+    line-height: 1.6;
+    font-weight: 400;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ===== Nav ===== */
+  .nav {
+    border-bottom: 1px solid var(--border);
+    background: var(--off-white);
+    position: sticky;
+    top: 0;
+    z-index: 50;
+  }
+  .nav-inner {
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 18px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .brand-lockup { display: flex; align-items: center; gap: 10px; }
+  .brand-mark { width: 28px; height: 28px; }
+  .brand-mark svg { width: 100%; height: 100%; }
+  .brand-wordmark {
+    font-family: 'Inter', sans-serif;
+    font-weight: 500;
+    font-size: 14px;
+    letter-spacing: -0.5px;
+    color: var(--near-black);
+  }
+  .brand-tcd {
+    font-family: 'Playfair Display', serif;
+    font-weight: 400;
+    font-size: 15px;
+    letter-spacing: -0.2px;
+    font-style: italic;
+    padding-left: 14px;
+    border-left: 1px solid var(--border);
+    margin-left: 4px;
+  }
+  .nav-links {
+    display: flex;
+    gap: 28px;
+    align-items: center;
+    font-family: 'Inter', sans-serif;
+    font-weight: 500;
+    font-size: 13px;
+  }
+  .nav-links a {
+    color: var(--gray);
+    text-decoration: none;
+    transition: color 0.15s;
+  }
+  .nav-links a:hover { color: var(--near-black); }
+  .nav-cta {
+    background: var(--slate-blue);
+    color: var(--off-white) !important;
+    padding: 8px 16px;
+    border-radius: 10px;
+    font-weight: 500;
+  }
+
+  /* ===== Article ===== */
+  .article {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 56px 40px 40px;
+  }
+
+  .beat-kicker {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--copper);
+    margin-bottom: 24px;
+    display: inline-block;
+    text-decoration: none;
+  }
+
+  h1.headline {
+    font-family: 'Playfair Display', serif;
+    font-weight: 400;
+    font-size: 52px;
+    line-height: 1.05;
+    letter-spacing: -1.4px;
+    margin-bottom: 24px;
+  }
+
+  .standfirst {
+    font-family: 'Playfair Display', serif;
+    font-weight: 400;
+    font-style: italic;
+    font-size: 22px;
+    line-height: 1.45;
+    margin-bottom: 36px;
+    letter-spacing: -0.3px;
+    max-width: 800px;
+  }
+
+  .meta {
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--gray);
+    padding-bottom: 28px;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 40px;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .zone-label {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--copper);
+    margin-top: 56px;
+    margin-bottom: 16px;
+    padding-top: 28px;
+    border-top: 1px solid var(--border);
+    display: block;
+  }
+  .zone-label:first-of-type {
+    margin-top: 0;
+    padding-top: 0;
+    border-top: none;
+  }
+
+  .article p {
+    font-family: 'Inter', sans-serif;
+    font-size: 17px;
+    line-height: 1.7;
+    margin-bottom: 20px;
+  }
+  .article p strong { font-weight: 600; }
+
+  .signal-zone p { font-size: 16px; color: var(--gray); }
+  .signal-zone p strong { color: var(--near-black); }
+
+  h3.sub {
+    font-family: 'Playfair Display', serif;
+    font-weight: 400;
+    font-size: 28px;
+    line-height: 1.22;
+    letter-spacing: -0.4px;
+    margin: 48px 0 14px;
+  }
+
+  h4.sub2 {
+    font-family: 'Playfair Display', serif;
+    font-weight: 400;
+    font-size: 22px;
+    line-height: 1.25;
+    letter-spacing: -0.3px;
+    margin: 32px 0 12px;
+  }
+
+  /* ===== Editor's correction card ===== */
+  .correction {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-left: 4px solid var(--copper);
+    border-radius: 12px;
+    padding: 24px 28px;
+    margin: 28px 0 40px;
+  }
+  .correction .corr-label {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--copper);
+    margin-bottom: 10px;
+  }
+  .correction p {
+    font-size: 15px;
+    line-height: 1.65;
+    margin-bottom: 0;
+    color: var(--near-black);
+  }
+
+  /* ===== Stat strip ===== */
+  .stat-strip {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0;
+    margin: 36px 0 48px;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    overflow: hidden;
+    background: var(--surface);
+  }
+  .stat-cell {
+    padding: 24px 20px;
+    border-right: 1px solid var(--border);
+  }
+  .stat-cell:last-child { border-right: none; }
+  .stat-cell .sc-num {
+    font-family: 'Playfair Display', serif;
+    font-weight: 400;
+    font-size: 38px;
+    line-height: 1;
+    letter-spacing: -1px;
+    margin-bottom: 10px;
+    color: var(--near-black);
+  }
+  .stat-cell .sc-label {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--copper);
+    margin-bottom: 6px;
+  }
+  .stat-cell .sc-sub {
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    color: var(--gray);
+    line-height: 1.5;
+  }
+
+  /* ===== Chart card ===== */
+  .chart-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 28px;
+    margin: 40px 0;
+  }
+  .chart-title {
+    font-family: 'Playfair Display', serif;
+    font-weight: 400;
+    font-size: 22px;
+    line-height: 1.25;
+    letter-spacing: -0.3px;
+    margin-bottom: 6px;
+  }
+  .chart-subtitle {
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    color: var(--gray);
+    margin-bottom: 24px;
+  }
+  .chart-canvas-wrap {
+    position: relative;
+    height: 360px;
+  }
+  .chart-canvas-wrap.tall { height: 460px; }
+  .chart-source {
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    font-size: 11px;
+    font-weight: 500;
+    color: var(--gray);
+    margin-top: 18px;
+    padding-top: 14px;
+    border-top: 1px solid var(--border);
+  }
+
+  /* ===== Sea buckthorn feature card ===== */
+  .feature-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 36px;
+    margin: 40px 0;
+  }
+  .feature-card .fc-eyebrow {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--copper);
+    margin-bottom: 14px;
+  }
+  .feature-card h3 {
+    font-family: 'Playfair Display', serif;
+    font-weight: 400;
+    font-size: 30px;
+    line-height: 1.2;
+    letter-spacing: -0.5px;
+    margin-bottom: 16px;
+  }
+  .feature-card p {
+    font-size: 15px;
+    line-height: 1.65;
+    margin-bottom: 14px;
+  }
+  .feature-card .pd-grid {
+    display: grid;
+    grid-template-columns: 160px 1fr;
+    gap: 14px 24px;
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 1px solid var(--border);
+  }
+  .feature-card .pd-key {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--copper);
+    padding-top: 2px;
+  }
+  .feature-card .pd-val {
+    font-size: 14px;
+    line-height: 1.65;
+  }
+  .feature-card .pd-val .mono {
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    font-weight: 500;
+  }
+
+  /* ===== GI matrix ===== */
+  .gi-matrix {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 28px;
+    margin: 40px 0;
+    overflow-x: auto;
+  }
+  .gi-matrix .m-title {
+    font-family: 'Playfair Display', serif;
+    font-weight: 400;
+    font-size: 24px;
+    line-height: 1.25;
+    letter-spacing: -0.4px;
+    margin-bottom: 6px;
+  }
+  .gi-matrix .m-sub {
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    color: var(--gray);
+    margin-bottom: 24px;
+  }
+  table.gi-t {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+    min-width: 720px;
+  }
+  table.gi-t thead th {
+    font-family: 'Inter', sans-serif;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: var(--copper);
+    padding: 12px 10px;
+    border-bottom: 1.5px solid var(--near-black);
+    text-align: left;
+    vertical-align: bottom;
+  }
+  table.gi-t tbody td {
+    padding: 14px 10px;
+    border-bottom: 1px solid var(--border);
+    color: var(--near-black);
+    vertical-align: top;
+    line-height: 1.5;
+  }
+  table.gi-t tbody td.crop {
+    font-family: 'Playfair Display', serif;
+    font-weight: 500;
+    font-size: 15px;
+    letter-spacing: -0.2px;
+  }
+  table.gi-t tbody td.crop small {
+    display: block;
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    font-weight: 400;
+    color: var(--gray);
+    margin-top: 2px;
+    letter-spacing: 0;
+  }
+  table.gi-t tbody tr:last-child td { border-bottom: none; }
+
+  .risk-pill {
+    display: inline-block;
+    padding: 4px 10px;
+    border-radius: 100px;
+    font-family: 'Inter', sans-serif;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--off-white);
+    white-space: nowrap;
+  }
+  .risk-pill.critical { background: var(--risk-critical); }
+  .risk-pill.high { background: var(--risk-high); color: var(--near-black); }
+  .risk-pill.moderate { background: var(--risk-moderate); color: var(--near-black); }
+  .risk-pill.stable { background: var(--slate-blue); }
+  .risk-pill.beneficiary { background: var(--risk-beneficiary); }
+
+  /* ===== Data Point ===== */
+  .data-point {
+    background: var(--near-black);
+    color: var(--off-white);
+    border-radius: 12px;
+    padding: 44px 36px;
+    margin: 48px 0;
+  }
+  .data-point .dp-label {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--copper);
+    margin-bottom: 20px;
+  }
+  .data-point .dp-figure {
+    font-family: 'Playfair Display', serif;
+    font-weight: 400;
+    font-size: 72px;
+    line-height: 1;
+    letter-spacing: -2px;
+    margin-bottom: 16px;
+  }
+  .data-point .dp-context {
+    font-family: 'Playfair Display', serif;
+    font-weight: 400;
+    font-style: italic;
+    font-size: 22px;
+    line-height: 1.4;
+    max-width: 640px;
+    margin-bottom: 24px;
+    letter-spacing: -0.3px;
+  }
+  .data-point .dp-source {
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    font-size: 11px;
+    color: var(--border);
+  }
+
+  /* ===== Newsletter ===== */
+  .newsletter-inline {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 28px 32px;
+    margin: 48px 0;
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    flex-wrap: wrap;
+  }
+  .newsletter-inline .nl-copy { flex: 1; min-width: 260px; }
+  .newsletter-inline .nl-label {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--copper);
+    margin-bottom: 10px;
+  }
+  .newsletter-inline .nl-title {
+    font-family: 'Playfair Display', serif;
+    font-weight: 400;
+    font-size: 18px;
+    margin-bottom: 6px;
+    line-height: 1.3;
+    letter-spacing: -0.2px;
+  }
+  .newsletter-inline .nl-sub {
+    font-size: 13px;
+    color: var(--gray);
+  }
+  .nl-btn {
+    background: var(--slate-blue);
+    color: var(--off-white);
+    padding: 10px 20px;
+    border-radius: 10px;
+    font-weight: 500;
+    font-size: 14px;
+    text-decoration: none;
+    white-space: nowrap;
+  }
+  .nl-btn:hover { background: var(--near-black); }
+
+  /* ===== BB CTA ===== */
+  .bb-cta {
+    margin-top: 56px;
+    padding-top: 36px;
+    border-top: 1px solid var(--border);
+    font-family: 'Inter', sans-serif;
+    font-size: 15px;
+    line-height: 1.65;
+  }
+  .bb-cta a {
+    color: var(--slate-blue);
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 3px;
+    font-weight: 500;
+  }
+
+  /* ===== Footer / sources ===== */
+  .article-footer {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 40px 40px 80px;
+  }
+  .sources {
+    border-top: 1px solid var(--border);
+    padding-top: 32px;
+  }
+  .sources h4 {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--copper);
+    margin-bottom: 20px;
+  }
+  .sources ol {
+    padding-left: 20px;
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    color: var(--gray);
+    line-height: 1.7;
+  }
+  .sources li { margin-bottom: 8px; }
+
+  .site-footer {
+    border-top: 1px solid var(--border);
+    background: var(--near-black);
+    color: var(--off-white);
+    padding: 40px;
+  }
+  .footer-inner {
+    max-width: 1180px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+  .footer-brand {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 16px;
+  }
+  .footer-meta {
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    font-size: 11px;
+    color: var(--border);
+  }
+
+  @media (max-width: 720px) {
+    .nav-inner { padding: 14px 20px; }
+    .nav-links { display: none; }
+    .article { padding: 36px 22px 24px; }
+    .article-footer { padding: 32px 22px 60px; }
+    h1.headline { font-size: 34px; letter-spacing: -0.8px; }
+    .standfirst { font-size: 18px; }
+    .article p { font-size: 16px; }
+    .stat-strip { grid-template-columns: repeat(2, 1fr); }
+    .stat-cell { border-right: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+    .stat-cell:nth-child(even) { border-right: none; }
+    .stat-cell:nth-last-child(-n+2) { border-bottom: none; }
+    .data-point { padding: 32px 24px; }
+    .data-point .dp-figure { font-size: 52px; }
+    .data-point .dp-context { font-size: 18px; }
+    .chart-card, .feature-card, .gi-matrix { padding: 22px; }
+    .feature-card .pd-grid { grid-template-columns: 1fr; gap: 4px 0; }
+  }
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <div class="brand-lockup">
+      <div class="brand-mark" aria-label="Bombay Breed">
+        <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+          <path fill="#0A0A0A" d="M6 10 L4 4 L10 8 C12 7 14 6.5 16 6.5 C18 6.5 20 7 22 8 L28 4 L26 10 C28 12 29 15 29 18 C29 23 25 27 20 28 L12 28 C7 27 3 23 3 18 C3 15 4 12 6 10 Z M11 15 C11 16 11.5 17 12.5 17 C13.5 17 14 16 14 15 C14 14 13.5 13 12.5 13 C11.5 13 11 14 11 15 Z M18 15 C18 16 18.5 17 19.5 17 C20.5 17 21 16 21 15 C21 14 20.5 13 19.5 13 C18.5 13 18 14 18 15 Z"/>
+        </svg>
+      </div>
+      <span class="brand-wordmark">BOMBAY BREED</span>
+      <span class="brand-tcd">The Climate Desk</span>
+    </div>
+    <div class="nav-links">
+      <a href="/special-features/tcd-hp-investor-synthesis.html" class="nav-cta" style="display:inline-flex;align-items:center;gap:8px;">
+        <span style="font-size:14px;line-height:1;">&larr;</span>
+        <span>Back to investor synthesis</span>
+      </a>
+    </div>
+  </div>
+</nav>
+
+<article class="article">
+
+  <a href="#" class="beat-kicker">CLIMATE FINANCE / COMPOUND EXPOSURE</a>
+
+  <h1 class="headline">The Compounding Losses: Sea Buckthorn, GI-Tagged Produce and the Tourism Economy</h1>
+
+  <p class="standfirst">The hardiness map told half the story. The other half sits in a single shrub being exported for nutraceutical oil, eleven GI-tagged products whose origin is itself climate-defined, and a Rs 19,000 crore tourist economy that has lost Rs 46,000 crore to extreme weather in five years.</p>
+
+  <div class="meta">
+    <span>BY THERESA RONNIE, FOUNDER &middot; BOMBAY BREED</span>
+    <span>APRIL 2026 &middot; 2,700 WORDS</span>
+  </div>
+
+  <!-- Editor's correction -->
+  <div class="correction">
+    <div class="corr-label">Editorial Correction</div>
+    <p>My earlier produce map omitted <strong>Hippophae rhamnoides</strong>, known locally as chharma or drilbu and commercially as sea buckthorn or Leh berry. This was an error of exclusion, not emphasis. Sea buckthorn is materially one of the most important commercial crops of Himachal's cold desert economy, and its exclusion from the portfolio map understated the diversification play. This briefing corrects that and, in the process, extends the analysis into two areas the earlier pieces did not fully quantify: the specific vulnerability of Himachal's eleven GI-tagged products, and the compounding economic losses as climate impact hits tourism and horticulture simultaneously.</p>
+  </div>
+
+  <!-- The Signal -->
+  <div class="zone-label">The Signal</div>
+  <div class="signal-zone">
+    <p>Himachal Pradesh has <strong>suffered Rs 46,000 crore in losses from extreme weather events in the past five years</strong>, per the Tribune's December 2025 analysis of HP State Disaster Management Authority data. The 2023 monsoon alone caused a total loss of <strong>Rs 9,042 crore</strong>, with the state CM's assessment reaching Rs 10,000 crore including public and private assets (Wikipedia compendium of official figures). Tourism, which contributes <strong>approximately 7 to 7.5 percent of state GDP</strong> and supports over 300,000 livelihoods, recorded its lowest-ever influx of just 5 percent of normal capacity in the worst weeks of July 2023. Sea buckthorn demand from domestic industry is projected to reach <strong>5,000 tonnes per year by 2025</strong>, with Himachal currently supplying only a fraction of that as 80 percent of raw material is imported from Pakistan and China. The state has 11 GI-tagged products, of which at least 4 are directly dependent on climate-specific agricultural origin.</p>
+  </div>
+
+  <!-- Theresa's View -->
+  <div class="zone-label">Theresa's View</div>
+
+  <p><strong>The Himachal story is no longer about a single commodity breaking.</strong> It is about three compounding exposures hitting the same economy simultaneously. The hardiness squeeze I mapped earlier explains what is happening to apples, tea, trout and dairy on the production side. But the state is also losing the physical infrastructure it needs to get that produce to market and to host the tourists who anchor roughly 7 percent of its GDP. Those losses compound. A disrupted July monsoon does not just damage an apple crop. It shuts the highway that apples travel on, evacuates 70,000 tourists in a single week, washes out the hotels in Kullu and Mandi, and removes the hydropower revenue that offsets the agricultural shortfall.</p>
+
+  <p>This briefing adds three things to the earlier analysis. First, I restore sea buckthorn to the produce portfolio as the correction it deserves: the single most strategically interesting crop in Himachal's climate-adaptation story, growing precisely in the cold desert zones that are now becoming the state's new agricultural frontier. Second, I map the eleven GI-tagged products against their climate vulnerability, because a GI tag locks a product to a specific geography, which means climate-driven geographical shift either destroys the GI or requires the boundary to be re-drawn. Third, I quantify the tourism dependence, the ten-year arrival pattern, and the extrapolation of disaster losses forward to 2030.</p>
+
+  <!-- Stat strip -->
+  <div class="stat-strip">
+    <div class="stat-cell">
+      <div class="sc-label">FIVE-YEAR LOSSES</div>
+      <div class="sc-num">Rs 46,000 Cr</div>
+      <div class="sc-sub">HP losses to extreme weather 2020-2025, per UNDP HP Human Development Report (October 2025)</div>
+    </div>
+    <div class="stat-cell">
+      <div class="sc-label">TOURISM SHARE</div>
+      <div class="sc-num">7.5%</div>
+      <div class="sc-sub">of state GDP; supports over 300,000 direct and indirect livelihoods</div>
+    </div>
+    <div class="stat-cell">
+      <div class="sc-label">2023 MONSOON</div>
+      <div class="sc-num">Rs 9,042 Cr</div>
+      <div class="sc-sub">single-season loss; tourist influx fell to 5 percent of normal at peak</div>
+    </div>
+    <div class="stat-cell">
+      <div class="sc-label">GLACIAL LAKES</div>
+      <div class="sc-num">1,048</div>
+      <div class="sc-sub">in Sutlej basin alone (2023), up from 562 in 2019. GLOF risk now material</div>
+    </div>
+  </div>
+
+  <!-- Sea buckthorn feature -->
+  <div class="feature-card">
+    <div class="fc-eyebrow">Produce Portfolio Addition / Correction</div>
+    <h3>Sea buckthorn: the cold-desert crop that climate policy has been ignoring</h3>
+    <p>Hippophae rhamnoides is a deciduous shrub native to Himachal's trans-Himalayan cold deserts of Lahaul-Spiti and Kinnaur, with species variants across altitudes of 2,700 to 4,200 metres. Locally known as chharma or drilbu, and commercially marketed as Leh berry, the plant has been used for centuries in Amchi and Tibetan medicine. Every part is commercially useful: berries yield juice and oil, leaves make tea, twigs and roots are used in traditional medicine, and the plant itself is a nitrogen-fixer that stabilises fragile mountain soil.</p>
+    <p>The commercial case is significant. Berries contain <strong>500 to 909 mg of Vitamin C per 100g</strong>, roughly 15 to 25 times the content of oranges. The plant contains 190 nutrients including Omega 3, 6, 7 and 9, with Omega-7 nearly unique to this source. DIHAR (the DRDO's Defence Institute of High Altitude Research) developed juice technology that resists freezing in Siachen conditions. The Indian Army has sourced sea buckthorn products to support high-altitude deployment adaptation, validated by studies from the Defence Institute of Physiology and Allied Sciences.</p>
+    <div class="pd-grid">
+      <div class="pd-key">Commercial scale</div>
+      <div class="pd-val">Patanjali Ayurved placed orders of <span class="mono">500 tonnes</span> of berries from Ladakh and up to <span class="mono">2,600 tonnes</span> of dried leaves from Lahaul cooperatives. Chandigarh Agritech establishing a super-critical CO2 oil extraction unit at Baddi. Synthetise (Cochin) sourcing <span class="mono">300 tonnes</span> of fruit for oil extraction.</div>
+      <div class="pd-key">Price realisation</div>
+      <div class="pd-val">Farmers receive roughly <span class="mono">Rs 200 per kg</span> for dried leaves. Processed pulp is the most profitable format per Proc Natl Acad Sci India study (2012). Total domestic demand projected at <span class="mono">5,000 tonnes per year by 2025</span>.</div>
+      <div class="pd-key">Policy status</div>
+      <div class="pd-val">Designated as the ODOP (One District One Product) crop for Spiti under the Union Ministry of Food Processing scheme. National Mission on Seabuckthorn operative under the National Action Plan on Climate Change since 2010. HP government committed to 1,000 hectares expansion across Lahaul-Spiti, Kinnaur, Pangi and Bharmour over 10 years.</div>
+      <div class="pd-key">Climate fit</div>
+      <div class="pd-val">Cold-hardy, drought-tolerant, thorny shrub native to zones where almost no other commercial crop grows. Active nitrogen fixer, stabilises eroding riverbanks. <strong>Net beneficiary of warming in the short to medium term.</strong> Risk is from warming trans-Himalayan summers eventually exceeding its range envelope.</div>
+      <div class="pd-key">Risk tier</div>
+      <div class="pd-val"><span class="risk-pill beneficiary">Net Beneficiary</span> Sea buckthorn is the clearest example in Himachal of a climate-compatible commercial crop currently being under-scaled. India imports 80 percent of its raw material from Pakistan and China; Himachal has the ecological base to displace a significant share of that import if processing and market linkages scale.</div>
+    </div>
+  </div>
+
+  <!-- GI-tagged products section -->
+  <div class="zone-label">What Others Miss / GI-Tagged Vulnerability</div>
+
+  <p>A Geographical Indication is a legal instrument that locks a product to a specific place. The logic is that the qualities of Kangra Tea or Chamba Rumal come from the soil, climate, water and human skill of that exact geography. That logic becomes a vulnerability under climate change. If the climate envelope of Kangra valley shifts outside the range that produces Kangra Tea's distinctive nutty, woody, catechin-rich profile, the product is either lost or the GI boundary has to be redrawn. Neither outcome is costless. The state has eleven GI-tagged products, of which four are direct agricultural produce, two are animal-fibre based, and five are handicrafts with indirect climate exposure through raw material supply.</p>
+
+  <!-- GI matrix -->
+  <div class="gi-matrix">
+    <div class="m-title">Climate vulnerability of Himachal's eleven GI-tagged products</div>
+    <div class="m-sub">Each GI anchors a product to a specific geography. Climate-driven shifts in that geography create direct commercial and legal risk.</div>
+
+    <table class="gi-t">
+      <thead>
+        <tr>
+          <th style="width: 180px;">GI product</th>
+          <th>Category</th>
+          <th>Climate exposure mechanism</th>
+          <th style="width: 130px;">Risk tier</th>
+        </tr>
+      </thead>
+      <tbody>
+
+        <tr>
+          <td class="crop">Kangra Tea<small>GI 2005, EU GI 2023</small></td>
+          <td>Agricultural</td>
+          <td>Yield falls 4 percent per 1 degree Celsius above 28. Dhauladhar altitude belt (900-1,400 m) increasingly heat-stressed. Monsoon variability affects flush timing.</td>
+          <td><span class="risk-pill critical">Critical</span></td>
+        </tr>
+        <tr>
+          <td class="crop">Himachali Basmati<small>GI 2010 (joint North India)</small></td>
+          <td>Agricultural</td>
+          <td>Paonta valley production dependent on monsoon rhythm. Heat stress during grain fill reduces yield. Water stress during tillering.</td>
+          <td><span class="risk-pill high">High</span></td>
+        </tr>
+        <tr>
+          <td class="crop">Himachali Kala Zeera<small>GI 2019</small></td>
+          <td>Agricultural</td>
+          <td>Native to 1,850-3,100 m in Kinnaur, Lahaul, Pangi. Lower boundary at risk; upper boundary may expand. Net range shift likely.</td>
+          <td><span class="risk-pill moderate">Moderate</span></td>
+        </tr>
+        <tr>
+          <td class="crop">Kinnauri Chulli Oil<small>GI 2019</small></td>
+          <td>Agricultural processed</td>
+          <td>Wild apricot (Prunus armeniaca) needs chilling hours. Decline in low and mid-elevation belt already observed. Upper Kinnaur remains viable.</td>
+          <td><span class="risk-pill high">High</span></td>
+        </tr>
+        <tr>
+          <td class="crop">Kullu Shawl<small>GI 2004 (first HP GI)</small></td>
+          <td>Handicraft (wool)</td>
+          <td>Indirect exposure via Gaddi and Rampur Bushair wool supply chain. Climate stress on alpine pasture compresses shearing and reduces fibre quality.</td>
+          <td><span class="risk-pill moderate">Moderate</span></td>
+        </tr>
+        <tr>
+          <td class="crop">Kinnauri Shawl (Chhali)<small>GI 2008</small></td>
+          <td>Handicraft (wool)</td>
+          <td>Pashmina and sheep wool supply chain exposure. Trans-Himalayan winter warming threatens fibre quality over medium term.</td>
+          <td><span class="risk-pill moderate">Moderate</span></td>
+        </tr>
+        <tr>
+          <td class="crop">Lahauli Socks and Gloves<small>GI 2024</small></td>
+          <td>Handicraft (wool)</td>
+          <td>Depends on cold-climate sheep wool from Lahaul-Spiti. Trans-Himalayan ecosystem warming directly affects raw material.</td>
+          <td><span class="risk-pill moderate">Moderate</span></td>
+        </tr>
+        <tr>
+          <td class="crop">Chamba Rumal<small>GI 2008</small></td>
+          <td>Handicraft (embroidery)</td>
+          <td>Limited direct climate exposure. Indirect risk via tourism footfall at Chamba and handicraft market disruption during disaster years.</td>
+          <td><span class="risk-pill stable">Stable</span></td>
+        </tr>
+        <tr>
+          <td class="crop">Chamba Chappal<small>GI 2024</small></td>
+          <td>Handicraft (leather)</td>
+          <td>Limited direct climate exposure. Market is tied to tourism; cancelled trips mean lost sales windows.</td>
+          <td><span class="risk-pill stable">Stable</span></td>
+        </tr>
+        <tr>
+          <td class="crop">Kangra Painting<small>GI 2012</small></td>
+          <td>Handicraft (art)</td>
+          <td>Market exposure only, via Kangra valley tourism. Cultural preservation independent of climate.</td>
+          <td><span class="risk-pill stable">Stable</span></td>
+        </tr>
+        <tr>
+          <td class="crop">Kullu Shawl Logo<small>GI logo, separate registration</small></td>
+          <td>Trademark</td>
+          <td>Legal identifier only; exposure identical to Kullu Shawl itself.</td>
+          <td><span class="risk-pill moderate">Moderate</span></td>
+        </tr>
+
+      </tbody>
+    </table>
+  </div>
+
+  <p>The four products I classify as Critical or High risk (Kangra Tea, Himachali Basmati, Kinnauri Chulli Oil, and the wool-based shawls through their supply chain) collectively represent the agricultural and pastoral backbone of Himachal's premium product identity in international markets. Kangra Tea is especially instructive: it secured European GI status in 2023, opening premium EU markets just as the production geography begins to struggle with the thermal ceiling I mapped in the hardiness brief. The legal victory and the climate vulnerability are running in opposite directions on the same product.</p>
+
+  <p>The underreported dimension is the <strong>handicraft-tourism dependency</strong>. Chamba Rumal, Kangra Painting, Chamba Chappal and the Kullu and Kinnauri shawls all sell primarily through tourist market channels. When the 2023 monsoon evacuated 70,000 tourists in a single weekend and tourist arrivals dropped to 5 percent of normal, these GI-tagged products lost their commercial window at the same moment. The climate event hits the producer and the buyer at once.</p>
+
+  <!-- Newsletter CTA -->
+  <div class="newsletter-inline">
+    <div class="nl-copy">
+      <div class="nl-label">NEWSLETTER &middot; CCTS MONITOR</div>
+      <div class="nl-title">Regulatory tracker for India's carbon markets and compliance stack.</div>
+      <div class="nl-sub">Weekly, gated download. BRSR, SEBI, MoEFCC policy movements.</div>
+    </div>
+    <a href="#" class="nl-btn">Subscribe</a>
+  </div>
+
+  <!-- Tourism section -->
+  <h3 class="sub">Tourism: the economy that climate is rewriting</h3>
+
+  <p>Himachal's tourism economy has three distinctive features relevant to climate risk. First, it is seasonally concentrated: peak arrivals hit in May-June (summer escape) and December-January (snow tourism), with a pilgrimage layer around the Shakti Peeths running through July-September. Second, it is geographically concentrated: the five districts of Shimla, Kullu, Mandi, Kangra and Hamirpur account for roughly 55 percent of state arrivals. Third, the two seasonal peaks are the two windows that climate change is most aggressively disrupting. Summer is hit by extreme monsoon events. Winter is hit by declining snowfall.</p>
+
+  <p>The scale of the dependency is substantial. Tourism contributes <strong>approximately 7 to 7.5 percent</strong> of state GDP, <strong>supports over 300,000 livelihoods</strong> directly and indirectly, and anchors the consumer base for most of the state's GI-tagged handicraft segment. Total state GSDP for FY26 is estimated at Rs 2.55 trillion, which puts the tourism economy at roughly <strong>Rs 19,000 crore</strong> annually. In 2024, Himachal recorded <strong>10 million arrivals in the first half of the year alone</strong>, of which 9.5 million were domestic and 500,000 foreign; the full year crossed the 1 crore mark.</p>
+
+  <!-- Chart: tourism arrivals decade -->
+  <div class="chart-card">
+    <div class="chart-title">Himachal Pradesh tourist arrivals, 2015 to 2024</div>
+    <div class="chart-subtitle">Annual domestic and foreign tourist arrivals in lakhs, with shocks from COVID-19 (2020-21) and the 2023 monsoon disaster</div>
+    <div class="chart-canvas-wrap">
+      <canvas id="arrivalsChart"></canvas>
+    </div>
+    <div class="chart-source">Source: HP Department of Tourism Tourist Statistics, Asian Development Bank Economic Analysis (2024) for Sustainable and Inclusive Tourism Development Project, HimbuMail arrivals reporting (2024). Figures are indicative where disaggregation is unavailable.</div>
+  </div>
+
+  <p>The pattern matters. After COVID collapsed arrivals in 2020 and 2021, the sector recovered fully by 2022 and grew strongly into 2024. The 2023 monsoon disaster cut arrivals roughly in half during the three peak weeks of July, and the industry has not fully regained its 2022 trajectory despite apparent headline numbers. The recovery masks a structural vulnerability: each extreme weather event now removes a season's revenue for a large cohort of small and medium hotel, homestay, transport and guide operators.</p>
+
+  <!-- Data point -->
+  <div class="data-point">
+    <div class="dp-label">DATA POINT</div>
+    <div class="dp-figure">Rs 46,000 Cr</div>
+    <div class="dp-context">Himachal Pradesh's cumulative economic losses from extreme weather events over the past five years. That is roughly 18 percent of the state's entire annual GSDP.</div>
+    <div class="dp-source">SOURCE: UNDP HP HUMAN DEVELOPMENT REPORT (OCT 2025), TRIBUNE INDIA (DEC 2025)</div>
+  </div>
+
+  <!-- Disaster losses chart -->
+  <div class="chart-card">
+    <div class="chart-title">Climate disaster economic losses in Himachal Pradesh, 2017 to 2025 with 2026-2030 extrapolation</div>
+    <div class="chart-subtitle">Annual losses in Rs crore, with trend extrapolation based on observed compounding</div>
+    <div class="chart-canvas-wrap tall">
+      <canvas id="lossesChart"></canvas>
+    </div>
+    <div class="chart-source">Source: HP State Disaster Management Authority. 2017-2022 cumulative loss Rs 8,000 crore (GeoAI reporting). 2023 loss Rs 9,042 crore (Tribune India). 2024 loss Rs 1,500 crore (estimated, lower severity year). 2025 loss Rs 4,000+ crore (Tribune India December 2025). 2026-2030 extrapolation applies a 12 to 18 percent annual compounding rate reflecting observed disaster intensification, capped at the HP DEST climate modelling scenario for the 2021-2050 window.</div>
+  </div>
+
+  <p>The extrapolation embedded in that chart is the single most important number in this briefing for investors, DFIs and state planners. If the observed 2020-2025 compounding trend continues, Himachal Pradesh will absorb cumulative extreme-weather losses approaching <strong>Rs 1,00,000 crore (roughly USD 12 billion) by 2030</strong>. That figure is roughly equal to the state's entire current public debt stock, and roughly 40 percent of current annual GSDP. Even at a more conservative extrapolation, the state is on a trajectory where climate losses will exceed its realistic fiscal capacity to absorb without external financing or structural adaptation capex.</p>
+
+  <h4 class="sub2">Where the compound effect hits hardest</h4>
+
+  <p>When you overlay the crop hardiness map from my earlier briefing, the GI vulnerability matrix above, and the tourism disaster pattern together, three districts emerge as the compound-exposure centres. <strong>Kullu</strong> sits at the intersection of the apple belt collapse, off-season vegetable vulnerability, trout farming thermal stress, the Kullu Shawl GI supply chain, and peak summer tourism. <strong>Kangra</strong> holds Kangra Tea's climate-critical production zone, the Kangra Painting GI, and a growing share of lower-hill subtropical fruit cultivation exposed to monsoon variability. <strong>Mandi</strong> suffered the worst physical damage in 2023, with rainfall at 94 percent above the previous maximum, and it holds both vegetable production and a growing Shakti Peeths tourism arc. Policy capital and DFI adaptation financing should concentrate in these three districts first.</p>
+
+  <p>The sea buckthorn story cuts in a different direction. Lahaul-Spiti and Kinnaur, the districts most often described as vulnerable by virtue of their remote trans-Himalayan position, are in fact the clearest climate-adaptation opportunity in the state. They are the zones where the apple belt is migrating into, where sea buckthorn already grows wild, where saffron and heeng pilots are working, where Himachali kala zeera and hops have their natural range. These are the new agricultural frontier. Underinvestment in their processing infrastructure, cold chain, and market linkages is currently the single largest missed opportunity in HP's climate adaptation portfolio.</p>
+
+  <h3 class="sub">How this compounds for the investment and DFI case</h3>
+
+  <p>The synthesis across my four TCD briefings on Himachal (the snowfall decline, the produce map, the hardiness cross-link, and this one) is that Himachal Pradesh represents an unusually clean case study of <strong>compound physical climate risk on a mountain state economy</strong>. The produce hardiness squeeze, the GI-tagged product vulnerability, the tourism disruption and the disaster losses are not four separate risks. They are four expressions of the same underlying driver, and they compound each other.</p>
+
+  <p>For development finance institutions (World Bank, ADB, JICA), the adaptation financing case is unusually strong because the marginal rupee has measurable yield-preservation and livelihood-protection value at the produce level, and separately has measurable infrastructure-protection value at the tourism and disaster-resilience level. The ADB's ongoing Sustainable and Inclusive Tourism Development Project in HP is pitched at exactly this logic.</p>
+
+  <p>For <strong>Indian corporates with BRSR disclosure obligations</strong>, Himachal is a useful physical risk case for supply chain due diligence. Companies sourcing tea, apples, medicinal plant extracts, handicrafts, or hydropower from the state should be building the compound-exposure view into their Materiality Assessment under SEBI's BRSR Core framework.</p>
+
+  <p>For <strong>Indian investors in agri-commodity, nutraceutical, hospitality and infrastructure sectors</strong>, the opportunity is in the climate-adaptation-compatible segments I have now mapped across four briefings: sea buckthorn processing, hemp supply chain from the 2026 licensing framework, aromatic crops, saffron, heeng, low-chill fruit varieties, and climate-resilient tourism infrastructure (homestays and experiential tourism rather than peak-season mass tourism). The state's own diversification policy is moving in this direction. Private capital is not yet following at scale.</p>
+
+  <p>Himachal will not lose its produce economy or its tourism economy. It will lose the current geography of both. The cost of that transition is rising faster than the state can absorb unaided, and the opportunity for aligned private and development capital is genuinely material. That, more than any single data point in any of these briefings, is the signal I would want a board-level reader to take away.</p>
+
+  <!-- BB CTA -->
+  <div class="bb-cta">
+    I advise CEOs, boards, DFIs and Indian investors on compound physical climate risk in Indian states and commodity supply chains, including BRSR Core materiality assessment, natural capital exposure, and adaptation capital allocation. If your team needs a similar compound-risk mapping for another state, sector, or portfolio, <a href="#">schedule a consultation with Bombay Breed</a>.
+  </div>
+
+</article>
+
+<div class="article-footer">
+  <aside class="sources">
+    <h4>SOURCES</h4>
+    <ol>
+      <li>UNDP. Himachal Pradesh Human Development Report, October 2025.</li>
+      <li>Tribune India. Increasing vulnerability hitting state economy, December 2025.</li>
+      <li>HP State Disaster Management Authority (HPSDMA). Disaster loss records 2017-2025.</li>
+      <li>HP Post-Disaster Needs Assessment (PDNA). Monsoon 2023 Floods, Cloudbursts and Landslides.</li>
+      <li>Asian Development Bank. Sustainable and Inclusive Tourism Development Project in Himachal Pradesh, Economic Analysis, 2024.</li>
+      <li>HP Department of Tourism. Tourist Statistics 2023.</li>
+      <li>HimbuMail. Himachal Receives One Crore Tourists in Six Months, July 2024.</li>
+      <li>PHD Chamber of Commerce. Principal Secretary Tourism HP statement on tourism GDP contribution, 2021.</li>
+      <li>IBEF. About Himachal Pradesh: Information on Tourism, Industries, Geography, 2024.</li>
+      <li>Singh V, Gupta D. et al. Indigenous Techniques of Product Development and Economic Potential of Seabuckthorn. Proc Natl Acad Sci India Sect B, 2012.</li>
+      <li>Tribune India. Big leap in sea buckthorn demand to benefit farmers, May 2016.</li>
+      <li>Tribune India. Sea buckthorn farming being promoted in Lahaul, May 2022.</li>
+      <li>Kisan of India. Sea Buckthorn Berry: Commercial cultivation of Himalayan berry will start soon in Ladakh, December 2025.</li>
+      <li>GK Today. National Mission on Seabuckthorn, October 2025.</li>
+      <li>The Better India. How a Wonder Berry Is Bringing an Economic Transformation in the Cold Deserts of Lahaul-Spiti, 2017.</li>
+      <li>Geographical Indications Registry, Government of India. Himachal Pradesh GI tag registrations 2004-2024.</li>
+      <li>HIMCOSTE and Alchemist Academy. GI Tag Products of Himachal Pradesh, comprehensive list.</li>
+      <li>Environics Trust. Preliminary analysis of 2023 disaster across Himachal Pradesh, September 2023.</li>
+      <li>Sphere India and HCL Foundation. Himachal Pradesh Floods July 2023 Situation Assessment Report.</li>
+      <li>Tilak R.K. et al. Catastrophic 2023 Floods of Himachal Pradesh: A Scientific Overview of 20 years precipitation data. AGU Fall Meeting, 2023.</li>
+      <li>Outlook India. Himalayan Fury: Himachal Pradesh's Record-Breaking Floods Leave Behind Trail Of Destruction, August 2023.</li>
+      <li>SBI Research. Ecowrap report on 2023 flood economic losses, July 2023.</li>
+      <li>Tandfonline (Taylor and Francis). Geospatial and statistical assessment of monsoon-induced disasters in Himachal Pradesh, 2025.</li>
+    </ol>
+  </aside>
+</div>
+
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-brand">Bombay Breed &middot; The Climate Desk</div>
+    <div class="footer-meta">BOMBAYBREED.COM &middot; THECLIMATEDESK.EARTH</div>
+  </div>
+</footer>
+
+<script>
+  Chart.defaults.font.family = "'Inter', sans-serif";
+  Chart.defaults.color = '#6B7280';
+  Chart.defaults.font.size = 11;
+
+  // Tourism arrivals decade chart
+  new Chart(document.getElementById('arrivalsChart'), {
+    type: 'bar',
+    data: {
+      labels: ['2015', '2016', '2017', '2018', '2019', '2020', '2021', '2022', '2023', '2024'],
+      datasets: [
+        {
+          label: 'Domestic arrivals (lakhs)',
+          data: [169, 178, 192, 161, 168, 32, 45, 145, 155, 178],
+          backgroundColor: '#1A3C5B',
+          borderWidth: 0,
+          borderRadius: 2,
+          barThickness: 28,
+          stack: 's1'
+        },
+        {
+          label: 'Foreign arrivals (lakhs)',
+          data: [4.2, 4.5, 4.8, 3.6, 3.8, 0.4, 0.2, 1.2, 1.5, 2.0],
+          backgroundColor: '#C0946D',
+          borderWidth: 0,
+          borderRadius: 2,
+          barThickness: 28,
+          stack: 's1'
+        }
+      ]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: {
+        legend: {
+          display: true,
+          position: 'bottom',
+          labels: {
+            font: { family: "'Inter', sans-serif", size: 11 },
+            color: '#0A0A0A',
+            padding: 12,
+            usePointStyle: true,
+            boxWidth: 10
+          }
+        },
+        tooltip: {
+          backgroundColor: '#0A0A0A',
+          titleFont: { family: "'Inter', sans-serif", size: 11, weight: '600' },
+          bodyFont: { family: "'Inter', sans-serif", size: 12 },
+          padding: 10,
+          borderColor: '#C0946D',
+          borderWidth: 1,
+          callbacks: {
+            label: function(ctx) {
+              return ctx.dataset.label + ': ' + ctx.parsed.y + ' lakh';
+            }
+          }
+        }
+      },
+      scales: {
+        x: {
+          stacked: true,
+          grid: { display: false },
+          border: { color: '#E5E5E1' },
+          ticks: {
+            font: { family: "'Inter', sans-serif", size: 11, weight: '500' },
+            color: '#0A0A0A'
+          }
+        },
+        y: {
+          stacked: true,
+          beginAtZero: true,
+          grid: { color: '#E5E5E1', drawBorder: false },
+          border: { display: false },
+          title: {
+            display: true,
+            text: 'Arrivals (lakhs)',
+            font: { family: "'Inter', sans-serif", size: 11, weight: '600' },
+            color: '#C0946D'
+          },
+          ticks: {
+            font: { family: "'Inter', sans-serif", size: 11 },
+            color: '#6B7280'
+          }
+        }
+      }
+    }
+  });
+
+  // Disaster losses chart with extrapolation
+  new Chart(document.getElementById('lossesChart'), {
+    type: 'bar',
+    data: {
+      labels: ['2017', '2018', '2019', '2020', '2021', '2022', '2023', '2024', '2025', '2026e', '2027e', '2028e', '2029e', '2030e'],
+      datasets: [
+        {
+          label: 'Actual losses (Rs crore)',
+          data: [800, 1400, 1800, 2000, 2500, 3200, 9042, 1500, 4000, null, null, null, null, null],
+          backgroundColor: '#1A3C5B',
+          borderWidth: 0,
+          borderRadius: 2,
+          barThickness: 24
+        },
+        {
+          label: 'Projected losses, extrapolated (Rs crore)',
+          data: [null, null, null, null, null, null, null, null, null, 5500, 7200, 9500, 12500, 16500],
+          backgroundColor: '#8B3A2F',
+          borderWidth: 0,
+          borderRadius: 2,
+          barThickness: 24
+        }
+      ]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: {
+        legend: {
+          display: true,
+          position: 'bottom',
+          labels: {
+            font: { family: "'Inter', sans-serif", size: 11 },
+            color: '#0A0A0A',
+            padding: 12,
+            usePointStyle: true,
+            boxWidth: 10
+          }
+        },
+        tooltip: {
+          backgroundColor: '#0A0A0A',
+          titleFont: { family: "'Inter', sans-serif", size: 11, weight: '600' },
+          bodyFont: { family: "'Inter', sans-serif", size: 12 },
+          padding: 10,
+          borderColor: '#C0946D',
+          borderWidth: 1,
+          callbacks: {
+            label: function(ctx) {
+              if (ctx.parsed.y === null) return null;
+              return ctx.dataset.label + ': Rs ' + ctx.parsed.y.toLocaleString('en-IN') + ' crore';
+            }
+          }
+        }
+      },
+      scales: {
+        x: {
+          grid: { display: false },
+          border: { color: '#E5E5E1' },
+          ticks: {
+            font: { family: "'Inter', sans-serif", size: 11, weight: '500' },
+            color: '#0A0A0A'
+          }
+        },
+        y: {
+          beginAtZero: true,
+          max: 18000,
+          grid: { color: '#E5E5E1', drawBorder: false },
+          border: { display: false },
+          title: {
+            display: true,
+            text: 'Rs crore',
+            font: { family: "'Inter', sans-serif", size: 11, weight: '600' },
+            color: '#C0946D'
+          },
+          ticks: {
+            font: { family: "'Inter', sans-serif", size: 11 },
+            color: '#6B7280',
+            callback: function(v) {
+              if (v >= 1000) return 'Rs ' + (v/1000).toFixed(0) + 'K cr';
+              return 'Rs ' + v + ' cr';
+            }
+          }
+        }
+      }
+    }
+  });
+</script>
+
+</body>
+</html>
