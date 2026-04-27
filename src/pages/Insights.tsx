@@ -375,8 +375,8 @@ const Insights = () => {
   return (
     <div className="min-h-screen bg-background flex flex-col">
       <PageHead
-        title="Bombay Breed: Intelligence Briefs"
-        description="Original research and strategic analysis on carbon markets, ESG governance, and sustainability communications in India."
+        title="TCD Intelligence — Premium Access Lounge & Briefs"
+        description="Membership and corporate sponsorship for original India-focused research on carbon markets, regulation, and climate exposure. Plus the full library of intelligence briefs."
         path="/insights"
         ogImage="og-insights"
       />
