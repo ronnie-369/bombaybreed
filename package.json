@@ -9,6 +9,8 @@
     "build:dev": "vite build --mode development",
     "lint": "eslint .",
     "preview": "vite preview",
+    "test": "vitest run",
+    "test:watch": "vitest",
     "check:hp-report": "node scripts/check-hp-report-links.mjs",
     "check:hp-report:preview": "node scripts/check-hp-report-links.mjs --preview",
     "check:insights": "node scripts/check-static-insights-links.mjs",
