@@ -229,6 +229,7 @@ const SponsorInquiryDialog = ({ open, onOpenChange, project }: SponsorInquiryDia
         ) : (
           <Form {...form}>
             <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
+            <fieldset disabled={submitting} aria-busy={submitting} className="space-y-4 contents">
             <FormField
               control={form.control}
               name="project"
@@ -369,7 +370,7 @@ const SponsorInquiryDialog = ({ open, onOpenChange, project }: SponsorInquiryDia
               <Button
                 type="button"
                 variant="ghost"
-                onClick={() => onOpenChange(false)}
+                onClick={() => handleOpenChange(false)}
                 disabled={submitting}
               >
                 Cancel
@@ -378,8 +379,29 @@ const SponsorInquiryDialog = ({ open, onOpenChange, project }: SponsorInquiryDia
                 {submitting ? 'Sending...' : 'Send inquiry'}
               </Button>
             </DialogFooter>
+            </fieldset>
           </form>
         </Form>
+        )}
+
+        {submitting && (
+          <div
+            className="absolute inset-0 z-10 flex flex-col gap-3 rounded-lg bg-background/85 backdrop-blur-sm p-6 pt-20"
+            role="status"
+            aria-live="polite"
+            aria-label="Sending your inquiry"
+          >
+            <Skeleton className="h-4 w-1/3" />
+            <Skeleton className="h-9 w-full" />
+            <div className="grid grid-cols-2 gap-3">
+              <Skeleton className="h-9 w-full" />
+              <Skeleton className="h-9 w-full" />
+            </div>
+            <Skeleton className="h-20 w-full" />
+            <p className="text-xs text-muted-foreground text-center mt-2">
+              Sending your inquiry...
+            </p>
+          </div>
         )}
       </DialogContent>
     </Dialog>
