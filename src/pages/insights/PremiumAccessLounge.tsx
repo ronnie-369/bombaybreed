@@ -396,10 +396,16 @@ const PremiumAccessLounge: React.FC = () => {
 
               <Button asChild variant="outline">
                 <Link
-                  to="/intelligence/membership?tier=industry-reader"
+                  to={`/intelligence/membership?tier=industry-reader&v=${industryVariant}&ref=insights`}
                   className="inline-flex items-center justify-center gap-2"
+                  onClick={() =>
+                    logClick('subscribe_cta_industry_reader', industryVariant, {
+                      tier: 'industry-reader',
+                    })
+                  }
                 >
-                  Join the Industry Reader <ArrowRight className="w-4 h-4" />
+                  {CTA_COPY.industry_reader[industryVariant]}{' '}
+                  <ArrowRight className="w-4 h-4" />
                 </Link>
               </Button>
             </div>
