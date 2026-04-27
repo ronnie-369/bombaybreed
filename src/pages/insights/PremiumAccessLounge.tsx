@@ -450,6 +450,33 @@ const PremiumAccessLounge: React.FC = () => {
         </div>
       </section>
 
+      {/* ── WHAT THE INDUSTRY HAS TO SAY ─────────────────────────────── */}
+      <section id="industry" className="px-6 md:px-8 py-16 border-t border-border/50 scroll-mt-32">
+        <div className="container mx-auto max-w-[900px]">
+          <SectionLabel label="01 — What the industry has to say" />
+          <h2 className="text-section font-serif tracking-tight mt-6 mb-10">
+            Quotes from readers
+          </h2>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
+            {QUOTES.map((q, i) => (
+              <figure
+                key={i}
+                className="bg-secondary/30 border border-border rounded-xl p-6 flex flex-col"
+              >
+                <blockquote className="font-serif text-[15px] text-foreground leading-relaxed mb-6 flex-1">
+                  &ldquo;{q.quote}&rdquo;
+                </blockquote>
+                <figcaption className="text-xs text-muted-foreground border-t border-border/60 pt-4">
+                  <div className="font-semibold text-foreground">{q.name}</div>
+                  <div>{q.title}</div>
+                  <div className="text-muted-foreground/70">{q.org}</div>
+                </figcaption>
+              </figure>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* TIERS — Industry Reader vs Analyst Lens */}
       <section id="tiers" className="px-6 md:px-8 py-20 md:py-16 border-t border-border/50 scroll-mt-32 bg-secondary/20">
         <div className="container mx-auto max-w-[900px]">
