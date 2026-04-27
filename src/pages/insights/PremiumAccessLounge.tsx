@@ -181,12 +181,60 @@ const SPONSOR_HOW_IT_WORKS: string[] = [
   'Editorial control, methodology and conclusions remain entirely with Team BB - sponsorship buys the work, not the verdict',
 ];
 
-const SPONSOR_OPEN_PROJECTS: string[] = [
-  'CCUS technologies investigation in India',
-  'Carbon projects for JCM and Article 6.2 readiness',
-  'Data-centre water and power footprint - the hidden load on the grid',
-  'CBAM exposure for Indian exporters - steel, aluminium, cement, fertiliser',
-  'Wetlands conservation and waste management at Chandrataal Lake, Himachal Pradesh',
+type SponsorProject = {
+  title: string;
+  angle: string;
+  scope: string;
+  output: string;
+  effort: string;
+};
+
+const SPONSOR_OPEN_PROJECTS: SponsorProject[] = [
+  {
+    title: 'CCUS technologies investigation in India',
+    angle:
+      'Where the policy gap, the cost curve and the actual deployable capture stack collide - separating credible projects from press-release CCUS.',
+    scope:
+      'Methodology audit of announced projects, fieldwork at 2-3 candidate sites, capex/opex teardown, comparison with EU-ETS and US 45Q-anchored economics.',
+    output: 'One published investigation (~5,000 words) plus a private methodology annexe for the sponsor.',
+    effort: '10-14 weeks · INR 18-32L + GST',
+  },
+  {
+    title: 'Carbon projects for JCM and Article 6.2 readiness',
+    angle:
+      'What clears the bar for Japan-India JCM transfers and Article 6.2 corresponding adjustments - and what quietly will not.',
+    scope:
+      'Pipeline screen of Indian project types, host-country authorisation logic, MRV gaps, comparison with Korean and Singaporean Article 6 deals.',
+    output: 'Position paper with a scored shortlist of project archetypes plus a regulatory timeline.',
+    effort: '8-10 weeks · INR 14-24L + GST',
+  },
+  {
+    title: 'Data-centre water and power footprint - the hidden load on the grid',
+    angle:
+      'Hyperscale and AI-training build-out vs Indian grid headroom and freshwater stress in the chosen siting clusters.',
+    scope:
+      'Cluster-level demand modelling (Mumbai, Hyderabad, Chennai, NCR), PPA and renewable wheeling assumptions, water draw vs municipal allocations.',
+    output: 'Investigative brief with maps, demand curves and a stress-test of stated net-zero claims.',
+    effort: '10-12 weeks · INR 16-28L + GST',
+  },
+  {
+    title: 'CBAM exposure for Indian exporters - steel, aluminium, cement, fertiliser',
+    angle:
+      'Per-tonne EU CBAM cost pass-through by 2026-2030, mapped against Indian producer emissions intensity and FTA negotiation posture.',
+    scope:
+      'Embedded-emissions estimation by mill/plant, default vs verified value gap, EU-ETS price scenarios, India-EU FTA interaction.',
+    output: 'Sector report with company-level exposure bands and a board-ready risk matrix.',
+    effort: '8-12 weeks · INR 16-30L + GST',
+  },
+  {
+    title: 'Wetlands conservation and waste management at Chandrataal Lake, Himachal Pradesh',
+    angle:
+      'A high-altitude Ramsar site under tourism and solid-waste pressure - what credible conservation finance and on-ground governance would look like.',
+    scope:
+      'Ground-truthing visit, interviews with HP Forest Dept and local panchayat, baseline waste audit, review of existing CSR and ecotourism flows.',
+    output: 'Field report with an intervention design and a costed three-year plan.',
+    effort: '12-16 weeks · INR 12-22L + GST',
+  },
 ];
 
 const PremiumAccessLounge: React.FC = () => {
