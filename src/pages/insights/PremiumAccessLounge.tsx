@@ -835,29 +835,29 @@ const PremiumAccessLounge: React.FC = () => {
             <h3 className="text-[11px] font-semibold tracking-widest uppercase text-muted-foreground mb-2">
               Currently open projects
             </h3>
-            <div className="mb-5 max-w-[60ch] text-xs leading-relaxed text-muted-foreground/90">
-              <p className="text-foreground/80 mb-2">
+            <div className="mb-5 max-w-[62ch] text-[13px] sm:text-xs leading-relaxed text-muted-foreground/90">
+              <p className="text-foreground/80 mb-3">
                 What sets the price within each range
               </p>
-              <dl className="space-y-1.5">
-                <div className="grid grid-cols-[5.5rem_1fr] gap-x-3">
-                  <dt className="font-mono uppercase tracking-wider text-[10px] text-muted-foreground/70 pt-0.5">
+              <dl className="space-y-3 sm:space-y-2">
+                <div className="sm:grid sm:grid-cols-[5.5rem_1fr] sm:gap-x-3">
+                  <dt className="font-mono uppercase tracking-wider text-[10px] text-muted-foreground/70 mb-1 sm:mb-0 sm:pt-0.5">
                     Lower end
                   </dt>
-                  <dd>
+                  <dd className="break-words">
                     Desk research, 6-10 expert interviews, one site visit, single review cycle.
                   </dd>
                 </div>
-                <div className="grid grid-cols-[5.5rem_1fr] gap-x-3">
-                  <dt className="font-mono uppercase tracking-wider text-[10px] text-muted-foreground/70 pt-0.5">
+                <div className="sm:grid sm:grid-cols-[5.5rem_1fr] sm:gap-x-3">
+                  <dt className="font-mono uppercase tracking-wider text-[10px] text-muted-foreground/70 mb-1 sm:mb-0 sm:pt-0.5">
                     Upper end
                   </dt>
-                  <dd>
+                  <dd className="break-words">
                     Multi-state fieldwork, 20-30 interviews, primary data collection, peer-reviewed methodology, compressed timeline.
                   </dd>
                 </div>
               </dl>
-              <p className="mt-2 text-muted-foreground/70">
+              <p className="mt-3 text-muted-foreground/70">
                 Final scope is agreed in writing before work begins.
               </p>
             </div>
