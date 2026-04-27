@@ -117,6 +117,7 @@ const SponsorInquiryDialog = ({ open, onOpenChange, project }: SponsorInquiryDia
       const t = window.setTimeout(() => {
         setReferenceId(null);
         setCopied(false);
+        setSubmitError(null);
         form.reset();
         const el = triggerRef.current;
         if (el && typeof el.focus === 'function' && document.contains(el)) {
