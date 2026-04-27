@@ -283,9 +283,9 @@ const PremiumAccessLounge: React.FC = () => {
               rooms - and then it shows up, six weeks later, as a price.
             </p>
             <p className="text-body text-muted-foreground max-w-[640px] mb-10">
-              The Lounge is the small, paid list that gets the read first. Two
-              tiers. No advertising. No house view dressed up as research. The
-              library below is open - the next brief is not.
+              Welcome to the Lounge. Here, you get exclusive insights, news,
+              views, analysis, interviews and research reports that give you a
+              real edge in the market. Explore our past work before you sign up.
             </p>
           </ScrollReveal>
 
