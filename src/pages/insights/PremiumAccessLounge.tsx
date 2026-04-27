@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useRef } from 'react';
+import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { ArrowRight } from 'lucide-react';
@@ -229,6 +229,43 @@ const PremiumAccessLounge: React.FC = () => {
     logAssignmentOnce('subscribe_cta_analyst_lens', analystVariant);
   }, [industryVariant, analystVariant]);
 
+  // Active-tier highlight: hover/focus on desktop, scroll-spy on mobile.
+  // Defaults to 'analyst-lens' since it is the recommended (capacity-capped) tier.
+  const [activeTier, setActiveTier] = useState<'industry-reader' | 'analyst-lens'>('analyst-lens');
+  const industryCardRef = useRef<HTMLDivElement | null>(null);
+  const analystCardRef = useRef<HTMLDivElement | null>(null);
+
+  useEffect(() => {
+    // Only run scroll-spy on narrow viewports where cards stack vertically.
+    if (typeof window === 'undefined') return;
+    const mql = window.matchMedia('(max-width: 767px)');
+    if (!mql.matches) return;
+
+    const cards: Array<[HTMLDivElement | null, 'industry-reader' | 'analyst-lens']> = [
+      [industryCardRef.current, 'industry-reader'],
+      [analystCardRef.current, 'analyst-lens'],
+    ];
+    const observed = cards.filter(([el]) => el) as Array<[HTMLDivElement, 'industry-reader' | 'analyst-lens']>;
+    if (!observed.length) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        // Pick the card with the largest intersection ratio currently in view.
+        const visible = entries
+          .filter((e) => e.isIntersecting)
+          .sort((a, b) => b.intersectionRatio - a.intersectionRatio);
+        if (!visible.length) return;
+        const top = visible[0].target as HTMLDivElement;
+        const match = observed.find(([el]) => el === top);
+        if (match) setActiveTier(match[1]);
+      },
+      { root: null, rootMargin: '-30% 0px -30% 0px', threshold: [0.25, 0.5, 0.75] },
+    );
+
+    observed.forEach(([el]) => observer.observe(el));
+    return () => observer.disconnect();
+  }, []);
+
   return (
     <>
       {/* ── HEADER + DUAL CTA ────────────────────────────────────────── */}
@@ -354,7 +391,14 @@ const PremiumAccessLounge: React.FC = () => {
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-5">
             {/* Tier 1 — Industry Reader (supply side) */}
-            <div className="bg-background border border-border rounded-xl p-7 md:p-8 flex flex-col">
+            <div
+              ref={industryCardRef}
+              data-active={activeTier === 'industry-reader'}
+              onMouseEnter={() => setActiveTier('industry-reader')}
+              onFocus={() => setActiveTier('industry-reader')}
+              tabIndex={-1}
+              className="group bg-background border border-border rounded-xl p-7 md:p-8 flex flex-col transition-all duration-300 ease-out outline-none data-[active=true]:border-accent data-[active=true]:shadow-[0_8px_30px_-12px_hsl(var(--accent)/0.35)] data-[active=true]:-translate-y-0.5"
+            >
               <div className="pb-5 border-b border-border/60 mb-6">
                 <span className="text-[10px] font-bold tracking-widest uppercase text-muted-foreground">
                   Tier 01 - Supply side
@@ -408,7 +452,14 @@ const PremiumAccessLounge: React.FC = () => {
             </div>
 
             {/* Tier 2 — Analyst Lens (demand side / money) */}
-            <div className="bg-foreground text-background border border-foreground rounded-xl p-7 md:p-8 flex flex-col relative">
+            <div
+              ref={analystCardRef}
+              data-active={activeTier === 'analyst-lens'}
+              onMouseEnter={() => setActiveTier('analyst-lens')}
+              onFocus={() => setActiveTier('analyst-lens')}
+              tabIndex={-1}
+              className="group bg-foreground text-background border border-foreground rounded-xl p-7 md:p-8 flex flex-col relative transition-all duration-300 ease-out outline-none data-[active=true]:border-accent data-[active=true]:shadow-[0_12px_40px_-12px_hsl(var(--accent)/0.55)] data-[active=true]:-translate-y-0.5"
+            >
               <span className="absolute -top-3 right-6 inline-flex items-center px-3 py-1 rounded-full text-[10px] font-semibold tracking-widest uppercase bg-accent text-accent-foreground shadow-md">
                 Capacity capped
               </span>
