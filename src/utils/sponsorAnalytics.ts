@@ -8,12 +8,15 @@
 type SponsorEventName =
   | 'sponsor_callout_click'      // user clicks the "Sponsored research" callout on /insights grid
   | 'sponsor_section_view'       // #sponsor block scrolled into view
-  | 'sponsor_cta_click';         // user clicks "Talk to us about sponsorship"
+  | 'sponsor_cta_click'          // user clicks "Talk to us about sponsorship"
+  | 'sponsor_open_project_click' // user opens an inquiry from a "Currently open projects" card
+  | 'sponsor_inquiry_submitted'; // user submits the sponsor inquiry dialog
 
 interface SponsorEventParams {
   location: string;              // e.g. 'insights_grid', 'premium_access_lounge'
   link_url?: string;
   link_text?: string;
+  project?: string;              // pre-filled project for inquiry events
 }
 
 export function trackSponsorEvent(
