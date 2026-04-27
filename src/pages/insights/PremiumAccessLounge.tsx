@@ -158,30 +158,31 @@ const READERSHIP: { group: string; names: string[] }[] = [
 ];
 
 /**
- * Sponsorship is bespoke, not packaged. The two columns below describe
- * what a sponsor's name attaches to (left) and what we build alongside
- * the public research stream for the sponsor's own use (right). No
- * price - every sponsorship is scoped in conversation.
+ * Section 03 - Commission a bespoke study or deep-dive. Team BB does the
+ * work; the sponsoring organisation gets its name attached to the
+ * published output. Deliverables span video assets, due-diligence studies,
+ * MRV / dMRV reviews, and feasibility / viability work. Pricing is
+ * indicative: INR 6L to 48L depending on scope and intensity.
  */
-const SPONSOR_NAME_ON: string[] = [
-  'A year-long topic cluster - your name on every brief in the series',
-  'Flagship reports published into the public record, not behind your gate',
-  'Methodology and data choices stay with us - editorial independence is the point',
-  'Co-presentation at the report launch, on stage with the analyst',
+const SPONSOR_DELIVERABLES: string[] = [
+  'Detailed due diligence studies on projects, developers or portfolios',
+  'MRV and dMRV reviews, with site-level scoping and ground-truthing',
+  'Feasibility and viability studies for new projects and technologies',
+  'Video assets and editorial write-ups for internal and external use',
 ];
 
-const SPONSOR_FOR_YOU: string[] = [
-  'Bespoke research scoped to your portfolio or thesis - not a SKU',
-  'A standing line to the desk for follow-ups, sized to the engagement',
-  'Closed-door briefings for your team or LPs around each release',
-  'First read on findings before they hit the public archive',
+const SPONSOR_HOW_IT_WORKS: string[] = [
+  'You bring the question or thesis - we scope the work in conversation',
+  'Team BB executes the research, fieldwork and writing end to end',
+  'Your business name is attached to the report as the sponsor',
+  'Methodology and findings stay with us - editorial independence is the point',
 ];
 
-const SPONSOR_WHY: string[] = [
-  'Independent of bank or consultancy incentives',
-  'India-specific regulatory depth',
-  'Published research with a public track record',
-  'Direct analyst access, not a relationship manager',
+const SPONSOR_OPEN_PROJECTS: string[] = [
+  'CCUS technologies investigation in India',
+  'Carbon projects for JCM readiness',
+  'Wetlands conservation and waste management at Chandrataal Lake, Himachal Pradesh',
+  'Corporate Social Responsibility - who is moving the needle?',
 ];
 
 const PremiumAccessLounge: React.FC = () => {
