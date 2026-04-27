@@ -375,18 +375,100 @@ const Insights = () => {
       <Header />
 
       <main className="flex-1 pt-24 pb-16">
-        {/* Hero - eyebrow and lede removed; H1 retained for SEO/a11y */}
-        <section className="pt-12 pb-8 md:pt-16 md:pb-10 px-6 md:px-8">
+        {/* Hero - H1 plus a compact search + filter bar.
+            Active filters switch the listing below into a flat paginated
+            view; cleared filters return to the topic-clustered view. */}
+        <section className="pt-12 pb-6 md:pt-16 md:pb-8 px-6 md:px-8">
           <div className="container mx-auto max-w-[900px]">
             <ScrollReveal direction="up">
-              <h1 className="text-display font-serif tracking-tight">
+              <h1 className="text-display font-serif tracking-tight mb-6 md:mb-8">
                 Intelligence Briefs
               </h1>
             </ScrollReveal>
+
+            <div className="space-y-4">
+              <div className="relative">
+                <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
+                <Input
+                  id="insights-search"
+                  aria-label="Search intelligence briefs"
+                  placeholder="Search the library - title, topic, or theme..."
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                  className="pl-10 bg-background"
+                />
+              </div>
+
+              <div className="flex flex-wrap items-center gap-x-4 gap-y-2">
+                <div className="flex gap-1.5 flex-wrap">
+                  <button
+                    onClick={() => setSelectedTopic('All')}
+                    className={`px-3 py-1 rounded-full text-[12px] font-medium transition-colors ${
+                      selectedTopic === 'All'
+                        ? 'bg-foreground text-background'
+                        : 'border border-border text-foreground hover:bg-secondary'
+                    }`}
+                  >
+                    All topics
+                  </button>
+                  {allTopics.map(topic => (
+                    <button
+                      key={topic}
+                      onClick={() => setSelectedTopic(topic)}
+                      className={`px-3 py-1 rounded-full text-[12px] font-medium transition-colors ${
+                        selectedTopic === topic
+                          ? 'bg-foreground text-background'
+                          : 'border border-border text-foreground hover:bg-secondary'
+                      }`}
+                    >
+                      {topic}
+                    </button>
+                  ))}
+                </div>
+
+                <span className="hidden md:inline text-border" aria-hidden>·</span>
+
+                <div className="flex gap-1.5 flex-wrap">
+                  <button
+                    onClick={() => setSelectedType('All Types')}
+                    className={`px-3 py-1 rounded-full text-[12px] font-medium transition-colors ${
+                      selectedType === 'All Types'
+                        ? 'bg-foreground text-background'
+                        : 'border border-border text-foreground hover:bg-secondary'
+                    }`}
+                  >
+                    All types
+                  </button>
+                  {allContentTypes.map(type => (
+                    <button
+                      key={type}
+                      onClick={() => setSelectedType(type)}
+                      className={`px-3 py-1 rounded-full text-[12px] font-medium transition-colors ${
+                        selectedType === type
+                          ? 'bg-foreground text-background'
+                          : `border border-border hover:bg-secondary ${contentTypeColors[type]}`
+                      }`}
+                    >
+                      {type === 'Flagship Report' ? 'Flagship' :
+                       type === 'Intelligence Brief' ? 'Brief' :
+                       type === 'Regulatory Alert' ? 'Alert' : 'Perspective'}
+                    </button>
+                  ))}
+                </div>
+
+                {(searchQuery || selectedTopic !== 'All' || selectedType !== 'All Types') && (
+                  <button
+                    onClick={() => { setSearchQuery(''); setSelectedTopic('All'); setSelectedType('All Types'); }}
+                    className="ml-auto text-[11px] tracking-wider uppercase text-muted-foreground hover:text-foreground transition-colors"
+                  >
+                    Clear filters
+                  </button>
+                )}
+              </div>
+            </div>
           </div>
         </section>
 
-        {/* Filters + search have both been moved to the bottom of the listing — see #search section */}
 
         {/* Section Navigation - sticky, highlights active section on scroll */}
         <nav
