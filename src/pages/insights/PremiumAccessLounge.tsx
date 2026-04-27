@@ -818,9 +818,18 @@ const PremiumAccessLounge: React.FC = () => {
 
           {/* Currently open projects */}
           <div className="mb-12">
-            <h3 className="text-[11px] font-semibold tracking-widest uppercase text-muted-foreground mb-4">
+            <h3 className="text-[11px] font-semibold tracking-widest uppercase text-muted-foreground mb-2">
               Currently open projects
             </h3>
+            <p className="text-xs text-muted-foreground/90 leading-relaxed mb-5 max-w-[68ch]">
+              <span className="text-foreground/80">What moves the price within each band:</span>{' '}
+              lower end assumes desk research, 6-10 expert interviews, one
+              site visit and a single review cycle. Upper end reflects deeper
+              fieldwork (multi-state travel, 20-30 interviews), primary data
+              collection, additional methodology peer review, and a
+              compressed timeline. Final scope is agreed in writing before
+              work begins.
+            </p>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               {SPONSOR_OPEN_PROJECTS.map((proj, i) => (
                 <button
