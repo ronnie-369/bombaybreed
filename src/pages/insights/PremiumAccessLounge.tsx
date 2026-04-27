@@ -181,25 +181,73 @@ const SPONSOR_HOW_IT_WORKS: string[] = [
   'Editorial control, methodology and conclusions remain entirely with Team BB - sponsorship buys the work, not the verdict',
 ];
 
-const SPONSOR_OPEN_PROJECTS: string[] = [
-  'CCUS technologies investigation in India',
-  'Carbon projects for JCM and Article 6.2 readiness',
-  'Data-centre water and power footprint - the hidden load on the grid',
-  'CBAM exposure for Indian exporters - steel, aluminium, cement, fertiliser',
-  'Wetlands conservation and waste management at Chandrataal Lake, Himachal Pradesh',
+type SponsorProject = {
+  title: string;
+  angle: string;
+  scope: string;
+  output: string;
+  effort: string;
+};
+
+const SPONSOR_OPEN_PROJECTS: SponsorProject[] = [
+  {
+    title: 'CCUS technologies investigation in India',
+    angle:
+      'Where the policy gap, the cost curve and the actual deployable capture stack collide - separating credible projects from press-release CCUS.',
+    scope:
+      'Methodology audit of announced projects, fieldwork at 2-3 candidate sites, capex/opex teardown, comparison with EU-ETS and US 45Q-anchored economics.',
+    output: 'One published investigation (~5,000 words) plus a private methodology annexe for the sponsor.',
+    effort: '10-14 weeks · INR 18-32L + GST',
+  },
+  {
+    title: 'Carbon projects for JCM and Article 6.2 readiness',
+    angle:
+      'What clears the bar for Japan-India JCM transfers and Article 6.2 corresponding adjustments - and what quietly will not.',
+    scope:
+      'Pipeline screen of Indian project types, host-country authorisation logic, MRV gaps, comparison with Korean and Singaporean Article 6 deals.',
+    output: 'Position paper with a scored shortlist of project archetypes plus a regulatory timeline.',
+    effort: '8-10 weeks · INR 14-24L + GST',
+  },
+  {
+    title: 'Data-centre water and power footprint - the hidden load on the grid',
+    angle:
+      'Hyperscale and AI-training build-out vs Indian grid headroom and freshwater stress in the chosen siting clusters.',
+    scope:
+      'Cluster-level demand modelling (Mumbai, Hyderabad, Chennai, NCR), PPA and renewable wheeling assumptions, water draw vs municipal allocations.',
+    output: 'Investigative brief with maps, demand curves and a stress-test of stated net-zero claims.',
+    effort: '10-12 weeks · INR 16-28L + GST',
+  },
+  {
+    title: 'CBAM exposure for Indian exporters - steel, aluminium, cement, fertiliser',
+    angle:
+      'Per-tonne EU CBAM cost pass-through by 2026-2030, mapped against Indian producer emissions intensity and FTA negotiation posture.',
+    scope:
+      'Embedded-emissions estimation by mill/plant, default vs verified value gap, EU-ETS price scenarios, India-EU FTA interaction.',
+    output: 'Sector report with company-level exposure bands and a board-ready risk matrix.',
+    effort: '8-12 weeks · INR 16-30L + GST',
+  },
+  {
+    title: 'Wetlands conservation and waste management at Chandrataal Lake, Himachal Pradesh',
+    angle:
+      'A high-altitude Ramsar site under tourism and solid-waste pressure - what credible conservation finance and on-ground governance would look like.',
+    scope:
+      'Ground-truthing visit, interviews with HP Forest Dept and local panchayat, baseline waste audit, review of existing CSR and ecotourism flows.',
+    output: 'Field report with an intervention design and a costed three-year plan.',
+    effort: '12-16 weeks · INR 12-22L + GST',
+  },
 ];
 
 const PremiumAccessLounge: React.FC = () => {
   const sponsorRef = useRef<HTMLElement | null>(null);
   const [inquiryOpen, setInquiryOpen] = useState(false);
-  const [inquiryProject, setInquiryProject] = useState('');
+  const [inquiryProject, setInquiryProject] = useState<SponsorProject | { title: string } | null>(null);
 
-  const openInquiry = (project: string) => {
+  const openInquiry = (project: SponsorProject) => {
     setInquiryProject(project);
     setInquiryOpen(true);
     trackSponsorEvent('sponsor_open_project_click', {
       location: 'premium_access_lounge',
-      project,
+      project: project.title,
     });
   };
 
@@ -215,17 +263,18 @@ const PremiumAccessLounge: React.FC = () => {
     const toSlug = (s: string) =>
       s.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
     const wanted = toSlug(raw);
-    const matched = SPONSOR_OPEN_PROJECTS.find((p) => toSlug(p) === wanted);
-    const project = matched ?? raw.trim().slice(0, 300);
+    const matched = SPONSOR_OPEN_PROJECTS.find((p) => toSlug(p.title) === wanted);
+    const project: SponsorProject | { title: string } | null = matched ?? (raw.trim()
+      ? { title: raw.trim().slice(0, 300) }
+      : null);
     if (!project) return;
 
     setInquiryProject(project);
     setInquiryOpen(true);
     trackSponsorEvent('sponsor_open_project_click', {
       location: 'premium_access_lounge_deeplink',
-      project,
+      project: project.title,
     });
-
     // Scroll the sponsor section into view so the dialog has context behind it.
     window.requestAnimationFrame(() => {
       document.getElementById('sponsor')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
@@ -756,21 +805,35 @@ const PremiumAccessLounge: React.FC = () => {
               Currently open projects
             </h3>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              {SPONSOR_OPEN_PROJECTS.map((line, i) => (
+              {SPONSOR_OPEN_PROJECTS.map((proj, i) => (
                 <button
-                  key={line}
+                  key={proj.title}
                   type="button"
-                  onClick={() => openInquiry(line)}
-                  className="group text-left text-sm text-foreground border-l-2 border-foreground/40 pl-3 py-1 transition-colors hover:border-foreground hover:bg-foreground/[0.03] focus:outline-none focus-visible:ring-2 focus-visible:ring-foreground/40 rounded-r"
-                  aria-label={`Register interest in: ${line}`}
+                  onClick={() => openInquiry(proj)}
+                  className="group text-left border border-border/60 rounded-lg p-4 transition-colors hover:border-foreground/70 hover:bg-foreground/[0.02] focus:outline-none focus-visible:ring-2 focus-visible:ring-foreground/40"
+                  aria-label={`Register interest in: ${proj.title}`}
                 >
-                  <span className="text-muted-foreground/70 mr-2 font-mono text-xs">
-                    {String(i + 1).padStart(2, '0')}
-                  </span>
-                  {line}
-                  <span className="ml-2 text-xs text-muted-foreground/60 group-hover:text-foreground transition-colors">
-                    Register interest →
-                  </span>
+                  <div className="flex items-start gap-3">
+                    <span className="text-muted-foreground/70 font-mono text-xs pt-0.5 shrink-0">
+                      {String(i + 1).padStart(2, '0')}
+                    </span>
+                    <div className="min-w-0 flex-1">
+                      <div className="font-serif text-base text-foreground leading-snug mb-2">
+                        {proj.title}
+                      </div>
+                      <p className="text-xs text-muted-foreground leading-relaxed mb-3">
+                        {proj.angle}
+                      </p>
+                      <div className="flex items-center justify-between gap-3 text-[11px]">
+                        <span className="text-muted-foreground/80 font-mono">
+                          {proj.effort}
+                        </span>
+                        <span className="text-foreground/70 group-hover:text-foreground transition-colors">
+                          Register interest →
+                        </span>
+                      </div>
+                    </div>
+                  </div>
                 </button>
               ))}
             </div>
@@ -820,7 +883,10 @@ const PremiumAccessLounge: React.FC = () => {
       <SponsorInquiryDialog
         open={inquiryOpen}
         onOpenChange={setInquiryOpen}
-        project={inquiryProject}
+        project={inquiryProject?.title ?? ''}
+        projectDetails={
+          inquiryProject && 'angle' in inquiryProject ? inquiryProject : undefined
+        }
       />
     </>
   );
