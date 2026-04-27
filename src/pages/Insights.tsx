@@ -505,9 +505,16 @@ const Insights = () => {
           </div>
         </nav>
 
+        {/* Premium Access Lounge — paid funnel stacked on top of the editorial hub */}
+        <PremiumAccessLounge />
+
         {/* Flagship Research */}
         {showFlagship && (
-          <section id="flagship" className="px-6 md:px-8 pb-8 pt-8 scroll-mt-32">
+          <section id="flagship" className="px-6 md:px-8 pb-8 pt-8 scroll-mt-32 border-t border-border/50">
+            <div className="container mx-auto max-w-[900px]">
+              <span className="text-[10px] font-bold tracking-widest uppercase text-accent mb-3 block pl-1">
+                Flagship Research
+              </span>
             <div className="container mx-auto max-w-[900px]">
               <span className="text-[10px] font-bold tracking-widest uppercase text-accent mb-3 block pl-1">
                 Flagship Research
