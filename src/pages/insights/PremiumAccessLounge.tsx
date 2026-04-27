@@ -325,20 +325,20 @@ const PremiumAccessLounge: React.FC = () => {
             committees who need the read before the price moves.
           </p>
 
-          {/* What you get — single concise callout, not a separate section */}
+          {/* What you get — shared editorial line. No deliverables here; those live in the cards. */}
           <div className="border-y border-border/60 py-5 mb-10 grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
             {[
               {
-                k: 'Research',
-                v: 'Flagship reports, sector deep-dives, and the working behind them.',
+                k: 'One desk',
+                v: 'Every word is written by Theresa. No syndication, no ghostwriters, no advertising.',
               },
               {
-                k: 'Regulation',
-                v: 'Alerts on CCTS, BRSR, and NDC 3.0 before the news cycle reads them.',
+                k: 'India first',
+                v: 'Independent research from inside the market, not retold from a London or New York desk.',
               },
               {
-                k: 'Access',
-                v: 'A direct line to the desk - not a shared inbox, not a chatbot.',
+                k: 'Two depths',
+                v: 'Pick the read that fits the seat you sit in - the cards below set out what each delivers.',
               },
             ].map((item) => (
               <div key={item.k} className="grid grid-cols-[auto_1fr] gap-3 items-baseline">
