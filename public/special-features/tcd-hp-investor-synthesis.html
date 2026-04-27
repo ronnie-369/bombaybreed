@@ -2662,7 +2662,7 @@ new Chart(cryoCtx, {
     var activeId = subInView.length ? subInView[0] : ids[0];
     var activeParent = subToParent[activeId] || activeId;
 
-    allLinks.forEach(function(l) { l.classList.remove('is-active'); });
+    allLinks.forEach(function(l) { l.classList.remove('is-active'); l.removeAttribute('aria-current'); });
     if (linkMap[activeId]) linkMap[activeId].classList.add('is-active');
     if (activeId !== activeParent && linkMap[activeParent]) linkMap[activeParent].classList.add('is-active');
 
