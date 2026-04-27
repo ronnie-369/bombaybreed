@@ -276,7 +276,7 @@ const PremiumAccessLounge: React.FC = () => {
         <div className="container mx-auto max-w-[900px]">
           <SectionLabel label="The two tiers" />
           <h2 className="text-section font-serif tracking-tight mt-6 mb-4">
-            One desk. Two ways in.
+            One desk. Invest, or be invested in.
           </h2>
           <p className="font-serif text-lg text-foreground/80 leading-relaxed max-w-[680px] mb-12">
             One tier is built for the people <em>making</em> the carbon - founders,
