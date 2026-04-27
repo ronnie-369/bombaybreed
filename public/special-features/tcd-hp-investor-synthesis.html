@@ -1176,6 +1176,13 @@ img { max-width: 100%; display: block; }
 }
 .toc-link:hover { color: var(--near-black); }
 .toc-link.is-active { color: var(--near-black); border-bottom-color: var(--copper); }
+.toc-link:focus { outline: none; }
+.toc-link:focus-visible {
+  outline: 2px solid var(--copper);
+  outline-offset: 3px;
+  border-radius: 2px;
+  color: var(--near-black);
+}
 
 /* Sub-anchor row: only visible when its parent Part is active */
 .toc-sub-row {
