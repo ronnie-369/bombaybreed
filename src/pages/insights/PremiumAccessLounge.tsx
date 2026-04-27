@@ -389,9 +389,9 @@ const PremiumAccessLounge: React.FC = () => {
           </div>
 
           <p className="text-xs text-muted-foreground/80 mt-8 max-w-[680px] leading-relaxed">
-            Teams of three or more, regulated entities, and corporate desks should
-            see the sponsorship block below - the structure is different and the
-            access is wider.
+            Institutional desks, regulated entities, and teams that want to
+            underwrite a year of research should see the sponsorship block
+            below - it is bespoke and scoped in conversation.
           </p>
         </div>
       </section>
