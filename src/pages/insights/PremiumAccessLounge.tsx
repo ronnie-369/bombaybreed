@@ -438,8 +438,9 @@ const PremiumAccessLounge: React.FC = () => {
                 Carbon markets and energy transition, decoded for you - starting at INR 10,000 per month
               </h3>
               <p className="text-sm text-background/70 mb-6">
-                Two tiers. From INR 10,000 a month. The same desk that briefs
-                boards and committees, on retainer to your inbox.
+                One insight - the right read on a CCTS auction, an Article 6.2
+                bilateral, a CBAM step-down - can be the call that makes a
+                portfolio for the year. This is the desk that makes that call.
               </p>
               <span className="inline-flex items-center gap-1.5 text-sm font-medium">
                 Enter the members&rsquo; room <ArrowRight className="w-4 h-4" />
