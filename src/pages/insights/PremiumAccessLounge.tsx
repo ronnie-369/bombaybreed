@@ -49,18 +49,20 @@ const CTA_COPY: Record<
  * into public/logos/intelligence-readers/ to populate.
  */
 
-const QUOTES: { quote: string; name: string; title: string; org: string }[] = [
+const QUOTES: { quote: string; name: string; title: string; org: string; orgHref?: string }[] = [
   {
     quote: 'Brilliantly insightful.',
     name: 'Chris Sherwood',
     title: 'Chairman',
     org: 'Negative Emissions Platform',
+    orgHref: 'https://negativeemissionsplatform.eu',
   },
   {
     quote: 'Wonderful writing. Deep analysis. Highly insightful.',
     name: 'Mitchell Beer',
     title: 'Founder',
     org: 'The Energy Mix',
+    orgHref: 'https://www.theenergymix.com',
   },
   {
     quote: 'Excellent reporting from India.',
@@ -438,9 +440,10 @@ const PremiumAccessLounge: React.FC = () => {
                 One insight can make the portfolio call of the year
               </h3>
               <p className="text-[15px] sm:text-base text-background/75 leading-relaxed mb-6 [text-wrap:pretty] max-w-[46ch]">
-                The right read on a CCTS auction, an Article 6.2 bilateral or a
-                CBAM step-down can be the call that makes a portfolio for the
-                year. This is the desk that makes that call.
+                Carbon markets are hard. The right call is harder. The kind of
+                call you would normally pay a sell-side desk six figures for -
+                written for people who move capital. A small members&rsquo;
+                room, by design.
               </p>
               <span className="inline-flex items-center gap-1.5 text-sm font-medium">
                 Enter the members&rsquo; room <ArrowRight className="w-4 h-4 shrink-0" />
@@ -469,7 +472,20 @@ const PremiumAccessLounge: React.FC = () => {
                 <figcaption className="text-xs text-muted-foreground border-t border-border/60 pt-4 leading-snug">
                   <div className="font-semibold text-foreground [text-wrap:balance]">{q.name}</div>
                   <div className="[text-wrap:balance]">{q.title}</div>
-                  <div className="text-muted-foreground/70 [text-wrap:balance]">{q.org}</div>
+                  <div className="text-muted-foreground/70 [text-wrap:balance]">
+                    {q.orgHref ? (
+                      <a
+                        href={q.orgHref}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="underline decoration-border underline-offset-2 hover:decoration-foreground hover:text-foreground transition-colors"
+                      >
+                        {q.org}
+                      </a>
+                    ) : (
+                      q.org
+                    )}
+                  </div>
                 </figcaption>
               </figure>
             ))}
