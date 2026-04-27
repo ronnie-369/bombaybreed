@@ -454,10 +454,16 @@ const PremiumAccessLounge: React.FC = () => {
 
               <Button asChild variant="secondary">
                 <Link
-                  to="/intelligence/membership?tier=analyst-lens"
+                  to={`/intelligence/membership?tier=analyst-lens&v=${analystVariant}&ref=insights`}
                   className="inline-flex items-center justify-center gap-2"
+                  onClick={() =>
+                    logClick('subscribe_cta_analyst_lens', analystVariant, {
+                      tier: 'analyst-lens',
+                    })
+                  }
                 >
-                  Take the Analyst Lens <ArrowRight className="w-4 h-4" />
+                  {CTA_COPY.analyst_lens[analystVariant]}{' '}
+                  <ArrowRight className="w-4 h-4" />
                 </Link>
               </Button>
             </div>
