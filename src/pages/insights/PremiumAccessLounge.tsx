@@ -22,25 +22,6 @@ import { trackSponsorEvent } from '@/utils/sponsorAnalytics';
  * into public/logos/intelligence-readers/ to populate.
  */
 
-const WHAT_YOU_GET: { title: string; body: string }[] = [
-  {
-    title: 'Flagship reports as they publish',
-    body: 'Original research on carbon markets, regulatory shifts, and India-specific climate exposure — delivered the day they go live.',
-  },
-  {
-    title: 'Sectoral analysis on demand',
-    body: 'Deep-dive briefs on the sectors you allocate to, with the regulatory + policy frame that public reporting leaves out.',
-  },
-  {
-    title: 'Regulatory alerts ahead of the news cycle',
-    body: 'Pore space law, CCTS rules, NDC 3.0, BRSR amendments. We flag what moves before it moves the price.',
-  },
-  {
-    title: 'Direct line to the analyst',
-    body: 'Members can ask follow-ups on any brief. Sponsors get scheduled time with the team (see corporate deal below).',
-  },
-];
-
 const QUOTES: { quote: string; name: string; title: string; org: string }[] = [
   {
     quote:
@@ -406,26 +387,6 @@ const PremiumAccessLounge: React.FC = () => {
             see the sponsorship block below - the structure is different and the
             access is wider.
           </p>
-        </div>
-      </section>
-
-      <section id="what-you-get" className="px-6 md:px-8 py-16 border-t border-border/50 scroll-mt-32">
-        <div className="container mx-auto max-w-[900px]">
-          <SectionLabel label="01 — What you get" />
-          <h2 className="text-section font-serif tracking-tight mt-6 mb-10">
-            What members receive
-          </h2>
-          <div className="divide-y divide-border/60 border-y border-border/60">
-            {WHAT_YOU_GET.map((item) => (
-              <div key={item.title} className="py-6 grid grid-cols-[auto_1fr] gap-6 items-start">
-                <span className="text-xs font-mono text-muted-foreground/70 pt-1">✓</span>
-                <div>
-                  <h3 className="font-serif text-lg text-foreground mb-1">{item.title}</h3>
-                  <p className="text-sm text-muted-foreground leading-relaxed">{item.body}</p>
-                </div>
-              </div>
-            ))}
-          </div>
         </div>
       </section>
 
