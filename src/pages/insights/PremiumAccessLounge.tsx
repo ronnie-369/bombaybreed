@@ -490,8 +490,8 @@ const PremiumAccessLounge: React.FC = () => {
                 <div className="text-xs text-background/45 font-sans line-through mb-1">
                   INR 50,000 / month
                 </div>
-                <div className="font-serif text-3xl whitespace-nowrap">
-                  INR 35,000<span className="text-base text-background/60 font-sans"> / month</span>
+                <div className="font-serif text-2xl sm:text-3xl whitespace-nowrap">
+                  INR 35,000<span className="text-sm sm:text-base text-background/60 font-sans"> / month</span>
                 </div>
                 <div className="text-xs text-background/60 tracking-wide mt-1">
                   INR 4.2 lakh / year - founding rate, locked while your subscription stays active
