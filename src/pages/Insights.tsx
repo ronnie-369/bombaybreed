@@ -263,26 +263,43 @@ const Insights = () => {
     // Default to first section on mount / when section list changes
     setActiveSection(sections[0]?.id || '');
 
-    const elements = sections
-      .map(s => document.getElementById(s.id))
-      .filter((el): el is HTMLElement => el !== null);
-    if (elements.length === 0) return;
+    const getElements = () =>
+      sections
+        .map(s => document.getElementById(s.id))
+        .filter((el): el is HTMLElement => el !== null);
 
-    // Trigger when a section's top crosses just below the sticky nav (~180px)
-    const observer = new IntersectionObserver(
-      (entries) => {
-        // Pick the entry highest on the page that is intersecting
-        const visible = entries
-          .filter(e => e.isIntersecting)
-          .sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top);
-        if (visible[0]) {
-          setActiveSection(visible[0].target.id);
+    // Scroll-based active detection: the active section is the last one
+    // whose top has crossed below the sticky-nav offset. This avoids the
+    // duplicate / flicker behaviour of an IntersectionObserver when several
+    // sections overlap the viewport at the same time.
+    const OFFSET = 200; // sticky header (~64px) + nav (~44px) + buffer
+    let raf = 0;
+    const update = () => {
+      raf = 0;
+      const els = getElements();
+      if (els.length === 0) return;
+      let current = els[0].id;
+      for (const el of els) {
+        if (el.getBoundingClientRect().top - OFFSET <= 0) {
+          current = el.id;
+        } else {
+          break;
         }
-      },
-      { rootMargin: '-180px 0px -60% 0px', threshold: 0 }
-    );
-    elements.forEach(el => observer.observe(el));
-    return () => observer.disconnect();
+      }
+      setActiveSection(current);
+    };
+    const onScroll = () => {
+      if (raf) return;
+      raf = requestAnimationFrame(update);
+    };
+    update();
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', onScroll);
+    return () => {
+      window.removeEventListener('scroll', onScroll);
+      window.removeEventListener('resize', onScroll);
+      if (raf) cancelAnimationFrame(raf);
+    };
   }, [sections]);
 
   const handleNavClick = useCallback((e: React.MouseEvent<HTMLAnchorElement>, id: string) => {
