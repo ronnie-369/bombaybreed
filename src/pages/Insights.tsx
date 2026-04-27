@@ -397,68 +397,7 @@ const Insights = () => {
           </div>
         </section>
 
-        {/* Search has been moved to the bottom of the listing — see below */}
-
-        {/* Filters */}
-        <section className="px-6 md:px-8 pb-8">
-          <div className="container mx-auto max-w-[900px] space-y-3">
-            {/* Topic filter */}
-            <div className="flex gap-2 flex-wrap">
-              <button
-                onClick={() => setSelectedTopic('All')}
-                className={`px-4 py-1.5 rounded-full text-[13px] font-medium transition-colors ${
-                  selectedTopic === 'All'
-                    ? 'bg-foreground text-background'
-                    : 'border border-border text-foreground hover:bg-secondary'
-                }`}
-              >
-                All
-              </button>
-              {allTopics.map(topic => (
-                <button
-                  key={topic}
-                  onClick={() => setSelectedTopic(topic)}
-                  className={`px-4 py-1.5 rounded-full text-[13px] font-medium transition-colors ${
-                    selectedTopic === topic
-                      ? 'bg-foreground text-background'
-                      : 'border border-border text-foreground hover:bg-secondary'
-                  }`}
-                >
-                  {topic}
-                </button>
-              ))}
-            </div>
-
-            {/* Content type filter */}
-            <div className="flex gap-2 flex-wrap">
-              <button
-                onClick={() => setSelectedType('All Types')}
-                className={`px-3 py-1 rounded-2xl text-xs font-medium transition-colors ${
-                  selectedType === 'All Types'
-                    ? 'bg-foreground text-background'
-                    : 'border border-border text-foreground hover:bg-secondary'
-                }`}
-              >
-                All Types
-              </button>
-              {allContentTypes.map(type => (
-                <button
-                  key={type}
-                  onClick={() => setSelectedType(type)}
-                  className={`px-3 py-1 rounded-2xl text-xs font-medium transition-colors ${
-                    selectedType === type
-                      ? 'bg-foreground text-background'
-                      : `border border-border hover:bg-secondary ${contentTypeColors[type]}`
-                  }`}
-                >
-                  {type === 'Flagship Report' ? 'Flagship Reports' :
-                   type === 'Intelligence Brief' ? 'Intelligence Briefs' :
-                   type === 'Regulatory Alert' ? 'Regulatory Alerts' : 'Perspectives'}
-                </button>
-              ))}
-            </div>
-          </div>
-        </section>
+        {/* Filters + search have both been moved to the bottom of the listing — see #search section */}
 
         {/* Section Navigation - sticky, highlights active section on scroll */}
         <nav
