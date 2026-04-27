@@ -214,6 +214,24 @@ const PremiumAccessLounge: React.FC = () => {
     return () => observer.disconnect();
   }, []);
 
+  // Sticky variant assignment for the two subscribe-CTA experiments.
+  // useMemo so we read localStorage exactly once per mount; getVariant itself
+  // is idempotent for the same visitor.
+  const industryVariant = useMemo<Variant>(
+    () => getVariant('subscribe_cta_industry_reader'),
+    []
+  );
+  const analystVariant = useMemo<Variant>(
+    () => getVariant('subscribe_cta_analyst_lens'),
+    []
+  );
+
+  // Log a one-per-session 'assignment' event for each tier the visitor sees.
+  useEffect(() => {
+    logAssignmentOnce('subscribe_cta_industry_reader', industryVariant);
+    logAssignmentOnce('subscribe_cta_analyst_lens', analystVariant);
+  }, [industryVariant, analystVariant]);
+
   return (
     <>
       {/* ── HEADER + DUAL CTA ────────────────────────────────────────── */}
