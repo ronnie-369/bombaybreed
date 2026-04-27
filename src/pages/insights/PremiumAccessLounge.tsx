@@ -274,7 +274,7 @@ const PremiumAccessLounge: React.FC = () => {
           <ScrollReveal direction="up">
             <SectionLabel label="Premium Access Lounge" />
             <h2 className="text-section font-serif tracking-tight mt-6 mb-5">
-              The room behind the room.
+              Executive Access Lounge
             </h2>
             <p className="font-serif text-lg md:text-xl text-foreground/85 leading-relaxed max-w-[680px] mb-4">
               Most of what we know about India&rsquo;s carbon markets does not get
