@@ -12,6 +12,7 @@ import {
 } from '@/components/ui/dialog';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
+import { Checkbox } from '@/components/ui/checkbox';
 import { Button } from '@/components/ui/button';
 import {
   Form,
@@ -31,6 +32,9 @@ const inquirySchema = z.object({
   role: z.string().trim().max(100).optional(),
   project: z.string().trim().min(1).max(300),
   message: z.string().trim().max(1500).optional(),
+  consent: z.boolean().refine((v) => v === true, {
+    message: 'Please confirm to continue.',
+  }),
 });
 
 type InquiryValues = z.infer<typeof inquirySchema>;
@@ -54,6 +58,7 @@ const SponsorInquiryDialog = ({ open, onOpenChange, project }: SponsorInquiryDia
       role: '',
       project,
       message: '',
+      consent: false,
     },
   });
 
@@ -76,6 +81,8 @@ const SponsorInquiryDialog = ({ open, onOpenChange, project }: SponsorInquiryDia
           role: data.role?.trim() || '',
           project_of_interest: data.project.trim(),
           message: data.message?.trim() || '',
+          consent: data.consent,
+          consent_text: 'User agreed to be contacted about this inquiry and to our privacy practices.',
           form_type: 'sponsor_open_project_inquiry',
           _subject: `Sponsor inquiry: ${data.project.trim()}`,
         }),
@@ -223,6 +230,40 @@ const SponsorInquiryDialog = ({ open, onOpenChange, project }: SponsorInquiryDia
               )}
             />
 
+            <FormField
+              control={form.control}
+              name="consent"
+              render={({ field }) => (
+                <FormItem className="rounded-md border border-border/70 p-3">
+                  <div className="flex items-start gap-3">
+                    <FormControl>
+                      <Checkbox
+                        checked={field.value}
+                        onCheckedChange={(checked) => field.onChange(checked === true)}
+                        aria-required="true"
+                        className="mt-0.5"
+                      />
+                    </FormControl>
+                    <div className="space-y-1 leading-snug">
+                      <FormLabel className="text-xs font-normal text-foreground cursor-pointer">
+                        I agree to be contacted about this inquiry and acknowledge the{' '}
+                        <a
+                          href="/privacy-policy"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="underline underline-offset-2 hover:text-foreground/80"
+                        >
+                          privacy policy
+                        </a>
+                        . Required.
+                      </FormLabel>
+                      <FormMessage className="text-xs" />
+                    </div>
+                  </div>
+                </FormItem>
+              )}
+            />
+
             <DialogFooter className="pt-2">
               <Button
                 type="button"
@@ -232,7 +273,7 @@ const SponsorInquiryDialog = ({ open, onOpenChange, project }: SponsorInquiryDia
               >
                 Cancel
               </Button>
-              <Button type="submit" disabled={submitting}>
+              <Button type="submit" disabled={submitting || !form.watch('consent')}>
                 {submitting ? 'Sending...' : 'Send inquiry'}
               </Button>
             </DialogFooter>
