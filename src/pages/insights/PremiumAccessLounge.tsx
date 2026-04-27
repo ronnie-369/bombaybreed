@@ -368,7 +368,7 @@ const PremiumAccessLounge: React.FC = () => {
             {[
               {
                 k: 'One desk',
-                v: 'Every word is written by Theresa. No syndication, no ghostwriters, no advertising.',
+                v: 'From the team that publishes The Climate Desk and the Strategic Communications Advisory and Consulting of Bombay Breed.',
               },
               {
                 k: 'India first',
