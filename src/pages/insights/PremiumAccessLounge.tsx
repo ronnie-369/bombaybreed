@@ -406,35 +406,35 @@ const PremiumAccessLounge: React.FC = () => {
                 <h3 className="font-serif text-2xl text-foreground mt-3 mb-1">
                   The Industry Reader
                 </h3>
-                <p className="text-sm text-muted-foreground italic">
+                <p className="text-sm text-muted-foreground italic leading-snug">
                   Built for the people making the carbon - founders, developers,
                   SMEs walking into the market for the first time.
                 </p>
               </div>
 
               <div className="mb-6">
-                <span className="inline-flex items-center px-2.5 py-1 rounded-full text-[10px] font-semibold tracking-widest uppercase bg-accent/15 text-accent border border-accent/30 mb-3">
+                <span className="inline-flex items-center px-2.5 py-1 rounded-full text-[10px] font-semibold tracking-widest uppercase bg-accent/15 text-accent border border-accent/30 mb-3 leading-snug">
                   Launch offer - 30% off year one
                 </span>
-                <div className="text-xs text-muted-foreground/70 font-sans line-through mb-1">
+                <div className="text-xs text-muted-foreground/70 font-sans line-through mb-1 leading-snug">
                   INR 10,000 / month
                 </div>
-                <div className="font-serif text-2xl sm:text-3xl text-foreground whitespace-nowrap">
+                <div className="font-serif text-2xl sm:text-3xl text-foreground whitespace-nowrap leading-tight">
                   INR 7,000<span className="text-sm sm:text-base text-muted-foreground font-sans"> / month</span>
                 </div>
-                <div className="text-xs text-muted-foreground tracking-wide mt-1">
+                <div className="text-xs text-muted-foreground tracking-wide mt-1 leading-snug">
                   INR 84,000 / year - founding rate, locked while your subscription stays active
                 </div>
               </div>
 
-              <ul className="space-y-3 mb-8 flex-1">
+              <ul className="space-y-2.5 md:space-y-3 mb-8 flex-1">
                 {[
                   'A weekly read on the carbon market - news, with the regulation that actually moves it',
                   'The desk view - what the price is signalling, in plain language',
                   'Field notes from live engagements, anonymised but unvarnished',
                   'Quarterly State of Carbon Markets tracker - India in global context',
                 ].map((line) => (
-                  <li key={line} className="grid grid-cols-[auto_1fr] gap-3 text-sm text-foreground">
+                  <li key={line} className="grid grid-cols-[auto_1fr] gap-3 text-sm text-foreground leading-snug">
                     <span className="text-muted-foreground/70 pt-0.5">·</span>
                     <span>{line}</span>
                   </li>
