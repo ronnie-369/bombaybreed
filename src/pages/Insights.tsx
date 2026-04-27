@@ -9,6 +9,7 @@ import { Input } from '@/components/ui/input';
 import ScrollReveal from '@/components/ui/ScrollReveal';
 import SectionLabel from '@/components/ui/SectionLabel';
 import LeadCaptureForm from '@/components/shared/LeadCaptureForm';
+import PremiumAccessLounge from '@/pages/insights/PremiumAccessLounge';
 
 
 type ContentType = 'Flagship Report' | 'Intelligence Brief' | 'Regulatory Alert' | 'Perspective';
@@ -242,6 +243,14 @@ const Insights = () => {
   const showFlagship = selectedTopic === 'All' && selectedType === 'All Types' && !searchQuery;
   const sections = useMemo(() => {
     const s: { id: string; label: string }[] = [];
+    // Premium Access Lounge — paid funnel sits at the top of the page.
+    // These ids exist regardless of search/filter state.
+    s.push({ id: 'lounge', label: 'Lounge' });
+    s.push({ id: 'what-you-get', label: 'What you get' });
+    s.push({ id: 'industry', label: 'Industry' });
+    s.push({ id: 'readers', label: 'Readers' });
+    s.push({ id: 'sponsor', label: 'Sponsor' });
+    // Editorial hub below — flagship is conditional on no active filter.
     if (showFlagship) s.push({ id: 'flagship', label: 'Flagship' });
     s.push({ id: 'all-intelligence', label: 'All Intelligence' });
     s.push({ id: 'subscribe', label: 'Subscribe' });
