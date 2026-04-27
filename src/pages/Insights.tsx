@@ -466,9 +466,39 @@ const Insights = () => {
           </div>
         </section>
 
+        {/* Section Navigation - sticky, highlights active section on scroll */}
+        <nav
+          aria-label="Insights sections"
+          className="sticky top-16 z-30 bg-background/85 backdrop-blur-md border-y border-border/40 px-6 md:px-8"
+        >
+          <div className="container mx-auto max-w-[900px]">
+            <ul className="flex gap-1 overflow-x-auto py-2 -mx-1 px-1 scrollbar-none">
+              {sections.map(s => {
+                const isActive = activeSection === s.id;
+                return (
+                  <li key={s.id} className="flex-shrink-0">
+                    <a
+                      href={`#${s.id}`}
+                      onClick={(e) => handleNavClick(e, s.id)}
+                      aria-current={isActive ? 'location' : undefined}
+                      className={`inline-block px-3 py-1.5 rounded-full text-[12px] font-medium tracking-wide transition-colors whitespace-nowrap focus:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background ${
+                        isActive
+                          ? 'bg-foreground text-background'
+                          : 'text-muted-foreground hover:text-foreground hover:bg-secondary'
+                      }`}
+                    >
+                      {s.label}
+                    </a>
+                  </li>
+                );
+              })}
+            </ul>
+          </div>
+        </nav>
+
         {/* Flagship Research */}
-        {selectedTopic === 'All' && selectedType === 'All Types' && !searchQuery && (
-          <section className="px-6 md:px-8 pb-8">
+        {showFlagship && (
+          <section id="flagship" className="px-6 md:px-8 pb-8 pt-8 scroll-mt-32">
             <div className="container mx-auto max-w-[900px]">
               <span className="text-[10px] font-bold tracking-widest uppercase text-accent mb-3 block pl-1">
                 Flagship Research
