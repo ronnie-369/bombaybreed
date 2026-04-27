@@ -209,12 +209,18 @@ const PremiumAccessLounge: React.FC = () => {
         <div className="container mx-auto max-w-[900px]">
           <ScrollReveal direction="up">
             <SectionLabel label="Premium Access Lounge" />
-            <h2 className="text-section font-serif tracking-tight mt-6 mb-4">
-              Membership and sponsored research
+            <h2 className="text-section font-serif tracking-tight mt-6 mb-5">
+              The room behind the room.
             </h2>
-            <p className="text-body text-muted-foreground max-w-[620px] mb-10">
-              Read what we have published, or join the readers who get the next brief
-              before it goes public.
+            <p className="font-serif text-lg md:text-xl text-foreground/85 leading-relaxed max-w-[680px] mb-4">
+              Most of what we know about India&rsquo;s carbon markets does not get
+              published. It moves between desks, before committees, inside drafting
+              rooms - and then it shows up, six weeks later, as a price.
+            </p>
+            <p className="text-body text-muted-foreground max-w-[640px] mb-10">
+              The Lounge is the small, paid list that gets the read first. Two
+              tiers. No advertising. No house view dressed up as research. The
+              library below is open - the next brief is not.
             </p>
           </ScrollReveal>
 
@@ -233,14 +239,14 @@ const PremiumAccessLounge: React.FC = () => {
               className="group block bg-secondary/30 border border-border rounded-xl p-8 transition-colors hover:border-primary/30"
             >
               <span className="text-[10px] font-bold tracking-widest uppercase text-muted-foreground">
-                Free
+                The open shelf - free
               </span>
               <h3 className="font-serif text-xl text-foreground mt-3 mb-2 group-hover:text-primary transition-colors">
-                View past reports
+                Read what we have already published
               </h3>
               <p className="text-sm text-muted-foreground mb-6">
-                Browse the full library of flagship reports, intelligence briefs,
-                regulatory alerts, and perspectives.
+                Every flagship report, intelligence brief, regulatory alert, and
+                perspective we have released to the public.
               </p>
               <span className="inline-flex items-center gap-1.5 text-sm font-medium text-foreground group-hover:text-primary transition-colors">
                 Open the library <ArrowRight className="w-4 h-4" />
@@ -248,27 +254,161 @@ const PremiumAccessLounge: React.FC = () => {
             </a>
 
             {/* Sign up for reports — into the paid tier funnel */}
-            <Link
-              to="/intelligence/membership"
+            <a
+              href="#tiers"
+              onClick={(e) => {
+                e.preventDefault();
+                const el = document.getElementById('tiers');
+                if (!el) return;
+                const top = el.getBoundingClientRect().top + window.pageYOffset - 140;
+                window.scrollTo({ top, behavior: 'smooth' });
+                history.replaceState(null, '', '#tiers');
+              }}
               className="group block bg-foreground text-background rounded-xl p-8 transition-colors hover:bg-foreground/90"
             >
               <span className="text-[10px] font-bold tracking-widest uppercase text-background/60">
-                Members
+                The closed list - members
               </span>
-              <h3 className="font-serif text-xl mt-3 mb-2">Sign up for reports</h3>
+              <h3 className="font-serif text-xl mt-3 mb-2">
+                Get the next brief before it goes public
+              </h3>
               <p className="text-sm text-background/70 mb-6">
-                Choose a tier. Get every report, brief, and alert as it ships, plus
-                analyst access on the higher tiers.
+                Two tiers. From INR 10,000 a month. The same desk that briefs
+                boards and committees, on retainer to your inbox.
               </p>
               <span className="inline-flex items-center gap-1.5 text-sm font-medium">
-                See membership tiers <ArrowRight className="w-4 h-4" />
+                See the two tiers <ArrowRight className="w-4 h-4" />
               </span>
-            </Link>
+            </a>
           </div>
         </div>
       </section>
 
-      {/* ── 1. WHAT YOU GET ──────────────────────────────────────────── */}
+      {/* TIERS — Industry Reader vs Analyst Lens */}
+      <section id="tiers" className="px-6 md:px-8 py-16 border-t border-border/50 scroll-mt-32 bg-secondary/20">
+        <div className="container mx-auto max-w-[900px]">
+          <SectionLabel label="The two tiers" />
+          <h2 className="text-section font-serif tracking-tight mt-6 mb-4">
+            One desk. Two ways in.
+          </h2>
+          <p className="font-serif text-lg text-foreground/80 leading-relaxed max-w-[680px] mb-12">
+            One tier is built for the people <em>making</em> the carbon - founders,
+            developers, SMEs walking into the market for the first time. The other
+            is built for the people <em>pricing</em> it - investors, analysts, and
+            committees who need the read before the price moves.
+          </p>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+            {/* Tier 1 — Industry Reader (supply side) */}
+            <div className="bg-background border border-border rounded-xl p-8 flex flex-col">
+              <div className="pb-5 border-b border-border/60 mb-6">
+                <span className="text-[10px] font-bold tracking-widest uppercase text-muted-foreground">
+                  Tier 01 - Supply side
+                </span>
+                <h3 className="font-serif text-2xl text-foreground mt-3 mb-1">
+                  The Industry Reader
+                </h3>
+                <p className="text-sm text-muted-foreground italic">
+                  For founders, SMEs, and carbon project developers learning the
+                  market on the way in.
+                </p>
+              </div>
+
+              <div className="mb-6">
+                <div className="font-serif text-3xl text-foreground">
+                  INR 10,000<span className="text-base text-muted-foreground font-sans"> / month</span>
+                </div>
+                <div className="text-xs text-muted-foreground tracking-wide mt-1">
+                  INR 1.2 lakh / year - billed annually
+                </div>
+              </div>
+
+              <ul className="space-y-3 mb-8 flex-1">
+                {[
+                  'Carbon market news, with the regulatory frame attached',
+                  'Views from the desk - what we think the price is telling you',
+                  'Working insights from inside live engagements (anonymised)',
+                  'Quarterly State of Carbon Markets tracker - India + global',
+                ].map((line) => (
+                  <li key={line} className="grid grid-cols-[auto_1fr] gap-3 text-sm text-foreground">
+                    <span className="text-muted-foreground/70 pt-0.5">·</span>
+                    <span>{line}</span>
+                  </li>
+                ))}
+              </ul>
+
+              <Button asChild variant="outline">
+                <Link
+                  to="/intelligence/membership?tier=industry-reader"
+                  className="inline-flex items-center justify-center gap-2"
+                >
+                  Join the Industry Reader <ArrowRight className="w-4 h-4" />
+                </Link>
+              </Button>
+            </div>
+
+            {/* Tier 2 — Analyst Lens (demand side / money) */}
+            <div className="bg-foreground text-background border border-foreground rounded-xl p-8 flex flex-col relative">
+              <span className="absolute -top-3 right-6 inline-flex items-center px-3 py-1 rounded-full text-[10px] font-semibold tracking-widest uppercase bg-accent text-accent-foreground shadow-md">
+                Capacity capped
+              </span>
+              <div className="pb-5 border-b border-background/20 mb-6">
+                <span className="text-[10px] font-bold tracking-widest uppercase text-background/60">
+                  Tier 02 - Demand side
+                </span>
+                <h3 className="font-serif text-2xl mt-3 mb-1">
+                  The Analyst Lens
+                </h3>
+                <p className="text-sm text-background/70 italic">
+                  For investors, family offices, and committees pricing the
+                  market - and for teams who would otherwise hire a junior to do
+                  this work.
+                </p>
+              </div>
+
+              <div className="mb-6">
+                <div className="font-serif text-3xl">
+                  INR 50,000<span className="text-base text-background/60 font-sans"> / month</span>
+                </div>
+                <div className="text-xs text-background/60 tracking-wide mt-1">
+                  INR 6 lakh / year - one named user - cheaper than a junior analyst
+                </div>
+              </div>
+
+              <ul className="space-y-3 mb-8 flex-1">
+                {[
+                  'Every flagship report on publication - no embargo wait',
+                  'Sectoral analysis across the verticals you allocate to',
+                  'Regulatory alerts ahead of the news cycle (CCTS, BRSR, NDC 3.0)',
+                  '30-minute direct line each month - scheduled on the BB site',
+                  'Quarterly State of Carbon Markets tracker included',
+                ].map((line) => (
+                  <li key={line} className="grid grid-cols-[auto_1fr] gap-3 text-sm">
+                    <span className="text-background/50 pt-0.5">·</span>
+                    <span>{line}</span>
+                  </li>
+                ))}
+              </ul>
+
+              <Button asChild variant="secondary">
+                <Link
+                  to="/intelligence/membership?tier=analyst-lens"
+                  className="inline-flex items-center justify-center gap-2"
+                >
+                  Take the Analyst Lens <ArrowRight className="w-4 h-4" />
+                </Link>
+              </Button>
+            </div>
+          </div>
+
+          <p className="text-xs text-muted-foreground/80 mt-8 max-w-[680px] leading-relaxed">
+            Teams of three or more, regulated entities, and corporate desks should
+            see the sponsorship block below - the structure is different and the
+            access is wider.
+          </p>
+        </div>
+      </section>
+
       <section id="what-you-get" className="px-6 md:px-8 py-16 border-t border-border/50 scroll-mt-32">
         <div className="container mx-auto max-w-[900px]">
           <SectionLabel label="01 — What you get" />
