@@ -563,19 +563,92 @@ const Insights = () => {
           </section>
         )}
 
-        {/* All Intelligence Listing */}
+        {/* All Intelligence Listing — topic-clustered when unfiltered, flat list when filtered */}
         <section id="all-intelligence" className="py-8 px-6 md:px-8 border-t border-border/50 scroll-mt-32">
           <div className="container mx-auto max-w-[900px]">
-            <span className="text-[10px] font-bold tracking-widest uppercase text-muted-foreground mb-3 block pl-1">
-              All Intelligence · {filteredPublications.length} items
-            </span>
+            {/* JSON-LD ItemList for the brief library — helps search engines see the cluster structure */}
+            <script
+              type="application/ld+json"
+              dangerouslySetInnerHTML={{
+                __html: JSON.stringify({
+                  '@context': 'https://schema.org',
+                  '@type': 'ItemList',
+                  name: 'Bombay Breed Intelligence Briefs',
+                  description:
+                    'India-focused research and analysis on carbon markets, board governance, ESG communications, and regulatory intelligence.',
+                  itemListElement: filteredPublications
+                    .filter(p => !!p.link)
+                    .map((p, i) => ({
+                      '@type': 'ListItem',
+                      position: i + 1,
+                      url: p.external ? p.link : `https://bombaybreed.com${p.link}`,
+                      name: p.title,
+                    })),
+                }),
+              }}
+            />
 
-            <div>
-              {paginatedItems.map((pub, index) => renderListingCard(pub, index))}
+            <div className="flex items-baseline justify-between mb-3 pl-1">
+              <span className="text-[10px] font-bold tracking-widest uppercase text-muted-foreground">
+                All Intelligence · {filteredPublications.length} items
+              </span>
+              {showFlagship && (
+                <span className="text-[10px] font-bold tracking-widest uppercase text-muted-foreground/70 hidden md:block">
+                  Grouped by topic cluster
+                </span>
+              )}
             </div>
 
-            {/* Pagination */}
-            {totalPages > 1 && (
+            {/* Sponsored research callout — non-duplicating link to the existing #sponsor block */}
+            <a
+              href="#sponsor"
+              className="group flex items-center justify-between gap-4 mb-6 px-4 py-3 border border-border/60 bg-muted/20 hover:bg-muted/40 transition-colors"
+            >
+              <div className="min-w-0">
+                <div className="text-[10px] font-bold tracking-widest uppercase text-muted-foreground mb-0.5">
+                  Sponsored research
+                </div>
+                <div className="text-[13px] text-foreground line-clamp-1">
+                  Underwrite a topic cluster — your name on a year of original India research.
+                </div>
+              </div>
+              <span className="flex-shrink-0 text-[12px] text-foreground/80 group-hover:text-foreground transition-colors">
+                See sponsor terms →
+              </span>
+            </a>
+
+            {showFlagship ? (
+              // Topic-cluster grouping for SEO — each cluster gets a real H2
+              <div className="space-y-10">
+                {allTopics.map(topic => {
+                  const clusterItems = filteredPublications.filter(p => p.topic === topic);
+                  if (clusterItems.length === 0) return null;
+                  const clusterId = `cluster-${topic.toLowerCase().replace(/\s+/g, '-')}`;
+                  return (
+                    <div key={topic} id={clusterId} className="scroll-mt-32">
+                      <div className="flex items-baseline justify-between border-b border-border/60 pb-2 mb-3">
+                        <h2 className="text-[15px] md:text-base font-serif text-foreground">
+                          {topic}
+                        </h2>
+                        <span className="text-[10px] font-bold tracking-widest uppercase text-muted-foreground">
+                          {clusterItems.length} {clusterItems.length === 1 ? 'brief' : 'briefs'}
+                        </span>
+                      </div>
+                      <div>
+                        {clusterItems.map((pub, index) => renderListingCard(pub, `${topic}-${index}`))}
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+            ) : (
+              <div>
+                {paginatedItems.map((pub, index) => renderListingCard(pub, index))}
+              </div>
+            )}
+
+            {/* Pagination — only relevant for the flat filtered view */}
+            {!showFlagship && totalPages > 1 && (
               <div className="flex items-center justify-center gap-4 pt-8 text-sm text-muted-foreground">
                 <button
                   onClick={() => setCurrentPage(p => Math.max(1, p - 1))}
