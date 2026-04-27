@@ -285,6 +285,33 @@ const PremiumAccessLounge: React.FC = () => {
             committees who need the read before the price moves.
           </p>
 
+          {/* What you get — single concise callout, not a separate section */}
+          <div className="border-y border-border/60 py-5 mb-10 grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
+            {[
+              {
+                k: 'Research',
+                v: 'Flagship reports, sector deep-dives, and the working behind them.',
+              },
+              {
+                k: 'Regulation',
+                v: 'Alerts on CCTS, BRSR, and NDC 3.0 before the news cycle reads them.',
+              },
+              {
+                k: 'Access',
+                v: 'A direct line to the desk - not a shared inbox, not a chatbot.',
+              },
+            ].map((item) => (
+              <div key={item.k} className="grid grid-cols-[auto_1fr] gap-3 items-baseline">
+                <span className="text-[10px] font-bold tracking-widest uppercase text-accent whitespace-nowrap">
+                  {item.k}
+                </span>
+                <span className="text-sm text-foreground/80 leading-snug">
+                  {item.v}
+                </span>
+              </div>
+            ))}
+          </div>
+
           <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
             {/* Tier 1 — Industry Reader (supply side) */}
             <div className="bg-background border border-border rounded-xl p-8 flex flex-col">
