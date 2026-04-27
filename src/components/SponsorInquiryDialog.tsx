@@ -81,6 +81,7 @@ const SponsorInquiryDialog = ({ open, onOpenChange, project }: SponsorInquiryDia
   const [submitting, setSubmitting] = useState(false);
   const [referenceId, setReferenceId] = useState<string | null>(null);
   const [copied, setCopied] = useState(false);
+  const [submitError, setSubmitError] = useState<string | null>(null);
 
   // Track which element opened the dialog so we can return focus to it on
   // close - critical for keyboard users navigating the project cards.
