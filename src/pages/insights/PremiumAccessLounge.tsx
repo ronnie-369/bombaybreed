@@ -64,15 +64,94 @@ const QUOTES: { quote: string; name: string; title: string; org: string }[] = [
   },
 ];
 
-const LOGOS: { investors: string[]; companies: string[] } = {
-  // File names live under public/logos/intelligence-readers/
-  // Add a string to the array, drop the matching file, and the slot fills.
-  investors: [],
-  companies: [],
-};
-
-const INVESTOR_SLOTS = 4;
-const COMPANY_SLOTS = 4;
+/**
+ * Readership groups, sourced verbatim from The Climate Desk Media Deck
+ * (slides 5 and 11) and the 2026 One Pager. The bloc structure mirrors
+ * the partnership material so any reader cross-checking sees the same
+ * categorisation.
+ */
+const READERSHIP: { group: string; names: string[] }[] = [
+  {
+    group: 'Multilateral',
+    names: [
+      'United Nations',
+      'FAO',
+      'IFC / World Bank',
+      'WHO',
+      'Asian Development Bank',
+      'UNDP',
+      'AKDN',
+    ],
+  },
+  {
+    group: 'Global Corporates',
+    names: [
+      'ArcelorMittal',
+      'Oracle',
+      'Unilever',
+      'H&M',
+      'Infosys',
+      'Siemens Energy',
+      'Volkswagen',
+      'BASF',
+      'ABB',
+      'GE',
+      'Meta',
+      'S&P Global',
+    ],
+  },
+  {
+    group: 'Indian Industry',
+    names: [
+      'JSW Group',
+      'Tata Motors',
+      'Mahindra',
+      'Adani',
+      'Axis Bank',
+      'IREDA',
+      'Dr Reddy\u2019s',
+      'Welspun',
+      'Apollo Hospitals',
+    ],
+  },
+  {
+    group: 'Government',
+    names: [
+      'Government of India (central ministries)',
+      'Japan Ministry of the Environment',
+    ],
+  },
+  {
+    group: 'Media & Intelligence',
+    names: [
+      'Argus Media',
+      'BBC',
+      'Bloomberg',
+      'Singapore Press Holdings',
+      'France Televisions',
+    ],
+  },
+  {
+    group: 'Climate & ESG',
+    names: [
+      'SBTi',
+      'Ellen MacArthur Foundation',
+      'ClimateImpactX',
+      '3Degrees',
+      'ReNew Energy',
+    ],
+  },
+  {
+    group: 'Investors & Climate Finance',
+    names: [
+      'Development Finance Institutions',
+      'Climate & Carbon Investment funds',
+      'Venture Capital',
+      'Wealth Management & Family Offices',
+      'Financial Advisory & Services',
+    ],
+  },
+];
 
 const SPONSOR_ANALYST: string[] = [
   'A dedicated analyst on call for your team',
@@ -217,72 +296,34 @@ const PremiumAccessLounge: React.FC = () => {
       {/* ── 3. WHO IS READING OUR REPORTS ────────────────────────────── */}
       <section id="readers" className="px-6 md:px-8 py-16 border-t border-border/50 scroll-mt-32">
         <div className="container mx-auto max-w-[900px]">
-          <SectionLabel label="03 — Who is reading" />
-          <h2 className="text-section font-serif tracking-tight mt-6 mb-10">
+          <SectionLabel label="03 - Who is reading" />
+          <h2 className="text-section font-serif tracking-tight mt-6 mb-4">
             Investors and companies on the list
           </h2>
+          <p className="font-serif text-lg md:text-xl text-foreground/80 leading-relaxed mb-12 max-w-[680px]">
+            14,946 subscribers across 81 countries.
+            <span className="text-muted-foreground"> 1,270+ in investor and climate finance.</span>
+          </p>
 
-          <div className="space-y-10">
-            <div>
-              <h3 className="text-[11px] font-semibold tracking-widest uppercase text-muted-foreground mb-4">
-                Investors
-              </h3>
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
-                {Array.from({ length: INVESTOR_SLOTS }).map((_, i) => {
-                  const file = LOGOS.investors[i];
-                  return (
-                    <div
-                      key={`inv-${i}`}
-                      className="aspect-[5/2] border border-border rounded-md bg-background flex items-center justify-center text-[10px] text-muted-foreground/50"
-                    >
-                      {file ? (
-                        <img
-                          src={`/logos/intelligence-readers/${file}`}
-                          alt={file.replace(/\.[a-z]+$/i, '')}
-                          className="max-h-12 max-w-[80%] object-contain opacity-80"
-                          loading="lazy"
-                        />
-                      ) : (
-                        'Logo'
-                      )}
-                    </div>
-                  );
-                })}
+          <div className="space-y-8">
+            {READERSHIP.map((bloc) => (
+              <div
+                key={bloc.group}
+                className="grid md:grid-cols-[200px_1fr] gap-3 md:gap-8 pb-8 border-b border-border/40 last:border-b-0 last:pb-0"
+              >
+                <h3 className="text-[11px] font-semibold tracking-widest uppercase text-muted-foreground pt-1">
+                  {bloc.group}
+                </h3>
+                <p className="font-serif text-base md:text-lg text-foreground leading-relaxed">
+                  {bloc.names.join(' · ')}
+                </p>
               </div>
-            </div>
-
-            <div>
-              <h3 className="text-[11px] font-semibold tracking-widest uppercase text-muted-foreground mb-4">
-                Companies
-              </h3>
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
-                {Array.from({ length: COMPANY_SLOTS }).map((_, i) => {
-                  const file = LOGOS.companies[i];
-                  return (
-                    <div
-                      key={`co-${i}`}
-                      className="aspect-[5/2] border border-border rounded-md bg-background flex items-center justify-center text-[10px] text-muted-foreground/50"
-                    >
-                      {file ? (
-                        <img
-                          src={`/logos/intelligence-readers/${file}`}
-                          alt={file.replace(/\.[a-z]+$/i, '')}
-                          className="max-h-12 max-w-[80%] object-contain opacity-80"
-                          loading="lazy"
-                        />
-                      ) : (
-                        'Logo'
-                      )}
-                    </div>
-                  );
-                })}
-              </div>
-            </div>
+            ))}
           </div>
 
-          <p className="text-xs text-muted-foreground/60 mt-6 italic">
-            Drop logo files into public/logos/intelligence-readers/ and add the
-            filenames to the LOGOS array in PremiumAccessLounge.tsx.
+          <p className="text-xs text-muted-foreground/70 mt-10 italic">
+            Source: The Climate Desk Partnership Deck, 2026. Organisations
+            listed have confirmed institutional readership.
           </p>
         </div>
       </section>
