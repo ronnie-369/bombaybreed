@@ -332,10 +332,10 @@ const PremiumAccessLounge: React.FC = () => {
               className="group block bg-foreground text-background rounded-xl p-8 transition-colors hover:bg-foreground/90"
             >
               <span className="text-[10px] font-bold tracking-widest uppercase text-background/60">
-                The closed list - members
+                Members only zone
               </span>
               <h3 className="font-serif text-xl mt-3 mb-2">
-                Get the next brief before it goes public
+                Experience hassle-free intelligence in the carbon markets and energy transition, starting at INR 10,000 per month
               </h3>
               <p className="text-sm text-background/70 mb-6">
                 Two tiers. From INR 10,000 a month. The same desk that briefs
