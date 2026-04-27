@@ -9,6 +9,7 @@ import { Input } from '@/components/ui/input';
 import ScrollReveal from '@/components/ui/ScrollReveal';
 import SectionLabel from '@/components/ui/SectionLabel';
 import PremiumAccessLounge from '@/pages/insights/PremiumAccessLounge';
+import { trackSponsorEvent } from '@/utils/sponsorAnalytics';
 
 
 type ContentType = 'Flagship Report' | 'Intelligence Brief' | 'Regulatory Alert' | 'Perspective';
