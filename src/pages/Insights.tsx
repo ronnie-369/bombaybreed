@@ -515,10 +515,6 @@ const Insights = () => {
               <span className="text-[10px] font-bold tracking-widest uppercase text-accent mb-3 block pl-1">
                 Flagship Research
               </span>
-            <div className="container mx-auto max-w-[900px]">
-              <span className="text-[10px] font-bold tracking-widest uppercase text-accent mb-3 block pl-1">
-                Flagship Research
-              </span>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
                 {flagshipReports.map((report, i) => {
                   const fresh = isNewPublication(report.publishedDate);
