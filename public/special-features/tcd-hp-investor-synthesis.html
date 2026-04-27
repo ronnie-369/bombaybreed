@@ -1176,6 +1176,13 @@ img { max-width: 100%; display: block; }
 }
 .toc-link:hover { color: var(--near-black); }
 .toc-link.is-active { color: var(--near-black); border-bottom-color: var(--copper); }
+.toc-link:focus { outline: none; }
+.toc-link:focus-visible {
+  outline: 2px solid var(--copper);
+  outline-offset: 3px;
+  border-radius: 2px;
+  color: var(--near-black);
+}
 
 /* Sub-anchor row: only visible when its parent Part is active */
 .toc-sub-row {
@@ -1218,6 +1225,13 @@ img { max-width: 100%; display: block; }
 }
 .toc-sublink:hover { color: var(--near-black); }
 .toc-sublink.is-active { color: var(--near-black); border-bottom-color: var(--copper); }
+.toc-sublink:focus { outline: none; }
+.toc-sublink:focus-visible {
+  outline: 2px solid var(--copper);
+  outline-offset: 3px;
+  border-radius: 2px;
+  color: var(--near-black);
+}
 .toc-sub-rows-container [data-parent] { display: none; }
 .toc-sub-rows-container [data-parent].is-visible { display: block; }
 
@@ -1247,8 +1261,10 @@ img { max-width: 100%; display: block; }
   background-position: right 12px center;
   cursor: pointer;
 }
-.toc-select:focus {
-  outline: none;
+.toc-select:focus { outline: none; border-color: var(--copper); }
+.toc-select:focus-visible {
+  outline: 2px solid var(--copper);
+  outline-offset: 2px;
   border-color: var(--copper);
 }
 @media (max-width: 768px) {
@@ -1500,8 +1516,8 @@ details.collapsible-section:not([open]) .collapsible-toggle::after { content: " 
 </div>
 
 <!-- STICKY TOC -->
-<div class="toc-sticky" id="tocSticky">
-  <div class="toc-inner">
+<nav class="toc-sticky" id="tocSticky" role="navigation" aria-label="Report sections">
+  <div class="toc-inner" role="menubar" aria-label="Main sections" aria-orientation="horizontal">
     <span class="toc-label">Jump to</span>
     <a class="toc-link" href="#exec-summary" data-id="exec-summary">Summary</a>
     <a class="toc-link" href="#tldr-playbook" data-id="tldr-playbook">Eight moves</a>
@@ -1589,7 +1605,7 @@ details.collapsible-section:not([open]) .collapsible-toggle::after { content: " 
       </div>
     </div>
   </div>
-</div>
+</nav>
 
 <!-- ============================================================
      HERO (Pattern A, Author-anchored opener)
@@ -2646,9 +2662,9 @@ new Chart(cryoCtx, {
     var activeId = subInView.length ? subInView[0] : ids[0];
     var activeParent = subToParent[activeId] || activeId;
 
-    allLinks.forEach(function(l) { l.classList.remove('is-active'); });
-    if (linkMap[activeId]) linkMap[activeId].classList.add('is-active');
-    if (activeId !== activeParent && linkMap[activeParent]) linkMap[activeParent].classList.add('is-active');
+    allLinks.forEach(function(l) { l.classList.remove('is-active'); l.removeAttribute('aria-current'); });
+    if (linkMap[activeId]) { linkMap[activeId].classList.add('is-active'); linkMap[activeId].setAttribute('aria-current', 'location'); }
+    if (activeId !== activeParent && linkMap[activeParent]) { linkMap[activeParent].classList.add('is-active'); linkMap[activeParent].setAttribute('aria-current', 'location'); }
 
     // Reveal only the matching sub-row
     subRows.forEach(function(r) { r.classList.remove('is-visible'); });
@@ -2681,12 +2697,56 @@ new Chart(cryoCtx, {
     history.replaceState(null, '', '#' + id);
   }
 
+  // Set ARIA roles on links once
+  allLinks.forEach(function(a) {
+    a.setAttribute('role', 'menuitem');
+  });
+
   allLinks.forEach(function(a) {
     a.addEventListener('click', function(e) {
       e.preventDefault();
       jumpTo(a.getAttribute('data-id'));
     });
+    // Space activates the link (Enter is already native on <a>)
+    a.addEventListener('keydown', function(e) {
+      if (e.key === ' ' || e.key === 'Spacebar') {
+        e.preventDefault();
+        jumpTo(a.getAttribute('data-id'));
+      }
+    });
   });
+
+  // Arrow-key navigation within each visible row of links.
+  // Main bar = .toc-inner; each .toc-sub-inner is its own row when revealed.
+  function getRowLinks(fromLink) {
+    var row = fromLink.closest('.toc-inner, .toc-sub-inner');
+    if (!row) return [fromLink];
+    return Array.prototype.slice.call(row.querySelectorAll('.toc-link, .toc-sublink'));
+  }
+
+  function handleArrowKey(e) {
+    var current = e.currentTarget;
+    var key = e.key;
+    if (key !== 'ArrowLeft' && key !== 'ArrowRight' &&
+        key !== 'ArrowUp' && key !== 'ArrowDown' &&
+        key !== 'Home' && key !== 'End') return;
+    var row = getRowLinks(current);
+    var idx = row.indexOf(current);
+    if (idx === -1) return;
+    e.preventDefault();
+    var next = idx;
+    if (key === 'ArrowLeft' || key === 'ArrowUp') next = idx === 0 ? row.length - 1 : idx - 1;
+    else if (key === 'ArrowRight' || key === 'ArrowDown') next = (idx + 1) % row.length;
+    else if (key === 'Home') next = 0;
+    else if (key === 'End') next = row.length - 1;
+    var target = row[next];
+    if (target) {
+      target.focus();
+      // Keep the focused chip in view inside the horizontally-scrolling bar
+      target.scrollIntoView({ block: 'nearest', inline: 'nearest' });
+    }
+  }
+  allLinks.forEach(function(a) { a.addEventListener('keydown', handleArrowKey); });
 
   if (select) {
     select.addEventListener('change', function() {
@@ -2701,9 +2761,9 @@ new Chart(cryoCtx, {
     var hash = (location.hash || '').slice(1);
     if (!hash || !linkMap[hash]) return;
     var parent = subToParent[hash] || hash;
-    allLinks.forEach(function(l) { l.classList.remove('is-active'); });
-    if (linkMap[hash]) linkMap[hash].classList.add('is-active');
-    if (hash !== parent && linkMap[parent]) linkMap[parent].classList.add('is-active');
+    allLinks.forEach(function(l) { l.classList.remove('is-active'); l.removeAttribute('aria-current'); });
+    if (linkMap[hash]) { linkMap[hash].classList.add('is-active'); linkMap[hash].setAttribute('aria-current', 'location'); }
+    if (hash !== parent && linkMap[parent]) { linkMap[parent].classList.add('is-active'); linkMap[parent].setAttribute('aria-current', 'location'); }
     subRows.forEach(function(r) { r.classList.remove('is-visible'); });
     if (subRowMap[parent]) subRowMap[parent].classList.add('is-visible');
     if (select && select.value !== hash) select.value = hash;
