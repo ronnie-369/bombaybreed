@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { ArrowRight } from 'lucide-react';
 import ScrollReveal from '@/components/ui/ScrollReveal';
 import SectionLabel from '@/components/ui/SectionLabel';
+import { trackSponsorEvent } from '@/utils/sponsorAnalytics';
 
 /**
  * Premium Access Lounge — the conversion stack on top of /insights.
@@ -175,6 +176,32 @@ const SPONSOR_WHY: string[] = [
 ];
 
 const PremiumAccessLounge: React.FC = () => {
+  const sponsorRef = useRef<HTMLElement | null>(null);
+
+  // Fire a one-shot 'sponsor_section_view' event when #sponsor scrolls into view.
+  useEffect(() => {
+    const node = sponsorRef.current;
+    if (!node || typeof IntersectionObserver === 'undefined') return;
+
+    let fired = false;
+    const observer = new IntersectionObserver(
+      (entries) => {
+        for (const entry of entries) {
+          if (entry.isIntersecting && !fired) {
+            fired = true;
+            trackSponsorEvent('sponsor_section_view', {
+              location: 'premium_access_lounge',
+            });
+            observer.disconnect();
+          }
+        }
+      },
+      { threshold: 0.25 }
+    );
+    observer.observe(node);
+    return () => observer.disconnect();
+  }, []);
+
   return (
     <>
       {/* ── HEADER + DUAL CTA ────────────────────────────────────────── */}
@@ -329,7 +356,11 @@ const PremiumAccessLounge: React.FC = () => {
       </section>
 
       {/* ── 4. SPONSOR THE RESEARCH ──────────────────────────────────── */}
-      <section id="sponsor" className="px-6 md:px-8 py-20 border-t border-border/50 bg-secondary/20 scroll-mt-32">
+      <section
+        ref={sponsorRef}
+        id="sponsor"
+        className="px-6 md:px-8 py-20 border-t border-border/50 bg-secondary/20 scroll-mt-32"
+      >
         <div className="container mx-auto max-w-[900px]">
           <SectionLabel label="04 — Sponsor the research" />
           <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-4 mt-6 mb-10">
@@ -437,6 +468,13 @@ const PremiumAccessLounge: React.FC = () => {
                 <Link
                   to="/contact?topic=intelligence-sponsorship"
                   className="inline-flex items-center gap-2"
+                  onClick={() =>
+                    trackSponsorEvent('sponsor_cta_click', {
+                      location: 'premium_access_lounge',
+                      link_url: '/contact?topic=intelligence-sponsorship',
+                      link_text: 'Talk to us about sponsorship',
+                    })
+                  }
                 >
                   Talk to us about sponsorship <ArrowRight className="w-4 h-4" />
                 </Link>

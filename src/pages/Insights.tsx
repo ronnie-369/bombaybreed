@@ -9,6 +9,7 @@ import { Input } from '@/components/ui/input';
 import ScrollReveal from '@/components/ui/ScrollReveal';
 import SectionLabel from '@/components/ui/SectionLabel';
 import PremiumAccessLounge from '@/pages/insights/PremiumAccessLounge';
+import { trackSponsorEvent } from '@/utils/sponsorAnalytics';
 
 
 type ContentType = 'Flagship Report' | 'Intelligence Brief' | 'Regulatory Alert' | 'Perspective';
@@ -602,6 +603,13 @@ const Insights = () => {
             {/* Sponsored research callout — non-duplicating link to the existing #sponsor block */}
             <a
               href="#sponsor"
+              onClick={() =>
+                trackSponsorEvent('sponsor_callout_click', {
+                  location: 'insights_grid',
+                  link_url: '#sponsor',
+                  link_text: 'Sponsored research callout',
+                })
+              }
               className="group flex items-center justify-between gap-4 mb-6 px-4 py-3 border border-border/60 bg-muted/20 hover:bg-muted/40 transition-colors"
             >
               <div className="min-w-0">
