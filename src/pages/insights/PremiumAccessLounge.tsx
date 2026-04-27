@@ -372,7 +372,7 @@ const PremiumAccessLounge: React.FC = () => {
               },
               {
                 k: 'India first',
-                v: 'Independent research from inside the market, not retold from a London or New York desk.',
+                v: 'Independent research from inside the market, for investments in India, with deep teams from India.',
               },
               {
                 k: 'Two depths',
