@@ -10,7 +10,11 @@
     "lint": "eslint .",
     "preview": "vite preview",
     "check:hp-report": "node scripts/check-hp-report-links.mjs",
-    "check:hp-report:preview": "node scripts/check-hp-report-links.mjs --preview"
+    "check:hp-report:preview": "node scripts/check-hp-report-links.mjs --preview",
+    "check:insights": "node scripts/check-static-insights-links.mjs",
+    "check:insights:preview": "node scripts/check-static-insights-links.mjs --preview",
+    "check:insights:custom": "node scripts/check-static-insights-links.mjs --custom",
+    "postpublish:check": "node scripts/check-static-insights-links.mjs"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.9.0",
