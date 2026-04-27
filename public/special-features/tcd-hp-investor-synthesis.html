@@ -1319,6 +1319,67 @@ img { max-width: 100%; display: block; }
 }
 .tldr-jump:hover { color: var(--near-black); border-bottom-color: var(--near-black); }
 
+/* ============== MITIGATION CATEGORIES INDEX ============== */
+.mit-index {
+  margin: 0 0 40px;
+  padding: 22px 26px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--copper);
+  border-radius: 0 4px 4px 0;
+}
+.mit-index-kicker {
+  font-family: ui-monospace, monospace;
+  font-size: 10px;
+  letter-spacing: 2px;
+  color: var(--copper);
+  text-transform: uppercase;
+  margin-bottom: 14px;
+}
+.mit-index-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+}
+.mit-index-link {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 12px 14px;
+  background: var(--paper);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  text-decoration: none;
+  color: var(--near-black);
+  transition: border-color 0.15s ease, transform 0.15s ease, background 0.15s ease;
+}
+.mit-index-link:hover {
+  border-color: var(--copper);
+  background: var(--tint-warm);
+  transform: translateY(-1px);
+}
+.mit-index-acronym {
+  font-family: ui-monospace, monospace;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  color: var(--copper);
+}
+.mit-index-name {
+  font-family: 'Inter', sans-serif;
+  font-size: 12.5px;
+  line-height: 1.4;
+  color: var(--near-black);
+}
+@media (max-width: 768px) {
+  .mit-index { padding: 18px; }
+  .mit-index-grid { grid-template-columns: 1fr 1fr; gap: 8px; }
+  .mit-index-link { padding: 10px 12px; }
+}
+@media (max-width: 420px) {
+  .mit-index-grid { grid-template-columns: 1fr; }
+}
+
 /* ============== H3 UTILITIES ============== */
 .section-h3 {
   font-family: 'Playfair Display', serif;
