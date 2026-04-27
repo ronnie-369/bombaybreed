@@ -408,7 +408,7 @@ const PremiumAccessLounge: React.FC = () => {
             </div>
 
             {/* Tier 2 — Analyst Lens (demand side / money) */}
-            <div className="bg-foreground text-background border border-foreground rounded-xl p-8 flex flex-col relative">
+            <div className="bg-foreground text-background border border-foreground rounded-xl p-7 md:p-8 flex flex-col relative">
               <span className="absolute -top-3 right-6 inline-flex items-center px-3 py-1 rounded-full text-[10px] font-semibold tracking-widest uppercase bg-accent text-accent-foreground shadow-md">
                 Capacity capped
               </span>
