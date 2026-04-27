@@ -336,40 +336,77 @@ img { max-width: 100%; display: block; }
 }
 
 /* ============== EXECUTIVE SUMMARY BLOCK ============== */
-.exec-summary-block {
-  background: var(--surface);
+.exec-summary-lede {
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  font-weight: 400;
+  font-size: 26px;
+  line-height: 1.4;
+  letter-spacing: -0.4px;
+  color: var(--near-black);
+  border-left: 2px solid var(--copper);
+  padding: 4px 0 4px 26px;
+  margin: 8px 0 56px 0;
+  max-width: 760px;
+}
+.exec-summary-lede strong {
+  font-style: normal;
+  font-weight: 500;
+  color: var(--slate-blue);
+}
+.exec-summary-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1px;
+  background: var(--border);
   border: 1px solid var(--border);
   border-top: 3px solid var(--copper);
-  border-radius: 4px;
-  padding: 40px 44px;
 }
-.exec-summary-grid { display: flex; flex-direction: column; gap: 0; }
 .exec-summary-row {
-  display: grid;
-  grid-template-columns: 56px 1fr;
-  gap: 24px;
-  padding: 22px 0;
-  border-bottom: 1px solid var(--border);
-  align-items: start;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding: 32px 30px;
+  background: var(--surface);
+  min-height: 100%;
 }
-.exec-summary-row:last-child { border-bottom: none; padding-bottom: 0; }
-.exec-summary-row:first-child { padding-top: 0; }
+.exec-summary-row.exec-summary-row--wide { grid-column: 1 / -1; }
 .exec-summary-num {
   font-family: 'Playfair Display', serif;
   font-style: italic;
   font-weight: 500;
-  font-size: 28px;
-  letter-spacing: -0.6px;
+  font-size: 14px;
+  letter-spacing: 2.4px;
+  text-transform: uppercase;
   color: var(--copper);
   line-height: 1;
-  padding-top: 4px;
+}
+.exec-summary-headline {
+  font-family: 'Playfair Display', serif;
+  font-weight: 500;
+  font-size: 22px;
+  line-height: 1.25;
+  letter-spacing: -0.4px;
+  color: var(--near-black);
+  margin: 0;
 }
 .exec-summary-text {
-  font-size: 15.5px;
-  line-height: 1.65;
-  color: var(--near-black);
+  font-size: 14.5px;
+  line-height: 1.6;
+  color: var(--gray);
+  margin: 0;
 }
 .exec-summary-text strong { color: var(--slate-blue); font-weight: 600; }
+.exec-summary-takeaway {
+  margin-top: auto;
+  padding-top: 16px;
+  border-top: 1px dashed var(--border);
+  font-size: 12px;
+  letter-spacing: 1.6px;
+  text-transform: uppercase;
+  color: var(--copper);
+  font-weight: 600;
+}
 
 /* ============== AUTHOR BLOCK (legacy, retained but unused) ============== */
 .author-block {
@@ -1057,10 +1094,11 @@ img { max-width: 100%; display: block; }
   .research-grid { grid-template-columns: 1fr; }
   .video-grid { grid-template-columns: 1fr; }
   .video-section { padding: 22px; }
-  .exec-summary-block { padding: 28px 20px; }
-  .exec-summary-row { grid-template-columns: 40px 1fr; gap: 14px; }
-  .exec-summary-num { font-size: 22px; }
-  .exec-summary-text { font-size: 14.5px; }
+  .exec-summary-grid { grid-template-columns: 1fr; }
+  .exec-summary-row { padding: 26px 22px; }
+  .exec-summary-headline { font-size: 19px; }
+  .exec-summary-lede { font-size: 20px; padding-left: 18px; margin-bottom: 36px; }
+  .exec-summary-num { font-size: 12px; letter-spacing: 2px; }
   .playbook-bullet { grid-template-columns: 36px 1fr; gap: 12px; }
   .playbook-bullet-num { font-size: 18px; }
   .playbook-bullet-name { font-size: 15.5px; }
@@ -1644,30 +1682,56 @@ details.collapsible-section:not([open]) .collapsible-toggle::after { content: " 
      ============================================================ -->
 <section class="section section-narrow" id="exec-summary">
   <div class="section-label">Executive Summary</div>
-  <h2 class="section-title">The investment thesis, in five lines</h2>
+  <h2 class="section-title">The state cannot fix this. Capital can.</h2>
 
-  <div class="exec-summary-block">
-    <div class="exec-summary-grid">
-      <div class="exec-summary-row">
-        <div class="exec-summary-num">01</div>
-        <div class="exec-summary-text"><strong>Himachal Pradesh holds disproportionate national infrastructure.</strong> A state that is 1.69% of India's geographical area and 0.53% of its population holds approximately 25% of India's hydropower potential, 925 Mt of CO2-equivalent forest carbon stock, and the headwaters of five river systems feeding the Indus and Ganga basins. The country's grain belt, northern grid, and Indus Waters Treaty obligations all route through this terrain.</div>
-      </div>
-      <div class="exec-summary-row">
-        <div class="exec-summary-num">02</div>
-        <div class="exec-summary-text"><strong>The variability signal is not temperature, it is rainfall and disaster recurrence.</strong> Sixteen years of IMD station data at Manali show no monotonic warming trend. April rainfall, however, has swung from 36 mm (2022) to 280 mm (2021) in the same month at the same station. Monsoon disaster losses ran Rs 12,000 crore in 2023, with 428 fatalities, the highest in the state's recorded history. The Supreme Court has formally warned of HP "vanishing in thin air from the map of the country."</div>
-      </div>
-      <div class="exec-summary-row">
-        <div class="exec-summary-num">03</div>
-        <div class="exec-summary-text"><strong>One capital structure now serves two goals.</strong> A single restoration project sequesters carbon (the mitigation case for global capital) while protecting the highway, the orchard and the basin immediately downstream (the adaptation case for HP itself). Methodology rails exist under Verra, Gold Standard and India's CCTS. The aggregator infrastructure for the Western Himalaya does not.</div>
-      </div>
-      <div class="exec-summary-row">
-        <div class="exec-summary-num">04</div>
-        <div class="exec-summary-text"><strong>The state cannot lobby its way to a fix.</strong> HP holds 4 of 543 Lok Sabha seats and 3 of 245 Rajya Sabha seats. The Centre's Rs 9,000 crore PDNA assessment from the 2023 disaster yielded only Rs 2,000 crore in eventual release. Restoration capital structured for dual yield is the only response that prices the geography correctly without depending on Centre-state fiscal transfers.</div>
-      </div>
-      <div class="exec-summary-row">
-        <div class="exec-summary-num">05</div>
-        <div class="exec-summary-text"><strong>The downstream beneficiary class is national plus transboundary.</strong> Punjab's 76 lakh hectares of cropped area, Rajasthan's 16.17 lakh hectares irrigated by the Indira Gandhi Canal, Haryana and Delhi's drinking water supply, J&amp;K's Chenab corridor, Pakistan's allocation under the Indus Waters Treaty 1960, and India's NDC compliance pathway all depend on HP catchment integrity. This brief argues that restoration capital deployed in HP is the cheapest unit of NDC delivery and downstream water security available to multilateral and sovereign capital.</div>
-      </div>
+  <p class="exec-summary-lede">
+    Himachal Pradesh carries <strong>India's grid, grain belt and treaty obligations</strong> on 1.69% of its land. Its political weight cannot rebuild what the monsoon now takes apart each year. A restoration asset class, priced in carbon and paid for downstream, is the only instrument that matches the geography.
+  </p>
+
+  <div class="exec-summary-grid">
+    <div class="exec-summary-row">
+      <div class="exec-summary-num">01 &middot; The asset</div>
+      <h3 class="exec-summary-headline">One state, a quarter of the country's hydropower.</h3>
+      <p class="exec-summary-text">
+        1.69% of India's land. 0.53% of its people. ~25% of national hydro potential, 925 Mt of forest carbon stock, and the headwaters of five river systems feeding the Indus and Ganga basins.
+      </p>
+      <div class="exec-summary-takeaway">Reprice as national infrastructure</div>
+    </div>
+
+    <div class="exec-summary-row">
+      <div class="exec-summary-num">02 &middot; The signal</div>
+      <h3 class="exec-summary-headline">It is not warming. It is variance.</h3>
+      <p class="exec-summary-text">
+        April rainfall at Manali swung from 36 mm (2022) to 280 mm (2021). 2023 monsoon losses: Rs 12,000 crore, 428 fatalities. The Supreme Court has warned of HP "vanishing from the map."
+      </p>
+      <div class="exec-summary-takeaway">Underwrite recurrence, not averages</div>
+    </div>
+
+    <div class="exec-summary-row">
+      <div class="exec-summary-num">03 &middot; The instrument</div>
+      <h3 class="exec-summary-headline">One project. Two yields.</h3>
+      <p class="exec-summary-text">
+        A single restoration unit sequesters carbon for global mitigation buyers and protects the highway, orchard and basin immediately downstream. Verra, Gold Standard and CCTS rails exist. The Western Himalaya aggregator does not.
+      </p>
+      <div class="exec-summary-takeaway">Build the aggregator</div>
+    </div>
+
+    <div class="exec-summary-row">
+      <div class="exec-summary-num">04 &middot; The political ceiling</div>
+      <h3 class="exec-summary-headline">4 of 543 seats. The Centre will not pay this bill.</h3>
+      <p class="exec-summary-text">
+        HP's PDNA assessment claimed Rs 9,000 crore for the 2023 disaster. Eventual release: Rs 2,000 crore. The state cannot lobby this gap shut. Restoration capital structured for dual yield is the only instrument that prices the geography correctly.
+      </p>
+      <div class="exec-summary-takeaway">Substitute capital for transfers</div>
+    </div>
+
+    <div class="exec-summary-row exec-summary-row--wide">
+      <div class="exec-summary-num">05 &middot; The downstream</div>
+      <h3 class="exec-summary-headline">The beneficiary class is national, and transboundary.</h3>
+      <p class="exec-summary-text">
+        Punjab's 76 lakh ha of cropped area. Rajasthan's 16.17 lakh ha on the Indira Gandhi Canal. Haryana and Delhi's drinking water. J&amp;K's Chenab corridor. Pakistan's IWT 1960 allocation. India's NDC pathway. All route through this catchment. <strong>Restoration capital deployed in HP is the cheapest unit of NDC delivery and water security available to multilateral and sovereign balance sheets.</strong>
+      </p>
+      <div class="exec-summary-takeaway">The cheapest NDC unit on the table</div>
     </div>
   </div>
 </section>
