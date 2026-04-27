@@ -312,7 +312,7 @@ const Insights = () => {
     return /\.(html?|pdf)$/i.test(pub.link);
   };
 
-  const renderListingCard = (pub: Publication, index: number) => {
+  const renderListingCard = (pub: Publication, index: number | string) => {
     const fresh = isNewPublication(pub.publishedDate);
     const inner = (
       <div className={`flex items-start justify-between py-5 border-b transition-colors ${fresh ? 'border-accent/40 group-hover:border-accent' : 'border-border/30 group-hover:border-primary/30'}`}>
