@@ -193,6 +193,57 @@ const Insights = () => {
     setCurrentPage(1);
   }, [searchQuery, selectedTopic, selectedType]);
 
+  /**
+   * Search-query intelligence: when the user types a meaningful query (>= 3 chars)
+   * and stops for 1.2s, log the query + active filters + result count to Formspree.
+   * This gives Theresa a feed of what readers are actually trying to find -
+   * surfacing demand for new briefs and content gaps - without storing PII or
+   * spamming an event per keystroke.
+   *
+   * Re-fires only when the (query, topic, type) tuple changes.
+   */
+  const FORMSPREE_ENDPOINT = 'https://formspree.io/f/myknnoea';
+  const lastLoggedRef = React.useRef<string>('');
+  useEffect(() => {
+    const trimmed = searchQuery.trim();
+    if (trimmed.length < 3) return;
+
+    const signature = `${trimmed.toLowerCase()}|${selectedTopic}|${selectedType}`;
+    if (signature === lastLoggedRef.current) return;
+
+    const timer = window.setTimeout(() => {
+      // Recompute result count locally to avoid coupling to render order
+      const q = trimmed.toLowerCase();
+      const matches = publications.filter(pub => {
+        if (!pub.title.toLowerCase().includes(q) && !pub.description.toLowerCase().includes(q)) return false;
+        if (selectedTopic !== 'All' && pub.topic !== selectedTopic) return false;
+        if (selectedType !== 'All Types' && pub.contentType !== selectedType) return false;
+        return true;
+      }).length;
+
+      lastLoggedRef.current = signature;
+
+      // Fire-and-forget; failures are silent (this is observability, not UX).
+      fetch(FORMSPREE_ENDPOINT, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+        body: JSON.stringify({
+          _subject: `Insights search: "${trimmed}" (${matches} results)`,
+          form_type: 'insights_search_query',
+          query: trimmed,
+          topic: selectedTopic,
+          content_type: selectedType,
+          result_count: matches,
+          page_path: typeof window !== 'undefined' ? window.location.pathname : '/insights',
+          referrer: typeof document !== 'undefined' ? document.referrer || '(direct)' : '',
+          logged_at: new Date().toISOString(),
+        }),
+      }).catch(() => { /* silent */ });
+    }, 1200);
+
+    return () => window.clearTimeout(timer);
+  }, [searchQuery, selectedTopic, selectedType]);
+
   const flagshipReports = publications.filter(p => p.contentType === 'Flagship Report');
 
   const filteredPublications = useMemo(() => {
