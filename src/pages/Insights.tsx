@@ -14,12 +14,16 @@ import { trackSponsorEvent } from '@/utils/sponsorAnalytics';
 
 type ContentType = 'Flagship Report' | 'Intelligence Brief' | 'Regulatory Alert' | 'Perspective';
 type Topic = 'Carbon Markets' | 'Board Governance' | 'ESG Communications' | 'Regulatory Intel';
+// Optional second-level grouping inside an oversized cluster (currently
+// only used to split the Carbon Markets shelf into two readable sub-shelves).
+type SubCluster = 'Markets & Compliance' | 'Power & Transition';
 
 interface Publication {
   title: string;
   description: string;
   contentType: ContentType;
   topic: Topic;
+  subCluster?: SubCluster;
   publishedDate: string;
   readTimeMinutes: number;
   link?: string;
@@ -63,6 +67,7 @@ const publications: Publication[] = [
     description: "Microsoft's pause on carbon removal purchases is not a corporate anomaly. The data show the concentration risk was documented, quantified, and reported for three years before it arrived.",
     contentType: 'Intelligence Brief',
     topic: 'Carbon Markets',
+    subCluster: 'Markets & Compliance',
     publishedDate: "2026-04-12",
     readTimeMinutes: 7,
     link: "/insights/microsoft-cdr-market-pause",
@@ -119,6 +124,7 @@ const publications: Publication[] = [
     description: "Strategic analysis of the 203 GW grid crisis, thermal-RE gaps, and the ₹3.4 lakh crore infrastructure investment required.",
     contentType: 'Intelligence Brief',
     topic: 'Carbon Markets',
+    subCluster: 'Power & Transition',
     publishedDate: "2026-02-09",
     readTimeMinutes: 8,
     link: "/insights/india-renewable-grid-analysis",
@@ -133,14 +139,6 @@ const publications: Publication[] = [
     link: "/insights/working-for-the-earth",
   },
   {
-    title: "India Power Sector Investment Presentation",
-    description: "India's ₹4.5 lakh crore power revolution: generation transition, nuclear targets, and grid-scale storage opportunities.",
-    contentType: 'Intelligence Brief',
-    topic: 'Carbon Markets',
-    publishedDate: "2026-01-22",
-    readTimeMinutes: 7,
-  },
-  {
     title: "Jobs on the Rise 2026: India Green Jobs Outlook",
     description: "Comprehensive analysis of India's green jobs landscape aligned with Net-Zero 2070 goals.",
     contentType: 'Intelligence Brief',
@@ -150,34 +148,11 @@ const publications: Publication[] = [
     link: "/insights/green-jobs-india-2026",
   },
   {
-    title: "Mining the Transition: A Climate-Critical Minerals Risk Framework",
-    description: "Risk framework for climate-critical minerals investment - lithium, cobalt, nickel, copper, and rare earths.",
-    contentType: 'Intelligence Brief',
-    topic: 'Carbon Markets',
-    publishedDate: "2025-12-15",
-    readTimeMinutes: 6,
-  },
-  {
-    title: "Asia Climate Emissions and Article 6: Comparative Policy Grade",
-    description: "Asia's climate emissions landscape and comparative policy grading under Article 6 of the Paris Agreement.",
-    contentType: 'Intelligence Brief',
-    topic: 'Regulatory Intel',
-    publishedDate: "2025-12-10",
-    readTimeMinutes: 7,
-  },
-  {
-    title: "India's Climate Inflection Point",
-    description: "Critical analysis of India's pivotal moment in climate transition.",
-    contentType: 'Perspective',
-    topic: 'Board Governance',
-    publishedDate: "2025-11-15",
-    readTimeMinutes: 5,
-  },
-  {
     title: "From Compliance to Credibility: A CXO Guide to CCTS & CBAM",
     description: "Strategic frameworks to transform carbon compliance into competitive advantage.",
     contentType: 'Intelligence Brief',
     topic: 'Carbon Markets',
+    subCluster: 'Markets & Compliance',
     publishedDate: "2025-10-20",
     readTimeMinutes: 8,
     link: "/insights/compliance-to-credibility",
@@ -187,6 +162,7 @@ const publications: Publication[] = [
     description: "Complete investor's guide to India's $1.4B carbon market opportunity.",
     contentType: 'Intelligence Brief',
     topic: 'Carbon Markets',
+    subCluster: 'Markets & Compliance',
     publishedDate: "2025-10-15",
     readTimeMinutes: 10,
     link: "/insights/carbon-market-outlook",
@@ -196,6 +172,7 @@ const publications: Publication[] = [
     description: "Strategic roadmap for India's energy transition and decarbonisation pathways.",
     contentType: 'Intelligence Brief',
     topic: 'Carbon Markets',
+    subCluster: 'Power & Transition',
     publishedDate: "2025-08-15",
     readTimeMinutes: 9,
     link: "/insights/energy-transition-playbook",
@@ -252,7 +229,6 @@ const Insights = () => {
     // Editorial hub below — flagship is conditional on no active filter.
     if (showFlagship) s.push({ id: 'flagship', label: 'Flagship' });
     s.push({ id: 'all-intelligence', label: 'All Intelligence' });
-    s.push({ id: 'search', label: 'Search' });
     s.push({ id: 'subscribe', label: 'Subscribe' });
     return s;
   }, [showFlagship]);
@@ -399,18 +375,100 @@ const Insights = () => {
       <Header />
 
       <main className="flex-1 pt-24 pb-16">
-        {/* Hero - eyebrow and lede removed; H1 retained for SEO/a11y */}
-        <section className="pt-12 pb-8 md:pt-16 md:pb-10 px-6 md:px-8">
+        {/* Hero - H1 plus a compact search + filter bar.
+            Active filters switch the listing below into a flat paginated
+            view; cleared filters return to the topic-clustered view. */}
+        <section className="pt-12 pb-6 md:pt-16 md:pb-8 px-6 md:px-8">
           <div className="container mx-auto max-w-[900px]">
             <ScrollReveal direction="up">
-              <h1 className="text-display font-serif tracking-tight">
+              <h1 className="text-display font-serif tracking-tight mb-6 md:mb-8">
                 Intelligence Briefs
               </h1>
             </ScrollReveal>
+
+            <div className="space-y-4">
+              <div className="relative">
+                <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
+                <Input
+                  id="insights-search"
+                  aria-label="Search intelligence briefs"
+                  placeholder="Search the library - title, topic, or theme..."
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                  className="pl-10 bg-background"
+                />
+              </div>
+
+              <div className="flex flex-wrap items-center gap-x-4 gap-y-2">
+                <div className="flex gap-1.5 flex-wrap">
+                  <button
+                    onClick={() => setSelectedTopic('All')}
+                    className={`px-3 py-1 rounded-full text-[12px] font-medium transition-colors ${
+                      selectedTopic === 'All'
+                        ? 'bg-foreground text-background'
+                        : 'border border-border text-foreground hover:bg-secondary'
+                    }`}
+                  >
+                    All topics
+                  </button>
+                  {allTopics.map(topic => (
+                    <button
+                      key={topic}
+                      onClick={() => setSelectedTopic(topic)}
+                      className={`px-3 py-1 rounded-full text-[12px] font-medium transition-colors ${
+                        selectedTopic === topic
+                          ? 'bg-foreground text-background'
+                          : 'border border-border text-foreground hover:bg-secondary'
+                      }`}
+                    >
+                      {topic}
+                    </button>
+                  ))}
+                </div>
+
+                <span className="hidden md:inline text-border" aria-hidden>·</span>
+
+                <div className="flex gap-1.5 flex-wrap">
+                  <button
+                    onClick={() => setSelectedType('All Types')}
+                    className={`px-3 py-1 rounded-full text-[12px] font-medium transition-colors ${
+                      selectedType === 'All Types'
+                        ? 'bg-foreground text-background'
+                        : 'border border-border text-foreground hover:bg-secondary'
+                    }`}
+                  >
+                    All types
+                  </button>
+                  {allContentTypes.map(type => (
+                    <button
+                      key={type}
+                      onClick={() => setSelectedType(type)}
+                      className={`px-3 py-1 rounded-full text-[12px] font-medium transition-colors ${
+                        selectedType === type
+                          ? 'bg-foreground text-background'
+                          : `border border-border hover:bg-secondary ${contentTypeColors[type]}`
+                      }`}
+                    >
+                      {type === 'Flagship Report' ? 'Flagship' :
+                       type === 'Intelligence Brief' ? 'Brief' :
+                       type === 'Regulatory Alert' ? 'Alert' : 'Perspective'}
+                    </button>
+                  ))}
+                </div>
+
+                {(searchQuery || selectedTopic !== 'All' || selectedType !== 'All Types') && (
+                  <button
+                    onClick={() => { setSearchQuery(''); setSelectedTopic('All'); setSelectedType('All Types'); }}
+                    className="ml-auto text-[11px] tracking-wider uppercase text-muted-foreground hover:text-foreground transition-colors"
+                  >
+                    Clear filters
+                  </button>
+                )}
+              </div>
+            </div>
           </div>
         </section>
 
-        {/* Filters + search have both been moved to the bottom of the listing — see #search section */}
 
         {/* Section Navigation - sticky, highlights active section on scroll */}
         <nav
@@ -528,16 +586,26 @@ const Insights = () => {
               }}
             />
 
-            <div className="flex items-baseline justify-between mb-3 pl-1">
-              <span className="text-[10px] font-bold tracking-widest uppercase text-muted-foreground">
-                All Intelligence · {filteredPublications.length} items
-              </span>
-              {showFlagship && (
-                <span className="text-[10px] font-bold tracking-widest uppercase text-muted-foreground/70 hidden md:block">
-                  Grouped by topic cluster
-                </span>
-              )}
-            </div>
+            {/* In the clustered (unfiltered) view, flagships live exclusively in
+                the Flagship band above. The cluster shelves below show only the
+                non-flagship library to avoid double-listing. */}
+            {(() => {
+              const clusterPool = showFlagship
+                ? filteredPublications.filter(p => p.contentType !== 'Flagship Report')
+                : filteredPublications;
+              return (
+                <div className="flex items-baseline justify-between mb-3 pl-1">
+                  <span className="text-[10px] font-bold tracking-widest uppercase text-muted-foreground">
+                    All Intelligence · {clusterPool.length} {clusterPool.length === 1 ? 'item' : 'items'}
+                  </span>
+                  {showFlagship && (
+                    <span className="text-[10px] font-bold tracking-widest uppercase text-muted-foreground/70 hidden md:block">
+                      Grouped by topic cluster
+                    </span>
+                  )}
+                </div>
+              );
+            })()}
 
             {/* Sponsored research callout — non-duplicating link to the existing #sponsor block */}
             <a
@@ -556,7 +624,7 @@ const Insights = () => {
                   Sponsored research
                 </div>
                 <div className="text-[13px] text-foreground line-clamp-1">
-                  Underwrite a topic cluster — your name on a year of original India research.
+                  Underwrite a topic cluster - your name on a year of original India research.
                 </div>
               </div>
               <span className="flex-shrink-0 text-[12px] text-foreground/80 group-hover:text-foreground transition-colors">
@@ -565,12 +633,23 @@ const Insights = () => {
             </a>
 
             {showFlagship ? (
-              // Topic-cluster grouping for SEO — each cluster gets a real H2
+              // Topic-cluster grouping for SEO - each cluster gets a real H2.
+              // Flagships are excluded here (rendered in the band above).
               <div className="space-y-10">
                 {allTopics.map(topic => {
-                  const clusterItems = filteredPublications.filter(p => p.topic === topic);
+                  const clusterItems = filteredPublications.filter(
+                    p => p.topic === topic && p.contentType !== 'Flagship Report'
+                  );
                   if (clusterItems.length === 0) return null;
                   const clusterId = `cluster-${topic.toLowerCase().replace(/\s+/g, '-')}`;
+
+                  // Carbon Markets is large enough to warrant sub-shelves.
+                  // Other topics render as a single ordered list.
+                  const subOrder: SubCluster[] = ['Markets & Compliance', 'Power & Transition'];
+                  const hasSubClusters =
+                    topic === 'Carbon Markets' &&
+                    clusterItems.some(p => !!p.subCluster);
+
                   return (
                     <div key={topic} id={clusterId} className="scroll-mt-32">
                       <div className="flex items-baseline justify-between border-b border-border/60 pb-2 mb-3">
@@ -581,9 +660,43 @@ const Insights = () => {
                           {clusterItems.length} {clusterItems.length === 1 ? 'brief' : 'briefs'}
                         </span>
                       </div>
-                      <div>
-                        {clusterItems.map((pub, index) => renderListingCard(pub, `${topic}-${index}`))}
-                      </div>
+
+                      {hasSubClusters ? (
+                        <div className="space-y-5">
+                          {subOrder.map(sub => {
+                            const subItems = clusterItems.filter(p => p.subCluster === sub);
+                            if (subItems.length === 0) return null;
+                            return (
+                              <div key={sub}>
+                                <h3 className="text-[12px] italic font-serif text-muted-foreground mb-1 mt-2">
+                                  {sub}
+                                </h3>
+                                <div>
+                                  {subItems.map((pub, index) =>
+                                    renderListingCard(pub, `${topic}-${sub}-${index}`)
+                                  )}
+                                </div>
+                              </div>
+                            );
+                          })}
+                          {/* Any briefs in Carbon Markets without an explicit sub-cluster */}
+                          {(() => {
+                            const orphans = clusterItems.filter(p => !p.subCluster);
+                            if (orphans.length === 0) return null;
+                            return (
+                              <div>
+                                {orphans.map((pub, index) =>
+                                  renderListingCard(pub, `${topic}-orphan-${index}`)
+                                )}
+                              </div>
+                            );
+                          })()}
+                        </div>
+                      ) : (
+                        <div>
+                          {clusterItems.map((pub, index) => renderListingCard(pub, `${topic}-${index}`))}
+                        </div>
+                      )}
                     </div>
                   );
                 })}
@@ -625,87 +738,8 @@ const Insights = () => {
           </div>
         </section>
 
-        {/* Search & filter — placed at the end of the listing for users who want to refine or look up specific briefs after browsing */}
-        <section id="search" className="px-6 md:px-8 py-10 border-t border-border/50 scroll-mt-32">
-          <div className="container mx-auto max-w-[900px] space-y-6">
-            <div>
-              <label htmlFor="insights-search" className="block text-[11px] font-bold tracking-widest uppercase text-muted-foreground mb-3">
-                Search the archive
-              </label>
-              <div className="relative">
-                <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
-                <Input
-                  id="insights-search"
-                  placeholder="Search intelligence briefs..."
-                  value={searchQuery}
-                  onChange={(e) => setSearchQuery(e.target.value)}
-                  className="pl-10 bg-background"
-                />
-              </div>
-            </div>
-
-            <div className="space-y-3">
-              <span className="block text-[11px] font-bold tracking-widest uppercase text-muted-foreground">
-                Filter by topic & type
-              </span>
-              {/* Topic filter */}
-              <div className="flex gap-2 flex-wrap">
-                <button
-                  onClick={() => setSelectedTopic('All')}
-                  className={`px-4 py-1.5 rounded-full text-[13px] font-medium transition-colors ${
-                    selectedTopic === 'All'
-                      ? 'bg-foreground text-background'
-                      : 'border border-border text-foreground hover:bg-secondary'
-                  }`}
-                >
-                  All
-                </button>
-                {allTopics.map(topic => (
-                  <button
-                    key={topic}
-                    onClick={() => setSelectedTopic(topic)}
-                    className={`px-4 py-1.5 rounded-full text-[13px] font-medium transition-colors ${
-                      selectedTopic === topic
-                        ? 'bg-foreground text-background'
-                        : 'border border-border text-foreground hover:bg-secondary'
-                    }`}
-                  >
-                    {topic}
-                  </button>
-                ))}
-              </div>
-
-              {/* Content type filter */}
-              <div className="flex gap-2 flex-wrap">
-                <button
-                  onClick={() => setSelectedType('All Types')}
-                  className={`px-3 py-1 rounded-2xl text-xs font-medium transition-colors ${
-                    selectedType === 'All Types'
-                      ? 'bg-foreground text-background'
-                      : 'border border-border text-foreground hover:bg-secondary'
-                  }`}
-                >
-                  All Types
-                </button>
-                {allContentTypes.map(type => (
-                  <button
-                    key={type}
-                    onClick={() => setSelectedType(type)}
-                    className={`px-3 py-1 rounded-2xl text-xs font-medium transition-colors ${
-                      selectedType === type
-                        ? 'bg-foreground text-background'
-                        : `border border-border hover:bg-secondary ${contentTypeColors[type]}`
-                    }`}
-                  >
-                    {type === 'Flagship Report' ? 'Flagship Reports' :
-                     type === 'Intelligence Brief' ? 'Intelligence Briefs' :
-                     type === 'Regulatory Alert' ? 'Regulatory Alerts' : 'Perspectives'}
-                  </button>
-                ))}
-              </div>
-            </div>
-          </div>
-        </section>
+        {/* Search & filter UI was relocated to the hero section above the
+            sticky nav so users can refine before browsing. */}
 
         {/* Newsletter CTA */}
         <section id="subscribe" className="py-16 md:py-24 px-6 md:px-8 border-t border-border/50 scroll-mt-32">
