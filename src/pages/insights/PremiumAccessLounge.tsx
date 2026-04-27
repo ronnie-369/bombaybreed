@@ -451,7 +451,7 @@ const PremiumAccessLounge: React.FC = () => {
       </section>
 
       {/* ── WHAT THE INDUSTRY HAS TO SAY ─────────────────────────────── */}
-      <section id="industry" className="px-6 md:px-8 py-16 md:py-20 mt-4 bg-secondary/30 scroll-mt-32">
+      <section id="industry" className="px-6 md:px-8 py-12 md:py-14 bg-secondary/30 scroll-mt-32">
         <div className="container mx-auto max-w-[900px]">
           <SectionLabel label="01 — What the industry has to say" />
           <h2 className="text-section font-serif tracking-tight mt-6 mb-8 md:mb-10 [text-wrap:balance]">
@@ -491,7 +491,7 @@ const PremiumAccessLounge: React.FC = () => {
       </section>
 
       {/* TIERS — Industry Reader vs Analyst Lens */}
-      <section id="tiers" className="px-6 md:px-8 py-20 md:py-24 border-t border-border scroll-mt-32">
+      <section id="tiers" className="px-6 md:px-8 py-14 md:py-16 border-t border-border scroll-mt-32">
         <div className="container mx-auto max-w-[900px]">
           <SectionLabel label="Knowledge you can use" />
           <h2 className="text-section font-serif tracking-tight mt-6 mb-4">
@@ -711,7 +711,7 @@ const PremiumAccessLounge: React.FC = () => {
       </section>
 
       {/* ── WHO IS READING OUR REPORTS ────────────────────────────── */}
-      <section id="readers" className="px-6 md:px-8 py-16 border-t border-border/50 scroll-mt-32">
+      <section id="readers" className="px-6 md:px-8 py-12 md:py-14 border-t border-border/50 scroll-mt-32">
         <div className="container mx-auto max-w-[900px]">
           <SectionLabel label="02 - Who is reading" />
           <h2 className="text-section font-serif tracking-tight mt-6 mb-4">
@@ -774,7 +774,7 @@ const PremiumAccessLounge: React.FC = () => {
       <section
         ref={sponsorRef}
         id="sponsor"
-        className="px-6 md:px-8 py-20 border-t border-border/50 bg-secondary/20 scroll-mt-32"
+        className="px-6 md:px-8 py-14 md:py-16 border-t border-border/50 bg-secondary/20 scroll-mt-32"
       >
         <div className="container mx-auto max-w-[900px]">
           <SectionLabel label="03 — Sponsor a study" />
