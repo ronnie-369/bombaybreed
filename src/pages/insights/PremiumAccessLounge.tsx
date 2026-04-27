@@ -654,21 +654,30 @@ const PremiumAccessLounge: React.FC = () => {
                 <h3 className="text-[11px] font-semibold tracking-widest uppercase text-muted-foreground pt-1">
                   {bloc.group}
                 </h3>
-                <p className="font-serif text-base md:text-lg text-foreground leading-relaxed">
+                <p className="font-serif text-[15px] md:text-lg text-foreground leading-[1.9] [text-wrap:pretty]">
                   {bloc.names.map((item, idx) => (
                     <React.Fragment key={item.label}>
-                      {idx > 0 && <span className="text-muted-foreground/60"> · </span>}
+                      {idx > 0 && (
+                        <span
+                          aria-hidden="true"
+                          className="mx-2 text-muted-foreground/50 select-none"
+                        >
+                          ·
+                        </span>
+                      )}
                       {item.href ? (
                         <a
                           href={item.href}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="underline decoration-border/60 underline-offset-4 hover:decoration-foreground hover:text-foreground transition-colors"
+                          className="inline whitespace-nowrap underline decoration-border/50 decoration-[0.5px] underline-offset-[5px] hover:decoration-foreground hover:text-foreground transition-colors"
                         >
                           {item.label}
                         </a>
                       ) : (
-                        <span>{item.label}</span>
+                        <span className="inline whitespace-nowrap text-foreground/85">
+                          {item.label}
+                        </span>
                       )}
                     </React.Fragment>
                   ))}
