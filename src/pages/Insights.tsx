@@ -14,12 +14,16 @@ import { trackSponsorEvent } from '@/utils/sponsorAnalytics';
 
 type ContentType = 'Flagship Report' | 'Intelligence Brief' | 'Regulatory Alert' | 'Perspective';
 type Topic = 'Carbon Markets' | 'Board Governance' | 'ESG Communications' | 'Regulatory Intel';
+// Optional second-level grouping inside an oversized cluster (currently
+// only used to split the Carbon Markets shelf into two readable sub-shelves).
+type SubCluster = 'Markets & Compliance' | 'Power & Transition';
 
 interface Publication {
   title: string;
   description: string;
   contentType: ContentType;
   topic: Topic;
+  subCluster?: SubCluster;
   publishedDate: string;
   readTimeMinutes: number;
   link?: string;
