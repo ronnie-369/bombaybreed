@@ -1,4 +1,4 @@
-import React, { useState, useRef, useMemo, useEffect } from 'react';
+import React, { useState, useRef, useMemo, useEffect, useCallback } from 'react';
 import PageHead from '@/components/PageHead';
 import { Link } from 'react-router-dom';
 import Header from '@/components/Header';
@@ -236,7 +236,57 @@ const Insights = () => {
     currentPage * ITEMS_PER_PAGE
   );
 
-  
+  // Section-level navigation: define IDs and labels.
+  // "flagship" is conditionally rendered (only when no filters/search active),
+  // so the nav adapts to whichever sections are currently in the DOM.
+  const showFlagship = selectedTopic === 'All' && selectedType === 'All Types' && !searchQuery;
+  const sections = useMemo(() => {
+    const s: { id: string; label: string }[] = [];
+    if (showFlagship) s.push({ id: 'flagship', label: 'Flagship' });
+    s.push({ id: 'all-intelligence', label: 'All Intelligence' });
+    s.push({ id: 'subscribe', label: 'Subscribe' });
+    s.push({ id: 'download', label: 'Download Report' });
+    return s;
+  }, [showFlagship]);
+
+  const [activeSection, setActiveSection] = useState<string>('');
+
+  useEffect(() => {
+    // Default to first section on mount / when section list changes
+    setActiveSection(sections[0]?.id || '');
+
+    const elements = sections
+      .map(s => document.getElementById(s.id))
+      .filter((el): el is HTMLElement => el !== null);
+    if (elements.length === 0) return;
+
+    // Trigger when a section's top crosses just below the sticky nav (~180px)
+    const observer = new IntersectionObserver(
+      (entries) => {
+        // Pick the entry highest on the page that is intersecting
+        const visible = entries
+          .filter(e => e.isIntersecting)
+          .sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top);
+        if (visible[0]) {
+          setActiveSection(visible[0].target.id);
+        }
+      },
+      { rootMargin: '-180px 0px -60% 0px', threshold: 0 }
+    );
+    elements.forEach(el => observer.observe(el));
+    return () => observer.disconnect();
+  }, [sections]);
+
+  const handleNavClick = useCallback((e: React.MouseEvent<HTMLAnchorElement>, id: string) => {
+    e.preventDefault();
+    const el = document.getElementById(id);
+    if (!el) return;
+    const top = el.getBoundingClientRect().top + window.pageYOffset - 140;
+    window.scrollTo({ top, behavior: 'smooth' });
+    history.replaceState(null, '', `#${id}`);
+    setActiveSection(id);
+  }, []);
+
 
   /**
    * Static-asset paths (e.g. /special-features/foo.html) MUST be served by
@@ -416,9 +466,39 @@ const Insights = () => {
           </div>
         </section>
 
+        {/* Section Navigation - sticky, highlights active section on scroll */}
+        <nav
+          aria-label="Insights sections"
+          className="sticky top-16 z-30 bg-background/85 backdrop-blur-md border-y border-border/40 px-6 md:px-8"
+        >
+          <div className="container mx-auto max-w-[900px]">
+            <ul className="flex gap-1 overflow-x-auto py-2 -mx-1 px-1 scrollbar-none">
+              {sections.map(s => {
+                const isActive = activeSection === s.id;
+                return (
+                  <li key={s.id} className="flex-shrink-0">
+                    <a
+                      href={`#${s.id}`}
+                      onClick={(e) => handleNavClick(e, s.id)}
+                      aria-current={isActive ? 'location' : undefined}
+                      className={`inline-block px-3 py-1.5 rounded-full text-[12px] font-medium tracking-wide transition-colors whitespace-nowrap focus:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background ${
+                        isActive
+                          ? 'bg-foreground text-background'
+                          : 'text-muted-foreground hover:text-foreground hover:bg-secondary'
+                      }`}
+                    >
+                      {s.label}
+                    </a>
+                  </li>
+                );
+              })}
+            </ul>
+          </div>
+        </nav>
+
         {/* Flagship Research */}
-        {selectedTopic === 'All' && selectedType === 'All Types' && !searchQuery && (
-          <section className="px-6 md:px-8 pb-8">
+        {showFlagship && (
+          <section id="flagship" className="px-6 md:px-8 pb-8 pt-8 scroll-mt-32">
             <div className="container mx-auto max-w-[900px]">
               <span className="text-[10px] font-bold tracking-widest uppercase text-accent mb-3 block pl-1">
                 Flagship Research
@@ -475,7 +555,7 @@ const Insights = () => {
         )}
 
         {/* All Intelligence Listing */}
-        <section className="py-8 px-6 md:px-8 border-t border-border/50">
+        <section id="all-intelligence" className="py-8 px-6 md:px-8 border-t border-border/50 scroll-mt-32">
           <div className="container mx-auto max-w-[900px]">
             <span className="text-[10px] font-bold tracking-widest uppercase text-muted-foreground mb-3 block pl-1">
               All Intelligence · {filteredPublications.length} items
@@ -517,7 +597,7 @@ const Insights = () => {
         </section>
 
         {/* Newsletter CTA */}
-        <section className="py-16 md:py-24 px-6 md:px-8 border-t border-border/50">
+        <section id="subscribe" className="py-16 md:py-24 px-6 md:px-8 border-t border-border/50 scroll-mt-32">
           <div className="container mx-auto max-w-[900px] text-center">
             <ScrollReveal direction="up">
               <h2 className="text-section font-serif tracking-tight mb-3">
@@ -536,7 +616,7 @@ const Insights = () => {
         </section>
 
         {/* Download CTA - CCUS Report */}
-        <section ref={formSectionRef} className="py-20 px-6 md:px-8 border-t border-border/50">
+        <section id="download" ref={formSectionRef} className="py-20 px-6 md:px-8 border-t border-border/50 scroll-mt-32">
           <div className="container mx-auto max-w-[680px]">
             <div className="text-center mb-12">
               <SectionLabel label="Download Report" className="text-center block" />
