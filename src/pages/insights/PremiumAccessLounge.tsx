@@ -401,7 +401,7 @@ const PremiumAccessLounge: React.FC = () => {
             >
               <div className="pb-5 border-b border-border/60 mb-6">
                 <span className="text-[10px] font-bold tracking-widest uppercase text-muted-foreground">
-                  Tier 01 - Supply side
+                  Tier 01
                 </span>
                 <h3 className="font-serif text-2xl text-foreground mt-3 mb-1">
                   The Industry Reader
