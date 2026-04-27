@@ -76,85 +76,85 @@ const QUOTES: { quote: string; name: string; title: string; org: string }[] = [
  * the partnership material so any reader cross-checking sees the same
  * categorisation.
  */
-const READERSHIP: { group: string; names: string[] }[] = [
+const READERSHIP: { group: string; names: { label: string; href?: string }[] }[] = [
   {
     group: 'Multilateral',
     names: [
-      'United Nations',
-      'FAO',
-      'IFC / World Bank',
-      'WHO',
-      'Asian Development Bank',
-      'UNDP',
-      'AKDN',
+      { label: 'United Nations', href: 'https://www.un.org' },
+      { label: 'FAO', href: 'https://www.fao.org' },
+      { label: 'IFC / World Bank', href: 'https://www.ifc.org' },
+      { label: 'WHO', href: 'https://www.who.int' },
+      { label: 'Asian Development Bank', href: 'https://www.adb.org' },
+      { label: 'UNDP', href: 'https://www.undp.org' },
+      { label: 'AKDN', href: 'https://the.akdn' },
     ],
   },
   {
     group: 'Global Corporates',
     names: [
-      'ArcelorMittal',
-      'Oracle',
-      'Unilever',
-      'H&M',
-      'Infosys',
-      'Siemens Energy',
-      'Volkswagen',
-      'BASF',
-      'ABB',
-      'GE',
-      'Meta',
-      'S&P Global',
+      { label: 'ArcelorMittal', href: 'https://corporate.arcelormittal.com' },
+      { label: 'Oracle', href: 'https://www.oracle.com' },
+      { label: 'Unilever', href: 'https://www.unilever.com' },
+      { label: 'H&M', href: 'https://hmgroup.com' },
+      { label: 'Infosys', href: 'https://www.infosys.com' },
+      { label: 'Siemens Energy', href: 'https://www.siemens-energy.com' },
+      { label: 'Volkswagen', href: 'https://www.volkswagen-group.com' },
+      { label: 'BASF', href: 'https://www.basf.com' },
+      { label: 'ABB', href: 'https://global.abb' },
+      { label: 'GE', href: 'https://www.ge.com' },
+      { label: 'Meta', href: 'https://about.meta.com' },
+      { label: 'S&P Global', href: 'https://www.spglobal.com' },
     ],
   },
   {
     group: 'Indian Industry',
     names: [
-      'JSW Group',
-      'Tata Motors',
-      'Mahindra',
-      'Adani',
-      'Axis Bank',
-      'IREDA',
-      'Dr Reddy\u2019s',
-      'Welspun',
-      'Apollo Hospitals',
+      { label: 'JSW Group', href: 'https://www.jsw.in' },
+      { label: 'Tata Motors', href: 'https://www.tatamotors.com' },
+      { label: 'Mahindra', href: 'https://www.mahindra.com' },
+      { label: 'Adani', href: 'https://www.adani.com' },
+      { label: 'Axis Bank', href: 'https://www.axisbank.com' },
+      { label: 'IREDA', href: 'https://www.ireda.in' },
+      { label: 'Dr Reddy\u2019s', href: 'https://www.drreddys.com' },
+      { label: 'Welspun', href: 'https://www.welspun.com' },
+      { label: 'Apollo Hospitals', href: 'https://www.apollohospitals.com' },
     ],
   },
   {
     group: 'Government',
     names: [
-      'Government of India (central ministries)',
-      'Japan Ministry of the Environment',
+      { label: 'Government of India (central ministries)', href: 'https://www.india.gov.in' },
+      { label: 'Japan Ministry of the Environment', href: 'https://www.env.go.jp/en/' },
     ],
   },
   {
     group: 'Media & Intelligence',
     names: [
-      'Argus Media',
-      'BBC',
-      'Bloomberg',
-      'Singapore Press Holdings',
-      'France Televisions',
+      { label: 'Argus Media', href: 'https://www.argusmedia.com' },
+      { label: 'BBC', href: 'https://www.bbc.com' },
+      { label: 'Bloomberg', href: 'https://www.bloomberg.com' },
+      { label: 'Singapore Press Holdings', href: 'https://sph.com.sg' },
+      { label: 'France Televisions', href: 'https://www.francetelevisions.fr' },
     ],
   },
   {
     group: 'Climate & ESG',
     names: [
-      'SBTi',
-      'Ellen MacArthur Foundation',
-      'ClimateImpactX',
-      '3Degrees',
-      'ReNew Energy',
+      { label: 'SBTi', href: 'https://sciencebasedtargets.org' },
+      { label: 'Ellen MacArthur Foundation', href: 'https://www.ellenmacarthurfoundation.org' },
+      { label: 'ClimateImpactX', href: 'https://www.climateimpactx.com' },
+      { label: '3Degrees', href: 'https://3degreesinc.com' },
+      { label: 'ReNew Energy', href: 'https://www.renew.com' },
     ],
   },
   {
     group: 'Investors & Climate Finance',
     names: [
-      'Development Finance Institutions',
-      'Climate & Carbon Investment funds',
-      'Venture Capital',
-      'Wealth Management & Family Offices',
-      'Financial Advisory & Services',
+      { label: 'Development Finance Institutions' },
+      { label: 'Climate & Carbon Investment funds' },
+      { label: 'Venture Capital' },
+      { label: 'Wealth Management & Family Offices' },
+      { label: 'Financial Advisory & Services' },
     ],
   },
 ];
@@ -655,7 +655,23 @@ const PremiumAccessLounge: React.FC = () => {
                   {bloc.group}
                 </h3>
                 <p className="font-serif text-base md:text-lg text-foreground leading-relaxed">
-                  {bloc.names.join(' · ')}
+                  {bloc.names.map((item, idx) => (
+                    <React.Fragment key={item.label}>
+                      {idx > 0 && <span className="text-muted-foreground/60"> · </span>}
+                      {item.href ? (
+                        <a
+                          href={item.href}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="underline decoration-border/60 underline-offset-4 hover:decoration-foreground hover:text-foreground transition-colors"
+                        >
+                          {item.label}
+                        </a>
+                      ) : (
+                        <span>{item.label}</span>
+                      )}
+                    </React.Fragment>
+                  ))}
                 </p>
               </div>
             ))}
