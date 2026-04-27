@@ -429,21 +429,21 @@ const PremiumAccessLounge: React.FC = () => {
                 window.scrollTo({ top, behavior: 'smooth' });
                 history.replaceState(null, '', '#tiers');
               }}
-              className="group block bg-foreground text-background rounded-xl p-8 transition-colors hover:bg-foreground/90"
+              className="group block bg-foreground text-background rounded-xl p-6 sm:p-7 md:p-8 transition-colors hover:bg-foreground/90"
             >
               <span className="text-[10px] font-bold tracking-widest uppercase text-background/60">
                 Members only zone
               </span>
-              <h3 className="font-serif text-xl mt-3 mb-2">
+              <h3 className="font-serif text-[1.35rem] sm:text-2xl md:text-[1.6rem] leading-[1.2] tracking-tight mt-4 mb-3 [text-wrap:balance]">
                 One insight can make the portfolio call of the year
               </h3>
-              <p className="text-sm text-background/70 mb-6">
-                One insight - the right read on a CCTS auction, an Article 6.2
-                bilateral, a CBAM step-down - can be the call that makes a
-                portfolio for the year. This is the desk that makes that call.
+              <p className="text-[15px] sm:text-base text-background/75 leading-relaxed mb-6 [text-wrap:pretty] max-w-[46ch]">
+                The right read on a CCTS auction, an Article 6.2 bilateral or a
+                CBAM step-down can be the call that makes a portfolio for the
+                year. This is the desk that makes that call.
               </p>
               <span className="inline-flex items-center gap-1.5 text-sm font-medium">
-                Enter the members&rsquo; room <ArrowRight className="w-4 h-4" />
+                Enter the members&rsquo; room <ArrowRight className="w-4 h-4 shrink-0" />
               </span>
             </a>
           </div>
