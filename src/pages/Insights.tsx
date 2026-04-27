@@ -397,20 +397,7 @@ const Insights = () => {
           </div>
         </section>
 
-        {/* Search */}
-        <section className="px-6 md:px-8 pb-4">
-          <div className="container mx-auto max-w-[900px]">
-            <div className="relative">
-              <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
-              <Input
-                placeholder="Search intelligence briefs..."
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                className="pl-10 bg-background"
-              />
-            </div>
-          </div>
-        </section>
+        {/* Search has been moved to the bottom of the listing — see below */}
 
         {/* Filters */}
         <section className="px-6 md:px-8 pb-8">
