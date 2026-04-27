@@ -399,18 +399,13 @@ const Insights = () => {
       <Header />
 
       <main className="flex-1 pt-24 pb-16">
-        {/* Hero */}
-        <section className="pt-16 pb-12 md:pt-20 md:pb-16 px-6 md:px-8">
+        {/* Hero - eyebrow and lede removed; H1 retained for SEO/a11y */}
+        <section className="pt-12 pb-8 md:pt-16 md:pb-10 px-6 md:px-8">
           <div className="container mx-auto max-w-[900px]">
             <ScrollReveal direction="up">
-              <SectionLabel label="Research & Analysis" />
-              <h1 className="text-display font-serif tracking-tight mt-6 mb-6">
+              <h1 className="text-display font-serif tracking-tight">
                 Intelligence Briefs
               </h1>
-              <p className="text-lede text-muted-foreground max-w-[560px]">
-                Original research and strategic analysis on carbon markets, ESG governance,
-                and sustainability communications in India.
-              </p>
             </ScrollReveal>
           </div>
         </section>
