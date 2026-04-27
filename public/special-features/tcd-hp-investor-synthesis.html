@@ -2717,7 +2717,7 @@ new Chart(cryoCtx, {
       // Wait for layout (fonts, images sized) then re-scroll with our offset
       window.addEventListener('load', function() {
         setTimeout(function() {
-          jumpTo(initId);
+          jumpTo(initId, { instant: true });
           syncFromHash();
         }, 50);
       });
