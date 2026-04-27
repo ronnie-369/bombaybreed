@@ -440,10 +440,7 @@ const PremiumAccessLounge: React.FC = () => {
                 One insight can make the portfolio call of the year
               </h3>
               <p className="text-[15px] sm:text-base text-background/75 leading-relaxed mb-6 [text-wrap:pretty] max-w-[46ch]">
-                Carbon markets are hard. The right call is harder. The kind of
-                call you would normally pay a sell-side desk six figures for -
-                written for people who move capital. A small members&rsquo;
-                room, by design.
+                Carbon markets are hard. And the right call is harder. We give you deep insights consistently. So that you can move capital with confidence.
               </p>
               <span className="inline-flex items-center gap-1.5 text-sm font-medium">
                 Enter the members&rsquo; room <ArrowRight className="w-4 h-4 shrink-0" />
