@@ -201,6 +201,40 @@ const PremiumAccessLounge: React.FC = () => {
     });
   };
 
+  // Deep-link support: open the inquiry dialog when the URL contains
+  // ?project=<slug-or-text>. Slug match (case/punct insensitive) is preferred
+  // so links stay short - free text falls through as the project name itself.
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+    const params = new URLSearchParams(window.location.search);
+    const raw = params.get('project');
+    if (!raw) return;
+
+    const toSlug = (s: string) =>
+      s.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+    const wanted = toSlug(raw);
+    const matched = SPONSOR_OPEN_PROJECTS.find((p) => toSlug(p) === wanted);
+    const project = matched ?? raw.trim().slice(0, 300);
+    if (!project) return;
+
+    setInquiryProject(project);
+    setInquiryOpen(true);
+    trackSponsorEvent('sponsor_open_project_click', {
+      location: 'premium_access_lounge_deeplink',
+      project,
+    });
+
+    // Scroll the sponsor section into view so the dialog has context behind it.
+    window.requestAnimationFrame(() => {
+      document.getElementById('sponsor')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+
+    // Clean the param so a refresh does not re-trigger the dialog.
+    const url = new URL(window.location.href);
+    url.searchParams.delete('project');
+    window.history.replaceState({}, '', url.toString());
+  }, []);
+
   // Fire a one-shot 'sponsor_section_view' event when #sponsor scrolls into view.
   useEffect(() => {
     const node = sponsorRef.current;
