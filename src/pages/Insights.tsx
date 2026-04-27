@@ -33,6 +33,17 @@ const contentTypeColors: Record<ContentType, string> = {
 };
 
 const allTopics: Topic[] = ['Carbon Markets', 'Board Governance', 'ESG Communications', 'Regulatory Intel'];
+
+// A publication is treated as "new" for 14 days after its publishedDate.
+// This drives a visual highlight (accent border + pulsing badge) so
+// freshly published reports break visually from the back catalogue.
+const NEW_WINDOW_DAYS = 14;
+const isNewPublication = (publishedDate: string): boolean => {
+  const published = new Date(publishedDate).getTime();
+  if (Number.isNaN(published)) return false;
+  const ageMs = Date.now() - published;
+  return ageMs >= 0 && ageMs <= NEW_WINDOW_DAYS * 24 * 60 * 60 * 1000;
+};
 const allContentTypes: ContentType[] = ['Flagship Report', 'Intelligence Brief', 'Regulatory Alert', 'Perspective'];
 
 const publications: Publication[] = [
@@ -246,16 +257,26 @@ const Insights = () => {
   };
 
   const renderListingCard = (pub: Publication, index: number) => {
+    const fresh = isNewPublication(pub.publishedDate);
     const inner = (
-      <div className="flex items-start justify-between py-5 border-b border-border/30 group-hover:border-primary/30 transition-colors">
+      <div className={`flex items-start justify-between py-5 border-b transition-colors ${fresh ? 'border-accent/40 group-hover:border-accent' : 'border-border/30 group-hover:border-primary/30'}`}>
         <div className="min-w-0 pr-6">
-          <div className="flex items-center gap-2 mb-2">
+          <div className="flex items-center gap-2 mb-2 flex-wrap">
             <span className={`px-2 py-0.5 border rounded text-[10px] font-semibold tracking-wider uppercase ${contentTypeColors[pub.contentType]}`}>
               {pub.contentType}
             </span>
             <span className="px-2 py-0.5 border border-border rounded text-[10px] text-muted-foreground">
               {pub.topic}
             </span>
+            {fresh && (
+              <span className="inline-flex items-center gap-1.5 px-2 py-0.5 rounded text-[10px] font-semibold tracking-wider uppercase bg-accent text-accent-foreground">
+                <span className="relative flex h-1.5 w-1.5">
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-accent-foreground opacity-60"></span>
+                  <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-accent-foreground"></span>
+                </span>
+                New
+              </span>
+            )}
           </div>
           <h3 className="font-semibold text-[15px] text-foreground group-hover:text-primary transition-colors">
             {pub.title}
@@ -404,8 +425,18 @@ const Insights = () => {
               </span>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
                 {flagshipReports.map((report, i) => {
+                  const fresh = isNewPublication(report.publishedDate);
                   const content = (
-                    <div className="bg-secondary/30 border border-border rounded-xl p-8 h-full flex flex-col justify-between group-hover:border-primary/30 transition-colors">
+                    <div className={`relative bg-secondary/30 border rounded-xl p-8 h-full flex flex-col justify-between transition-colors ${fresh ? 'border-accent ring-1 ring-accent/30 shadow-[0_8px_24px_-12px_hsl(var(--accent)/0.4)] group-hover:border-accent group-hover:ring-accent/50' : 'border-border group-hover:border-primary/30'}`}>
+                      {fresh && (
+                        <span className="absolute -top-2.5 right-5 inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[10px] font-semibold tracking-widest uppercase bg-accent text-accent-foreground shadow-md">
+                          <span className="relative flex h-1.5 w-1.5">
+                            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-accent-foreground opacity-60"></span>
+                            <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-accent-foreground"></span>
+                          </span>
+                          New
+                        </span>
+                      )}
                       <div>
                         <span className={`inline-block px-2.5 py-0.5 rounded text-[10px] font-semibold tracking-wider uppercase bg-primary text-primary-foreground mb-3`}>
                           Flagship Report
