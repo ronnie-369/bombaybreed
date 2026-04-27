@@ -49,25 +49,22 @@ const CTA_COPY: Record<
 
 const QUOTES: { quote: string; name: string; title: string; org: string }[] = [
   {
-    quote:
-      'Replace this quote with a real one from a reader. Three to four sentences works best — keep it specific to a report or a decision the reader made.',
-    name: 'Reader name',
-    title: 'Title',
-    org: 'Organisation',
+    quote: 'Brilliantly insightful.',
+    name: 'Chris Sherwood',
+    title: 'Chairman',
+    org: 'Negative Emissions Platform',
   },
   {
-    quote:
-      'A second placeholder quote. Aim for testimonials that name the brief and the outcome — generic praise reads like marketing.',
-    name: 'Reader name',
-    title: 'Title',
-    org: 'Organisation',
+    quote: 'Wonderful writing. Deep analysis. Highly insightful.',
+    name: 'Mitchell Beer',
+    title: 'Founder',
+    org: 'The Energy Mix',
   },
   {
-    quote:
-      'A third placeholder quote. If you only have two real quotes at launch, drop this card and the grid will reflow to two columns.',
-    name: 'Reader name',
-    title: 'Title',
-    org: 'Organisation',
+    quote: 'Excellent reporting from India.',
+    name: 'Christian Haberli',
+    title: 'Climate lawyer',
+    org: 'EU',
   },
 ];
 
