@@ -420,11 +420,23 @@ const Insights = () => {
                       </div>
                     </div>
                   );
-                  return report.link ? (
-                    <Link key={i} to={report.link} className="block group">{content}</Link>
-                  ) : (
-                    <div key={i} className="group">{content}</div>
-                  );
+                  if (!report.link) {
+                    return <div key={i} className="group">{content}</div>;
+                  }
+                  if (isStaticAssetLink(report)) {
+                    return (
+                      <a
+                        key={i}
+                        href={report.link}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="block group"
+                      >
+                        {content}
+                      </a>
+                    );
+                  }
+                  return <Link key={i} to={report.link} className="block group">{content}</Link>;
                 })}
               </div>
             </div>
