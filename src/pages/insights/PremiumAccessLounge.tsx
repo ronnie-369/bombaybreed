@@ -158,30 +158,31 @@ const READERSHIP: { group: string; names: string[] }[] = [
 ];
 
 /**
- * Sponsorship is bespoke, not packaged. The two columns below describe
- * what a sponsor's name attaches to (left) and what we build alongside
- * the public research stream for the sponsor's own use (right). No
- * price - every sponsorship is scoped in conversation.
+ * Section 03 - Commission a bespoke study or deep-dive. Team BB does the
+ * work; the sponsoring organisation gets its name attached to the
+ * published output. Deliverables span video assets, due-diligence studies,
+ * MRV / dMRV reviews, and feasibility / viability work. Pricing is
+ * indicative: INR 6L to 48L depending on scope and intensity.
  */
-const SPONSOR_NAME_ON: string[] = [
-  'A year-long topic cluster - your name on every brief in the series',
-  'Flagship reports published into the public record, not behind your gate',
-  'Methodology and data choices stay with us - editorial independence is the point',
-  'Co-presentation at the report launch, on stage with the analyst',
+const SPONSOR_DELIVERABLES: string[] = [
+  'Detailed due diligence studies on projects, developers or portfolios',
+  'MRV and dMRV reviews, with site-level scoping and ground-truthing',
+  'Feasibility and viability studies for new projects and technologies',
+  'Video assets and editorial write-ups for internal and external use',
 ];
 
-const SPONSOR_FOR_YOU: string[] = [
-  'Bespoke research scoped to your portfolio or thesis - not a SKU',
-  'A standing line to the desk for follow-ups, sized to the engagement',
-  'Closed-door briefings for your team or LPs around each release',
-  'First read on findings before they hit the public archive',
+const SPONSOR_HOW_IT_WORKS: string[] = [
+  'You bring the question or thesis - we scope the work in conversation',
+  'Team BB executes the research, fieldwork and writing end to end',
+  'Your business name is attached to the report as the sponsor',
+  'Methodology and findings stay with us - editorial independence is the point',
 ];
 
-const SPONSOR_WHY: string[] = [
-  'Independent of bank or consultancy incentives',
-  'India-specific regulatory depth',
-  'Published research with a public track record',
-  'Direct analyst access, not a relationship manager',
+const SPONSOR_OPEN_PROJECTS: string[] = [
+  'CCUS technologies investigation in India',
+  'Carbon projects for JCM readiness',
+  'Wetlands conservation and waste management at Chandrataal Lake, Himachal Pradesh',
+  'Corporate Social Responsibility - who is moving the needle?',
 ];
 
 const PremiumAccessLounge: React.FC = () => {
@@ -606,30 +607,30 @@ const PremiumAccessLounge: React.FC = () => {
         className="px-6 md:px-8 py-20 border-t border-border/50 bg-secondary/20 scroll-mt-32"
       >
         <div className="container mx-auto max-w-[900px]">
-          <SectionLabel label="03 — Sponsor a year of research" />
+          <SectionLabel label="03 — Sponsor a study" />
           <div className="mt-6 mb-10">
             <h2 className="text-section font-serif tracking-tight mb-5">
-              Put your name on the work, not the conclusion.
+              Commission the work. Put your name on the report.
             </h2>
             <p className="font-serif text-lg md:text-xl text-foreground/85 leading-relaxed max-w-[680px]">
-              For institutions that want to underwrite a year of original India
-              research - a topic cluster, a regulatory beat, a sector under
-              transition. Distinct from the membership tiers above. Bespoke,
-              sales-led, and scoped in conversation.
+              Commission a study or deep-dive bespoke to your requirements.
+              Team BB does the work end to end - research, fieldwork, writing.
+              Your business name is attached to the published report as the
+              sponsor.
             </p>
           </div>
 
-          {/* What sponsorship actually buys - two columns, no price */}
+          {/* What it delivers + how it works */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-5 mb-12">
             <div className="bg-background border border-border rounded-xl p-6">
               <span className="text-[10px] font-bold tracking-widest uppercase text-muted-foreground">
-                What your name attaches to
+                What it delivers
               </span>
               <h3 className="font-serif text-lg text-foreground mt-3 mb-4 pb-3 border-b border-border/60">
-                The public research stream
+                The output
               </h3>
               <ul className="space-y-3">
-                {SPONSOR_NAME_ON.map((line) => (
+                {SPONSOR_DELIVERABLES.map((line) => (
                   <li key={line} className="grid grid-cols-[auto_1fr] gap-3 text-sm text-foreground">
                     <span className="text-muted-foreground/70 pt-0.5">·</span>
                     <span>{line}</span>
@@ -639,13 +640,13 @@ const PremiumAccessLounge: React.FC = () => {
             </div>
             <div className="bg-background border border-border rounded-xl p-6">
               <span className="text-[10px] font-bold tracking-widest uppercase text-muted-foreground">
-                What we build alongside
+                How it works
               </span>
               <h3 className="font-serif text-lg text-foreground mt-3 mb-4 pb-3 border-b border-border/60">
-                The work scoped to you
+                The arrangement
               </h3>
               <ul className="space-y-3">
-                {SPONSOR_FOR_YOU.map((line) => (
+                {SPONSOR_HOW_IT_WORKS.map((line) => (
                   <li key={line} className="grid grid-cols-[auto_1fr] gap-3 text-sm text-foreground">
                     <span className="text-muted-foreground/70 pt-0.5">·</span>
                     <span>{line}</span>
@@ -655,31 +656,36 @@ const PremiumAccessLounge: React.FC = () => {
             </div>
           </div>
 
-          {/* Why us */}
+          {/* Currently open projects */}
           <div className="mb-12">
             <h3 className="text-[11px] font-semibold tracking-widest uppercase text-muted-foreground mb-4">
-              Why us
+              Currently open projects
             </h3>
-            <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-              {SPONSOR_WHY.map((line) => (
-                <div key={line} className="text-sm text-foreground border-l-2 border-foreground/40 pl-3">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              {SPONSOR_OPEN_PROJECTS.map((line, i) => (
+                <div key={line} className="text-sm text-foreground border-l-2 border-foreground/40 pl-3 py-1">
+                  <span className="text-muted-foreground/70 mr-2 font-mono text-xs">
+                    {String(i + 1).padStart(2, '0')}
+                  </span>
                   {line}
                 </div>
               ))}
             </div>
           </div>
 
-          {/* CTA - bespoke, no price */}
+          {/* CTA - price band disclosed, scope by conversation */}
           <div className="bg-background border border-border rounded-xl p-8">
             <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
               <div className="max-w-[520px]">
-                <h3 className="font-serif text-xl text-foreground mb-2">
-                  Sponsorship is bespoke.
-                </h3>
+                <div className="font-serif text-2xl text-foreground mb-1">
+                  INR 6,00,000 - 48,00,000
+                  <span className="text-base text-muted-foreground font-sans"> + GST</span>
+                </div>
                 <p className="text-sm text-muted-foreground leading-relaxed">
-                  We take on a small number of sponsors each year so the work
-                  stays independent. Tell us the beat you want underwritten and
-                  we will come back with a shape and a number.
+                  Indicative range. Each engagement is scoped to the depth of
+                  fieldwork, methodology and final output. Tell us what you
+                  want investigated and we will come back with a shape and a
+                  number.
                 </p>
               </div>
               <div className="flex flex-col gap-2 md:items-end">
