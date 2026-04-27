@@ -301,6 +301,15 @@ const SponsorInquiryDialog = ({ open, onOpenChange, project }: SponsorInquiryDia
               aria-busy={submitting}
             >
             <fieldset disabled={submitting} className="space-y-4 m-0 p-0 border-0">
+            {submitError && (
+              <div
+                role="alert"
+                aria-live="assertive"
+                className="rounded-md border border-destructive/40 bg-destructive/10 px-3 py-2 text-sm text-destructive"
+              >
+                {submitError}
+              </div>
+            )}
             <FormField
               control={form.control}
               name="project"
