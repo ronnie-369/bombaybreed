@@ -883,7 +883,10 @@ const PremiumAccessLounge: React.FC = () => {
       <SponsorInquiryDialog
         open={inquiryOpen}
         onOpenChange={setInquiryOpen}
-        project={inquiryProject}
+        project={inquiryProject?.title ?? ''}
+        projectDetails={
+          inquiryProject && 'angle' in inquiryProject ? inquiryProject : undefined
+        }
       />
     </>
   );
