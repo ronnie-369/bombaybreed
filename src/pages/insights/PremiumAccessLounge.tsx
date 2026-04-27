@@ -167,10 +167,11 @@ const READERSHIP: { group: string; names: string[] }[] = [
  * indicative: INR 6L to 48L depending on scope and intensity.
  */
 const SPONSOR_DELIVERABLES: string[] = [
-  'Detailed due diligence studies on projects, developers or portfolios',
-  'MRV and dMRV reviews, with site-level scoping and ground-truthing',
-  'Feasibility and viability studies for new projects and technologies',
-  'Video assets and editorial write-ups for internal and external use',
+  'Due diligence on projects, developers and portfolios - including Article 6 and JCM-bound pipelines',
+  'MRV and dMRV reviews, with site-level scoping, ground-truthing and methodology audit',
+  'Sector reads on CBAM exposure, EU-ETS pass-through, and FTA-linked carbon clauses',
+  'Feasibility and viability work on energy transition assets - generation, grid, storage, data-centre load',
+  'Editorial write-ups and video assets, usable internally and for external publication',
 ];
 
 const SPONSOR_HOW_IT_WORKS: string[] = [
@@ -182,9 +183,10 @@ const SPONSOR_HOW_IT_WORKS: string[] = [
 
 const SPONSOR_OPEN_PROJECTS: string[] = [
   'CCUS technologies investigation in India',
-  'Carbon projects for JCM readiness',
+  'Carbon projects for JCM and Article 6.2 readiness',
+  'Data-centre water and power footprint - the hidden load on the grid',
+  'CBAM exposure for Indian exporters - steel, aluminium, cement, fertiliser',
   'Wetlands conservation and waste management at Chandrataal Lake, Himachal Pradesh',
-  'Corporate Social Responsibility - who is moving the needle?',
 ];
 
 const PremiumAccessLounge: React.FC = () => {
@@ -325,14 +327,16 @@ const PremiumAccessLounge: React.FC = () => {
               Executive Access Lounge
             </h2>
             <p className="font-serif text-lg md:text-xl text-foreground/85 leading-relaxed max-w-[680px] mb-4">
-              Most of what we know about India&rsquo;s carbon markets does not get
-              published. It moves between desks, before committees, inside drafting
-              rooms - and then it shows up, six weeks later, as a price.
+              Most of what moves carbon prices does not get published. It moves
+              between desks - in CCTS drafting rooms, around Article 6.2
+              bilaterals, inside CBAM exposure spreadsheets, across CORSIA
+              eligibility lists, before it ever shows up as a price.
             </p>
             <p className="text-body text-muted-foreground max-w-[640px] mb-10">
-              Welcome to the Lounge. Here, you get exclusive insights, news,
-              views, analysis, interviews and research reports that give you a
-              real edge in the market. Explore our past work before you sign up.
+              Welcome to the Lounge. The same desk that tracks the EU-ETS
+              auction floor, the FTA carbon clauses, and the load curves of
+              India&rsquo;s data-centre build-out - briefing you before the
+              consensus catches up. Explore our past work before you sign up.
             </p>
           </ScrollReveal>
 
@@ -404,16 +408,17 @@ const PremiumAccessLounge: React.FC = () => {
             One desk. Two ways to read the market.
           </h2>
           <p className="font-serif text-lg text-foreground/80 leading-relaxed max-w-[680px] mb-4">
-            Signal over noise. Short reports that take a position. No hype
-            cycles, no PR rewrites, no house view dressed up as research. If it
-            does not change a decision, it does not appear.
+            Signal over noise. Short reports that take a position - on the
+            CCTS auction, the next CBAM step-down, the EU-ETS spread, the
+            Article 6.2 bilaterals India is actually closing. No hype cycles,
+            no PR rewrites, no house view dressed up as research.
           </p>
           <p className="text-body text-muted-foreground max-w-[680px] mb-12">
             One tier is built for those <em>building</em> in the carbon and
             energy transition economy - founders, developers and SMEs stepping
-            into the market for the first time. The other is built for those
-            <em> backing</em> it - investors, analysts and committees who need
-            the read before the price moves.
+            into compliance markets for the first time. The other is built for
+            those <em>backing</em> it - investors, analysts and committees
+            pricing the risk before policy moves.
           </p>
 
           {/* What you get — shared editorial line. No deliverables here; those live in the cards. */}
@@ -421,18 +426,18 @@ const PremiumAccessLounge: React.FC = () => {
             {[
               {
                 Icon: Document,
-                k: 'One desk',
-                v: 'From the team that publishes The Climate Desk and the Strategic Communications Advisory and Consulting of Bombay Breed.',
+                k: 'Compliance markets',
+                v: 'CCTS, EU-ETS, CORSIA, Article 6.2 and 6.4 - tracked from inside the drafting rooms, not from press releases.',
               },
               {
                 Icon: Earth,
-                k: 'India first',
-                v: 'Independent research from inside the market, for investments in India, with deep teams from India.',
+                k: 'Trade & policy',
+                v: 'CBAM step-downs, FTA carbon clauses, the political economy of climate policy - and what it means for Indian exporters.',
               },
               {
                 Icon: ChartLineSmooth,
-                k: 'Two depths',
-                v: 'Pick the read that fits the seat you sit in - the cards below set out what each delivers.',
+                k: 'Energy & resources',
+                v: 'Generation, distribution, storage and the rising load from data centres against tightening water and land budgets.',
               },
             ].map(({ Icon, k, v }) => (
               <div key={k} className="flex flex-col gap-3">
@@ -489,10 +494,10 @@ const PremiumAccessLounge: React.FC = () => {
 
               <ul className="space-y-2.5 md:space-y-3 mb-8 flex-1">
                 {[
-                  'A weekly read on the carbon market - news, with the regulation that actually moves it',
-                  'The desk view - what the price is signalling, in plain language',
-                  'Field notes from live engagements, anonymised but unvarnished',
-                  'Quarterly State of Carbon Markets tracker - India in global context',
+                  'A weekly read on the CCTS auction, allowance prices and the regulation actually moving them',
+                  'The desk view on EU-ETS, CORSIA and Article 6 - what is signalling, in plain language',
+                  'Field notes from live engagements - generation, distribution, and project-side ground truth',
+                  'Quarterly State of Carbon Markets tracker - India in global context, with the trade overlay',
                 ].map((line) => (
                   <li key={line} className="grid grid-cols-[auto_1fr] gap-3 text-sm text-foreground leading-snug">
                     <span className="text-muted-foreground/70 pt-0.5">·</span>
@@ -561,8 +566,9 @@ const PremiumAccessLounge: React.FC = () => {
               <ul className="space-y-2.5 md:space-y-3 mb-8 flex-1">
                 {[
                   'Every flagship report on the day it is filed - no embargo, no waiting room',
-                  'Sector deep-dives across the verticals you allocate to, with the underlying working',
-                  'Regulatory alerts before the news cycle catches up - CCTS, BRSR, NDC 3.0',
+                  'Sector deep-dives across compliance markets, energy transition assets and resource-stress geographies',
+                  'Regulatory alerts before the news cycle - CCTS, CBAM step-downs, EU-ETS, Article 6.2 bilaterals, BRSR, NDC 3.0',
+                  'Trade and policy reads on FTA carbon clauses and the geopolitics moving allowance prices',
                   'A monthly 30-minute call with Theresa, scheduled on your terms',
                 ].map((line) => (
                   <li key={line} className="grid grid-cols-[auto_1fr] gap-3 text-sm leading-snug">
@@ -672,10 +678,11 @@ const PremiumAccessLounge: React.FC = () => {
               Commission the work. Put your name on the report.
             </h2>
             <p className="font-serif text-lg md:text-xl text-foreground/85 leading-relaxed max-w-[680px]">
-              Commission a study or deep-dive bespoke to your requirements.
-              Team BB does the work end to end - research, fieldwork, writing.
-              Your business name is attached to the published report as the
-              sponsor.
+              For desks running diligence on Article 6 pipelines, CBAM-exposed
+              portfolios, energy transition assets or the resource footprint of
+              the next data centre - Team BB does the work end to end:
+              methodology audit, fieldwork, ground-truthing, writing. Your
+              business name is attached to the published report as the sponsor.
             </p>
           </div>
 
@@ -781,121 +788,6 @@ const PremiumAccessLounge: React.FC = () => {
         </div>
       </section>
 
-      {/* ── 5. SPONSOR A STUDY ───────────────────────────────────────── */}
-      {/*
-        Project-level due diligence for companies and investors:
-        MRV / dMRV, on-ground scoping, ground-truthing, report writing.
-        Distinct from the year-long research underwriting above. Output is
-        usable internally and as external communications material. Case-
-        by-case, starting at INR 6 lakh + GST.
-      */}
-      <section
-        id="sponsor-a-study"
-        className="px-6 md:px-8 py-20 border-t border-border/50 scroll-mt-32"
-      >
-        <div className="container mx-auto max-w-[900px]">
-          <SectionLabel label="04 — Sponsor a study" />
-          <div className="mt-6 mb-10">
-            <h2 className="text-section font-serif tracking-tight mb-5">
-              Due diligence on a project, written up to publish.
-            </h2>
-            <p className="font-serif text-lg md:text-xl text-foreground/85 leading-relaxed max-w-[680px]">
-              For companies and investors who need a project-level read - MRV
-              and dMRV review, initial boots-on-ground scoping, ground-truthing,
-              and a written report. Usable internally for an investment
-              committee, and externally as communications material.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-5 mb-10">
-            <div className="bg-background border border-border rounded-xl p-6">
-              <span className="text-[10px] font-bold tracking-widest uppercase text-muted-foreground">
-                What we do
-              </span>
-              <h3 className="font-serif text-lg text-foreground mt-3 mb-4 pb-3 border-b border-border/60">
-                The fieldwork
-              </h3>
-              <ul className="space-y-3">
-                {[
-                  'MRV / dMRV review of the project methodology and data',
-                  'Initial scoping with boots on the ground at the project site',
-                  'Ground-truthing the developer&rsquo;s claims against what the site shows',
-                  'A written report you can hand to an IC or publish under your name',
-                ].map((line) => (
-                  <li
-                    key={line}
-                    className="grid grid-cols-[auto_1fr] gap-3 text-sm text-foreground"
-                  >
-                    <span className="text-muted-foreground/70 pt-0.5">·</span>
-                    <span dangerouslySetInnerHTML={{ __html: line }} />
-                  </li>
-                ))}
-              </ul>
-            </div>
-            <div className="bg-background border border-border rounded-xl p-6">
-              <span className="text-[10px] font-bold tracking-widest uppercase text-muted-foreground">
-                Who it is for
-              </span>
-              <h3 className="font-serif text-lg text-foreground mt-3 mb-4 pb-3 border-b border-border/60">
-                Companies and investors
-              </h3>
-              <ul className="space-y-3">
-                {[
-                  'Buyers running diligence on a project before purchase or offtake',
-                  'Investors and funds underwriting a developer or a portfolio',
-                  'Corporates needing a credible third-party read for the annual report',
-                  'Communications teams who need findings written for an external audience',
-                ].map((line) => (
-                  <li
-                    key={line}
-                    className="grid grid-cols-[auto_1fr] gap-3 text-sm text-foreground"
-                  >
-                    <span className="text-muted-foreground/70 pt-0.5">·</span>
-                    <span>{line}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </div>
-
-          {/* CTA - case-by-case, with starting price disclosed */}
-          <div className="bg-secondary/30 border border-border rounded-xl p-8">
-            <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
-              <div className="max-w-[520px]">
-                <div className="font-serif text-2xl text-foreground mb-1">
-                  From INR 6,00,000<span className="text-base text-muted-foreground font-sans"> + GST</span>
-                </div>
-                <p className="text-sm text-muted-foreground leading-relaxed">
-                  Each study is scoped case by case - the project, the depth of
-                  fieldwork, and what the report needs to do. Tell us what you
-                  are looking at and we will come back with a scope and a
-                  number.
-                </p>
-              </div>
-              <div className="flex flex-col gap-2 md:items-end">
-                <Button asChild>
-                  <Link
-                    to="/contact?topic=sponsor-a-study"
-                    className="inline-flex items-center gap-2"
-                    onClick={() =>
-                      trackSponsorEvent('sponsor_cta_click', {
-                        location: 'sponsor_a_study',
-                        link_url: '/contact?topic=sponsor-a-study',
-                        link_text: 'Inquire about a study',
-                      })
-                    }
-                  >
-                    Inquire about a study <ArrowRight className="w-4 h-4" />
-                  </Link>
-                </Button>
-                <span className="text-xs text-muted-foreground">
-                  Reply within two business days.
-                </span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
 
       <SponsorInquiryDialog
         open={inquiryOpen}
