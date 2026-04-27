@@ -1442,17 +1442,91 @@ details.collapsible-section:not([open]) .collapsible-toggle::after { content: " 
 <div class="toc-sticky" id="tocSticky">
   <div class="toc-inner">
     <span class="toc-label">Jump to</span>
-    <a class="toc-link" href="#exec-summary">Summary</a>
-    <a class="toc-link" href="#tldr-playbook">Eight moves</a>
-    <a class="toc-link" href="#part-i">I. Endowment</a>
-    <a class="toc-link" href="#part-ii">II. Representation</a>
-    <a class="toc-link" href="#part-iii">III. Evidence</a>
-    <a class="toc-link" href="#part-iv">IV. Investor map</a>
-    <a class="toc-link" href="#part-v">V. Energy paradox</a>
-    <a class="toc-link" href="#part-vi">VI. UNFCCC frame</a>
-    <a class="toc-link" href="#part-vii">VII. Adventure</a>
-    <a class="toc-link" href="#part-viii">VIII. Downstream</a>
-    <a class="toc-link" href="#part-ix">IX. Playbook</a>
+    <a class="toc-link" href="#exec-summary" data-id="exec-summary">Summary</a>
+    <a class="toc-link" href="#tldr-playbook" data-id="tldr-playbook">Eight moves</a>
+    <a class="toc-link" href="#part-i" data-id="part-i">I. Endowment</a>
+    <a class="toc-link" href="#part-ii" data-id="part-ii">II. Representation</a>
+    <a class="toc-link" href="#part-iii" data-id="part-iii">III. Evidence</a>
+    <a class="toc-link" href="#part-iv" data-id="part-iv">IV. Investor map</a>
+    <a class="toc-link" href="#part-v" data-id="part-v">V. Energy paradox</a>
+    <a class="toc-link" href="#part-vi" data-id="part-vi">VI. UNFCCC frame</a>
+    <a class="toc-link" href="#part-vii" data-id="part-vii">VII. Adventure</a>
+    <a class="toc-link" href="#part-viii" data-id="part-viii">VIII. Downstream</a>
+    <a class="toc-link" href="#part-ix" data-id="part-ix">IX. Playbook</a>
+  </div>
+
+  <!-- Mobile dropdown (visible <= 768px) -->
+  <div class="toc-select-wrap">
+    <label for="tocSelect" class="toc-label">Jump to</label>
+    <select id="tocSelect" class="toc-select" aria-label="Jump to section">
+      <option value="exec-summary">Summary</option>
+      <option value="tldr-playbook">Eight moves</option>
+      <option value="part-i">I. Endowment</option>
+      <option value="part-ii">II. Representation</option>
+      <option value="part-iii">III. Evidence</option>
+      <option value="part-iii-thermal">&nbsp;&nbsp;&rsaquo; Thermal range</option>
+      <option value="part-iii-rainfall">&nbsp;&nbsp;&rsaquo; Rainfall signal</option>
+      <option value="part-iii-2023">&nbsp;&nbsp;&rsaquo; 2023 break point</option>
+      <option value="part-iii-water">&nbsp;&nbsp;&rsaquo; Water column</option>
+      <option value="part-iv">IV. Investor map</option>
+      <option value="part-iv-table">&nbsp;&nbsp;&rsaquo; Sector table</option>
+      <option value="part-iv-deepdive">&nbsp;&nbsp;&rsaquo; Deep-dive research</option>
+      <option value="part-iv-field">&nbsp;&nbsp;&rsaquo; Field record</option>
+      <option value="part-v">V. Energy paradox</option>
+      <option value="part-vi">VI. UNFCCC frame</option>
+      <option value="part-vi-market">&nbsp;&nbsp;&rsaquo; Market opportunity</option>
+      <option value="part-vii">VII. Adventure</option>
+      <option value="part-viii">VIII. Downstream</option>
+      <option value="part-ix">IX. Playbook</option>
+      <option value="playbook-1">&nbsp;&nbsp;&rsaquo; 01 Hill real estate</option>
+      <option value="playbook-2">&nbsp;&nbsp;&rsaquo; 02 Hydro offtake</option>
+      <option value="playbook-3">&nbsp;&nbsp;&rsaquo; 03 Apple altitude</option>
+      <option value="playbook-4">&nbsp;&nbsp;&rsaquo; 04 BBN logistics</option>
+      <option value="playbook-5">&nbsp;&nbsp;&rsaquo; 05 Aggregator gap</option>
+      <option value="playbook-6">&nbsp;&nbsp;&rsaquo; 06 Pumped storage</option>
+      <option value="playbook-7">&nbsp;&nbsp;&rsaquo; 07 Wetland credits</option>
+      <option value="playbook-8">&nbsp;&nbsp;&rsaquo; 08 Adventure capex</option>
+    </select>
+  </div>
+
+  <!-- Desktop sub-anchor rows: one per parent, only visible when parent active -->
+  <div class="toc-sub-rows-container">
+    <div class="toc-sub-row" data-parent="part-iii">
+      <div class="toc-sub-inner">
+        <span class="toc-sub-label">III &rsaquo;</span>
+        <a class="toc-sublink" href="#part-iii-thermal" data-id="part-iii-thermal">Thermal range</a>
+        <a class="toc-sublink" href="#part-iii-rainfall" data-id="part-iii-rainfall">Rainfall signal</a>
+        <a class="toc-sublink" href="#part-iii-2023" data-id="part-iii-2023">2023 break point</a>
+        <a class="toc-sublink" href="#part-iii-water" data-id="part-iii-water">Water column</a>
+      </div>
+    </div>
+    <div class="toc-sub-row" data-parent="part-iv">
+      <div class="toc-sub-inner">
+        <span class="toc-sub-label">IV &rsaquo;</span>
+        <a class="toc-sublink" href="#part-iv-table" data-id="part-iv-table">Sector table</a>
+        <a class="toc-sublink" href="#part-iv-deepdive" data-id="part-iv-deepdive">Deep-dive research</a>
+        <a class="toc-sublink" href="#part-iv-field" data-id="part-iv-field">Field record</a>
+      </div>
+    </div>
+    <div class="toc-sub-row" data-parent="part-vi">
+      <div class="toc-sub-inner">
+        <span class="toc-sub-label">VI &rsaquo;</span>
+        <a class="toc-sublink" href="#part-vi-market" data-id="part-vi-market">Market opportunity</a>
+      </div>
+    </div>
+    <div class="toc-sub-row" data-parent="part-ix">
+      <div class="toc-sub-inner">
+        <span class="toc-sub-label">IX &rsaquo;</span>
+        <a class="toc-sublink" href="#playbook-1" data-id="playbook-1">01 Real estate</a>
+        <a class="toc-sublink" href="#playbook-2" data-id="playbook-2">02 Hydro</a>
+        <a class="toc-sublink" href="#playbook-3" data-id="playbook-3">03 Apple</a>
+        <a class="toc-sublink" href="#playbook-4" data-id="playbook-4">04 BBN logistics</a>
+        <a class="toc-sublink" href="#playbook-5" data-id="playbook-5">05 Aggregator</a>
+        <a class="toc-sublink" href="#playbook-6" data-id="playbook-6">06 Pumped storage</a>
+        <a class="toc-sublink" href="#playbook-7" data-id="playbook-7">07 Wetlands</a>
+        <a class="toc-sublink" href="#playbook-8" data-id="playbook-8">08 Adventure</a>
+      </div>
+    </div>
   </div>
 </div>
 
