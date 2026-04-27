@@ -27,12 +27,32 @@ import { useToast } from '@/hooks/use-toast';
 import { trackSponsorEvent } from '@/utils/sponsorAnalytics';
 
 const inquirySchema = z.object({
-  name: z.string().trim().min(2, { message: 'Name must be at least 2 characters' }).max(100),
-  email: z.string().trim().email({ message: 'Please enter a valid email' }).max(255),
-  organisation: z.string().trim().max(150).optional(),
-  role: z.string().trim().max(100).optional(),
+  name: z
+    .string()
+    .trim()
+    .min(2, { message: 'Name must be at least 2 characters' })
+    .max(100, { message: 'Name must be 100 characters or fewer' }),
+  email: z
+    .string()
+    .trim()
+    .email({ message: 'Please enter a valid email' })
+    .max(255, { message: 'Email must be 255 characters or fewer' }),
+  organisation: z
+    .string()
+    .trim()
+    .max(150, { message: 'Organisation must be 150 characters or fewer' })
+    .optional(),
+  role: z
+    .string()
+    .trim()
+    .max(100, { message: 'Role must be 100 characters or fewer' })
+    .optional(),
   project: z.string().trim().min(1).max(300),
-  message: z.string().trim().max(1500).optional(),
+  message: z
+    .string()
+    .trim()
+    .max(1500, { message: 'Please keep your message under 1500 characters' })
+    .optional(),
   consent: z.boolean().refine((v) => v === true, {
     message: 'Please confirm to continue.',
   }),
@@ -68,6 +88,8 @@ const SponsorInquiryDialog = ({ open, onOpenChange, project }: SponsorInquiryDia
 
   const form = useForm<InquiryValues>({
     resolver: zodResolver(inquirySchema),
+    mode: 'onBlur',
+    reValidateMode: 'onChange',
     defaultValues: {
       name: '',
       email: '',
