@@ -1107,6 +1107,229 @@ img { max-width: 100%; display: block; }
   .section-title { font-size: 30px; letter-spacing: -1px; }
   .metric-band-title { font-size: 22px; }
 }
+
+/* ============== READING STRIP ============== */
+.read-strip {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 14px 32px;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 18px;
+  align-items: center;
+  font-family: ui-monospace, 'SF Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--gray);
+}
+.read-strip a {
+  color: var(--copper);
+  text-decoration: none;
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 2px;
+}
+.read-strip a:hover { color: var(--near-black); border-bottom-color: var(--copper); }
+.read-strip-sep { color: var(--border); }
+
+/* ============== STICKY TOC ============== */
+.toc-sticky {
+  position: sticky;
+  top: 76px;
+  z-index: 50;
+  background: rgba(251, 251, 249, 0.92);
+  backdrop-filter: saturate(180%) blur(10px);
+  border-bottom: 1px solid var(--border);
+}
+.toc-inner {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 10px 32px;
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+.toc-inner::-webkit-scrollbar { display: none; }
+.toc-label {
+  font-family: ui-monospace, monospace;
+  font-size: 10px;
+  letter-spacing: 2px;
+  color: var(--copper);
+  text-transform: uppercase;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+.toc-link {
+  font-family: 'Inter', sans-serif;
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--gray);
+  text-decoration: none;
+  white-space: nowrap;
+  padding: 4px 0;
+  border-bottom: 1px solid transparent;
+  transition: color 0.15s ease, border-color 0.15s ease;
+  flex-shrink: 0;
+}
+.toc-link:hover { color: var(--near-black); }
+.toc-link.is-active { color: var(--near-black); border-bottom-color: var(--copper); }
+
+/* ============== TLDR PLAYBOOK CARD ============== */
+.tldr-card {
+  max-width: 820px;
+  margin: 0 auto 0;
+  padding: 32px;
+  background: var(--tint-warm);
+  border-left: 3px solid var(--copper);
+  border-radius: 0 4px 4px 0;
+  margin-bottom: 60px;
+}
+.tldr-kicker {
+  font-family: ui-monospace, monospace;
+  font-size: 10px;
+  letter-spacing: 2px;
+  color: var(--copper);
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+.tldr-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 24px;
+  font-weight: 500;
+  letter-spacing: -0.5px;
+  margin-bottom: 18px;
+  color: var(--near-black);
+}
+.tldr-list {
+  list-style: none;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px 28px;
+  margin-bottom: 18px;
+}
+.tldr-list li {
+  font-size: 13.5px;
+  line-height: 1.45;
+  color: var(--near-black);
+  padding-left: 26px;
+  position: relative;
+}
+.tldr-list li::before {
+  content: attr(data-num);
+  position: absolute;
+  left: 0;
+  top: 0;
+  font-family: ui-monospace, monospace;
+  font-size: 11px;
+  color: var(--copper);
+  font-weight: 600;
+}
+.tldr-jump {
+  font-family: ui-monospace, monospace;
+  font-size: 11px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--copper);
+  text-decoration: none;
+  border-bottom: 1px solid var(--copper);
+  padding-bottom: 2px;
+}
+.tldr-jump:hover { color: var(--near-black); border-bottom-color: var(--near-black); }
+
+/* ============== H3 UTILITIES ============== */
+.section-h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 26px;
+  font-weight: 500;
+  letter-spacing: -0.5px;
+  margin-top: 60px;
+  margin-bottom: 10px;
+  color: var(--near-black);
+}
+.section-h3-sm {
+  font-family: 'Playfair Display', serif;
+  font-size: 22px;
+  font-weight: 500;
+  letter-spacing: -0.5px;
+  margin-top: 40px;
+  margin-bottom: 14px;
+  color: var(--near-black);
+}
+.section-prose {
+  font-size: 15.5px;
+  line-height: 1.7;
+  color: var(--near-black);
+  max-width: 780px;
+  margin-bottom: 14px;
+}
+
+/* ============== COLLAPSIBLE SECTIONS ============== */
+details.collapsible-section {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 0 32px;
+  border-top: 1px solid var(--border);
+}
+details.collapsible-section[open] { padding-bottom: 40px; }
+details.collapsible-section > summary {
+  list-style: none;
+  cursor: pointer;
+  padding: 36px 0 32px;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 24px;
+}
+details.collapsible-section > summary::-webkit-details-marker { display: none; }
+.collapsible-summary-inner { flex: 1; }
+.collapsible-summary-label {
+  font-family: 'Inter', sans-serif;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: var(--copper);
+  margin-bottom: 12px;
+}
+.collapsible-summary-title {
+  font-family: 'Playfair Display', serif;
+  font-weight: 400;
+  font-size: 32px;
+  line-height: 1.15;
+  letter-spacing: -0.8px;
+  color: var(--near-black);
+  margin-bottom: 8px;
+}
+.collapsible-summary-stand {
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  font-size: 16px;
+  color: var(--gray);
+  max-width: 780px;
+}
+.collapsible-toggle {
+  flex-shrink: 0;
+  margin-top: 8px;
+  font-family: ui-monospace, monospace;
+  font-size: 11px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--copper);
+  border: 1px solid var(--copper);
+  padding: 8px 14px;
+  border-radius: 4px;
+  white-space: nowrap;
+}
+details.collapsible-section[open] .collapsible-toggle::after { content: " −"; }
+details.collapsible-section:not([open]) .collapsible-toggle::after { content: " +"; }
+
+@media (max-width: 768px) {
+  .tldr-list { grid-template-columns: 1fr; }
+  .collapsible-summary-title { font-size: 24px; }
+}
 </style>
 </head>
 <body>
@@ -1123,6 +1346,35 @@ img { max-width: 100%; display: block; }
     <div class="nav-meta">Issue 04 &middot; April 2026 &middot; Investor Brief</div>
   </div>
 </nav>
+
+<!-- READING STRIP -->
+<div class="read-strip">
+  <span>27 min read</span>
+  <span class="read-strip-sep">/</span>
+  <span>Issue 04 &middot; April 2026</span>
+  <span class="read-strip-sep">/</span>
+  <a href="javascript:window.print()">Print or save as PDF</a>
+  <span class="read-strip-sep">/</span>
+  <a href="mailto:?subject=An%20investor%27s%20view%20of%20Himachal%20Pradesh&amp;body=https%3A%2F%2Fbombaybreed.com%2Fspecial-features%2Ftcd-hp-investor-synthesis.html">Share by email</a>
+</div>
+
+<!-- STICKY TOC -->
+<div class="toc-sticky" id="tocSticky">
+  <div class="toc-inner">
+    <span class="toc-label">Jump to</span>
+    <a class="toc-link" href="#exec-summary">Summary</a>
+    <a class="toc-link" href="#tldr-playbook">Eight moves</a>
+    <a class="toc-link" href="#part-i">I. Endowment</a>
+    <a class="toc-link" href="#part-ii">II. Representation</a>
+    <a class="toc-link" href="#part-iii">III. Evidence</a>
+    <a class="toc-link" href="#part-iv">IV. Investor map</a>
+    <a class="toc-link" href="#part-v">V. Energy paradox</a>
+    <a class="toc-link" href="#part-vi">VI. UNFCCC frame</a>
+    <a class="toc-link" href="#part-vii">VII. Adventure</a>
+    <a class="toc-link" href="#part-viii">VIII. Downstream</a>
+    <a class="toc-link" href="#part-ix">IX. Playbook</a>
+  </div>
+</div>
 
 <!-- ============================================================
      HERO (Pattern A, Author-anchored opener)
@@ -1161,7 +1413,7 @@ img { max-width: 100%; display: block; }
 <!-- ============================================================
      EXECUTIVE SUMMARY
      ============================================================ -->
-<section class="section section-narrow">
+<section class="section section-narrow" id="exec-summary">
   <div class="section-label">Executive Summary</div>
   <h2 class="section-title">The investment thesis, in five lines</h2>
 
@@ -1177,7 +1429,7 @@ img { max-width: 100%; display: block; }
       </div>
       <div class="exec-summary-row">
         <div class="exec-summary-num">03</div>
-        <div class="exec-summary-text"><strong>Mitigation and adaptation now collapse into one capital structure.</strong> A hectare of restored mid-altitude forest sequesters 2 to 5 tonnes CO2e per year (mitigation) while reducing slope failure risk on the highway corridor below, holding soil moisture for the <a href="/special-features/tcd-hp-produce-map.html" target="_blank" rel="noopener" style="color:var(--slate-blue); text-decoration:underline; text-decoration-color:var(--copper); text-underline-offset:3px;">apple orchard adjacent</a>, and slowing runoff into the GLOF-vulnerable basin downstream (adaptation). Verra, Gold Standard and India's Carbon Credit Trading Scheme already provide the methodology rails. The aggregator infrastructure for the Western Himalaya does not yet exist.</div>
+        <div class="exec-summary-text"><strong>One capital structure now serves two goals.</strong> A single restoration project sequesters carbon (the mitigation case for global capital) while protecting the highway, the orchard and the basin immediately downstream (the adaptation case for HP itself). Methodology rails exist under Verra, Gold Standard and India's CCTS. The aggregator infrastructure for the Western Himalaya does not.</div>
       </div>
       <div class="exec-summary-row">
         <div class="exec-summary-num">04</div>
@@ -1192,9 +1444,30 @@ img { max-width: 100%; display: block; }
 </section>
 
 <!-- ============================================================
+     TLDR PLAYBOOK CARD (skim layer)
+     ============================================================ -->
+<section class="section section-narrow" id="tldr-playbook" style="padding-top:0;">
+  <div class="tldr-card">
+    <div class="tldr-kicker">Eight moves &middot; the skim layer</div>
+    <div class="tldr-title">If you read nothing else, read this</div>
+    <ul class="tldr-list">
+      <li data-num="01">Reprice physical risk on hill real estate.</li>
+      <li data-num="02">Stress-test hydro offtake with a 15-20% firm-capacity haircut.</li>
+      <li data-num="03">Reassess apple portfolios against altitude bands.</li>
+      <li data-num="04">Price logistics-disruption risk into BBN pharma contracts.</li>
+      <li data-num="05">Anchor the aggregator gap in carbon project structuring.</li>
+      <li data-num="06">Pumped storage co-investment via HPPCL JV structures.</li>
+      <li data-num="07">Wetland restoration as the premium credit asset class.</li>
+      <li data-num="08">Year-round adventure infrastructure as community capex.</li>
+    </ul>
+    <a class="tldr-jump" href="#part-ix">See full playbook with sourcing &darr;</a>
+  </div>
+</section>
+
+<!-- ============================================================
      PART I, THE ENDOWMENT
      ============================================================ -->
-<section class="section">
+<section class="section" id="part-i">
   <div class="section-label">Part I &middot; The Endowment</div>
   <h2 class="section-title">What Himachal holds, in one ledger</h2>
   <p class="section-stand">A state that occupies 1.69 percent of India's land area, holds 0.53 percent of its population, and underwrites a disproportionate share of its water, power and ecological security. Read the asymmetry first. Everything else follows.</p>
@@ -1254,7 +1527,7 @@ img { max-width: 100%; display: block; }
 <!-- ============================================================
      PART II, THE REPRESENTATION GAP
      ============================================================ -->
-<section class="section section-tight" style="background:var(--tint);">
+<section class="section section-tight" id="part-ii" style="background:var(--tint);">
   <div style="max-width:1180px; margin:0 auto;">
     <div class="section-label">Part II &middot; The Representation Gap</div>
     <h2 class="section-title">Why the state cannot lobby its way out</h2>
@@ -1296,7 +1569,7 @@ img { max-width: 100%; display: block; }
 <!-- ============================================================
      PART III, THE EVIDENCE
      ============================================================ -->
-<section class="section">
+<section class="section" id="part-iii">
   <div class="section-label">Part III &middot; The Evidence</div>
   <h2 class="section-title">What is changing, and at what speed</h2>
   <p class="section-stand">Six measured indicators. None are model projections. All are observed data from primary sources between 2021 and 2025.</p>
@@ -1373,7 +1646,7 @@ img { max-width: 100%; display: block; }
 <!-- ============================================================
      PART IV, THE INVESTOR MAP
      ============================================================ -->
-<section class="section">
+<section class="section" id="part-iv">
   <div class="section-label">Part IV &middot; The Investor Map</div>
   <h2 class="section-title">Sector exposure, by physical risk</h2>
   <p class="section-stand">Nine HP sectors mapped against their direct exposure to climate variability and their potential as restoration-investable themes. Read both columns together.</p>
@@ -1481,12 +1754,12 @@ img { max-width: 100%; display: block; }
       </a>
     </div>
 
-    <!-- VIDEO BLOCK -->
+    <!-- FIELD RECORD GALLERY (merged: orchard + Keylong snowfall) -->
     <div class="video-section">
       <div class="video-section-head">
-        <div class="section-label" style="margin-bottom:8px;">Field video, April 2026 recce</div>
-        <h3 class="video-section-title">Ground-truth visual record</h3>
-        <p class="video-section-body">Video footage from the April 2026 recce across Kullu, Mandi, Lahaul-Spiti and the upper basins. Three short clips: an aerial pass over the Kullu valley orchard belt, an apple orchard mid-bloom under hail-net, and a snow-laden Lahaul valley below a stalled monsoon-season front.</p>
+        <div class="section-label" style="margin-bottom:8px;">Field record &middot; April 2026 recce</div>
+        <h3 class="video-section-title">Six clips from the same April week</h3>
+        <p class="video-section-body">All six clips below were filmed during the same April 2026 window when Una recorded 30.6&deg;C, Tabo dropped to 0.2&deg;C, and Keylong took 20 cm of fresh snow at 3,000 m AMSL. The 30&deg;C single-day thermal range across HP stations, in moving image. Aerials from Kullu, an apple orchard mid-bloom under hail-net, the cold-desert Lahaul valley, and the Keylong snowfall on the Manali-Leh corridor. The visual evidence base for everything argued above.</p>
       </div>
 
       <div class="video-grid">
@@ -1495,54 +1768,42 @@ img { max-width: 100%; display: block; }
             <source src="/special-features/hp-assets/hp-vid-aerial-valley.mp4" type="video/mp4">
             Your browser does not support inline video. Please download the file to view.
           </video>
-          <figcaption class="video-cap">Video 01 &middot; Aerial pass, Kullu valley orchard belt and Beas river meander. The terraced apple economy in one frame. / Author footage, April 2026</figcaption>
+          <figcaption class="video-cap">01 &middot; Aerial pass, Kullu valley orchard belt and Beas river meander. The terraced apple economy in one frame.</figcaption>
         </figure>
         <figure class="video-card">
           <video controls preload="metadata" poster="/special-features/hp-assets/hp-vid-orchard.jpg" style="width:100%; aspect-ratio:16/9; background:var(--near-black); border-radius:4px; object-fit:cover;">
             <source src="/special-features/hp-assets/hp-vid-orchard.mp4" type="video/mp4">
             Your browser does not support inline video. Please download the file to view.
           </video>
-          <figcaption class="video-cap">Video 02 &middot; Apple orchard mid-bloom, hail-net deployed overhead. Sparse blossom set on bare wood, the field signature of a warming chill window. / Author footage, April 2026</figcaption>
+          <figcaption class="video-cap">02 &middot; Apple orchard mid-bloom, hail-net deployed overhead. Sparse blossom set on bare wood, the field signature of a warming chill window.</figcaption>
         </figure>
         <figure class="video-card">
           <video controls preload="metadata" poster="/special-features/hp-assets/hp-vid-snow-valley.jpg" style="width:100%; aspect-ratio:9/16; background:var(--near-black); border-radius:4px; object-fit:cover; max-height:560px;">
             <source src="/special-features/hp-assets/hp-vid-snow-valley.mp4" type="video/mp4">
             Your browser does not support inline video. Please download the file to view.
           </video>
-          <figcaption class="video-cap">Video 03 &middot; Lahaul valley under late-season snow and a low ceiling. The cold desert that stores the water the plains drink. / Author footage, April 2026</figcaption>
+          <figcaption class="video-cap">03 &middot; Lahaul valley under late-season snow and a low ceiling. The cold desert that stores the water the plains drink.</figcaption>
         </figure>
-      </div>
-    </div>
-
-    <!-- VIDEO BLOCK - KEYLONG SNOWFALL -->
-    <div class="video-section" style="margin-top:32px;">
-      <div class="video-section-head">
-        <div class="section-label" style="margin-bottom:8px;">Field video, April 2026 &middot; Keylong, 3,000 m AMSL</div>
-        <h3 class="video-section-title">Fresh snowfall at Keylong, 3,000 m above mean sea level</h3>
-        <p class="video-section-body">On the same April 2026 window when Una recorded 30.6&deg;C and Tabo dropped to 0.2&deg;C, Keylong received fresh snowfall at 3,000 m AMSL. Three short clips document the event on the ground - the 30&deg;C single-day thermal range across HP stations, in moving image.</p>
-      </div>
-
-      <div class="video-grid">
         <figure class="video-card">
           <video controls preload="metadata" poster="/special-features/hp-assets/hp-vid-keylong-snowfall-1.jpg" style="width:100%; aspect-ratio:16/9; background:var(--near-black); border-radius:4px; object-fit:cover;">
             <source src="/special-features/hp-assets/hp-vid-keylong-snowfall-1.mp4" type="video/mp4">
             Your browser does not support inline video. Please download the file to view.
           </video>
-          <figcaption class="video-cap">Video 04 &middot; Fresh snowfall at Keylong, 3,000 m AMSL. Lahaul valley, recorded April 2026 during the 30&deg;C single-day thermal range across HP stations. / Author footage, April 2026</figcaption>
+          <figcaption class="video-cap">04 &middot; Fresh snowfall at Keylong, 3,000 m AMSL. Lahaul valley, the same April window when Una hit 30.6&deg;C.</figcaption>
         </figure>
         <figure class="video-card">
           <video controls preload="metadata" poster="/special-features/hp-assets/hp-vid-keylong-snowfall-2.jpg" style="width:100%; aspect-ratio:16/9; background:var(--near-black); border-radius:4px; object-fit:cover;">
             <source src="/special-features/hp-assets/hp-vid-keylong-snowfall-2.mp4" type="video/mp4">
             Your browser does not support inline video. Please download the file to view.
           </video>
-          <figcaption class="video-cap">Video 05 &middot; Fresh snowfall at Keylong, 3,000 m AMSL. Settlement under accumulating snow on the Manali-Leh corridor. / Author footage, April 2026</figcaption>
+          <figcaption class="video-cap">05 &middot; Keylong settlement under accumulating snow on the Manali-Leh corridor.</figcaption>
         </figure>
         <figure class="video-card">
           <video controls preload="metadata" poster="/special-features/hp-assets/hp-vid-keylong-snowfall-3.jpg" style="width:100%; aspect-ratio:16/9; background:var(--near-black); border-radius:4px; object-fit:cover;">
             <source src="/special-features/hp-assets/hp-vid-keylong-snowfall-3.mp4" type="video/mp4">
             Your browser does not support inline video. Please download the file to view.
           </video>
-          <figcaption class="video-cap">Video 06 &middot; Fresh snowfall at Keylong, 3,000 m AMSL. Snowpack-water-storage cycle that the plains downstream depend on. / Author footage, April 2026</figcaption>
+          <figcaption class="video-cap">06 &middot; Keylong snowpack &mdash; the water-storage cycle that the plains downstream depend on. / All clips: author footage, April 2026.</figcaption>
         </figure>
       </div>
     </div>
@@ -1552,10 +1813,16 @@ img { max-width: 100%; display: block; }
 <!-- ============================================================
      PART V, THE ENERGY PARADOX
      ============================================================ -->
-<section class="section" style="background:var(--surface); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);">
-  <div class="section-label">Part V &middot; The Energy Paradox</div>
-  <h2 class="section-title">India's hydropower capital, importing power</h2>
-  <p class="section-stand">A state that produces a quarter of India's hydropower potential draws electricity from the national grid at peak. A state with India's cleanest power-mix has fewer than 5,000 EVs registered. The paradox is the opportunity.</p>
+<details class="collapsible-section" id="part-v" style="background:var(--surface);">
+  <summary>
+    <div class="collapsible-summary-inner">
+      <div class="collapsible-summary-label">Part V &middot; The Energy Paradox</div>
+      <div class="collapsible-summary-title">India's hydropower capital, importing power</div>
+      <div class="collapsible-summary-stand">A state that produces a quarter of India's hydropower potential draws electricity from the national grid at peak. A state with India's cleanest power-mix has fewer than 5,000 EVs registered.</div>
+    </div>
+    <span class="collapsible-toggle">Read</span>
+  </summary>
+  <div style="max-width:1180px; margin:0 auto; padding-top:8px;">
 
   <div class="photo-full">
     <img src="/special-features/hp-assets/hp-img-3.jpeg" alt="Sutlej river with hydropower infrastructure visible in the valley floor" />
@@ -1608,17 +1875,18 @@ img { max-width: 100%; display: block; }
       </div>
     </div>
   </div>
-</section>
+  </div>
+</details>
 
 <!-- ============================================================
      PART VI, THE UNFCCC FRAME (Mitigation + Adaptation)
      ============================================================ -->
-<section class="section">
+<section class="section" id="part-vi">
   <div class="section-label">Part VI &middot; The UNFCCC Frame</div>
   <h2 class="section-title">Mitigation and adaptation, in the same instrument</h2>
   <p class="section-stand">Four restoration pathways. Each has an internationally recognised methodology under Verra, Gold Standard or India's CCTS. Each generates carbon revenue while protecting a physical asset already in HP's economic base.</p>
 
-  <p style="font-size:16px; line-height:1.7; max-width:780px; margin-bottom:32px;">The case for routing capital this way is the dual yield. A hectare of restored mid-altitude forest sequesters 2-5 tonnes CO2e per year (mitigation). The same hectare reduces slope failure risk on the highway corridor below, holds soil moisture for the apple orchard adjacent, and slows runoff into the GLOF-vulnerable basin downstream (adaptation). The accounting frameworks already exist. The capital aggregation does not.</p>
+  <p style="font-size:16px; line-height:1.7; max-width:780px; margin-bottom:32px;">This is the section where the report's central thesis lives. A hectare of restored mid-altitude forest sequesters 2-5 tonnes CO2e per year (mitigation). The same hectare reduces slope failure on the highway corridor below, holds soil moisture for the orchard adjacent, and slows runoff into the GLOF-vulnerable basin downstream (adaptation). Mitigation and adaptation in the same instrument. The accounting frameworks already exist. The capital aggregation does not.</p>
 
   <div class="pathway-grid">
     <div class="pathway-card">
@@ -1702,12 +1970,16 @@ img { max-width: 100%; display: block; }
 <!-- ============================================================
      PART VII, THE ADVENTURE ECONOMY
      ============================================================ -->
-<section class="section" style="background:var(--tint);">
-  <div style="max-width:1180px; margin:0 auto;">
-    <div class="section-label">Part VII &middot; The Adventure Economy</div>
-    <h2 class="section-title">A second tourism economy, latent and stranded</h2>
-    <p class="section-stand">Adventure tourism (trekking, climbing, mountain biking, paragliding, white-water) accounts for a small share of HP's tourism mix, despite the topography. The opportunity is to grow it deliberately, decoupled from snow seasonality.</p>
-
+<details class="collapsible-section" id="part-vii" style="background:var(--tint);">
+  <summary>
+    <div class="collapsible-summary-inner">
+      <div class="collapsible-summary-label">Part VII &middot; The Adventure Economy</div>
+      <div class="collapsible-summary-title">A second tourism economy, latent and stranded</div>
+      <div class="collapsible-summary-stand">Adventure tourism accounts for a small share of HP's tourism mix despite the topography. The opportunity is to grow it deliberately, decoupled from snow seasonality.</div>
+    </div>
+    <span class="collapsible-toggle">Read</span>
+  </summary>
+  <div style="max-width:1180px; margin:0 auto; padding-top:8px;">
     <div class="photo-full" style="margin-top:0; margin-bottom:30px;">
       <img src="/special-features/hp-assets/hp-img-6.jpeg" alt="Manali valley vista with snow-capped peaks" />
       <div class="photo-full-cap">Manali viewpoint. The state's adventure infrastructure is overwhelmingly anchored in 3-4 hub towns. The trail network behind them is largely informal. / Author photography, April 2026</div>
@@ -1717,12 +1989,12 @@ img { max-width: 100%; display: block; }
     <p style="font-size:16px; line-height:1.7; max-width:760px; margin-bottom:18px;">Six climate-driven mechanisms are reshaping the adventure economy. <strong>Trail erosion</strong> from intense monsoons has shortened trekking windows. <strong>Glacier retreat</strong> has altered classic climbing routes. <strong>Lower snowpack</strong> has compressed ski seasons. <strong>Slope instability</strong> closes high passes earlier. <strong>Wildlife shifts</strong> are changing what guides can promise. <strong>Insurance availability</strong> is contracting for adventure operators in the state.</p>
     <p style="font-size:16px; line-height:1.7; max-width:760px;">Restoration capital that builds trail infrastructure, replants riparian zones along trekking corridors, and underwrites professional rescue services creates a year-round adventure economy that is both adaptive (more resilient to single-season weather) and revenue-diversified for hill communities. This is parallel income to apple horticulture and snow tourism, not replacement.</p>
   </div>
-</section>
+</details>
 
 <!-- ============================================================
      PART VIII, DOWNSTREAM STAKES
      ============================================================ -->
-<section class="section">
+<section class="section" id="part-viii">
   <div class="section-label">Part VIII &middot; Downstream Stakes</div>
   <h2 class="section-title">If Himachal degrades, who pays</h2>
   <p class="section-stand">A state that holds 0.53% of India's population sits upstream of five river systems that feed roughly half of India's irrigated grain production, plus Pakistan's Indus-basin agriculture. The cost of inaction does not stay in the hills.</p>
@@ -1804,7 +2076,7 @@ img { max-width: 100%; display: block; }
 <!-- ============================================================
      PART IX, THE PLAYBOOK (sharpened, bullets only)
      ============================================================ -->
-<section class="section">
+<section class="section" id="part-ix">
   <div class="section-label">Part IX &middot; The Playbook</div>
   <h2 class="section-title">Eight moves, sequenced</h2>
   <p class="section-stand">Four asset-protection moves for portfolios with existing HP exposure. Four restoration-investment moves for capital entering the geography.</p>
@@ -1889,7 +2161,7 @@ img { max-width: 100%; display: block; }
     <h2 class="section-title">A restoration economy is the only one that prices everything</h2>
     <div class="closing-body">
       <p>Himachal Pradesh's climate exposure is not a regional story. It is the upstream infrastructure exposure of a country whose grain belt, hydropower base, NDC pathway and Indus Waters Treaty obligations all route through one mountain state.</p>
-      <p>The state cannot lobby its way to a fix. It does not have the parliamentary weight. It has to be capitalised into a fix, and the only capital structure that works is one that prices mitigation and adaptation in the same instrument. ARR, AFOLU, wetlands and SALM methodologies already exist. Verra, Gold Standard and India's Carbon Credit Trading Scheme already exist. The Renukaji and Thana Plaun pumped storage projects are already allotted to HPPCL. What is missing is the aggregator infrastructure that connects available capital to Himachal's specific geography at scale.</p>
+      <p>The state cannot lobby its way to a fix. It does not have the parliamentary weight. It has to be capitalised into a fix. The methodology rails (ARR, AFOLU, wetlands, SALM) are operational. The compliance demand (CCTS) is arriving in 2025-26. The pumped storage projects are already allotted to HPPCL. What is missing is the aggregator infrastructure that connects available capital to Himachal's specific geography at scale.</p>
       <p>This brief is addressed to the Green Climate Fund, the World Bank, the Asian Development Bank, the Asian Infrastructure Investment Bank, AFD, KfW, the Climate Investment Funds, and the sovereign and pension capital that benchmarks against UN PRI standards. The asset class is restoration capital with verified mitigation co-benefits. The pricing window is open through India's CCTS rollout in 2025-26. The political risk is a state government actively seeking partners. The downstream beneficiary class extends across India's grain belt and into Pakistan's Indus basin command, making this multilateral by definition, not by classification.</p>
       <p>The Centre will eventually release the Rs 9,000 crore PDNA assessment. The state government will eventually expand its EV infrastructure. The northern grid will eventually price firm-capacity haircuts on Himachal hydro. None of these on their own resolves the trajectory. Private and multilateral restoration capital, structured for dual yield, deployed at scale, can.</p>
       <p>This is infrastructure investment in the most leveraged geography India has. Not philanthropy. Not ESG box-ticking. Not concessional grant. Investment, with a measurable return profile across carbon credits, water security, and downstream productivity preservation. The geography will not wait for the conventional capital cycle to discover it.</p>
@@ -2085,6 +2357,44 @@ new Chart(cryoCtx, {
     }
   }
 });
+</script>
+
+<!-- TOC scrollspy + smooth scroll + auto-open details -->
+<script>
+(function() {
+  var links = document.querySelectorAll('.toc-link');
+  if (!links.length) return;
+  var map = {};
+  links.forEach(function(a) {
+    var id = a.getAttribute('href').slice(1);
+    map[id] = a;
+  });
+  var observer = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (entry.isIntersecting) {
+        links.forEach(function(l) { l.classList.remove('is-active'); });
+        if (map[entry.target.id]) map[entry.target.id].classList.add('is-active');
+      }
+    });
+  }, { rootMargin: '-140px 0px -70% 0px' });
+  Object.keys(map).forEach(function(id) {
+    var el = document.getElementById(id);
+    if (el) observer.observe(el);
+  });
+  links.forEach(function(a) {
+    a.addEventListener('click', function(e) {
+      var id = a.getAttribute('href').slice(1);
+      var el = document.getElementById(id);
+      if (!el) return;
+      e.preventDefault();
+      var det = el.closest('details');
+      if (det && !det.open) det.open = true;
+      var y = el.getBoundingClientRect().top + window.scrollY - 120;
+      window.scrollTo({ top: y, behavior: 'smooth' });
+      history.replaceState(null, '', '#' + id);
+    });
+  });
+})();
 </script>
 
 </body>
