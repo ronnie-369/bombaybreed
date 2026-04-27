@@ -451,7 +451,7 @@ const PremiumAccessLounge: React.FC = () => {
       </section>
 
       {/* ── WHAT THE INDUSTRY HAS TO SAY ─────────────────────────────── */}
-      <section id="industry" className="px-6 md:px-8 py-16 border-t border-border/50 scroll-mt-32">
+      <section id="industry" className="px-6 md:px-8 py-16 md:py-20 mt-4 bg-secondary/30 scroll-mt-32">
         <div className="container mx-auto max-w-[900px]">
           <SectionLabel label="01 — What the industry has to say" />
           <h2 className="text-section font-serif tracking-tight mt-6 mb-8 md:mb-10 [text-wrap:balance]">
@@ -461,7 +461,7 @@ const PremiumAccessLounge: React.FC = () => {
             {QUOTES.map((q, i) => (
               <figure
                 key={i}
-                className="bg-secondary/30 border border-border rounded-xl p-5 sm:p-6 flex flex-col"
+                className="bg-background border border-border rounded-xl p-5 sm:p-6 flex flex-col"
               >
                 <blockquote className="font-serif text-[15px] sm:text-base text-foreground leading-relaxed mb-5 sm:mb-6 flex-1 [text-wrap:pretty]">
                   &ldquo;{q.quote}&rdquo;
@@ -478,7 +478,7 @@ const PremiumAccessLounge: React.FC = () => {
       </section>
 
       {/* TIERS — Industry Reader vs Analyst Lens */}
-      <section id="tiers" className="px-6 md:px-8 py-20 md:py-16 border-t border-border/50 scroll-mt-32 bg-secondary/20">
+      <section id="tiers" className="px-6 md:px-8 py-20 md:py-24 border-t border-border scroll-mt-32">
         <div className="container mx-auto max-w-[900px]">
           <SectionLabel label="Knowledge you can use" />
           <h2 className="text-section font-serif tracking-tight mt-6 mb-4">
