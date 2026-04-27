@@ -430,7 +430,7 @@ const PremiumAccessLounge: React.FC = () => {
       {/* ── 3. WHO IS READING OUR REPORTS ────────────────────────────── */}
       <section id="readers" className="px-6 md:px-8 py-16 border-t border-border/50 scroll-mt-32">
         <div className="container mx-auto max-w-[900px]">
-          <SectionLabel label="03 - Who is reading" />
+          <SectionLabel label="02 - Who is reading" />
           <h2 className="text-section font-serif tracking-tight mt-6 mb-4">
             Investors and companies on the list
           </h2>
