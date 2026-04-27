@@ -8,7 +8,9 @@
     "build": "vite build",
     "build:dev": "vite build --mode development",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "check:hp-report": "node scripts/check-hp-report-links.mjs",
+    "check:hp-report:preview": "node scripts/check-hp-report-links.mjs --preview"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.9.0",
