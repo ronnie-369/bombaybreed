@@ -236,7 +236,57 @@ const Insights = () => {
     currentPage * ITEMS_PER_PAGE
   );
 
-  
+  // Section-level navigation: define IDs and labels.
+  // "flagship" is conditionally rendered (only when no filters/search active),
+  // so the nav adapts to whichever sections are currently in the DOM.
+  const showFlagship = selectedTopic === 'All' && selectedType === 'All Types' && !searchQuery;
+  const sections = useMemo(() => {
+    const s: { id: string; label: string }[] = [];
+    if (showFlagship) s.push({ id: 'flagship', label: 'Flagship' });
+    s.push({ id: 'all-intelligence', label: 'All Intelligence' });
+    s.push({ id: 'subscribe', label: 'Subscribe' });
+    s.push({ id: 'download', label: 'Download Report' });
+    return s;
+  }, [showFlagship]);
+
+  const [activeSection, setActiveSection] = useState<string>('');
+
+  useEffect(() => {
+    // Default to first section on mount / when section list changes
+    setActiveSection(sections[0]?.id || '');
+
+    const elements = sections
+      .map(s => document.getElementById(s.id))
+      .filter((el): el is HTMLElement => el !== null);
+    if (elements.length === 0) return;
+
+    // Trigger when a section's top crosses just below the sticky nav (~180px)
+    const observer = new IntersectionObserver(
+      (entries) => {
+        // Pick the entry highest on the page that is intersecting
+        const visible = entries
+          .filter(e => e.isIntersecting)
+          .sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top);
+        if (visible[0]) {
+          setActiveSection(visible[0].target.id);
+        }
+      },
+      { rootMargin: '-180px 0px -60% 0px', threshold: 0 }
+    );
+    elements.forEach(el => observer.observe(el));
+    return () => observer.disconnect();
+  }, [sections]);
+
+  const handleNavClick = useCallback((e: React.MouseEvent<HTMLAnchorElement>, id: string) => {
+    e.preventDefault();
+    const el = document.getElementById(id);
+    if (!el) return;
+    const top = el.getBoundingClientRect().top + window.pageYOffset - 140;
+    window.scrollTo({ top, behavior: 'smooth' });
+    history.replaceState(null, '', `#${id}`);
+    setActiveSection(id);
+  }, []);
+
 
   /**
    * Static-asset paths (e.g. /special-features/foo.html) MUST be served by
