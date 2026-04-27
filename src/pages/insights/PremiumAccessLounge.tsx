@@ -326,7 +326,7 @@ const PremiumAccessLounge: React.FC = () => {
           </p>
 
           {/* What you get — shared editorial line. No deliverables here; those live in the cards. */}
-          <div className="border-y border-border/60 py-5 mb-10 grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
+          <div className="border-y border-border/60 py-8 md:py-5 mb-12 md:mb-10 grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-8">
             {[
               {
                 k: 'One desk',
@@ -341,18 +341,18 @@ const PremiumAccessLounge: React.FC = () => {
                 v: 'Pick the read that fits the seat you sit in - the cards below set out what each delivers.',
               },
             ].map((item) => (
-              <div key={item.k} className="grid grid-cols-[auto_1fr] gap-3 items-baseline">
+              <div key={item.k} className="flex flex-col gap-2 md:grid md:grid-cols-[auto_1fr] md:gap-3 md:items-baseline">
                 <span className="text-[10px] font-bold tracking-widest uppercase text-accent whitespace-nowrap">
                   {item.k}
                 </span>
-                <span className="text-sm text-foreground/80 leading-snug">
+                <span className="text-[15px] md:text-sm text-foreground/80 leading-relaxed md:leading-snug">
                   {item.v}
                 </span>
               </div>
             ))}
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-5">
             {/* Tier 1 — Industry Reader (supply side) */}
             <div className="bg-background border border-border rounded-xl p-8 flex flex-col">
               <div className="pb-5 border-b border-border/60 mb-6">
