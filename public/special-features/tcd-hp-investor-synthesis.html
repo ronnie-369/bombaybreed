@@ -2693,6 +2693,37 @@ new Chart(cryoCtx, {
       jumpTo(select.value);
     });
   }
+
+  // Sync active state from URL hash on initial load and on hashchange.
+  // Fixes a corner case where landing at bottom of page leaves stale highlight
+  // because IntersectionObserver doesn't fire for elements outside its band.
+  function syncFromHash() {
+    var hash = (location.hash || '').slice(1);
+    if (!hash || !linkMap[hash]) return;
+    var parent = subToParent[hash] || hash;
+    allLinks.forEach(function(l) { l.classList.remove('is-active'); });
+    if (linkMap[hash]) linkMap[hash].classList.add('is-active');
+    if (hash !== parent && linkMap[parent]) linkMap[parent].classList.add('is-active');
+    subRows.forEach(function(r) { r.classList.remove('is-visible'); });
+    if (subRowMap[parent]) subRowMap[parent].classList.add('is-visible');
+    if (select && select.value !== hash) select.value = hash;
+  }
+
+  // Also handle initial fragment scroll-margin-top: native browser scroll on load
+  // can ignore scroll-margin-top in some Safari versions, so re-jump after load.
+  if (location.hash) {
+    var initId = location.hash.slice(1);
+    if (document.getElementById(initId)) {
+      // Wait for layout (fonts, images sized) then re-scroll with our offset
+      window.addEventListener('load', function() {
+        setTimeout(function() {
+          jumpTo(initId);
+          syncFromHash();
+        }, 50);
+      });
+    }
+  }
+  window.addEventListener('hashchange', syncFromHash);
 })();
 </script>
 
