@@ -354,7 +354,7 @@ const PremiumAccessLounge: React.FC = () => {
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-5">
             {/* Tier 1 — Industry Reader (supply side) */}
-            <div className="bg-background border border-border rounded-xl p-8 flex flex-col">
+            <div className="bg-background border border-border rounded-xl p-7 md:p-8 flex flex-col">
               <div className="pb-5 border-b border-border/60 mb-6">
                 <span className="text-[10px] font-bold tracking-widest uppercase text-muted-foreground">
                   Tier 01 - Supply side
