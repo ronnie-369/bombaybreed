@@ -378,11 +378,11 @@ const PremiumAccessLounge: React.FC = () => {
                 v: 'Pick the read that fits the seat you sit in - the cards below set out what each delivers.',
               },
             ].map((item) => (
-              <div key={item.k} className="flex flex-col gap-2 md:grid md:grid-cols-[auto_1fr] md:gap-3 md:items-baseline">
-                <span className="text-[10px] font-bold tracking-widest uppercase text-accent whitespace-nowrap">
+              <div key={item.k} className="flex flex-col gap-1.5 md:grid md:grid-cols-[auto_1fr] md:gap-3 md:items-baseline">
+                <span className="text-[10px] font-bold tracking-widest uppercase text-accent whitespace-nowrap leading-snug">
                   {item.k}
                 </span>
-                <span className="text-[15px] md:text-sm text-foreground/80 leading-relaxed md:leading-snug">
+                <span className="text-[15px] md:text-sm text-foreground/80 leading-snug md:leading-snug">
                   {item.v}
                 </span>
               </div>
@@ -406,35 +406,35 @@ const PremiumAccessLounge: React.FC = () => {
                 <h3 className="font-serif text-2xl text-foreground mt-3 mb-1">
                   The Industry Reader
                 </h3>
-                <p className="text-sm text-muted-foreground italic">
+                <p className="text-sm text-muted-foreground italic leading-snug">
                   Built for the people making the carbon - founders, developers,
                   SMEs walking into the market for the first time.
                 </p>
               </div>
 
               <div className="mb-6">
-                <span className="inline-flex items-center px-2.5 py-1 rounded-full text-[10px] font-semibold tracking-widest uppercase bg-accent/15 text-accent border border-accent/30 mb-3">
+                <span className="inline-flex items-center px-2.5 py-1 rounded-full text-[10px] font-semibold tracking-widest uppercase bg-accent/15 text-accent border border-accent/30 mb-3 leading-snug">
                   Launch offer - 30% off year one
                 </span>
-                <div className="text-xs text-muted-foreground/70 font-sans line-through mb-1">
+                <div className="text-xs text-muted-foreground/70 font-sans line-through mb-1 leading-snug">
                   INR 10,000 / month
                 </div>
-                <div className="font-serif text-2xl sm:text-3xl text-foreground whitespace-nowrap">
+                <div className="font-serif text-2xl sm:text-3xl text-foreground whitespace-nowrap leading-tight">
                   INR 7,000<span className="text-sm sm:text-base text-muted-foreground font-sans"> / month</span>
                 </div>
-                <div className="text-xs text-muted-foreground tracking-wide mt-1">
+                <div className="text-xs text-muted-foreground tracking-wide mt-1 leading-snug">
                   INR 84,000 / year - founding rate, locked while your subscription stays active
                 </div>
               </div>
 
-              <ul className="space-y-3 mb-8 flex-1">
+              <ul className="space-y-2.5 md:space-y-3 mb-8 flex-1">
                 {[
                   'A weekly read on the carbon market - news, with the regulation that actually moves it',
                   'The desk view - what the price is signalling, in plain language',
                   'Field notes from live engagements, anonymised but unvarnished',
                   'Quarterly State of Carbon Markets tracker - India in global context',
                 ].map((line) => (
-                  <li key={line} className="grid grid-cols-[auto_1fr] gap-3 text-sm text-foreground">
+                  <li key={line} className="grid grid-cols-[auto_1fr] gap-3 text-sm text-foreground leading-snug">
                     <span className="text-muted-foreground/70 pt-0.5">·</span>
                     <span>{line}</span>
                   </li>
@@ -476,7 +476,7 @@ const PremiumAccessLounge: React.FC = () => {
                 <h3 className="font-serif text-2xl mt-3 mb-1">
                   The Analyst Lens
                 </h3>
-                <p className="text-sm text-background/70 italic">
+                <p className="text-sm text-background/70 italic leading-snug">
                   Built for the people pricing the carbon - investors, family
                   offices, and committees who need the read before the price
                   moves.
@@ -484,28 +484,28 @@ const PremiumAccessLounge: React.FC = () => {
               </div>
 
               <div className="mb-6">
-                <span className="inline-flex items-center px-2.5 py-1 rounded-full text-[10px] font-semibold tracking-widest uppercase bg-accent/20 text-accent border border-accent/40 mb-3">
+                <span className="inline-flex items-center px-2.5 py-1 rounded-full text-[10px] font-semibold tracking-widest uppercase bg-accent/20 text-accent border border-accent/40 mb-3 leading-snug">
                   Launch offer - 30% off year one
                 </span>
-                <div className="text-xs text-background/45 font-sans line-through mb-1">
+                <div className="text-xs text-background/45 font-sans line-through mb-1 leading-snug">
                   INR 50,000 / month
                 </div>
-                <div className="font-serif text-2xl sm:text-3xl whitespace-nowrap">
+                <div className="font-serif text-2xl sm:text-3xl whitespace-nowrap leading-tight">
                   INR 35,000<span className="text-sm sm:text-base text-background/60 font-sans"> / month</span>
                 </div>
-                <div className="text-xs text-background/60 tracking-wide mt-1">
+                <div className="text-xs text-background/60 tracking-wide mt-1 leading-snug">
                   INR 4.2 lakh / year - founding rate, locked while your subscription stays active
                 </div>
               </div>
 
-              <ul className="space-y-3 mb-8 flex-1">
+              <ul className="space-y-2.5 md:space-y-3 mb-8 flex-1">
                 {[
                   'Every flagship report on the day it is filed - no embargo, no waiting room',
                   'Sector deep-dives across the verticals you allocate to, with the underlying working',
                   'Regulatory alerts before the news cycle catches up - CCTS, BRSR, NDC 3.0',
                   'A monthly 30-minute call with Theresa, scheduled on your terms',
                 ].map((line) => (
-                  <li key={line} className="grid grid-cols-[auto_1fr] gap-3 text-sm">
+                  <li key={line} className="grid grid-cols-[auto_1fr] gap-3 text-sm leading-snug">
                     <span className="text-background/50 pt-0.5">·</span>
                     <span>{line}</span>
                   </li>
