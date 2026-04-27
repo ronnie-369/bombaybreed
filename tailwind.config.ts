@@ -56,6 +56,13 @@ export default {
 				paper: 'hsl(var(--paper))',
 				'deep-blue': 'hsl(var(--deep-blue))',
 				warm: 'hsl(var(--warm))',
+				/* TCD Intelligence palette */
+				'bb-off-white': 'hsl(var(--bb-off-white))',
+				'bb-near-black': 'hsl(var(--bb-near-black))',
+				'bb-slate': 'hsl(var(--bb-slate))',
+				'bb-copper': 'hsl(var(--bb-copper))',
+				'bb-gray': 'hsl(var(--bb-gray))',
+				'bb-border': 'hsl(var(--bb-border))',
 				sidebar: {
 					DEFAULT: 'hsl(var(--sidebar-background))',
 					foreground: 'hsl(var(--sidebar-foreground))',

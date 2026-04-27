@@ -582,6 +582,293 @@ export type Database = {
         }
         Relationships: []
       }
+      tcd_payments: {
+        Row: {
+          amount_inr: number
+          created_at: string
+          currency: string
+          id: string
+          metadata: Json | null
+          paid_at: string | null
+          provider: string
+          provider_payment_id: string | null
+          status: Database["public"]["Enums"]["tcd_payment_status"]
+          subscription_id: string
+          updated_at: string
+        }
+        Insert: {
+          amount_inr: number
+          created_at?: string
+          currency?: string
+          id?: string
+          metadata?: Json | null
+          paid_at?: string | null
+          provider?: string
+          provider_payment_id?: string | null
+          status?: Database["public"]["Enums"]["tcd_payment_status"]
+          subscription_id: string
+          updated_at?: string
+        }
+        Update: {
+          amount_inr?: number
+          created_at?: string
+          currency?: string
+          id?: string
+          metadata?: Json | null
+          paid_at?: string | null
+          provider?: string
+          provider_payment_id?: string | null
+          status?: Database["public"]["Enums"]["tcd_payment_status"]
+          subscription_id?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "tcd_payments_subscription_id_fkey"
+            columns: ["subscription_id"]
+            isOneToOne: false
+            referencedRelation: "tcd_subscriptions"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      tcd_report_views: {
+        Row: {
+          id: string
+          report_id: string
+          subscriber_id: string | null
+          user_agent: string | null
+          viewed_at: string
+        }
+        Insert: {
+          id?: string
+          report_id: string
+          subscriber_id?: string | null
+          user_agent?: string | null
+          viewed_at?: string
+        }
+        Update: {
+          id?: string
+          report_id?: string
+          subscriber_id?: string | null
+          user_agent?: string | null
+          viewed_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "tcd_report_views_report_id_fkey"
+            columns: ["report_id"]
+            isOneToOne: false
+            referencedRelation: "tcd_reports"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "tcd_report_views_subscriber_id_fkey"
+            columns: ["subscriber_id"]
+            isOneToOne: false
+            referencedRelation: "tcd_subscribers"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      tcd_reports: {
+        Row: {
+          body_html: string | null
+          category: string | null
+          cover_image_url: string | null
+          created_at: string
+          id: string
+          is_published: boolean
+          published_at: string | null
+          reading_minutes: number | null
+          required_tier_rank: number
+          slug: string
+          summary: string | null
+          title: string
+          updated_at: string
+        }
+        Insert: {
+          body_html?: string | null
+          category?: string | null
+          cover_image_url?: string | null
+          created_at?: string
+          id?: string
+          is_published?: boolean
+          published_at?: string | null
+          reading_minutes?: number | null
+          required_tier_rank?: number
+          slug: string
+          summary?: string | null
+          title: string
+          updated_at?: string
+        }
+        Update: {
+          body_html?: string | null
+          category?: string | null
+          cover_image_url?: string | null
+          created_at?: string
+          id?: string
+          is_published?: boolean
+          published_at?: string | null
+          reading_minutes?: number | null
+          required_tier_rank?: number
+          slug?: string
+          summary?: string | null
+          title?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      tcd_subscribers: {
+        Row: {
+          company: string | null
+          country: string | null
+          created_at: string
+          designation: string | null
+          email: string
+          full_name: string
+          id: string
+          marketing_consent: boolean
+          phone: string | null
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          company?: string | null
+          country?: string | null
+          created_at?: string
+          designation?: string | null
+          email: string
+          full_name: string
+          id?: string
+          marketing_consent?: boolean
+          phone?: string | null
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          company?: string | null
+          country?: string | null
+          created_at?: string
+          designation?: string | null
+          email?: string
+          full_name?: string
+          id?: string
+          marketing_consent?: boolean
+          phone?: string | null
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
+      tcd_subscriptions: {
+        Row: {
+          admin_notes: string | null
+          cancelled_at: string | null
+          created_at: string
+          expires_at: string | null
+          id: string
+          provider: string | null
+          provider_subscription_id: string | null
+          starts_at: string | null
+          status: Database["public"]["Enums"]["tcd_subscription_status"]
+          subscriber_id: string
+          tier_id: string
+          updated_at: string
+        }
+        Insert: {
+          admin_notes?: string | null
+          cancelled_at?: string | null
+          created_at?: string
+          expires_at?: string | null
+          id?: string
+          provider?: string | null
+          provider_subscription_id?: string | null
+          starts_at?: string | null
+          status?: Database["public"]["Enums"]["tcd_subscription_status"]
+          subscriber_id: string
+          tier_id: string
+          updated_at?: string
+        }
+        Update: {
+          admin_notes?: string | null
+          cancelled_at?: string | null
+          created_at?: string
+          expires_at?: string | null
+          id?: string
+          provider?: string | null
+          provider_subscription_id?: string | null
+          starts_at?: string | null
+          status?: Database["public"]["Enums"]["tcd_subscription_status"]
+          subscriber_id?: string
+          tier_id?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "tcd_subscriptions_subscriber_id_fkey"
+            columns: ["subscriber_id"]
+            isOneToOne: false
+            referencedRelation: "tcd_subscribers"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "tcd_subscriptions_tier_id_fkey"
+            columns: ["tier_id"]
+            isOneToOne: false
+            referencedRelation: "tcd_tiers"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      tcd_tiers: {
+        Row: {
+          billing_period: Database["public"]["Enums"]["tcd_billing_period"]
+          created_at: string
+          description: string | null
+          features: Json
+          id: string
+          is_active: boolean
+          name: string
+          price_inr: number
+          rank: number
+          slug: string
+          sort_order: number
+          tagline: string | null
+          updated_at: string
+        }
+        Insert: {
+          billing_period?: Database["public"]["Enums"]["tcd_billing_period"]
+          created_at?: string
+          description?: string | null
+          features?: Json
+          id?: string
+          is_active?: boolean
+          name: string
+          price_inr?: number
+          rank?: number
+          slug: string
+          sort_order?: number
+          tagline?: string | null
+          updated_at?: string
+        }
+        Update: {
+          billing_period?: Database["public"]["Enums"]["tcd_billing_period"]
+          created_at?: string
+          description?: string | null
+          features?: Json
+          id?: string
+          is_active?: boolean
+          name?: string
+          price_inr?: number
+          rank?: number
+          slug?: string
+          sort_order?: number
+          tagline?: string | null
+          updated_at?: string
+        }
+        Relationships: []
+      }
       user_roles: {
         Row: {
           created_at: string
@@ -622,6 +909,12 @@ export type Database = {
         }
         Returns: boolean
       }
+      tcd_current_tier_rank: { Args: never; Returns: number }
+      tcd_log_report_view: { Args: { _report_slug: string }; Returns: string }
+      tcd_user_has_report_access: {
+        Args: { _report_slug: string }
+        Returns: boolean
+      }
       unsubscribe_newsletter: { Args: { token: string }; Returns: Json }
     }
     Enums: {
@@ -635,6 +928,14 @@ export type Database = {
         | "regulation"
         | "problem"
         | "combined"
+      tcd_billing_period: "monthly" | "quarterly" | "annual"
+      tcd_payment_status: "pending" | "succeeded" | "failed" | "refunded"
+      tcd_subscription_status:
+        | "pending"
+        | "active"
+        | "paused"
+        | "cancelled"
+        | "expired"
       urgency_level: "high" | "medium" | "low"
     }
     CompositeTypes: {
@@ -773,6 +1074,15 @@ export const Constants = {
         "regulation",
         "problem",
         "combined",
+      ],
+      tcd_billing_period: ["monthly", "quarterly", "annual"],
+      tcd_payment_status: ["pending", "succeeded", "failed", "refunded"],
+      tcd_subscription_status: [
+        "pending",
+        "active",
+        "paused",
+        "cancelled",
+        "expired",
       ],
       urgency_level: ["high", "medium", "low"],
     },
