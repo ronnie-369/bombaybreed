@@ -136,15 +136,17 @@ export const logEvent = async ({
 }: LogEventOptions): Promise<void> => {
   if (!isBrowser()) return;
   try {
-    await supabase.from('ab_experiments').insert({
-      experiment,
-      variant,
-      event_type: eventType,
-      visitor_id: getVisitorId(),
-      page_path: window.location.pathname,
-      device_type: detectDevice(),
-      metadata: metadata ?? {},
-    });
+    await supabase.from('ab_experiments').insert([
+      {
+        experiment,
+        variant,
+        event_type: eventType,
+        visitor_id: getVisitorId(),
+        page_path: window.location.pathname,
+        device_type: detectDevice(),
+        metadata: (metadata ?? {}) as never,
+      },
+    ]);
   } catch {
     /* analytics must never break the page */
   }
