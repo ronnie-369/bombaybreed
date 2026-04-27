@@ -134,7 +134,7 @@ describe('Insights → static-HTML cards: open the real static file on every cli
       .find(
         (el) =>
           (el as HTMLAnchorElement).getAttribute('href') ===
-          '/special-features/tcd-hp-investor-synthesis.html',
+          '/special-features/india-heat-intelligence.html',
       )!;
 
     fireEvent.click(a, { button: 0 });
