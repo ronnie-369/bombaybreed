@@ -12,6 +12,7 @@ import {
 } from '@/components/ui/dialog';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
+import { Checkbox } from '@/components/ui/checkbox';
 import { Button } from '@/components/ui/button';
 import {
   Form,
@@ -31,6 +32,9 @@ const inquirySchema = z.object({
   role: z.string().trim().max(100).optional(),
   project: z.string().trim().min(1).max(300),
   message: z.string().trim().max(1500).optional(),
+  consent: z.literal(true, {
+    errorMap: () => ({ message: 'Please confirm to continue.' }),
+  }),
 });
 
 type InquiryValues = z.infer<typeof inquirySchema>;
