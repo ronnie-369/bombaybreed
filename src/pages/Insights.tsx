@@ -555,6 +555,20 @@ const Insights = () => {
               }}
             />
 
+            {/* Section header - this is the scroll target for the
+                "Free library" CTA, so readers need a clear anchor on arrival. */}
+            <header className="mb-8 max-w-[640px]">
+              <p className="text-[11px] font-semibold tracking-[0.18em] uppercase text-muted-foreground mb-3">
+                Free library
+              </p>
+              <h2 className="font-serif text-3xl md:text-4xl tracking-tight leading-[1.1] text-foreground mb-3 [text-wrap:balance]">
+                The full library, open to everyone
+              </h2>
+              <p className="text-[15px] text-muted-foreground leading-relaxed [text-wrap:pretty]">
+                Every brief, report and analysis we have published. Search by keyword or filter by topic and format.
+              </p>
+            </header>
+
             {/* Search + filter bar - sits directly on top of the resources so
                 readers can scan by topic / type or full-text the library. */}
             <div className="mb-6 space-y-4">
