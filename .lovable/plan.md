@@ -1,55 +1,97 @@
-## Context
+# Replace /insights with the Intelligence conversion page
 
-The HP Investor Synthesis report already has a sticky horizontal TOC with scrollspy, smooth scroll, URL hash sync, and auto-expand of collapsed sections (shipped in the prior streamlining pass).
+## What changes for the visitor
 
-This plan adds the two genuinely missing pieces that improve navigation without duplicating what's there:
+`/insights` stops being an editorial Substack hub. It becomes a single, scrollable conversion page for TCD Intelligence — built around your sketch:
 
-1. A **mobile "Jump to" dropdown** — the current horizontal bar requires sideways scrolling on phones to reach Parts VII–IX, which kills jumpability. Replacing it with a native `<select>` on mobile gives one-tap access to all 12 sections.
-2. **Sub-section anchors inside Parts III, IV, VI, IX** — these are the four Parts that actually contain multiple distinct H3 sub-topics worth jumping to. The TOC will expand to reveal sub-links when the parent Part becomes active, then collapse when the reader moves on.
+```text
+ PREMIUM ACCESS LOUNGE
+ Intelligence Briefs                 ← page title + one-line positioning
 
-Together these turn the TOC from a 12-link top strip into a navigation system that adapts to depth (sub-anchors when relevant) and surface (dropdown on mobile, bar on desktop).
+ ┌────────────────────┐  ┌────────────────────┐
+ │ View past reports  │  │ Sign up for reports│
+ │ (3-up grid of      │  │ (primary CTA →     │
+ │  recent reports)   │  │  /intelligence/    │
+ │                    │  │  membership)       │
+ └────────────────────┘  └────────────────────┘
 
-## What changes
+ 1. What you get          (4 checklist items)
+ 2. What the industry     (3 testimonial quote cards — placeholder copy)
+    has to say
+ 3. Who is reading        (logo grid — placeholder boxes labelled
+    our reports             "Investors" and "Companies", you send logos)
+ 4. Sponsor the research — INR 6 lakh / year     ← headline offer
+    ┌──────── Analyst ────────┐  ┌──────── Reader ────────┐
+    │ • dedicated analyst     │  │ • all reports           │
+    │ • bespoke research      │  │ • sectoral analysis     │
+    │ • ...                   │  │ • briefings             │
+    └─────────────────────────┘  └─────────────────────────┘
+    Why?  • • • •  (4 short reasons)
 
-### 1. Mobile dropdown (replaces the horizontal scroll on small screens)
+    How much — Corporate deal
+      a) Reports
+      b) Sectoral analysis
+      c) 1-on-1 access to your team for any investment thesis
+         you want vetted — 30 mins / month
+                                       [ Talk to us → /contact ]
+```
 
-- Below `.toc-sticky`, render a hidden `<select id="tocSelect">` with the same 12 options as the existing links, plus any sub-anchors.
-- CSS: hide `.toc-inner` below `768px`, show the `<select>`. Above `768px`, swap.
-- JS: on `change`, trigger the same scroll/auto-open logic the existing click handler uses. On scrollspy section change, update `select.value` so the dropdown always reflects current position.
+Sticky in-page nav becomes: **Reports · Sign up · What you get · Industry · Readers · Sponsor**.
 
-### 2. Sub-section anchors (added to four Parts)
+## What gets removed from /insights
 
-Add `id` attributes to the existing H3s that already exist in these Parts (no content changes):
+The current page has four sections. After this change:
 
-- **Part III · Evidence** — `#part-iii-thermal` (30°C thermal range), `#part-iii-rainfall` (rainfall signal), `#part-iii-2023` (2023 break point), `#part-iii-water` (water column)
-- **Part IV · Investor Map** — `#part-iv-table` (sector table), `#part-iv-deepdive` (Part IV-B research cards), `#part-iv-field` (Field Record videos)
-- **Part VI · UNFCCC Frame** — `#part-vi-market` (market opportunity H3)
-- **Part IX · Playbook** — eight `#playbook-1` … `#playbook-8` anchors on each move
+- `#flagship` (CCUS flagship card) — **removed from /insights**. Still reachable via the brief's own URL and via the new "View past reports" grid (CCUS will be one of the 3 cards).
+- `#all-intelligence` (search + filters + full publication grid) — **removed from /insights**. Repurposed into the compact "View past reports" grid up top (latest 3, with a "See all reports" link to a new `/insights/archive` route that keeps the existing search/filter UI for anyone who wants the full library).
+- `#subscribe` (Substack signup) — **removed from /insights**. Substack signup remains on `/newsletter` (already the canonical location per existing memory).
+- `#download` (CCUS Formspree download form) — **removed from /insights**. Kept reachable from the CCUS brief page itself.
 
-In the TOC, render sub-links as a second tier (smaller, indented) that appears only when its parent Part is the active scrollspy target. When you scroll past, sub-links collapse.
+The full editorial library is preserved at `/insights/archive` so no SEO value or deep links are lost — `/insights` just stops being the library and starts being the offer.
 
-Desktop (bar) treatment: sub-links appear inline in a second row below the active part.
-Mobile (dropdown): sub-links appear as indented `<option>`s grouped under their parent, e.g. `  → Thermal range`.
+## Routing & funnel
 
-### 3. Active-state polish
+- Top-right **"Sign up for reports"** button → `/intelligence/membership` (your three tiers stay where they are; this page does not duplicate them).
+- **"Sponsor the research — INR 6L/yr"** CTA → `/contact?topic=intelligence-sponsorship` (prefills the contact form subject; sponsorship is sales-led, not self-serve).
+- **"View past reports"** cards → existing brief detail routes (`/insights/microsoft-cdr-market-pause`, `/insights/india-renewable-grid-203gw-crisis`, etc.).
+- **"See all reports"** → `/insights/archive` (new route hosting today's search + filter + full grid).
+- Old `/insights` deep links (anchors like `#download`, `#subscribe`) → resolved by adding a small redirect handler so `/insights#download` lands on the CCUS brief and `/insights#subscribe` lands on `/newsletter`.
 
-- Update `IntersectionObserver` to also observe sub-section IDs and highlight the deepest one currently in view (sub takes precedence over its parent Part).
-- Keep the existing copper-underline treatment on the active link.
+## Quotes block
 
-## Files touched
+You didn't pick a source for the testimonials, so I'll wire **3 placeholder quote cards with realistic structure (quote, name, title, org)** and leave the strings empty/lorem so you can drop real ones in without me touching layout. If you'd rather I seed them from `/case-studies` copy, say so before approval and I'll switch.
 
-- `public/special-features/tcd-hp-investor-synthesis.html` only. All work is inside this single static file (markup, CSS, and the existing inline `<script>` block at line 2362).
+## Logos block
 
-## Out of scope (not changing)
+Placeholder grid: 8 slots, two rows of four, split into "Investors" (top row) and "Companies" (bottom row), each slot a soft-bordered box with the file name as alt text. You drop logos into `public/logos/intelligence-readers/` and they show up — no code change needed for additions beyond the manifest.
 
-- The existing top horizontal TOC, scrollspy, smooth-scroll behaviour, and auto-expand of `<details>` — kept exactly as is on desktop.
-- Section content, headings, copy, ordering.
-- The reading-time strip, TLDR card, Field Record gallery, or any other element from the prior streamlining pass.
-- Other reports (HP Compounding Losses, HP Crop Hardiness, etc.) — only this file.
+## Technical details
 
-## Acceptance check (will run after implementation)
+**Files touched**
+- `src/pages/Insights.tsx` — rewritten. Keeps `PageHead`, footer, header. Replaces the four sections above with the six new sections. Reuses `SectionLabel`, `insight-prose`, existing button styles, and the editorial type system per the design memory.
+- `src/pages/InsightsArchive.tsx` — **new**. Lifts the current `#all-intelligence` block (search input, tag filter, publication grid, `filteredPublications` memo) verbatim into its own page with a back-link to `/insights`.
+- `src/App.tsx` — register `/insights/archive` route; add a tiny `useEffect` on `Insights` that maps legacy hashes (`#download`, `#subscribe`, `#flagship`, `#all-intelligence`) to their new homes via `Navigate`.
+- `src/components/site/Header.tsx` (or wherever the nav lives) — no link change; "Insights" still points to `/insights`. The five-item global nav stays per `mem://architecture/content-consolidation-and-navigation`.
+- SEO meta on `/insights` updated: title becomes "TCD Intelligence — Premium Access Lounge", description reframed around membership and corporate sponsorship. `/insights/archive` gets its own meta with the previous editorial-hub copy so we don't lose the keyword footprint.
+- `public/sitemap.xml` and `public/robots.txt` — add `/insights/archive`; keep `/insights` priority.
+- No DB migration. No new edge function. No changes to `/intelligence/*` pages, `TcdAuthGate`, `Checkout`, or the `tcd_mock_activate_subscription` RPC.
 
-- Resize to 375px wide: dropdown appears, horizontal bar hidden, selecting any option scrolls to and expands the right section.
-- Desktop: scrolling into Part III reveals the four sub-links inline; scrolling into Part IV reveals its three; scrolling out collapses them.
-- Clicking `#playbook-5` on desktop scrolls to move 5, not the top of Part IX.
-- URL hash updates on every jump for shareable deep links.
+**Components introduced (all in `src/pages/Insights.tsx`, no new shared primitives)**
+- `<PastReportsGrid />` — pulls the 3 most recent items from the existing `publications` array used today by `#all-intelligence`.
+- `<WhatYouGet />` — 4 checklist rows (icon-free per `mem://design/iconography-editorial-standard`, uses a 1px rule + serif headers).
+- `<IndustryQuotes />` — 3 placeholder testimonial cards.
+- `<ReaderLogos />` — 2-row logo grid driven by a local manifest array (`investors: string[]`, `companies: string[]`).
+- `<SponsorOffer />` — the INR 6L/yr block with Analyst | Reader columns, Why row, "How much: Corporate deal" list, and CTA to `/contact?topic=intelligence-sponsorship`.
+
+**Conventions followed**
+- No em dashes (per typography memory).
+- No decorative Lucide icons in headers (per iconography memory).
+- Currency shown as `₹6,00,000 / year` with `INR 6 lakh / year` as the visible label, matching Indian editorial convention.
+- Copy is evergreen — no publication dates on the past-reports cards (per `mem://content/insights-evergreen-strategy`).
+
+## Out of scope (call out before approval if you want them in)
+
+- No changes to the three tier cards on `/intelligence/membership`.
+- No new Stripe / live payment work — checkout still uses the mock activation RPC you approved earlier.
+- No real testimonial copy or logo files — placeholders only; you supply the assets after.
+- No analytics events on the new CTAs (can add a follow-up if you want conversion tracking).
