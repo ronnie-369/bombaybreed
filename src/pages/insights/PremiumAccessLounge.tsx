@@ -469,7 +469,7 @@ const PremiumAccessLounge: React.FC = () => {
         className="px-6 md:px-8 py-20 border-t border-border/50 bg-secondary/20 scroll-mt-32"
       >
         <div className="container mx-auto max-w-[900px]">
-          <SectionLabel label="02 — Sponsor a year of research" />
+          <SectionLabel label="03 — Sponsor a year of research" />
           <div className="mt-6 mb-10">
             <h2 className="text-section font-serif tracking-tight mb-5">
               Put your name on the work, not the conclusion.
