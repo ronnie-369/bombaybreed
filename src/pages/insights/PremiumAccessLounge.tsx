@@ -681,10 +681,10 @@ const PremiumAccessLounge: React.FC = () => {
               Commission the work. Put your name on the report.
             </h2>
             <p className="font-serif text-lg md:text-xl text-foreground/85 leading-relaxed max-w-[680px]">
-              For desks running diligence on Article 6 pipelines, CBAM-exposed
-              portfolios, energy transition assets or the resource footprint of
-              the next data centre - Team BB does the work end to end:
-              methodology audit, fieldwork, ground-truthing, writing. Your
+              If your work requires running diligence on Article 6 pipelines,
+              CBAM-exposed portfolios, energy transition assets or the resource
+              footprint of the next data centre - Team BB does the work end to
+              end: methodology audit, fieldwork, ground-truthing, writing. Your
               business name is attached to the published report as the sponsor.
             </p>
           </div>
