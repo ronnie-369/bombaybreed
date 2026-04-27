@@ -1,60 +1,33 @@
-# Wire real readership into the /insights "Who is reading" block
+# Members' room copy + hyperlink reader orgs on /insights
 
-## What changes
+Two small, independent edits to `src/pages/insights/PremiumAccessLounge.tsx`. Both are content/UI only - no logic, no dependencies.
 
-The placeholder "Investors / Companies" logo grids on `/insights` (under section **03 — Who is reading**) get replaced with a **typeset name block** grouped exactly the way the Climate Desk Media Deck presents readership on slides 5 and 11. No logo files needed.
+## 1. Replace Members Only zone body copy (locked)
 
-### New layout for section #readers
+Card on the hero of `/insights`. Headline and CTA stay as is.
 
-```text
-03 — WHO IS READING
+**New body (lines 440-444):**
 
-Investors and companies on the list
+> Carbon markets are hard. The right call is harder. The kind of call you would normally pay a sell-side desk six figures for - written for people who move capital. A small members' room, by design.
 
-14,946 subscribers across 81 countries.
-1,270+ in investor & climate finance.
+Renders inside the existing `<p className="text-[15px] sm:text-base text-background/75 leading-relaxed mb-6 [text-wrap:pretty] max-w-[46ch]">`. Uses `&rsquo;` for the apostrophe in "members'" to match the existing CTA below it. Hyphens only, no em dashes (per project standard).
 
-MULTILATERAL
-United Nations · FAO · IFC / World Bank · WHO · Asian Development Bank · UNDP · AKDN
+## 2. Hyperlink the two reader orgs in Quotes from Readers
 
-GLOBAL CORPORATES
-ArcelorMittal · Oracle · Unilever · H&M · Infosys · Siemens Energy ·
-Volkswagen · BASF · ABB · GE · Meta · S&P Global
+Make the org name under the reader quote clickable when a public URL exists.
 
-INDIAN INDUSTRY
-JSW Group · Tata Motors · Mahindra · Adani · Axis Bank · IREDA ·
-Dr Reddy's · Welspun · Apollo Hospitals
+- **Negative Emissions Platform** -> `https://negativeemissionsplatform.eu`
+- **The Energy Mix** -> `https://www.theenergymix.com`
+- **EU** (Christian Haberli) -> stays as plain text (not a real org URL)
 
-GOVERNMENT
-Government of India (central ministries) · Japan Ministry of the Environment
+Implementation:
 
-MEDIA & INTELLIGENCE
-Argus Media · BBC · Bloomberg · Singapore Press Holdings · France Televisions
-
-CLIMATE & ESG
-SBTi · Ellen MacArthur Foundation · ClimateImpactX · 3Degrees · ReNew Energy
-
-INVESTORS & CLIMATE FINANCE
-Development Finance Institutions · Climate & Carbon Investment funds ·
-Venture Capital · Wealth Management & Family Offices · Financial Advisory & Services
-```
-
-Each group: small uppercase tracked label (matches `SectionLabel` style), then a flowing list of names separated by middle dots, in editorial serif. No icons, no boxes, no aspect-ratio cells.
-
-### Why this instead of logos
-
-- The deck itself uses text grouping for readership on slides 5 and 11 — same authority signal, same typographic register.
-- 25+ logos across 7 categories would need permission, SVG sourcing, and visual normalisation. None of that adds credibility beyond what the names alone do.
-- Names index well for SEO; logo images do not.
-- One-pager headline ("14,946 subscribers, 81 countries, 1,270+ investor cohort") becomes the proof line above the names.
-
-## Files touched
-
-- `src/pages/insights/PremiumAccessLounge.tsx` — replace the `LOGOS` constant + the two logo-grid sub-blocks inside `<section id="readers">` with a `READERSHIP` constant (array of `{group, names[]}`) and a single mapped block. Headline stat line added above the groups. Caption about dropping logo files into `/public/logos/intelligence-readers/` removed.
-
-No other files change. No new routes, no asset uploads, no DB work.
+- Extend `QUOTES` (lines 52-71) with optional `orgHref?: string`; set on the two quotes above.
+- In the figure render (around line 474), wrap `q.org` in `<a target="_blank" rel="noopener noreferrer">` when `orgHref` is set.
+- Link styling: 1px underline in `decoration-border`, brightening to `decoration-foreground` and `text-foreground` on hover. Editorial tone, no SaaS-blue, no link icon.
 
 ## Out of scope
 
-- If you later want logo strips for a hand-picked top-tier subset (e.g. IFC, FAO, JSW, Siemens), I can add a 6-up logo row above the text groups in a follow-up. Not doing it now because it doubles the maintenance and would need real SVGs.
-- The "Investors & Climate Finance" group keeps category names (DFIs, VC, etc.) rather than fund-level names because the deck does the same — naming individual LPs in public marketing is a different conversation.
+- Touching the headline, CTA, padding, colours or layout of the Members Only card.
+- Linking the reader name itself - quotes endorse the publication, not a personal page.
+- Any other section of the page.
