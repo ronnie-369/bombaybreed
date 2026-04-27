@@ -525,9 +525,6 @@ const Insights = () => {
                         </span>
                       )}
                       <div>
-                        <span className={`inline-block px-2.5 py-0.5 rounded text-[10px] font-semibold tracking-wider uppercase bg-primary text-primary-foreground mb-3`}>
-                          Flagship Report
-                        </span>
                         <h3 className="font-serif text-lg text-foreground mb-2 group-hover:text-primary transition-colors">
                           {report.title}
                         </h3>
