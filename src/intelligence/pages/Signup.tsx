@@ -85,6 +85,10 @@ const Signup = () => {
         );
       }
 
+      // A/B: attribute the conversion to whichever subscribe-CTA variant
+      // brought this visitor in (within the 7-day attribution window).
+      logSubscribeConversion({ tier, source: 'signup' });
+
       toast({ title: "Account created", description: "Continue to membership selection." });
       navigate(`/intelligence/checkout?tier=${tier}`);
     } else {
