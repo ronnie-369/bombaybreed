@@ -1,6 +1,6 @@
 import { useLocation, Link } from "react-router-dom";
-import { useEffect, useMemo } from "react";
-import { Home, ArrowLeft, FileWarning, ExternalLink, RefreshCw } from "lucide-react";
+import { useEffect, useMemo, useState } from "react";
+import { Home, ArrowLeft, FileWarning, ExternalLink, RefreshCw, Copy, Check } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 // Known static reports under /special-features/. If the user lands on a 404 for one
