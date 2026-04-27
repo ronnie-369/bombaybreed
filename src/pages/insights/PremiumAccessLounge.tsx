@@ -693,8 +693,22 @@ const PremiumAccessLounge: React.FC = () => {
 
           <p className="text-xs text-muted-foreground/80 mt-8 max-w-[680px] leading-relaxed">
             Institutional desks, regulated entities, and teams that want to
-            underwrite a year of research should see the sponsorship block
-            below - it is bespoke and scoped in conversation.
+            underwrite a year of research should see the{' '}
+            <a
+              href="#sponsor"
+              onClick={(e) => {
+                e.preventDefault();
+                const el = document.getElementById('sponsor');
+                if (!el) return;
+                const top = el.getBoundingClientRect().top + window.pageYOffset - 100;
+                window.scrollTo({ top, behavior: 'smooth' });
+                history.replaceState(null, '', '#sponsor');
+              }}
+              className="text-foreground/80 no-underline hover:text-foreground hover:underline focus-visible:underline decoration-foreground/30 decoration-[0.5px] underline-offset-[5px] transition-colors duration-200"
+            >
+              sponsorship block below
+            </a>{' '}
+            - it is bespoke and scoped in conversation.
           </p>
         </div>
       </section>
