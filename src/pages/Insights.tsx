@@ -569,9 +569,9 @@ const Insights = () => {
               </p>
             </header>
 
-            {/* Search + filter bar - sits directly on top of the resources so
-                readers can scan by topic / type or full-text the library. */}
-            <div className="mb-6 space-y-4">
+            {/* Search + filter bar - sticky below the section nav so readers
+                can keep filtering as they scroll the resources below. */}
+            <div className="sticky top-[6.75rem] md:top-[7rem] z-20 -mx-6 md:-mx-8 px-6 md:px-8 py-3 mb-6 bg-background/90 backdrop-blur-md border-y border-border/40 space-y-3">
               <div className="relative">
                 <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
                 <Input
@@ -580,7 +580,7 @@ const Insights = () => {
                   placeholder="Search the library - title, topic, or theme..."
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
-                  className="pl-10 bg-background"
+                  className="pl-10 bg-background h-9"
                 />
               </div>
 
