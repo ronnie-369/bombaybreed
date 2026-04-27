@@ -893,43 +893,10 @@ const PremiumAccessLounge: React.FC = () => {
             </div>
           </div>
 
-          {/* CTA - price band disclosed, scope by conversation */}
-          <div className="bg-background border border-border rounded-xl p-8">
-            <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
-              <div className="max-w-[520px]">
-                <div className="font-serif text-2xl text-foreground mb-1">
-                  INR 6,00,000 - 45,00,000
-                  <span className="text-base text-muted-foreground font-sans"> + GST</span>
-                </div>
-                <p className="text-sm text-muted-foreground leading-relaxed">
-                  Indicative range. Each engagement is scoped to the depth of
-                  fieldwork, methodology and final output. Tell us what you
-                  want investigated and we will come back with a shape and a
-                  number.
-                </p>
-              </div>
-              <div className="flex flex-col gap-2 md:items-end">
-                <Button asChild>
-                  <Link
-                    to="/contact?topic=intelligence-sponsorship"
-                    className="inline-flex items-center gap-2"
-                    onClick={() =>
-                      trackSponsorEvent('sponsor_cta_click', {
-                        location: 'premium_access_lounge',
-                        link_url: '/contact?topic=intelligence-sponsorship',
-                        link_text: 'Open a sponsorship conversation',
-                      })
-                    }
-                  >
-                    Open a sponsorship conversation <ArrowRight className="w-4 h-4" />
-                  </Link>
-                </Button>
-                <span className="text-xs text-muted-foreground">
-                  Reply within two business days.
-                </span>
-              </div>
-            </div>
-          </div>
+          {/* Pricing CTA removed - the price band and "register interest"
+              flow already lives above on each open-project card, so the
+              standalone sponsorship card was redundant. */}
+
         </div>
       </section>
 
