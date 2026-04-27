@@ -60,10 +60,19 @@ const inquirySchema = z.object({
 
 type InquiryValues = z.infer<typeof inquirySchema>;
 
+export interface SponsorProjectDetails {
+  title: string;
+  angle: string;
+  scope: string;
+  output: string;
+  effort: string;
+}
+
 interface SponsorInquiryDialogProps {
   open: boolean;
   onOpenChange: (open: boolean) => void;
   project: string;
+  projectDetails?: SponsorProjectDetails;
 }
 
 const generateReferenceId = (): string => {
@@ -76,7 +85,7 @@ const generateReferenceId = (): string => {
   return `BB-${yyyymmdd}-${rand}`;
 };
 
-const SponsorInquiryDialog = ({ open, onOpenChange, project }: SponsorInquiryDialogProps) => {
+const SponsorInquiryDialog = ({ open, onOpenChange, project, projectDetails }: SponsorInquiryDialogProps) => {
   const { toast } = useToast();
   const [submitting, setSubmitting] = useState(false);
   const [referenceId, setReferenceId] = useState<string | null>(null);
