@@ -296,8 +296,8 @@ const PremiumAccessLounge: React.FC = () => {
                   The Industry Reader
                 </h3>
                 <p className="text-sm text-muted-foreground italic">
-                  For founders, SMEs, and carbon project developers learning the
-                  market on the way in.
+                  Built for the people making the carbon - founders, developers,
+                  SMEs walking into the market for the first time.
                 </p>
               </div>
 
@@ -312,10 +312,10 @@ const PremiumAccessLounge: React.FC = () => {
 
               <ul className="space-y-3 mb-8 flex-1">
                 {[
-                  'Carbon market news, with the regulatory frame attached',
-                  'Views from the desk - what we think the price is telling you',
-                  'Working insights from inside live engagements (anonymised)',
-                  'Quarterly State of Carbon Markets tracker - India + global',
+                  'A weekly read on the carbon market - news, with the regulation that actually moves it',
+                  'The desk view - what the price is signalling, in plain language',
+                  'Field notes from live engagements, anonymised but unvarnished',
+                  'Quarterly State of Carbon Markets tracker - India in global context',
                 ].map((line) => (
                   <li key={line} className="grid grid-cols-[auto_1fr] gap-3 text-sm text-foreground">
                     <span className="text-muted-foreground/70 pt-0.5">·</span>
@@ -347,9 +347,9 @@ const PremiumAccessLounge: React.FC = () => {
                   The Analyst Lens
                 </h3>
                 <p className="text-sm text-background/70 italic">
-                  For investors, family offices, and committees pricing the
-                  market - and for teams who would otherwise hire a junior to do
-                  this work.
+                  Built for the people pricing the carbon - investors, family
+                  offices, and committees who need the read before the price
+                  moves.
                 </p>
               </div>
 
@@ -358,17 +358,16 @@ const PremiumAccessLounge: React.FC = () => {
                   INR 50,000<span className="text-base text-background/60 font-sans"> / month</span>
                 </div>
                 <div className="text-xs text-background/60 tracking-wide mt-1">
-                  INR 6 lakh / year - one named user - cheaper than a junior analyst
+                  INR 6 lakh / year - one named user - the cost of an intern, the output of a desk
                 </div>
               </div>
 
               <ul className="space-y-3 mb-8 flex-1">
                 {[
-                  'Every flagship report on publication - no embargo wait',
-                  'Sectoral analysis across the verticals you allocate to',
-                  'Regulatory alerts ahead of the news cycle (CCTS, BRSR, NDC 3.0)',
-                  '30-minute direct line each month - scheduled on the BB site',
-                  'Quarterly State of Carbon Markets tracker included',
+                  'Every flagship report on the day it is filed - no embargo, no waiting room',
+                  'Sector deep-dives across the verticals you allocate to, with the underlying working',
+                  'Regulatory alerts before the news cycle catches up - CCTS, BRSR, NDC 3.0',
+                  'A monthly 30-minute call with Theresa, scheduled on your terms',
                 ].map((line) => (
                   <li key={line} className="grid grid-cols-[auto_1fr] gap-3 text-sm">
                     <span className="text-background/50 pt-0.5">·</span>
