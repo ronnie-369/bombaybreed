@@ -552,8 +552,8 @@ const PremiumAccessLounge: React.FC = () => {
                   The Industry Reader
                 </h3>
                 <p className="text-sm text-muted-foreground italic leading-snug">
-                  Built for the people making the carbon - founders, developers,
-                  SMEs walking into the market for the first time.
+                  Built for the people building the supply - project developers,
+                  founders and SMEs walking into the carbon market for the first time.
                 </p>
               </div>
 
@@ -622,9 +622,9 @@ const PremiumAccessLounge: React.FC = () => {
                   The Analyst Lens
                 </h3>
                 <p className="text-sm text-background/70 italic leading-snug">
-                  Built for the people pricing the carbon - investors, family
-                  offices, and committees who need the read before the price
-                  moves.
+                  Built for the people pricing the risk - investors, family
+                  offices and committees who need the read before the allowance
+                  price moves.
                 </p>
               </div>
 
