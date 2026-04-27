@@ -494,10 +494,10 @@ const PremiumAccessLounge: React.FC = () => {
 
               <ul className="space-y-2.5 md:space-y-3 mb-8 flex-1">
                 {[
-                  'A weekly read on the carbon market - news, with the regulation that actually moves it',
-                  'The desk view - what the price is signalling, in plain language',
-                  'Field notes from live engagements, anonymised but unvarnished',
-                  'Quarterly State of Carbon Markets tracker - India in global context',
+                  'A weekly read on the CCTS auction, allowance prices and the regulation actually moving them',
+                  'The desk view on EU-ETS, CORSIA and Article 6 - what is signalling, in plain language',
+                  'Field notes from live engagements - generation, distribution, and project-side ground truth',
+                  'Quarterly State of Carbon Markets tracker - India in global context, with the trade overlay',
                 ].map((line) => (
                   <li key={line} className="grid grid-cols-[auto_1fr] gap-3 text-sm text-foreground leading-snug">
                     <span className="text-muted-foreground/70 pt-0.5">·</span>
@@ -566,8 +566,9 @@ const PremiumAccessLounge: React.FC = () => {
               <ul className="space-y-2.5 md:space-y-3 mb-8 flex-1">
                 {[
                   'Every flagship report on the day it is filed - no embargo, no waiting room',
-                  'Sector deep-dives across the verticals you allocate to, with the underlying working',
-                  'Regulatory alerts before the news cycle catches up - CCTS, BRSR, NDC 3.0',
+                  'Sector deep-dives across compliance markets, energy transition assets and resource-stress geographies',
+                  'Regulatory alerts before the news cycle - CCTS, CBAM step-downs, EU-ETS, Article 6.2 bilaterals, BRSR, NDC 3.0',
+                  'Trade and policy reads on FTA carbon clauses and the geopolitics moving allowance prices',
                   'A monthly 30-minute call with Theresa, scheduled on your terms',
                 ].map((line) => (
                   <li key={line} className="grid grid-cols-[auto_1fr] gap-3 text-sm leading-snug">
