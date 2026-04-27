@@ -77,7 +77,7 @@ async function checkOne({ path, kind }) {
     let ok = res.status === 200;
     let note = '';
 
-    if (kind === 'static') {
+    if (kind === 'static' && res.status === 200) {
       const marker = STATIC_MARKERS[path];
       if (marker && !body.includes(marker)) {
         ok = false;
