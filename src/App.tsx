@@ -114,11 +114,11 @@ const AppContent = () => {
               />
               <Route
                 path="/intelligence/dashboard"
-                element={<TcdAuthGate><TcdDashboard /></TcdAuthGate>}
+                element={<TcdAuthGate requireActiveMembership><TcdDashboard /></TcdAuthGate>}
               />
               <Route
                 path="/intelligence/reports/:slug"
-                element={<TcdAuthGate><TcdReportDetail /></TcdAuthGate>}
+                element={<TcdAuthGate requireActiveMembership><TcdReportDetail /></TcdAuthGate>}
               />
               <Route
                 path="/intelligence/account"
