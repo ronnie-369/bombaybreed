@@ -2761,9 +2761,9 @@ new Chart(cryoCtx, {
     var hash = (location.hash || '').slice(1);
     if (!hash || !linkMap[hash]) return;
     var parent = subToParent[hash] || hash;
-    allLinks.forEach(function(l) { l.classList.remove('is-active'); });
-    if (linkMap[hash]) linkMap[hash].classList.add('is-active');
-    if (hash !== parent && linkMap[parent]) linkMap[parent].classList.add('is-active');
+    allLinks.forEach(function(l) { l.classList.remove('is-active'); l.removeAttribute('aria-current'); });
+    if (linkMap[hash]) { linkMap[hash].classList.add('is-active'); linkMap[hash].setAttribute('aria-current', 'location'); }
+    if (hash !== parent && linkMap[parent]) { linkMap[parent].classList.add('is-active'); linkMap[parent].setAttribute('aria-current', 'location'); }
     subRows.forEach(function(r) { r.classList.remove('is-visible'); });
     if (subRowMap[parent]) subRowMap[parent].classList.add('is-visible');
     if (select && select.value !== hash) select.value = hash;
