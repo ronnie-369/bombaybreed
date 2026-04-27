@@ -176,6 +176,32 @@ const SPONSOR_WHY: string[] = [
 ];
 
 const PremiumAccessLounge: React.FC = () => {
+  const sponsorRef = useRef<HTMLElement | null>(null);
+
+  // Fire a one-shot 'sponsor_section_view' event when #sponsor scrolls into view.
+  useEffect(() => {
+    const node = sponsorRef.current;
+    if (!node || typeof IntersectionObserver === 'undefined') return;
+
+    let fired = false;
+    const observer = new IntersectionObserver(
+      (entries) => {
+        for (const entry of entries) {
+          if (entry.isIntersecting && !fired) {
+            fired = true;
+            trackSponsorEvent('sponsor_section_view', {
+              location: 'premium_access_lounge',
+            });
+            observer.disconnect();
+          }
+        }
+      },
+      { threshold: 0.25 }
+    );
+    observer.observe(node);
+    return () => observer.disconnect();
+  }, []);
+
   return (
     <>
       {/* ── HEADER + DUAL CTA ────────────────────────────────────────── */}
