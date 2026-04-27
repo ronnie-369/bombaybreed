@@ -125,6 +125,13 @@ function discoverStaticPaths() {
 // ────────────────────────────────────────────────────────────
 const TIMEOUT_MS = 15_000;
 const SPA_MARKERS = ['<div id="root">', 'id="root"></div>'];
+// Lovable's auth bridge (Next.js shell shown when an unauthenticated user
+// hits a private preview URL) - not our app, not the static file.
+const AUTH_BRIDGE_MARKERS = [
+  'lovable.dev/auth-bridge',
+  'Lovable - Build for the web 20x faster',
+  '/_next/static/chunks/',
+];
 
 async function checkOne({ path, kind, title }) {
   const url = base + path;
@@ -148,11 +155,17 @@ async function checkOne({ path, kind, title }) {
     let ok = res.status === 200;
     let note = '';
 
+    // Auth-bridge gate (private preview without a Lovable login).
+    if (ok && !isPdf && AUTH_BRIDGE_MARKERS.some(m => body.includes(m))) {
+      ok = false;
+      note = 'Lovable auth-bridge returned (preview is private; cannot verify without a logged-in session). Run against published / custom domain instead.';
+    }
+
     if (ok && kind === 'static-html') {
       const looksLikeSpa = SPA_MARKERS.some(m => body.includes(m));
       if (looksLikeSpa) {
         ok = false;
-        note = 'SPA fallback served instead of static HTML (body contains <div id="root">)';
+        note = 'SPA fallback served instead of static HTML (body contains <div id="root">). Likely the static file was not included in the latest publish.';
       }
     }
     if (ok && kind === 'static-pdf' && !ct.toLowerCase().includes('pdf')) {
