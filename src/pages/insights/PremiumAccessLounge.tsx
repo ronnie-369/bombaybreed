@@ -167,10 +167,11 @@ const READERSHIP: { group: string; names: string[] }[] = [
  * indicative: INR 6L to 48L depending on scope and intensity.
  */
 const SPONSOR_DELIVERABLES: string[] = [
-  'Detailed due diligence studies on projects, developers or portfolios',
-  'MRV and dMRV reviews, with site-level scoping and ground-truthing',
-  'Feasibility and viability studies for new projects and technologies',
-  'Video assets and editorial write-ups for internal and external use',
+  'Due diligence on projects, developers and portfolios - including Article 6 and JCM-bound pipelines',
+  'MRV and dMRV reviews, with site-level scoping, ground-truthing and methodology audit',
+  'Sector reads on CBAM exposure, EU-ETS pass-through, and FTA-linked carbon clauses',
+  'Feasibility and viability work on energy transition assets - generation, grid, storage, data-centre load',
+  'Editorial write-ups and video assets, usable internally and for external publication',
 ];
 
 const SPONSOR_HOW_IT_WORKS: string[] = [
@@ -182,9 +183,10 @@ const SPONSOR_HOW_IT_WORKS: string[] = [
 
 const SPONSOR_OPEN_PROJECTS: string[] = [
   'CCUS technologies investigation in India',
-  'Carbon projects for JCM readiness',
+  'Carbon projects for JCM and Article 6.2 readiness',
+  'Data-centre water and power footprint - the hidden load on the grid',
+  'CBAM exposure for Indian exporters - steel, aluminium, cement, fertiliser',
   'Wetlands conservation and waste management at Chandrataal Lake, Himachal Pradesh',
-  'Corporate Social Responsibility - who is moving the needle?',
 ];
 
 const PremiumAccessLounge: React.FC = () => {
@@ -325,14 +327,16 @@ const PremiumAccessLounge: React.FC = () => {
               Executive Access Lounge
             </h2>
             <p className="font-serif text-lg md:text-xl text-foreground/85 leading-relaxed max-w-[680px] mb-4">
-              Most of what we know about India&rsquo;s carbon markets does not get
-              published. It moves between desks, before committees, inside drafting
-              rooms - and then it shows up, six weeks later, as a price.
+              Most of what moves carbon prices does not get published. It moves
+              between desks - in CCTS drafting rooms, around Article 6.2
+              bilaterals, inside CBAM exposure spreadsheets, across CORSIA
+              eligibility lists, before it ever shows up as a price.
             </p>
             <p className="text-body text-muted-foreground max-w-[640px] mb-10">
-              Welcome to the Lounge. Here, you get exclusive insights, news,
-              views, analysis, interviews and research reports that give you a
-              real edge in the market. Explore our past work before you sign up.
+              Welcome to the Lounge. The same desk that tracks the EU-ETS
+              auction floor, the FTA carbon clauses, and the load curves of
+              India&rsquo;s data-centre build-out - briefing you before the
+              consensus catches up. Explore our past work before you sign up.
             </p>
           </ScrollReveal>
 
