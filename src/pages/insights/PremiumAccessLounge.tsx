@@ -342,7 +342,7 @@ const PremiumAccessLounge: React.FC = () => {
                 boards and committees, on retainer to your inbox.
               </p>
               <span className="inline-flex items-center gap-1.5 text-sm font-medium">
-                See the two tiers <ArrowRight className="w-4 h-4" />
+                Enter the members&rsquo; room <ArrowRight className="w-4 h-4" />
               </span>
             </a>
           </div>
