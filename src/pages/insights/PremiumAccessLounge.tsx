@@ -189,6 +189,17 @@ const SPONSOR_OPEN_PROJECTS: string[] = [
 
 const PremiumAccessLounge: React.FC = () => {
   const sponsorRef = useRef<HTMLElement | null>(null);
+  const [inquiryOpen, setInquiryOpen] = useState(false);
+  const [inquiryProject, setInquiryProject] = useState('');
+
+  const openInquiry = (project: string) => {
+    setInquiryProject(project);
+    setInquiryOpen(true);
+    trackSponsorEvent('sponsor_open_project_click', {
+      location: 'premium_access_lounge',
+      project,
+    });
+  };
 
   // Fire a one-shot 'sponsor_section_view' event when #sponsor scrolls into view.
   useEffect(() => {
