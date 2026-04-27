@@ -44,61 +44,28 @@ const Checkout = () => {
     const { data: sessionData } = await supabase.auth.getSession();
     const userId = sessionData.session?.user.id;
     if (!userId) {
-      navigate("/intelligence/signup");
+      navigate(`/intelligence/signup?redirect=/intelligence/checkout?tier=${tierSlug}`);
       return;
     }
 
-    // Ensure subscriber exists
-    const { data: sub } = await supabase
-      .from("tcd_subscribers")
-      .select("id")
-      .eq("user_id", userId)
-      .maybeSingle();
+    const { error } = await supabase.rpc("tcd_mock_activate_subscription", {
+      _tier_id: tier.id,
+    });
 
-    let subscriberId = sub?.id;
-    if (!subscriberId) {
-      const email = sessionData.session?.user.email ?? "";
-      const { data: created, error: createErr } = await supabase
-        .from("tcd_subscribers")
-        .insert({ user_id: userId, email, full_name: email.split("@")[0] })
-        .select("id")
-        .single();
-      if (createErr) {
-        toast({ title: "Could not create profile", description: createErr.message, variant: "destructive" });
-        setProcessing(false);
-        return;
-      }
-      subscriberId = created.id;
-    }
-
-    // Create subscription as pending, then admin will activate (mock).
-    const { data: subRow, error: subErr } = await supabase
-      .from("tcd_subscriptions")
-      .insert({
-        subscriber_id: subscriberId,
-        tier_id: tier.id,
-        status: "pending",
-        provider: "mock",
-      })
-      .select("id")
-      .single();
-
-    if (subErr) {
-      toast({ title: "Could not create subscription", description: subErr.message, variant: "destructive" });
+    if (error) {
+      toast({
+        title: "Could not activate membership",
+        description: error.message,
+        variant: "destructive",
+      });
       setProcessing(false);
       return;
     }
 
-    await supabase.from("tcd_payments").insert({
-      subscription_id: subRow.id,
-      amount_inr: tier.price_inr,
-      currency: "INR",
-      provider: "mock",
-      status: "pending",
-      metadata: { note: "Mock checkout. Real Razorpay wiring pending." },
+    toast({
+      title: "Payment successful (mock)",
+      description: `${tier.name} membership is now active.`,
     });
-
-    toast({ title: "Order placed", description: "An admin will activate your subscription shortly." });
     navigate("/intelligence/onboarding");
   };
 
