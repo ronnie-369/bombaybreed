@@ -426,18 +426,18 @@ const PremiumAccessLounge: React.FC = () => {
             {[
               {
                 Icon: Document,
-                k: 'One desk',
-                v: 'From the team that publishes The Climate Desk and the Strategic Communications Advisory and Consulting of Bombay Breed.',
+                k: 'Compliance markets',
+                v: 'CCTS, EU-ETS, CORSIA, Article 6.2 and 6.4 - tracked from inside the drafting rooms, not from press releases.',
               },
               {
                 Icon: Earth,
-                k: 'India first',
-                v: 'Independent research from inside the market, for investments in India, with deep teams from India.',
+                k: 'Trade & policy',
+                v: 'CBAM step-downs, FTA carbon clauses, the political economy of climate policy - and what it means for Indian exporters.',
               },
               {
                 Icon: ChartLineSmooth,
-                k: 'Two depths',
-                v: 'Pick the read that fits the seat you sit in - the cards below set out what each delivers.',
+                k: 'Energy & resources',
+                v: 'Generation, distribution, storage and the rising load from data centres against tightening water and land budgets.',
               },
             ].map(({ Icon, k, v }) => (
               <div key={k} className="flex flex-col gap-3">
