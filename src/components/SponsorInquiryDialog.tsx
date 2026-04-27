@@ -230,6 +230,40 @@ const SponsorInquiryDialog = ({ open, onOpenChange, project }: SponsorInquiryDia
               )}
             />
 
+            <FormField
+              control={form.control}
+              name="consent"
+              render={({ field }) => (
+                <FormItem className="rounded-md border border-border/70 p-3">
+                  <div className="flex items-start gap-3">
+                    <FormControl>
+                      <Checkbox
+                        checked={field.value}
+                        onCheckedChange={(checked) => field.onChange(checked === true)}
+                        aria-required="true"
+                        className="mt-0.5"
+                      />
+                    </FormControl>
+                    <div className="space-y-1 leading-snug">
+                      <FormLabel className="text-xs font-normal text-foreground cursor-pointer">
+                        I agree to be contacted about this inquiry and acknowledge the{' '}
+                        <a
+                          href="/privacy-policy"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="underline underline-offset-2 hover:text-foreground/80"
+                        >
+                          privacy policy
+                        </a>
+                        . Required.
+                      </FormLabel>
+                      <FormMessage className="text-xs" />
+                    </div>
+                  </div>
+                </FormItem>
+              )}
+            />
+
             <DialogFooter className="pt-2">
               <Button
                 type="button"
@@ -239,7 +273,7 @@ const SponsorInquiryDialog = ({ open, onOpenChange, project }: SponsorInquiryDia
               >
                 Cancel
               </Button>
-              <Button type="submit" disabled={submitting}>
+              <Button type="submit" disabled={submitting || !form.watch('consent')}>
                 {submitting ? 'Sending...' : 'Send inquiry'}
               </Button>
             </DialogFooter>
