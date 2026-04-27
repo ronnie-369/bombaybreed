@@ -5,6 +5,7 @@
     "": {
       "name": "vite_react_shadcn_ts",
       "dependencies": {
+        "@carbon/icons-react": "^11.79.0",
         "@hookform/resolvers": "^3.9.0",
         "@radix-ui/react-accordion": "^1.2.0",
         "@radix-ui/react-alert-dialog": "^1.1.1",
@@ -114,6 +115,10 @@
 
     "@bramus/specificity": ["@bramus/specificity@2.4.2", "https://europe-west4-npm.pkg.dev/lovable-core-prod/sandbox-npm-cache/@bramus/specificity/-/specificity-2.4.2.tgz", { "dependencies": { "css-tree": "^3.0.0" }, "bin": { "specificity": "bin/cli.js" } }, "sha512-ctxtJ/eA+t+6q2++vj5j7FYX3nRu311q1wfYH3xjlLOsczhlhxAg2FWNUXhpGvAw3BWo1xBcvOV6/YLc2r5FJw=="],
 
+    "@carbon/icon-helpers": ["@carbon/icon-helpers@10.75.0", "https://europe-west1-npm.pkg.dev/lovable-core-prod/sandbox-npm-cache/@carbon/icon-helpers/-/icon-helpers-10.75.0.tgz", { "dependencies": { "@ibm/telemetry-js": "^1.5.0" } }, "sha512-WD5zGVE0onRVWHNW+VTf3xM/+WVE2LXuFnNMio6Jf56HqjzNCWLOM2oRRBuDpmtQmDoOUPfCEj8fHgwx3N6CCQ=="],
+
+    "@carbon/icons-react": ["@carbon/icons-react@11.79.0", "https://europe-west1-npm.pkg.dev/lovable-core-prod/sandbox-npm-cache/@carbon/icons-react/-/icons-react-11.79.0.tgz", { "dependencies": { "@carbon/icon-helpers": "^10.75.0", "@ibm/telemetry-js": "^1.5.0", "prop-types": "^15.8.1" }, "peerDependencies": { "react": ">=16" } }, "sha512-560qV1R5xkaZtL6XbGeABoeXTL46CnJi01aeR6/XYW0yRxhHw7yLkdcahOrCBDJClg3X9n+2Xs/XddW9KorB9Q=="],
+
     "@csstools/color-helpers": ["@csstools/color-helpers@6.0.2", "https://europe-west4-npm.pkg.dev/lovable-core-prod/sandbox-npm-cache/@csstools/color-helpers/-/color-helpers-6.0.2.tgz", {}, "sha512-LMGQLS9EuADloEFkcTBR3BwV/CGHV7zyDxVRtVDTwdI2Ca4it0CCVTT9wCkxSgokjE5Ho41hEPgb8OEUwoXr6Q=="],
 
     "@csstools/css-calc": ["@csstools/css-calc@3.2.0", "https://europe-west4-npm.pkg.dev/lovable-core-prod/sandbox-npm-cache/@csstools/css-calc/-/css-calc-3.2.0.tgz", { "peerDependencies": { "@csstools/css-parser-algorithms": "^4.0.0", "@csstools/css-tokenizer": "^4.0.0" } }, "sha512-bR9e6o2BDB12jzN/gIbjHa5wLJ4UjD1CB9pM7ehlc0ddk6EBz+yYS1EV2MF55/HUxrHcB/hehAyt5vhsA3hx7w=="],
@@ -217,6 +222,8 @@
     "@humanwhocodes/module-importer": ["@humanwhocodes/module-importer@1.0.1", "", {}, "sha512-bxveV4V8v5Yb4ncFTT3rPSgZBOpCkjfK0y4oVVVJwIuDVBRMDXrPyXRL988i5ap9m9bnyEEjWfm5WkBmtffLfA=="],
 
     "@humanwhocodes/retry": ["@humanwhocodes/retry@0.3.1", "", {}, "sha512-JBxkERygn7Bv/GbN5Rv8Ul6LVknS+5Bp6RgDC/O8gEBU/yeH5Ui5C/OlWrTb6qct7LjjfT6Re2NxB0ln0yYybA=="],
+
+    "@ibm/telemetry-js": ["@ibm/telemetry-js@1.11.0", "https://europe-west1-npm.pkg.dev/lovable-core-prod/sandbox-npm-cache/@ibm/telemetry-js/-/telemetry-js-1.11.0.tgz", { "bin": { "ibmtelemetry": "dist/collect.js" } }, "sha512-RO/9j+URJnSfseWg9ZkEX9p+a3Ousd33DBU7rOafoZB08RqdzxFVYJ2/iM50dkBuD0o7WX7GYt1sLbNgCoE+pA=="],
 
     "@isaacs/cliui": ["@isaacs/cliui@8.0.2", "", { "dependencies": { "string-width": "^5.1.2", "string-width-cjs": "npm:string-width@^4.2.0", "strip-ansi": "^7.0.1", "strip-ansi-cjs": "npm:strip-ansi@^6.0.1", "wrap-ansi": "^8.1.0", "wrap-ansi-cjs": "npm:wrap-ansi@^7.0.0" } }, "sha512-O8jcjabXaleOG9DQ0+ARXWZBTfnP4WNAqzuiJK7ll44AmxGKv/J2M4TPjxjY3znBCfvBXFzucm1twdyFybFqEA=="],
 
