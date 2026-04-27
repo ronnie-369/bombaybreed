@@ -435,7 +435,7 @@ const PremiumAccessLounge: React.FC = () => {
                 Members only zone
               </span>
               <h3 className="font-serif text-xl mt-3 mb-2">
-                Carbon markets and energy transition, decoded for you - starting at INR 10,000 per month
+                One insight can make the portfolio call of the year
               </h3>
               <p className="text-sm text-background/70 mb-6">
                 One insight - the right read on a CCTS auction, an Article 6.2
