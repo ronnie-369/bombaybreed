@@ -472,7 +472,20 @@ const PremiumAccessLounge: React.FC = () => {
                 <figcaption className="text-xs text-muted-foreground border-t border-border/60 pt-4 leading-snug">
                   <div className="font-semibold text-foreground [text-wrap:balance]">{q.name}</div>
                   <div className="[text-wrap:balance]">{q.title}</div>
-                  <div className="text-muted-foreground/70 [text-wrap:balance]">{q.org}</div>
+                  <div className="text-muted-foreground/70 [text-wrap:balance]">
+                    {q.orgHref ? (
+                      <a
+                        href={q.orgHref}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="underline decoration-border underline-offset-2 hover:decoration-foreground hover:text-foreground transition-colors"
+                      >
+                        {q.org}
+                      </a>
+                    ) : (
+                      q.org
+                    )}
+                  </div>
                 </figcaption>
               </figure>
             ))}
