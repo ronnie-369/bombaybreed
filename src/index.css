@@ -48,6 +48,14 @@
     --warm: 28 40% 59%;
     --text-secondary: 0 0% 20%;
     --callout-bg: 48 15% 96%;
+
+    /* === TCD Intelligence palette (HSL of the spec hex values) === */
+    --bb-off-white: 60 21% 98%;     /* #FBFBF9 */
+    --bb-near-black: 0 0% 4%;       /* #0A0A0A */
+    --bb-slate: 209 56% 23%;        /* #1A3C5B */
+    --bb-copper: 28 39% 59%;        /* #C0946D */
+    --bb-gray: 220 9% 46%;          /* #6B7280 */
+    --bb-border: 60 6% 89%;         /* #E5E5E1 */
   }
 
   * {
