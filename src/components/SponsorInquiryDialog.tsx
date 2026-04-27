@@ -152,11 +152,25 @@ const SponsorInquiryDialog = ({ open, onOpenChange, project }: SponsorInquiryDia
 
   const onSubmit = async (data: InquiryValues) => {
     setSubmitting(true);
+    setSubmitError(null);
     const ref = generateReferenceId();
+
+    // Map Formspree's `field` values back onto our react-hook-form field names
+    // so a server-side validation problem highlights the right input.
+    const fieldMap: Record<string, keyof InquiryValues> = {
+      name: 'name',
+      email: 'email',
+      organisation: 'organisation',
+      role: 'role',
+      project_of_interest: 'project',
+      message: 'message',
+      consent: 'consent',
+    };
+
     try {
       const response = await fetch('https://formspree.io/f/myknnoea', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
         body: JSON.stringify({
           reference_id: ref,
           name: data.name.trim(),
@@ -172,7 +186,35 @@ const SponsorInquiryDialog = ({ open, onOpenChange, project }: SponsorInquiryDia
         }),
       });
 
-      if (!response.ok) throw new Error('Submission failed');
+      if (!response.ok) {
+        // Try to surface Formspree's structured field errors if present.
+        let body: { errors?: Array<{ field?: string; message?: string; code?: string }> } = {};
+        try { body = await response.json(); } catch { /* non-JSON response */ }
+
+        const errors = body?.errors ?? [];
+        let hadFieldError = false;
+        for (const err of errors) {
+          const target = err.field ? fieldMap[err.field] : undefined;
+          if (target) {
+            form.setError(target, { type: 'server', message: err.message || 'Invalid value.' });
+            hadFieldError = true;
+          }
+        }
+
+        if (hadFieldError) {
+          setSubmitError('Please review the highlighted fields and try again.');
+        } else if (response.status === 429) {
+          setSubmitError('Too many submissions. Please wait a moment and try again.');
+        } else if (response.status >= 500) {
+          setSubmitError('Our form service is temporarily unavailable. Please try again in a minute.');
+        } else {
+          setSubmitError(
+            errors[0]?.message ||
+              'We could not send your inquiry. Please try again, or email theresa.ronnie@bombaybreed.com.',
+          );
+        }
+        return;
+      }
 
       trackSponsorEvent('sponsor_inquiry_submitted', {
         location: 'premium_access_lounge_open_projects',
@@ -183,11 +225,12 @@ const SponsorInquiryDialog = ({ open, onOpenChange, project }: SponsorInquiryDia
       setReferenceId(ref);
     } catch (error) {
       console.error('Sponsor inquiry submission error:', error);
-      toast({
-        title: 'Could not send your inquiry',
-        description: 'Please try again, or email theresa.ronnie@bombaybreed.com.',
-        variant: 'destructive',
-      });
+      const isOffline = typeof navigator !== 'undefined' && navigator.onLine === false;
+      setSubmitError(
+        isOffline
+          ? 'You appear to be offline. Please reconnect and try again.'
+          : 'Network error. Please check your connection and try again, or email theresa.ronnie@bombaybreed.com.',
+      );
     } finally {
       setSubmitting(false);
     }
