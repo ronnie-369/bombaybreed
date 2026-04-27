@@ -166,7 +166,7 @@ const READERSHIP: { group: string; names: { label: string; href?: string }[] }[]
  * work; the sponsoring organisation gets its name attached to the
  * published output. Deliverables span video assets, due-diligence studies,
  * MRV / dMRV reviews, and feasibility / viability work. Pricing is
- * indicative: INR 6L to 48L depending on scope and intensity.
+ * indicative: INR 6L to 45L depending on scope and intensity.
  */
 const SPONSOR_DELIVERABLES: string[] = [
   'Due diligence on projects, developers and portfolios - including Article 6 and JCM-bound pipelines',
@@ -199,7 +199,7 @@ const SPONSOR_OPEN_PROJECTS: SponsorProject[] = [
     scope:
       'Methodology audit of announced projects, fieldwork at 2-3 candidate sites, capex/opex teardown, comparison with EU-ETS and US 45Q-anchored economics.',
     output: 'One published investigation (~5,000 words) plus a private methodology annexe for the sponsor.',
-    effort: '10-14 weeks · INR 18-32L + GST',
+    effort: '10-14 weeks · INR 6-10L + GST',
   },
   {
     title: 'Carbon projects for JCM and Article 6.2 readiness',
@@ -217,7 +217,7 @@ const SPONSOR_OPEN_PROJECTS: SponsorProject[] = [
     scope:
       'Cluster-level demand modelling (Mumbai, Hyderabad, Chennai, NCR), PPA and renewable wheeling assumptions, water draw vs municipal allocations.',
     output: 'Investigative brief with maps, demand curves and a stress-test of stated net-zero claims.',
-    effort: '10-12 weeks · INR 16-28L + GST',
+    effort: '10-12 weeks · INR 6-10L + GST',
   },
   {
     title: 'CBAM exposure for Indian exporters - steel, aluminium, cement, fertiliser',
@@ -226,7 +226,7 @@ const SPONSOR_OPEN_PROJECTS: SponsorProject[] = [
     scope:
       'Embedded-emissions estimation by mill/plant, default vs verified value gap, EU-ETS price scenarios, India-EU FTA interaction.',
     output: 'Sector report with company-level exposure bands and a board-ready risk matrix.',
-    effort: '8-12 weeks · INR 16-30L + GST',
+    effort: '8-12 weeks · INR 6-12L + GST',
   },
   {
     title: 'Wetlands conservation and waste management at Chandrataal Lake, Himachal Pradesh',
@@ -235,7 +235,7 @@ const SPONSOR_OPEN_PROJECTS: SponsorProject[] = [
     scope:
       'Ground-truthing visit, interviews with HP Forest Dept and local panchayat, baseline waste audit, review of existing CSR and ecotourism flows.',
     output: 'Field report with an intervention design and a costed three-year plan.',
-    effort: '12-16 weeks · INR 12-22L + GST',
+    effort: '12-16 weeks · INR 30-45L + GST',
   },
 ];
 
@@ -861,7 +861,7 @@ const PremiumAccessLounge: React.FC = () => {
             <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
               <div className="max-w-[520px]">
                 <div className="font-serif text-2xl text-foreground mb-1">
-                  INR 6,00,000 - 48,00,000
+                  INR 6,00,000 - 45,00,000
                   <span className="text-base text-muted-foreground font-sans"> + GST</span>
                 </div>
                 <p className="text-sm text-muted-foreground leading-relaxed">
