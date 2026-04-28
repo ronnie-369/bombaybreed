@@ -58,6 +58,16 @@ const formatPrice = (n: number) =>
     maximumFractionDigits: 0,
   }).format(n);
 
+// Mirrors the server-side pricing in create-razorpay-order. Shown as a
+// preview only - the edge function is the source of truth at order time.
+const PLAN_PRICING: Record<
+  "industry_reader" | "analyst_lens",
+  { monthly: number; annualPerMonth: number; annualTotal: number }
+> = {
+  industry_reader: { monthly: 10000, annualPerMonth: 7000, annualTotal: 84000 },
+  analyst_lens: { monthly: 50000, annualPerMonth: 35000, annualTotal: 420000 },
+};
+
 // Map low-level error strings from the edge function / network to a friendly,
 // user-facing message + a hint about whether retrying is likely to help.
 interface CheckoutError {
