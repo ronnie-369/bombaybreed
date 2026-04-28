@@ -144,6 +144,7 @@ export default function CheckoutResult() {
           {status === "pending" && "Confirming your payment"}
           {status === "failed" && "Payment did not go through"}
           {status === "unknown" && "We could not find this payment"}
+          {status === "signature_failed" && "We could not verify this payment"}
         </h1>
 
         {!orderIdLooksValid && (
