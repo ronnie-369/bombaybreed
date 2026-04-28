@@ -22,7 +22,7 @@ import TierPriceText from "@/components/insights/TierPriceText";
 import SponsorInquiryDialog from "@/components/SponsorInquiryDialog";
 import { trackOutboundClick } from "@/utils/outboundAnalytics";
 
-// Visual treatment per ladder. Sponsor (B2B) is tinted to mark it as a
+// Visual treatment per group. Sponsor (B2B) is tinted to mark it as a
 // structurally different revenue line, not a subscriber tier (per memo).
 const ladderBadgeClass: Record<LadderTier["ladder"], string> = {
   TCD: "bg-bb-near-black/5 text-bb-near-black",
@@ -31,9 +31,9 @@ const ladderBadgeClass: Record<LadderTier["ladder"], string> = {
 };
 
 const ladderLabel: Record<LadderTier["ladder"], string> = {
-  TCD: "TCD ladder",
-  BB: "BB ladder",
-  B2B: "B2B revenue line",
+  TCD: "The Climate Desk",
+  BB: "Bombay Breed",
+  B2B: "Sponsorship",
 };
 
 const trackLadderCta = (tier: LadderTier, surface: string) => {
