@@ -177,6 +177,9 @@ const Header = () => {
           <Link to="/insights" className="text-sm text-muted-foreground hover:text-foreground transition-colors story-link">
             Insights
           </Link>
+          <Link to="/intelligence/value-ladder" className="text-sm text-muted-foreground hover:text-foreground transition-colors story-link">
+            Pricing
+          </Link>
           {location.pathname === '/' ? (
             <Button variant="default" size="sm" onClick={scrollToContact}>
               Contact
@@ -257,6 +260,9 @@ const Header = () => {
 
             <Link to="/insights" className="text-sm text-muted-foreground hover:text-foreground transition-colors py-2" onClick={toggleMenu}>
               Insights
+            </Link>
+            <Link to="/intelligence/value-ladder" className="text-sm text-muted-foreground hover:text-foreground transition-colors py-2" onClick={toggleMenu}>
+              Pricing
             </Link>
             {location.pathname === '/' ? (
               <Button variant="default" className="w-full" onClick={scrollToContact}>
