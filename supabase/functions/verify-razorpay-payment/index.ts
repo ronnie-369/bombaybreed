@@ -40,11 +40,16 @@ const corsHeaders = {
   'Access-Control-Allow-Methods': 'POST, OPTIONS',
 };
 
-type PlanId = 'industry_reader' | 'analyst_lens';
+type PlanId = 'enthusiasts' | 'industry_reader' | 'analyst_lens';
 type BillingCycle = 'monthly' | 'annual';
 
 // Same plan catalogue as create-razorpay-order, in paise.
 const PLANS: Record<PlanId, { tierSlug: string; monthly_paise: number; annual_paise: number }> = {
+  enthusiasts: {
+    tierSlug: 'enthusiasts',
+    monthly_paise: 425 * 100,
+    annual_paise: 425 * 12 * 100, // unused; create-razorpay-order rejects annual for this plan
+  },
   industry_reader: {
     tierSlug: 'foundational',
     monthly_paise: 10_000 * 100,
