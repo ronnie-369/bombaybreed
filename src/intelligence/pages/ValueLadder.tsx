@@ -301,7 +301,7 @@ const ValueLadder = () => {
                 <span className="font-serif text-[18px] tracking-tight text-bb-near-black">
                   {t.name}
                 </span>
-                <span className="text-[12px] text-bb-gray">{t.priceLabel}</span>
+                <span className="text-[12px] text-bb-gray">{formatTierPrice(t, currency)}</span>
               </summary>
               <ul className="mt-4 space-y-3">
                 {JOBS.map((job) => (
