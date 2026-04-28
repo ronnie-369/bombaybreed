@@ -6,6 +6,36 @@ import { useToast } from "@/hooks/use-toast";
 import IntelligenceLayout from "../components/IntelligenceLayout";
 import SectionLabel from "../components/SectionLabel";
 
+// ---- Razorpay checkout modal types ----
+declare global {
+  interface Window {
+    Razorpay?: new (options: Record<string, unknown>) => { open: () => void };
+  }
+}
+
+const RAZORPAY_SCRIPT_SRC = "https://checkout.razorpay.com/v1/checkout.js";
+
+function loadRazorpayScript(): Promise<boolean> {
+  return new Promise((resolve) => {
+    if (typeof window === "undefined") return resolve(false);
+    if (window.Razorpay) return resolve(true);
+    const existing = document.querySelector<HTMLScriptElement>(
+      `script[src="${RAZORPAY_SCRIPT_SRC}"]`
+    );
+    if (existing) {
+      existing.addEventListener("load", () => resolve(true), { once: true });
+      existing.addEventListener("error", () => resolve(false), { once: true });
+      return;
+    }
+    const s = document.createElement("script");
+    s.src = RAZORPAY_SCRIPT_SRC;
+    s.async = true;
+    s.onload = () => resolve(true);
+    s.onerror = () => resolve(false);
+    document.body.appendChild(s);
+  });
+}
+
 interface Tier {
   id: string;
   slug: string;
@@ -14,8 +44,19 @@ interface Tier {
   billing_period: string;
 }
 
+// Map TCD tier slugs to the Premium Access Lounge plan ids the
+// create-razorpay-order / verify-razorpay-payment edge functions expect.
+const TIER_TO_PLAN: Record<string, "industry_reader" | "analyst_lens"> = {
+  foundational: "industry_reader",
+  professional: "analyst_lens",
+};
+
 const formatPrice = (n: number) =>
-  new Intl.NumberFormat("en-IN", { style: "currency", currency: "INR", maximumFractionDigits: 0 }).format(n);
+  new Intl.NumberFormat("en-IN", {
+    style: "currency",
+    currency: "INR",
+    maximumFractionDigits: 0,
+  }).format(n);
 
 const Checkout = () => {
   const [params] = useSearchParams();
@@ -25,6 +66,9 @@ const Checkout = () => {
 
   const [tier, setTier] = useState<Tier | null>(null);
   const [processing, setProcessing] = useState(false);
+  const [billingCycle, setBillingCycle] = useState<"monthly" | "annual">(
+    "annual"
+  );
 
   useEffect(() => {
     (async () => {
@@ -37,36 +81,152 @@ const Checkout = () => {
     })();
   }, [tierSlug]);
 
-  const handleMockPay = async () => {
-    if (!tier) return;
-    setProcessing(true);
+  // Pre-warm the Razorpay script so the modal opens instantly on click.
+  useEffect(() => {
+    void loadRazorpayScript();
+  }, []);
 
-    const { data: sessionData } = await supabase.auth.getSession();
-    const userId = sessionData.session?.user.id;
-    if (!userId) {
-      navigate(`/intelligence/signup?redirect=/intelligence/checkout?tier=${tierSlug}`);
+  const planId = TIER_TO_PLAN[tierSlug];
+
+  const handlePay = async () => {
+    if (!tier || processing) return;
+
+    if (!planId) {
+      toast({
+        title: "This tier is not yet available for online checkout",
+        description: "Please contact us to activate this membership manually.",
+        variant: "destructive",
+      });
       return;
     }
 
-    const { error } = await supabase.rpc("tcd_mock_activate_subscription", {
-      _tier_id: tier.id,
-    });
+    // Auth still required - subscriptions are tied to a user account.
+    const { data: sessionData } = await supabase.auth.getSession();
+    const session = sessionData.session;
+    if (!session) {
+      navigate(
+        `/intelligence/signup?redirect=/intelligence/checkout?tier=${tierSlug}`
+      );
+      return;
+    }
 
-    if (error) {
+    setProcessing(true);
+
+    try {
+      // 1. Create the Razorpay order on the server (server-side pricing).
+      const { data: orderData, error: orderError } =
+        await supabase.functions.invoke("create-razorpay-order", {
+          body: {
+            planId,
+            billingCycle,
+            notes: { tier_slug: tierSlug, source: "intelligence_checkout" },
+          },
+        });
+
+      if (orderError || !orderData?.order_id) {
+        toast({
+          title: "Could not start checkout",
+          description:
+            orderError?.message ??
+            orderData?.error ??
+            "Razorpay order creation failed.",
+          variant: "destructive",
+        });
+        setProcessing(false);
+        return;
+      }
+
+      // 2. Make sure the Razorpay JS is loaded.
+      const ok = await loadRazorpayScript();
+      if (!ok || !window.Razorpay) {
+        toast({
+          title: "Checkout unavailable",
+          description:
+            "Razorpay checkout failed to load. Check your connection and retry.",
+          variant: "destructive",
+        });
+        setProcessing(false);
+        return;
+      }
+
+      const userEmail = session.user.email ?? "";
+      const userName =
+        (session.user.user_metadata?.full_name as string | undefined) ??
+        (userEmail ? userEmail.split("@")[0] : "Member");
+
+      // 3. Open the Razorpay checkout modal.
+      const rzp = new window.Razorpay({
+        key: orderData.key_id,
+        amount: orderData.amount,
+        currency: orderData.currency,
+        name: "Bombay Breed",
+        description: `${tier.name} - ${
+          billingCycle === "annual" ? "Annual (12 months upfront)" : "Monthly"
+        }`,
+        order_id: orderData.order_id,
+        prefill: { name: userName, email: userEmail },
+        notes: {
+          plan_id: planId,
+          billing_cycle: billingCycle,
+          tier_slug: tierSlug,
+        },
+        theme: { color: "#1A3D5C" },
+        modal: {
+          ondismiss: () => {
+            setProcessing(false);
+            toast({
+              title: "Checkout closed",
+              description: "You can resume payment whenever you're ready.",
+            });
+          },
+        },
+        handler: async (response: {
+          razorpay_order_id: string;
+          razorpay_payment_id: string;
+          razorpay_signature: string;
+        }) => {
+          // 4. Verify the signature and activate the subscription server-side.
+          const { data: verifyData, error: verifyError } =
+            await supabase.functions.invoke("verify-razorpay-payment", {
+              body: {
+                razorpay_order_id: response.razorpay_order_id,
+                razorpay_payment_id: response.razorpay_payment_id,
+                razorpay_signature: response.razorpay_signature,
+                customer: { email: userEmail, full_name: userName },
+              },
+            });
+
+          if (verifyError || !verifyData?.success) {
+            toast({
+              title: "Payment received - activation pending",
+              description:
+                verifyError?.message ??
+                verifyData?.error ??
+                "We received your payment but could not activate your membership automatically. Our team has been notified.",
+              variant: "destructive",
+            });
+            setProcessing(false);
+            return;
+          }
+
+          toast({
+            title: "Payment successful",
+            description: `${tier.name} membership is now active.`,
+          });
+          setProcessing(false);
+          navigate("/intelligence/onboarding");
+        },
+      });
+
+      rzp.open();
+    } catch (err) {
       toast({
-        title: "Could not activate membership",
-        description: error.message,
+        title: "Unexpected error",
+        description: err instanceof Error ? err.message : String(err),
         variant: "destructive",
       });
       setProcessing(false);
-      return;
     }
-
-    toast({
-      title: "Payment successful (mock)",
-      description: `${tier.name} membership is now active.`,
-    });
-    navigate("/intelligence/onboarding");
   };
 
   return (
@@ -88,28 +248,55 @@ const Checkout = () => {
                 <div className="text-[11px] font-semibold uppercase tracking-[0.36em] text-bb-copper">
                   {tier.name}
                 </div>
-                <p className="mt-2 text-[13px] text-bb-gray">Billed {tier.billing_period}.</p>
+                <p className="mt-2 text-[13px] text-bb-gray">
+                  Billed {tier.billing_period}.
+                </p>
               </div>
               <div className="font-serif text-[32px] tracking-tight text-bb-near-black">
                 {formatPrice(Number(tier.price_inr))}
               </div>
             </div>
 
+            {planId && (
+              <div className="mt-6">
+                <div className="text-[11px] font-semibold uppercase tracking-[0.3em] text-bb-gray mb-3">
+                  Billing cycle
+                </div>
+                <div className="grid grid-cols-2 gap-2">
+                  {(["monthly", "annual"] as const).map((cycle) => (
+                    <button
+                      key={cycle}
+                      type="button"
+                      onClick={() => setBillingCycle(cycle)}
+                      className={`text-[13px] border rounded-[10px] px-4 py-3 transition-colors ${
+                        billingCycle === cycle
+                          ? "border-bb-slate bg-bb-slate/5 text-bb-near-black"
+                          : "border-bb-border text-bb-gray hover:text-bb-near-black"
+                      }`}
+                    >
+                      {cycle === "annual"
+                        ? "Annual (12 months upfront)"
+                        : "Monthly"}
+                    </button>
+                  ))}
+                </div>
+              </div>
+            )}
+
             <div className="mt-6 rounded-[10px] bg-bb-off-white border border-bb-border p-5">
               <p className="text-[13px] text-bb-gray leading-relaxed">
-                Payments are mocked while Razorpay is being wired in. Placing this order activates
-                your {tier.name} membership immediately for one year and records a successful mock
-                payment, so gated reports unlock right away. The real provider will replace this
-                step without changing the rest of the experience.
+                You will be redirected to Razorpay's secure checkout to complete
+                payment. Your membership activates automatically once the
+                payment is verified.
               </p>
             </div>
 
             <button
-              onClick={handleMockPay}
+              onClick={handlePay}
               disabled={processing}
               className="mt-8 w-full h-12 rounded-[10px] bg-bb-slate text-bb-off-white text-[14px] font-medium hover:opacity-90 transition disabled:opacity-50"
             >
-              {processing ? "Placing order..." : "Place order (mock)"}
+              {processing ? "Opening checkout..." : "Pay with Razorpay"}
             </button>
           </div>
         ) : (
