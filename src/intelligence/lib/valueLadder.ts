@@ -387,7 +387,35 @@ export const INTERSECTION = {
   fromTierId: "tcd-paid" as const,
   toTierId: "bb-reader" as const,
   headline: "From Paid Substack to Market Readers",
-  body: "The single explicit upgrade path between the two ladders. Any paid Substack subscriber receives a discount on the first three months of the Market Readers tier (USD 75 / mo for the first quarter, then USD 100 / mo thereafter). Substack subscription is paused or refunded for the duration of the discount.",
+  /**
+   * Body template - `{intro}` and `{regular}` are substituted at render time
+   * with the discounted-quarter rate and the regular rate in the visitor's
+   * active currency. See `formatIntersectionBody`.
+   */
+  body: "The single explicit upgrade path between the two ladders. Any paid Substack subscriber receives a discount on the first three months of the Market Readers tier ({intro} for the first quarter, then {regular} thereafter). Substack subscription is paused or refunded for the duration of the discount.",
+  introPricing: { usd: 75, inr: 6500, period: "mo" as const },
   ctaLabel: "Upgrade to Market Readers",
   ctaHref: "/intelligence/signup?tier=foundational&ref=intersection",
+};
+
+/** Render INTERSECTION.body with prices localised to the visitor's currency. */
+export const formatIntersectionBody = (currency: Currency): string => {
+  const to = TIER_BY_ID[INTERSECTION.toTierId];
+  const intro = INTERSECTION.introPricing;
+  const introLabel =
+    currency === "USD"
+      ? `USD ${fmtUSD(intro.usd)} / ${intro.period}`
+      : `INR ${fmtINR(intro.inr)} / ${intro.period}`;
+  const regularLabel = formatTierPriceShort(to, currency);
+  return INTERSECTION.body
+    .replace("{intro}", introLabel)
+    .replace("{regular}", regularLabel);
+};
+
+/** Compact label for the "first quarter at ..." callout. */
+export const formatIntersectionIntro = (currency: Currency): string => {
+  const intro = INTERSECTION.introPricing;
+  return currency === "USD"
+    ? `First quarter at USD ${fmtUSD(intro.usd)} / mo`
+    : `First quarter at INR ${fmtINR(intro.inr)} / mo`;
 };
