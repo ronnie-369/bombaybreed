@@ -249,16 +249,12 @@ const PremiumAccessLounge: React.FC = () => {
   const [currency] = useCurrency();
   // Lounge launch-discount prices (30% off year one). Discount math is local
   // to this surface; the canonical Value Ladder uses regular pricing.
-  const tier1Strike = currency === 'USD' ? 'USD 100 / month' : 'INR 8,500 / month';
+  const tier1Strike = currency === 'USD' ? 'USD 100 / month (INR 8,500)' : 'INR 8,500 / month (USD 100)';
   const tier1Price = currency === 'USD' ? 'USD 70' : 'INR 6,000';
-  const tier1Note = currency === 'USD'
-    ? '~INR 6,000 / month - founding rate, locked while your subscription stays active'
-    : '~USD 70 / month - founding rate, locked while your subscription stays active';
-  const tier2Strike = currency === 'USD' ? 'USD 500 / month' : 'INR 42,500 / month';
+  const tier1Secondary = currency === 'USD' ? 'INR 6,000' : 'USD 70';
+  const tier2Strike = currency === 'USD' ? 'USD 500 / month (INR 42,500)' : 'INR 42,500 / month (USD 500)';
   const tier2Price = currency === 'USD' ? 'USD 350' : 'INR 30,000';
-  const tier2Note = currency === 'USD'
-    ? '~INR 30,000 / month - founding rate, locked while your subscription stays active'
-    : '~USD 350 / month - founding rate, locked while your subscription stays active';
+  const tier2Secondary = currency === 'USD' ? 'INR 30,000' : 'USD 350';
 
   const openInquiry = (project: SponsorProject) => {
     setInquiryProject(project);
@@ -602,9 +598,10 @@ const PremiumAccessLounge: React.FC = () => {
                 </div>
                 <div className="font-serif text-2xl sm:text-3xl text-foreground whitespace-nowrap leading-tight">
                   {tier1Price}<span className="text-sm sm:text-base text-muted-foreground font-sans"> / month</span>
+                  <span className="text-xs sm:text-sm text-muted-foreground font-sans ml-2">({tier1Secondary})</span>
                 </div>
                 <div className="text-xs text-muted-foreground tracking-wide mt-1 leading-snug">
-                  {tier1Note}
+                  Founding rate, locked while your subscription stays active
                 </div>
               </div>
 
@@ -669,13 +666,14 @@ const PremiumAccessLounge: React.FC = () => {
                   Launch offer - 30% off year one
                 </span>
                 <div className="text-xs text-background/45 font-sans line-through mb-1 leading-snug">
-                  USD 500 / month
+                  {tier2Strike}
                 </div>
                 <div className="font-serif text-2xl sm:text-3xl whitespace-nowrap leading-tight">
-                  USD 350<span className="text-sm sm:text-base text-background/60 font-sans"> / month</span>
+                  {tier2Price}<span className="text-sm sm:text-base text-background/60 font-sans"> / month</span>
+                  <span className="text-xs sm:text-sm text-background/60 font-sans ml-2">({tier2Secondary})</span>
                 </div>
                 <div className="text-xs text-background/60 tracking-wide mt-1 leading-snug">
-                  ~INR 30,000 / month - founding rate, locked while your subscription stays active
+                  Founding rate, locked while your subscription stays active
                 </div>
               </div>
 
