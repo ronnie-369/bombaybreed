@@ -104,11 +104,27 @@ Deno.serve(async (req) => {
     });
   }
 
+  const userId = getUserIdFromAuthHeader(req);
+  const requestMetadata: Record<string, unknown> = {
+    user_agent: req.headers.get('user-agent') ?? null,
+    origin: req.headers.get('origin') ?? null,
+  };
+
+  let planIdLogged: string | null = null;
+  let billingCycleLogged: string | null = null;
+  let amountInrLogged: number | null = null;
+
   try {
     const keyId = Deno.env.get('RAZORPAY_KEY_ID');
     const keySecret = Deno.env.get('RAZORPAY_KEY_SECRET');
     if (!keyId || !keySecret) {
       console.error('Missing Razorpay credentials');
+      void logOrderAttempt({
+        user_id: userId, plan_id: null, billing_cycle: null,
+        amount_inr: null, currency: 'INR', order_id: null,
+        status: 'failed', error_message: 'Razorpay credentials not configured',
+        request_metadata: requestMetadata,
+      });
       return new Response(
         JSON.stringify({ error: 'Payment provider not configured' }),
         { status: 500, headers: { ...corsHeaders, 'Content-Type': 'application/json' } },
@@ -119,6 +135,12 @@ Deno.serve(async (req) => {
     try {
       body = await req.json();
     } catch {
+      void logOrderAttempt({
+        user_id: userId, plan_id: null, billing_cycle: null,
+        amount_inr: null, currency: 'INR', order_id: null,
+        status: 'failed', error_message: 'Invalid JSON body',
+        request_metadata: requestMetadata,
+      });
       return new Response(JSON.stringify({ error: 'Invalid JSON body' }), {
         status: 400,
         headers: { ...corsHeaders, 'Content-Type': 'application/json' },
@@ -130,14 +152,28 @@ Deno.serve(async (req) => {
       billingCycle?: string;
       notes?: Record<string, string>;
     };
+    planIdLogged = typeof planId === 'string' ? planId : null;
+    billingCycleLogged = typeof billingCycle === 'string' ? billingCycle : null;
 
     if (planId !== 'industry_reader' && planId !== 'analyst_lens') {
+      void logOrderAttempt({
+        user_id: userId, plan_id: planIdLogged, billing_cycle: billingCycleLogged,
+        amount_inr: null, currency: 'INR', order_id: null,
+        status: 'failed', error_message: 'Invalid planId',
+        request_metadata: requestMetadata,
+      });
       return new Response(
         JSON.stringify({ error: 'Invalid planId. Expected industry_reader or analyst_lens.' }),
         { status: 400, headers: { ...corsHeaders, 'Content-Type': 'application/json' } },
       );
     }
     if (billingCycle !== 'monthly' && billingCycle !== 'annual') {
+      void logOrderAttempt({
+        user_id: userId, plan_id: planIdLogged, billing_cycle: billingCycleLogged,
+        amount_inr: null, currency: 'INR', order_id: null,
+        status: 'failed', error_message: 'Invalid billingCycle',
+        request_metadata: requestMetadata,
+      });
       return new Response(
         JSON.stringify({ error: 'Invalid billingCycle. Expected monthly or annual.' }),
         { status: 400, headers: { ...corsHeaders, 'Content-Type': 'application/json' } },
@@ -146,6 +182,7 @@ Deno.serve(async (req) => {
 
     const plan = PLANS[planId as PlanId];
     const amountInr = priceInInr(plan, billingCycle as BillingCycle);
+    amountInrLogged = amountInr;
     const amountPaise = amountInr * 100;
 
     // Razorpay receipts are limited to 40 chars.
@@ -184,6 +221,17 @@ Deno.serve(async (req) => {
 
     if (!rzpRes.ok) {
       console.error('Razorpay order creation failed', rzpRes.status, rzpJson);
+      void logOrderAttempt({
+        user_id: userId,
+        plan_id: planIdLogged,
+        billing_cycle: billingCycleLogged,
+        amount_inr: amountInrLogged,
+        currency: 'INR',
+        order_id: null,
+        status: 'failed',
+        error_message: `Razorpay ${rzpRes.status}: ${rzpJson?.error?.description ?? 'order creation failed'}`,
+        request_metadata: { ...requestMetadata, razorpay_status: rzpRes.status, receipt },
+      });
       return new Response(
         JSON.stringify({
           error: 'Razorpay order creation failed',
@@ -192,6 +240,18 @@ Deno.serve(async (req) => {
         { status: 502, headers: { ...corsHeaders, 'Content-Type': 'application/json' } },
       );
     }
+
+    void logOrderAttempt({
+      user_id: userId,
+      plan_id: planIdLogged,
+      billing_cycle: billingCycleLogged,
+      amount_inr: amountInrLogged,
+      currency: 'INR',
+      order_id: typeof rzpJson.id === 'string' ? rzpJson.id : null,
+      status: 'created',
+      error_message: null,
+      request_metadata: { ...requestMetadata, receipt },
+    });
 
     return new Response(
       JSON.stringify({
@@ -210,6 +270,17 @@ Deno.serve(async (req) => {
     );
   } catch (err) {
     console.error('create-razorpay-order error', err);
+    void logOrderAttempt({
+      user_id: userId,
+      plan_id: planIdLogged,
+      billing_cycle: billingCycleLogged,
+      amount_inr: amountInrLogged,
+      currency: 'INR',
+      order_id: null,
+      status: 'failed',
+      error_message: err instanceof Error ? err.message : 'Unexpected server error',
+      request_metadata: requestMetadata,
+    });
     return new Response(JSON.stringify({ error: 'Unexpected server error' }), {
       status: 500,
       headers: { ...corsHeaders, 'Content-Type': 'application/json' },
