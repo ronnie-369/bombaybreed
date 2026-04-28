@@ -32,6 +32,7 @@ const NewsletterArchive = lazy(() => import("./pages/NewsletterArchive"));
 const CarbonMarketTracker = lazy(() => import("./pages/CarbonMarketTracker"));
 const BRSRReportingAdvisory = lazy(() => import("./pages/BRSRReportingAdvisory"));
 const CarbonCreditTradingScheme = lazy(() => import("./pages/CarbonCreditTradingScheme"));
+const RazorpayTest = lazy(() => import("./pages/RazorpayTest"));
 
 // TCD Intelligence routes
 const IntelligenceLanding = lazy(() => import("./intelligence/pages/IntelligenceLanding"));
