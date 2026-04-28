@@ -32,6 +32,7 @@ const NewsletterArchive = lazy(() => import("./pages/NewsletterArchive"));
 const CarbonMarketTracker = lazy(() => import("./pages/CarbonMarketTracker"));
 const BRSRReportingAdvisory = lazy(() => import("./pages/BRSRReportingAdvisory"));
 const CarbonCreditTradingScheme = lazy(() => import("./pages/CarbonCreditTradingScheme"));
+const RazorpayTest = lazy(() => import("./pages/RazorpayTest"));
 
 // TCD Intelligence routes
 const IntelligenceLanding = lazy(() => import("./intelligence/pages/IntelligenceLanding"));
@@ -99,6 +100,9 @@ const AppContent = () => {
               <Route path="/india-carbon-market-tracker" element={<CarbonMarketTracker />} />
               <Route path="/brsr-reporting-advisory-india" element={<BRSRReportingAdvisory />} />
               <Route path="/carbon-credit-trading-scheme-india" element={<CarbonCreditTradingScheme />} />
+
+              {/* Internal QA - Razorpay end-to-end test page (noindex) */}
+              <Route path="/razorpay-test" element={<RazorpayTest />} />
 
               {/* TCD Intelligence — subscription platform */}
               <Route path="/intelligence" element={<IntelligenceLanding />} />
