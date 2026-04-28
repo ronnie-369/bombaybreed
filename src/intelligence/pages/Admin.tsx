@@ -170,6 +170,31 @@ const Admin = () => {
     );
   }, [subscribers, memberFilter]);
 
+  const planOptions = useMemo(() => {
+    const set = new Set<string>();
+    orders.forEach((o) => o.plan_id && set.add(o.plan_id));
+    return Array.from(set).sort();
+  }, [orders]);
+
+  const filteredOrders = useMemo(() => {
+    const plan = orderPlanFilter.trim().toLowerCase();
+    const fromTs = orderFromDate ? new Date(orderFromDate).getTime() : null;
+    const toTs = orderToDate ? new Date(orderToDate).getTime() + 86400000 : null;
+    return orders.filter((o) => {
+      if (plan && !(o.plan_id ?? "").toLowerCase().includes(plan)) return false;
+      if (orderCycleFilter !== "all" && (o.billing_cycle ?? "") !== orderCycleFilter) return false;
+      if (orderStatusFilter !== "all") {
+        if (orderStatusFilter === "errors") {
+          if (o.status !== "failed" && !o.error_message) return false;
+        } else if (o.status !== orderStatusFilter) return false;
+      }
+      const ts = new Date(o.created_at).getTime();
+      if (fromTs && ts < fromTs) return false;
+      if (toTs && ts > toTs) return false;
+      return true;
+    });
+  }, [orders, orderPlanFilter, orderCycleFilter, orderStatusFilter, orderFromDate, orderToDate]);
+
   const setMemberTier = async (subscriber: SubscriberRow, tierId: string) => {
     setPendingId(subscriber.id);
     const current = activeBySubscriber.get(subscriber.id);
