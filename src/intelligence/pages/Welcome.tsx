@@ -14,8 +14,8 @@ const TIER_ALIAS: Record<string, string> = {
 };
 
 const TIER_LABEL: Record<string, string> = {
-  foundational: "Industry Reader",
-  professional: "Analyst Lens",
+  foundational: "Market Readers",
+  professional: "Investor Readers",
 };
 
 type Billing = "monthly" | "annual";
