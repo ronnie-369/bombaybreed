@@ -77,18 +77,52 @@ const Welcome = () => {
       if (data.session) {
         setEmail(data.session.user.email ?? null);
         setSessionState("ready");
-        // Backfill subscriber row using metadata captured at signup.
-        const meta = data.session.user.user_metadata ?? {};
-        await supabase.from("tcd_subscribers").upsert(
-          {
-            user_id: data.session.user.id,
-            email: data.session.user.email ?? "",
-            full_name: (meta.full_name as string) || (data.session.user.email?.split("@")[0] ?? "Member"),
-            company: (meta.company as string) || null,
-            designation: (meta.designation as string) || null,
-          },
-          { onConflict: "user_id" },
-        );
+
+        // Backfill subscriber row. Auth metadata is the primary source (set at
+        // signup), but on cross-device confirmations or older accounts it can
+        // be empty. Fall back to localStorage intent (captured pre-submit),
+        // then to a derived name from the email local-part.
+        const user = data.session.user;
+        const meta = (user.user_metadata ?? {}) as Record<string, unknown>;
+
+        let storedProfile: Record<string, unknown> = {};
+        try {
+          const raw = localStorage.getItem("tcd_signup_profile");
+          if (raw) storedProfile = JSON.parse(raw) as Record<string, unknown>;
+        } catch {
+          /* ignore parse errors */
+        }
+
+        const pick = (key: string): string | null => {
+          const fromMeta = meta[key];
+          if (typeof fromMeta === "string" && fromMeta.trim()) return fromMeta.trim();
+          const fromStore = storedProfile[key];
+          if (typeof fromStore === "string" && fromStore.trim()) return fromStore.trim();
+          return null;
+        };
+
+        const emailLocal = user.email?.split("@")[0]?.replace(/[._-]+/g, " ").trim();
+        const derivedName = emailLocal
+          ? emailLocal.replace(/\b\w/g, (c) => c.toUpperCase())
+          : "Member";
+
+        // Only upsert if we have at least an email - guards against partial rows.
+        if (user.email) {
+          const { error: upsertError } = await supabase.from("tcd_subscribers").upsert(
+            {
+              user_id: user.id,
+              email: user.email,
+              full_name: pick("full_name") ?? derivedName,
+              company: pick("company"),
+              designation: pick("designation"),
+            },
+            { onConflict: "user_id" },
+          );
+          if (upsertError) {
+            // Non-fatal: the user can still proceed to checkout. Log only.
+            console.warn("[Welcome] subscriber backfill failed", upsertError.message);
+          }
+        }
       } else {
         setSessionState("missing");
       }
