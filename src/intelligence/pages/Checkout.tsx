@@ -422,11 +422,16 @@ const Checkout = () => {
                     <div className="text-[11px] font-semibold uppercase tracking-[0.3em] text-bb-gray">
                       Charged today
                     </div>
-                    <div className="font-serif text-[28px] tracking-tight text-bb-near-black">
-                      {formatPrice(chargeNow)}
-                      <span className="ml-2 text-[11px] uppercase tracking-[0.24em] text-bb-gray">
-                        INR
-                      </span>
+                    <div className="text-right">
+                      <div className="font-serif text-[28px] tracking-tight text-bb-near-black">
+                        {formatPrice(chargeNow)}
+                        <span className="ml-2 text-[11px] uppercase tracking-[0.24em] text-bb-gray">
+                          INR
+                        </span>
+                      </div>
+                      <div className="mt-1 text-[11px] text-bb-gray">
+                        ({formatIntlBracket(chargeNow)})
+                      </div>
                     </div>
                   </div>
                 </div>
