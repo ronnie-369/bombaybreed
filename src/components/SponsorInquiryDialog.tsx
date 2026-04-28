@@ -248,7 +248,7 @@ const SponsorInquiryDialog = ({ open, onOpenChange, project, projectDetails }: S
   return (
     <Dialog open={open} onOpenChange={handleOpenChange}>
       <DialogContent
-        className="max-w-lg relative"
+        className="max-w-lg relative max-h-[90vh] overflow-y-auto"
         onInteractOutside={(e) => { if (submitting) e.preventDefault(); }}
         onEscapeKeyDown={(e) => { if (submitting) e.preventDefault(); }}
         aria-busy={submitting}
