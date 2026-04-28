@@ -598,12 +598,15 @@ const PremiumAccessLounge: React.FC = () => {
             {TIERS.map((tier) => {
               const isSponsor = tier.ladder === 'B2B';
               const isEnthusiast = tier.id === 'tcd-paid';
-              const cardClass = `rounded-xl border p-4 flex flex-col h-full transition ${
+              const isHighlighted = highlightTierId === tier.id;
+              const cardClass = `rounded-xl border p-4 flex flex-col h-full transition scroll-mt-32 ${
                 isSponsor
                   ? 'border-primary/30 bg-primary/5'
                   : isEnthusiast
                   ? 'border-accent/50 bg-accent/5 ring-1 ring-accent/30'
                   : 'border-border bg-background hover:border-primary/30'
+              } ${
+                isHighlighted ? 'ring-2 ring-primary ring-offset-2 ring-offset-background shadow-lg' : ''
               }`;
               const ladderTag =
                 tier.ladder === 'TCD'
@@ -612,7 +615,7 @@ const PremiumAccessLounge: React.FC = () => {
                   ? 'Bombay Breed'
                   : 'B2B';
               return (
-                <div key={tier.id} className={cardClass}>
+                <div key={tier.id} id={`tier-card-${tier.id}`} className={cardClass}>
                   {isEnthusiast && (
                     <span className="self-start mb-2 inline-flex items-center px-2 py-0.5 rounded-full text-[9px] font-semibold tracking-widest uppercase bg-accent text-accent-foreground">
                       Easiest entry
