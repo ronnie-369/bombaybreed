@@ -124,6 +124,13 @@ const Admin = () => {
         .select("id, slug, name, rank, sort_order")
         .eq("is_active", true)
         .order("sort_order"),
+      supabase
+        .from("tcd_order_attempts")
+        .select(
+          "id, created_at, user_id, plan_id, billing_cycle, amount_inr, currency, order_id, status, error_message, request_metadata"
+        )
+        .order("created_at", { ascending: false })
+        .limit(500),
     ]);
 
     setSubscriptions((subsR.data as unknown as SubscriptionRow[]) ?? []);
@@ -131,6 +138,7 @@ const Admin = () => {
     setPayments((paysR.data as PaymentRow[]) ?? []);
     setViews((viewsR.data as unknown as ViewRow[]) ?? []);
     setTiers((tiersR.data as TierRow[]) ?? []);
+    setOrders((ordersR.data as unknown as OrderAttemptRow[]) ?? []);
     setLoading(false);
   };
 
