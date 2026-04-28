@@ -36,6 +36,7 @@ const RazorpayTest = lazy(() => import("./pages/RazorpayTest"));
 
 // TCD Intelligence routes
 const IntelligenceLanding = lazy(() => import("./intelligence/pages/IntelligenceLanding"));
+const TcdValueLadder = lazy(() => import("./intelligence/pages/ValueLadder"));
 const TcdMembership = lazy(() => import("./intelligence/pages/Membership"));
 const TcdSignup = lazy(() => import("./intelligence/pages/Signup"));
 const TcdWelcome = lazy(() => import("./intelligence/pages/Welcome"));
@@ -108,6 +109,8 @@ const AppContent = () => {
 
               {/* TCD Intelligence — subscription platform */}
               <Route path="/intelligence" element={<IntelligenceLanding />} />
+              <Route path="/intelligence/value-ladder" element={<TcdValueLadder />} />
+              <Route path="/pricing" element={<Navigate to="/intelligence/value-ladder" replace />} />
               <Route path="/intelligence/membership" element={<TcdMembership />} />
               <Route path="/intelligence/signup" element={<TcdSignup />} />
               <Route path="/intelligence/welcome" element={<TcdWelcome />} />

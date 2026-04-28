@@ -10,6 +10,8 @@ import ScrollReveal from '@/components/ui/ScrollReveal';
 import SectionLabel from '@/components/ui/SectionLabel';
 import PremiumAccessLounge from '@/pages/insights/PremiumAccessLounge';
 import { trackSponsorEvent } from '@/utils/sponsorAnalytics';
+import LadderHero from '@/components/insights/LadderHero';
+import LadderStickyPill from '@/components/insights/LadderStickyPill';
 
 
 type ContentType = 'Flagship Report' | 'Intelligence Brief' | 'Regulatory Alert' | 'Perspective';
@@ -441,6 +443,10 @@ const Insights = () => {
           </div>
         </section>
 
+        {/* Value ladder - the canonical "choose how you read us" decision
+            moment. Lives above the section nav so every visitor sees pricing
+            and tier options before browsing publications. */}
+        <LadderHero />
 
         {/* Section Navigation - sticky, highlights active section on scroll */}
         <nav
@@ -874,6 +880,7 @@ const Insights = () => {
       </main>
 
       <Footer />
+      <LadderStickyPill />
     </div>
   );
 };
