@@ -93,7 +93,7 @@ export const TIERS: LadderTier[] = [
     id: "bb-reader",
     name: "Market Readers",
     ladder: "BB",
-    priceLabel: "USD 100 / mo (~INR 8,500)",
+    priceLabel: "INR 8,500 / mo (USD 100)",
     pricing: { usd: 100, inr: 8500, period: "mo" },
     audience:
       "Consultants, sustainability leads, fund analysts tracking the Indian carbon transition",
@@ -108,7 +108,7 @@ export const TIERS: LadderTier[] = [
     id: "bb-analyst",
     name: "Investor Readers",
     ladder: "BB",
-    priceLabel: "USD 500 / mo (~INR 42,500)",
+    priceLabel: "INR 42,500 / mo (USD 500)",
     pricing: { usd: 500, inr: 42500, period: "mo" },
     audience:
       "Climate VCs, PE running diligence, family offices, DFI staff",
@@ -156,9 +156,32 @@ export const formatTierPrice = (
   const p = tier.pricing;
   if (!p) return tier.priceLabel;
   if (currency === "USD") {
-    return `USD ${fmtUSD(p.usd)} / ${p.period} (~INR ${fmtINR(p.inr)})`;
+    return `USD ${fmtUSD(p.usd)} / ${p.period} (INR ${fmtINR(p.inr)})`;
   }
-  return `INR ${fmtINR(p.inr)} / ${p.period} (~USD ${fmtUSD(p.usd)})`;
+  return `INR ${fmtINR(p.inr)} / ${p.period} (USD ${fmtUSD(p.usd)})`;
+};
+
+/**
+ * Structured price parts so UI can render the secondary currency in a
+ * smaller / muted style. `secondary` is null for tiers without `pricing`
+ * (Free, Sponsor band) - render `primary` only.
+ */
+export const getTierPriceParts = (
+  tier: LadderTier,
+  currency: Currency
+): { primary: string; secondary: string | null } => {
+  const p = tier.pricing;
+  if (!p) return { primary: tier.priceLabel, secondary: null };
+  if (currency === "USD") {
+    return {
+      primary: `USD ${fmtUSD(p.usd)} / ${p.period}`,
+      secondary: `INR ${fmtINR(p.inr)}`,
+    };
+  }
+  return {
+    primary: `INR ${fmtINR(p.inr)} / ${p.period}`,
+    secondary: `USD ${fmtUSD(p.usd)}`,
+  };
 };
 
 /** Compact variant for CTA buttons - no bracket. */
