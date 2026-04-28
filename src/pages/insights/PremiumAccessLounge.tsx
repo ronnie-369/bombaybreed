@@ -517,21 +517,220 @@ const PremiumAccessLounge: React.FC = () => {
         </div>
       </section>
 
-      {/* TIERS — Market Readers vs Investor Readers */}
+      {/* TIERS — Five tiers, transparent jobs comparison, conversion stack */}
       <section id="tiers" className="px-6 md:px-8 py-14 md:py-16 border-t border-border scroll-mt-32">
-        <div className="container mx-auto max-w-[900px]">
-          <SectionLabel label="Knowledge you can use" />
+        <div className="container mx-auto max-w-[1100px]">
+          <SectionLabel label="Choose your tier" />
           <h2 className="text-section font-serif tracking-tight mt-6 mb-4">
-            Lounge Access that puts you in the centre of the market.
+            Five ways in. Pick the one that fits - before you leave this page.
           </h2>
+          <p className="font-serif text-lg text-foreground/80 leading-relaxed max-w-[720px] mb-4">
+            Free Substack for the headlines. Enthusiasts (USD 5 / month) for
+            the same news plus the analytical reads we keep behind the
+            paywall. Market Readers and Investor Readers for research-grade
+            intelligence. Sponsorship for institutions underwriting reports.
+          </p>
+          <p className="text-body text-muted-foreground max-w-[720px] mb-10">
+            Everything below is read from a single source of truth. Prices,
+            audiences and what each tier delivers are exactly what you will
+            see at checkout. No surprises at the paywall.
+          </p>
+
+          {/* ── 5-TIER STRIP ──────────────────────────────────────────── */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3 mb-14">
+            {TIERS.map((tier) => {
+              const isSponsor = tier.ladder === 'B2B';
+              const isEnthusiast = tier.id === 'tcd-paid';
+              const cardClass = `rounded-xl border p-4 flex flex-col h-full transition ${
+                isSponsor
+                  ? 'border-primary/30 bg-primary/5'
+                  : isEnthusiast
+                  ? 'border-accent/50 bg-accent/5 ring-1 ring-accent/30'
+                  : 'border-border bg-background hover:border-primary/30'
+              }`;
+              const ladderTag =
+                tier.ladder === 'TCD'
+                  ? 'The Climate Desk'
+                  : tier.ladder === 'BB'
+                  ? 'Bombay Breed'
+                  : 'B2B';
+              return (
+                <div key={tier.id} className={cardClass}>
+                  {isEnthusiast && (
+                    <span className="self-start mb-2 inline-flex items-center px-2 py-0.5 rounded-full text-[9px] font-semibold tracking-widest uppercase bg-accent text-accent-foreground">
+                      Easiest entry
+                    </span>
+                  )}
+                  <div className="text-[10px] uppercase tracking-[0.18em] text-muted-foreground">
+                    {ladderTag}
+                  </div>
+                  <div className="mt-1 font-serif text-[17px] leading-tight tracking-tight text-foreground">
+                    {tier.name}
+                  </div>
+                  <div className="mt-1 text-[12px] font-medium text-foreground/85">
+                    <TierPriceText tier={tier} currency={currency} />
+                  </div>
+                  <p className="mt-2 text-[11px] text-muted-foreground leading-snug flex-1">
+                    {tier.audience}
+                  </p>
+                  {tier.cta.kind === 'internal' ? (
+                    <Link
+                      to={tier.cta.href}
+                      className="mt-3 inline-flex items-center justify-center h-9 px-3 rounded-md text-[12px] font-medium bg-foreground text-background hover:bg-foreground/90 transition"
+                    >
+                      {formatTierCtaLabel(tier, currency)}
+                    </Link>
+                  ) : tier.cta.kind === 'outbound' ? (
+                    <a
+                      href={tier.cta.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      onClick={() =>
+                        trackOutboundClick({
+                          location: 'lounge_tiers_strip',
+                          org_name: tier.name,
+                          link_url: tier.cta.kind === 'outbound' ? tier.cta.href : '',
+                        })
+                      }
+                      className="mt-3 inline-flex items-center justify-center h-9 px-3 rounded-md text-[12px] font-medium border border-border text-foreground hover:bg-foreground/5 transition"
+                    >
+                      {formatTierCtaLabel(tier, currency)}
+                    </a>
+                  ) : (
+                    <button
+                      type="button"
+                      onClick={() => setInquiryOpen(true)}
+                      className="mt-3 inline-flex items-center justify-center h-9 px-3 rounded-md text-[12px] font-medium border border-border text-foreground hover:bg-foreground/5 transition"
+                    >
+                      {formatTierCtaLabel(tier, currency)}
+                    </button>
+                  )}
+                </div>
+              );
+            })}
+          </div>
+
+          {/* ── 8 JOBS · WHAT EACH TIER DELIVERS (FOMO + transparency) ── */}
+          <div className="mb-14">
+            <SectionLabel label="What you get vs what you miss" />
+            <h3 className="font-serif text-2xl md:text-3xl tracking-tight mt-4 mb-3">
+              The eight jobs subscribers come to us to get done
+            </h3>
+            <p className="text-sm text-muted-foreground max-w-[680px] mb-6">
+              Scored by tier. The cells with &ldquo;No&rdquo; or
+              &ldquo;Limited&rdquo; are exactly what you give up at the lower
+              tier - and exactly what unlocks at the next one.
+            </p>
+            <div className="overflow-x-auto -mx-6 md:mx-0 px-6 md:px-0">
+              <table className="w-full min-w-[820px] text-left border-collapse">
+                <thead>
+                  <tr className="border-b border-border">
+                    <th className="py-3 pr-4 text-[10px] uppercase tracking-widest text-muted-foreground font-semibold align-bottom w-[28%]">
+                      Job to be done
+                    </th>
+                    {TIERS.map((t) => (
+                      <th
+                        key={t.id}
+                        className={`py-3 px-2 text-[10px] uppercase tracking-widest font-semibold align-bottom ${
+                          t.id === 'tcd-paid'
+                            ? 'text-accent'
+                            : 'text-foreground'
+                        }`}
+                      >
+                        {t.name}
+                      </th>
+                    ))}
+                  </tr>
+                </thead>
+                <tbody>
+                  {JOBS.map((job) => (
+                    <tr key={job.n} className="border-b border-border/40 align-top">
+                      <td className="py-3 pr-4 text-[12.5px] font-medium text-foreground leading-snug">
+                        <span className="text-muted-foreground/60 mr-1">{job.n}.</span>
+                        {job.title}
+                      </td>
+                      {TIERS.map((t) => {
+                        const cell = job.byTier[t.id];
+                        const isNo = /^no(\s|\.|$)/i.test(cell.trim());
+                        const isLimited = /^limited/i.test(cell.trim());
+                        return (
+                          <td
+                            key={t.id}
+                            className={`py-3 px-2 text-[11.5px] leading-snug ${
+                              isNo
+                                ? 'text-muted-foreground/60 italic'
+                                : isLimited
+                                ? 'text-muted-foreground'
+                                : t.id === 'tcd-paid'
+                                ? 'text-foreground/90 bg-accent/5'
+                                : 'text-foreground/85'
+                            }`}
+                          >
+                            {cell}
+                          </td>
+                        );
+                      })}
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+            <p className="mt-4 text-[11px] text-muted-foreground/80">
+              Source: published comparison sheet. Same table the team uses
+              internally to scope tiers.
+            </p>
+          </div>
+
+          {/* ── DON'T LEAVE WITHOUT ACTING — Enthusiast funnel ──────── */}
+          <div className="mb-14 rounded-xl border border-accent/40 bg-accent/5 p-6 md:p-8 grid md:grid-cols-[1.4fr_1fr] gap-6 items-center">
+            <div>
+              <span className="inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-semibold tracking-widest uppercase bg-accent text-accent-foreground mb-3">
+                Easiest way to start
+              </span>
+              <h3 className="font-serif text-2xl md:text-3xl tracking-tight text-foreground mb-2">
+                Not ready for the research tier? Read the analysis for USD 5.
+              </h3>
+              <p className="text-sm text-muted-foreground leading-relaxed max-w-[520px]">
+                When Substack gives you the first 500 words, Enthusiasts gets
+                you the full analytical read - broad-based, explanatory, and
+                written for a wider audience than the institutional reports
+                below. Cancel anytime from your account. Monthly billing via
+                Razorpay.
+              </p>
+            </div>
+            <div className="flex flex-col gap-3">
+              <div className="text-foreground">
+                <span className="font-serif text-3xl">USD 5</span>
+                <span className="text-sm text-muted-foreground"> / month (INR 425)</span>
+              </div>
+              <Link
+                to="/intelligence/signup?tier=enthusiasts&billing=monthly&ref=insights_tiers"
+                className="inline-flex items-center justify-center gap-2 h-12 px-5 rounded-md bg-foreground text-background text-sm font-medium hover:bg-foreground/90 transition"
+              >
+                Start Enthusiasts - USD 5 / mo <ArrowRight className="w-4 h-4" />
+              </Link>
+              <a
+                href={TIER_BY_ID['tcd-free'].cta.kind === 'outbound' ? TIER_BY_ID['tcd-free'].cta.href : '#'}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center justify-center h-10 px-4 rounded-md border border-border text-foreground text-[12.5px] hover:bg-foreground/5 transition"
+              >
+                Or subscribe free on Substack first
+              </a>
+            </div>
+          </div>
+
+          {/* ── DETAILED RESEARCH TIERS — Market Readers / Investor Readers ── */}
+          <SectionLabel label="Research-grade tiers" />
+          <h3 className="font-serif text-2xl md:text-3xl tracking-tight mt-4 mb-4">
+            Bombay Breed Intelligence
+          </h3>
           <p className="font-serif text-lg text-foreground/80 leading-relaxed max-w-[680px] mb-4">
-            We deliver signal over noise. And we offer short reports that take
-            a position - on the CCTS auction, the next CBAM step-down, the
-            EU-ETS spread, the Article 6.2 bilaterals India is actually
-            closing. We don't follow hype cycles, don't chase PR stories, and
-            we are non-partisan. Our work is sharply angled towards shaping
-            India as the global south leader for high-integrity projects and
-            the energy transition.
+            Signal over noise. Short reports that take a position - on the
+            CCTS auction, the next CBAM step-down, the EU-ETS spread, the
+            Article 6.2 bilaterals India is actually closing. Non-partisan,
+            sharply angled towards India as the global south leader on
+            high-integrity projects and the energy transition.
           </p>
           <p className="text-body text-muted-foreground max-w-[680px] mb-12">
             One tier is built for those <em>building</em> in the carbon and
@@ -609,7 +808,7 @@ const PremiumAccessLounge: React.FC = () => {
                   <span className="text-xs sm:text-sm text-muted-foreground font-sans ml-2">({tier1Secondary})</span>
                 </div>
                 <div className="text-xs text-muted-foreground tracking-wide mt-1 leading-snug">
-                  30% inaugural discount in year one. Choose the annual plan and your price is locked for three years - no renewal hike, no fine print.
+                  Annual plan locks the inaugural price for three years - protected against inflation, no renewal hike.
                 </div>
               </div>
 
@@ -681,7 +880,7 @@ const PremiumAccessLounge: React.FC = () => {
                   <span className="text-xs sm:text-sm text-background/60 font-sans ml-2">({tier2Secondary})</span>
                 </div>
                 <div className="text-xs text-background/60 tracking-wide mt-1 leading-snug">
-                  30% inaugural discount in year one. Choose the annual plan and your price is locked for three years - no renewal hike, no fine print.
+                  Annual plan locks the inaugural price for three years - protected against inflation, no renewal hike.
                 </div>
               </div>
 
