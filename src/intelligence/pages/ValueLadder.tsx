@@ -64,15 +64,17 @@ interface TierCtaProps {
   surface: string;
   variant?: "primary" | "secondary";
   onSponsorClick: () => void;
+  currency: "USD" | "INR";
 }
 
-const TierCta = ({ tier, surface, variant = "primary", onSponsorClick }: TierCtaProps) => {
+const TierCta = ({ tier, surface, variant = "primary", onSponsorClick, currency }: TierCtaProps) => {
   const baseClass =
     "inline-flex items-center justify-center h-11 px-5 rounded-[10px] text-[13px] font-medium transition w-full";
   const styleClass =
     variant === "primary"
       ? "bg-bb-slate text-bb-off-white hover:opacity-90"
       : "bg-bb-off-white border border-bb-slate text-bb-slate hover:bg-bb-slate/5";
+  const label = formatTierCtaLabel(tier, currency);
 
   if (tier.cta.kind === "internal") {
     return (
@@ -81,7 +83,7 @@ const TierCta = ({ tier, surface, variant = "primary", onSponsorClick }: TierCta
         onClick={() => trackLadderCta(tier, surface)}
         className={`${baseClass} ${styleClass}`}
       >
-        {tier.cta.label}
+        {label}
       </Link>
     );
   }
@@ -101,7 +103,7 @@ const TierCta = ({ tier, surface, variant = "primary", onSponsorClick }: TierCta
         }}
         className={`${baseClass} ${styleClass}`}
       >
-        {tier.cta.label}
+        {label}
       </a>
     );
   }
@@ -115,7 +117,7 @@ const TierCta = ({ tier, surface, variant = "primary", onSponsorClick }: TierCta
       }}
       className={`${baseClass} ${styleClass}`}
     >
-      {tier.cta.label}
+      {label}
     </button>
   );
 };
@@ -124,10 +126,12 @@ const TierCard = ({
   tier,
   surface,
   onSponsorClick,
+  currency,
 }: {
   tier: LadderTier;
   surface: string;
   onSponsorClick: () => void;
+  currency: "USD" | "INR";
 }) => {
   const isSponsor = tier.ladder === "B2B";
   return (
@@ -149,13 +153,13 @@ const TierCard = ({
         {tier.name}
       </div>
       <div className="mt-1 text-[14px] text-bb-near-black/85 font-medium">
-        {tier.priceLabel}
+        {formatTierPrice(tier, currency)}
       </div>
       <p className="mt-3 text-[13px] text-bb-gray leading-relaxed flex-1">
         {tier.audience}
       </p>
       <div className="mt-5">
-        <TierCta tier={tier} surface={surface} onSponsorClick={onSponsorClick} />
+        <TierCta tier={tier} surface={surface} onSponsorClick={onSponsorClick} currency={currency} />
       </div>
     </div>
   );
