@@ -4,6 +4,7 @@ import { Link, useSearchParams } from "react-router-dom";
 import { supabase } from "@/integrations/supabase/client";
 import IntelligenceLayout from "../components/IntelligenceLayout";
 import SectionLabel from "../components/SectionLabel";
+import { formatIntlBracket } from "../lib/currency";
 
 interface Tier {
   id: string;
@@ -93,6 +94,9 @@ const Membership = () => {
                       {formatPrice(Number(tier.price_inr))}
                     </span>
                     <span className="text-[13px] text-bb-gray">/ {tier.billing_period}</span>
+                  </div>
+                  <div className="mt-2 text-[12px] text-bb-gray">
+                    ({formatIntlBracket(Number(tier.price_inr))})
                   </div>
                   <ul className="mt-6 space-y-3 flex-1">
                     {features.map((f) => (
