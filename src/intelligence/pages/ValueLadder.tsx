@@ -252,20 +252,126 @@ const ValueLadder = () => {
         </div>
       </section>
 
-      {/* FIVE TIERS AT A GLANCE */}
+      {/* COMPARE THE FIVE TIERS - TABLE */}
       <section className="max-w-[1200px] mx-auto px-6 md:px-10 pb-16">
-        <SectionLabel>The five tiers at a glance</SectionLabel>
-        <div className="mt-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-5">
+        <SectionLabel>Compare the five tiers</SectionLabel>
+
+        {/* Desktop / tablet table */}
+        <div className="mt-8 hidden md:block overflow-x-auto border border-bb-border rounded-xl bg-white">
+          <table className="w-full border-collapse text-left">
+            <thead>
+              <tr className="border-b border-bb-border align-top">
+                <th className="w-[220px] p-5 text-[11px] uppercase tracking-[0.18em] text-bb-gray font-medium">
+                  What you get
+                </th>
+                {TIERS.map((tier) => {
+                  const isSponsor = tier.ladder === "B2B";
+                  return (
+                    <th
+                      key={tier.id}
+                      className={`p-5 align-top border-l border-bb-border ${
+                        isSponsor ? "bg-bb-copper/5" : ""
+                      }`}
+                    >
+                      <div className="flex flex-col h-full">
+                        <span
+                          className={`inline-block self-start text-[10px] uppercase tracking-[0.18em] px-2 py-0.5 rounded ${ladderBadgeClass[tier.ladder]}`}
+                        >
+                          {ladderLabel[tier.ladder]}
+                        </span>
+                        <a
+                          href={`#tier-${tier.id}`}
+                          onClick={(e) => smoothScrollToTier(e, tier.id)}
+                          className="mt-3 font-serif text-[20px] tracking-tight text-bb-near-black leading-tight hover:underline decoration-bb-border underline-offset-4"
+                        >
+                          {tier.name}
+                        </a>
+                        <div className="mt-2 text-[13px] text-bb-near-black/85 font-medium">
+                          <TierPriceText tier={tier} currency={currency} />
+                        </div>
+                        <p className="mt-2 text-[12px] text-bb-gray leading-snug">
+                          {tier.audience}
+                        </p>
+                        <div className="mt-4">
+                          <TierCta
+                            tier={tier}
+                            surface="comparison_table"
+                            onSponsorClick={openSponsor}
+                            currency={currency}
+                          />
+                        </div>
+                      </div>
+                    </th>
+                  );
+                })}
+              </tr>
+            </thead>
+            <tbody>
+              {JOBS.map((job) => (
+                <tr key={job.n} className="border-b border-bb-border/70 last:border-0 align-top">
+                  <td className="p-5 text-[13px] leading-[1.5] text-bb-near-black">
+                    <span className="text-bb-copper font-medium mr-1">{job.n}.</span>
+                    {job.title}
+                  </td>
+                  {TIERS.map((tier) => {
+                    const isSponsor = tier.ladder === "B2B";
+                    const cell = job.byTier[tier.id];
+                    const isNo = /^no\b/i.test(cell.trim());
+                    return (
+                      <td
+                        key={tier.id}
+                        className={`p-5 text-[12px] leading-[1.55] border-l border-bb-border ${
+                          isSponsor ? "bg-bb-copper/5" : ""
+                        } ${isNo ? "text-bb-gray/70" : "text-bb-near-black/85"}`}
+                      >
+                        {cell}
+                      </td>
+                    );
+                  })}
+                </tr>
+              ))}
+            </tbody>
+            <tfoot>
+              <tr className="bg-bb-off-white/60 align-top">
+                <td className="p-5 text-[11px] uppercase tracking-[0.18em] text-bb-gray font-medium">
+                  Select your plan
+                </td>
+                {TIERS.map((tier) => {
+                  const isSponsor = tier.ladder === "B2B";
+                  return (
+                    <td
+                      key={tier.id}
+                      className={`p-5 border-l border-bb-border ${
+                        isSponsor ? "bg-bb-copper/10" : ""
+                      }`}
+                    >
+                      <TierCta
+                        tier={tier}
+                        surface="comparison_table_footer"
+                        onSponsorClick={openSponsor}
+                        currency={currency}
+                      />
+                    </td>
+                  );
+                })}
+              </tr>
+            </tfoot>
+          </table>
+        </div>
+
+        {/* Mobile fallback - stacked cards retain comparability via the explainers below */}
+        <div className="mt-8 grid grid-cols-1 sm:grid-cols-2 gap-5 md:hidden">
           {TIERS.map((tier) => (
             <TierCard
               key={tier.id}
               tier={tier}
-              surface="canonical_overview"
+              surface="canonical_overview_mobile"
               onSponsorClick={openSponsor}
               currency={currency}
             />
           ))}
         </div>
+
         <p className="mt-6 text-[12px] text-bb-gray max-w-2xl">
           Sponsor (B2B) is structurally different from the four subscriber
           tiers. Sponsors underwrite the production of specific reports that
