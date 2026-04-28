@@ -172,11 +172,15 @@ const Checkout = () => {
   const handlePay = async () => {
     if (!tier || processing) return;
 
+    // Clear any previous error so the panel disappears as soon as the user retries.
+    setCheckoutError(null);
+
     if (!planId) {
-      toast({
+      setCheckoutError({
         title: "This tier is not yet available for online checkout",
-        description: "Please contact us to activate this membership manually.",
-        variant: "destructive",
+        description:
+          "Please email theresa.ronnie@bombaybreed.com to activate this membership manually.",
+        retryable: false,
       });
       return;
     }
@@ -205,14 +209,13 @@ const Checkout = () => {
         });
 
       if (orderError || !orderData?.order_id) {
-        toast({
-          title: "Could not start checkout",
-          description:
-            orderError?.message ??
-            orderData?.error ??
-            "Razorpay order creation failed.",
-          variant: "destructive",
-        });
+        setCheckoutError(
+          classifyOrderError({
+            invokeError: orderError,
+            responseError: (orderData as { error?: string } | undefined)?.error ?? null,
+            hasOrderId: Boolean(orderData?.order_id),
+          }),
+        );
         setProcessing(false);
         return;
       }
@@ -220,11 +223,11 @@ const Checkout = () => {
       // 2. Make sure the Razorpay JS is loaded.
       const ok = await loadRazorpayScript();
       if (!ok || !window.Razorpay) {
-        toast({
-          title: "Checkout unavailable",
+        setCheckoutError({
+          title: "Razorpay checkout failed to load",
           description:
-            "Razorpay checkout failed to load. Check your connection and retry.",
-          variant: "destructive",
+            "Check your internet connection (or any ad blocker / strict browser privacy mode) and try again.",
+          retryable: true,
         });
         setProcessing(false);
         return;
