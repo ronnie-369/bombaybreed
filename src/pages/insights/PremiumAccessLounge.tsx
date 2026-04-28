@@ -697,9 +697,22 @@ const PremiumAccessLounge: React.FC = () => {
                             : 'text-foreground'
                         }`}
                       >
-                        {t.name}
+                        <button
+                          type="button"
+                          onClick={() => handleTierDeepLink(t.id)}
+                          className="block w-full text-left group focus:outline-none focus-visible:ring-2 focus-visible:ring-primary rounded-sm"
+                          aria-label={`Jump to ${t.name} signup panel`}
+                        >
+                          <span className="block group-hover:underline underline-offset-4 decoration-dotted">
+                            {t.name}
+                          </span>
+                          <span className="mt-1 block text-[9.5px] font-medium normal-case tracking-normal text-primary group-hover:text-primary/80">
+                            Sign up →
+                          </span>
+                        </button>
                       </th>
                     ))}
+
                   </tr>
                 </thead>
                 <tbody>
