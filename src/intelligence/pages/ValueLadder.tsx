@@ -363,7 +363,7 @@ const ValueLadder = () => {
         </h2>
         <p className="mt-4 text-[15px] leading-[1.7] text-bb-gray max-w-2xl">
           Sponsors do not subscribe. They commission specific research outputs
-          that get published to the Reader and Analyst tiers with attribution
+          that get published to the Market Readers and Investor Readers tiers with attribution
           credit. The deliverable is a published report, not private
           intelligence. Editorial independence is non-negotiable.
         </p>
