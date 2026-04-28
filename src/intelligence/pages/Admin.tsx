@@ -49,11 +49,26 @@ interface ViewRow {
   tcd_subscribers: { full_name: string; email: string } | null;
 }
 
+interface OrderAttemptRow {
+  id: string;
+  created_at: string;
+  user_id: string | null;
+  plan_id: string | null;
+  billing_cycle: string | null;
+  amount_inr: number | null;
+  currency: string | null;
+  order_id: string | null;
+  status: string;
+  error_message: string | null;
+  request_metadata: Record<string, unknown> | null;
+}
+
 const TAB_DEFS = [
   ["members", "Members"],
   ["subs", "Subscriptions"],
   ["payments", "Payments"],
   ["views", "Report views"],
+  ["orders", "Order attempts"],
 ] as const;
 
 type TabKey = (typeof TAB_DEFS)[number][0];
@@ -75,10 +90,16 @@ const Admin = () => {
   const [loading, setLoading] = useState(true);
   const [pendingId, setPendingId] = useState<string | null>(null);
   const [memberFilter, setMemberFilter] = useState("");
+  const [orders, setOrders] = useState<OrderAttemptRow[]>([]);
+  const [orderPlanFilter, setOrderPlanFilter] = useState("");
+  const [orderCycleFilter, setOrderCycleFilter] = useState<string>("all");
+  const [orderStatusFilter, setOrderStatusFilter] = useState<string>("all");
+  const [orderFromDate, setOrderFromDate] = useState<string>("");
+  const [orderToDate, setOrderToDate] = useState<string>("");
 
   const load = async () => {
     setLoading(true);
-    const [subsR, subscribersR, paysR, viewsR, tiersR] = await Promise.all([
+    const [subsR, subscribersR, paysR, viewsR, tiersR, ordersR] = await Promise.all([
       supabase
         .from("tcd_subscriptions")
         .select(
@@ -103,6 +124,13 @@ const Admin = () => {
         .select("id, slug, name, rank, sort_order")
         .eq("is_active", true)
         .order("sort_order"),
+      supabase
+        .from("tcd_order_attempts")
+        .select(
+          "id, created_at, user_id, plan_id, billing_cycle, amount_inr, currency, order_id, status, error_message, request_metadata"
+        )
+        .order("created_at", { ascending: false })
+        .limit(500),
     ]);
 
     setSubscriptions((subsR.data as unknown as SubscriptionRow[]) ?? []);
@@ -110,6 +138,7 @@ const Admin = () => {
     setPayments((paysR.data as PaymentRow[]) ?? []);
     setViews((viewsR.data as unknown as ViewRow[]) ?? []);
     setTiers((tiersR.data as TierRow[]) ?? []);
+    setOrders((ordersR.data as unknown as OrderAttemptRow[]) ?? []);
     setLoading(false);
   };
 
@@ -140,6 +169,31 @@ const Admin = () => {
         (s.company ?? "").toLowerCase().includes(q)
     );
   }, [subscribers, memberFilter]);
+
+  const planOptions = useMemo(() => {
+    const set = new Set<string>();
+    orders.forEach((o) => o.plan_id && set.add(o.plan_id));
+    return Array.from(set).sort();
+  }, [orders]);
+
+  const filteredOrders = useMemo(() => {
+    const plan = orderPlanFilter.trim().toLowerCase();
+    const fromTs = orderFromDate ? new Date(orderFromDate).getTime() : null;
+    const toTs = orderToDate ? new Date(orderToDate).getTime() + 86400000 : null;
+    return orders.filter((o) => {
+      if (plan && !(o.plan_id ?? "").toLowerCase().includes(plan)) return false;
+      if (orderCycleFilter !== "all" && (o.billing_cycle ?? "") !== orderCycleFilter) return false;
+      if (orderStatusFilter !== "all") {
+        if (orderStatusFilter === "errors") {
+          if (o.status !== "failed" && !o.error_message) return false;
+        } else if (o.status !== orderStatusFilter) return false;
+      }
+      const ts = new Date(o.created_at).getTime();
+      if (fromTs && ts < fromTs) return false;
+      if (toTs && ts > toTs) return false;
+      return true;
+    });
+  }, [orders, orderPlanFilter, orderCycleFilter, orderStatusFilter, orderFromDate, orderToDate]);
 
   const setMemberTier = async (subscriber: SubscriberRow, tierId: string) => {
     setPendingId(subscriber.id);
@@ -443,6 +497,155 @@ const Admin = () => {
                 </div>
               </div>
             ))}
+          </div>
+        )}
+
+        {!loading && tab === "orders" && (
+          <div className="mt-8 space-y-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3">
+              <div>
+                <label className="block text-[10px] uppercase tracking-[0.24em] text-bb-gray font-semibold mb-1">Plan ID</label>
+                <input
+                  list="order-plan-options"
+                  value={orderPlanFilter}
+                  onChange={(e) => setOrderPlanFilter(e.target.value)}
+                  placeholder="e.g. analyst"
+                  className="h-10 px-3 rounded-[10px] border border-bb-border bg-white text-[13px] w-full focus:outline-none focus:border-bb-slate"
+                />
+                <datalist id="order-plan-options">
+                  {planOptions.map((p) => (
+                    <option key={p} value={p} />
+                  ))}
+                </datalist>
+              </div>
+              <div>
+                <label className="block text-[10px] uppercase tracking-[0.24em] text-bb-gray font-semibold mb-1">Billing cycle</label>
+                <select
+                  value={orderCycleFilter}
+                  onChange={(e) => setOrderCycleFilter(e.target.value)}
+                  className="h-10 px-3 pr-8 rounded-[10px] border border-bb-border bg-white text-[13px] w-full"
+                >
+                  <option value="all">All cycles</option>
+                  <option value="monthly">Monthly</option>
+                  <option value="annual">Annual</option>
+                  <option value="quarterly">Quarterly</option>
+                </select>
+              </div>
+              <div>
+                <label className="block text-[10px] uppercase tracking-[0.24em] text-bb-gray font-semibold mb-1">Status</label>
+                <select
+                  value={orderStatusFilter}
+                  onChange={(e) => setOrderStatusFilter(e.target.value)}
+                  className="h-10 px-3 pr-8 rounded-[10px] border border-bb-border bg-white text-[13px] w-full"
+                >
+                  <option value="all">All statuses</option>
+                  <option value="errors">Errors only</option>
+                  <option value="pending">Pending</option>
+                  <option value="created">Created</option>
+                  <option value="failed">Failed</option>
+                </select>
+              </div>
+              <div>
+                <label className="block text-[10px] uppercase tracking-[0.24em] text-bb-gray font-semibold mb-1">From</label>
+                <input
+                  type="date"
+                  value={orderFromDate}
+                  onChange={(e) => setOrderFromDate(e.target.value)}
+                  className="h-10 px-3 rounded-[10px] border border-bb-border bg-white text-[13px] w-full"
+                />
+              </div>
+              <div>
+                <label className="block text-[10px] uppercase tracking-[0.24em] text-bb-gray font-semibold mb-1">To</label>
+                <input
+                  type="date"
+                  value={orderToDate}
+                  onChange={(e) => setOrderToDate(e.target.value)}
+                  className="h-10 px-3 rounded-[10px] border border-bb-border bg-white text-[13px] w-full"
+                />
+              </div>
+            </div>
+
+            <div className="flex items-center justify-between">
+              <p className="text-[12px] text-bb-gray">
+                {filteredOrders.length} of {orders.length} attempts
+              </p>
+              <button
+                onClick={() => {
+                  setOrderPlanFilter("");
+                  setOrderCycleFilter("all");
+                  setOrderStatusFilter("all");
+                  setOrderFromDate("");
+                  setOrderToDate("");
+                }}
+                className="text-[12px] text-bb-gray hover:text-bb-near-black underline underline-offset-2"
+              >
+                Reset filters
+              </button>
+            </div>
+
+            <div className="bg-white border border-bb-border rounded-xl overflow-hidden">
+              <div className="hidden lg:grid grid-cols-[1.4fr_1fr_0.8fr_1fr_1.4fr_0.8fr_1.6fr] gap-4 px-6 py-3 bg-bb-off-white border-b border-bb-border text-[10px] uppercase tracking-[0.24em] text-bb-gray font-semibold">
+                <div>When</div>
+                <div>Plan</div>
+                <div>Cycle</div>
+                <div>Amount</div>
+                <div>Order ID</div>
+                <div>Status</div>
+                <div>Error</div>
+              </div>
+
+              {filteredOrders.length === 0 && (
+                <p className="p-6 text-[13px] text-bb-gray">No order attempts match your filters.</p>
+              )}
+
+              <div className="divide-y divide-bb-border">
+                {filteredOrders.map((o) => {
+                  const isError = o.status === "failed" || !!o.error_message;
+                  const isCreated = o.status === "created";
+                  return (
+                    <div
+                      key={o.id}
+                      className="grid grid-cols-1 lg:grid-cols-[1.4fr_1fr_0.8fr_1fr_1.4fr_0.8fr_1.6fr] gap-2 lg:gap-4 px-6 py-4 items-start text-[13px]"
+                    >
+                      <div className="text-bb-near-black">
+                        {new Date(o.created_at).toLocaleString()}
+                      </div>
+                      <div className="text-bb-near-black">{o.plan_id ?? "—"}</div>
+                      <div className="text-bb-gray">{o.billing_cycle ?? "—"}</div>
+                      <div className="text-bb-near-black">
+                        {o.amount_inr != null
+                          ? `₹${Number(o.amount_inr).toLocaleString("en-IN")}`
+                          : "—"}
+                      </div>
+                      <div className="text-bb-gray font-mono text-[11px] break-all">
+                        {o.order_id ?? "—"}
+                      </div>
+                      <div>
+                        <span
+                          className={`inline-flex items-center text-[10px] uppercase tracking-[0.2em] px-2 py-1 rounded border ${
+                            isError
+                              ? "border-red-300 text-red-700 bg-red-50"
+                              : isCreated
+                                ? "border-emerald-300 text-emerald-700 bg-emerald-50"
+                                : "border-bb-border text-bb-gray"
+                          }`}
+                        >
+                          {o.status}
+                        </span>
+                      </div>
+                      <div className="text-[12px] text-bb-gray break-words">
+                        {o.error_message ?? <span className="text-bb-gray/60">—</span>}
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+
+            <p className="text-[11px] text-bb-gray pt-2">
+              Showing the most recent 500 order-creation attempts logged by the
+              <code className="mx-1">create-razorpay-order</code> edge function.
+            </p>
           </div>
         )}
       </section>
