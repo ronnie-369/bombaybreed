@@ -198,6 +198,9 @@ const ValueLadder = () => {
           entire subscriber base. Choose the tier whose job-set matches your
           actual professional context.
         </p>
+        <div className="mt-8">
+          <CurrencyToggle surface="value_ladder_hero" />
+        </div>
       </section>
 
       {/* FIVE TIERS AT A GLANCE */}
@@ -210,6 +213,7 @@ const ValueLadder = () => {
               tier={tier}
               surface="canonical_overview"
               onSponsorClick={openSponsor}
+              currency={currency}
             />
           ))}
         </div>
