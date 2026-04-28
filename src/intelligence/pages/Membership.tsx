@@ -164,11 +164,20 @@ const Membership = () => {
         ) : (
           <>
             <h1 className="mt-6 font-serif font-normal tracking-[-0.025em] text-[44px] md:text-[56px] leading-[1.05] text-bb-near-black max-w-3xl">
-              Three tiers. One editorial line.
+              Lounge access. Two tiers. One editorial line.
             </h1>
             <p className="mt-6 text-[16px] leading-[1.7] text-bb-gray max-w-xl">
-              Annual billing. All tiers include the published intelligence layer. Higher tiers add
-              flagship reports, sector deep dives, and direct analyst access.
+              Tier 1 Market Readers and Tier 2 Investor Readers share the same
+              editorial spine. Pricing is shown in USD with the INR equivalent
+              alongside; billing is annual. For a side-by-side comparison
+              against the Substack tiers and Sponsorship, see the{" "}
+              <Link
+                to="/intelligence/value-ladder"
+                className="text-bb-near-black underline decoration-bb-border underline-offset-4 hover:decoration-bb-near-black"
+              >
+                full value ladder
+              </Link>
+              .
             </p>
           </>
         )}
