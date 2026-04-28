@@ -11,7 +11,7 @@ import SectionLabel from "../components/SectionLabel";
 // Renders one of four states: pending, success, failed, unknown.
 // Pending state explains the UPI / async-confirm case so users don't bounce.
 
-type Status = "pending" | "success" | "failed" | "unknown";
+type Status = "pending" | "success" | "failed" | "unknown" | "signature_failed";
 
 interface StatusPayload {
   status: Status;
@@ -23,6 +23,7 @@ interface StatusPayload {
   expires_at?: string | null;
   payment_id?: string;
   provider_order_status?: string;
+  error_message?: string;
 }
 
 const POLL_INTERVAL_MS = 2_500;
