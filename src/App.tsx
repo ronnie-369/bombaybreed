@@ -38,6 +38,7 @@ const RazorpayTest = lazy(() => import("./pages/RazorpayTest"));
 const IntelligenceLanding = lazy(() => import("./intelligence/pages/IntelligenceLanding"));
 const TcdMembership = lazy(() => import("./intelligence/pages/Membership"));
 const TcdSignup = lazy(() => import("./intelligence/pages/Signup"));
+const TcdWelcome = lazy(() => import("./intelligence/pages/Welcome"));
 const TcdCheckout = lazy(() => import("./intelligence/pages/Checkout"));
 const TcdCheckoutResult = lazy(() => import("./intelligence/pages/CheckoutResult"));
 const TcdOnboarding = lazy(() => import("./intelligence/pages/Onboarding"));
@@ -109,6 +110,7 @@ const AppContent = () => {
               <Route path="/intelligence" element={<IntelligenceLanding />} />
               <Route path="/intelligence/membership" element={<TcdMembership />} />
               <Route path="/intelligence/signup" element={<TcdSignup />} />
+              <Route path="/intelligence/welcome" element={<TcdWelcome />} />
               <Route
                 path="/intelligence/checkout"
                 element={<TcdAuthGate><TcdCheckout /></TcdAuthGate>}
