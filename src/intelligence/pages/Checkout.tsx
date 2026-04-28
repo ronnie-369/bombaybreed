@@ -344,8 +344,13 @@ const Checkout = () => {
                   Billed {tier.billing_period}.
                 </p>
               </div>
-              <div className="font-serif text-[32px] tracking-tight text-bb-near-black">
-                {formatPrice(Number(tier.price_inr))}
+              <div className="text-right">
+                <div className="font-serif text-[32px] tracking-tight text-bb-near-black">
+                  {formatPrice(Number(tier.price_inr))}
+                </div>
+                <div className="mt-1 text-[11px] text-bb-gray">
+                  ({formatIntlBracket(Number(tier.price_inr))})
+                </div>
               </div>
             </div>
 
