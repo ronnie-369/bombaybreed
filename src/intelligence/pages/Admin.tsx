@@ -49,11 +49,26 @@ interface ViewRow {
   tcd_subscribers: { full_name: string; email: string } | null;
 }
 
+interface OrderAttemptRow {
+  id: string;
+  created_at: string;
+  user_id: string | null;
+  plan_id: string | null;
+  billing_cycle: string | null;
+  amount_inr: number | null;
+  currency: string | null;
+  order_id: string | null;
+  status: string;
+  error_message: string | null;
+  request_metadata: Record<string, unknown> | null;
+}
+
 const TAB_DEFS = [
   ["members", "Members"],
   ["subs", "Subscriptions"],
   ["payments", "Payments"],
   ["views", "Report views"],
+  ["orders", "Order attempts"],
 ] as const;
 
 type TabKey = (typeof TAB_DEFS)[number][0];
