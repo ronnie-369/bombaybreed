@@ -1,28 +1,60 @@
-## Add a price-band explainer to "Currently open projects"
+## What's wrong
 
-Add a single short editorial paragraph directly beneath the **Currently open projects** heading in `src/pages/insights/PremiumAccessLounge.tsx` that explains what drives lower vs upper end of each INR range. One paragraph for all cards (the drivers are universal) - no per-card tooltips, no new icons, no chrome.
+The Premium Access Lounge (`src/pages/insights/PremiumAccessLounge.tsx`) has two CTAs:
 
-### Copy
+- "Industry Reader" → `/intelligence/membership?tier=industry-reader&v=A&ref=insights`
+- "Analyst Lens" → `/intelligence/membership?tier=analyst-lens&v=A&ref=insights`
 
-> **What moves the price within each band:** lower end assumes desk research, 6-10 expert interviews, one site visit and a single review cycle. Upper end reflects deeper fieldwork (multi-state travel, 20-30 interviews), primary data collection, additional methodology peer review, and a compressed timeline. Final scope is agreed in writing before work begins.
+But `src/intelligence/pages/Membership.tsx`:
 
-### Placement
+1. **Ignores `?tier=` entirely.** It only reads `?reason=inactive`. So clicking either CTA drops the user on the generic "Three tiers. One editorial line." overview with all three cards. The user has to re-pick a tier they already chose - dead conversion step.
+2. **Slug mismatch.** The DB tiers are stored as `foundational` / `professional` (confirmed by `TIER_TO_PLAN` in `Checkout.tsx`), but the Lounge passes `industry-reader` / `analyst-lens`. Even if Membership tried to match, it wouldn't find the tier.
+3. **Skips signup/checkout.** A user coming from the Lounge has already declared intent. They should be moving toward `/intelligence/signup?tier=...` (or `/intelligence/checkout?tier=...` if logged in), not browsing tiers again.
+4. **Loses attribution.** `v=A` (A/B variant) and `ref=insights` are dropped on the floor - no way to attribute conversions back to the Lounge experiment.
 
-Sits between the section heading and the project grid:
+## What it needs to be
+
+When `/intelligence/membership` receives a `?tier=` param that resolves to a known tier, it should behave as a **focused tier landing page** (single tier, prominent CTA straight into signup/checkout) rather than the generic overview. When no `?tier=` is present, keep current behaviour.
+
+### Changes
+
+**1. Slug normalisation** (`src/intelligence/pages/Membership.tsx`)
+
+Add a small alias map so Lounge-style slugs resolve to DB slugs:
 
 ```text
-CURRENTLY OPEN PROJECTS
-What moves the price within each band: ...   ← new paragraph
-[ 01  CCUS ... ]   [ 02  JCM ... ]
+industry-reader → foundational
+analyst-lens    → professional
 ```
 
-### Styling
+Apply to the `?tier=` value before lookup.
 
-- `text-xs text-muted-foreground/90 leading-relaxed`
-- `max-w-[68ch]` to keep the line length editorial
-- Lead phrase ("What moves the price within each band:") in `text-foreground/80` for emphasis
-- Hyphens only, no em dashes (per house rule)
+**2. Focused view when ?tier= matches**
 
-### File
+If the resolved slug matches an active tier:
+- Replace the H1 "Three tiers. One editorial line." with a tier-specific headline (e.g. "Industry Reader - working research for India climate operators.").
+- Render that tier's card prominently (full width on mobile, ~two-thirds on desktop), with the price + INR/USD/EUR bracket already in place via `formatIntlBracket`.
+- Primary CTA: "Continue to signup" → `/intelligence/signup?tier={dbSlug}` (preserving `v` and `ref` query params for attribution).
+- Secondary link: "Compare all three tiers" that toggles back to the full grid (or scrolls to it / clears the param).
+- Keep the other two tiers visible below as a smaller "Other tiers" strip so the user can switch without bouncing back.
 
-- `src/pages/insights/PremiumAccessLounge.tsx` (one insertion, ~10 lines, no logic changes)
+**3. Preserve attribution**
+
+Forward `v` and `ref` query params onto the signup/checkout link so the existing analytics on `Signup.tsx` / `Checkout.tsx` can pick them up.
+
+**4. SEO/meta**
+
+Update `<Helmet>` title dynamically when a tier is selected (e.g. "Industry Reader membership - TCD Intelligence") so deep-linked pages are distinct.
+
+**5. Logged-in shortcut (optional, low risk)**
+
+If a session exists, point the primary CTA directly at `/intelligence/checkout?tier={dbSlug}` instead of signup. `Signup.tsx` already redirects logged-in users there, so this just removes one hop.
+
+### Files touched
+
+- `src/intelligence/pages/Membership.tsx` - read `?tier=`, alias-map, branch render, forward attribution params, dynamic meta.
+
+### Out of scope
+
+- No DB changes. Tier slugs in `tcd_tiers` stay as `foundational` / `professional`; the alias map lives in the page so the public-facing URLs from the Lounge remain stable.
+- No changes to `PremiumAccessLounge.tsx`, `Signup.tsx`, or `Checkout.tsx`.
