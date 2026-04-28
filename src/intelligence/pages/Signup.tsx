@@ -184,66 +184,117 @@ const Signup = () => {
       </Helmet>
 
       <section className="max-w-md mx-auto px-6 pt-20 pb-24">
-        <SectionLabel>{mode === "signup" ? "Create account" : "Welcome back"}</SectionLabel>
-        <h1 className="mt-6 font-serif font-normal tracking-[-0.025em] text-[36px] leading-[1.1] text-bb-near-black">
-          {mode === "signup" ? "Begin your membership" : "Sign in to continue"}
-        </h1>
-        <p className="mt-3 text-[14px] text-bb-gray">
-          {mode === "signup"
-            ? "I keep the platform deliberately small. Identify yourself clearly so I can serve the right material."
-            : "Access your dashboard, account, and reports."}
-        </p>
-
-        <form onSubmit={handleSubmit} className="mt-8 space-y-5 bg-white border border-bb-border rounded-xl p-7">
-          {mode === "signup" && (
-            <>
-              <Field label="Full name" required value={form.fullName} onChange={update("fullName")} />
-              <Field label="Company" value={form.company} onChange={update("company")} />
-              <Field label="Designation" value={form.designation} onChange={update("designation")} />
-            </>
-          )}
-          <Field label="Email" type="email" required value={form.email} onChange={update("email")} />
-          <Field label="Password" type="password" required value={form.password} onChange={update("password")} />
-          {mode === "signup" && (
-            <p className="text-[12px] text-bb-gray">
-              Minimum 12 characters with uppercase, lowercase, number, and special character.
+        {submittedEmail ? (
+          <>
+            <SectionLabel>Confirm your email</SectionLabel>
+            <h1 className="mt-6 font-serif font-normal tracking-[-0.025em] text-[36px] leading-[1.1] text-bb-near-black">
+              Check your inbox
+            </h1>
+            <p className="mt-3 text-[14px] text-bb-gray leading-relaxed">
+              We sent a confirmation link to <span className="text-bb-near-black font-medium">{submittedEmail}</span>.
+              Click it to verify your address - you will be brought back to confirm your tier and complete payment.
             </p>
-          )}
 
-          <button
-            type="submit"
-            disabled={loading}
-            className="w-full h-12 rounded-[10px] bg-bb-slate text-bb-off-white text-[14px] font-medium hover:opacity-90 transition disabled:opacity-50"
-          >
-            {loading ? "Working..." : mode === "signup" ? "Create account" : "Sign in"}
-          </button>
+            <div className="mt-8 bg-white border border-bb-border rounded-xl p-7 space-y-5">
+              <div>
+                <div className="text-[11px] font-semibold uppercase tracking-[0.3em] text-bb-gray">
+                  Tier on hold
+                </div>
+                <div className="mt-2 text-[15px] text-bb-near-black">
+                  {tier === "professional" ? "Analyst Lens" : "Industry Reader"}
+                  <span className="text-bb-gray"> - {billing === "annual" ? "Annual" : "Monthly"} billing</span>
+                </div>
+              </div>
 
-          <div className="text-center text-[13px] text-bb-gray">
-            {mode === "signup" ? (
-              <>
-                Already a member?{" "}
-                <button type="button" onClick={() => setMode("signin")} className="text-bb-slate font-medium underline-offset-2 hover:underline">
-                  Sign in
-                </button>
-              </>
-            ) : (
-              <>
-                New here?{" "}
-                <button type="button" onClick={() => setMode("signup")} className="text-bb-slate font-medium underline-offset-2 hover:underline">
-                  Create an account
-                </button>
-              </>
-            )}
-          </div>
-        </form>
+              <div className="text-[12px] text-bb-gray leading-relaxed">
+                Did not receive it? Check spam, or resend below. The link expires in 24 hours.
+              </div>
 
-        <p className="mt-6 text-[12px] text-bb-gray text-center">
-          See{" "}
-          <Link to="/intelligence/membership" className="underline hover:text-bb-near-black">
-            tier comparison
-          </Link>
-          .
-        </p>
+              <button
+                type="button"
+                onClick={resendConfirmation}
+                disabled={resendCooldown > 0}
+                className="w-full h-11 rounded-[10px] border border-bb-slate text-bb-slate text-[13px] font-medium hover:bg-bb-slate hover:text-bb-off-white transition disabled:opacity-50 disabled:hover:bg-transparent disabled:hover:text-bb-slate"
+              >
+                {resendCooldown > 0 ? `Resend in ${resendCooldown}s` : "Resend confirmation email"}
+              </button>
+
+              <button
+                type="button"
+                onClick={() => {
+                  setSubmittedEmail(null);
+                  setForm((f) => ({ ...f, password: "" }));
+                }}
+                className="w-full text-[13px] text-bb-gray hover:text-bb-near-black transition"
+              >
+                Use a different email
+              </button>
+            </div>
+          </>
+        ) : (
+          <>
+            <SectionLabel>{mode === "signup" ? "Create account" : "Welcome back"}</SectionLabel>
+            <h1 className="mt-6 font-serif font-normal tracking-[-0.025em] text-[36px] leading-[1.1] text-bb-near-black">
+              {mode === "signup" ? "Begin your membership" : "Sign in to continue"}
+            </h1>
+            <p className="mt-3 text-[14px] text-bb-gray">
+              {mode === "signup"
+                ? "I keep the platform deliberately small. Identify yourself clearly so I can serve the right material."
+                : "Access your dashboard, account, and reports."}
+            </p>
+
+            <form onSubmit={handleSubmit} className="mt-8 space-y-5 bg-white border border-bb-border rounded-xl p-7">
+              {mode === "signup" && (
+                <>
+                  <Field label="Full name" required value={form.fullName} onChange={update("fullName")} />
+                  <Field label="Company" value={form.company} onChange={update("company")} />
+                  <Field label="Designation" value={form.designation} onChange={update("designation")} />
+                </>
+              )}
+              <Field label="Email" type="email" required value={form.email} onChange={update("email")} />
+              <Field label="Password" type="password" required value={form.password} onChange={update("password")} />
+              {mode === "signup" && (
+                <p className="text-[12px] text-bb-gray">
+                  At least 8 characters, with one letter and one number.
+                </p>
+              )}
+
+              <button
+                type="submit"
+                disabled={loading}
+                className="w-full h-12 rounded-[10px] bg-bb-slate text-bb-off-white text-[14px] font-medium hover:opacity-90 transition disabled:opacity-50"
+              >
+                {loading ? "Working..." : mode === "signup" ? "Create account" : "Sign in"}
+              </button>
+
+              <div className="text-center text-[13px] text-bb-gray">
+                {mode === "signup" ? (
+                  <>
+                    Already a member?{" "}
+                    <button type="button" onClick={() => setMode("signin")} className="text-bb-slate font-medium underline-offset-2 hover:underline">
+                      Sign in
+                    </button>
+                  </>
+                ) : (
+                  <>
+                    New here?{" "}
+                    <button type="button" onClick={() => setMode("signup")} className="text-bb-slate font-medium underline-offset-2 hover:underline">
+                      Create an account
+                    </button>
+                  </>
+                )}
+              </div>
+            </form>
+
+            <p className="mt-6 text-[12px] text-bb-gray text-center">
+              See{" "}
+              <Link to="/intelligence/membership" className="underline hover:text-bb-near-black">
+                tier comparison
+              </Link>
+              .
+            </p>
+          </>
+        )}
       </section>
     </IntelligenceLayout>
   );
