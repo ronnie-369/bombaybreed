@@ -66,16 +66,23 @@ function getUserIdFromAuthHeader(req: Request): string | null {
   }
 }
 
-type PlanId = 'industry_reader' | 'analyst_lens';
+type PlanId = 'enthusiasts' | 'industry_reader' | 'analyst_lens';
 type BillingCycle = 'monthly' | 'annual';
 
 interface PlanConfig {
   label: string;
   monthly_inr: number;       // single-month price (no discount)
   annual_monthly_inr: number; // discounted per-month price when paid yearly
+  monthly_only?: boolean;     // when true, annual cycle is rejected
 }
 
 const PLANS: Record<PlanId, PlanConfig> = {
+  enthusiasts: {
+    label: 'Enthusiasts',
+    monthly_inr: 425,
+    annual_monthly_inr: 425, // unused; this tier is monthly-only
+    monthly_only: true,
+  },
   industry_reader: {
     label: 'Industry Reader',
     monthly_inr: 10_000,
