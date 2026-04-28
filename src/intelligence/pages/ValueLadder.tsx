@@ -257,11 +257,11 @@ const ValueLadder = () => {
         <SectionLabel>Compare the five tiers</SectionLabel>
 
         {/* Desktop / tablet table */}
-        <div className="mt-8 hidden md:block overflow-x-auto border border-bb-border rounded-xl bg-white">
+        <div className="mt-8 hidden md:block border border-bb-border rounded-xl bg-white">
           <table className="w-full border-collapse text-left">
             <thead>
-              <tr className="border-b border-bb-border align-top">
-                <th className="w-[220px] p-5 text-[11px] uppercase tracking-[0.18em] text-bb-gray font-medium">
+              <tr className="align-top">
+                <th className="sticky top-16 z-20 w-[220px] p-5 text-[11px] uppercase tracking-[0.18em] text-bb-gray font-medium bg-white border-b border-bb-border">
                   What you get
                 </th>
                 {TIERS.map((tier) => {
@@ -269,8 +269,8 @@ const ValueLadder = () => {
                   return (
                     <th
                       key={tier.id}
-                      className={`p-5 align-top border-l border-bb-border ${
-                        isSponsor ? "bg-bb-copper/5" : ""
+                      className={`sticky top-16 z-20 p-5 align-top border-l border-b border-bb-border ${
+                        isSponsor ? "bg-bb-copper/5" : "bg-white"
                       }`}
                     >
                       <div className="flex flex-col h-full">
