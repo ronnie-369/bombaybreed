@@ -755,6 +755,14 @@ const PremiumAccessLounge: React.FC = () => {
                           href={item.href}
                           target="_blank"
                           rel="noopener noreferrer"
+                          onClick={() =>
+                            trackOutboundClick({
+                              location: 'lounge_readership',
+                              org_name: item.label,
+                              link_url: item.href!,
+                              group: bloc.group,
+                            })
+                          }
                           className="inline whitespace-nowrap text-foreground/80 no-underline hover:text-foreground hover:underline focus-visible:underline decoration-foreground/30 decoration-[0.5px] underline-offset-[5px] transition-colors duration-200"
                         >
                           {item.label}
