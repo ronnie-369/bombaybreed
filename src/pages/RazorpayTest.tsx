@@ -27,8 +27,8 @@ type PlanId = 'industry_reader' | 'analyst_lens';
 type BillingCycle = 'monthly' | 'annual';
 
 const PLAN_LABELS: Record<PlanId, string> = {
-  industry_reader: 'Market Readers',
-  analyst_lens: 'Investor Readers',
+  industry_reader: 'Market Makers',
+  analyst_lens: 'Investment Intelligence',
 };
 
 const PRICE_INR: Record<PlanId, Record<BillingCycle, number>> = {

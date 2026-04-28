@@ -91,7 +91,7 @@ export const TIERS: LadderTier[] = [
   },
   {
     id: "bb-reader",
-    name: "Market Readers",
+    name: "Market Makers",
     ladder: "BB",
     priceLabel: "INR 8,500 / mo (USD 100)",
     pricing: { usd: 100, inr: 8500, period: "mo" },
@@ -100,13 +100,13 @@ export const TIERS: LadderTier[] = [
     strategicRole: "Editorial intelligence at research-grade discipline",
     cta: {
       kind: "internal",
-      label: "Join Market Readers",
+      label: "Join Market Makers",
       href: "/intelligence/signup?tier=foundational&ref=ladder",
     },
   },
   {
     id: "bb-analyst",
-    name: "Investor Readers",
+    name: "Investment Intelligence",
     ladder: "BB",
     priceLabel: "INR 42,500 / mo (USD 500)",
     pricing: { usd: 500, inr: 42500, period: "mo" },
@@ -116,7 +116,7 @@ export const TIERS: LadderTier[] = [
       "Research and advisory product for capital deployers",
     cta: {
       kind: "internal",
-      label: "Join Investor Readers",
+      label: "Join Investment Intelligence",
       href: "/intelligence/signup?tier=professional&ref=ladder",
     },
   },
@@ -256,7 +256,7 @@ export const JOBS: Job[] = [
       "tcd-paid": "Yes, full access to all editorial commentary",
       "bb-reader":
         "Yes, with editorial discipline that matches institutional publishing",
-      "bb-analyst": "Yes, including all Market Readers content",
+      "bb-analyst": "Yes, including all Market Makers content",
       sponsor: "Receives sponsored research findings before publication",
     },
   },
@@ -270,7 +270,7 @@ export const JOBS: Job[] = [
       "bb-reader":
         "Yes. Quarterly outlooks on Indian carbon asset classes covering CCTS, VCM credits, registry exposure",
       "bb-analyst":
-        "Yes. Market Readers content plus sectoral cuts on the four CCTS-obligated sectoral reports per year",
+        "Yes. Market Makers content plus sectoral cuts on the four CCTS-obligated sectoral reports per year",
       sponsor:
         "Sponsored sectoral or regional analysis on a specific compliance area",
     },
@@ -399,7 +399,7 @@ export const SPONSOR_TERMS: string[] = [
   "Editorial independence. Sponsor pays for production; sponsor does not direct editorial conclusions. This is non-negotiable.",
   "Attribution. Sponsor receives non-promotional credit on the published output: 'This report was produced with research support from [Sponsor Name].'",
   "Working-session call. Sponsor receives one working-session call before publication to discuss findings, plus one team briefing after publication.",
-  "Distribution. The deliverable is published to the entire subscriber base (Market Readers and Investor Readers tiers). Sponsor does not receive exclusivity.",
+  "Distribution. The deliverable is published to the entire subscriber base (Market Makers and Investment Intelligence tiers). Sponsor does not receive exclusivity.",
   "Timeline. Sectoral and regional reports run on a 10-12 week production cycle; custom reports on a 12-16 week cycle.",
   "Payment. 50 percent on commission, 50 percent on delivery. Payments via direct invoice, GST-compliant.",
   "Cancellation. Either party may cancel in writing; sponsor pays for work completed to that point at standard rates.",
@@ -408,20 +408,20 @@ export const SPONSOR_TERMS: string[] = [
 
 /**
  * The single explicit upgrade path between the two ladders.
- * Enthusiasts -> Market Readers, with a 3-month introductory discount.
+ * Enthusiasts -> Market Makers, with a 3-month introductory discount.
  */
 export const INTERSECTION = {
   fromTierId: "tcd-paid" as const,
   toTierId: "bb-reader" as const,
-  headline: "From Enthusiasts to Market Readers",
+  headline: "From Enthusiasts to Market Makers",
   /**
    * Body template - `{intro}` and `{regular}` are substituted at render time
    * with the discounted-quarter rate and the regular rate in the visitor's
    * active currency. See `formatIntersectionBody`.
    */
-  body: "The single explicit upgrade path between the two tracks. Any Enthusiasts subscriber receives a discount on the first three months of the Market Readers tier ({intro} for the first quarter, then {regular} thereafter). The Enthusiasts subscription is paused or refunded for the duration of the discount.",
+  body: "The single explicit upgrade path between the two tracks. Any Enthusiasts subscriber receives a discount on the first three months of the Market Makers tier ({intro} for the first quarter, then {regular} thereafter). The Enthusiasts subscription is paused or refunded for the duration of the discount.",
   introPricing: { usd: 75, inr: 6500, period: "mo" as const },
-  ctaLabel: "Upgrade to Market Readers",
+  ctaLabel: "Upgrade to Market Makers",
   ctaHref: "/intelligence/signup?tier=foundational&ref=intersection",
 };
 
