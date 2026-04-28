@@ -328,7 +328,7 @@ const ValueLadder = () => {
               {INTERSECTION.headline}
             </h2>
             <p className="mt-5 text-[15px] leading-[1.7] text-bb-gray max-w-xl">
-              {INTERSECTION.body}
+              {formatIntersectionBody(currency)}
             </p>
             <p className="mt-4 text-[13px] text-bb-gray italic max-w-xl">
               Beyond this intersection, the two ladders run on parallel tracks.
