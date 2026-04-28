@@ -94,7 +94,7 @@ const LadderHero = () => {
                   {tier.name}
                 </div>
                 <div className="mt-1 text-[12px] font-medium text-foreground/85">
-                  <TierPriceText tier={tier} currency={currency} secondaryClassName="text-[0.82em] text-muted-foreground ml-1" />
+                  <TierPriceText tier={tier} currency={currency} />
                 </div>
                 <p className="mt-2 text-[11px] text-muted-foreground leading-snug flex-1">
                   {tier.audience}
