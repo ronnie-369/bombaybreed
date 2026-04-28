@@ -90,10 +90,16 @@ const Admin = () => {
   const [loading, setLoading] = useState(true);
   const [pendingId, setPendingId] = useState<string | null>(null);
   const [memberFilter, setMemberFilter] = useState("");
+  const [orders, setOrders] = useState<OrderAttemptRow[]>([]);
+  const [orderPlanFilter, setOrderPlanFilter] = useState("");
+  const [orderCycleFilter, setOrderCycleFilter] = useState<string>("all");
+  const [orderStatusFilter, setOrderStatusFilter] = useState<string>("all");
+  const [orderFromDate, setOrderFromDate] = useState<string>("");
+  const [orderToDate, setOrderToDate] = useState<string>("");
 
   const load = async () => {
     setLoading(true);
-    const [subsR, subscribersR, paysR, viewsR, tiersR] = await Promise.all([
+    const [subsR, subscribersR, paysR, viewsR, tiersR, ordersR] = await Promise.all([
       supabase
         .from("tcd_subscriptions")
         .select(
