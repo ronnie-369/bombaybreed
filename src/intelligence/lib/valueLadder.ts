@@ -57,43 +57,43 @@ export const TIERS: LadderTier[] = [
     id: "tcd-paid",
     name: "Paid Substack",
     ladder: "TCD",
-    priceLabel: "USD 5 / mo",
+    priceLabel: "USD 10 / mo",
     audience:
-      "Professional readers, sustainability teams, journalists who want deeper analysis",
+      "Professional readers, sustainability teams, journalists who want deeper reports than the free Substack",
     strategicRole:
       "Capture professional reader willingness-to-pay; funnel to BB",
     cta: {
       kind: "outbound",
-      label: "Upgrade - USD 5 / mo",
+      label: "Upgrade - USD 10 / mo",
       href: SUBSTACK_PAID_URL,
     },
   },
   {
     id: "bb-reader",
-    name: "Reader",
+    name: "Market Readers",
     ladder: "BB",
-    priceLabel: "INR 10,000 / mo",
+    priceLabel: "USD 100 / mo (~INR 8,500)",
     audience:
       "Consultants, sustainability leads, fund analysts tracking the Indian carbon transition",
     strategicRole: "Editorial intelligence at research-grade discipline",
     cta: {
       kind: "internal",
-      label: "Join Reader",
+      label: "Join Market Readers",
       href: "/intelligence/signup?tier=foundational&ref=ladder",
     },
   },
   {
     id: "bb-analyst",
-    name: "Analyst Lens",
+    name: "Investor Readers",
     ladder: "BB",
-    priceLabel: "INR 50,000 / mo",
+    priceLabel: "USD 500 / mo (~INR 42,500)",
     audience:
       "Climate VCs, PE running diligence, family offices, DFI staff",
     strategicRole:
       "Research and advisory product for capital deployers",
     cta: {
       kind: "internal",
-      label: "Join Analyst Lens",
+      label: "Join Investor Readers",
       href: "/intelligence/signup?tier=professional&ref=ladder",
     },
   },
