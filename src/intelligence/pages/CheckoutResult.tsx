@@ -94,9 +94,11 @@ export default function CheckoutResult() {
       const elapsed = Date.now() - startedAtRef.current;
       setElapsedMs(elapsed);
 
+      const terminalStatus = (data as StatusPayload | undefined)?.status;
       const isTerminal =
-        (data as StatusPayload | undefined)?.status === "success" ||
-        (data as StatusPayload | undefined)?.status === "failed";
+        terminalStatus === "success" ||
+        terminalStatus === "failed" ||
+        terminalStatus === "signature_failed";
 
       if (isTerminal) {
         setPollingStopped(true);
