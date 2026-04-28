@@ -1,8 +1,9 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { TIERS, formatTierPrice, formatTierCtaLabel, type LadderTier } from "@/intelligence/lib/valueLadder";
+import { TIERS, formatTierCtaLabel, type LadderTier } from "@/intelligence/lib/valueLadder";
 import { useCurrency } from "@/intelligence/lib/useCurrency";
 import CurrencyToggle from "@/components/insights/CurrencyToggle";
+import TierPriceText from "@/components/insights/TierPriceText";
 import { trackOutboundClick } from "@/utils/outboundAnalytics";
 import SponsorInquiryDialog from "@/components/SponsorInquiryDialog";
 
@@ -93,7 +94,7 @@ const LadderHero = () => {
                   {tier.name}
                 </div>
                 <div className="mt-1 text-[12px] font-medium text-foreground/85">
-                  {formatTierPrice(tier, currency)}
+                  <TierPriceText tier={tier} currency={currency} secondaryClassName="text-[0.82em] text-muted-foreground ml-1" />
                 </div>
                 <p className="mt-2 text-[11px] text-muted-foreground leading-snug flex-1">
                   {tier.audience}

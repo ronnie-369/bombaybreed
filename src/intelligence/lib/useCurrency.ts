@@ -14,7 +14,7 @@ import type { Currency } from "./valueLadder";
 
 const STORAGE_KEY = "bb_pricing_currency";
 const EVENT_NAME = "bb:pricing-currency-changed";
-const DEFAULT: Currency = "USD";
+const DEFAULT: Currency = "INR";
 
 const isCurrency = (v: unknown): v is Currency => v === "USD" || v === "INR";
 
