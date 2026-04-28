@@ -186,6 +186,12 @@ const Checkout = () => {
   }, []);
 
   const planId = TIER_TO_PLAN[tierSlug];
+  const isMonthlyOnly = planId ? MONTHLY_ONLY_PLANS.has(planId) : false;
+
+  // Force the billing cycle to monthly for monthly-only plans (e.g. Enthusiasts).
+  useEffect(() => {
+    if (isMonthlyOnly && billingCycle !== "monthly") setBillingCycle("monthly");
+  }, [isMonthlyOnly, billingCycle]);
 
   const handlePay = async () => {
     if (!tier || processing) return;
