@@ -337,6 +337,11 @@ function StatusBadge({ status }: { status: Status }) {
       className: "border-bb-border text-bb-gray bg-bb-cream",
       dot: "bg-bb-gray",
     },
+    signature_failed: {
+      label: "Verification failed",
+      className: "border-red-700/30 text-red-800 bg-red-50",
+      dot: "bg-red-600",
+    },
   };
   const c = map[status];
   return (
