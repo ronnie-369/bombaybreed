@@ -299,11 +299,13 @@ const Checkout = () => {
 
       rzp.open();
     } catch (err) {
-      toast({
-        title: "Unexpected error",
-        description: err instanceof Error ? err.message : String(err),
-        variant: "destructive",
-      });
+      setCheckoutError(
+        classifyOrderError({
+          invokeError: err instanceof Error ? { message: err.message } : null,
+          responseError: null,
+          hasOrderId: false,
+        }),
+      );
       setProcessing(false);
     }
   };
