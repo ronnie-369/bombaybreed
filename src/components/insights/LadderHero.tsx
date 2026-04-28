@@ -44,15 +44,16 @@ const LadderHero = () => {
         <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-6">
           <div>
             <p className="text-[11px] font-semibold uppercase tracking-[0.32em] text-primary">
-              Choose how you read us
+              Membership
             </p>
             <h2 className="mt-2 text-section font-serif tracking-tight">
-              Five ways in. Free to flagship.
+              It will take all of us, to do this for all of us.
             </h2>
             <p className="mt-2 text-sm text-muted-foreground max-w-xl">
-              The Climate Desk on Substack is editorial. Bombay Breed
-              Intelligence is research and advisory. Sponsorship underwrites
-              specific reports. Pick the one that fits.
+              There is something here for everyone interested in the Indian
+              carbon markets - from the curious reader on Substack to the
+              institution underwriting research. Study the plans below and
+              sign up to the one most suited to your needs.
             </p>
           </div>
           <div className="flex flex-col md:items-end gap-3">
