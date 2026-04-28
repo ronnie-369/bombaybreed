@@ -415,7 +415,7 @@ export const INTERSECTION = {
    * with the discounted-quarter rate and the regular rate in the visitor's
    * active currency. See `formatIntersectionBody`.
    */
-  body: "The single explicit upgrade path between the two ladders. Any paid Substack subscriber receives a discount on the first three months of the Market Readers tier ({intro} for the first quarter, then {regular} thereafter). Substack subscription is paused or refunded for the duration of the discount.",
+  body: "The single explicit upgrade path between the two ladders. Any Enthusiasts subscriber receives a discount on the first three months of the Market Readers tier ({intro} for the first quarter, then {regular} thereafter). The Enthusiasts subscription is paused or refunded for the duration of the discount.",
   introPricing: { usd: 75, inr: 6500, period: "mo" as const },
   ctaLabel: "Upgrade to Market Readers",
   ctaHref: "/intelligence/signup?tier=foundational&ref=intersection",
