@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { TIERS, type LadderTier } from "@/intelligence/lib/valueLadder";
+import { TIERS, formatTierPrice, formatTierCtaLabel, type LadderTier } from "@/intelligence/lib/valueLadder";
+import { useCurrency } from "@/intelligence/lib/useCurrency";
+import CurrencyToggle from "@/components/insights/CurrencyToggle";
 import { trackOutboundClick } from "@/utils/outboundAnalytics";
 import SponsorInquiryDialog from "@/components/SponsorInquiryDialog";
 
