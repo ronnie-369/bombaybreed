@@ -189,16 +189,34 @@ const ValueLadder = () => {
       <section className="max-w-[1200px] mx-auto px-6 md:px-10 pt-20 md:pt-28 pb-14">
         <SectionLabel>The value ladder</SectionLabel>
         <h1 className="mt-6 font-serif font-normal tracking-[-0.025em] text-[44px] md:text-[60px] leading-[1.02] text-bb-near-black max-w-3xl">
-          Two ladders, one intersection. Plus sponsorship.
+          It will take all of us, to do this for all of us.
         </h1>
-        <p className="mt-6 text-[16px] leading-[1.7] text-bb-gray max-w-2xl">
-          Five tiers serve five different jobs. The Climate Desk on Substack is
-          editorial, broad, and top-of-funnel. Bombay Breed Intelligence is
-          research and advisory for capital deployers. Project sponsorship is a
-          parallel B2B revenue line that underwrites specific reports for the
-          entire subscriber base. Choose the tier whose job-set matches your
-          actual professional context.
-        </p>
+        <div className="mt-6 space-y-4 text-[16px] leading-[1.7] text-bb-gray max-w-2xl">
+          <p>
+            We have something for everyone. Whether you are a student looking
+            to join climate action, or a media professional aiming to
+            increase your access to knowledge, The Climate Desk has answers
+            for everyone.
+          </p>
+          <p>
+            If you are a climate enthusiast looking for information on how
+            to increase your earning potential or gain more access to
+            projects, the <span className="text-bb-near-black font-medium">Enthusiasts</span> tier is for you.
+          </p>
+          <p>
+            If you are working in the market - a developer, enterprise,
+            supplier or service provider - you will want to be subscribed to
+            the <span className="text-bb-near-black font-medium">Market Readers</span> tier.
+          </p>
+          <p>
+            If you are an investor who needs to be sure about where to put
+            your investments, the <span className="text-bb-near-black font-medium">Investor Readers</span> tier is just for you.
+          </p>
+          <p>
+            The <span className="text-bb-near-black font-medium">Sponsor</span> tier exists for anyone looking to sponsor a
+            study, validate a hypothesis or commission research.
+          </p>
+        </div>
         <div className="mt-8">
           <CurrencyToggle surface="value_ladder_hero" />
         </div>
