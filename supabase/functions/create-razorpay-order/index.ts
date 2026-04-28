@@ -13,12 +13,58 @@
 // Razorpay expects amounts in the smallest currency unit (paise for INR),
 // so we multiply by 100 before calling the orders API.
 
+import { createClient } from 'https://esm.sh/@supabase/supabase-js@2.45.0';
+
 const corsHeaders = {
   'Access-Control-Allow-Origin': '*',
   'Access-Control-Allow-Headers':
     'authorization, x-client-info, apikey, content-type',
   'Access-Control-Allow-Methods': 'POST, OPTIONS',
 };
+
+// Fire-and-forget audit logger. Uses the service role so it bypasses RLS;
+// the tcd_order_attempts table is admin-readable only.
+async function logOrderAttempt(row: {
+  user_id: string | null;
+  plan_id: string | null;
+  billing_cycle: string | null;
+  amount_inr: number | null;
+  currency: string | null;
+  order_id: string | null;
+  status: 'pending' | 'created' | 'failed';
+  error_message: string | null;
+  request_metadata: Record<string, unknown>;
+}): Promise<void> {
+  try {
+    const url = Deno.env.get('SUPABASE_URL');
+    const serviceKey = Deno.env.get('SUPABASE_SERVICE_ROLE_KEY');
+    if (!url || !serviceKey) return;
+    const admin = createClient(url, serviceKey, {
+      auth: { persistSession: false },
+    });
+    const { error } = await admin.from('tcd_order_attempts').insert(row);
+    if (error) console.error('tcd_order_attempts insert failed', error);
+  } catch (err) {
+    console.error('logOrderAttempt threw', err);
+  }
+}
+
+// Best-effort decode of the caller's user id from the Authorization header.
+function getUserIdFromAuthHeader(req: Request): string | null {
+  try {
+    const auth = req.headers.get('Authorization') ?? '';
+    const token = auth.replace(/^Bearer\s+/i, '').trim();
+    if (!token) return null;
+    const payload = token.split('.')[1];
+    if (!payload) return null;
+    const json = JSON.parse(
+      atob(payload.replace(/-/g, '+').replace(/_/g, '/')),
+    );
+    return typeof json.sub === 'string' ? json.sub : null;
+  } catch {
+    return null;
+  }
+}
 
 type PlanId = 'industry_reader' | 'analyst_lens';
 type BillingCycle = 'monthly' | 'annual';
