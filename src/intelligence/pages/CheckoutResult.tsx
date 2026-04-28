@@ -283,6 +283,25 @@ export default function CheckoutResult() {
                 </p>
               )}
 
+              {status === "signature_failed" && (
+                <div className="space-y-4 rounded-[10px] border border-red-700/30 bg-red-50 p-5">
+                  <p className="text-red-900">
+                    {payload?.error_message ??
+                      "We could not verify the payment confirmation from Razorpay."}{" "}
+                    For your safety, we have not activated the membership. If
+                    your account was charged, we will refund it automatically -
+                    please email us with the order reference below so we can
+                    investigate immediately.
+                  </p>
+                  <a
+                    href={`mailto:theresa.ronnie@bombaybreed.com?subject=Payment%20verification%20failed%20-%20${encodeURIComponent(orderId)}`}
+                    className="inline-flex items-center px-5 py-2.5 border border-red-800 text-[12px] font-semibold uppercase tracking-[0.18em] text-red-800 hover:bg-red-800 hover:text-white transition-colors"
+                  >
+                    Email support
+                  </a>
+                </div>
+              )}
+
               {error && status === "pending" && (
                 <p className="mt-3 text-bb-copper">
                   Status check error: {error}. Retrying...
