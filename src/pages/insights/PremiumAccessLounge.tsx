@@ -591,7 +591,7 @@ const PremiumAccessLounge: React.FC = () => {
 
               <div className="mb-6">
                 <span className="inline-flex items-center px-2.5 py-1 rounded-full text-[10px] font-semibold tracking-widest uppercase bg-accent/15 text-accent border border-accent/30 mb-3 leading-snug">
-                  Launch offer - 30% off year one
+                  Inaugural offer - 30% off year one
                 </span>
                 <div className="text-xs text-muted-foreground/70 font-sans line-through mb-1 leading-snug">
                   {tier1Strike}
@@ -601,7 +601,7 @@ const PremiumAccessLounge: React.FC = () => {
                   <span className="text-xs sm:text-sm text-muted-foreground font-sans ml-2">({tier1Secondary})</span>
                 </div>
                 <div className="text-xs text-muted-foreground tracking-wide mt-1 leading-snug">
-                  Founding rate, locked while your subscription stays active
+                  30% inaugural discount in year one. Choose the annual plan and your price is locked for three years - no renewal hike, no fine print.
                 </div>
               </div>
 
@@ -663,7 +663,7 @@ const PremiumAccessLounge: React.FC = () => {
 
               <div className="mb-6">
                 <span className="inline-flex items-center px-2.5 py-1 rounded-full text-[10px] font-semibold tracking-widest uppercase bg-accent/20 text-accent border border-accent/40 mb-3 leading-snug">
-                  Launch offer - 30% off year one
+                  Inaugural offer - 30% off year one
                 </span>
                 <div className="text-xs text-background/45 font-sans line-through mb-1 leading-snug">
                   {tier2Strike}
@@ -673,7 +673,7 @@ const PremiumAccessLounge: React.FC = () => {
                   <span className="text-xs sm:text-sm text-background/60 font-sans ml-2">({tier2Secondary})</span>
                 </div>
                 <div className="text-xs text-background/60 tracking-wide mt-1 leading-snug">
-                  Founding rate, locked while your subscription stays active
+                  30% inaugural discount in year one. Choose the annual plan and your price is locked for three years - no renewal hike, no fine print.
                 </div>
               </div>
 
