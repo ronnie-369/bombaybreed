@@ -476,6 +476,13 @@ const PremiumAccessLounge: React.FC = () => {
                         href={q.orgHref}
                         target="_blank"
                         rel="noopener noreferrer"
+                        onClick={() =>
+                          trackOutboundClick({
+                            location: 'lounge_quotes',
+                            org_name: q.org,
+                            link_url: q.orgHref!,
+                          })
+                        }
                         className="text-foreground/80 no-underline hover:text-foreground hover:underline focus-visible:underline decoration-foreground/30 decoration-[0.5px] underline-offset-[5px] transition-colors duration-200"
                       >
                         {q.org}
