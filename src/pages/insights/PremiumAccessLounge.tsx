@@ -55,7 +55,7 @@ const QUOTES: { quote: string; name: string; title: string; org: string; orgHref
     name: 'Chris Sherwood',
     title: 'Chairman',
     org: 'Negative Emissions Platform',
-    orgHref: 'https://negativeemissionsplatform.eu',
+    orgHref: 'https://www.negative-emissions.org/',
   },
   {
     quote: 'Wonderful writing. Deep analysis. Highly insightful.',
