@@ -522,18 +522,19 @@ const PremiumAccessLounge: React.FC = () => {
         <div className="container mx-auto max-w-[1100px]">
           <SectionLabel label="Choose your tier" />
           <h2 className="text-section font-serif tracking-tight mt-6 mb-4">
-            Five ways in. Pick the one that fits - before you leave this page.
+            It will take all of us, to do this for all of us.
           </h2>
           <p className="font-serif text-lg text-foreground/80 leading-relaxed max-w-[720px] mb-4">
-            Free Substack for the headlines. Enthusiasts (USD 5 / month) for
-            the same news plus the analytical reads we keep behind the
-            paywall. Market Readers and Investor Readers for research-grade
-            intelligence. Sponsorship for institutions underwriting reports.
+            There is something here for everyone interested in carbon markets.
+            Free readers can follow the public conversation, enthusiasts can
+            go deeper for USD 5 a month, market participants can use
+            research-grade intelligence, investors can study risk and allocation,
+            and sponsors can underwrite the reports this market needs.
           </p>
           <p className="text-body text-muted-foreground max-w-[720px] mb-10">
-            Everything below is read from a single source of truth. Prices,
-            audiences and what each tier delivers are exactly what you will
-            see at checkout. No surprises at the paywall.
+            Study the plans below and sign up to the one most suited to your
+            needs before you leave this page. The prices, audiences and access
+            levels are transparent so the right next step is easy to choose.
           </p>
 
           {/* ── 5-TIER STRIP ──────────────────────────────────────────── */}
