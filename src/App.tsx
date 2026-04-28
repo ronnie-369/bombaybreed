@@ -110,6 +110,7 @@ const AppContent = () => {
               <Route path="/intelligence" element={<IntelligenceLanding />} />
               <Route path="/intelligence/membership" element={<TcdMembership />} />
               <Route path="/intelligence/signup" element={<TcdSignup />} />
+              <Route path="/intelligence/welcome" element={<TcdWelcome />} />
               <Route
                 path="/intelligence/checkout"
                 element={<TcdAuthGate><TcdCheckout /></TcdAuthGate>}
