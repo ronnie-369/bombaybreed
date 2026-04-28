@@ -128,7 +128,11 @@ export const TIERS: LadderTier[] = [
     audience: "Corporates and institutions underwriting research",
     strategicRole:
       "Underwrite editorial production; credibility and revenue",
-    cta: { kind: "dialog", label: "Inquire about sponsorship", dialog: "sponsor" },
+    cta: {
+      kind: "internal",
+      label: "See current and bespoke projects",
+      href: "/intelligence/value-ladder#sponsor",
+    },
   },
 ];
 
