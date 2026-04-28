@@ -187,17 +187,17 @@ const ValueLadder = () => {
   return (
     <IntelligenceLayout>
       <Helmet>
-        <title>Pricing and value ladder - TCD Intelligence and Bombay Breed</title>
+        <title>Membership tiers - TCD Intelligence and Bombay Breed</title>
         <meta
           name="description"
-          content="Five tiers of customer for The Climate Desk and Bombay Breed Intelligence. Two parallel ladders plus B2B sponsorship. Prices, what each tier delivers, and how to choose."
+          content="Five membership tiers across The Climate Desk, Bombay Breed Intelligence and project sponsorship. Prices, what each tier delivers, and how to choose."
         />
         <link rel="canonical" href="https://bombaybreed.com/intelligence/value-ladder" />
       </Helmet>
 
       {/* HERO */}
       <section className="max-w-[1200px] mx-auto px-6 md:px-10 pt-20 md:pt-28 pb-14">
-        <SectionLabel>The value ladder</SectionLabel>
+        <SectionLabel>Membership tiers</SectionLabel>
         <h1 className="mt-6 font-serif font-normal tracking-[-0.025em] text-[44px] md:text-[60px] leading-[1.02] text-bb-near-black max-w-3xl">
           It will take all of us, to do this for all of us.
         </h1>
@@ -205,26 +205,24 @@ const ValueLadder = () => {
           <p>
             We have something for everyone. Whether you are a student looking
             to join climate action, or a media professional aiming to
-            increase your access to knowledge, The Climate Desk has answers
-            for everyone.
+            increase your access to knowledge, <a href="#tier-tcd-free" className="text-bb-near-black underline decoration-bb-border underline-offset-4 hover:decoration-bb-near-black">The Climate Desk</a> has answers for everyone.
           </p>
           <p>
             If you are a climate enthusiast looking for information on how
             to increase your earning potential or gain more access to
-            projects, the <span className="text-bb-near-black font-medium">Enthusiasts</span> tier is for you.
+            projects, the <a href="#tier-tcd-paid" className="text-bb-near-black font-medium underline decoration-bb-border underline-offset-4 hover:decoration-bb-near-black">Enthusiasts</a> tier is for you.
           </p>
           <p>
             If you are working in the market - a developer, enterprise,
             supplier or service provider - you will want to be subscribed to
-            the <span className="text-bb-near-black font-medium">Market Readers</span> tier.
+            the <a href="#tier-bb-reader" className="text-bb-near-black font-medium underline decoration-bb-border underline-offset-4 hover:decoration-bb-near-black">Market Readers</a> tier.
           </p>
           <p>
             If you are an investor who needs to be sure about where to put
-            your investments, the <span className="text-bb-near-black font-medium">Investor Readers</span> tier is just for you.
+            your investments, the <a href="#tier-bb-analyst" className="text-bb-near-black font-medium underline decoration-bb-border underline-offset-4 hover:decoration-bb-near-black">Investor Readers</a> tier is just for you.
           </p>
           <p>
-            The <span className="text-bb-near-black font-medium">Sponsor</span> tier exists for anyone looking to sponsor a
-            study, validate a hypothesis or commission research.
+            The <a href="#tier-sponsor" className="text-bb-near-black font-medium underline decoration-bb-border underline-offset-4 hover:decoration-bb-near-black">Sponsor</a> tier exists for anyone looking to sponsor a study, validate a hypothesis or commission research.
           </p>
         </div>
         <div className="mt-8">
