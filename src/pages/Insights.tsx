@@ -12,6 +12,7 @@ import PremiumAccessLounge from '@/pages/insights/PremiumAccessLounge';
 import { trackSponsorEvent } from '@/utils/sponsorAnalytics';
 import LadderHero from '@/components/insights/LadderHero';
 import LadderStickyPill from '@/components/insights/LadderStickyPill';
+import TierFinder from '@/components/insights/TierFinder';
 
 
 type ContentType = 'Flagship Report' | 'Intelligence Brief' | 'Regulatory Alert' | 'Perspective';
@@ -275,6 +276,7 @@ const Insights = () => {
     // Premium Access Lounge — paid funnel sits at the top of the page.
     // These ids exist regardless of search/filter state.
     s.push({ id: 'lounge', label: 'Lounge' });
+    s.push({ id: 'tier-finder', label: 'Find your plan' });
     s.push({ id: 'industry', label: 'Readers say' });
     s.push({ id: 'tiers', label: 'Tiers' });
     s.push({ id: 'readers', label: 'Who reads' });
@@ -447,6 +449,11 @@ const Insights = () => {
             moment. Lives above the section nav so every visitor sees pricing
             and tier options before browsing publications. */}
         <LadderHero />
+
+        {/* Guided tier selector - 3 questions to a recommended plan with
+            direct routing to signup. Sits between the ladder strip and the
+            sticky section nav so visitors can self-qualify before browsing. */}
+        <TierFinder />
 
         {/* Section Navigation - sticky, highlights active section on scroll */}
         <nav
