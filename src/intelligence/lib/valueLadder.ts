@@ -29,7 +29,7 @@ export interface LadderTier {
   name: string;
   /** Which of the two ladders (or B2B) this tier belongs to. */
   ladder: LadderId;
-  /** Display price, e.g. "Free", "USD 5 / mo", "INR 10,000 / mo". */
+  /** Display price, e.g. "Free", "USD 10 / mo", "USD 100 / mo (~INR 8,500)". */
   priceLabel: string;
   /** One-line audience description (verbatim from spreadsheet Sheet 2). */
   audience: string;
@@ -57,43 +57,43 @@ export const TIERS: LadderTier[] = [
     id: "tcd-paid",
     name: "Paid Substack",
     ladder: "TCD",
-    priceLabel: "USD 5 / mo",
+    priceLabel: "USD 10 / mo",
     audience:
-      "Professional readers, sustainability teams, journalists who want deeper analysis",
+      "Professional readers, sustainability teams, journalists who want deeper reports than the free Substack",
     strategicRole:
       "Capture professional reader willingness-to-pay; funnel to BB",
     cta: {
       kind: "outbound",
-      label: "Upgrade - USD 5 / mo",
+      label: "Upgrade - USD 10 / mo",
       href: SUBSTACK_PAID_URL,
     },
   },
   {
     id: "bb-reader",
-    name: "Reader",
+    name: "Market Readers",
     ladder: "BB",
-    priceLabel: "INR 10,000 / mo",
+    priceLabel: "USD 100 / mo (~INR 8,500)",
     audience:
       "Consultants, sustainability leads, fund analysts tracking the Indian carbon transition",
     strategicRole: "Editorial intelligence at research-grade discipline",
     cta: {
       kind: "internal",
-      label: "Join Reader",
+      label: "Join Market Readers",
       href: "/intelligence/signup?tier=foundational&ref=ladder",
     },
   },
   {
     id: "bb-analyst",
-    name: "Analyst Lens",
+    name: "Investor Readers",
     ladder: "BB",
-    priceLabel: "INR 50,000 / mo",
+    priceLabel: "USD 500 / mo (~INR 42,500)",
     audience:
       "Climate VCs, PE running diligence, family offices, DFI staff",
     strategicRole:
       "Research and advisory product for capital deployers",
     cta: {
       kind: "internal",
-      label: "Join Analyst Lens",
+      label: "Join Investor Readers",
       href: "/intelligence/signup?tier=professional&ref=ladder",
     },
   },
@@ -151,7 +151,7 @@ export const JOBS: Job[] = [
       "tcd-paid": "Yes, full access to all editorial commentary",
       "bb-reader":
         "Yes, with editorial discipline that matches institutional publishing",
-      "bb-analyst": "Yes, including all Reader content",
+      "bb-analyst": "Yes, including all Market Readers content",
       sponsor: "Receives sponsored research findings before publication",
     },
   },
@@ -165,7 +165,7 @@ export const JOBS: Job[] = [
       "bb-reader":
         "Yes. Quarterly outlooks on Indian carbon asset classes covering CCTS, VCM credits, registry exposure",
       "bb-analyst":
-        "Yes. Reader content plus sectoral cuts on the four CCTS-obligated sectoral reports per year",
+        "Yes. Market Readers content plus sectoral cuts on the four CCTS-obligated sectoral reports per year",
       sponsor:
         "Sponsored sectoral or regional analysis on a specific compliance area",
     },
@@ -294,7 +294,7 @@ export const SPONSOR_TERMS: string[] = [
   "Editorial independence. Sponsor pays for production; sponsor does not direct editorial conclusions. This is non-negotiable.",
   "Attribution. Sponsor receives non-promotional credit on the published output: 'This report was produced with research support from [Sponsor Name].'",
   "Working-session call. Sponsor receives one working-session call before publication to discuss findings, plus one team briefing after publication.",
-  "Distribution. The deliverable is published to the entire subscriber base (Reader and Analyst tiers). Sponsor does not receive exclusivity.",
+  "Distribution. The deliverable is published to the entire subscriber base (Market Readers and Investor Readers tiers). Sponsor does not receive exclusivity.",
   "Timeline. Sectoral and regional reports run on a 10-12 week production cycle; custom reports on a 12-16 week cycle.",
   "Payment. 50 percent on commission, 50 percent on delivery. Payments via direct invoice, GST-compliant.",
   "Cancellation. Either party may cancel in writing; sponsor pays for work completed to that point at standard rates.",
@@ -303,13 +303,13 @@ export const SPONSOR_TERMS: string[] = [
 
 /**
  * The single explicit upgrade path between the two ladders.
- * Paid Substack -> Reader, with a 3-month introductory discount.
+ * Paid Substack -> Market Readers, with a 3-month introductory discount.
  */
 export const INTERSECTION = {
   fromTierId: "tcd-paid" as const,
   toTierId: "bb-reader" as const,
-  headline: "From Paid Substack to Reader",
-  body: "The single explicit upgrade path between the two ladders. Any paid Substack subscriber receives a discount on the first three months of Reader tier (INR 7,500 per month for the first quarter, then INR 10,000 per month thereafter). Substack subscription is paused or refunded for the duration of the discount.",
-  ctaLabel: "Upgrade to Reader",
+  headline: "From Paid Substack to Market Readers",
+  body: "The single explicit upgrade path between the two ladders. Any paid Substack subscriber receives a discount on the first three months of the Market Readers tier (USD 75 / mo for the first quarter, then USD 100 / mo thereafter). Substack subscription is paused or refunded for the duration of the discount.",
+  ctaLabel: "Upgrade to Market Readers",
   ctaHref: "/intelligence/signup?tier=foundational&ref=intersection",
 };

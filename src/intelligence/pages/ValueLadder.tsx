@@ -206,7 +206,7 @@ const ValueLadder = () => {
           Sponsor (B2B) is structurally different from the four subscriber
           tiers. Sponsors underwrite the production of specific reports that
           are then published to the entire subscriber base. A sponsor can also
-          be (and frequently will be) an Analyst tier subscriber separately.
+          be (and frequently will be) an Investor Readers tier subscriber separately.
         </p>
       </section>
 
@@ -317,7 +317,7 @@ const ValueLadder = () => {
             </p>
             <p className="mt-4 text-[13px] text-bb-gray italic max-w-xl">
               Beyond this intersection, the two ladders run on parallel tracks.
-              Reader to Analyst Lens is not a natural progression - it is a
+              Market Readers to Investor Readers is not a natural progression - it is a
               decision made on professional context (am I deploying capital? do
               I need named diligence?).
             </p>
@@ -363,7 +363,7 @@ const ValueLadder = () => {
         </h2>
         <p className="mt-4 text-[15px] leading-[1.7] text-bb-gray max-w-2xl">
           Sponsors do not subscribe. They commission specific research outputs
-          that get published to the Reader and Analyst tiers with attribution
+          that get published to the Market Readers and Investor Readers tiers with attribution
           credit. The deliverable is a published report, not private
           intelligence. Editorial independence is non-negotiable.
         </p>

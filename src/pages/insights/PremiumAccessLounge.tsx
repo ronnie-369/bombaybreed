@@ -25,11 +25,11 @@ const CTA_COPY: Record<
   Record<Variant, string>
 > = {
   industry_reader: {
-    A: 'Join the Industry Reader',
+    A: 'Join Market Readers',
     B: 'Read the market with us',
   },
   analyst_lens: {
-    A: 'Take the Analyst Lens',
+    A: 'Join Investor Readers',
     B: 'Exclusive access awaits',
   },
 };
@@ -498,7 +498,7 @@ const PremiumAccessLounge: React.FC = () => {
         </div>
       </section>
 
-      {/* TIERS — Industry Reader vs Analyst Lens */}
+      {/* TIERS — Market Readers vs Investor Readers */}
       <section id="tiers" className="px-6 md:px-8 py-14 md:py-16 border-t border-border scroll-mt-32">
         <div className="container mx-auto max-w-[900px]">
           <SectionLabel label="Knowledge you can use" />
@@ -556,7 +556,7 @@ const PremiumAccessLounge: React.FC = () => {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-5">
-            {/* Tier 1 — Industry Reader (supply side) */}
+            {/* Tier 1 — Market Readers (supply side) */}
             <div
               ref={industryCardRef}
               data-active={activeTier === 'industry-reader'}
@@ -570,7 +570,7 @@ const PremiumAccessLounge: React.FC = () => {
                   Tier 01
                 </span>
                 <h3 className="font-serif text-2xl text-foreground mt-3 mb-1">
-                  The Industry Reader
+                  Market Readers
                 </h3>
                 <p className="text-sm text-muted-foreground italic leading-snug">
                   Built for the people building the supply - project developers,
@@ -583,13 +583,13 @@ const PremiumAccessLounge: React.FC = () => {
                   Launch offer - 30% off year one
                 </span>
                 <div className="text-xs text-muted-foreground/70 font-sans line-through mb-1 leading-snug">
-                  INR 10,000 / month
+                  USD 100 / month
                 </div>
                 <div className="font-serif text-2xl sm:text-3xl text-foreground whitespace-nowrap leading-tight">
-                  INR 7,000<span className="text-sm sm:text-base text-muted-foreground font-sans"> / month</span>
+                  USD 70<span className="text-sm sm:text-base text-muted-foreground font-sans"> / month</span>
                 </div>
                 <div className="text-xs text-muted-foreground tracking-wide mt-1 leading-snug">
-                  INR 84,000 / year - founding rate, locked while your subscription stays active
+                  ~INR 6,000 / month - founding rate, locked while your subscription stays active
                 </div>
               </div>
 
@@ -623,7 +623,7 @@ const PremiumAccessLounge: React.FC = () => {
               </Button>
             </div>
 
-            {/* Tier 2 — Analyst Lens (demand side / money) */}
+            {/* Tier 2 — Investor Readers (demand side / money) */}
             <div
               ref={analystCardRef}
               data-active={activeTier === 'analyst-lens'}
@@ -640,7 +640,7 @@ const PremiumAccessLounge: React.FC = () => {
                   Tier 02
                 </span>
                 <h3 className="font-serif text-2xl mt-3 mb-1">
-                  The Analyst Lens
+                  Investor Readers
                 </h3>
                 <p className="text-sm text-background/70 italic leading-snug">
                   Built for the people pricing the risk - investors, family
@@ -654,13 +654,13 @@ const PremiumAccessLounge: React.FC = () => {
                   Launch offer - 30% off year one
                 </span>
                 <div className="text-xs text-background/45 font-sans line-through mb-1 leading-snug">
-                  INR 50,000 / month
+                  USD 500 / month
                 </div>
                 <div className="font-serif text-2xl sm:text-3xl whitespace-nowrap leading-tight">
-                  INR 35,000<span className="text-sm sm:text-base text-background/60 font-sans"> / month</span>
+                  USD 350<span className="text-sm sm:text-base text-background/60 font-sans"> / month</span>
                 </div>
                 <div className="text-xs text-background/60 tracking-wide mt-1 leading-snug">
-                  INR 4.2 lakh / year - founding rate, locked while your subscription stays active
+                  ~INR 30,000 / month - founding rate, locked while your subscription stays active
                 </div>
               </div>
 
