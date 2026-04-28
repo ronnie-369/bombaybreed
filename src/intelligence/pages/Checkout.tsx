@@ -5,6 +5,7 @@ import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
 import IntelligenceLayout from "../components/IntelligenceLayout";
 import SectionLabel from "../components/SectionLabel";
+import { formatIntlBracket } from "../lib/currency";
 
 // ---- Razorpay checkout modal types ----
 declare global {
