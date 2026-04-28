@@ -71,6 +71,17 @@ const Signup = () => {
         "tcd_signup_intent",
         JSON.stringify({ tier, billing, ts: Date.now() }),
       );
+      // Profile snapshot - lets the Welcome page backfill tcd_subscribers
+      // even if Supabase user_metadata comes back empty (e.g. cross-device
+      // confirmation, or older accounts re-confirming).
+      localStorage.setItem(
+        "tcd_signup_profile",
+        JSON.stringify({
+          full_name: form.fullName,
+          company: form.company || null,
+          designation: form.designation || null,
+        }),
+      );
     } catch {
       /* ignore */
     }
