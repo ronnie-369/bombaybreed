@@ -168,6 +168,7 @@ const TierCard = ({
 const ValueLadder = () => {
   const [sponsorOpen, setSponsorOpen] = useState(false);
   const openSponsor = () => setSponsorOpen(true);
+  const [currency] = useCurrency();
 
   const fromTier = TIER_BY_ID[INTERSECTION.fromTierId];
   const toTier = TIER_BY_ID[INTERSECTION.toTierId];
