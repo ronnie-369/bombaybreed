@@ -39,6 +39,7 @@ const IntelligenceLanding = lazy(() => import("./intelligence/pages/Intelligence
 const TcdMembership = lazy(() => import("./intelligence/pages/Membership"));
 const TcdSignup = lazy(() => import("./intelligence/pages/Signup"));
 const TcdCheckout = lazy(() => import("./intelligence/pages/Checkout"));
+const TcdCheckoutResult = lazy(() => import("./intelligence/pages/CheckoutResult"));
 const TcdOnboarding = lazy(() => import("./intelligence/pages/Onboarding"));
 const TcdDashboard = lazy(() => import("./intelligence/pages/Dashboard"));
 const TcdReportDetail = lazy(() => import("./intelligence/pages/ReportDetail"));
@@ -111,6 +112,10 @@ const AppContent = () => {
               <Route
                 path="/intelligence/checkout"
                 element={<TcdAuthGate><TcdCheckout /></TcdAuthGate>}
+              />
+              <Route
+                path="/intelligence/checkout/result"
+                element={<TcdCheckoutResult />}
               />
               <Route
                 path="/intelligence/onboarding"

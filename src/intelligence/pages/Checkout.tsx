@@ -185,36 +185,31 @@ const Checkout = () => {
           razorpay_payment_id: string;
           razorpay_signature: string;
         }) => {
-          // 4. Verify the signature and activate the subscription server-side.
-          const { data: verifyData, error: verifyError } =
-            await supabase.functions.invoke("verify-razorpay-payment", {
+          // Hand off to the result screen immediately. It polls
+          // get-payment-status until the webhook (or the in-browser verify
+          // call below) confirms activation, so the UX works even when the
+          // verify call is slow or fails outright (e.g. UPI async confirms).
+          const resultUrl = `/intelligence/checkout/result?order=${encodeURIComponent(
+            response.razorpay_order_id,
+          )}`;
+
+          // Fire-and-forget verify call. The webhook is the durable path -
+          // this just speeds up the happy case for cards.
+          supabase.functions
+            .invoke("verify-razorpay-payment", {
               body: {
                 razorpay_order_id: response.razorpay_order_id,
                 razorpay_payment_id: response.razorpay_payment_id,
                 razorpay_signature: response.razorpay_signature,
                 customer: { email: userEmail, full_name: userName },
               },
+            })
+            .catch((err) => {
+              console.warn("verify-razorpay-payment fire-and-forget failed", err);
             });
 
-          if (verifyError || !verifyData?.success) {
-            toast({
-              title: "Payment received - activation pending",
-              description:
-                verifyError?.message ??
-                verifyData?.error ??
-                "We received your payment but could not activate your membership automatically. Our team has been notified.",
-              variant: "destructive",
-            });
-            setProcessing(false);
-            return;
-          }
-
-          toast({
-            title: "Payment successful",
-            description: `${tier.name} membership is now active.`,
-          });
           setProcessing(false);
-          navigate("/intelligence/onboarding");
+          navigate(resultUrl);
         },
       });
 
