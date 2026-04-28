@@ -372,12 +372,49 @@ const Checkout = () => {
               </p>
             </div>
 
+            {checkoutError && (
+              <div
+                role="alert"
+                aria-live="polite"
+                className="mt-6 rounded-[10px] border border-red-700/30 bg-red-50 p-5"
+              >
+                <div className="text-[12px] font-semibold uppercase tracking-[0.24em] text-red-800">
+                  {checkoutError.title}
+                </div>
+                <p className="mt-2 text-[13px] leading-relaxed text-red-900/80">
+                  {checkoutError.description}
+                </p>
+                {checkoutError.retryable && (
+                  <div className="mt-4 flex flex-wrap gap-3">
+                    <button
+                      type="button"
+                      onClick={handlePay}
+                      disabled={processing}
+                      className="inline-flex items-center px-4 py-2 border border-red-800 text-[12px] font-semibold uppercase tracking-[0.18em] text-red-800 hover:bg-red-800 hover:text-white transition-colors disabled:opacity-50"
+                    >
+                      {processing ? "Retrying..." : "Try again"}
+                    </button>
+                    <a
+                      href="mailto:theresa.ronnie@bombaybreed.com"
+                      className="inline-flex items-center px-4 py-2 text-[12px] font-semibold uppercase tracking-[0.18em] text-red-900/70 hover:text-red-900"
+                    >
+                      Email support
+                    </a>
+                  </div>
+                )}
+              </div>
+            )}
+
             <button
               onClick={handlePay}
               disabled={processing}
               className="mt-8 w-full h-12 rounded-[10px] bg-bb-slate text-bb-off-white text-[14px] font-medium hover:opacity-90 transition disabled:opacity-50"
             >
-              {processing ? "Opening checkout..." : "Pay with Razorpay"}
+              {processing
+                ? "Opening checkout..."
+                : checkoutError?.retryable
+                ? "Try again"
+                : "Pay with Razorpay"}
             </button>
           </div>
         ) : (
