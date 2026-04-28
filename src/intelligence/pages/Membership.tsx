@@ -68,6 +68,12 @@ const TierCard = ({
       <div className="mt-2 text-[12px] text-bb-gray">
         ({formatIntlBracket(Number(tier.price_inr))})
       </div>
+      <div className="mt-3 inline-flex items-center px-2 py-1 rounded-full text-[10px] font-semibold tracking-[0.18em] uppercase bg-bb-copper/10 text-bb-copper border border-bb-copper/30">
+        Inaugural offer - 30% off year one
+      </div>
+      <p className="mt-2 text-[12px] text-bb-gray leading-snug">
+        Choose annual and your price is locked for three years. No renewal hike, no fine print.
+      </p>
       <ul className="mt-6 space-y-3 flex-1">
         {features.map((f) => (
           <li key={f} className="flex gap-3 text-[14px] text-bb-near-black/85 leading-snug">
@@ -168,9 +174,11 @@ const Membership = () => {
             </h1>
             <p className="mt-6 text-[16px] leading-[1.7] text-bb-gray max-w-xl">
               Tier 1 Market Readers and Tier 2 Investor Readers share the same
-              editorial spine. Pricing is shown in USD with the INR equivalent
-              alongside; billing is annual. For a side-by-side comparison
-              against the Substack tiers and Sponsorship, see the{" "}
+              editorial spine. Pricing is shown in INR with the USD equivalent
+              alongside; billing is annual. Inaugural members get 30% off year
+              one and a three-year price lock on annual plans. For a
+              side-by-side comparison against the Substack tiers and
+              Sponsorship, see the{" "}
               <Link
                 to="/intelligence/value-ladder"
                 className="text-bb-near-black underline decoration-bb-border underline-offset-4 hover:decoration-bb-near-black"
