@@ -18,6 +18,7 @@ import {
 } from "../lib/valueLadder";
 import { useCurrency } from "../lib/useCurrency";
 import CurrencyToggle from "@/components/insights/CurrencyToggle";
+import TierPriceText from "@/components/insights/TierPriceText";
 import SponsorInquiryDialog from "@/components/SponsorInquiryDialog";
 import { trackOutboundClick } from "@/utils/outboundAnalytics";
 
@@ -153,7 +154,7 @@ const TierCard = ({
         {tier.name}
       </div>
       <div className="mt-1 text-[14px] text-bb-near-black/85 font-medium">
-        {formatTierPrice(tier, currency)}
+        <TierPriceText tier={tier} currency={currency} />
       </div>
       <p className="mt-3 text-[13px] text-bb-gray leading-relaxed flex-1">
         {tier.audience}
@@ -254,7 +255,7 @@ const ValueLadder = () => {
                   >
                     <div>{t.name}</div>
                     <div className="text-[10px] normal-case tracking-normal text-bb-gray font-normal mt-1">
-                      {formatTierPrice(t, currency)}
+                      <TierPriceText tier={t} currency={currency} secondaryClassName="text-[0.85em] ml-1" />
                     </div>
                   </th>
                 ))}
@@ -301,7 +302,7 @@ const ValueLadder = () => {
                 <span className="font-serif text-[18px] tracking-tight text-bb-near-black">
                   {t.name}
                 </span>
-                <span className="text-[12px] text-bb-gray">{formatTierPrice(t, currency)}</span>
+                <TierPriceText tier={t} currency={currency} className="text-[12px] text-bb-gray" />
               </summary>
               <ul className="mt-4 space-y-3">
                 {JOBS.map((job) => (
@@ -351,7 +352,7 @@ const ValueLadder = () => {
             <div className="mt-1 font-serif text-[20px] tracking-tight text-bb-near-black">
               {fromTier.name}
             </div>
-            <div className="text-[13px] text-bb-gray">{formatTierPrice(fromTier, currency)}</div>
+            <TierPriceText tier={fromTier} currency={currency} className="text-[13px] text-bb-gray" />
             <div className="my-4 h-px bg-bb-border" />
             <div className="text-[11px] uppercase tracking-[0.18em] text-bb-gray">
               To
@@ -359,7 +360,7 @@ const ValueLadder = () => {
             <div className="mt-1 font-serif text-[20px] tracking-tight text-bb-near-black">
               {toTier.name}
             </div>
-            <div className="text-[13px] text-bb-gray">{formatTierPrice(toTier, currency)}</div>
+            <TierPriceText tier={toTier} currency={currency} className="text-[13px] text-bb-gray" />
             <div className="mt-5 text-[12px] text-bb-near-black bg-bb-copper/10 border border-bb-copper/30 rounded px-3 py-2">
               {formatIntersectionIntro(currency)}
             </div>
