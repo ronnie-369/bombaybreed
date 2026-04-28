@@ -7,6 +7,7 @@ import ScrollReveal from '@/components/ui/ScrollReveal';
 import SectionLabel from '@/components/ui/SectionLabel';
 import SponsorInquiryDialog from '@/components/SponsorInquiryDialog';
 import { trackSponsorEvent } from '@/utils/sponsorAnalytics';
+import { trackOutboundClick } from '@/utils/outboundAnalytics';
 import {
   getVariant,
   logAssignmentOnce,
