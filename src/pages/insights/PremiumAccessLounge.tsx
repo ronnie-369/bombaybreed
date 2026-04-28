@@ -356,6 +356,62 @@ const PremiumAccessLounge: React.FC = () => {
   const industryCardRef = useRef<HTMLDivElement | null>(null);
   const analystCardRef = useRef<HTMLDivElement | null>(null);
 
+  // Deep-link target for the 5-tier strip. When the URL hash matches
+  // #tier-card-<id>, briefly highlight that card so the visitor lands
+  // straight on the buy panel from the comparison-table column header.
+  const [highlightTierId, setHighlightTierId] = useState<string | null>(null);
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+    const handleHash = () => {
+      const hash = window.location.hash.replace(/^#/, '');
+      const match = hash.match(/^tier-card-(.+)$/);
+      if (!match) return;
+      const id = match[1];
+      if (!TIERS.some((t) => t.id === id)) return;
+      setHighlightTierId(id);
+      window.requestAnimationFrame(() => {
+        document.getElementById(`tier-card-${id}`)?.scrollIntoView({
+          behavior: 'smooth',
+          block: 'center',
+        });
+      });
+      // Drop the highlight after 2.4s; keep the hash so back-button works.
+      window.setTimeout(() => setHighlightTierId(null), 2400);
+    };
+    handleHash();
+    window.addEventListener('hashchange', handleHash);
+    return () => window.removeEventListener('hashchange', handleHash);
+  }, []);
+
+  // Click handler for the comparison-table column headers - drives the
+  // visitor straight from "compare" to "buy" with a single click.
+  const handleTierDeepLink = (tierId: LadderTier['id']) => {
+    setHighlightTierId(tierId);
+    const el = document.getElementById(`tier-card-${tierId}`);
+    if (el) {
+      el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+    if (typeof window !== 'undefined') {
+      window.history.replaceState({}, '', `#tier-card-${tierId}`);
+      try {
+        const w = window as unknown as {
+          gtag?: (...args: unknown[]) => void;
+          dataLayer?: unknown[];
+        };
+        const payload = {
+          surface: 'comparison_table',
+          tier_id: tierId,
+        };
+        if (typeof w.gtag === 'function') w.gtag('event', 'tier_compare_deeplink', payload);
+        if (Array.isArray(w.dataLayer)) w.dataLayer.push({ event: 'tier_compare_deeplink', ...payload });
+      } catch {
+        /* analytics never break UX */
+      }
+    }
+    window.setTimeout(() => setHighlightTierId(null), 2400);
+  };
+
+
   useEffect(() => {
     // Only run scroll-spy on narrow viewports where cards stack vertically.
     if (typeof window === 'undefined') return;
