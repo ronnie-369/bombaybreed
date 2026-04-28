@@ -165,7 +165,7 @@ export const JOBS: Job[] = [
       "bb-reader":
         "Yes. Quarterly outlooks on Indian carbon asset classes covering CCTS, VCM credits, registry exposure",
       "bb-analyst":
-        "Yes. Reader content plus sectoral cuts on the four CCTS-obligated sectoral reports per year",
+        "Yes. Market Readers content plus sectoral cuts on the four CCTS-obligated sectoral reports per year",
       sponsor:
         "Sponsored sectoral or regional analysis on a specific compliance area",
     },
