@@ -206,7 +206,7 @@ const ValueLadder = () => {
           Sponsor (B2B) is structurally different from the four subscriber
           tiers. Sponsors underwrite the production of specific reports that
           are then published to the entire subscriber base. A sponsor can also
-          be (and frequently will be) an Analyst tier subscriber separately.
+          be (and frequently will be) an Investor Readers tier subscriber separately.
         </p>
       </section>
 
