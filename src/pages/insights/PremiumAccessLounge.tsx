@@ -25,11 +25,11 @@ const CTA_COPY: Record<
   Record<Variant, string>
 > = {
   industry_reader: {
-    A: 'Join the Industry Reader',
+    A: 'Join Market Readers',
     B: 'Read the market with us',
   },
   analyst_lens: {
-    A: 'Take the Analyst Lens',
+    A: 'Join Investor Readers',
     B: 'Exclusive access awaits',
   },
 };
