@@ -74,7 +74,7 @@ export const TIERS: LadderTier[] = [
   },
   {
     id: "tcd-paid",
-    name: "Paid Substack",
+    name: "Enthusiasts",
     ladder: "TCD",
     priceLabel: "USD 10 / mo",
     pricing: { usd: 10, inr: 850, period: "mo" },
@@ -404,18 +404,18 @@ export const SPONSOR_TERMS: string[] = [
 
 /**
  * The single explicit upgrade path between the two ladders.
- * Paid Substack -> Market Readers, with a 3-month introductory discount.
+ * Enthusiasts -> Market Readers, with a 3-month introductory discount.
  */
 export const INTERSECTION = {
   fromTierId: "tcd-paid" as const,
   toTierId: "bb-reader" as const,
-  headline: "From Paid Substack to Market Readers",
+  headline: "From Enthusiasts to Market Readers",
   /**
    * Body template - `{intro}` and `{regular}` are substituted at render time
    * with the discounted-quarter rate and the regular rate in the visitor's
    * active currency. See `formatIntersectionBody`.
    */
-  body: "The single explicit upgrade path between the two ladders. Any paid Substack subscriber receives a discount on the first three months of the Market Readers tier ({intro} for the first quarter, then {regular} thereafter). Substack subscription is paused or refunded for the duration of the discount.",
+  body: "The single explicit upgrade path between the two ladders. Any Enthusiasts subscriber receives a discount on the first three months of the Market Readers tier ({intro} for the first quarter, then {regular} thereafter). The Enthusiasts subscription is paused or refunded for the duration of the discount.",
   introPricing: { usd: 75, inr: 6500, period: "mo" as const },
   ctaLabel: "Upgrade to Market Readers",
   ctaHref: "/intelligence/signup?tier=foundational&ref=intersection",
