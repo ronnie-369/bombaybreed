@@ -66,16 +66,23 @@ function getUserIdFromAuthHeader(req: Request): string | null {
   }
 }
 
-type PlanId = 'industry_reader' | 'analyst_lens';
+type PlanId = 'enthusiasts' | 'industry_reader' | 'analyst_lens';
 type BillingCycle = 'monthly' | 'annual';
 
 interface PlanConfig {
   label: string;
   monthly_inr: number;       // single-month price (no discount)
   annual_monthly_inr: number; // discounted per-month price when paid yearly
+  monthly_only?: boolean;     // when true, annual cycle is rejected
 }
 
 const PLANS: Record<PlanId, PlanConfig> = {
+  enthusiasts: {
+    label: 'Enthusiasts',
+    monthly_inr: 425,
+    annual_monthly_inr: 425, // unused; this tier is monthly-only
+    monthly_only: true,
+  },
   industry_reader: {
     label: 'Industry Reader',
     monthly_inr: 10_000,
@@ -155,7 +162,7 @@ Deno.serve(async (req) => {
     planIdLogged = typeof planId === 'string' ? planId : null;
     billingCycleLogged = typeof billingCycle === 'string' ? billingCycle : null;
 
-    if (planId !== 'industry_reader' && planId !== 'analyst_lens') {
+    if (planId !== 'enthusiasts' && planId !== 'industry_reader' && planId !== 'analyst_lens') {
       void logOrderAttempt({
         user_id: userId, plan_id: planIdLogged, billing_cycle: billingCycleLogged,
         amount_inr: null, currency: 'INR', order_id: null,
@@ -163,7 +170,7 @@ Deno.serve(async (req) => {
         request_metadata: requestMetadata,
       });
       return new Response(
-        JSON.stringify({ error: 'Invalid planId. Expected industry_reader or analyst_lens.' }),
+        JSON.stringify({ error: 'Invalid planId. Expected enthusiasts, industry_reader or analyst_lens.' }),
         { status: 400, headers: { ...corsHeaders, 'Content-Type': 'application/json' } },
       );
     }
@@ -181,6 +188,18 @@ Deno.serve(async (req) => {
     }
 
     const plan = PLANS[planId as PlanId];
+    if (plan.monthly_only && billingCycle === 'annual') {
+      void logOrderAttempt({
+        user_id: userId, plan_id: planIdLogged, billing_cycle: billingCycleLogged,
+        amount_inr: null, currency: 'INR', order_id: null,
+        status: 'failed', error_message: 'Annual cycle not available for this plan',
+        request_metadata: requestMetadata,
+      });
+      return new Response(
+        JSON.stringify({ error: 'This plan is monthly-only.' }),
+        { status: 400, headers: { ...corsHeaders, 'Content-Type': 'application/json' } },
+      );
+    }
     const amountInr = priceInInr(plan, billingCycle as BillingCycle);
     amountInrLogged = amountInr;
     const amountPaise = amountInr * 100;
