@@ -173,7 +173,7 @@ const Membership = () => {
               Lounge access. Two tiers. One editorial line.
             </h1>
             <p className="mt-6 text-[16px] leading-[1.7] text-bb-gray max-w-xl">
-              Tier 1 Market Readers and Tier 2 Investor Readers share the same
+              Tier 1 Market Makers and Tier 2 Investment Intelligence share the same
               editorial spine. Pricing is shown in INR with the USD equivalent
               alongside; billing is annual. Inaugural members get 30% off year
               one and a three-year price lock on annual plans. For a

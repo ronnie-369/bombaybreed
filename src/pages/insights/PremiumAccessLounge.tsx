@@ -35,11 +35,11 @@ const CTA_COPY: Record<
   Record<Variant, string>
 > = {
   industry_reader: {
-    A: 'Join Market Readers',
+    A: 'Join Market Makers',
     B: 'Read the market with us',
   },
   analyst_lens: {
-    A: 'Join Investor Readers',
+    A: 'Join Investment Intelligence',
     B: 'Exclusive access awaits',
   },
 };
@@ -793,7 +793,7 @@ const PremiumAccessLounge: React.FC = () => {
             </div>
           </div>
 
-          {/* ── DETAILED RESEARCH TIERS — Market Readers / Investor Readers ── */}
+          {/* ── DETAILED RESEARCH TIERS — Market Makers / Investment Intelligence ── */}
           <SectionLabel label="Research-grade tiers" />
           <h3 className="font-serif text-2xl md:text-3xl tracking-tight mt-4 mb-4">
             Bombay Breed Intelligence
@@ -847,7 +847,7 @@ const PremiumAccessLounge: React.FC = () => {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-5">
-            {/* Tier 1 — Market Readers (supply side) */}
+            {/* Tier 1 — Market Makers (supply side) */}
             <div
               ref={industryCardRef}
               data-active={activeTier === 'industry-reader'}
@@ -861,7 +861,7 @@ const PremiumAccessLounge: React.FC = () => {
                   Tier 01
                 </span>
                 <h3 className="font-serif text-2xl text-foreground mt-3 mb-1">
-                  Market Readers
+                  Market Makers
                 </h3>
                 <p className="text-sm text-muted-foreground italic leading-snug">
                   Built for the people building the supply - project developers,
@@ -915,7 +915,7 @@ const PremiumAccessLounge: React.FC = () => {
               </Button>
             </div>
 
-            {/* Tier 2 — Investor Readers (demand side / money) */}
+            {/* Tier 2 — Investment Intelligence (demand side / money) */}
             <div
               ref={analystCardRef}
               data-active={activeTier === 'analyst-lens'}
@@ -932,7 +932,7 @@ const PremiumAccessLounge: React.FC = () => {
                   Tier 02
                 </span>
                 <h3 className="font-serif text-2xl mt-3 mb-1">
-                  Investor Readers
+                  Investment Intelligence
                 </h3>
                 <p className="text-sm text-background/70 italic leading-snug">
                   Built for the people pricing the risk - investors, family

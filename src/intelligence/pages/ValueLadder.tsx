@@ -237,11 +237,11 @@ const ValueLadder = () => {
           <p>
             If you are working in the market - a developer, enterprise,
             supplier or service provider - you will want to be subscribed to
-            the <a href="#tier-bb-reader" onClick={(e) => smoothScrollToTier(e, "bb-reader")} className="text-bb-near-black font-medium underline decoration-bb-border underline-offset-4 hover:decoration-bb-near-black">Market Readers</a> tier.
+            the <a href="#tier-bb-reader" onClick={(e) => smoothScrollToTier(e, "bb-reader")} className="text-bb-near-black font-medium underline decoration-bb-border underline-offset-4 hover:decoration-bb-near-black">Market Makers</a> tier.
           </p>
           <p>
             If you are an investor who needs to be sure about where to put
-            your investments, the <a href="#tier-bb-analyst" onClick={(e) => smoothScrollToTier(e, "bb-analyst")} className="text-bb-near-black font-medium underline decoration-bb-border underline-offset-4 hover:decoration-bb-near-black">Investor Readers</a> tier is just for you.
+            your investments, the <a href="#tier-bb-analyst" onClick={(e) => smoothScrollToTier(e, "bb-analyst")} className="text-bb-near-black font-medium underline decoration-bb-border underline-offset-4 hover:decoration-bb-near-black">Investment Intelligence</a> tier is just for you.
           </p>
           <p>
             The <a href="#tier-sponsor" onClick={(e) => smoothScrollToTier(e, "sponsor")} className="text-bb-near-black font-medium underline decoration-bb-border underline-offset-4 hover:decoration-bb-near-black">Sponsor</a> tier exists for anyone looking to sponsor a study, validate a hypothesis or commission research.
@@ -270,7 +270,7 @@ const ValueLadder = () => {
           Sponsor (B2B) is structurally different from the four subscriber
           tiers. Sponsors underwrite the production of specific reports that
           are then published to the entire subscriber base. A sponsor can also
-          be (and frequently will be) an Investor Readers tier subscriber separately.
+          be (and frequently will be) an Investment Intelligence tier subscriber separately.
         </p>
       </section>
 
@@ -357,7 +357,7 @@ const ValueLadder = () => {
             </p>
             <p className="mt-4 text-[13px] text-bb-gray italic max-w-xl">
               Beyond this intersection, the tiers run on parallel tracks.
-              Market Readers to Investor Readers is not a natural progression - it is a
+              Market Makers to Investment Intelligence is not a natural progression - it is a
               decision made on professional context (am I deploying capital? do
               I need named diligence?).
             </p>
@@ -403,7 +403,7 @@ const ValueLadder = () => {
         </h2>
         <p className="mt-4 text-[15px] leading-[1.7] text-bb-gray max-w-2xl">
           Sponsors do not subscribe. They commission specific research outputs
-          that get published to the Market Readers and Investor Readers tiers with attribution
+          that get published to the Market Makers and Investment Intelligence tiers with attribution
           credit. The deliverable is a published report, not private
           intelligence. Editorial independence is non-negotiable.
         </p>

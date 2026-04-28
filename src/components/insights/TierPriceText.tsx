@@ -25,7 +25,7 @@ interface Props {
   /** Optional wrapper classes applied to the outer span. */
   className?: string;
   /**
-   * On dark backgrounds (e.g. the Investor Readers card in the Lounge) the
+   * On dark backgrounds (e.g. the Investment Intelligence card in the Lounge) the
    * default `text-bb-gray` token is invisible. Set this to true to switch the
    * secondary currency to a translucent light tone instead.
    */
