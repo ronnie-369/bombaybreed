@@ -135,30 +135,40 @@ const TierCard = ({
   currency: "USD" | "INR";
 }) => {
   const isSponsor = tier.ladder === "B2B";
+  const explainerHref = `#tier-${tier.id}`;
   return (
     <div
-      className={`rounded-xl border p-6 flex flex-col h-full ${
+      className={`group rounded-xl border p-6 flex flex-col h-full transition hover:border-bb-near-black/40 hover:shadow-sm ${
         isSponsor
           ? "border-bb-copper/40 bg-bb-copper/5"
           : "border-bb-border bg-white"
       }`}
     >
-      <div className="flex items-center gap-2">
-        <span
-          className={`text-[10px] uppercase tracking-[0.18em] px-2 py-0.5 rounded ${ladderBadgeClass[tier.ladder]}`}
-        >
-          {ladderLabel[tier.ladder]}
+      <a
+        href={explainerHref}
+        className="flex flex-col flex-1 cursor-pointer"
+        aria-label={`Read more about ${tier.name}`}
+      >
+        <div className="flex items-center gap-2">
+          <span
+            className={`text-[10px] uppercase tracking-[0.18em] px-2 py-0.5 rounded ${ladderBadgeClass[tier.ladder]}`}
+          >
+            {ladderLabel[tier.ladder]}
+          </span>
+        </div>
+        <div className="mt-3 font-serif text-[22px] tracking-tight text-bb-near-black leading-snug group-hover:underline decoration-bb-border underline-offset-4">
+          {tier.name}
+        </div>
+        <div className="mt-1 text-[14px] text-bb-near-black/85 font-medium">
+          <TierPriceText tier={tier} currency={currency} />
+        </div>
+        <p className="mt-3 text-[13px] text-bb-gray leading-relaxed flex-1">
+          {tier.audience}
+        </p>
+        <span className="mt-4 text-[11px] uppercase tracking-[0.18em] text-bb-gray group-hover:text-bb-near-black">
+          Read more ↓
         </span>
-      </div>
-      <div className="mt-3 font-serif text-[22px] tracking-tight text-bb-near-black leading-snug">
-        {tier.name}
-      </div>
-      <div className="mt-1 text-[14px] text-bb-near-black/85 font-medium">
-        <TierPriceText tier={tier} currency={currency} />
-      </div>
-      <p className="mt-3 text-[13px] text-bb-gray leading-relaxed flex-1">
-        {tier.audience}
-      </p>
+      </a>
       <div className="mt-5">
         <TierCta tier={tier} surface={surface} onSponsorClick={onSponsorClick} currency={currency} />
       </div>
