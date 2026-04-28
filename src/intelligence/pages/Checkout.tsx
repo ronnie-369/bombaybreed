@@ -58,6 +58,86 @@ const formatPrice = (n: number) =>
     maximumFractionDigits: 0,
   }).format(n);
 
+// Map low-level error strings from the edge function / network to a friendly,
+// user-facing message + a hint about whether retrying is likely to help.
+interface CheckoutError {
+  title: string;
+  description: string;
+  retryable: boolean;
+}
+
+function classifyOrderError(args: {
+  invokeError?: { message?: string } | null;
+  responseError?: string | null;
+  hasOrderId: boolean;
+}): CheckoutError {
+  const raw = (args.invokeError?.message ?? args.responseError ?? "").toLowerCase();
+
+  // No internet / DNS / fetch-level failure
+  if (
+    raw.includes("failed to fetch") ||
+    raw.includes("networkerror") ||
+    raw.includes("network error") ||
+    raw.includes("load failed")
+  ) {
+    return {
+      title: "We could not reach the payment server",
+      description:
+        "Please check your internet connection and try again. No charge has been made.",
+      retryable: true,
+    };
+  }
+
+  // Server-side misconfiguration (missing Razorpay keys etc.)
+  if (
+    raw.includes("not configured") ||
+    raw.includes("misconfigured") ||
+    raw.includes("missing razorpay")
+  ) {
+    return {
+      title: "Online checkout is temporarily unavailable",
+      description:
+        "Our payment provider is not responding. Please try again in a few minutes, or email theresa.ronnie@bombaybreed.com to activate your membership manually.",
+      retryable: true,
+    };
+  }
+
+  // Plan / cycle validation failure (shouldn't happen via the UI, but guard)
+  if (raw.includes("invalid planid") || raw.includes("invalid billingcycle")) {
+    return {
+      title: "This plan cannot be checked out online yet",
+      description:
+        "Please refresh the page and reselect the plan. If the problem persists, email theresa.ronnie@bombaybreed.com.",
+      retryable: false,
+    };
+  }
+
+  // Razorpay rejected the order create call (5xx / 502 from our function)
+  if (
+    raw.includes("razorpay order creation failed") ||
+    raw.includes("non-2xx") ||
+    raw.includes("502") ||
+    raw.includes("503") ||
+    raw.includes("504")
+  ) {
+    return {
+      title: "The payment provider is busy",
+      description:
+        "Razorpay rejected this attempt. Please wait a moment and try again. No charge has been made.",
+      retryable: true,
+    };
+  }
+
+  // Generic fallback
+  return {
+    title: "Could not start checkout",
+    description: args.hasOrderId
+      ? "Something went wrong handing off to Razorpay. Please try again."
+      : "We could not create your order. Please try again, or contact us if the problem continues.",
+    retryable: true,
+  };
+}
+
 const Checkout = () => {
   const [params] = useSearchParams();
   const tierSlug = params.get("tier") ?? "foundational";
@@ -69,6 +149,7 @@ const Checkout = () => {
   const [billingCycle, setBillingCycle] = useState<"monthly" | "annual">(
     "annual"
   );
+  const [checkoutError, setCheckoutError] = useState<CheckoutError | null>(null);
 
   useEffect(() => {
     (async () => {
@@ -91,11 +172,15 @@ const Checkout = () => {
   const handlePay = async () => {
     if (!tier || processing) return;
 
+    // Clear any previous error so the panel disappears as soon as the user retries.
+    setCheckoutError(null);
+
     if (!planId) {
-      toast({
+      setCheckoutError({
         title: "This tier is not yet available for online checkout",
-        description: "Please contact us to activate this membership manually.",
-        variant: "destructive",
+        description:
+          "Please email theresa.ronnie@bombaybreed.com to activate this membership manually.",
+        retryable: false,
       });
       return;
     }
@@ -124,14 +209,13 @@ const Checkout = () => {
         });
 
       if (orderError || !orderData?.order_id) {
-        toast({
-          title: "Could not start checkout",
-          description:
-            orderError?.message ??
-            orderData?.error ??
-            "Razorpay order creation failed.",
-          variant: "destructive",
-        });
+        setCheckoutError(
+          classifyOrderError({
+            invokeError: orderError,
+            responseError: (orderData as { error?: string } | undefined)?.error ?? null,
+            hasOrderId: Boolean(orderData?.order_id),
+          }),
+        );
         setProcessing(false);
         return;
       }
@@ -139,11 +223,11 @@ const Checkout = () => {
       // 2. Make sure the Razorpay JS is loaded.
       const ok = await loadRazorpayScript();
       if (!ok || !window.Razorpay) {
-        toast({
-          title: "Checkout unavailable",
+        setCheckoutError({
+          title: "Razorpay checkout failed to load",
           description:
-            "Razorpay checkout failed to load. Check your connection and retry.",
-          variant: "destructive",
+            "Check your internet connection (or any ad blocker / strict browser privacy mode) and try again.",
+          retryable: true,
         });
         setProcessing(false);
         return;
@@ -215,11 +299,13 @@ const Checkout = () => {
 
       rzp.open();
     } catch (err) {
-      toast({
-        title: "Unexpected error",
-        description: err instanceof Error ? err.message : String(err),
-        variant: "destructive",
-      });
+      setCheckoutError(
+        classifyOrderError({
+          invokeError: err instanceof Error ? { message: err.message } : null,
+          responseError: null,
+          hasOrderId: false,
+        }),
+      );
       setProcessing(false);
     }
   };
@@ -286,12 +372,49 @@ const Checkout = () => {
               </p>
             </div>
 
+            {checkoutError && (
+              <div
+                role="alert"
+                aria-live="polite"
+                className="mt-6 rounded-[10px] border border-red-700/30 bg-red-50 p-5"
+              >
+                <div className="text-[12px] font-semibold uppercase tracking-[0.24em] text-red-800">
+                  {checkoutError.title}
+                </div>
+                <p className="mt-2 text-[13px] leading-relaxed text-red-900/80">
+                  {checkoutError.description}
+                </p>
+                {checkoutError.retryable && (
+                  <div className="mt-4 flex flex-wrap gap-3">
+                    <button
+                      type="button"
+                      onClick={handlePay}
+                      disabled={processing}
+                      className="inline-flex items-center px-4 py-2 border border-red-800 text-[12px] font-semibold uppercase tracking-[0.18em] text-red-800 hover:bg-red-800 hover:text-white transition-colors disabled:opacity-50"
+                    >
+                      {processing ? "Retrying..." : "Try again"}
+                    </button>
+                    <a
+                      href="mailto:theresa.ronnie@bombaybreed.com"
+                      className="inline-flex items-center px-4 py-2 text-[12px] font-semibold uppercase tracking-[0.18em] text-red-900/70 hover:text-red-900"
+                    >
+                      Email support
+                    </a>
+                  </div>
+                )}
+              </div>
+            )}
+
             <button
               onClick={handlePay}
               disabled={processing}
               className="mt-8 w-full h-12 rounded-[10px] bg-bb-slate text-bb-off-white text-[14px] font-medium hover:opacity-90 transition disabled:opacity-50"
             >
-              {processing ? "Opening checkout..." : "Pay with Razorpay"}
+              {processing
+                ? "Opening checkout..."
+                : checkoutError?.retryable
+                ? "Try again"
+                : "Pay with Razorpay"}
             </button>
           </div>
         ) : (
