@@ -428,7 +428,7 @@ const ValueLadder = () => {
               {formatIntersectionBody(currency)}
             </p>
             <p className="mt-4 text-[13px] text-bb-gray italic max-w-xl">
-              Beyond this intersection, the two ladders run on parallel tracks.
+              Beyond this intersection, the tiers run on parallel tracks.
               Market Readers to Investor Readers is not a natural progression - it is a
               decision made on professional context (am I deploying capital? do
               I need named diligence?).
