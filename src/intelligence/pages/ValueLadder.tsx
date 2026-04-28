@@ -22,7 +22,7 @@ import TierPriceText from "@/components/insights/TierPriceText";
 import SponsorInquiryDialog from "@/components/SponsorInquiryDialog";
 import { trackOutboundClick } from "@/utils/outboundAnalytics";
 
-// Visual treatment per ladder. Sponsor (B2B) is tinted to mark it as a
+// Visual treatment per group. Sponsor (B2B) is tinted to mark it as a
 // structurally different revenue line, not a subscriber tier (per memo).
 const ladderBadgeClass: Record<LadderTier["ladder"], string> = {
   TCD: "bg-bb-near-black/5 text-bb-near-black",
@@ -31,9 +31,9 @@ const ladderBadgeClass: Record<LadderTier["ladder"], string> = {
 };
 
 const ladderLabel: Record<LadderTier["ladder"], string> = {
-  TCD: "TCD ladder",
-  BB: "BB ladder",
-  B2B: "B2B revenue line",
+  TCD: "The Climate Desk",
+  BB: "Bombay Breed",
+  B2B: "Sponsorship",
 };
 
 const trackLadderCta = (tier: LadderTier, surface: string) => {
@@ -135,30 +135,40 @@ const TierCard = ({
   currency: "USD" | "INR";
 }) => {
   const isSponsor = tier.ladder === "B2B";
+  const explainerHref = `#tier-${tier.id}`;
   return (
     <div
-      className={`rounded-xl border p-6 flex flex-col h-full ${
+      className={`group rounded-xl border p-6 flex flex-col h-full transition hover:border-bb-near-black/40 hover:shadow-sm ${
         isSponsor
           ? "border-bb-copper/40 bg-bb-copper/5"
           : "border-bb-border bg-white"
       }`}
     >
-      <div className="flex items-center gap-2">
-        <span
-          className={`text-[10px] uppercase tracking-[0.18em] px-2 py-0.5 rounded ${ladderBadgeClass[tier.ladder]}`}
-        >
-          {ladderLabel[tier.ladder]}
+      <a
+        href={explainerHref}
+        className="flex flex-col flex-1 cursor-pointer"
+        aria-label={`Read more about ${tier.name}`}
+      >
+        <div className="flex items-center gap-2">
+          <span
+            className={`text-[10px] uppercase tracking-[0.18em] px-2 py-0.5 rounded ${ladderBadgeClass[tier.ladder]}`}
+          >
+            {ladderLabel[tier.ladder]}
+          </span>
+        </div>
+        <div className="mt-3 font-serif text-[22px] tracking-tight text-bb-near-black leading-snug group-hover:underline decoration-bb-border underline-offset-4">
+          {tier.name}
+        </div>
+        <div className="mt-1 text-[14px] text-bb-near-black/85 font-medium">
+          <TierPriceText tier={tier} currency={currency} />
+        </div>
+        <p className="mt-3 text-[13px] text-bb-gray leading-relaxed flex-1">
+          {tier.audience}
+        </p>
+        <span className="mt-4 text-[11px] uppercase tracking-[0.18em] text-bb-gray group-hover:text-bb-near-black">
+          Read more ↓
         </span>
-      </div>
-      <div className="mt-3 font-serif text-[22px] tracking-tight text-bb-near-black leading-snug">
-        {tier.name}
-      </div>
-      <div className="mt-1 text-[14px] text-bb-near-black/85 font-medium">
-        <TierPriceText tier={tier} currency={currency} />
-      </div>
-      <p className="mt-3 text-[13px] text-bb-gray leading-relaxed flex-1">
-        {tier.audience}
-      </p>
+      </a>
       <div className="mt-5">
         <TierCta tier={tier} surface={surface} onSponsorClick={onSponsorClick} currency={currency} />
       </div>
@@ -177,17 +187,17 @@ const ValueLadder = () => {
   return (
     <IntelligenceLayout>
       <Helmet>
-        <title>Pricing and value ladder - TCD Intelligence and Bombay Breed</title>
+        <title>Membership tiers - TCD Intelligence and Bombay Breed</title>
         <meta
           name="description"
-          content="Five tiers of customer for The Climate Desk and Bombay Breed Intelligence. Two parallel ladders plus B2B sponsorship. Prices, what each tier delivers, and how to choose."
+          content="Five membership tiers across The Climate Desk, Bombay Breed Intelligence and project sponsorship. Prices, what each tier delivers, and how to choose."
         />
         <link rel="canonical" href="https://bombaybreed.com/intelligence/value-ladder" />
       </Helmet>
 
       {/* HERO */}
       <section className="max-w-[1200px] mx-auto px-6 md:px-10 pt-20 md:pt-28 pb-14">
-        <SectionLabel>The value ladder</SectionLabel>
+        <SectionLabel>Membership tiers</SectionLabel>
         <h1 className="mt-6 font-serif font-normal tracking-[-0.025em] text-[44px] md:text-[60px] leading-[1.02] text-bb-near-black max-w-3xl">
           It will take all of us, to do this for all of us.
         </h1>
@@ -195,26 +205,24 @@ const ValueLadder = () => {
           <p>
             We have something for everyone. Whether you are a student looking
             to join climate action, or a media professional aiming to
-            increase your access to knowledge, The Climate Desk has answers
-            for everyone.
+            increase your access to knowledge, <a href="#tier-tcd-free" className="text-bb-near-black underline decoration-bb-border underline-offset-4 hover:decoration-bb-near-black">The Climate Desk</a> has answers for everyone.
           </p>
           <p>
             If you are a climate enthusiast looking for information on how
             to increase your earning potential or gain more access to
-            projects, the <span className="text-bb-near-black font-medium">Enthusiasts</span> tier is for you.
+            projects, the <a href="#tier-tcd-paid" className="text-bb-near-black font-medium underline decoration-bb-border underline-offset-4 hover:decoration-bb-near-black">Enthusiasts</a> tier is for you.
           </p>
           <p>
             If you are working in the market - a developer, enterprise,
             supplier or service provider - you will want to be subscribed to
-            the <span className="text-bb-near-black font-medium">Market Readers</span> tier.
+            the <a href="#tier-bb-reader" className="text-bb-near-black font-medium underline decoration-bb-border underline-offset-4 hover:decoration-bb-near-black">Market Readers</a> tier.
           </p>
           <p>
             If you are an investor who needs to be sure about where to put
-            your investments, the <span className="text-bb-near-black font-medium">Investor Readers</span> tier is just for you.
+            your investments, the <a href="#tier-bb-analyst" className="text-bb-near-black font-medium underline decoration-bb-border underline-offset-4 hover:decoration-bb-near-black">Investor Readers</a> tier is just for you.
           </p>
           <p>
-            The <span className="text-bb-near-black font-medium">Sponsor</span> tier exists for anyone looking to sponsor a
-            study, validate a hypothesis or commission research.
+            The <a href="#tier-sponsor" className="text-bb-near-black font-medium underline decoration-bb-border underline-offset-4 hover:decoration-bb-near-black">Sponsor</a> tier exists for anyone looking to sponsor a study, validate a hypothesis or commission research.
           </p>
         </div>
         <div className="mt-8">
@@ -242,6 +250,76 @@ const ValueLadder = () => {
           are then published to the entire subscriber base. A sponsor can also
           be (and frequently will be) an Investor Readers tier subscriber separately.
         </p>
+      </section>
+
+      {/* PER-TIER EXPLAINERS - anchor targets for the hero hyperlinks and the cards above */}
+      <section className="max-w-[1200px] mx-auto px-6 md:px-10 pb-4">
+        <div className="space-y-12">
+          {TIERS.map((tier) => {
+            const jobsForTier = JOBS
+              .map((j) => ({ n: j.n, title: j.title, body: j.byTier[tier.id] }))
+              .filter((j) => j.body && !/^no$/i.test(j.body.trim()));
+            const isSponsor = tier.ladder === "B2B";
+            return (
+              <article
+                key={tier.id}
+                id={`tier-${tier.id}`}
+                className={`scroll-mt-24 rounded-2xl border p-7 md:p-10 ${
+                  isSponsor
+                    ? "border-bb-copper/40 bg-bb-copper/5"
+                    : "border-bb-border bg-white"
+                }`}
+              >
+                <div className="flex flex-wrap items-center gap-3">
+                  <span className={`text-[10px] uppercase tracking-[0.18em] px-2 py-0.5 rounded ${ladderBadgeClass[tier.ladder]}`}>
+                    {ladderLabel[tier.ladder]}
+                  </span>
+                  <span className="text-[11px] uppercase tracking-[0.18em] text-bb-gray">
+                    Tier explainer
+                  </span>
+                </div>
+                <h3 className="mt-4 font-serif font-normal tracking-[-0.02em] text-[28px] md:text-[36px] leading-[1.1] text-bb-near-black">
+                  {tier.name}
+                </h3>
+                <div className="mt-2 text-[15px] text-bb-near-black/85 font-medium">
+                  <TierPriceText tier={tier} currency={currency} />
+                </div>
+                <div className="mt-6 grid md:grid-cols-[1.4fr_1fr] gap-10">
+                  <div>
+                    <p className="text-[11px] uppercase tracking-[0.18em] text-bb-gray">Who it is for</p>
+                    <p className="mt-2 text-[15px] leading-[1.7] text-bb-near-black/90">
+                      {tier.audience}
+                    </p>
+                    <p className="mt-6 text-[11px] uppercase tracking-[0.18em] text-bb-gray">Why it exists</p>
+                    <p className="mt-2 text-[15px] leading-[1.7] text-bb-near-black/90">
+                      {tier.strategicRole}
+                    </p>
+                    <div className="mt-7 max-w-xs">
+                      <TierCta
+                        tier={tier}
+                        surface="tier_explainer"
+                        onSponsorClick={openSponsor}
+                        currency={currency}
+                      />
+                    </div>
+                  </div>
+                  <div>
+                    <p className="text-[11px] uppercase tracking-[0.18em] text-bb-gray">What you get</p>
+                    <ul className="mt-3 space-y-3">
+                      {jobsForTier.map((j) => (
+                        <li key={j.n} className="text-[13px] leading-[1.6] text-bb-gray">
+                          <span className="text-bb-copper mr-2 font-medium">{j.n}.</span>
+                          <span className="text-bb-near-black/90">{j.title}.</span>{" "}
+                          {j.body}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </div>
+              </article>
+            );
+          })}
+        </div>
       </section>
 
       {/* JTBD COMPARISON */}
@@ -350,7 +428,7 @@ const ValueLadder = () => {
               {formatIntersectionBody(currency)}
             </p>
             <p className="mt-4 text-[13px] text-bb-gray italic max-w-xl">
-              Beyond this intersection, the two ladders run on parallel tracks.
+              Beyond this intersection, the tiers run on parallel tracks.
               Market Readers to Investor Readers is not a natural progression - it is a
               decision made on professional context (am I deploying capital? do
               I need named diligence?).
