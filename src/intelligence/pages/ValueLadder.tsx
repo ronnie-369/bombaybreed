@@ -255,7 +255,7 @@ const ValueLadder = () => {
                   >
                     <div>{t.name}</div>
                     <div className="text-[10px] normal-case tracking-normal text-bb-gray font-normal mt-1">
-                      <TierPriceText tier={t} currency={currency} secondaryClassName="text-[0.85em] ml-1" />
+                      <TierPriceText tier={t} currency={currency} />
                     </div>
                   </th>
                 ))}
