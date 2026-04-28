@@ -4,6 +4,7 @@ import { Link, useSearchParams } from "react-router-dom";
 import { supabase } from "@/integrations/supabase/client";
 import IntelligenceLayout from "../components/IntelligenceLayout";
 import SectionLabel from "../components/SectionLabel";
+import { formatIntlBracket } from "../lib/currency";
 
 interface Tier {
   id: string;
