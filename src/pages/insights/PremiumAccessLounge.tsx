@@ -356,6 +356,62 @@ const PremiumAccessLounge: React.FC = () => {
   const industryCardRef = useRef<HTMLDivElement | null>(null);
   const analystCardRef = useRef<HTMLDivElement | null>(null);
 
+  // Deep-link target for the 5-tier strip. When the URL hash matches
+  // #tier-card-<id>, briefly highlight that card so the visitor lands
+  // straight on the buy panel from the comparison-table column header.
+  const [highlightTierId, setHighlightTierId] = useState<string | null>(null);
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+    const handleHash = () => {
+      const hash = window.location.hash.replace(/^#/, '');
+      const match = hash.match(/^tier-card-(.+)$/);
+      if (!match) return;
+      const id = match[1];
+      if (!TIERS.some((t) => t.id === id)) return;
+      setHighlightTierId(id);
+      window.requestAnimationFrame(() => {
+        document.getElementById(`tier-card-${id}`)?.scrollIntoView({
+          behavior: 'smooth',
+          block: 'center',
+        });
+      });
+      // Drop the highlight after 2.4s; keep the hash so back-button works.
+      window.setTimeout(() => setHighlightTierId(null), 2400);
+    };
+    handleHash();
+    window.addEventListener('hashchange', handleHash);
+    return () => window.removeEventListener('hashchange', handleHash);
+  }, []);
+
+  // Click handler for the comparison-table column headers - drives the
+  // visitor straight from "compare" to "buy" with a single click.
+  const handleTierDeepLink = (tierId: LadderTier['id']) => {
+    setHighlightTierId(tierId);
+    const el = document.getElementById(`tier-card-${tierId}`);
+    if (el) {
+      el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+    if (typeof window !== 'undefined') {
+      window.history.replaceState({}, '', `#tier-card-${tierId}`);
+      try {
+        const w = window as unknown as {
+          gtag?: (...args: unknown[]) => void;
+          dataLayer?: unknown[];
+        };
+        const payload = {
+          surface: 'comparison_table',
+          tier_id: tierId,
+        };
+        if (typeof w.gtag === 'function') w.gtag('event', 'tier_compare_deeplink', payload);
+        if (Array.isArray(w.dataLayer)) w.dataLayer.push({ event: 'tier_compare_deeplink', ...payload });
+      } catch {
+        /* analytics never break UX */
+      }
+    }
+    window.setTimeout(() => setHighlightTierId(null), 2400);
+  };
+
+
   useEffect(() => {
     // Only run scroll-spy on narrow viewports where cards stack vertically.
     if (typeof window === 'undefined') return;
@@ -542,12 +598,15 @@ const PremiumAccessLounge: React.FC = () => {
             {TIERS.map((tier) => {
               const isSponsor = tier.ladder === 'B2B';
               const isEnthusiast = tier.id === 'tcd-paid';
-              const cardClass = `rounded-xl border p-4 flex flex-col h-full transition ${
+              const isHighlighted = highlightTierId === tier.id;
+              const cardClass = `rounded-xl border p-4 flex flex-col h-full transition scroll-mt-32 ${
                 isSponsor
                   ? 'border-primary/30 bg-primary/5'
                   : isEnthusiast
                   ? 'border-accent/50 bg-accent/5 ring-1 ring-accent/30'
                   : 'border-border bg-background hover:border-primary/30'
+              } ${
+                isHighlighted ? 'ring-2 ring-primary ring-offset-2 ring-offset-background shadow-lg' : ''
               }`;
               const ladderTag =
                 tier.ladder === 'TCD'
@@ -556,7 +615,7 @@ const PremiumAccessLounge: React.FC = () => {
                   ? 'Bombay Breed'
                   : 'B2B';
               return (
-                <div key={tier.id} className={cardClass}>
+                <div key={tier.id} id={`tier-card-${tier.id}`} className={cardClass}>
                   {isEnthusiast && (
                     <span className="self-start mb-2 inline-flex items-center px-2 py-0.5 rounded-full text-[9px] font-semibold tracking-widest uppercase bg-accent text-accent-foreground">
                       Easiest entry
@@ -638,9 +697,22 @@ const PremiumAccessLounge: React.FC = () => {
                             : 'text-foreground'
                         }`}
                       >
-                        {t.name}
+                        <button
+                          type="button"
+                          onClick={() => handleTierDeepLink(t.id)}
+                          className="block w-full text-left group focus:outline-none focus-visible:ring-2 focus-visible:ring-primary rounded-sm"
+                          aria-label={`Jump to ${t.name} signup panel`}
+                        >
+                          <span className="block group-hover:underline underline-offset-4 decoration-dotted">
+                            {t.name}
+                          </span>
+                          <span className="mt-1 block text-[9.5px] font-medium normal-case tracking-normal text-primary group-hover:text-primary/80">
+                            Sign up →
+                          </span>
+                        </button>
                       </th>
                     ))}
+
                   </tr>
                 </thead>
                 <tbody>
