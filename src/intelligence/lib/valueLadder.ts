@@ -96,7 +96,7 @@ export const TIERS: LadderTier[] = [
     priceLabel: "INR 8,500 / mo (USD 100)",
     pricing: { usd: 100, inr: 8500, period: "mo" },
     audience:
-      "Consultants, sustainability leads, fund analysts tracking the Indian carbon transition",
+      "Developers, verification agencies, service providers, consultants and advisors working in the Indian carbon market",
     strategicRole: "Editorial intelligence at research-grade discipline",
     cta: {
       kind: "internal",
