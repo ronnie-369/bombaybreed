@@ -16,6 +16,14 @@ import {
   logClick,
   type Variant,
 } from '@/lib/abTest';
+import {
+  TIERS,
+  JOBS,
+  TIER_BY_ID,
+  formatTierCtaLabel,
+  type LadderTier,
+} from '@/intelligence/lib/valueLadder';
+import TierPriceText from '@/components/insights/TierPriceText';
 
 /**
  * A/B test config for the two tier CTAs. Control = 'A' = current copy.
