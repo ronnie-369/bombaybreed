@@ -367,7 +367,7 @@ const Checkout = () => {
               </div>
             </div>
 
-            {planId && (
+            {planId && !isMonthlyOnly && (
               <div className="mt-6">
                 <div className="text-[11px] font-semibold uppercase tracking-[0.3em] text-bb-gray mb-3">
                   Billing cycle
