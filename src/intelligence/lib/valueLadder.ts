@@ -29,14 +29,33 @@ export interface LadderTier {
   name: string;
   /** Which of the two ladders (or B2B) this tier belongs to. */
   ladder: LadderId;
-  /** Display price, e.g. "Free", "USD 10 / mo", "USD 100 / mo (~INR 8,500)". */
+  /**
+   * Static fallback price label. Prefer `pricing` (when present) +
+   * `formatTierPrice(tier, currency)` so the visitor's currency toggle wins.
+   */
   priceLabel: string;
+  /**
+   * Structured price for currency-toggle surfaces. Optional - some tiers
+   * (Free, Sponsor B2B) have no toggle and rely on `priceLabel` directly.
+   * Numbers are rounded "advertised" figures, not precise FX conversions.
+   */
+  pricing?: {
+    usd: number; // monthly USD
+    inr: number; // monthly INR (advertised round figure)
+    period: "mo" | "yr";
+  };
   /** One-line audience description (verbatim from spreadsheet Sheet 2). */
   audience: string;
   /** Strategic role - shown in the canonical page only. */
   strategicRole: string;
   /** Primary CTA from this tier card. */
   cta: LadderCta;
+  /**
+   * Optional CTA label template. `{price}` is replaced with the
+   * currency-aware short price (e.g. "USD 10 / mo" or "INR 850 / mo").
+   * If omitted, `cta.label` is used as-is.
+   */
+  ctaLabelTemplate?: string;
 }
 
 export const TIERS: LadderTier[] = [
@@ -58,6 +77,7 @@ export const TIERS: LadderTier[] = [
     name: "Paid Substack",
     ladder: "TCD",
     priceLabel: "USD 10 / mo",
+    pricing: { usd: 10, inr: 850, period: "mo" },
     audience:
       "Professional readers, sustainability teams, journalists who want deeper reports than the free Substack",
     strategicRole:
@@ -67,12 +87,14 @@ export const TIERS: LadderTier[] = [
       label: "Upgrade - USD 10 / mo",
       href: SUBSTACK_PAID_URL,
     },
+    ctaLabelTemplate: "Upgrade - {price}",
   },
   {
     id: "bb-reader",
     name: "Market Readers",
     ladder: "BB",
     priceLabel: "USD 100 / mo (~INR 8,500)",
+    pricing: { usd: 100, inr: 8500, period: "mo" },
     audience:
       "Consultants, sustainability leads, fund analysts tracking the Indian carbon transition",
     strategicRole: "Editorial intelligence at research-grade discipline",
@@ -87,6 +109,7 @@ export const TIERS: LadderTier[] = [
     name: "Investor Readers",
     ladder: "BB",
     priceLabel: "USD 500 / mo (~INR 42,500)",
+    pricing: { usd: 500, inr: 42500, period: "mo" },
     audience:
       "Climate VCs, PE running diligence, family offices, DFI staff",
     strategicRole:
@@ -108,6 +131,61 @@ export const TIERS: LadderTier[] = [
     cta: { kind: "dialog", label: "Inquire about sponsorship", dialog: "sponsor" },
   },
 ];
+
+// ----------------------------------------------------------------------
+// Currency formatting
+// ----------------------------------------------------------------------
+
+export type Currency = "USD" | "INR";
+
+const fmtINR = (n: number) =>
+  new Intl.NumberFormat("en-IN", { maximumFractionDigits: 0 }).format(n);
+const fmtUSD = (n: number) =>
+  new Intl.NumberFormat("en-US", { maximumFractionDigits: 0 }).format(n);
+
+/**
+ * Primary formatter used by every currency-toggle surface.
+ * - If a tier has structured `pricing`, render that in the active currency
+ *   with the alternate currency in brackets.
+ * - Otherwise fall back to the static `priceLabel` (Free, Sponsor band).
+ */
+export const formatTierPrice = (
+  tier: LadderTier,
+  currency: Currency
+): string => {
+  const p = tier.pricing;
+  if (!p) return tier.priceLabel;
+  if (currency === "USD") {
+    return `USD ${fmtUSD(p.usd)} / ${p.period} (~INR ${fmtINR(p.inr)})`;
+  }
+  return `INR ${fmtINR(p.inr)} / ${p.period} (~USD ${fmtUSD(p.usd)})`;
+};
+
+/** Compact variant for CTA buttons - no bracket. */
+export const formatTierPriceShort = (
+  tier: LadderTier,
+  currency: Currency
+): string => {
+  const p = tier.pricing;
+  if (!p) return tier.priceLabel;
+  return currency === "USD"
+    ? `USD ${fmtUSD(p.usd)} / ${p.period}`
+    : `INR ${fmtINR(p.inr)} / ${p.period}`;
+};
+
+/** CTA label with optional `{price}` template substitution. */
+export const formatTierCtaLabel = (
+  tier: LadderTier,
+  currency: Currency
+): string => {
+  if (tier.ctaLabelTemplate && tier.pricing) {
+    return tier.ctaLabelTemplate.replace(
+      "{price}",
+      formatTierPriceShort(tier, currency)
+    );
+  }
+  return tier.cta.label;
+};
 
 export const TIER_BY_ID: Record<LadderTier["id"], LadderTier> =
   Object.fromEntries(TIERS.map((t) => [t.id, t])) as Record<
@@ -309,7 +387,35 @@ export const INTERSECTION = {
   fromTierId: "tcd-paid" as const,
   toTierId: "bb-reader" as const,
   headline: "From Paid Substack to Market Readers",
-  body: "The single explicit upgrade path between the two ladders. Any paid Substack subscriber receives a discount on the first three months of the Market Readers tier (USD 75 / mo for the first quarter, then USD 100 / mo thereafter). Substack subscription is paused or refunded for the duration of the discount.",
+  /**
+   * Body template - `{intro}` and `{regular}` are substituted at render time
+   * with the discounted-quarter rate and the regular rate in the visitor's
+   * active currency. See `formatIntersectionBody`.
+   */
+  body: "The single explicit upgrade path between the two ladders. Any paid Substack subscriber receives a discount on the first three months of the Market Readers tier ({intro} for the first quarter, then {regular} thereafter). Substack subscription is paused or refunded for the duration of the discount.",
+  introPricing: { usd: 75, inr: 6500, period: "mo" as const },
   ctaLabel: "Upgrade to Market Readers",
   ctaHref: "/intelligence/signup?tier=foundational&ref=intersection",
+};
+
+/** Render INTERSECTION.body with prices localised to the visitor's currency. */
+export const formatIntersectionBody = (currency: Currency): string => {
+  const to = TIER_BY_ID[INTERSECTION.toTierId];
+  const intro = INTERSECTION.introPricing;
+  const introLabel =
+    currency === "USD"
+      ? `USD ${fmtUSD(intro.usd)} / ${intro.period}`
+      : `INR ${fmtINR(intro.inr)} / ${intro.period}`;
+  const regularLabel = formatTierPriceShort(to, currency);
+  return INTERSECTION.body
+    .replace("{intro}", introLabel)
+    .replace("{regular}", regularLabel);
+};
+
+/** Compact label for the "first quarter at ..." callout. */
+export const formatIntersectionIntro = (currency: Currency): string => {
+  const intro = INTERSECTION.introPricing;
+  return currency === "USD"
+    ? `First quarter at USD ${fmtUSD(intro.usd)} / mo`
+    : `First quarter at INR ${fmtINR(intro.inr)} / mo`;
 };

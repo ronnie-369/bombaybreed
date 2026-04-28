@@ -10,8 +10,14 @@ import {
   SPONSOR_TERMS,
   INTERSECTION,
   TIER_BY_ID,
+  formatTierPrice,
+  formatTierCtaLabel,
+  formatIntersectionBody,
+  formatIntersectionIntro,
   type LadderTier,
 } from "../lib/valueLadder";
+import { useCurrency } from "../lib/useCurrency";
+import CurrencyToggle from "@/components/insights/CurrencyToggle";
 import SponsorInquiryDialog from "@/components/SponsorInquiryDialog";
 import { trackOutboundClick } from "@/utils/outboundAnalytics";
 
@@ -58,15 +64,17 @@ interface TierCtaProps {
   surface: string;
   variant?: "primary" | "secondary";
   onSponsorClick: () => void;
+  currency: "USD" | "INR";
 }
 
-const TierCta = ({ tier, surface, variant = "primary", onSponsorClick }: TierCtaProps) => {
+const TierCta = ({ tier, surface, variant = "primary", onSponsorClick, currency }: TierCtaProps) => {
   const baseClass =
     "inline-flex items-center justify-center h-11 px-5 rounded-[10px] text-[13px] font-medium transition w-full";
   const styleClass =
     variant === "primary"
       ? "bg-bb-slate text-bb-off-white hover:opacity-90"
       : "bg-bb-off-white border border-bb-slate text-bb-slate hover:bg-bb-slate/5";
+  const label = formatTierCtaLabel(tier, currency);
 
   if (tier.cta.kind === "internal") {
     return (
@@ -75,7 +83,7 @@ const TierCta = ({ tier, surface, variant = "primary", onSponsorClick }: TierCta
         onClick={() => trackLadderCta(tier, surface)}
         className={`${baseClass} ${styleClass}`}
       >
-        {tier.cta.label}
+        {label}
       </Link>
     );
   }
@@ -95,7 +103,7 @@ const TierCta = ({ tier, surface, variant = "primary", onSponsorClick }: TierCta
         }}
         className={`${baseClass} ${styleClass}`}
       >
-        {tier.cta.label}
+        {label}
       </a>
     );
   }
@@ -109,7 +117,7 @@ const TierCta = ({ tier, surface, variant = "primary", onSponsorClick }: TierCta
       }}
       className={`${baseClass} ${styleClass}`}
     >
-      {tier.cta.label}
+      {label}
     </button>
   );
 };
@@ -118,10 +126,12 @@ const TierCard = ({
   tier,
   surface,
   onSponsorClick,
+  currency,
 }: {
   tier: LadderTier;
   surface: string;
   onSponsorClick: () => void;
+  currency: "USD" | "INR";
 }) => {
   const isSponsor = tier.ladder === "B2B";
   return (
@@ -143,13 +153,13 @@ const TierCard = ({
         {tier.name}
       </div>
       <div className="mt-1 text-[14px] text-bb-near-black/85 font-medium">
-        {tier.priceLabel}
+        {formatTierPrice(tier, currency)}
       </div>
       <p className="mt-3 text-[13px] text-bb-gray leading-relaxed flex-1">
         {tier.audience}
       </p>
       <div className="mt-5">
-        <TierCta tier={tier} surface={surface} onSponsorClick={onSponsorClick} />
+        <TierCta tier={tier} surface={surface} onSponsorClick={onSponsorClick} currency={currency} />
       </div>
     </div>
   );
@@ -158,6 +168,7 @@ const TierCard = ({
 const ValueLadder = () => {
   const [sponsorOpen, setSponsorOpen] = useState(false);
   const openSponsor = () => setSponsorOpen(true);
+  const [currency] = useCurrency();
 
   const fromTier = TIER_BY_ID[INTERSECTION.fromTierId];
   const toTier = TIER_BY_ID[INTERSECTION.toTierId];
@@ -187,6 +198,9 @@ const ValueLadder = () => {
           entire subscriber base. Choose the tier whose job-set matches your
           actual professional context.
         </p>
+        <div className="mt-8">
+          <CurrencyToggle surface="value_ladder_hero" />
+        </div>
       </section>
 
       {/* FIVE TIERS AT A GLANCE */}
@@ -199,6 +213,7 @@ const ValueLadder = () => {
               tier={tier}
               surface="canonical_overview"
               onSponsorClick={openSponsor}
+              currency={currency}
             />
           ))}
         </div>
@@ -239,7 +254,7 @@ const ValueLadder = () => {
                   >
                     <div>{t.name}</div>
                     <div className="text-[10px] normal-case tracking-normal text-bb-gray font-normal mt-1">
-                      {t.priceLabel}
+                      {formatTierPrice(t, currency)}
                     </div>
                   </th>
                 ))}
@@ -286,7 +301,7 @@ const ValueLadder = () => {
                 <span className="font-serif text-[18px] tracking-tight text-bb-near-black">
                   {t.name}
                 </span>
-                <span className="text-[12px] text-bb-gray">{t.priceLabel}</span>
+                <span className="text-[12px] text-bb-gray">{formatTierPrice(t, currency)}</span>
               </summary>
               <ul className="mt-4 space-y-3">
                 {JOBS.map((job) => (
@@ -313,7 +328,7 @@ const ValueLadder = () => {
               {INTERSECTION.headline}
             </h2>
             <p className="mt-5 text-[15px] leading-[1.7] text-bb-gray max-w-xl">
-              {INTERSECTION.body}
+              {formatIntersectionBody(currency)}
             </p>
             <p className="mt-4 text-[13px] text-bb-gray italic max-w-xl">
               Beyond this intersection, the two ladders run on parallel tracks.
@@ -336,7 +351,7 @@ const ValueLadder = () => {
             <div className="mt-1 font-serif text-[20px] tracking-tight text-bb-near-black">
               {fromTier.name}
             </div>
-            <div className="text-[13px] text-bb-gray">{fromTier.priceLabel}</div>
+            <div className="text-[13px] text-bb-gray">{formatTierPrice(fromTier, currency)}</div>
             <div className="my-4 h-px bg-bb-border" />
             <div className="text-[11px] uppercase tracking-[0.18em] text-bb-gray">
               To
@@ -344,9 +359,9 @@ const ValueLadder = () => {
             <div className="mt-1 font-serif text-[20px] tracking-tight text-bb-near-black">
               {toTier.name}
             </div>
-            <div className="text-[13px] text-bb-gray">{toTier.priceLabel}</div>
+            <div className="text-[13px] text-bb-gray">{formatTierPrice(toTier, currency)}</div>
             <div className="mt-5 text-[12px] text-bb-near-black bg-bb-copper/10 border border-bb-copper/30 rounded px-3 py-2">
-              First quarter at INR 7,500 / mo
+              {formatIntersectionIntro(currency)}
             </div>
           </div>
         </div>

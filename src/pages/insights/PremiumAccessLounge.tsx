@@ -8,6 +8,8 @@ import SectionLabel from '@/components/ui/SectionLabel';
 import SponsorInquiryDialog from '@/components/SponsorInquiryDialog';
 import { trackSponsorEvent } from '@/utils/sponsorAnalytics';
 import { trackOutboundClick } from '@/utils/outboundAnalytics';
+import { useCurrency } from '@/intelligence/lib/useCurrency';
+import CurrencyToggle from '@/components/insights/CurrencyToggle';
 import {
   getVariant,
   logAssignmentOnce,
@@ -244,6 +246,19 @@ const PremiumAccessLounge: React.FC = () => {
   const sponsorRef = useRef<HTMLElement | null>(null);
   const [inquiryOpen, setInquiryOpen] = useState(false);
   const [inquiryProject, setInquiryProject] = useState<SponsorProject | { title: string } | null>(null);
+  const [currency] = useCurrency();
+  // Lounge launch-discount prices (30% off year one). Discount math is local
+  // to this surface; the canonical Value Ladder uses regular pricing.
+  const tier1Strike = currency === 'USD' ? 'USD 100 / month' : 'INR 8,500 / month';
+  const tier1Price = currency === 'USD' ? 'USD 70' : 'INR 6,000';
+  const tier1Note = currency === 'USD'
+    ? '~INR 6,000 / month - founding rate, locked while your subscription stays active'
+    : '~USD 70 / month - founding rate, locked while your subscription stays active';
+  const tier2Strike = currency === 'USD' ? 'USD 500 / month' : 'INR 42,500 / month';
+  const tier2Price = currency === 'USD' ? 'USD 350' : 'INR 30,000';
+  const tier2Note = currency === 'USD'
+    ? '~INR 30,000 / month - founding rate, locked while your subscription stays active'
+    : '~USD 350 / month - founding rate, locked while your subscription stays active';
 
   const openInquiry = (project: SponsorProject) => {
     setInquiryProject(project);
@@ -583,13 +598,13 @@ const PremiumAccessLounge: React.FC = () => {
                   Launch offer - 30% off year one
                 </span>
                 <div className="text-xs text-muted-foreground/70 font-sans line-through mb-1 leading-snug">
-                  USD 100 / month
+                  {tier1Strike}
                 </div>
                 <div className="font-serif text-2xl sm:text-3xl text-foreground whitespace-nowrap leading-tight">
-                  USD 70<span className="text-sm sm:text-base text-muted-foreground font-sans"> / month</span>
+                  {tier1Price}<span className="text-sm sm:text-base text-muted-foreground font-sans"> / month</span>
                 </div>
                 <div className="text-xs text-muted-foreground tracking-wide mt-1 leading-snug">
-                  ~INR 6,000 / month - founding rate, locked while your subscription stays active
+                  {tier1Note}
                 </div>
               </div>
 

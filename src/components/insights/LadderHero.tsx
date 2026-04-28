@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { TIERS, type LadderTier } from "@/intelligence/lib/valueLadder";
+import { TIERS, formatTierPrice, formatTierCtaLabel, type LadderTier } from "@/intelligence/lib/valueLadder";
+import { useCurrency } from "@/intelligence/lib/useCurrency";
+import CurrencyToggle from "@/components/insights/CurrencyToggle";
 import { trackOutboundClick } from "@/utils/outboundAnalytics";
 import SponsorInquiryDialog from "@/components/SponsorInquiryDialog";
 
@@ -33,6 +35,7 @@ const trackCta = (tier: LadderTier) => {
 
 const LadderHero = () => {
   const [sponsorOpen, setSponsorOpen] = useState(false);
+  const [currency] = useCurrency();
 
   return (
     <section className="border-y border-border/60 bg-background">
@@ -51,12 +54,15 @@ const LadderHero = () => {
               specific reports. Pick the one that fits.
             </p>
           </div>
-          <Link
-            to="/intelligence/value-ladder"
-            className="text-sm font-medium text-primary hover:text-primary/80 whitespace-nowrap"
-          >
-            Compare all five →
-          </Link>
+          <div className="flex flex-col md:items-end gap-3">
+            <CurrencyToggle surface="insights_hero" />
+            <Link
+              to="/intelligence/value-ladder"
+              className="text-sm font-medium text-primary hover:text-primary/80 whitespace-nowrap"
+            >
+              Compare all five →
+            </Link>
+          </div>
         </div>
 
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-3">
@@ -70,7 +76,7 @@ const LadderHero = () => {
 
             const ctaInner = (
               <span className="mt-3 inline-flex items-center text-[12px] font-medium text-primary group-hover:underline underline-offset-4">
-                {tier.cta.label} →
+                {formatTierCtaLabel(tier, currency)} →
               </span>
             );
 
@@ -87,7 +93,7 @@ const LadderHero = () => {
                   {tier.name}
                 </div>
                 <div className="mt-1 text-[12px] font-medium text-foreground/85">
-                  {tier.priceLabel}
+                  {formatTierPrice(tier, currency)}
                 </div>
                 <p className="mt-2 text-[11px] text-muted-foreground leading-snug flex-1">
                   {tier.audience}
