@@ -8,23 +8,29 @@ import IntelligenceLayout from "../components/IntelligenceLayout";
 import SectionLabel from "../components/SectionLabel";
 import { logSubscribeConversion } from "@/lib/abTest";
 
+// Member signup: low-friction password rules. Admin auth keeps its stricter
+// 12-char policy in src/pages/Auth.tsx. Supabase Leaked Password Protection
+// also rejects known-compromised passwords as a second layer.
 const passwordSchema = z
   .string()
-  .min(12, "Password must be at least 12 characters")
-  .regex(/[A-Z]/, "Add an uppercase letter")
-  .regex(/[a-z]/, "Add a lowercase letter")
-  .regex(/[0-9]/, "Add a number")
-  .regex(/[^A-Za-z0-9]/, "Add a special character");
+  .min(8, "Password must be at least 8 characters")
+  .regex(/[A-Za-z]/, "Include at least one letter")
+  .regex(/[0-9]/, "Include at least one number");
 
 const Signup = () => {
   const navigate = useNavigate();
   const { toast } = useToast();
   const [params] = useSearchParams();
   const tier = params.get("tier") ?? "foundational";
+  const billing = (params.get("billing") === "monthly" ? "monthly" : "annual") as
+    | "monthly"
+    | "annual";
   const redirect = params.get("redirect");
 
   const [mode, setMode] = useState<"signup" | "signin">("signup");
   const [loading, setLoading] = useState(false);
+  const [submittedEmail, setSubmittedEmail] = useState<string | null>(null);
+  const [resendCooldown, setResendCooldown] = useState(0);
   const [form, setForm] = useState({
     fullName: "",
     company: "",
