@@ -498,7 +498,7 @@ const PremiumAccessLounge: React.FC = () => {
         </div>
       </section>
 
-      {/* TIERS — Industry Reader vs Analyst Lens */}
+      {/* TIERS — Market Readers vs Investor Readers */}
       <section id="tiers" className="px-6 md:px-8 py-14 md:py-16 border-t border-border scroll-mt-32">
         <div className="container mx-auto max-w-[900px]">
           <SectionLabel label="Knowledge you can use" />
