@@ -76,15 +76,15 @@ export const TIERS: LadderTier[] = [
     id: "tcd-paid",
     name: "Enthusiasts",
     ladder: "TCD",
-    priceLabel: "USD 5 / mo",
-    pricing: { usd: 5, inr: 425, period: "mo" },
+    priceLabel: "USD 1 / mo",
+    pricing: { usd: 1, inr: 100, period: "mo" },
     audience:
       "Professional readers, sustainability teams, journalists who want deeper reports than the free Substack",
     strategicRole:
       "Capture professional reader willingness-to-pay; funnel to BB",
     cta: {
       kind: "internal",
-      label: "Upgrade - USD 5 / mo",
+      label: "Upgrade - USD 1 / mo",
       href: "/intelligence/signup?tier=enthusiasts&billing=monthly&ref=ladder",
     },
     ctaLabelTemplate: "Upgrade - {price}",
