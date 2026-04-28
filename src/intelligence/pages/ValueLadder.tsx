@@ -36,6 +36,27 @@ const ladderLabel: Record<LadderTier["ladder"], string> = {
   B2B: "Sponsorship",
 };
 
+const smoothScrollToTier = (
+  e: React.MouseEvent<HTMLAnchorElement>,
+  tierId: string,
+) => {
+  if (typeof window === "undefined") return;
+  const el = document.getElementById(`tier-${tierId}`);
+  if (!el) return;
+  e.preventDefault();
+  const prefersReduced = window.matchMedia(
+    "(prefers-reduced-motion: reduce)",
+  ).matches;
+  el.scrollIntoView({
+    behavior: prefersReduced ? "auto" : "smooth",
+    block: "start",
+  });
+  // Update the URL hash without jumping
+  if (window.history && window.history.replaceState) {
+    window.history.replaceState(null, "", `#tier-${tierId}`);
+  }
+};
+
 const trackLadderCta = (tier: LadderTier, surface: string) => {
   if (typeof window === "undefined") return;
   try {
