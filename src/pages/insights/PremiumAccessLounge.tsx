@@ -556,7 +556,7 @@ const PremiumAccessLounge: React.FC = () => {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-5">
-            {/* Tier 1 — Industry Reader (supply side) */}
+            {/* Tier 1 — Market Readers (supply side) */}
             <div
               ref={industryCardRef}
               data-active={activeTier === 'industry-reader'}
@@ -570,7 +570,7 @@ const PremiumAccessLounge: React.FC = () => {
                   Tier 01
                 </span>
                 <h3 className="font-serif text-2xl text-foreground mt-3 mb-1">
-                  The Industry Reader
+                  Market Readers
                 </h3>
                 <p className="text-sm text-muted-foreground italic leading-snug">
                   Built for the people building the supply - project developers,
@@ -583,13 +583,13 @@ const PremiumAccessLounge: React.FC = () => {
                   Launch offer - 30% off year one
                 </span>
                 <div className="text-xs text-muted-foreground/70 font-sans line-through mb-1 leading-snug">
-                  INR 10,000 / month
+                  USD 100 / month
                 </div>
                 <div className="font-serif text-2xl sm:text-3xl text-foreground whitespace-nowrap leading-tight">
-                  INR 7,000<span className="text-sm sm:text-base text-muted-foreground font-sans"> / month</span>
+                  USD 70<span className="text-sm sm:text-base text-muted-foreground font-sans"> / month</span>
                 </div>
                 <div className="text-xs text-muted-foreground tracking-wide mt-1 leading-snug">
-                  INR 84,000 / year - founding rate, locked while your subscription stays active
+                  ~INR 6,000 / month - founding rate, locked while your subscription stays active
                 </div>
               </div>
 
