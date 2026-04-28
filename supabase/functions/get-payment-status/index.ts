@@ -139,6 +139,28 @@ Deno.serve(async (req) => {
     });
   }
 
+  // 1b) Check the audit log for a webhook signature failure tied to this order.
+  // Surfacing this lets the result screen show a clear message instead of
+  // spinning on "pending" forever when Razorpay's webhook can't be trusted.
+  const { data: signatureFailure } = await admin
+    .from('tcd_order_attempts')
+    .select('id, error_message, created_at')
+    .eq('order_id', orderId)
+    .eq('status', 'failed')
+    .like('error_message', 'Webhook signature%')
+    .order('created_at', { ascending: false })
+    .limit(1)
+    .maybeSingle();
+
+  if (signatureFailure) {
+    return jsonResponse({
+      status: 'signature_failed',
+      order_id: orderId,
+      error_message:
+        'We could not verify the payment confirmation from Razorpay. Your card may still have been charged.',
+    });
+  }
+
   // 2) Fall back to Razorpay - tells us if the order even exists and whether
   // the customer at least started (or completed) a payment attempt.
   const auth = btoa(`${keyId}:${keySecret}`);
