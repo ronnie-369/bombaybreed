@@ -584,6 +584,24 @@ const Insights = () => {
                 />
               </div>
 
+              <div className="flex flex-wrap items-center gap-1.5 text-[11px]">
+                <span className="text-muted-foreground tracking-wider uppercase mr-1">Quick search:</span>
+                {['NDC', 'Article 6', 'CBAM', 'CCTS', 'Energy', 'Steel', 'Cement', 'Removal', 'CDR'].map((kw) => (
+                  <button
+                    key={kw}
+                    type="button"
+                    onClick={() => setSearchQuery(kw)}
+                    className={`px-2 py-0.5 rounded-full border transition-colors ${
+                      searchQuery.toLowerCase() === kw.toLowerCase()
+                        ? 'bg-foreground text-background border-foreground'
+                        : 'border-border text-foreground/80 hover:bg-secondary'
+                    }`}
+                  >
+                    {kw}
+                  </button>
+                ))}
+              </div>
+
               <div className="flex flex-wrap items-center gap-x-4 gap-y-2">
                 <div className="flex gap-1.5 flex-wrap">
                   <button
