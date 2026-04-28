@@ -246,6 +246,19 @@ const PremiumAccessLounge: React.FC = () => {
   const sponsorRef = useRef<HTMLElement | null>(null);
   const [inquiryOpen, setInquiryOpen] = useState(false);
   const [inquiryProject, setInquiryProject] = useState<SponsorProject | { title: string } | null>(null);
+  const [currency] = useCurrency();
+  // Lounge launch-discount prices (30% off year one). Discount math is local
+  // to this surface; the canonical Value Ladder uses regular pricing.
+  const tier1Strike = currency === 'USD' ? 'USD 100 / month' : 'INR 8,500 / month';
+  const tier1Price = currency === 'USD' ? 'USD 70' : 'INR 6,000';
+  const tier1Note = currency === 'USD'
+    ? '~INR 6,000 / month - founding rate, locked while your subscription stays active'
+    : '~USD 70 / month - founding rate, locked while your subscription stays active';
+  const tier2Strike = currency === 'USD' ? 'USD 500 / month' : 'INR 42,500 / month';
+  const tier2Price = currency === 'USD' ? 'USD 350' : 'INR 30,000';
+  const tier2Note = currency === 'USD'
+    ? '~INR 30,000 / month - founding rate, locked while your subscription stays active'
+    : '~USD 350 / month - founding rate, locked while your subscription stays active';
 
   const openInquiry = (project: SponsorProject) => {
     setInquiryProject(project);
