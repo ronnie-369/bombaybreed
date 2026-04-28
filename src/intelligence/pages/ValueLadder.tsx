@@ -260,8 +260,8 @@ const ValueLadder = () => {
         <div className="mt-8 hidden md:block border border-bb-border rounded-xl bg-bb-off-white">
           <table className="w-full border-collapse text-left">
             <thead>
-              <tr className="align-top">
-                <th className="sticky top-16 z-20 w-[220px] p-5 text-[11px] uppercase tracking-[0.18em] text-bb-gray font-medium bg-bb-off-white border-b border-bb-border">
+              <tr className="align-top h-px">
+                <th className="sticky top-16 z-20 w-[220px] p-5 text-[11px] uppercase tracking-[0.18em] text-bb-gray font-medium bg-bb-off-white border-b border-bb-border h-full">
                   What you get
                 </th>
                 {TIERS.map((tier) => {
@@ -269,11 +269,11 @@ const ValueLadder = () => {
                   return (
                     <th
                       key={tier.id}
-                      className={`sticky top-16 z-20 p-5 align-top border-l border-b border-bb-border ${
+                      className={`sticky top-16 z-20 p-5 align-top border-l border-b border-bb-border h-full ${
                         isSponsor ? "bg-bb-copper/5" : "bg-bb-off-white"
                       }`}
                     >
-                      <div className="flex flex-col h-full">
+                      <div className="flex flex-col h-full min-h-full">
                         <span
                           className={`inline-block self-start text-[10px] uppercase tracking-[0.18em] px-2 py-0.5 rounded ${ladderBadgeClass[tier.ladder]}`}
                         >
@@ -292,7 +292,7 @@ const ValueLadder = () => {
                         <p className="mt-2 text-[12px] text-bb-gray leading-snug">
                           {tier.audience}
                         </p>
-                        <div className="mt-4">
+                        <div className="mt-auto pt-4">
                           <TierCta
                             tier={tier}
                             surface="comparison_table"
