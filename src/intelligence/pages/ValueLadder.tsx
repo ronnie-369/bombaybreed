@@ -162,7 +162,7 @@ const TierCard = ({
       className={`group rounded-xl border p-6 flex flex-col h-full transition hover:border-bb-near-black/40 hover:shadow-sm ${
         isSponsor
           ? "border-bb-copper/40 bg-bb-copper/5"
-          : "border-bb-border bg-white"
+          : "border-bb-border bg-bb-off-white"
       }`}
     >
       <a
@@ -257,11 +257,11 @@ const ValueLadder = () => {
         <SectionLabel>Compare the five tiers</SectionLabel>
 
         {/* Desktop / tablet table */}
-        <div className="mt-8 hidden md:block border border-bb-border rounded-xl bg-white">
+        <div className="mt-8 hidden md:block border border-bb-border rounded-xl bg-bb-off-white">
           <table className="w-full border-collapse text-left">
             <thead>
               <tr className="align-top">
-                <th className="sticky top-16 z-20 w-[220px] p-5 text-[11px] uppercase tracking-[0.18em] text-bb-gray font-medium bg-white border-b border-bb-border">
+                <th className="sticky top-16 z-20 w-[220px] p-5 text-[11px] uppercase tracking-[0.18em] text-bb-gray font-medium bg-bb-off-white border-b border-bb-border">
                   What you get
                 </th>
                 {TIERS.map((tier) => {
@@ -270,7 +270,7 @@ const ValueLadder = () => {
                     <th
                       key={tier.id}
                       className={`sticky top-16 z-20 p-5 align-top border-l border-b border-bb-border ${
-                        isSponsor ? "bg-bb-copper/5" : "bg-white"
+                        isSponsor ? "bg-bb-copper/5" : "bg-bb-off-white"
                       }`}
                     >
                       <div className="flex flex-col h-full">
@@ -395,7 +395,7 @@ const ValueLadder = () => {
                 className={`scroll-mt-24 rounded-2xl border p-7 md:p-10 ${
                   isSponsor
                     ? "border-bb-copper/40 bg-bb-copper/5"
-                    : "border-bb-border bg-white"
+                    : "border-bb-border bg-bb-off-white"
                 }`}
               >
                 <div className="flex flex-wrap items-center gap-3">
@@ -475,7 +475,7 @@ const ValueLadder = () => {
               {INTERSECTION.ctaLabel}
             </Link>
           </div>
-          <div className="border border-bb-border bg-white rounded-xl p-6">
+          <div className="border border-bb-border bg-bb-off-white rounded-xl p-6">
             <div className="text-[11px] uppercase tracking-[0.18em] text-bb-gray">
               From
             </div>
@@ -518,7 +518,7 @@ const ValueLadder = () => {
           {SPONSOR_BANDS.map((band) => (
             <div
               key={band.engagement}
-              className="rounded-xl border border-bb-border bg-white p-6 grid md:grid-cols-[260px_180px_1fr] gap-4 md:gap-6"
+              className="rounded-xl border border-bb-border bg-bb-off-white p-6 grid md:grid-cols-[260px_180px_1fr] gap-4 md:gap-6"
             >
               <div>
                 <div className="font-serif text-[18px] tracking-tight text-bb-near-black leading-snug">
