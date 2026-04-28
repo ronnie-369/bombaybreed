@@ -598,13 +598,13 @@ const PremiumAccessLounge: React.FC = () => {
                   Launch offer - 30% off year one
                 </span>
                 <div className="text-xs text-muted-foreground/70 font-sans line-through mb-1 leading-snug">
-                  USD 100 / month
+                  {tier1Strike}
                 </div>
                 <div className="font-serif text-2xl sm:text-3xl text-foreground whitespace-nowrap leading-tight">
-                  USD 70<span className="text-sm sm:text-base text-muted-foreground font-sans"> / month</span>
+                  {tier1Price}<span className="text-sm sm:text-base text-muted-foreground font-sans"> / month</span>
                 </div>
                 <div className="text-xs text-muted-foreground tracking-wide mt-1 leading-snug">
-                  ~INR 6,000 / month - founding rate, locked while your subscription stays active
+                  {tier1Note}
                 </div>
               </div>
 
