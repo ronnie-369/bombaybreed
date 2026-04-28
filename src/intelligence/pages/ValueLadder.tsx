@@ -254,7 +254,7 @@ const ValueLadder = () => {
                   >
                     <div>{t.name}</div>
                     <div className="text-[10px] normal-case tracking-normal text-bb-gray font-normal mt-1">
-                      {t.priceLabel}
+                      {formatTierPrice(t, currency)}
                     </div>
                   </th>
                 ))}
