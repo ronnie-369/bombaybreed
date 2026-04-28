@@ -8,6 +8,8 @@ import SectionLabel from '@/components/ui/SectionLabel';
 import SponsorInquiryDialog from '@/components/SponsorInquiryDialog';
 import { trackSponsorEvent } from '@/utils/sponsorAnalytics';
 import { trackOutboundClick } from '@/utils/outboundAnalytics';
+import { useCurrency } from '@/intelligence/lib/useCurrency';
+import CurrencyToggle from '@/components/insights/CurrencyToggle';
 import {
   getVariant,
   logAssignmentOnce,
