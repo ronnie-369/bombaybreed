@@ -266,12 +266,47 @@ Deno.serve(async (req) => {
   // 1) Read the raw body (required for signature check).
   const rawBody = await req.text();
   const signature = req.headers.get('x-razorpay-signature') ?? '';
+
+  // Try to peek at the order id so signature failures can be surfaced to the
+  // user on the result screen. Parsing the raw body before verification is
+  // safe because we don't trust the contents - we only use order_id as a
+  // lookup key for the audit log.
+  let peekedOrderId: string | null = null;
+  try {
+    const peek = JSON.parse(rawBody);
+    const id =
+      peek?.payload?.payment?.entity?.order_id ??
+      peek?.payload?.order?.entity?.id ??
+      null;
+    if (typeof id === 'string' && /^order_[A-Za-z0-9]{6,40}$/.test(id)) {
+      peekedOrderId = id;
+    }
+  } catch {
+    /* ignore - signature step will reject anyway */
+  }
+
+  const adminForLog = createClient(supabaseUrl, serviceRoleKey, {
+    auth: { autoRefreshToken: false, persistSession: false },
+  });
+
   if (!signature) {
+    await adminForLog.from('tcd_order_attempts').insert({
+      order_id: peekedOrderId,
+      status: 'failed',
+      error_message: 'Webhook missing x-razorpay-signature header',
+      request_metadata: { source: 'razorpay-webhook', stage: 'signature' },
+    }).then(({ error }) => { if (error) console.error('audit insert failed', error); });
     return jsonResponse({ error: 'Missing signature' }, 400);
   }
   const expected = await hmacSha256Hex(webhookSecret, rawBody);
   if (!safeEqual(expected, signature)) {
     console.warn('razorpay-webhook: signature mismatch');
+    await adminForLog.from('tcd_order_attempts').insert({
+      order_id: peekedOrderId,
+      status: 'failed',
+      error_message: 'Webhook signature verification failed',
+      request_metadata: { source: 'razorpay-webhook', stage: 'signature' },
+    }).then(({ error }) => { if (error) console.error('audit insert failed', error); });
     return jsonResponse({ error: 'Invalid signature' }, 401);
   }
 

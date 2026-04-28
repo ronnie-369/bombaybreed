@@ -11,7 +11,7 @@ import SectionLabel from "../components/SectionLabel";
 // Renders one of four states: pending, success, failed, unknown.
 // Pending state explains the UPI / async-confirm case so users don't bounce.
 
-type Status = "pending" | "success" | "failed" | "unknown";
+type Status = "pending" | "success" | "failed" | "unknown" | "signature_failed";
 
 interface StatusPayload {
   status: Status;
@@ -23,6 +23,7 @@ interface StatusPayload {
   expires_at?: string | null;
   payment_id?: string;
   provider_order_status?: string;
+  error_message?: string;
 }
 
 const POLL_INTERVAL_MS = 2_500;
@@ -93,9 +94,11 @@ export default function CheckoutResult() {
       const elapsed = Date.now() - startedAtRef.current;
       setElapsedMs(elapsed);
 
+      const terminalStatus = (data as StatusPayload | undefined)?.status;
       const isTerminal =
-        (data as StatusPayload | undefined)?.status === "success" ||
-        (data as StatusPayload | undefined)?.status === "failed";
+        terminalStatus === "success" ||
+        terminalStatus === "failed" ||
+        terminalStatus === "signature_failed";
 
       if (isTerminal) {
         setPollingStopped(true);
@@ -141,6 +144,7 @@ export default function CheckoutResult() {
           {status === "pending" && "Confirming your payment"}
           {status === "failed" && "Payment did not go through"}
           {status === "unknown" && "We could not find this payment"}
+          {status === "signature_failed" && "We could not verify this payment"}
         </h1>
 
         {!orderIdLooksValid && (
@@ -279,6 +283,25 @@ export default function CheckoutResult() {
                 </p>
               )}
 
+              {status === "signature_failed" && (
+                <div className="space-y-4 rounded-[10px] border border-red-700/30 bg-red-50 p-5">
+                  <p className="text-red-900">
+                    {payload?.error_message ??
+                      "We could not verify the payment confirmation from Razorpay."}{" "}
+                    For your safety, we have not activated the membership. If
+                    your account was charged, we will refund it automatically -
+                    please email us with the order reference below so we can
+                    investigate immediately.
+                  </p>
+                  <a
+                    href={`mailto:theresa.ronnie@bombaybreed.com?subject=Payment%20verification%20failed%20-%20${encodeURIComponent(orderId)}`}
+                    className="inline-flex items-center px-5 py-2.5 border border-red-800 text-[12px] font-semibold uppercase tracking-[0.18em] text-red-800 hover:bg-red-800 hover:text-white transition-colors"
+                  >
+                    Email support
+                  </a>
+                </div>
+              )}
+
               {error && status === "pending" && (
                 <p className="mt-3 text-bb-copper">
                   Status check error: {error}. Retrying...
@@ -313,6 +336,11 @@ function StatusBadge({ status }: { status: Status }) {
       label: "Unknown",
       className: "border-bb-border text-bb-gray bg-bb-cream",
       dot: "bg-bb-gray",
+    },
+    signature_failed: {
+      label: "Verification failed",
+      className: "border-red-700/30 text-red-800 bg-red-50",
+      dot: "bg-red-600",
     },
   };
   const c = map[status];
