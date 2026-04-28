@@ -374,6 +374,59 @@ const Checkout = () => {
               </div>
             )}
 
+            {planId && (() => {
+              const pricing = PLAN_PRICING[planId];
+              const isAnnual = billingCycle === "annual";
+              const chargeNow = isAnnual ? pricing.annualTotal : pricing.monthly;
+              const savings = isAnnual
+                ? pricing.monthly * 12 - pricing.annualTotal
+                : 0;
+              return (
+                <div className="mt-6 rounded-[10px] border border-bb-slate/30 bg-white p-5">
+                  <div className="text-[11px] font-semibold uppercase tracking-[0.3em] text-bb-gray">
+                    Order summary
+                  </div>
+                  <dl className="mt-4 space-y-2 text-[13px]">
+                    <div className="flex justify-between text-bb-near-black">
+                      <dt className="text-bb-gray">Plan</dt>
+                      <dd>{tier.name}</dd>
+                    </div>
+                    <div className="flex justify-between text-bb-near-black">
+                      <dt className="text-bb-gray">Billing cycle</dt>
+                      <dd>
+                        {isAnnual ? "Annual (12 months upfront)" : "Monthly"}
+                      </dd>
+                    </div>
+                    <div className="flex justify-between text-bb-near-black">
+                      <dt className="text-bb-gray">Rate</dt>
+                      <dd>
+                        {isAnnual
+                          ? `${formatPrice(pricing.annualPerMonth)} / month x 12`
+                          : `${formatPrice(pricing.monthly)} / month`}
+                      </dd>
+                    </div>
+                    {savings > 0 && (
+                      <div className="flex justify-between text-bb-copper">
+                        <dt>Annual savings</dt>
+                        <dd>-{formatPrice(savings)}</dd>
+                      </div>
+                    )}
+                  </dl>
+                  <div className="mt-4 pt-4 border-t border-bb-border flex items-baseline justify-between">
+                    <div className="text-[11px] font-semibold uppercase tracking-[0.3em] text-bb-gray">
+                      Charged today
+                    </div>
+                    <div className="font-serif text-[28px] tracking-tight text-bb-near-black">
+                      {formatPrice(chargeNow)}
+                      <span className="ml-2 text-[11px] uppercase tracking-[0.24em] text-bb-gray">
+                        INR
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              );
+            })()}
+
             <div className="mt-6 rounded-[10px] bg-bb-off-white border border-bb-border p-5">
               <p className="text-[13px] text-bb-gray leading-relaxed">
                 You will be redirected to Razorpay's secure checkout to complete
