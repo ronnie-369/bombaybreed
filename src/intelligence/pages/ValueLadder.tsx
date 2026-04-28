@@ -351,7 +351,7 @@ const ValueLadder = () => {
             <div className="mt-1 font-serif text-[20px] tracking-tight text-bb-near-black">
               {fromTier.name}
             </div>
-            <div className="text-[13px] text-bb-gray">{fromTier.priceLabel}</div>
+            <div className="text-[13px] text-bb-gray">{formatTierPrice(fromTier, currency)}</div>
             <div className="my-4 h-px bg-bb-border" />
             <div className="text-[11px] uppercase tracking-[0.18em] text-bb-gray">
               To
