@@ -618,6 +618,48 @@ export type Database = {
         }
         Relationships: []
       }
+      tcd_order_attempts: {
+        Row: {
+          amount_inr: number | null
+          billing_cycle: string | null
+          created_at: string
+          currency: string | null
+          error_message: string | null
+          id: string
+          order_id: string | null
+          plan_id: string | null
+          request_metadata: Json | null
+          status: string
+          user_id: string | null
+        }
+        Insert: {
+          amount_inr?: number | null
+          billing_cycle?: string | null
+          created_at?: string
+          currency?: string | null
+          error_message?: string | null
+          id?: string
+          order_id?: string | null
+          plan_id?: string | null
+          request_metadata?: Json | null
+          status?: string
+          user_id?: string | null
+        }
+        Update: {
+          amount_inr?: number | null
+          billing_cycle?: string | null
+          created_at?: string
+          currency?: string | null
+          error_message?: string | null
+          id?: string
+          order_id?: string | null
+          plan_id?: string | null
+          request_metadata?: Json | null
+          status?: string
+          user_id?: string | null
+        }
+        Relationships: []
+      }
       tcd_payments: {
         Row: {
           amount_inr: number
