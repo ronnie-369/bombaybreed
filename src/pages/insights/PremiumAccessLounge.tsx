@@ -623,7 +623,7 @@ const PremiumAccessLounge: React.FC = () => {
               </Button>
             </div>
 
-            {/* Tier 2 — Analyst Lens (demand side / money) */}
+            {/* Tier 2 — Investor Readers (demand side / money) */}
             <div
               ref={analystCardRef}
               data-active={activeTier === 'analyst-lens'}
@@ -640,7 +640,7 @@ const PremiumAccessLounge: React.FC = () => {
                   Tier 02
                 </span>
                 <h3 className="font-serif text-2xl mt-3 mb-1">
-                  The Analyst Lens
+                  Investor Readers
                 </h3>
                 <p className="text-sm text-background/70 italic leading-snug">
                   Built for the people pricing the risk - investors, family
@@ -654,13 +654,13 @@ const PremiumAccessLounge: React.FC = () => {
                   Launch offer - 30% off year one
                 </span>
                 <div className="text-xs text-background/45 font-sans line-through mb-1 leading-snug">
-                  INR 50,000 / month
+                  USD 500 / month
                 </div>
                 <div className="font-serif text-2xl sm:text-3xl whitespace-nowrap leading-tight">
-                  INR 35,000<span className="text-sm sm:text-base text-background/60 font-sans"> / month</span>
+                  USD 350<span className="text-sm sm:text-base text-background/60 font-sans"> / month</span>
                 </div>
                 <div className="text-xs text-background/60 tracking-wide mt-1 leading-snug">
-                  INR 4.2 lakh / year - founding rate, locked while your subscription stays active
+                  ~INR 30,000 / month - founding rate, locked while your subscription stays active
                 </div>
               </div>
 
