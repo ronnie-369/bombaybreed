@@ -151,7 +151,7 @@ export const JOBS: Job[] = [
       "tcd-paid": "Yes, full access to all editorial commentary",
       "bb-reader":
         "Yes, with editorial discipline that matches institutional publishing",
-      "bb-analyst": "Yes, including all Reader content",
+      "bb-analyst": "Yes, including all Market Readers content",
       sponsor: "Receives sponsored research findings before publication",
     },
   },
