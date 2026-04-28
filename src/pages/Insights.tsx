@@ -571,7 +571,7 @@ const Insights = () => {
                 The full library, open to everyone
               </h2>
               <p className="text-[15px] text-muted-foreground leading-relaxed [text-wrap:pretty]">
-                Every brief, report and analysis we have published. Search by keyword or filter by topic and format.
+                Every brief, report and analysis I have published. Search by keyword or filter by topic and format.
               </p>
             </header>
 
