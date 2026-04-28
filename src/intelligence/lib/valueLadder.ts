@@ -29,7 +29,7 @@ export interface LadderTier {
   name: string;
   /** Which of the two ladders (or B2B) this tier belongs to. */
   ladder: LadderId;
-  /** Display price, e.g. "Free", "USD 5 / mo", "INR 10,000 / mo". */
+  /** Display price, e.g. "Free", "USD 10 / mo", "USD 100 / mo (~INR 8,500)". */
   priceLabel: string;
   /** One-line audience description (verbatim from spreadsheet Sheet 2). */
   audience: string;
