@@ -294,7 +294,7 @@ export const SPONSOR_TERMS: string[] = [
   "Editorial independence. Sponsor pays for production; sponsor does not direct editorial conclusions. This is non-negotiable.",
   "Attribution. Sponsor receives non-promotional credit on the published output: 'This report was produced with research support from [Sponsor Name].'",
   "Working-session call. Sponsor receives one working-session call before publication to discuss findings, plus one team briefing after publication.",
-  "Distribution. The deliverable is published to the entire subscriber base (Reader and Analyst tiers). Sponsor does not receive exclusivity.",
+  "Distribution. The deliverable is published to the entire subscriber base (Market Readers and Investor Readers tiers). Sponsor does not receive exclusivity.",
   "Timeline. Sectoral and regional reports run on a 10-12 week production cycle; custom reports on a 12-16 week cycle.",
   "Payment. 50 percent on commission, 50 percent on delivery. Payments via direct invoice, GST-compliant.",
   "Cancellation. Either party may cancel in writing; sponsor pays for work completed to that point at standard rates.",
@@ -303,13 +303,13 @@ export const SPONSOR_TERMS: string[] = [
 
 /**
  * The single explicit upgrade path between the two ladders.
- * Paid Substack -> Reader, with a 3-month introductory discount.
+ * Paid Substack -> Market Readers, with a 3-month introductory discount.
  */
 export const INTERSECTION = {
   fromTierId: "tcd-paid" as const,
   toTierId: "bb-reader" as const,
-  headline: "From Paid Substack to Reader",
-  body: "The single explicit upgrade path between the two ladders. Any paid Substack subscriber receives a discount on the first three months of Reader tier (INR 7,500 per month for the first quarter, then INR 10,000 per month thereafter). Substack subscription is paused or refunded for the duration of the discount.",
-  ctaLabel: "Upgrade to Reader",
+  headline: "From Paid Substack to Market Readers",
+  body: "The single explicit upgrade path between the two ladders. Any paid Substack subscriber receives a discount on the first three months of the Market Readers tier (USD 75 / mo for the first quarter, then USD 100 / mo thereafter). Substack subscription is paused or refunded for the duration of the discount.",
+  ctaLabel: "Upgrade to Market Readers",
   ctaHref: "/intelligence/signup?tier=foundational&ref=intersection",
 };
