@@ -314,7 +314,7 @@ export const JOBS: Job[] = [
       "tcd-paid": "No",
       "bb-reader": "No (research is editorial, not advisory)",
       "bb-analyst":
-        "Yes. One thirty-minute portfolio consultation per quarter direct with Theresa, on the record between us",
+        "Yes. One thirty-minute consultation per quarter, on portfolio considerations.",
       sponsor:
         "Working-session call with Theresa to discuss sponsored research findings",
     },
