@@ -191,8 +191,6 @@ Deno.serve(async (req) => {
   if (billingCycle !== 'monthly' && billingCycle !== 'annual') {
     return jsonResponse({ error: 'Unrecognised billing cycle on order' }, 400);
   }
-    return jsonResponse({ error: 'Unrecognised billing cycle on order' }, 400);
-  }
 
   const plan = PLANS[planId];
   const expectedPaise = billingCycle === 'annual' ? plan.annual_paise : plan.monthly_paise;
