@@ -67,7 +67,7 @@ const LadderStickyPill = () => {
                 Choose how you read us
               </div>
               <div className="text-[13px] font-medium text-foreground mt-0.5">
-                Five ways in
+                Pick the plan that fits
               </div>
             </div>
             <button
