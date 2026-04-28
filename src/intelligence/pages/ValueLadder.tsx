@@ -167,6 +167,7 @@ const TierCard = ({
     >
       <a
         href={explainerHref}
+        onClick={(e) => smoothScrollToTier(e, tier.id)}
         className="flex flex-col flex-1 cursor-pointer"
         aria-label={`Read more about ${tier.name}`}
       >
