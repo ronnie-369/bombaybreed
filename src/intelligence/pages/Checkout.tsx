@@ -58,6 +58,86 @@ const formatPrice = (n: number) =>
     maximumFractionDigits: 0,
   }).format(n);
 
+// Map low-level error strings from the edge function / network to a friendly,
+// user-facing message + a hint about whether retrying is likely to help.
+interface CheckoutError {
+  title: string;
+  description: string;
+  retryable: boolean;
+}
+
+function classifyOrderError(args: {
+  invokeError?: { message?: string } | null;
+  responseError?: string | null;
+  hasOrderId: boolean;
+}): CheckoutError {
+  const raw = (args.invokeError?.message ?? args.responseError ?? "").toLowerCase();
+
+  // No internet / DNS / fetch-level failure
+  if (
+    raw.includes("failed to fetch") ||
+    raw.includes("networkerror") ||
+    raw.includes("network error") ||
+    raw.includes("load failed")
+  ) {
+    return {
+      title: "We could not reach the payment server",
+      description:
+        "Please check your internet connection and try again. No charge has been made.",
+      retryable: true,
+    };
+  }
+
+  // Server-side misconfiguration (missing Razorpay keys etc.)
+  if (
+    raw.includes("not configured") ||
+    raw.includes("misconfigured") ||
+    raw.includes("missing razorpay")
+  ) {
+    return {
+      title: "Online checkout is temporarily unavailable",
+      description:
+        "Our payment provider is not responding. Please try again in a few minutes, or email theresa.ronnie@bombaybreed.com to activate your membership manually.",
+      retryable: true,
+    };
+  }
+
+  // Plan / cycle validation failure (shouldn't happen via the UI, but guard)
+  if (raw.includes("invalid planid") || raw.includes("invalid billingcycle")) {
+    return {
+      title: "This plan cannot be checked out online yet",
+      description:
+        "Please refresh the page and reselect the plan. If the problem persists, email theresa.ronnie@bombaybreed.com.",
+      retryable: false,
+    };
+  }
+
+  // Razorpay rejected the order create call (5xx / 502 from our function)
+  if (
+    raw.includes("razorpay order creation failed") ||
+    raw.includes("non-2xx") ||
+    raw.includes("502") ||
+    raw.includes("503") ||
+    raw.includes("504")
+  ) {
+    return {
+      title: "The payment provider is busy",
+      description:
+        "Razorpay rejected this attempt. Please wait a moment and try again. No charge has been made.",
+      retryable: true,
+    };
+  }
+
+  // Generic fallback
+  return {
+    title: "Could not start checkout",
+    description: args.hasOrderId
+      ? "Something went wrong handing off to Razorpay. Please try again."
+      : "We could not create your order. Please try again, or contact us if the problem continues.",
+    retryable: true,
+  };
+}
+
 const Checkout = () => {
   const [params] = useSearchParams();
   const tierSlug = params.get("tier") ?? "foundational";
@@ -69,6 +149,7 @@ const Checkout = () => {
   const [billingCycle, setBillingCycle] = useState<"monthly" | "annual">(
     "annual"
   );
+  const [checkoutError, setCheckoutError] = useState<CheckoutError | null>(null);
 
   useEffect(() => {
     (async () => {
