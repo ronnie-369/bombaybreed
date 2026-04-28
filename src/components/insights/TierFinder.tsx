@@ -1,0 +1,349 @@
+import { useMemo, useState } from "react";
+import { Link } from "react-router-dom";
+import { TIERS, formatTierCtaLabel, type LadderTier } from "@/intelligence/lib/valueLadder";
+import { useCurrency } from "@/intelligence/lib/useCurrency";
+import TierPriceText from "@/components/insights/TierPriceText";
+import CurrencyToggle from "@/components/insights/CurrencyToggle";
+import SponsorInquiryDialog from "@/components/SponsorInquiryDialog";
+import { trackOutboundClick } from "@/utils/outboundAnalytics";
+
+/**
+ * TierFinder - guided 3-question selector that recommends one of the
+ * five ladder tiers and routes the visitor to signup. Reads tier data
+ * from the single source of truth (`valueLadder.ts`) so price, label,
+ * and CTA href stay in lock-step with the rest of the site.
+ */
+
+type TierId = LadderTier["id"];
+
+interface Option {
+  label: string;
+  /** Score added to each tier when this option is chosen. */
+  scores: Partial<Record<TierId, number>>;
+}
+
+interface Question {
+  id: string;
+  prompt: string;
+  options: Option[];
+}
+
+const QUESTIONS: Question[] = [
+  {
+    id: "goal",
+    prompt: "What do you want from us?",
+    options: [
+      {
+        label: "Stay aware of Indian climate news",
+        scores: { "tcd-free": 3, "tcd-paid": 1 },
+      },
+      {
+        label: "Read deeper editorial commentary",
+        scores: { "tcd-paid": 3, "bb-reader": 1 },
+      },
+      {
+        label: "Track CCTS, sectoral and regional intelligence",
+        scores: { "bb-reader": 3, "bb-analyst": 2 },
+      },
+      {
+        label: "Run diligence or deploy capital in Indian climate",
+        scores: { "bb-analyst": 3, "bb-reader": 1 },
+      },
+      {
+        label: "Underwrite a specific report or research line",
+        scores: { sponsor: 4 },
+      },
+    ],
+  },
+  {
+    id: "role",
+    prompt: "Which best describes you?",
+    options: [
+      {
+        label: "Curious reader or student",
+        scores: { "tcd-free": 3 },
+      },
+      {
+        label: "Sustainability lead, consultant, journalist",
+        scores: { "tcd-paid": 2, "bb-reader": 2 },
+      },
+      {
+        label: "Investor, fund analyst, family office, DFI",
+        scores: { "bb-analyst": 3 },
+      },
+      {
+        label: "Corporate or institution underwriting research",
+        scores: { sponsor: 3 },
+      },
+    ],
+  },
+  {
+    id: "budget",
+    prompt: "What budget range fits?",
+    options: [
+      {
+        label: "Free",
+        scores: { "tcd-free": 4 },
+      },
+      {
+        label: "Up to USD 5 / month",
+        scores: { "tcd-paid": 4 },
+      },
+      {
+        label: "USD 100 / month (research-grade editorial)",
+        scores: { "bb-reader": 4 },
+      },
+      {
+        label: "USD 500 / month (research + advisory)",
+        scores: { "bb-analyst": 4 },
+      },
+      {
+        label: "Institutional / project-scale",
+        scores: { sponsor: 4 },
+      },
+    ],
+  },
+];
+
+const trackEvent = (name: string, payload: Record<string, unknown>) => {
+  if (typeof window === "undefined") return;
+  try {
+    const w = window as unknown as {
+      gtag?: (...args: unknown[]) => void;
+      dataLayer?: unknown[];
+    };
+    if (typeof w.gtag === "function") w.gtag("event", name, payload);
+    if (Array.isArray(w.dataLayer)) w.dataLayer.push({ event: name, ...payload });
+  } catch {
+    /* analytics never break UX */
+  }
+};
+
+const TierFinder = () => {
+  const [answers, setAnswers] = useState<Record<string, number>>({});
+  const [sponsorOpen, setSponsorOpen] = useState(false);
+  const [currency] = useCurrency();
+
+  const allAnswered = QUESTIONS.every((q) => answers[q.id] !== undefined);
+
+  const recommendedTier: LadderTier | null = useMemo(() => {
+    if (!allAnswered) return null;
+    const scores: Record<TierId, number> = {
+      "tcd-free": 0,
+      "tcd-paid": 0,
+      "bb-reader": 0,
+      "bb-analyst": 0,
+      sponsor: 0,
+    };
+    for (const q of QUESTIONS) {
+      const idx = answers[q.id];
+      const opt = q.options[idx];
+      if (!opt) continue;
+      for (const [tid, val] of Object.entries(opt.scores)) {
+        scores[tid as TierId] += val ?? 0;
+      }
+    }
+    const winnerId = (Object.entries(scores) as [TierId, number][]).sort(
+      (a, b) => b[1] - a[1]
+    )[0][0];
+    return TIERS.find((t) => t.id === winnerId) ?? null;
+  }, [answers, allAnswered]);
+
+  const handleSelect = (qid: string, idx: number) => {
+    setAnswers((prev) => ({ ...prev, [qid]: idx }));
+  };
+
+  const handleReset = () => {
+    setAnswers({});
+    trackEvent("tier_finder_reset", { surface: "insights_tier_finder" });
+  };
+
+  const renderRecommendationCta = (tier: LadderTier) => {
+    const label = formatTierCtaLabel(tier, currency);
+    const onClick = () =>
+      trackEvent("tier_finder_cta_click", {
+        surface: "insights_tier_finder",
+        tier_id: tier.id,
+        tier_name: tier.name,
+      });
+
+    if (tier.cta.kind === "internal") {
+      return (
+        <Link
+          to={tier.cta.href}
+          onClick={onClick}
+          className="inline-flex items-center justify-center px-5 py-2.5 rounded-md bg-primary text-primary-foreground text-sm font-medium hover:bg-primary/90 transition-colors"
+        >
+          {label} →
+        </Link>
+      );
+    }
+    if (tier.cta.kind === "outbound") {
+      return (
+        <a
+          href={tier.cta.href}
+          target="_blank"
+          rel="noopener noreferrer"
+          onClick={() => {
+            onClick();
+            trackOutboundClick({
+              location: "insights_tier_finder",
+              org_name: tier.name,
+              link_url: tier.cta.kind === "outbound" ? tier.cta.href : "",
+            });
+          }}
+          className="inline-flex items-center justify-center px-5 py-2.5 rounded-md bg-primary text-primary-foreground text-sm font-medium hover:bg-primary/90 transition-colors"
+        >
+          {label} →
+        </a>
+      );
+    }
+    return (
+      <button
+        type="button"
+        onClick={() => {
+          onClick();
+          setSponsorOpen(true);
+        }}
+        className="inline-flex items-center justify-center px-5 py-2.5 rounded-md bg-primary text-primary-foreground text-sm font-medium hover:bg-primary/90 transition-colors"
+      >
+        {label} →
+      </button>
+    );
+  };
+
+  const answeredCount = Object.keys(answers).length;
+  const progress = Math.round((answeredCount / QUESTIONS.length) * 100);
+
+  return (
+    <section
+      id="tier-finder"
+      className="border-b border-border/60 bg-secondary/30 scroll-mt-32"
+    >
+      <div className="container mx-auto max-w-[1100px] px-6 md:px-8 py-10 md:py-14">
+        <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-6">
+          <div>
+            <p className="text-[11px] font-semibold uppercase tracking-[0.32em] text-primary">
+              Find your plan
+            </p>
+            <h2 className="mt-2 text-section font-serif tracking-tight">
+              Three questions. One recommended plan.
+            </h2>
+            <p className="mt-2 text-sm text-muted-foreground max-w-xl">
+              Tell us why you are here and what fits your budget. We will
+              point you to the membership best suited to your needs.
+            </p>
+          </div>
+          <CurrencyToggle surface="insights_tier_finder" />
+        </div>
+
+        {/* Progress */}
+        <div className="mb-6">
+          <div className="h-[2px] bg-border/60 w-full overflow-hidden rounded-full">
+            <div
+              className="h-full bg-primary transition-all duration-300"
+              style={{ width: `${progress}%` }}
+            />
+          </div>
+          <p className="mt-2 text-[11px] uppercase tracking-[0.18em] text-muted-foreground">
+            {answeredCount} of {QUESTIONS.length} answered
+          </p>
+        </div>
+
+        {/* Questions */}
+        <div className="grid md:grid-cols-3 gap-5">
+          {QUESTIONS.map((q, qi) => (
+            <div
+              key={q.id}
+              className="rounded-lg border border-border bg-card p-4 flex flex-col"
+            >
+              <div className="text-[10px] uppercase tracking-[0.18em] text-muted-foreground">
+                Step {qi + 1}
+              </div>
+              <h3 className="mt-1 font-serif text-[15px] leading-tight tracking-tight text-foreground">
+                {q.prompt}
+              </h3>
+              <div className="mt-3 flex flex-col gap-1.5">
+                {q.options.map((opt, oi) => {
+                  const isSelected = answers[q.id] === oi;
+                  return (
+                    <button
+                      key={oi}
+                      type="button"
+                      onClick={() => handleSelect(q.id, oi)}
+                      className={`text-left text-[12.5px] leading-snug px-3 py-2 rounded-md border transition-colors ${
+                        isSelected
+                          ? "border-primary bg-primary/10 text-foreground"
+                          : "border-border bg-background hover:border-primary/40 text-foreground/85"
+                      }`}
+                      aria-pressed={isSelected}
+                    >
+                      {opt.label}
+                    </button>
+                  );
+                })}
+              </div>
+            </div>
+          ))}
+        </div>
+
+        {/* Recommendation */}
+        {recommendedTier && (
+          <div className="mt-8 rounded-lg border border-primary/40 bg-primary/5 p-5 md:p-6">
+            <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-5">
+              <div className="min-w-0 flex-1">
+                <p className="text-[11px] font-semibold uppercase tracking-[0.32em] text-primary">
+                  Recommended for you
+                </p>
+                <div className="mt-1.5 flex flex-wrap items-baseline gap-x-3 gap-y-1">
+                  <h3 className="font-serif text-[22px] tracking-tight text-foreground">
+                    {recommendedTier.name}
+                  </h3>
+                  <span className="text-[10px] uppercase tracking-[0.18em] text-muted-foreground">
+                    {recommendedTier.ladder === "TCD"
+                      ? "Substack"
+                      : recommendedTier.ladder === "BB"
+                      ? "Bombay Breed"
+                      : "Sponsorship"}
+                  </span>
+                </div>
+                <p className="mt-1 text-[13px] font-medium text-foreground/85">
+                  <TierPriceText tier={recommendedTier} currency={currency} />
+                </p>
+                <p className="mt-2 text-[13px] text-muted-foreground leading-snug max-w-xl">
+                  {recommendedTier.audience}
+                </p>
+              </div>
+              <div className="flex flex-col gap-2 md:items-end shrink-0">
+                {renderRecommendationCta(recommendedTier)}
+                <div className="flex items-center gap-3 text-[11px]">
+                  <button
+                    type="button"
+                    onClick={handleReset}
+                    className="text-muted-foreground hover:text-foreground underline underline-offset-4"
+                  >
+                    Start over
+                  </button>
+                  <Link
+                    to="/intelligence/value-ladder"
+                    className="text-primary hover:text-primary/80"
+                  >
+                    Compare all five →
+                  </Link>
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
+      </div>
+
+      <SponsorInquiryDialog
+        open={sponsorOpen}
+        onOpenChange={setSponsorOpen}
+        project="Sponsorship inquiry from Insights tier finder"
+      />
+    </section>
+  );
+};
+
+export default TierFinder;
