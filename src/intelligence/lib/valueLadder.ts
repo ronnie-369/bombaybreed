@@ -74,7 +74,7 @@ export const TIERS: LadderTier[] = [
   },
   {
     id: "tcd-paid",
-    name: "Paid Substack",
+    name: "Enthusiasts",
     ladder: "TCD",
     priceLabel: "USD 10 / mo",
     pricing: { usd: 10, inr: 850, period: "mo" },
@@ -404,12 +404,12 @@ export const SPONSOR_TERMS: string[] = [
 
 /**
  * The single explicit upgrade path between the two ladders.
- * Paid Substack -> Market Readers, with a 3-month introductory discount.
+ * Enthusiasts -> Market Readers, with a 3-month introductory discount.
  */
 export const INTERSECTION = {
   fromTierId: "tcd-paid" as const,
   toTierId: "bb-reader" as const,
-  headline: "From Paid Substack to Market Readers",
+  headline: "From Enthusiasts to Market Readers",
   /**
    * Body template - `{intro}` and `{regular}` are substituted at render time
    * with the discounted-quarter rate and the regular rate in the visitor's
