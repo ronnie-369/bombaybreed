@@ -83,9 +83,9 @@ export const TIERS: LadderTier[] = [
     strategicRole:
       "Capture professional reader willingness-to-pay; funnel to BB",
     cta: {
-      kind: "outbound",
-      label: "Upgrade - USD 10 / mo",
-      href: SUBSTACK_PAID_URL,
+      kind: "internal",
+      label: "Upgrade - USD 5 / mo",
+      href: "/intelligence/signup?tier=enthusiasts&billing=monthly&ref=ladder",
     },
     ctaLabelTemplate: "Upgrade - {price}",
   },
