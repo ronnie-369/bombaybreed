@@ -47,10 +47,16 @@ interface Tier {
 
 // Map TCD tier slugs to the Premium Access Lounge plan ids the
 // create-razorpay-order / verify-razorpay-payment edge functions expect.
-const TIER_TO_PLAN: Record<string, "industry_reader" | "analyst_lens"> = {
+type LoungePlanId = "enthusiasts" | "industry_reader" | "analyst_lens";
+const TIER_TO_PLAN: Record<string, LoungePlanId> = {
+  enthusiasts: "enthusiasts",
   foundational: "industry_reader",
   professional: "analyst_lens",
 };
+
+// Some plans (Enthusiasts) are monthly-only - annual cycle is rejected by
+// the edge function. The UI hides the annual toggle for these plans.
+const MONTHLY_ONLY_PLANS: ReadonlySet<LoungePlanId> = new Set(["enthusiasts"]);
 
 const formatPrice = (n: number) =>
   new Intl.NumberFormat("en-IN", {
@@ -62,9 +68,10 @@ const formatPrice = (n: number) =>
 // Mirrors the server-side pricing in create-razorpay-order. Shown as a
 // preview only - the edge function is the source of truth at order time.
 const PLAN_PRICING: Record<
-  "industry_reader" | "analyst_lens",
-  { monthly: number; annualPerMonth: number; annualTotal: number }
+  LoungePlanId,
+  { monthly: number; annualPerMonth: number; annualTotal: number; monthlyOnly?: boolean }
 > = {
+  enthusiasts: { monthly: 425, annualPerMonth: 425, annualTotal: 5100, monthlyOnly: true },
   industry_reader: { monthly: 10000, annualPerMonth: 7000, annualTotal: 84000 },
   analyst_lens: { monthly: 50000, annualPerMonth: 35000, annualTotal: 420000 },
 };
