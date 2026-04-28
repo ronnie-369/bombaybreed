@@ -10,8 +10,14 @@ import {
   SPONSOR_TERMS,
   INTERSECTION,
   TIER_BY_ID,
+  formatTierPrice,
+  formatTierCtaLabel,
+  formatIntersectionBody,
+  formatIntersectionIntro,
   type LadderTier,
 } from "../lib/valueLadder";
+import { useCurrency } from "../lib/useCurrency";
+import CurrencyToggle from "@/components/insights/CurrencyToggle";
 import SponsorInquiryDialog from "@/components/SponsorInquiryDialog";
 import { trackOutboundClick } from "@/utils/outboundAnalytics";
 
