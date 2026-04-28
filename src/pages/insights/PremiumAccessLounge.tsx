@@ -662,7 +662,7 @@ const PremiumAccessLounge: React.FC = () => {
                   'Sector deep-dives across compliance markets, energy transition assets and resource-stress geographies',
                   'Regulatory alerts before the news cycle - CCTS, CBAM step-downs, EU-ETS, Article 6.2 bilaterals, BRSR, NDC 3.0',
                   'Trade and policy reads on FTA carbon clauses and the geopolitics moving allowance prices',
-                  'A quarterly 30-minute call with Theresa, scheduled on your terms - to talk through any vital aspect of your investment',
+                  'A quarterly 30-minute scheduled call with Theresa - to talk through any vital aspect of your investment',
                 ].map((line) => (
                   <li key={line} className="grid grid-cols-[auto_1fr] gap-3 text-sm leading-snug">
                     <span className="text-background/50 pt-0.5">·</span>
