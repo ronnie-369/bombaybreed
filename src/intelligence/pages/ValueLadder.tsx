@@ -359,9 +359,9 @@ const ValueLadder = () => {
             <div className="mt-1 font-serif text-[20px] tracking-tight text-bb-near-black">
               {toTier.name}
             </div>
-            <div className="text-[13px] text-bb-gray">{toTier.priceLabel}</div>
+            <div className="text-[13px] text-bb-gray">{formatTierPrice(toTier, currency)}</div>
             <div className="mt-5 text-[12px] text-bb-near-black bg-bb-copper/10 border border-bb-copper/30 rounded px-3 py-2">
-              First quarter at INR 7,500 / mo
+              {formatIntersectionIntro(currency)}
             </div>
           </div>
         </div>
