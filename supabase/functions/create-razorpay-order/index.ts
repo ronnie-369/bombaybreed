@@ -162,7 +162,7 @@ Deno.serve(async (req) => {
     planIdLogged = typeof planId === 'string' ? planId : null;
     billingCycleLogged = typeof billingCycle === 'string' ? billingCycle : null;
 
-    if (planId !== 'industry_reader' && planId !== 'analyst_lens') {
+    if (planId !== 'enthusiasts' && planId !== 'industry_reader' && planId !== 'analyst_lens') {
       void logOrderAttempt({
         user_id: userId, plan_id: planIdLogged, billing_cycle: billingCycleLogged,
         amount_inr: null, currency: 'INR', order_id: null,
@@ -170,7 +170,7 @@ Deno.serve(async (req) => {
         request_metadata: requestMetadata,
       });
       return new Response(
-        JSON.stringify({ error: 'Invalid planId. Expected industry_reader or analyst_lens.' }),
+        JSON.stringify({ error: 'Invalid planId. Expected enthusiasts, industry_reader or analyst_lens.' }),
         { status: 400, headers: { ...corsHeaders, 'Content-Type': 'application/json' } },
       );
     }
