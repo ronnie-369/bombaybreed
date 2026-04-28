@@ -185,10 +185,12 @@ Deno.serve(async (req) => {
   const planId = orderJson?.notes?.plan_id as PlanId | undefined;
   const billingCycle = orderJson?.notes?.billing_cycle as BillingCycle | undefined;
   const planLabel = (orderJson?.notes?.plan_label as string | undefined) ?? '';
-  if (planId !== 'industry_reader' && planId !== 'analyst_lens') {
+  if (planId !== 'enthusiasts' && planId !== 'industry_reader' && planId !== 'analyst_lens') {
     return jsonResponse({ error: 'Unrecognised plan on order' }, 400);
   }
   if (billingCycle !== 'monthly' && billingCycle !== 'annual') {
+    return jsonResponse({ error: 'Unrecognised billing cycle on order' }, 400);
+  }
     return jsonResponse({ error: 'Unrecognised billing cycle on order' }, 400);
   }
 
