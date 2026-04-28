@@ -41,12 +41,55 @@ const Signup = () => {
 
   useEffect(() => {
     supabase.auth.getSession().then(({ data }) => {
-      if (data.session) navigate(redirect || `/intelligence/checkout?tier=${tier}`, { replace: true });
+      if (data.session) navigate(redirect || `/intelligence/checkout?tier=${tier}&billing=${billing}`, { replace: true });
     });
-  }, [navigate, redirect, tier]);
+  }, [navigate, redirect, tier, billing]);
+
+  // Tick down the resend cooldown timer.
+  useEffect(() => {
+    if (resendCooldown <= 0) return;
+    const id = window.setInterval(() => setResendCooldown((s) => Math.max(0, s - 1)), 1000);
+    return () => window.clearInterval(id);
+  }, [resendCooldown]);
 
   const update = (key: keyof typeof form) => (e: React.ChangeEvent<HTMLInputElement>) =>
     setForm((f) => ({ ...f, [key]: e.target.value }));
+
+  // The Welcome page reads tier+billing from the URL after the email link.
+  // We set them on emailRedirectTo so they survive the round-trip even if the
+  // user opens the link on a different device. localStorage is a backup.
+  const buildEmailRedirect = () => {
+    const url = new URL(`${window.location.origin}/intelligence/welcome`);
+    url.searchParams.set("tier", tier);
+    url.searchParams.set("billing", billing);
+    return url.toString();
+  };
+
+  const persistIntent = () => {
+    try {
+      localStorage.setItem(
+        "tcd_signup_intent",
+        JSON.stringify({ tier, billing, ts: Date.now() }),
+      );
+    } catch {
+      /* ignore */
+    }
+  };
+
+  const resendConfirmation = async () => {
+    if (!submittedEmail || resendCooldown > 0) return;
+    const { error } = await supabase.auth.resend({
+      type: "signup",
+      email: submittedEmail,
+      options: { emailRedirectTo: buildEmailRedirect() },
+    });
+    if (error) {
+      toast({ title: "Could not resend", description: error.message, variant: "destructive" });
+      return;
+    }
+    setResendCooldown(45);
+    toast({ title: "Email sent", description: "Check your inbox for the confirmation link." });
+  };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -65,11 +108,21 @@ const Signup = () => {
         return;
       }
 
-      const redirectUrl = `${window.location.origin}/intelligence/checkout?tier=${tier}`;
+      persistIntent();
+
       const { data, error } = await supabase.auth.signUp({
         email: form.email,
         password: form.password,
-        options: { emailRedirectTo: redirectUrl },
+        options: {
+          emailRedirectTo: buildEmailRedirect(),
+          data: {
+            full_name: form.fullName,
+            company: form.company || null,
+            designation: form.designation || null,
+            intended_tier: tier,
+            intended_billing: billing,
+          },
+        },
       });
 
       if (error) {
@@ -78,7 +131,11 @@ const Signup = () => {
         return;
       }
 
-      if (data.user) {
+      // If Supabase email confirmation is enabled (the default for this project),
+      // data.session will be null until the user clicks the link. We only try to
+      // upsert the subscriber row if we already have a session - otherwise RLS
+      // would reject the insert. The Welcome page handles the upsert post-confirm.
+      if (data.user && data.session) {
         await supabase.from("tcd_subscribers").upsert(
           {
             user_id: data.user.id,
@@ -95,8 +152,15 @@ const Signup = () => {
       // brought this visitor in (within the 7-day attribution window).
       logSubscribeConversion({ tier, source: 'signup' });
 
-      toast({ title: "Account created", description: "Continue to membership selection." });
-      navigate(`/intelligence/checkout?tier=${tier}`);
+      // If the project happens to have email confirmation disabled and we got
+      // a session straight away, skip the inline state and continue to checkout.
+      if (data.session) {
+        toast({ title: "Account created", description: "Continue to membership selection." });
+        navigate(`/intelligence/checkout?tier=${tier}&billing=${billing}`);
+      } else {
+        setSubmittedEmail(form.email);
+        setResendCooldown(45);
+      }
     } else {
       const { error } = await supabase.auth.signInWithPassword({
         email: form.email,
