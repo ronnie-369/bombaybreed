@@ -317,7 +317,7 @@ const ValueLadder = () => {
             </p>
             <p className="mt-4 text-[13px] text-bb-gray italic max-w-xl">
               Beyond this intersection, the two ladders run on parallel tracks.
-              Reader to Analyst Lens is not a natural progression - it is a
+              Market Readers to Investor Readers is not a natural progression - it is a
               decision made on professional context (am I deploying capital? do
               I need named diligence?).
             </p>
