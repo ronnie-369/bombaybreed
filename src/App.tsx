@@ -101,6 +101,9 @@ const AppContent = () => {
               <Route path="/brsr-reporting-advisory-india" element={<BRSRReportingAdvisory />} />
               <Route path="/carbon-credit-trading-scheme-india" element={<CarbonCreditTradingScheme />} />
 
+              {/* Internal QA - Razorpay end-to-end test page (noindex) */}
+              <Route path="/razorpay-test" element={<RazorpayTest />} />
+
               {/* TCD Intelligence — subscription platform */}
               <Route path="/intelligence" element={<IntelligenceLanding />} />
               <Route path="/intelligence/membership" element={<TcdMembership />} />
