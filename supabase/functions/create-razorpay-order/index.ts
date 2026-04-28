@@ -188,6 +188,18 @@ Deno.serve(async (req) => {
     }
 
     const plan = PLANS[planId as PlanId];
+    if (plan.monthly_only && billingCycle === 'annual') {
+      void logOrderAttempt({
+        user_id: userId, plan_id: planIdLogged, billing_cycle: billingCycleLogged,
+        amount_inr: null, currency: 'INR', order_id: null,
+        status: 'failed', error_message: 'Annual cycle not available for this plan',
+        request_metadata: requestMetadata,
+      });
+      return new Response(
+        JSON.stringify({ error: 'This plan is monthly-only.' }),
+        { status: 400, headers: { ...corsHeaders, 'Content-Type': 'application/json' } },
+      );
+    }
     const amountInr = priceInInr(plan, billingCycle as BillingCycle);
     amountInrLogged = amountInr;
     const amountPaise = amountInr * 100;
