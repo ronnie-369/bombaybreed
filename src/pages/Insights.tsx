@@ -485,8 +485,6 @@ const Insights = () => {
           </div>
         </nav>
 
-        {/* Premium Access Lounge — paid funnel stacked on top of the editorial hub */}
-        <PremiumAccessLounge />
 
         {/* Flagship Research */}
         {showFlagship && (
