@@ -4,11 +4,11 @@ import { Link } from 'react-router-dom';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import { Button } from '@/components/ui/button';
-import { ArrowRight, ExternalLink, Search } from 'lucide-react';
+import { ArrowRight, Search } from 'lucide-react';
 import { Input } from '@/components/ui/input';
 import ScrollReveal from '@/components/ui/ScrollReveal';
 import SectionLabel from '@/components/ui/SectionLabel';
-import PremiumAccessLounge from '@/pages/insights/PremiumAccessLounge';
+
 import { trackSponsorEvent } from '@/utils/sponsorAnalytics';
 import LadderHero from '@/components/insights/LadderHero';
 import LadderStickyPill from '@/components/insights/LadderStickyPill';
@@ -485,8 +485,6 @@ const Insights = () => {
           </div>
         </nav>
 
-        {/* Premium Access Lounge — paid funnel stacked on top of the editorial hub */}
-        <PremiumAccessLounge />
 
         {/* Flagship Research */}
         {showFlagship && (
@@ -750,10 +748,10 @@ const Insights = () => {
                     Reset search & filters
                   </button>
                   <a
-                    href="#subscribe"
+                    href="#tier-finder"
                     className="inline-flex items-center px-4 py-2 text-[12px] font-medium tracking-wide border border-border text-foreground hover:bg-secondary transition-colors rounded-full"
                   >
-                    Subscribe for new briefs
+                    Find your plan
                   </a>
                 </div>
               </div>
@@ -863,27 +861,6 @@ const Insights = () => {
           </div>
         </section>
 
-        {/* Search & filter UI was relocated to the hero section above the
-            sticky nav so users can refine before browsing. */}
-
-        {/* Newsletter CTA */}
-        <section id="subscribe" className="py-16 md:py-24 px-6 md:px-8 border-t border-border/50 scroll-mt-32">
-          <div className="container mx-auto max-w-[900px] text-center">
-            <ScrollReveal direction="up">
-              <h2 className="text-section font-serif tracking-tight mb-3">
-                Subscribe to Intelligence Briefs
-              </h2>
-              <p className="text-sm text-muted-foreground mb-6">
-                Original research on carbon markets and ESG governance. Published monthly.
-              </p>
-              <Button asChild>
-                <a href="https://theclimatedesk.substack.com" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2">
-                  Subscribe on Substack <ExternalLink className="w-4 h-4" />
-                </a>
-              </Button>
-            </ScrollReveal>
-          </div>
-        </section>
       </main>
 
       <Footer />
