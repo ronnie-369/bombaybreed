@@ -370,6 +370,20 @@ const TierFinder = () => {
                 <p className="mt-2 text-[13px] text-muted-foreground leading-snug max-w-xl">
                   {recommendedTier.audience}
                 </p>
+                {stretchTier && (
+                  <p className="mt-3 text-[12px] text-muted-foreground leading-snug max-w-xl border-t border-border/60 pt-3">
+                    <span className="font-medium text-foreground">If your budget allowed,</span>{" "}
+                    <Link
+                      to="/intelligence/value-ladder"
+                      className="text-primary hover:text-primary/80 underline underline-offset-2"
+                    >
+                      {stretchTier.name}
+                    </Link>{" "}
+                    ({" "}
+                    <TierPriceText tier={stretchTier} currency={currency} />
+                    {" "}) is the closer fit for what you described.
+                  </p>
+                )}
               </div>
               <div className="flex flex-col gap-2 md:items-end shrink-0">
                 {renderRecommendationCta(recommendedTier)}
