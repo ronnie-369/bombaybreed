@@ -1,47 +1,16 @@
-import { useState } from "react";
 import { Link } from "react-router-dom";
-import { TIERS, formatTierCtaLabel, type LadderTier } from "@/intelligence/lib/valueLadder";
-import { useCurrency } from "@/intelligence/lib/useCurrency";
-import CurrencyToggle from "@/components/insights/CurrencyToggle";
-import TierPriceText from "@/components/insights/TierPriceText";
-import { trackOutboundClick } from "@/utils/outboundAnalytics";
-import SponsorInquiryDialog from "@/components/SponsorInquiryDialog";
 
 /**
- * Embedded 5-column ladder strip for the /insights page.
- * Condensed version of the canonical ValueLadder page hero - drives
- * Insights visitors into the right tier (or Substack, or sponsorship)
- * before they scroll into the publication grid.
+ * Embedded membership callout for the /insights page.
+ * Replaced the inline 5-column ladder strip with a concise call-out
+ * that routes visitors to the dedicated comparison page.
  */
 
-const trackCta = (tier: LadderTier) => {
-  if (typeof window === "undefined") return;
-  try {
-    const w = window as unknown as {
-      gtag?: (...args: unknown[]) => void;
-      dataLayer?: unknown[];
-    };
-    const payload = {
-      tier_id: tier.id,
-      tier_name: tier.name,
-      ladder: tier.ladder,
-      surface: "insights_hero",
-    };
-    if (typeof w.gtag === "function") w.gtag("event", "ladder_cta_click", payload);
-    if (Array.isArray(w.dataLayer)) w.dataLayer.push({ event: "ladder_cta_click", ...payload });
-  } catch {
-    /* analytics never break UX */
-  }
-};
-
 const LadderHero = () => {
-  const [sponsorOpen, setSponsorOpen] = useState(false);
-  const [currency] = useCurrency();
-
   return (
     <section className="border-y border-border/60 bg-background">
       <div className="container mx-auto max-w-[1200px] px-6 md:px-8 py-10 md:py-14">
-        <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-6">
+        <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-4">
           <div>
             <p className="text-[11px] font-semibold uppercase tracking-[0.32em] text-primary">
               Membership
@@ -50,112 +19,17 @@ const LadderHero = () => {
               All of us, for all of us.
             </h2>
             <p className="mt-2 text-sm text-muted-foreground max-w-xl">
-              Something for everyone tracking India's carbon markets - from Substack readers to research underwriters. Pick the plan that fits.
+              Five plans - from Substack readers to research underwriters. See what each tier delivers and pick the one that fits.
             </p>
           </div>
-          <div className="flex flex-col md:items-end gap-3">
-            <CurrencyToggle surface="insights_hero" />
-            <Link
-              to="/intelligence/value-ladder"
-              className="text-sm font-medium text-primary hover:text-primary/80 whitespace-nowrap"
-            >
-              Compare all five →
-            </Link>
-          </div>
-        </div>
-
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-3">
-          {TIERS.map((tier) => {
-            const isSponsor = tier.ladder === "B2B";
-            const containerClass = `rounded-lg border p-4 flex flex-col h-full ${
-              isSponsor
-                ? "border-primary/30 bg-primary/5"
-                : "border-border bg-card"
-            }`;
-
-            const ctaInner = (
-              <span className="mt-3 inline-flex items-center text-[12px] font-medium text-primary group-hover:underline underline-offset-4">
-                {formatTierCtaLabel(tier, currency)} →
-              </span>
-            );
-
-            const body = (
-              <>
-                <div className="text-[10px] uppercase tracking-[0.18em] text-muted-foreground">
-                  {tier.ladder === "TCD"
-                    ? "Substack"
-                    : tier.ladder === "BB"
-                    ? "Bombay Breed"
-                    : "B2B"}
-                </div>
-                <div className="mt-1 font-serif text-[16px] leading-tight tracking-tight text-foreground">
-                  {tier.name}
-                </div>
-                <div className="mt-1 text-[12px] font-medium text-foreground/85">
-                  <TierPriceText tier={tier} currency={currency} />
-                </div>
-                <p className="mt-2 text-[11px] text-muted-foreground leading-snug flex-1">
-                  {tier.audience}
-                </p>
-                {ctaInner}
-              </>
-            );
-
-            if (tier.cta.kind === "internal") {
-              return (
-                <Link
-                  key={tier.id}
-                  to={tier.cta.href}
-                  onClick={() => trackCta(tier)}
-                  className={`${containerClass} group hover:border-primary/50 transition-colors`}
-                >
-                  {body}
-                </Link>
-              );
-            }
-            if (tier.cta.kind === "outbound") {
-              return (
-                <a
-                  key={tier.id}
-                  href={tier.cta.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  onClick={() => {
-                    trackCta(tier);
-                    trackOutboundClick({
-                      location: "ladder_insights_hero",
-                      org_name: tier.name,
-                      link_url: tier.cta.kind === "outbound" ? tier.cta.href : "",
-                    });
-                  }}
-                  className={`${containerClass} group hover:border-primary/50 transition-colors`}
-                >
-                  {body}
-                </a>
-              );
-            }
-            return (
-              <button
-                key={tier.id}
-                type="button"
-                onClick={() => {
-                  trackCta(tier);
-                  setSponsorOpen(true);
-                }}
-                className={`${containerClass} group text-left hover:border-primary/50 transition-colors`}
-              >
-                {body}
-              </button>
-            );
-          })}
+          <Link
+            to="/intelligence/value-ladder"
+            className="inline-flex items-center justify-center px-5 py-2.5 rounded-md bg-primary text-primary-foreground text-sm font-medium hover:bg-primary/90 transition-colors whitespace-nowrap self-start md:self-auto"
+          >
+            Compare all five plans →
+          </Link>
         </div>
       </div>
-
-      <SponsorInquiryDialog
-        open={sponsorOpen}
-        onOpenChange={setSponsorOpen}
-        project="Sponsorship inquiry from Insights ladder hero"
-      />
     </section>
   );
 };
