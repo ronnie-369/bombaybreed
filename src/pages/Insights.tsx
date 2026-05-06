@@ -719,7 +719,7 @@ const Insights = () => {
                   Sponsored research
                 </div>
                 <div className="text-[13px] text-foreground line-clamp-1">
-                  Underwrite a topic cluster - your name on a year of original India research.
+                  Underwrite a topic - your name on a year of India research.
                 </div>
               </div>
               <span className="flex-shrink-0 text-[12px] text-foreground/80 group-hover:text-foreground transition-colors">
