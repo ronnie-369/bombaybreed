@@ -218,7 +218,21 @@ const ValueLadder = () => {
       </Helmet>
 
       {/* HERO */}
-      <section className="max-w-[1200px] mx-auto px-6 md:px-10 pt-20 md:pt-28 pb-14">
+      <section className="max-w-[1200px] mx-auto px-6 md:px-10 pt-10 md:pt-14 pb-14">
+        <button
+          type="button"
+          onClick={() => {
+            if (typeof window !== "undefined" && window.history.length > 1) {
+              window.history.back();
+            } else {
+              window.location.href = "/insights";
+            }
+          }}
+          className="inline-flex items-center gap-2 text-[12px] font-medium tracking-tight text-bb-gray hover:text-bb-near-black transition-colors mb-8"
+          aria-label="Go back to previous page"
+        >
+          <span aria-hidden>←</span> Back
+        </button>
         <SectionLabel>Membership tiers</SectionLabel>
         <h1 className="mt-6 font-serif font-normal tracking-[-0.025em] text-[44px] md:text-[60px] leading-[1.02] text-bb-near-black max-w-3xl">
           It will take all of us, to do this for all of us.
