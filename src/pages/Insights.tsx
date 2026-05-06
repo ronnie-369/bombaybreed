@@ -441,8 +441,9 @@ const Insights = () => {
               <p className="text-sm text-muted-foreground max-w-[60ch]">
                 India research on carbon markets, governance, and regulation.
               </p>
-              <p className="mt-3 text-[13px] text-foreground/80 max-w-[60ch]">
-                Browse the full library of reports and briefs below, or take the 3-question quiz to find the membership tier that fits.
+              <p className="mt-3 text-[12px] sm:text-[13px] leading-snug text-foreground/80 max-w-[36ch] sm:max-w-[60ch]">
+                <span className="sm:hidden">Browse reports below, or take the 3-question quiz to find your tier.</span>
+                <span className="hidden sm:inline">Browse the full library of reports and briefs below, or take the 3-question quiz to find the membership tier that fits.</span>
               </p>
             </ScrollReveal>
           </div>
