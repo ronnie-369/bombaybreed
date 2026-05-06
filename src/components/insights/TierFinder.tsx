@@ -150,8 +150,13 @@ const TierFinder = () => {
 
   const allAnswered = QUESTIONS.every((q) => answers[q.id] !== undefined);
 
-  const recommendedTier: LadderTier | null = useMemo(() => {
+  const recommendation = useMemo<{
+    tier: LadderTier;
+    stretchTier: LadderTier | null;
+  } | null>(() => {
     if (!allAnswered) return null;
+
+    // 1. Aggregate goal + role + budget scores across all tiers.
     const scores: Record<TierId, number> = {
       "tcd-free": 0,
       "tcd-paid": 0,
@@ -159,6 +164,7 @@ const TierFinder = () => {
       "bb-analyst": 0,
       sponsor: 0,
     };
+    let allowed: TierId[] = ALL_TIERS;
     for (const q of QUESTIONS) {
       const idx = answers[q.id];
       const opt = q.options[idx];
@@ -166,12 +172,39 @@ const TierFinder = () => {
       for (const [tid, val] of Object.entries(opt.scores)) {
         scores[tid as TierId] += val ?? 0;
       }
+      // Budget option carries the hard ceiling.
+      if (q.id === "budget" && opt.allowedTiers) {
+        allowed = opt.allowedTiers;
+      }
     }
-    const winnerId = (Object.entries(scores) as [TierId, number][]).sort(
+
+    // 2. Unconstrained winner (best fit ignoring budget).
+    const ranked = (Object.entries(scores) as [TierId, number][]).sort(
       (a, b) => b[1] - a[1]
-    )[0][0];
-    return TIERS.find((t) => t.id === winnerId) ?? null;
+    );
+    const idealId = ranked[0][0];
+
+    // 3. Apply budget ceiling. Pick the highest-scoring tier the visitor
+    //    can actually afford.
+    const allowedSet = new Set(allowed);
+    const affordable = ranked.filter(([tid]) => allowedSet.has(tid));
+    const winnerId: TierId = affordable.length > 0 ? affordable[0][0] : idealId;
+
+    const tier = TIERS.find((t) => t.id === winnerId) ?? null;
+    if (!tier) return null;
+
+    // 4. If the unconstrained pick is different and was excluded only by
+    //    budget, surface it as an upgrade hint.
+    const stretchTier =
+      idealId !== winnerId && !allowedSet.has(idealId)
+        ? TIERS.find((t) => t.id === idealId) ?? null
+        : null;
+
+    return { tier, stretchTier };
   }, [answers, allAnswered]);
+
+  const recommendedTier = recommendation?.tier ?? null;
+  const stretchTier = recommendation?.stretchTier ?? null;
 
   const handleSelect = (qid: string, idx: number) => {
     setAnswers((prev) => ({ ...prev, [qid]: idx }));
