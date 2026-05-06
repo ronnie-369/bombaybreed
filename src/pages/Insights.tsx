@@ -439,7 +439,7 @@ const Insights = () => {
                 Intelligence Briefs
               </h1>
               <p className="text-sm text-muted-foreground max-w-[60ch]">
-                Original India research on carbon markets, board governance, ESG communications, and regulatory intelligence.
+                India research on carbon markets, governance, and regulation.
               </p>
             </ScrollReveal>
           </div>
@@ -573,10 +573,10 @@ const Insights = () => {
                 Free library
               </p>
               <h2 className="font-serif text-3xl md:text-4xl tracking-tight leading-[1.1] text-foreground mb-3 [text-wrap:balance]">
-                The full library, open to everyone
+                The full library, open to all
               </h2>
               <p className="text-[15px] text-muted-foreground leading-relaxed [text-wrap:pretty]">
-                Every brief, report and analysis I have published. Search by keyword or filter by topic and format.
+                Every brief and report. Search or filter by topic and format.
               </p>
             </header>
 
@@ -719,7 +719,7 @@ const Insights = () => {
                   Sponsored research
                 </div>
                 <div className="text-[13px] text-foreground line-clamp-1">
-                  Underwrite a topic cluster - your name on a year of original India research.
+                  Underwrite a topic - your name on a year of India research.
                 </div>
               </div>
               <span className="flex-shrink-0 text-[12px] text-foreground/80 group-hover:text-foreground transition-colors">

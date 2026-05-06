@@ -47,13 +47,10 @@ const LadderHero = () => {
               Membership
             </p>
             <h2 className="mt-2 text-section font-serif tracking-tight">
-              It will take all of us, to do this for all of us.
+              All of us, for all of us.
             </h2>
             <p className="mt-2 text-sm text-muted-foreground max-w-xl">
-              There is something here for everyone interested in the Indian
-              carbon markets - from the curious reader on Substack to the
-              institution underwriting research. Study the plans below and
-              sign up to the one most suited to your needs.
+              Something for everyone tracking India's carbon markets - from Substack readers to research underwriters. Pick the plan that fits.
             </p>
           </div>
           <div className="flex flex-col md:items-end gap-3">
