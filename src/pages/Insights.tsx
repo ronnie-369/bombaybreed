@@ -439,7 +439,7 @@ const Insights = () => {
                 Intelligence Briefs
               </h1>
               <p className="text-sm text-muted-foreground max-w-[60ch]">
-                Original India research on carbon markets, board governance, ESG communications, and regulatory intelligence.
+                India research on carbon markets, governance, and regulation.
               </p>
             </ScrollReveal>
           </div>
