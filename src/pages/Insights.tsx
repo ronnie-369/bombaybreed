@@ -861,27 +861,6 @@ const Insights = () => {
           </div>
         </section>
 
-        {/* Search & filter UI was relocated to the hero section above the
-            sticky nav so users can refine before browsing. */}
-
-        {/* Newsletter CTA */}
-        <section id="subscribe" className="py-16 md:py-24 px-6 md:px-8 border-t border-border/50 scroll-mt-32">
-          <div className="container mx-auto max-w-[900px] text-center">
-            <ScrollReveal direction="up">
-              <h2 className="text-section font-serif tracking-tight mb-3">
-                Subscribe to Intelligence Briefs
-              </h2>
-              <p className="text-sm text-muted-foreground mb-6">
-                Original research on carbon markets and ESG governance. Published monthly.
-              </p>
-              <Button asChild>
-                <a href="https://theclimatedesk.substack.com" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2">
-                  Subscribe on Substack <ExternalLink className="w-4 h-4" />
-                </a>
-              </Button>
-            </ScrollReveal>
-          </div>
-        </section>
       </main>
 
       <Footer />
