@@ -748,10 +748,10 @@ const Insights = () => {
                     Reset search & filters
                   </button>
                   <a
-                    href="#subscribe"
+                    href="#tier-finder"
                     className="inline-flex items-center px-4 py-2 text-[12px] font-medium tracking-wide border border-border text-foreground hover:bg-secondary transition-colors rounded-full"
                   >
-                    Subscribe for new briefs
+                    Find your plan
                   </a>
                 </div>
               </div>
