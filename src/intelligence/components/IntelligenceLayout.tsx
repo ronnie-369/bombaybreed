@@ -41,6 +41,13 @@ const IntelligenceLayout = ({ children }: Props) => {
           </Link>
 
           <nav className="hidden md:flex items-center gap-8">
+            <Link
+              to="/"
+              className="text-[14px] font-medium tracking-tight text-bb-gray hover:text-bb-near-black inline-flex items-center gap-1"
+              aria-label="Back to Bombay Breed home"
+            >
+              <span aria-hidden>←</span> Home
+            </Link>
             <NavLink to="/intelligence" end className={navLinkClass}>
               Overview
             </NavLink>
