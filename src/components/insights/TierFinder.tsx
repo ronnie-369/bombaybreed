@@ -20,6 +20,12 @@ interface Option {
   label: string;
   /** Score added to each tier when this option is chosen. */
   scores: Partial<Record<TierId, number>>;
+  /**
+   * Only valid on the "budget" question. Lists every tier the visitor
+   * is willing to consider given their stated budget. Acts as a HARD
+   * ceiling - any tier outside this set is excluded from the result.
+   */
+  allowedTiers?: TierId[];
 }
 
 interface Question {
@@ -27,6 +33,14 @@ interface Question {
   prompt: string;
   options: Option[];
 }
+
+const ALL_TIERS: TierId[] = [
+  "tcd-free",
+  "tcd-paid",
+  "bb-reader",
+  "bb-analyst",
+  "sponsor",
+];
 
 const QUESTIONS: Question[] = [
   {
@@ -47,11 +61,11 @@ const QUESTIONS: Question[] = [
       },
       {
         label: "Run diligence or deploy capital in Indian climate",
-        scores: { "bb-analyst": 3, "bb-reader": 1 },
+        scores: { "bb-analyst": 4, "bb-reader": 1 },
       },
       {
         label: "Underwrite a specific report or research line",
-        scores: { sponsor: 4 },
+        scores: { sponsor: 5 },
       },
     ],
   },
@@ -61,19 +75,19 @@ const QUESTIONS: Question[] = [
     options: [
       {
         label: "Curious reader or student",
-        scores: { "tcd-free": 3 },
+        scores: { "tcd-free": 3, "tcd-paid": 1 },
       },
       {
         label: "Sustainability lead, consultant, journalist",
-        scores: { "tcd-paid": 2, "bb-reader": 2 },
+        scores: { "tcd-paid": 2, "bb-reader": 3 },
       },
       {
         label: "Investor, fund analyst, family office, DFI",
-        scores: { "bb-analyst": 3 },
+        scores: { "bb-analyst": 4, "bb-reader": 1 },
       },
       {
         label: "Corporate or institution underwriting research",
-        scores: { sponsor: 3 },
+        scores: { sponsor: 4, "bb-analyst": 1 },
       },
     ],
   },
@@ -82,24 +96,34 @@ const QUESTIONS: Question[] = [
     prompt: "What budget range fits?",
     options: [
       {
+        // Free only - hard cap.
         label: "Free",
-        scores: { "tcd-free": 4 },
+        scores: { "tcd-free": 2 },
+        allowedTiers: ["tcd-free"],
       },
       {
+        // Up to USD 5/mo - Free or Enthusiasts only.
         label: "Up to USD 5 / month",
-        scores: { "tcd-paid": 4 },
+        scores: { "tcd-paid": 2, "tcd-free": 1 },
+        allowedTiers: ["tcd-free", "tcd-paid"],
       },
       {
+        // Up to USD 100/mo - Market Makers and below.
         label: "USD 100 / month (research-grade editorial)",
-        scores: { "bb-reader": 4 },
+        scores: { "bb-reader": 2, "tcd-paid": 1 },
+        allowedTiers: ["tcd-free", "tcd-paid", "bb-reader"],
       },
       {
+        // Up to USD 500/mo - Investment Intelligence and below.
         label: "USD 500 / month (research + advisory)",
-        scores: { "bb-analyst": 4 },
+        scores: { "bb-analyst": 2, "bb-reader": 1 },
+        allowedTiers: ["tcd-free", "tcd-paid", "bb-reader", "bb-analyst"],
       },
       {
+        // Institutional - everything is on the table.
         label: "Institutional / project-scale",
-        scores: { sponsor: 4 },
+        scores: { sponsor: 2, "bb-analyst": 1 },
+        allowedTiers: ALL_TIERS,
       },
     ],
   },
@@ -126,8 +150,13 @@ const TierFinder = () => {
 
   const allAnswered = QUESTIONS.every((q) => answers[q.id] !== undefined);
 
-  const recommendedTier: LadderTier | null = useMemo(() => {
+  const recommendation = useMemo<{
+    tier: LadderTier;
+    stretchTier: LadderTier | null;
+  } | null>(() => {
     if (!allAnswered) return null;
+
+    // 1. Aggregate goal + role + budget scores across all tiers.
     const scores: Record<TierId, number> = {
       "tcd-free": 0,
       "tcd-paid": 0,
@@ -135,6 +164,7 @@ const TierFinder = () => {
       "bb-analyst": 0,
       sponsor: 0,
     };
+    let allowed: TierId[] = ALL_TIERS;
     for (const q of QUESTIONS) {
       const idx = answers[q.id];
       const opt = q.options[idx];
@@ -142,12 +172,39 @@ const TierFinder = () => {
       for (const [tid, val] of Object.entries(opt.scores)) {
         scores[tid as TierId] += val ?? 0;
       }
+      // Budget option carries the hard ceiling.
+      if (q.id === "budget" && opt.allowedTiers) {
+        allowed = opt.allowedTiers;
+      }
     }
-    const winnerId = (Object.entries(scores) as [TierId, number][]).sort(
+
+    // 2. Unconstrained winner (best fit ignoring budget).
+    const ranked = (Object.entries(scores) as [TierId, number][]).sort(
       (a, b) => b[1] - a[1]
-    )[0][0];
-    return TIERS.find((t) => t.id === winnerId) ?? null;
+    );
+    const idealId = ranked[0][0];
+
+    // 3. Apply budget ceiling. Pick the highest-scoring tier the visitor
+    //    can actually afford.
+    const allowedSet = new Set(allowed);
+    const affordable = ranked.filter(([tid]) => allowedSet.has(tid));
+    const winnerId: TierId = affordable.length > 0 ? affordable[0][0] : idealId;
+
+    const tier = TIERS.find((t) => t.id === winnerId) ?? null;
+    if (!tier) return null;
+
+    // 4. If the unconstrained pick is different and was excluded only by
+    //    budget, surface it as an upgrade hint.
+    const stretchTier =
+      idealId !== winnerId && !allowedSet.has(idealId)
+        ? TIERS.find((t) => t.id === idealId) ?? null
+        : null;
+
+    return { tier, stretchTier };
   }, [answers, allAnswered]);
+
+  const recommendedTier = recommendation?.tier ?? null;
+  const stretchTier = recommendation?.stretchTier ?? null;
 
   const handleSelect = (qid: string, idx: number) => {
     setAnswers((prev) => ({ ...prev, [qid]: idx }));
@@ -313,6 +370,20 @@ const TierFinder = () => {
                 <p className="mt-2 text-[13px] text-muted-foreground leading-snug max-w-xl">
                   {recommendedTier.audience}
                 </p>
+                {stretchTier && (
+                  <p className="mt-3 text-[12px] text-muted-foreground leading-snug max-w-xl border-t border-border/60 pt-3">
+                    <span className="font-medium text-foreground">If your budget allowed,</span>{" "}
+                    <Link
+                      to="/intelligence/value-ladder"
+                      className="text-primary hover:text-primary/80 underline underline-offset-2"
+                    >
+                      {stretchTier.name}
+                    </Link>{" "}
+                    ({" "}
+                    <TierPriceText tier={stretchTier} currency={currency} />
+                    {" "}) is the closer fit for what you described.
+                  </p>
+                )}
               </div>
               <div className="flex flex-col gap-2 md:items-end shrink-0">
                 {renderRecommendationCta(recommendedTier)}
