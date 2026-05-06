@@ -441,6 +441,9 @@ const Insights = () => {
               <p className="text-sm text-muted-foreground max-w-[60ch]">
                 India research on carbon markets, governance, and regulation.
               </p>
+              <p className="mt-3 text-[13px] text-foreground/80 max-w-[60ch]">
+                Browse the full library of reports and briefs below, or take the 3-question quiz to find the membership tier that fits.
+              </p>
             </ScrollReveal>
           </div>
         </section>
