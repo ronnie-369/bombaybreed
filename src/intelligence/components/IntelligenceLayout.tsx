@@ -30,15 +30,25 @@ const IntelligenceLayout = ({ children }: Props) => {
   return (
     <div className="min-h-screen bg-bb-off-white text-bb-near-black font-sans antialiased">
       <header className="border-b border-bb-border bg-bb-off-white/90 backdrop-blur sticky top-0 z-30">
-        <div className="max-w-[1200px] mx-auto px-6 md:px-10 h-16 flex items-center justify-between">
-          <Link to="/intelligence" className="flex items-baseline gap-3">
-            <span className="font-serif text-[20px] tracking-tight text-bb-near-black">
-              TCD Intelligence
-            </span>
-            <span className="hidden sm:inline text-[10px] uppercase tracking-[0.2em] text-bb-gray">
-              by Bombay Breed
-            </span>
-          </Link>
+        <div className="max-w-[1200px] mx-auto px-6 md:px-10 h-16 flex items-center justify-between gap-3">
+          <div className="flex items-center gap-3 md:gap-5 min-w-0">
+            <Link
+              to="/"
+              className="md:hidden inline-flex items-center justify-center h-8 w-8 -ml-1 rounded-full border border-bb-border text-bb-near-black hover:bg-bb-near-black hover:text-bb-off-white transition shrink-0"
+              aria-label="Back to Bombay Breed home"
+              title="Back to Home"
+            >
+              <span aria-hidden className="text-[14px] leading-none">←</span>
+            </Link>
+            <Link to="/intelligence" className="flex items-baseline gap-3 min-w-0">
+              <span className="font-serif text-[18px] md:text-[20px] tracking-tight text-bb-near-black truncate">
+                TCD Intelligence
+              </span>
+              <span className="hidden sm:inline text-[10px] uppercase tracking-[0.2em] text-bb-gray">
+                by Bombay Breed
+              </span>
+            </Link>
+          </div>
 
           <nav className="hidden md:flex items-center gap-8">
             <Link
