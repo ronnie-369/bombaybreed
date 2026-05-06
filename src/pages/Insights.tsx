@@ -56,6 +56,16 @@ const allContentTypes: ContentType[] = ['Flagship Report', 'Intelligence Brief',
 
 const publications: Publication[] = [
   {
+    title: "Mitigation and Adaptation, Working as One: An Investor's View of Himachal Pradesh",
+    description: "Why Himachal Pradesh's climate exposure is India's exposure. A restoration-economy thesis linking produce, tourism, and capital - the umbrella synthesis to The Climate Desk's Himachal investigation.",
+    contentType: 'Flagship Report',
+    topic: 'Board Governance',
+    publishedDate: "2026-05-05",
+    readTimeMinutes: 24,
+    link: "/special-features/tcd-hp-investor-synthesis.html",
+    external: true,
+  },
+  {
     title: "India Heat Intelligence Report: The World's Hottest Country, Two Weeks Before Peak Summer",
     description: "A board-level intelligence report on India's accelerating heat exposure - what it means for productivity, capital, supply chains, and corporate climate strategy ahead of the 2026 peak summer.",
     contentType: 'Flagship Report',
