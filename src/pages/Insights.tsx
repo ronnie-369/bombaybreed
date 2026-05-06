@@ -573,10 +573,10 @@ const Insights = () => {
                 Free library
               </p>
               <h2 className="font-serif text-3xl md:text-4xl tracking-tight leading-[1.1] text-foreground mb-3 [text-wrap:balance]">
-                The full library, open to everyone
+                The full library, open to all
               </h2>
               <p className="text-[15px] text-muted-foreground leading-relaxed [text-wrap:pretty]">
-                Every brief, report and analysis I have published. Search by keyword or filter by topic and format.
+                Every brief and report. Search or filter by topic and format.
               </p>
             </header>
 
