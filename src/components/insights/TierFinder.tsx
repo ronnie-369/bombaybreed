@@ -20,6 +20,12 @@ interface Option {
   label: string;
   /** Score added to each tier when this option is chosen. */
   scores: Partial<Record<TierId, number>>;
+  /**
+   * Only valid on the "budget" question. Lists every tier the visitor
+   * is willing to consider given their stated budget. Acts as a HARD
+   * ceiling - any tier outside this set is excluded from the result.
+   */
+  allowedTiers?: TierId[];
 }
 
 interface Question {
@@ -27,6 +33,14 @@ interface Question {
   prompt: string;
   options: Option[];
 }
+
+const ALL_TIERS: TierId[] = [
+  "tcd-free",
+  "tcd-paid",
+  "bb-reader",
+  "bb-analyst",
+  "sponsor",
+];
 
 const QUESTIONS: Question[] = [
   {
@@ -47,11 +61,11 @@ const QUESTIONS: Question[] = [
       },
       {
         label: "Run diligence or deploy capital in Indian climate",
-        scores: { "bb-analyst": 3, "bb-reader": 1 },
+        scores: { "bb-analyst": 4, "bb-reader": 1 },
       },
       {
         label: "Underwrite a specific report or research line",
-        scores: { sponsor: 4 },
+        scores: { sponsor: 5 },
       },
     ],
   },
@@ -61,19 +75,19 @@ const QUESTIONS: Question[] = [
     options: [
       {
         label: "Curious reader or student",
-        scores: { "tcd-free": 3 },
+        scores: { "tcd-free": 3, "tcd-paid": 1 },
       },
       {
         label: "Sustainability lead, consultant, journalist",
-        scores: { "tcd-paid": 2, "bb-reader": 2 },
+        scores: { "tcd-paid": 2, "bb-reader": 3 },
       },
       {
         label: "Investor, fund analyst, family office, DFI",
-        scores: { "bb-analyst": 3 },
+        scores: { "bb-analyst": 4, "bb-reader": 1 },
       },
       {
         label: "Corporate or institution underwriting research",
-        scores: { sponsor: 3 },
+        scores: { sponsor: 4, "bb-analyst": 1 },
       },
     ],
   },
@@ -82,24 +96,34 @@ const QUESTIONS: Question[] = [
     prompt: "What budget range fits?",
     options: [
       {
+        // Free only - hard cap.
         label: "Free",
-        scores: { "tcd-free": 4 },
+        scores: { "tcd-free": 2 },
+        allowedTiers: ["tcd-free"],
       },
       {
+        // Up to USD 5/mo - Free or Enthusiasts only.
         label: "Up to USD 5 / month",
-        scores: { "tcd-paid": 4 },
+        scores: { "tcd-paid": 2, "tcd-free": 1 },
+        allowedTiers: ["tcd-free", "tcd-paid"],
       },
       {
+        // Up to USD 100/mo - Market Makers and below.
         label: "USD 100 / month (research-grade editorial)",
-        scores: { "bb-reader": 4 },
+        scores: { "bb-reader": 2, "tcd-paid": 1 },
+        allowedTiers: ["tcd-free", "tcd-paid", "bb-reader"],
       },
       {
+        // Up to USD 500/mo - Investment Intelligence and below.
         label: "USD 500 / month (research + advisory)",
-        scores: { "bb-analyst": 4 },
+        scores: { "bb-analyst": 2, "bb-reader": 1 },
+        allowedTiers: ["tcd-free", "tcd-paid", "bb-reader", "bb-analyst"],
       },
       {
+        // Institutional - everything is on the table.
         label: "Institutional / project-scale",
-        scores: { sponsor: 4 },
+        scores: { sponsor: 2, "bb-analyst": 1 },
+        allowedTiers: ALL_TIERS,
       },
     ],
   },
