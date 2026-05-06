@@ -8,7 +8,7 @@ import { ArrowRight, ExternalLink, Search } from 'lucide-react';
 import { Input } from '@/components/ui/input';
 import ScrollReveal from '@/components/ui/ScrollReveal';
 import SectionLabel from '@/components/ui/SectionLabel';
-import PremiumAccessLounge from '@/pages/insights/PremiumAccessLounge';
+
 import { trackSponsorEvent } from '@/utils/sponsorAnalytics';
 import LadderHero from '@/components/insights/LadderHero';
 import LadderStickyPill from '@/components/insights/LadderStickyPill';
