@@ -55,16 +55,6 @@ const Signup = () => {
   const update = (key: keyof typeof form) => (e: React.ChangeEvent<HTMLInputElement>) =>
     setForm((f) => ({ ...f, [key]: e.target.value }));
 
-  // The Welcome page reads tier+billing from the URL after the email link.
-  // We set them on emailRedirectTo so they survive the round-trip even if the
-  // user opens the link on a different device. localStorage is a backup.
-  const buildEmailRedirect = () => {
-    const url = new URL(`${window.location.origin}/intelligence/welcome`);
-    url.searchParams.set("tier", tier);
-    url.searchParams.set("billing", billing);
-    return url.toString();
-  };
-
   const persistIntent = () => {
     try {
       localStorage.setItem(
@@ -145,10 +135,17 @@ const Signup = () => {
         return;
       }
 
-      const { data } = await supabase.auth.signInWithPassword({
+      const { data, error: signInError } = await supabase.auth.signInWithPassword({
         email: form.email,
         password: form.password,
       });
+
+      if (signInError) {
+        setSubmittedEmail(form.email);
+        setResendCooldown(45);
+        setLoading(false);
+        return;
+      }
 
       // If Supabase email confirmation is enabled (the default for this project),
       // data.session will be null until the user clicks the link. We only try to
@@ -205,13 +202,13 @@ const Signup = () => {
       <section className="max-w-md mx-auto px-6 pt-20 pb-24">
         {submittedEmail ? (
           <>
-            <SectionLabel>Confirm your email</SectionLabel>
+          <SectionLabel>Check your email</SectionLabel>
             <h1 className="mt-6 font-serif font-normal tracking-[-0.025em] text-[36px] leading-[1.1] text-bb-near-black">
               Check your inbox
             </h1>
             <p className="mt-3 text-[14px] text-bb-gray leading-relaxed">
-              We sent a confirmation link to <span className="text-bb-near-black font-medium">{submittedEmail}</span>.
-              Click it to verify your address - you will be brought back to confirm your tier and complete payment.
+              We sent a secure access link to <span className="text-bb-near-black font-medium">{submittedEmail}</span>.
+              Click it to return here, confirm your tier, and complete payment.
             </p>
 
             <div className="mt-8 bg-white border border-bb-border rounded-xl p-7 space-y-5">
@@ -226,7 +223,7 @@ const Signup = () => {
               </div>
 
               <div className="text-[12px] text-bb-gray leading-relaxed">
-                Did not receive it? Check spam, or resend below. The link expires in 24 hours.
+                Did not receive it? Check spam, or resend below. The link expires automatically.
               </div>
 
               <button
@@ -235,7 +232,7 @@ const Signup = () => {
                 disabled={resendCooldown > 0}
                 className="w-full h-11 rounded-[10px] border border-bb-slate text-bb-slate text-[13px] font-medium hover:bg-bb-slate hover:text-bb-off-white transition disabled:opacity-50 disabled:hover:bg-transparent disabled:hover:text-bb-slate"
               >
-                {resendCooldown > 0 ? `Resend in ${resendCooldown}s` : "Resend confirmation email"}
+                {resendCooldown > 0 ? `Resend in ${resendCooldown}s` : "Resend access email"}
               </button>
 
               <button
