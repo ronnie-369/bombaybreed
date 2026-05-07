@@ -420,7 +420,7 @@ export const INTERSECTION = {
    * active currency. See `formatIntersectionBody`.
    */
   body: "The single explicit upgrade path between the two tracks. Any Enthusiasts subscriber receives a discount on the first three months of the Market Makers tier ({intro} for the first quarter, then {regular} thereafter). The Enthusiasts subscription is paused or refunded for the duration of the discount.",
-  introPricing: { usd: 75, inr: 6500, period: "mo" as const },
+  introPricing: { usd: 7, inr: 600, period: "mo" as const },
   ctaLabel: "Upgrade to Market Makers",
   ctaHref: "/intelligence/signup?tier=foundational&ref=intersection",
 };
