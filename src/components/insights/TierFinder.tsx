@@ -102,8 +102,8 @@ const QUESTIONS: Question[] = [
         allowedTiers: ["tcd-free"],
       },
       {
-        // Up to USD 5/mo - Free or Enthusiasts only.
-        label: "Up to USD 5 / month",
+        // USD 1/mo - Free or Enthusiasts only.
+        label: "USD 1 / month",
         scores: { "tcd-paid": 2, "tcd-free": 1 },
         allowedTiers: ["tcd-free", "tcd-paid"],
       },
