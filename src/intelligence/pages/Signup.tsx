@@ -85,6 +85,34 @@ const Signup = () => {
     }
   };
 
+  const reportFailure = async (
+    event: Parameters<typeof logAuthDiagnostic>[0]["event"],
+    rawMessage: string,
+    email?: string | null,
+  ) => {
+    const hint = interpretAuthError(event, rawMessage);
+    setAuthHint(hint);
+    toast({
+      title: hint.title,
+      description: hint.description,
+      variant: hint.severity === "info" ? "default" : "destructive",
+    });
+    await logAuthDiagnostic({
+      event,
+      email: email ?? null,
+      status: "failure",
+      errorMessage: rawMessage || null,
+    });
+  };
+
+  const reportSuccess = async (
+    event: Parameters<typeof logAuthDiagnostic>[0]["event"],
+    email?: string | null,
+  ) => {
+    setAuthHint(null);
+    await logAuthDiagnostic({ event, email: email ?? null, status: "success" });
+  };
+
   const resendConfirmation = async () => {
     if (!submittedEmail || resendCooldown > 0) return;
     const { error } = await supabase.functions.invoke("intelligence-signup", {
@@ -97,11 +125,12 @@ const Signup = () => {
       },
     });
     if (error) {
-      toast({ title: "Could not resend", description: await getFunctionErrorMessage(error, "Please try again."), variant: "destructive" });
+      await reportFailure("resend", await extractErrorMessage(error), submittedEmail);
       return;
     }
     setResendCooldown(45);
-    toast({ title: "Email sent", description: "Check your inbox for the secure access link." });
+    await reportSuccess("resend", submittedEmail);
+    toast({ title: "Email sent", description: "Check your inbox (and spam) for the secure access link." });
   };
 
   const sendMagicLink = async () => {
@@ -122,16 +151,18 @@ const Signup = () => {
     });
     setLoading(false);
     if (error) {
-      toast({ title: "Could not send link", description: await getFunctionErrorMessage(error, "Please try again."), variant: "destructive" });
+      await reportFailure("magic_link", await extractErrorMessage(error), email);
       return;
     }
     setSubmittedEmail(email);
     setResendCooldown(45);
+    await reportSuccess("magic_link", email);
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
+    setAuthHint(null);
 
     if (mode === "signup") {
       const pwdResult = passwordSchema.safeParse(form.password);
@@ -163,7 +194,7 @@ const Signup = () => {
       });
 
       if (error) {
-        toast({ title: "Sign up failed", description: await getFunctionErrorMessage(error, "Please try again."), variant: "destructive" });
+        await reportFailure("signup", await extractErrorMessage(error), form.email);
         setLoading(false);
         return;
       }
@@ -176,14 +207,16 @@ const Signup = () => {
       if (signInError) {
         setSubmittedEmail(form.email);
         setResendCooldown(45);
+        await logAuthDiagnostic({
+          event: "signin_password",
+          email: form.email,
+          status: "failure",
+          errorMessage: signInError.message,
+        });
         setLoading(false);
         return;
       }
 
-      // If Supabase email confirmation is enabled (the default for this project),
-      // data.session will be null until the user clicks the link. We only try to
-      // upsert the subscriber row if we already have a session - otherwise RLS
-      // would reject the insert. The Welcome page handles the upsert post-confirm.
       if (data.user && data.session) {
         await supabase.from("tcd_subscribers").upsert(
           {
@@ -197,12 +230,9 @@ const Signup = () => {
         );
       }
 
-      // A/B: attribute the conversion to whichever subscribe-CTA variant
-      // brought this visitor in (within the 7-day attribution window).
       logSubscribeConversion({ tier, source: 'signup' });
+      await reportSuccess("signup", form.email);
 
-      // If the project happens to have email confirmation disabled and we got
-      // a session straight away, skip the inline state and continue to checkout.
       if (data.session) {
         toast({ title: "Account created", description: "Continue to membership selection." });
         navigate(`/intelligence/checkout?tier=${tier}&billing=${billing}`);
@@ -216,10 +246,11 @@ const Signup = () => {
         password: form.password,
       });
       if (error) {
-        toast({ title: "Sign in failed", description: error.message, variant: "destructive" });
+        await reportFailure("signin_password", error.message, form.email);
         setLoading(false);
         return;
       }
+      await reportSuccess("signin_password", form.email);
       navigate(redirect || "/intelligence/dashboard");
     }
 
