@@ -36,28 +36,6 @@ function appOrigin(raw: unknown): string {
   return "https://bombaybreed.com";
 }
 
-function buildLocalLink(origin: string, tokenHash: string, type: "signup" | "magiclink", tier: string, billing: string): string {
-  const url = new URL(`${origin}/intelligence/welcome`);
-  url.searchParams.set("token_hash", tokenHash);
-  url.searchParams.set("type", type);
-  url.searchParams.set("tier", tier === "professional" ? "professional" : "foundational");
-  url.searchParams.set("billing", billing === "monthly" ? "monthly" : "annual");
-  return url.toString();
-}
-
-function emailHtml(link: string, tier: string): string {
-  const label = tier === "professional" ? "Investment Intelligence" : "Market Makers";
-  return `
-    <div style="font-family:Inter,Arial,sans-serif;max-width:560px;margin:0 auto;background:#FDFCFB;color:#0A0A0B;padding:32px;border:1px solid #E6E0D8;">
-      <p style="font-size:11px;letter-spacing:0.24em;text-transform:uppercase;color:#6F6A61;margin:0 0 24px;">Bombay Breed Consulting</p>
-      <h1 style="font-family:Georgia,serif;font-weight:400;font-size:30px;line-height:1.12;margin:0 0 16px;color:#0A0A0B;">Continue to ${label}</h1>
-      <p style="font-size:14px;line-height:1.65;color:#4C4740;margin:0 0 26px;">Use this secure link to verify your email and continue your membership setup.</p>
-      <a href="${link}" style="display:inline-block;background:#1A3D5C;color:#FDFCFB;text-decoration:none;padding:13px 18px;border-radius:8px;font-size:14px;font-weight:600;">Continue membership</a>
-      <p style="font-size:12px;line-height:1.6;color:#6F6A61;margin:28px 0 0;">If the button does not open, copy this link:<br><span style="word-break:break-all;">${link}</span></p>
-    </div>
-  `;
-}
-
 serve(async (req: Request) => {
   if (req.method === "OPTIONS") return new Response(null, { headers: corsHeaders });
   if (req.method !== "POST") return jsonResponse({ error: "Method not allowed" }, 405);
