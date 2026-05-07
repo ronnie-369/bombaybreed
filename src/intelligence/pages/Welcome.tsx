@@ -236,7 +236,6 @@ const Welcome = () => {
                 </div>
               </div>
             )}
-          <>
             <SectionLabel>Welcome</SectionLabel>
             <h1 className="mt-6 font-serif font-normal tracking-[-0.025em] text-[36px] leading-[1.1] text-bb-near-black">
               You have successfully created an account
