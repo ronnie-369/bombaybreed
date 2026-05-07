@@ -1,7 +1,5 @@
 import { serve } from "https://deno.land/std@0.181.0/http/server.ts";
 import { createClient } from "https://esm.sh/@supabase/supabase-js@2.49.4";
-import { Resend } from "npm:resend@4.0.0";
-
 const corsHeaders = {
   "Access-Control-Allow-Origin": "*",
   "Access-Control-Allow-Headers": "authorization, x-client-info, apikey, content-type",
@@ -66,8 +64,7 @@ serve(async (req: Request) => {
 
   const supabaseUrl = Deno.env.get("SUPABASE_URL");
   const serviceRoleKey = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY");
-  const resendKey = Deno.env.get("RESEND_API_KEY");
-  if (!supabaseUrl || !serviceRoleKey || !resendKey) return jsonResponse({ error: "Server misconfigured" }, 500);
+  if (!supabaseUrl || !serviceRoleKey) return jsonResponse({ error: "Server misconfigured" }, 500);
 
   let body: Record<string, unknown>;
   try {
@@ -120,15 +117,13 @@ serve(async (req: Request) => {
     );
   }
 
-  const localLink = buildLocalLink(origin, generated.data.properties.hashed_token, generated.data.properties.verification_type === "signup" ? "signup" : "magiclink", tier, billing);
-  const resend = new Resend(resendKey);
-  const { error: emailError } = await resend.emails.send({
-    from: "Bombay Breed <onboarding@resend.dev>",
-    to: [email],
-    subject: "Continue your Bombay Breed membership",
-    html: emailHtml(localLink, tier),
-  });
+  if (generated.data.user?.id) {
+    const { error: confirmError } = await admin.auth.admin.updateUserById(generated.data.user.id, {
+      email_confirm: true,
+      user_metadata: { full_name: fullName, company, designation, intended_tier: tier, intended_billing: billing },
+    });
+    if (confirmError) return jsonResponse({ error: confirmError.message }, 400);
+  }
 
-  if (emailError) return jsonResponse({ error: "Could not send email" }, 500);
-  return jsonResponse({ success: true });
+  return jsonResponse({ success: true, autoConfirmed: true });
 });
