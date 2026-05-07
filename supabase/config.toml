@@ -25,3 +25,6 @@ verify_jwt = false
 verify_jwt = false
 [functions.intelligence-signup]
 verify_jwt = false
+
+[functions.trigger-weekly-digest]
+verify_jwt = false
