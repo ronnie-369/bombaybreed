@@ -66,6 +66,7 @@ serve(async (req: Request) => {
 
   const admin = createClient(supabaseUrl, serviceRoleKey, { auth: { persistSession: false } });
   const linkType: "signup" | "magiclink" = action === "signup" ? "signup" : "magiclink";
+  let canSetPassword = action === "signup";
 
   let generated = await admin.auth.admin.generateLink(
     linkType === "signup"
@@ -81,6 +82,7 @@ serve(async (req: Request) => {
   );
 
   if (generated.error && action === "signup") {
+    canSetPassword = false;
     generated = await admin.auth.admin.generateLink({ type: "magiclink", email });
   }
 
@@ -96,7 +98,7 @@ serve(async (req: Request) => {
   }
 
   if (generated.data.user?.id) {
-    const updatePayload = action === "signup"
+    const updatePayload = canSetPassword
       ? {
           email_confirm: true,
           password,
