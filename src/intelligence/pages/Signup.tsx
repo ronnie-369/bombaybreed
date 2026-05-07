@@ -89,10 +89,14 @@ const Signup = () => {
 
   const resendConfirmation = async () => {
     if (!submittedEmail || resendCooldown > 0) return;
-    const { error } = await supabase.auth.resend({
-      type: "signup",
-      email: submittedEmail,
-      options: { emailRedirectTo: buildEmailRedirect() },
+    const { error } = await supabase.functions.invoke("intelligence-signup", {
+      body: {
+        action: "resend",
+        email: submittedEmail,
+        tier,
+        billing,
+        origin: window.location.origin,
+      },
     });
     if (error) {
       toast({ title: "Could not resend", description: error.message, variant: "destructive" });
@@ -121,18 +125,17 @@ const Signup = () => {
 
       persistIntent();
 
-      const { data, error } = await supabase.auth.signUp({
-        email: form.email,
-        password: form.password,
-        options: {
-          emailRedirectTo: buildEmailRedirect(),
-          data: {
-            full_name: form.fullName,
-            company: form.company || null,
-            designation: form.designation || null,
-            intended_tier: tier,
-            intended_billing: billing,
-          },
+      const { error } = await supabase.functions.invoke("intelligence-signup", {
+        body: {
+          action: "signup",
+          email: form.email,
+          password: form.password,
+          fullName: form.fullName,
+          company: form.company || null,
+          designation: form.designation || null,
+          tier,
+          billing,
+          origin: window.location.origin,
         },
       });
 
@@ -141,6 +144,11 @@ const Signup = () => {
         setLoading(false);
         return;
       }
+
+      const { data } = await supabase.auth.signInWithPassword({
+        email: form.email,
+        password: form.password,
+      });
 
       // If Supabase email confirmation is enabled (the default for this project),
       // data.session will be null until the user clicks the link. We only try to
