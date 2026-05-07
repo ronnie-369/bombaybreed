@@ -10,7 +10,7 @@ import ScrollReveal from '@/components/ui/ScrollReveal';
 import SectionLabel from '@/components/ui/SectionLabel';
 
 import { trackSponsorEvent } from '@/utils/sponsorAnalytics';
-import LadderHero from '@/components/insights/LadderHero';
+
 import LadderStickyPill from '@/components/insights/LadderStickyPill';
 import TierFinder from '@/components/insights/TierFinder';
 
@@ -459,10 +459,6 @@ const Insights = () => {
           </div>
         </section>
 
-        {/* Value ladder - the canonical "choose how you read us" decision
-            moment. Lives above the section nav so every visitor sees pricing
-            and tier options before browsing publications. */}
-        <LadderHero />
 
         {/* Guided tier selector - 3 questions to a recommended plan with
             direct routing to signup. Sits between the ladder strip and the
