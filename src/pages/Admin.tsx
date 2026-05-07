@@ -135,6 +135,21 @@ const Admin = () => {
           </Button>
         </div>
 
+        <Card className="mb-6">
+          <CardHeader>
+            <CardTitle>Weekly Digest</CardTitle>
+            <CardDescription>
+              Trigger a one-time test send of the weekly dashboard digest. The shared secret stays on the server -
+              your browser never sees it.
+            </CardDescription>
+          </CardHeader>
+          <CardContent>
+            <Button onClick={handleSendTestDigest} disabled={digestSending}>
+              {digestSending ? "Sending..." : "Send test digest now"}
+            </Button>
+          </CardContent>
+        </Card>
+
         <Tabs defaultValue="inquiries" className="w-full">
           <TabsList className="grid w-full grid-cols-3">
             <TabsTrigger value="inquiries">Contact Inquiries</TabsTrigger>
