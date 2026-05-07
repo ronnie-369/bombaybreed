@@ -433,4 +433,23 @@ const Field = ({
   </label>
 );
 
+const HintBanner = ({ hint }: { hint: AuthHint }) => {
+  const tone =
+    hint.severity === "error"
+      ? "border-bb-copper/40 bg-bb-copper/5"
+      : hint.severity === "warning"
+      ? "border-bb-slate/30 bg-bb-slate/5"
+      : "border-bb-border bg-bb-off-white";
+  return (
+    <div className={`rounded-[10px] border ${tone} p-4`}>
+      <div className="text-[12px] font-semibold uppercase tracking-[0.2em] text-bb-near-black">
+        {hint.title}
+      </div>
+      <div className="mt-2 text-[13px] text-bb-gray leading-relaxed">
+        {hint.description}
+      </div>
+    </div>
+  );
+};
+
 export default Signup;
