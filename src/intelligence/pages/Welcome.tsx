@@ -4,6 +4,7 @@ import { Helmet } from "react-helmet-async";
 import { supabase } from "@/integrations/supabase/client";
 import IntelligenceLayout from "../components/IntelligenceLayout";
 import SectionLabel from "../components/SectionLabel";
+import { logAuthDiagnostic, interpretAuthError, type AuthHint } from "../lib/authDiagnostics";
 
 // Marketing slugs may still appear in older confirmation links - normalize.
 const TIER_ALIAS: Record<string, string> = {
