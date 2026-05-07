@@ -93,6 +93,31 @@ const Admin = () => {
     navigate("/auth");
   };
 
+  const [digestSending, setDigestSending] = useState(false);
+  const handleSendTestDigest = async () => {
+    setDigestSending(true);
+    try {
+      const { data, error } = await supabase.functions.invoke("trigger-weekly-digest", {
+        body: { test: true },
+      });
+      if (error) throw error;
+      toast({
+        title: "Test digest sent",
+        description: "Check the admin inbox for the weekly digest email.",
+      });
+      console.log("trigger-weekly-digest result:", data);
+    } catch (err: unknown) {
+      const message = err instanceof Error ? err.message : "Unknown error";
+      toast({
+        title: "Failed to send test digest",
+        description: message,
+        variant: "destructive",
+      });
+    } finally {
+      setDigestSending(false);
+    }
+  };
+
   if (!isAdmin) {
     return null;
   }
