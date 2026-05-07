@@ -51,6 +51,7 @@ const Welcome = () => {
     "loading",
   );
   const [email, setEmail] = useState<string | null>(null);
+  const [verifyHint, setVerifyHint] = useState<AuthHint | null>(null);
 
   const intent = useMemo<Intent>(() => {
     const urlTier = params.get("tier");
