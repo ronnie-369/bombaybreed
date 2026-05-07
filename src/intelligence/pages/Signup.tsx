@@ -325,6 +325,8 @@ const Signup = () => {
                 : "Access your dashboard, account, and reports."}
             </p>
 
+            {authHint && <div className="mt-6"><HintBanner hint={authHint} /></div>}
+
             <form onSubmit={handleSubmit} className="mt-8 space-y-5 bg-white border border-bb-border rounded-xl p-7">
               {mode === "signup" && (
                 <>
