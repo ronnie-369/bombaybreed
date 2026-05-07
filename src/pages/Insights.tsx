@@ -10,7 +10,7 @@ import ScrollReveal from '@/components/ui/ScrollReveal';
 import SectionLabel from '@/components/ui/SectionLabel';
 
 import { trackSponsorEvent } from '@/utils/sponsorAnalytics';
-import LadderHero from '@/components/insights/LadderHero';
+
 import LadderStickyPill from '@/components/insights/LadderStickyPill';
 import TierFinder from '@/components/insights/TierFinder';
 
