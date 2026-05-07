@@ -72,6 +72,21 @@ const Welcome = () => {
     let cancelled = false;
 
     const resolve = async () => {
+      const tokenHash = params.get("token_hash");
+      const tokenType = params.get("type");
+      if (tokenHash && (tokenType === "signup" || tokenType === "magiclink")) {
+        const { error } = await supabase.auth.verifyOtp({
+          token_hash: tokenHash,
+          type: tokenType,
+        });
+        if (error) console.warn("[Welcome] email link verification failed", error.message);
+
+        const cleanUrl = new URL(window.location.href);
+        cleanUrl.searchParams.delete("token_hash");
+        cleanUrl.searchParams.delete("type");
+        window.history.replaceState({}, "", `${cleanUrl.pathname}${cleanUrl.search}${cleanUrl.hash}`);
+      }
+
       const { data } = await supabase.auth.getSession();
       if (cancelled) return;
       if (data.session) {
@@ -142,7 +157,7 @@ const Welcome = () => {
       cancelled = true;
       sub.subscription.unsubscribe();
     };
-  }, []);
+  }, [params]);
 
   const proceed = () => {
     navigate(`/intelligence/checkout?tier=${tier}&billing=${billing}`);
