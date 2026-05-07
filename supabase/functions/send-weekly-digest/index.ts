@@ -12,6 +12,16 @@ serve(async (req: Request) => {
     return new Response(null, { headers: corsHeaders });
   }
 
+  // Require shared secret to prevent quota abuse / inbox flooding
+  const expectedSecret = Deno.env.get('DIGEST_SECRET');
+  const providedSecret = req.headers.get('x-digest-secret');
+  if (!expectedSecret || providedSecret !== expectedSecret) {
+    return new Response(JSON.stringify({ error: 'Unauthorized' }), {
+      status: 401,
+      headers: { 'Content-Type': 'application/json', ...corsHeaders },
+    });
+  }
+
   try {
     const supabase = createClient(
       Deno.env.get('SUPABASE_URL')!,
