@@ -23,18 +23,6 @@ const passwordSchema = z
   .regex(/[A-Za-z]/, "Include at least one letter")
   .regex(/[0-9]/, "Include at least one number");
 
-const getFunctionErrorMessage = async (error: unknown, fallback: string) => {
-  const maybeResponse = error as { context?: Response; message?: string };
-  if (maybeResponse.context instanceof Response) {
-    try {
-      const body = await maybeResponse.context.clone().json();
-      if (typeof body?.error === "string") return body.error;
-    } catch {
-      /* ignore */
-    }
-  }
-  return maybeResponse.message || fallback;
-};
 
 const Signup = () => {
   const navigate = useNavigate();
