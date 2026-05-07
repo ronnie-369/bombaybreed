@@ -106,7 +106,32 @@ const Signup = () => {
       return;
     }
     setResendCooldown(45);
-    toast({ title: "Email sent", description: "Check your inbox for the confirmation link." });
+    toast({ title: "Email sent", description: "Check your inbox for the secure access link." });
+  };
+
+  const sendMagicLink = async () => {
+    const email = form.email.trim();
+    if (!email) {
+      toast({ title: "Enter your email", description: "We need your email to send a sign-in link.", variant: "destructive" });
+      return;
+    }
+    setLoading(true);
+    const { error } = await supabase.functions.invoke("intelligence-signup", {
+      body: {
+        action: "resend",
+        email,
+        tier,
+        billing,
+        origin: window.location.origin,
+      },
+    });
+    setLoading(false);
+    if (error) {
+      toast({ title: "Could not send link", description: await getFunctionErrorMessage(error, "Please try again."), variant: "destructive" });
+      return;
+    }
+    setSubmittedEmail(email);
+    setResendCooldown(45);
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -295,6 +320,27 @@ const Signup = () => {
               >
                 {loading ? "Working..." : mode === "signup" ? "Create account" : "Sign in"}
               </button>
+
+              {mode === "signin" && (
+                <>
+                  <div className="flex items-center gap-3 text-[11px] uppercase tracking-[0.25em] text-bb-gray">
+                    <span className="h-px flex-1 bg-bb-border" />
+                    or
+                    <span className="h-px flex-1 bg-bb-border" />
+                  </div>
+                  <button
+                    type="button"
+                    onClick={sendMagicLink}
+                    disabled={loading}
+                    className="w-full h-11 rounded-[10px] border border-bb-slate text-bb-slate text-[13px] font-medium hover:bg-bb-slate hover:text-bb-off-white transition disabled:opacity-50"
+                  >
+                    Email me a sign-in link
+                  </button>
+                  <p className="text-[12px] text-bb-gray text-center -mt-1">
+                    No password needed. We will send a secure access link.
+                  </p>
+                </>
+              )}
 
               <div className="text-center text-[13px] text-bb-gray">
                 {mode === "signup" ? (
