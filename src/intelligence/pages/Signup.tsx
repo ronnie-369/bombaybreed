@@ -7,6 +7,12 @@ import { useToast } from "@/hooks/use-toast";
 import IntelligenceLayout from "../components/IntelligenceLayout";
 import SectionLabel from "../components/SectionLabel";
 import { logSubscribeConversion } from "@/lib/abTest";
+import {
+  logAuthDiagnostic,
+  extractErrorMessage,
+  interpretAuthError,
+  type AuthHint,
+} from "../lib/authDiagnostics";
 
 // Member signup: low-friction password rules. Admin auth keeps its stricter
 // 12-char policy in src/pages/Auth.tsx. Supabase Leaked Password Protection
