@@ -290,6 +290,8 @@ const Signup = () => {
                 Did not receive it? Check spam, or resend below. The link expires automatically.
               </div>
 
+              {authHint && <HintBanner hint={authHint} />}
+
               <button
                 type="button"
                 onClick={resendConfirmation}
