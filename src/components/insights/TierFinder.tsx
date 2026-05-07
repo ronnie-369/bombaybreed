@@ -108,14 +108,14 @@ const QUESTIONS: Question[] = [
         allowedTiers: ["tcd-free", "tcd-paid"],
       },
       {
-        // Up to USD 100/mo - Market Makers and below.
-        label: "USD 100 / month (research-grade editorial)",
+        // Up to USD 10/mo - Market Makers and below.
+        label: "USD 10 / month (research-grade editorial)",
         scores: { "bb-reader": 2, "tcd-paid": 1 },
         allowedTiers: ["tcd-free", "tcd-paid", "bb-reader"],
       },
       {
-        // Up to USD 500/mo - Investment Intelligence and below.
-        label: "USD 500 / month (research + advisory)",
+        // Up to USD 20/mo - Investment Intelligence and below.
+        label: "USD 20 / month (research + advisory)",
         scores: { "bb-analyst": 2, "bb-reader": 1 },
         allowedTiers: ["tcd-free", "tcd-paid", "bb-reader", "bb-analyst"],
       },
