@@ -81,7 +81,17 @@ const Welcome = () => {
           token_hash: tokenHash,
           type: tokenType,
         });
-        if (error) console.warn("[Welcome] email link verification failed", error.message);
+        if (error) {
+          console.warn("[Welcome] email link verification failed", error.message);
+          setVerifyHint(interpretAuthError("verify_email_link", error.message));
+          await logAuthDiagnostic({
+            event: "verify_email_link",
+            status: "failure",
+            errorMessage: error.message,
+          });
+        } else {
+          await logAuthDiagnostic({ event: "verify_email_link", status: "success" });
+        }
 
         const cleanUrl = new URL(window.location.href);
         cleanUrl.searchParams.delete("token_hash");
