@@ -196,12 +196,29 @@ const Welcome = () => {
               {verifyHint?.description ??
                 "The link may have expired or been used already. Sign in with the email and password you just registered, or request a fresh link."}
             </p>
+            <div className="mt-6 rounded-[10px] border border-bb-slate/30 bg-bb-slate/5 p-4 text-[13px] text-bb-gray leading-relaxed">
+              <div className="text-[11px] font-semibold uppercase tracking-[0.2em] text-bb-near-black mb-2">
+                What to try
+              </div>
+              <ul className="list-disc pl-5 space-y-1">
+                <li>Request a fresh access link from the sign-in page (links expire quickly).</li>
+                <li>Make sure you opened the most recent email - older links are invalidated when a new one is sent.</li>
+                <li>Check your spam or promotions folder.</li>
+                <li>Open the link in the same browser you signed up from.</li>
+              </ul>
+            </div>
             <div className="mt-8 flex gap-3">
               <Link
                 to="/intelligence/signup"
                 className="px-5 h-11 inline-flex items-center rounded-[10px] bg-bb-slate text-bb-off-white text-[13px] font-medium hover:opacity-90 transition"
               >
-                Back to sign in
+                Request a new link
+              </Link>
+              <Link
+                to="/intelligence/signup"
+                className="px-5 h-11 inline-flex items-center rounded-[10px] border border-bb-border text-bb-near-black text-[13px] font-medium hover:bg-bb-off-white transition"
+              >
+                Sign in with password
               </Link>
             </div>
           </>
@@ -209,6 +226,16 @@ const Welcome = () => {
 
         {sessionState === "ready" && (
           <>
+            {verifyHint && (
+              <div className="mb-8 rounded-[10px] border border-bb-copper/40 bg-bb-copper/5 p-4">
+                <div className="text-[12px] font-semibold uppercase tracking-[0.2em] text-bb-near-black">
+                  {verifyHint.title}
+                </div>
+                <div className="mt-2 text-[13px] text-bb-gray leading-relaxed">
+                  {verifyHint.description} You are still signed in from a previous session, so you can continue.
+                </div>
+              </div>
+            )}
             <SectionLabel>Welcome</SectionLabel>
             <h1 className="mt-6 font-serif font-normal tracking-[-0.025em] text-[36px] leading-[1.1] text-bb-near-black">
               You have successfully created an account
