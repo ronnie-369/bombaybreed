@@ -7,6 +7,12 @@ import { useToast } from "@/hooks/use-toast";
 import IntelligenceLayout from "../components/IntelligenceLayout";
 import SectionLabel from "../components/SectionLabel";
 import { logSubscribeConversion } from "@/lib/abTest";
+import {
+  logAuthDiagnostic,
+  extractErrorMessage,
+  interpretAuthError,
+  type AuthHint,
+} from "../lib/authDiagnostics";
 
 // Member signup: low-friction password rules. Admin auth keeps its stricter
 // 12-char policy in src/pages/Auth.tsx. Supabase Leaked Password Protection
@@ -17,18 +23,6 @@ const passwordSchema = z
   .regex(/[A-Za-z]/, "Include at least one letter")
   .regex(/[0-9]/, "Include at least one number");
 
-const getFunctionErrorMessage = async (error: unknown, fallback: string) => {
-  const maybeResponse = error as { context?: Response; message?: string };
-  if (maybeResponse.context instanceof Response) {
-    try {
-      const body = await maybeResponse.context.clone().json();
-      if (typeof body?.error === "string") return body.error;
-    } catch {
-      /* ignore */
-    }
-  }
-  return maybeResponse.message || fallback;
-};
 
 const Signup = () => {
   const navigate = useNavigate();
@@ -44,6 +38,7 @@ const Signup = () => {
   const [loading, setLoading] = useState(false);
   const [submittedEmail, setSubmittedEmail] = useState<string | null>(null);
   const [resendCooldown, setResendCooldown] = useState(0);
+  const [authHint, setAuthHint] = useState<AuthHint | null>(null);
   const [form, setForm] = useState({
     fullName: "",
     company: "",
@@ -90,6 +85,34 @@ const Signup = () => {
     }
   };
 
+  const reportFailure = async (
+    event: Parameters<typeof logAuthDiagnostic>[0]["event"],
+    rawMessage: string,
+    email?: string | null,
+  ) => {
+    const hint = interpretAuthError(event, rawMessage);
+    setAuthHint(hint);
+    toast({
+      title: hint.title,
+      description: hint.description,
+      variant: hint.severity === "info" ? "default" : "destructive",
+    });
+    await logAuthDiagnostic({
+      event,
+      email: email ?? null,
+      status: "failure",
+      errorMessage: rawMessage || null,
+    });
+  };
+
+  const reportSuccess = async (
+    event: Parameters<typeof logAuthDiagnostic>[0]["event"],
+    email?: string | null,
+  ) => {
+    setAuthHint(null);
+    await logAuthDiagnostic({ event, email: email ?? null, status: "success" });
+  };
+
   const resendConfirmation = async () => {
     if (!submittedEmail || resendCooldown > 0) return;
     const { error } = await supabase.functions.invoke("intelligence-signup", {
@@ -102,11 +125,12 @@ const Signup = () => {
       },
     });
     if (error) {
-      toast({ title: "Could not resend", description: await getFunctionErrorMessage(error, "Please try again."), variant: "destructive" });
+      await reportFailure("resend", await extractErrorMessage(error), submittedEmail);
       return;
     }
     setResendCooldown(45);
-    toast({ title: "Email sent", description: "Check your inbox for the secure access link." });
+    await reportSuccess("resend", submittedEmail);
+    toast({ title: "Email sent", description: "Check your inbox (and spam) for the secure access link." });
   };
 
   const sendMagicLink = async () => {
@@ -127,16 +151,18 @@ const Signup = () => {
     });
     setLoading(false);
     if (error) {
-      toast({ title: "Could not send link", description: await getFunctionErrorMessage(error, "Please try again."), variant: "destructive" });
+      await reportFailure("magic_link", await extractErrorMessage(error), email);
       return;
     }
     setSubmittedEmail(email);
     setResendCooldown(45);
+    await reportSuccess("magic_link", email);
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
+    setAuthHint(null);
 
     if (mode === "signup") {
       const pwdResult = passwordSchema.safeParse(form.password);
@@ -168,7 +194,7 @@ const Signup = () => {
       });
 
       if (error) {
-        toast({ title: "Sign up failed", description: await getFunctionErrorMessage(error, "Please try again."), variant: "destructive" });
+        await reportFailure("signup", await extractErrorMessage(error), form.email);
         setLoading(false);
         return;
       }
@@ -181,14 +207,16 @@ const Signup = () => {
       if (signInError) {
         setSubmittedEmail(form.email);
         setResendCooldown(45);
+        await logAuthDiagnostic({
+          event: "signin_password",
+          email: form.email,
+          status: "failure",
+          errorMessage: signInError.message,
+        });
         setLoading(false);
         return;
       }
 
-      // If Supabase email confirmation is enabled (the default for this project),
-      // data.session will be null until the user clicks the link. We only try to
-      // upsert the subscriber row if we already have a session - otherwise RLS
-      // would reject the insert. The Welcome page handles the upsert post-confirm.
       if (data.user && data.session) {
         await supabase.from("tcd_subscribers").upsert(
           {
@@ -202,12 +230,9 @@ const Signup = () => {
         );
       }
 
-      // A/B: attribute the conversion to whichever subscribe-CTA variant
-      // brought this visitor in (within the 7-day attribution window).
       logSubscribeConversion({ tier, source: 'signup' });
+      await reportSuccess("signup", form.email);
 
-      // If the project happens to have email confirmation disabled and we got
-      // a session straight away, skip the inline state and continue to checkout.
       if (data.session) {
         toast({ title: "Account created", description: "Continue to membership selection." });
         navigate(`/intelligence/checkout?tier=${tier}&billing=${billing}`);
@@ -221,10 +246,11 @@ const Signup = () => {
         password: form.password,
       });
       if (error) {
-        toast({ title: "Sign in failed", description: error.message, variant: "destructive" });
+        await reportFailure("signin_password", error.message, form.email);
         setLoading(false);
         return;
       }
+      await reportSuccess("signin_password", form.email);
       navigate(redirect || "/intelligence/dashboard");
     }
 
@@ -264,6 +290,8 @@ const Signup = () => {
                 Did not receive it? Check spam, or resend below. The link expires automatically.
               </div>
 
+              {authHint && <HintBanner hint={authHint} />}
+
               <button
                 type="button"
                 onClick={resendConfirmation}
@@ -296,6 +324,8 @@ const Signup = () => {
                 ? "I keep the platform deliberately small. Identify yourself clearly so I can serve the right material."
                 : "Access your dashboard, account, and reports."}
             </p>
+
+            {authHint && <div className="mt-6"><HintBanner hint={authHint} /></div>}
 
             <form onSubmit={handleSubmit} className="mt-8 space-y-5 bg-white border border-bb-border rounded-xl p-7">
               {mode === "signup" && (
@@ -402,5 +432,24 @@ const Field = ({
     />
   </label>
 );
+
+const HintBanner = ({ hint }: { hint: AuthHint }) => {
+  const tone =
+    hint.severity === "error"
+      ? "border-bb-copper/40 bg-bb-copper/5"
+      : hint.severity === "warning"
+      ? "border-bb-slate/30 bg-bb-slate/5"
+      : "border-bb-border bg-bb-off-white";
+  return (
+    <div className={`rounded-[10px] border ${tone} p-4`}>
+      <div className="text-[12px] font-semibold uppercase tracking-[0.2em] text-bb-near-black">
+        {hint.title}
+      </div>
+      <div className="mt-2 text-[13px] text-bb-gray leading-relaxed">
+        {hint.description}
+      </div>
+    </div>
+  );
+};
 
 export default Signup;

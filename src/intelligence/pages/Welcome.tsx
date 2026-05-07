@@ -4,6 +4,7 @@ import { Helmet } from "react-helmet-async";
 import { supabase } from "@/integrations/supabase/client";
 import IntelligenceLayout from "../components/IntelligenceLayout";
 import SectionLabel from "../components/SectionLabel";
+import { logAuthDiagnostic, interpretAuthError, type AuthHint } from "../lib/authDiagnostics";
 
 // Marketing slugs may still appear in older confirmation links - normalize.
 const TIER_ALIAS: Record<string, string> = {
@@ -50,6 +51,7 @@ const Welcome = () => {
     "loading",
   );
   const [email, setEmail] = useState<string | null>(null);
+  const [verifyHint, setVerifyHint] = useState<AuthHint | null>(null);
 
   const intent = useMemo<Intent>(() => {
     const urlTier = params.get("tier");
@@ -79,7 +81,17 @@ const Welcome = () => {
           token_hash: tokenHash,
           type: tokenType,
         });
-        if (error) console.warn("[Welcome] email link verification failed", error.message);
+        if (error) {
+          console.warn("[Welcome] email link verification failed", error.message);
+          setVerifyHint(interpretAuthError("verify_email_link", error.message));
+          await logAuthDiagnostic({
+            event: "verify_email_link",
+            status: "failure",
+            errorMessage: error.message,
+          });
+        } else {
+          await logAuthDiagnostic({ event: "verify_email_link", status: "success" });
+        }
 
         const cleanUrl = new URL(window.location.href);
         cleanUrl.searchParams.delete("token_hash");
@@ -178,11 +190,11 @@ const Welcome = () => {
           <>
             <SectionLabel>Confirmation needed</SectionLabel>
             <h1 className="mt-6 font-serif font-normal tracking-[-0.025em] text-[32px] leading-[1.15] text-bb-near-black">
-              We could not verify this confirmation link
+              {verifyHint?.title ?? "We could not verify this confirmation link"}
             </h1>
             <p className="mt-4 text-[14px] text-bb-gray leading-relaxed">
-              The link may have expired or been used already. Sign in with the email
-              and password you just registered, or request a fresh link.
+              {verifyHint?.description ??
+                "The link may have expired or been used already. Sign in with the email and password you just registered, or request a fresh link."}
             </p>
             <div className="mt-8 flex gap-3">
               <Link

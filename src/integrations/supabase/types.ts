@@ -618,6 +618,42 @@ export type Database = {
         }
         Relationships: []
       }
+      tcd_auth_diagnostics: {
+        Row: {
+          created_at: string
+          email: string | null
+          error_code: string | null
+          error_message: string | null
+          event: string
+          id: string
+          status: string
+          surface: string | null
+          user_agent: string | null
+        }
+        Insert: {
+          created_at?: string
+          email?: string | null
+          error_code?: string | null
+          error_message?: string | null
+          event: string
+          id?: string
+          status: string
+          surface?: string | null
+          user_agent?: string | null
+        }
+        Update: {
+          created_at?: string
+          email?: string | null
+          error_code?: string | null
+          error_message?: string | null
+          event?: string
+          id?: string
+          status?: string
+          surface?: string | null
+          user_agent?: string | null
+        }
+        Relationships: []
+      }
       tcd_order_attempts: {
         Row: {
           amount_inr: number | null
