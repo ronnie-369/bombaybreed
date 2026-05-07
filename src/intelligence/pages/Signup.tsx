@@ -38,6 +38,7 @@ const Signup = () => {
   const [loading, setLoading] = useState(false);
   const [submittedEmail, setSubmittedEmail] = useState<string | null>(null);
   const [resendCooldown, setResendCooldown] = useState(0);
+  const [authHint, setAuthHint] = useState<AuthHint | null>(null);
   const [form, setForm] = useState({
     fullName: "",
     company: "",
