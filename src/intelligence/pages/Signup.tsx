@@ -106,7 +106,32 @@ const Signup = () => {
       return;
     }
     setResendCooldown(45);
-    toast({ title: "Email sent", description: "Check your inbox for the confirmation link." });
+    toast({ title: "Email sent", description: "Check your inbox for the secure access link." });
+  };
+
+  const sendMagicLink = async () => {
+    const email = form.email.trim();
+    if (!email) {
+      toast({ title: "Enter your email", description: "We need your email to send a sign-in link.", variant: "destructive" });
+      return;
+    }
+    setLoading(true);
+    const { error } = await supabase.functions.invoke("intelligence-signup", {
+      body: {
+        action: "resend",
+        email,
+        tier,
+        billing,
+        origin: window.location.origin,
+      },
+    });
+    setLoading(false);
+    if (error) {
+      toast({ title: "Could not send link", description: await getFunctionErrorMessage(error, "Please try again."), variant: "destructive" });
+      return;
+    }
+    setSubmittedEmail(email);
+    setResendCooldown(45);
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
