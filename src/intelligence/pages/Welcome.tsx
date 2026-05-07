@@ -190,11 +190,11 @@ const Welcome = () => {
           <>
             <SectionLabel>Confirmation needed</SectionLabel>
             <h1 className="mt-6 font-serif font-normal tracking-[-0.025em] text-[32px] leading-[1.15] text-bb-near-black">
-              We could not verify this confirmation link
+              {verifyHint?.title ?? "We could not verify this confirmation link"}
             </h1>
             <p className="mt-4 text-[14px] text-bb-gray leading-relaxed">
-              The link may have expired or been used already. Sign in with the email
-              and password you just registered, or request a fresh link.
+              {verifyHint?.description ??
+                "The link may have expired or been used already. Sign in with the email and password you just registered, or request a fresh link."}
             </p>
             <div className="mt-8 flex gap-3">
               <Link
