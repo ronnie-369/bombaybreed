@@ -93,8 +93,8 @@ export const TIERS: LadderTier[] = [
     id: "bb-reader",
     name: "Market Makers",
     ladder: "BB",
-    priceLabel: "INR 8,500 / mo (USD 100)",
-    pricing: { usd: 100, inr: 8500, period: "mo" },
+    priceLabel: "USD 10 / mo (INR 850)",
+    pricing: { usd: 10, inr: 850, period: "mo" },
     audience:
       "Developers, verification agencies, service providers, consultants and advisors working in the Indian carbon market",
     strategicRole: "Editorial intelligence at research-grade discipline",
@@ -108,8 +108,8 @@ export const TIERS: LadderTier[] = [
     id: "bb-analyst",
     name: "Investment Intelligence",
     ladder: "BB",
-    priceLabel: "INR 42,500 / mo (USD 500)",
-    pricing: { usd: 500, inr: 42500, period: "mo" },
+    priceLabel: "USD 20 / mo (INR 1,700)",
+    pricing: { usd: 20, inr: 1700, period: "mo" },
     audience:
       "Climate VCs, PE running diligence, family offices, DFI staff",
     strategicRole:
