@@ -84,7 +84,7 @@ serve(async (req: Request) => {
     generated = await admin.auth.admin.generateLink({ type: "magiclink", email });
   }
 
-  if (generated.error || !generated.data.properties?.hashed_token) {
+  if (generated.error || !generated.data.user?.id) {
     return jsonResponse({ error: generated.error?.message ?? "Could not create access link" }, 400);
   }
 
@@ -96,10 +96,17 @@ serve(async (req: Request) => {
   }
 
   if (generated.data.user?.id) {
-    const { error: confirmError } = await admin.auth.admin.updateUserById(generated.data.user.id, {
-      email_confirm: true,
-      user_metadata: { full_name: fullName, company, designation, intended_tier: tier, intended_billing: billing },
-    });
+    const updatePayload = action === "signup"
+      ? {
+          email_confirm: true,
+          password,
+          user_metadata: { full_name: fullName, company, designation, intended_tier: tier, intended_billing: billing },
+        }
+      : {
+          email_confirm: true,
+          user_metadata: { full_name: fullName, company, designation, intended_tier: tier, intended_billing: billing },
+        };
+    const { error: confirmError } = await admin.auth.admin.updateUserById(generated.data.user.id, updatePayload);
     if (confirmError) return jsonResponse({ error: confirmError.message }, 400);
   }
 
