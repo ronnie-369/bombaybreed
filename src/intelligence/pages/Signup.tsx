@@ -321,6 +321,27 @@ const Signup = () => {
                 {loading ? "Working..." : mode === "signup" ? "Create account" : "Sign in"}
               </button>
 
+              {mode === "signin" && (
+                <>
+                  <div className="flex items-center gap-3 text-[11px] uppercase tracking-[0.25em] text-bb-gray">
+                    <span className="h-px flex-1 bg-bb-border" />
+                    or
+                    <span className="h-px flex-1 bg-bb-border" />
+                  </div>
+                  <button
+                    type="button"
+                    onClick={sendMagicLink}
+                    disabled={loading}
+                    className="w-full h-11 rounded-[10px] border border-bb-slate text-bb-slate text-[13px] font-medium hover:bg-bb-slate hover:text-bb-off-white transition disabled:opacity-50"
+                  >
+                    Email me a sign-in link
+                  </button>
+                  <p className="text-[12px] text-bb-gray text-center -mt-1">
+                    No password needed. We will send a secure access link.
+                  </p>
+                </>
+              )}
+
               <div className="text-center text-[13px] text-bb-gray">
                 {mode === "signup" ? (
                   <>
