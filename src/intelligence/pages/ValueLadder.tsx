@@ -278,7 +278,7 @@ const ValueLadder = () => {
           <table className="w-full border-collapse text-left">
             <thead>
               <tr className="align-top h-px">
-                <th className="sticky top-16 z-20 w-[220px] p-5 text-[11px] uppercase tracking-[0.18em] text-bb-gray font-medium bg-bb-off-white border-b border-bb-border h-full">
+                <th className="sticky top-16 z-20 w-[220px] p-5 text-[11px] uppercase tracking-[0.18em] text-bb-gray font-medium bg-bb-paper border-b border-bb-border h-full">
                   What you get
                 </th>
                 {TIERS.map((tier) => {
@@ -287,7 +287,7 @@ const ValueLadder = () => {
                     <th
                       key={tier.id}
                       className={`sticky top-16 z-20 p-5 align-top border-l border-b border-bb-border h-full ${
-                        isSponsor ? "bg-bb-copper/5" : "bg-bb-off-white"
+                        isSponsor ? "bg-bb-paper" : "bg-bb-paper"
                       }`}
                     >
                       <div className="flex flex-col h-full min-h-full">
@@ -338,7 +338,7 @@ const ValueLadder = () => {
                       <td
                         key={tier.id}
                         className={`p-5 text-[12px] leading-[1.55] border-l border-bb-border ${
-                          isSponsor ? "bg-bb-copper/5" : ""
+                          isSponsor ? "bg-bb-paper" : ""
                         } ${isNo ? "text-bb-gray/70" : "text-bb-near-black/85"}`}
                       >
                         {cell}
@@ -349,7 +349,7 @@ const ValueLadder = () => {
               ))}
             </tbody>
             <tfoot>
-              <tr className="bg-bb-off-white/60 align-top">
+              <tr className="bg-bb-paper align-top">
                 <td className="p-5 text-[11px] uppercase tracking-[0.18em] text-bb-gray font-medium">
                   Select your plan
                 </td>
