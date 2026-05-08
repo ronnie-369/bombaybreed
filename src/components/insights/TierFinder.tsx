@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { TIERS, formatTierCtaLabel, type LadderTier } from "@/intelligence/lib/valueLadder";
 import { useCurrency } from "@/intelligence/lib/useCurrency";
@@ -153,6 +153,17 @@ const TierFinder = () => {
   const recommendation = useMemo<{
     tier: LadderTier;
     stretchTier: LadderTier | null;
+    diagnostics: {
+      scores: Record<TierId, number>;
+      budgetScores: Partial<Record<TierId, number>>;
+      allowed: TierId[];
+      ranked: [TierId, number][];
+      idealId: TierId;
+      winnerId: TierId;
+      tieAtTop: boolean;
+      budgetCappedIdeal: boolean;
+      answerLabels: Record<string, string>;
+    };
   } | null>(() => {
     if (!allAnswered) return null;
 
@@ -166,10 +177,12 @@ const TierFinder = () => {
     };
     let allowed: TierId[] = ALL_TIERS;
     let budgetScores: Partial<Record<TierId, number>> = {};
+    const answerLabels: Record<string, string> = {};
     for (const q of QUESTIONS) {
       const idx = answers[q.id];
       const opt = q.options[idx];
       if (!opt) continue;
+      answerLabels[q.id] = opt.label;
       for (const [tid, val] of Object.entries(opt.scores)) {
         scores[tid as TierId] += val ?? 0;
       }
@@ -205,28 +218,72 @@ const TierFinder = () => {
       }
     );
     const idealId = ranked[0][0];
+    const tieAtTop = ranked.length > 1 && ranked[0][1] === ranked[1][1];
 
     // 3. Apply budget ceiling. Pick the highest-scoring tier the visitor
     //    can actually afford.
     const allowedSet = new Set(allowed);
     const affordable = ranked.filter(([tid]) => allowedSet.has(tid));
     const winnerId: TierId = affordable.length > 0 ? affordable[0][0] : idealId;
+    const budgetCappedIdeal = idealId !== winnerId && !allowedSet.has(idealId);
 
     const tier = TIERS.find((t) => t.id === winnerId) ?? null;
     if (!tier) return null;
 
     // 4. If the unconstrained pick is different and was excluded only by
     //    budget, surface it as an upgrade hint.
-    const stretchTier =
-      idealId !== winnerId && !allowedSet.has(idealId)
-        ? TIERS.find((t) => t.id === idealId) ?? null
-        : null;
+    const stretchTier = budgetCappedIdeal
+      ? TIERS.find((t) => t.id === idealId) ?? null
+      : null;
 
-    return { tier, stretchTier };
+    return {
+      tier,
+      stretchTier,
+      diagnostics: {
+        scores,
+        budgetScores,
+        allowed,
+        ranked,
+        idealId,
+        winnerId,
+        tieAtTop,
+        budgetCappedIdeal,
+        answerLabels,
+      },
+    };
   }, [answers, allAnswered]);
 
   const recommendedTier = recommendation?.tier ?? null;
   const stretchTier = recommendation?.stretchTier ?? null;
+
+  // Emit a structured analytics event whenever the recommendation engine
+  // settles on a result. The payload captures inputs, raw tier scores,
+  // budget tie-break signals and which rules fired so we can spot future
+  // mismatches (e.g. budget-capped picks, top-of-ranking ties).
+  const lastLoggedKey = useRef<string | null>(null);
+  useEffect(() => {
+    if (!recommendation) return;
+    const { diagnostics, tier, stretchTier: stretch } = recommendation;
+    const key = JSON.stringify({ a: answers, w: diagnostics.winnerId });
+    if (lastLoggedKey.current === key) return;
+    lastLoggedKey.current = key;
+    trackEvent("tier_finder_recommendation", {
+      surface: "insights_tier_finder",
+      tier_id: tier.id,
+      tier_name: tier.name,
+      stretch_tier_id: stretch?.id ?? null,
+      stretch_tier_name: stretch?.name ?? null,
+      ideal_tier_id: diagnostics.idealId,
+      tie_at_top: diagnostics.tieAtTop,
+      budget_capped_ideal: diagnostics.budgetCappedIdeal,
+      scores: diagnostics.scores,
+      budget_signal: diagnostics.budgetScores,
+      allowed_tiers: diagnostics.allowed,
+      ranked: diagnostics.ranked.map(([id, score]) => ({ id, score })),
+      answers: diagnostics.answerLabels,
+    });
+  }, [recommendation, answers]);
+
 
   const handleSelect = (qid: string, idx: number) => {
     setAnswers((prev) => ({ ...prev, [qid]: idx }));
