@@ -628,13 +628,6 @@ const ValueLadder = () => {
               </p>
             </div>
           </div>
-          <p className="mt-6 text-[12px] italic text-bb-gray max-w-3xl">
-            Strategic note: the platform does not need wishlist sources in
-            phase one. What it needs is the editorial discipline and curation
-            skill to make realistic-now sources genuinely valuable. If those
-            are right, subscribers will pay; the data layer can be deepened as
-            the subscriber base supports it.
-          </p>
         </details>
       </section>
 
