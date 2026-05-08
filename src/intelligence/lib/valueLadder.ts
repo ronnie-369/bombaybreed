@@ -443,7 +443,7 @@ export interface SponsorBand {
 export const SPONSOR_BANDS: SponsorBand[] = [
   {
     engagement: "Sectoral report sponsorship",
-    price: "INR 15-30 Lakh per report",
+    price: "Starting INR 75,000 plus GST",
     scope:
       "Underwrites the production of one of the four annual sectoral reports on a CCTS-obligated industrial sector. Range depends on sector complexity, primary research depth, and whether sponsor wants a co-branded executive summary in addition to the published report. Sponsor receives attribution credit and a working-session call.",
   },
