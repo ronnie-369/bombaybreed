@@ -98,10 +98,35 @@ const TierCta = ({ tier, surface, variant = "primary", onSponsorClick, currency 
   const label = formatTierCtaLabel(tier, currency);
 
   if (tier.cta.kind === "internal") {
+    const href = tier.cta.href;
+    const hashIdx = href.indexOf("#");
+    const isSamePageHash =
+      hashIdx >= 0 &&
+      (href.startsWith("#") ||
+        href.startsWith("/intelligence/value-ladder#"));
     return (
       <Link
-        to={tier.cta.href}
-        onClick={() => trackLadderCta(tier, surface)}
+        to={href}
+        onClick={(e) => {
+          trackLadderCta(tier, surface);
+          if (isSamePageHash && typeof window !== "undefined") {
+            const id = href.slice(hashIdx + 1);
+            const el = document.getElementById(id);
+            if (el) {
+              e.preventDefault();
+              const prefersReduced = window.matchMedia(
+                "(prefers-reduced-motion: reduce)",
+              ).matches;
+              el.scrollIntoView({
+                behavior: prefersReduced ? "auto" : "smooth",
+                block: "start",
+              });
+              if (window.history && window.history.replaceState) {
+                window.history.replaceState(null, "", `#${id}`);
+              }
+            }
+          }
+        }}
         className={`${baseClass} ${styleClass}`}
       >
         {label}
