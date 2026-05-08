@@ -352,13 +352,28 @@ const Checkout = () => {
 
       <header className="border-b border-bb-border">
         <div className="max-w-2xl mx-auto px-6 h-16 flex items-center justify-between">
-          <Link
-            to="/"
+          <button
+            type="button"
+            onClick={() => {
+              // Prefer returning to the exact previous page (pricing/plan)
+              // when the user navigated here from within the app.
+              const ref = typeof document !== "undefined" ? document.referrer : "";
+              const sameOrigin =
+                ref && typeof window !== "undefined" && ref.startsWith(window.location.origin);
+              const hasHistory =
+                typeof window !== "undefined" && window.history.length > 1;
+              if (sameOrigin && hasHistory) {
+                navigate(-1);
+                return;
+              }
+              // Sensible fallback: the membership/pricing page.
+              navigate("/intelligence/membership");
+            }}
             className="text-[13px] font-medium text-bb-gray hover:text-bb-near-black inline-flex items-center gap-1.5"
-            aria-label="Back to Bombay Breed home"
+            aria-label="Back to previous page"
           >
-            <span aria-hidden>←</span> Home
-          </Link>
+            <span aria-hidden>←</span> Back
+          </button>
           <Link to="/intelligence" className="font-serif text-[16px] tracking-tight text-bb-near-black">
             TCD Intelligence
           </Link>
