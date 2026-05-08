@@ -4,6 +4,7 @@ import { Button } from '@/components/ui/button';
 import { Label } from '@/components/ui/label';
 import { Check, Download } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
+import { formatPhoneInput, normalizePhone } from '@/lib/phoneFormat';
 
 const FORMSPREE_URL = 'https://formspree.io/f/myknnoea';
 

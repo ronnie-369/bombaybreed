@@ -38,7 +38,7 @@ const DirectContact = () => {
         body: JSON.stringify({
           name: values.name.trim(),
           email: values.email.trim().toLowerCase(),
-          phone: values.phone?.trim() || '',
+          phone: normalizePhone(values.phone || ''),
           message: 'Consultation request from contact section',
           form_type: 'contact_quick',
         }),
@@ -129,7 +129,7 @@ const DirectContact = () => {
                   render={({ field }) => (
                     <FormItem>
                       <FormControl>
-                        <Input type="tel" inputMode="tel" autoComplete="tel" placeholder="Phone (optional) - +91 98765 43210" {...field} className="bg-background" />
+                        <Input type="tel" inputMode="tel" autoComplete="tel" placeholder="Phone (optional) - +91 98765 43210" {...field} value={formatPhoneInput(field.value || '')} onChange={(e) => field.onChange(formatPhoneInput(e.target.value))} className="bg-background" />
                       </FormControl>
                       <FormMessage />
                     </FormItem>
