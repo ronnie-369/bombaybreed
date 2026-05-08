@@ -14,6 +14,7 @@ import SectionLabel from '@/components/ui/SectionLabel';
 const formSchema = z.object({
   name: z.string().trim().min(2, { message: "Name must be at least 2 characters" }).max(100),
   email: z.string().trim().email({ message: "Invalid email address" }).max(255),
+  phone: z.string().trim().max(30).optional().or(z.literal('')),
 });
 
 type FormValues = z.infer<typeof formSchema>;
@@ -24,7 +25,7 @@ const DirectContact = () => {
 
   const form = useForm<FormValues>({
     resolver: zodResolver(formSchema),
-    defaultValues: { name: '', email: '' }
+    defaultValues: { name: '', email: '', phone: '' }
   });
 
   const onSubmit = async (values: FormValues) => {
@@ -36,6 +37,7 @@ const DirectContact = () => {
         body: JSON.stringify({
           name: values.name.trim(),
           email: values.email.trim().toLowerCase(),
+          phone: values.phone?.trim() || '',
           message: 'Consultation request from contact section',
           form_type: 'contact_quick',
         }),
@@ -93,32 +95,46 @@ const DirectContact = () => {
           <div className="mt-12 pt-10 border-t border-border/50">
             <p className="text-sm text-muted-foreground mb-6">Or leave your details and I'll reach out</p>
             <Form {...form}>
-              <form onSubmit={form.handleSubmit(onSubmit)} className="flex flex-col sm:flex-row gap-3 max-w-md mx-auto">
+              <form onSubmit={form.handleSubmit(onSubmit)} className="max-w-md mx-auto space-y-3">
+                <div className="flex flex-col sm:flex-row gap-3">
+                  <FormField
+                    control={form.control}
+                    name="name"
+                    render={({ field }) => (
+                      <FormItem className="flex-1">
+                        <FormControl>
+                          <Input placeholder="Your name" {...field} className="bg-background" />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                  <FormField
+                    control={form.control}
+                    name="email"
+                    render={({ field }) => (
+                      <FormItem className="flex-1">
+                        <FormControl>
+                          <Input type="email" placeholder="your@email.com" {...field} className="bg-background" />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                </div>
                 <FormField
                   control={form.control}
-                  name="name"
+                  name="phone"
                   render={({ field }) => (
-                    <FormItem className="flex-1">
+                    <FormItem>
                       <FormControl>
-                        <Input placeholder="Your name" {...field} className="bg-background" />
+                        <Input type="tel" inputMode="tel" autoComplete="tel" placeholder="Phone (optional) - +91 98765 43210" {...field} className="bg-background" />
                       </FormControl>
                       <FormMessage />
                     </FormItem>
                   )}
                 />
-                <FormField
-                  control={form.control}
-                  name="email"
-                  render={({ field }) => (
-                    <FormItem className="flex-1">
-                      <FormControl>
-                        <Input type="email" placeholder="your@email.com" {...field} className="bg-background" />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-                <Button type="submit" disabled={isSubmitting} className="shrink-0">
+                <Button type="submit" disabled={isSubmitting} className="w-full">
                   {isSubmitting ? 'Sending...' : 'Send'}
                 </Button>
               </form>

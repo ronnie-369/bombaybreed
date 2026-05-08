@@ -20,7 +20,7 @@ interface ReportDownloadFormProps {
 }
 
 const ReportDownloadForm: React.FC<ReportDownloadFormProps> = ({ reportTitle }) => {
-  const [formData, setFormData] = useState({ name: '', email: '', org: '' });
+  const [formData, setFormData] = useState({ name: '', email: '', org: '', phone: '' });
   const [isLoading, setIsLoading] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
   const { toast } = useToast();
@@ -46,6 +46,7 @@ const ReportDownloadForm: React.FC<ReportDownloadFormProps> = ({ reportTitle }) 
           name: formData.name.trim(),
           email: formData.email.trim().toLowerCase(),
           organisation: formData.org.trim(),
+          phone: formData.phone.trim() || undefined,
           report_requested: reportTitle,
           form_type: 'report_download',
         }),
@@ -102,6 +103,10 @@ const ReportDownloadForm: React.FC<ReportDownloadFormProps> = ({ reportTitle }) 
         <div>
           <Label htmlFor="dl-org" className="text-[13px] font-medium text-foreground">Organisation</Label>
           <Input id="dl-org" type="text" placeholder="Company Ltd." value={formData.org} onChange={(e) => setFormData(d => ({ ...d, org: e.target.value }))} required className="mt-1.5 h-12 text-[15px]" />
+        </div>
+        <div>
+          <Label htmlFor="dl-phone" className="text-[13px] font-medium text-foreground">Phone <span className="text-muted-foreground font-normal">(optional)</span></Label>
+          <Input id="dl-phone" type="tel" inputMode="tel" autoComplete="tel" placeholder="+91 98765 43210" value={formData.phone} onChange={(e) => setFormData(d => ({ ...d, phone: e.target.value }))} maxLength={30} className="mt-1.5 h-12 text-[15px]" />
         </div>
 
         <Button type="submit" disabled={isLoading || !formData.name || !formData.email || !formData.org} className="w-full h-[52px] bg-foreground text-background hover:bg-foreground/90 text-[14px] font-semibold uppercase tracking-wider rounded-lg mt-2">
