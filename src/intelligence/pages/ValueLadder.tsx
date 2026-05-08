@@ -275,7 +275,13 @@ const ValueLadder = () => {
 
         {/* Desktop / tablet table */}
         <div className="mt-8 hidden md:block border border-bb-border rounded-none bg-bb-paper">
-          <table className="w-full border-collapse text-left">
+          <table className="w-full border-collapse text-left table-fixed">
+            <colgroup>
+              <col style={{ width: "180px" }} />
+              {TIERS.map((tier) => (
+                <col key={tier.id} style={{ width: `calc((100% - 180px) / ${TIERS.length})` }} />
+              ))}
+            </colgroup>
             <thead>
               <tr className="align-top h-px">
                 <th className="w-[220px] p-5 text-[11px] uppercase tracking-[0.18em] text-bb-gray font-medium bg-bb-paper border-b border-bb-border h-full">
