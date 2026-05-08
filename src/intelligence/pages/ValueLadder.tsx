@@ -639,7 +639,9 @@ const ValueLadder = () => {
         onOpenChange={setSponsorOpen}
         project="Sponsorship inquiry from value ladder page"
       />
-    </IntelligenceLayout>
+      </main>
+      <Footer />
+    </>
   );
 };
 
