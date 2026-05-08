@@ -93,7 +93,7 @@ interface TierCtaProps {
 
 const TierCta = ({ tier, surface, variant = "primary", onSponsorClick, currency }: TierCtaProps) => {
   const baseClass =
-    "inline-flex items-center justify-center h-12 px-6 rounded-[10px] text-[14px] font-medium w-full transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-bb-slate/40 focus-visible:ring-offset-2";
+    "cta-gold-underline inline-flex items-center justify-center h-12 px-6 rounded-[10px] text-[14px] font-medium w-full transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-bb-slate/40 focus-visible:ring-offset-2";
   const styleClass =
     variant === "primary"
       ? "bg-bb-slate text-bb-off-white hover:opacity-90"
