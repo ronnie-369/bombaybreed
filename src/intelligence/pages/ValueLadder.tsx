@@ -106,9 +106,12 @@ const TierCta = ({ tier, surface, variant = "primary", onSponsorClick, currency 
       hashIdx >= 0 &&
       (href.startsWith("#") ||
         href.startsWith("/intelligence/value-ladder#"));
+    const isInternalSignupOrCheckout =
+      !isSamePageHash && href.startsWith("/intelligence/");
     return (
       <Link
         to={href}
+        {...(isInternalSignupOrCheckout ? ctaHoverPrefetch : {})}
         onClick={(e) => {
           trackLadderCta(tier, surface);
           if (isSamePageHash && typeof window !== "undefined") {
