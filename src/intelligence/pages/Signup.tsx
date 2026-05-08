@@ -7,6 +7,7 @@ import { useToast } from "@/hooks/use-toast";
 import IntelligenceLayout from "../components/IntelligenceLayout";
 import SectionLabel from "../components/SectionLabel";
 import { logSubscribeConversion } from "@/lib/abTest";
+import { prefetchCheckout } from "../lib/routePrefetch";
 import {
   logAuthDiagnostic,
   extractErrorMessage,
