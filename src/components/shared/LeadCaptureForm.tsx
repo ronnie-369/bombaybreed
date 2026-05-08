@@ -6,6 +6,7 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Download, CheckCircle } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
+import { formatPhoneInput, normalizePhone } from '@/lib/phoneFormat';
 
 interface LeadCaptureFormProps {
   reportTitle: string;

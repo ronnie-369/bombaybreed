@@ -5,6 +5,7 @@ import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { supabase } from '@/integrations/supabase/client';
 import { useToast } from '@/hooks/use-toast';
+import { formatPhoneInput, normalizePhone } from '@/lib/phoneFormat';
 
 // ── Color palette ──
 const COLORS = {
@@ -359,7 +360,7 @@ export default function GreenJobsGuide() {
         body: JSON.stringify({
           name: leadForm.name.trim(),
           email: leadForm.email.trim(),
-          phone: leadForm.phone.trim(),
+          phone: normalizePhone(leadForm.phone),
           form_type: 'green-jobs-quiz',
           personality: personalityName,
           report_requested: `green-jobs-personality-${activePersonality}`,
@@ -521,7 +522,7 @@ export default function GreenJobsGuide() {
               </div>
               <div>
                 <label className="text-[11px] font-semibold uppercase tracking-wider text-foreground block mb-1.5">Phone Number *</label>
-                <Input type="tel" placeholder="+91 98765 43210" value={leadForm.phone} onChange={(e) => setLeadForm({ ...leadForm, phone: e.target.value })} />
+                <Input type="tel" inputMode="tel" autoComplete="tel" placeholder="+91 98765 43210" value={leadForm.phone} onChange={(e) => setLeadForm({ ...leadForm, phone: formatPhoneInput(e.target.value) })} />
               </div>
               {formError && <p className="text-xs text-destructive text-center">{formError}</p>}
               <Button
