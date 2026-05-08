@@ -240,7 +240,7 @@ const ValueLadder = () => {
   const [inquiryProject, setInquiryProject] = useState<SponsorOpenProject | { title: string } | null>(null);
   const [inquiryBand, setInquiryBand] = useState<{ engagement: string; price: string; scope: string } | null>(null);
   const openSponsor = () => {
-    setInquiryProject({ title: "Sponsorship inquiry from value ladder page" });
+    setInquiryProject({ title: "Bespoke project sponsorship" });
     setInquiryBand(null);
     setSponsorOpen(true);
   };
@@ -654,7 +654,7 @@ const ValueLadder = () => {
       <SponsorInquiryDialog
         open={sponsorOpen}
         onOpenChange={setSponsorOpen}
-        project={inquiryProject?.title ?? "Sponsorship inquiry from value ladder page"}
+        project={inquiryProject?.title ?? "Bespoke project sponsorship"}
         projectDetails={
           inquiryProject && "angle" in inquiryProject ? inquiryProject : undefined
         }
