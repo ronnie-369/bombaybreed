@@ -47,6 +47,14 @@ const inquirySchema = z.object({
     .trim()
     .max(100, { message: 'Role must be 100 characters or fewer' })
     .optional(),
+  phone: z
+    .string()
+    .trim()
+    .max(30, { message: 'Phone must be 30 characters or fewer' })
+    .refine((v) => !v || /^[+\d][\d\s().-]{6,}$/.test(v), {
+      message: 'Please enter a valid phone number',
+    })
+    .optional(),
   project: z.string().trim().min(1).max(300),
   message: z
     .string()
@@ -112,6 +120,7 @@ const SponsorInquiryDialog = ({ open, onOpenChange, project, projectDetails, ban
       email: '',
       organisation: '',
       role: '',
+      phone: '',
       project,
       message: '',
       consent: false,
@@ -178,6 +187,7 @@ const SponsorInquiryDialog = ({ open, onOpenChange, project, projectDetails, ban
       email: 'email',
       organisation: 'organisation',
       role: 'role',
+      phone: 'phone',
       project_of_interest: 'project',
       message: 'message',
       consent: 'consent',
@@ -193,6 +203,7 @@ const SponsorInquiryDialog = ({ open, onOpenChange, project, projectDetails, ban
           email: data.email.trim().toLowerCase(),
           organisation: data.organisation?.trim() || '',
           role: data.role?.trim() || '',
+          phone: data.phone?.trim() || '',
           project_of_interest: data.project.trim(),
           message: data.message?.trim() || '',
           consent: data.consent,
@@ -465,6 +476,28 @@ const SponsorInquiryDialog = ({ open, onOpenChange, project, projectDetails, ban
                 )}
               />
             </div>
+
+            <FormField
+              control={form.control}
+              name="phone"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel className="text-xs uppercase tracking-widest text-muted-foreground">
+                    Mobile <span className="normal-case tracking-normal text-muted-foreground/70">(optional, include country code)</span>
+                  </FormLabel>
+                  <FormControl>
+                    <Input
+                      {...field}
+                      type="tel"
+                      inputMode="tel"
+                      autoComplete="tel"
+                      placeholder="+91 98765 43210"
+                    />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
 
             <FormField
               control={form.control}
