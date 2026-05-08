@@ -198,6 +198,11 @@ const SponsorInquiryDialog = ({ open, onOpenChange, project, projectDetails, ban
           consent: data.consent,
           consent_text: 'User agreed to be contacted about this inquiry and to our privacy practices.',
           form_type: 'sponsor_open_project_inquiry',
+          ...(bandDetails && {
+            engagement_band: bandDetails.engagement,
+            indicative_price: bandDetails.price,
+            engagement_scope: bandDetails.scope,
+          }),
           _subject: `Sponsor inquiry [${ref}]: ${data.project.trim()}`,
         }),
       });
