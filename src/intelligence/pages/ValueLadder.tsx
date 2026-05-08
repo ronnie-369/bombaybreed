@@ -588,7 +588,7 @@ const ValueLadder = () => {
             <button
               type="button"
               onClick={() => setBookingOpen(true)}
-              className="cta-gold-underline inline-flex items-center justify-center h-12 px-6 rounded-[10px] text-[14px] font-medium bg-bb-slate text-bb-off-white hover:opacity-90 transition focus-visible:outline-none"
+              className="cta-gold-underline cta-sponsor-shimmer inline-flex items-center justify-center h-12 px-6 rounded-[10px] text-[14px] font-medium bg-bb-slate text-bb-off-white hover:opacity-90 transition focus-visible:outline-none"
             >
               Book a 30-min sponsorship call <span aria-hidden className="ml-2">→</span>
             </button>
