@@ -4,8 +4,18 @@ import { Resend } from "npm:resend@4.0.0";
 
 const corsHeaders = {
   'Access-Control-Allow-Origin': '*',
-  'Access-Control-Allow-Headers': 'authorization, x-client-info, apikey, content-type',
+  'Access-Control-Allow-Headers': 'authorization, x-client-info, apikey, content-type, x-digest-secret, x-forwarded-for',
 };
+
+// In-memory IP throttle (per-instance; resets on cold starts, not shared across instances)
+const IP_WINDOW_MS = 5 * 60 * 1000; // 5 minutes
+const ipLastSend = new Map<string, number>();
+
+function getClientIp(req: Request): string {
+  const fwd = req.headers.get('x-forwarded-for');
+  if (fwd) return fwd.split(',')[0].trim();
+  return req.headers.get('cf-connecting-ip') || req.headers.get('x-real-ip') || 'unknown';
+}
 
 serve(async (req: Request) => {
   if (req.method === 'OPTIONS') {
@@ -20,6 +30,24 @@ serve(async (req: Request) => {
       status: 401,
       headers: { 'Content-Type': 'application/json', ...corsHeaders },
     });
+  }
+
+  // IP-based throttle: max 1 send per IP per 5 minutes
+  const ip = getClientIp(req);
+  const now = Date.now();
+  const last = ipLastSend.get(ip);
+  if (last && now - last < IP_WINDOW_MS) {
+    const retryAfter = Math.ceil((IP_WINDOW_MS - (now - last)) / 1000);
+    console.warn(`Rate limit hit for IP ${ip}; retry in ${retryAfter}s`);
+    return new Response(JSON.stringify({ error: 'Too many requests', retryAfter }), {
+      status: 429,
+      headers: { 'Content-Type': 'application/json', 'Retry-After': String(retryAfter), ...corsHeaders },
+    });
+  }
+  ipLastSend.set(ip, now);
+  // Opportunistic cleanup
+  if (ipLastSend.size > 1000) {
+    for (const [k, t] of ipLastSend) if (now - t > IP_WINDOW_MS) ipLastSend.delete(k);
   }
 
   try {
