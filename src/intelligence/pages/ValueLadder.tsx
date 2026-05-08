@@ -7,8 +7,6 @@ import SectionLabel from "../components/SectionLabel";
 import {
   TIERS,
   JOBS,
-  SPONSOR_BANDS,
-  SPONSOR_TERMS,
   INTERSECTION,
   TIER_BY_ID,
   formatTierPrice,
