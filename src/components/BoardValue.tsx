@@ -49,7 +49,7 @@ const BoardValue = () => {
             const IconComponent = competency.icon;
             return (
               <ScrollReveal key={index} direction="up" delay={index as 0 | 1 | 2 | 3}>
-                <SpotlightCard className="group p-8 rounded-lg bg-card border border-border/50 hover:border-border hover:shadow-sm hover:-translate-y-0.5 transition-all duration-300 ease-out h-full">
+                <SpotlightCard tone="ink" className="group p-8 rounded-lg bg-card border border-border/50 hover:border-border hover:shadow-sm hover:-translate-y-0.5 transition-all duration-300 ease-out h-full">
                   <div className="flex items-start gap-5">
                     <div className="p-2.5 bg-primary/10 rounded-md icon-highlight">
                       <IconComponent className="h-5 w-5 text-primary" />

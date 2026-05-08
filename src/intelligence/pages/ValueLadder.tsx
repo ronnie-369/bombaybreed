@@ -202,7 +202,7 @@ const TierCard = ({
           ? "border-bb-near-black/30 bg-bb-paper"
           : "border-bb-border bg-bb-paper"
       }`}
-      spotlightColor={isSponsor ? "rgba(197, 160, 89, 0.28)" : "rgba(197, 160, 89, 0.18)"}
+      tone={isSponsor ? "gold-strong" : "gold"}
     >
       <a
         href={explainerHref}

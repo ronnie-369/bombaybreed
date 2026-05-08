@@ -51,7 +51,7 @@ const TierCard = ({
       className={`bg-white rounded-xl border p-8 flex flex-col transition-all duration-300 hover:-translate-y-0.5 hover:shadow-sm ${
         featured ? "border-bb-slate" : "border-bb-border"
       }`}
-      spotlightColor={featured ? "rgba(197, 160, 89, 0.28)" : "rgba(197, 160, 89, 0.18)"}
+      tone={featured ? "gold-strong" : "gold"}
     >
       {featured && (
         <div className="self-start mb-4 px-2 py-1 rounded text-[10px] uppercase tracking-[0.2em] text-bb-off-white bg-bb-slate">
