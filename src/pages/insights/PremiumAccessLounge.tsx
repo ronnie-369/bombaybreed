@@ -530,7 +530,7 @@ const PremiumAccessLounge: React.FC = () => {
           <p className="font-serif text-lg text-foreground/80 leading-relaxed max-w-[720px] mb-4">
             There is something here for everyone interested in carbon markets.
             Free readers can follow the public conversation, enthusiasts can
-            go deeper for USD 5 a month, market participants can use
+            go deeper for USD 1 a month, market participants can use
             research-grade intelligence, investors can study risk and allocation,
             and sponsors can underwrite the reports this market needs.
           </p>
