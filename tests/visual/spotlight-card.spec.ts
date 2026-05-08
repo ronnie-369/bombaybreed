@@ -1,7 +1,22 @@
 import { test, expect } from "@playwright/test";
 import { readFileSync } from "node:fs";
 import { resolve } from "node:path";
-import { SPOTLIGHT_TONES, type SpotlightTone } from "../../src/components/ui/SpotlightCard";
+
+/**
+ * Tones inlined here (rather than imported from SpotlightCard.tsx) so the
+ * Playwright loader does not try to parse the component's `.css` import.
+ * The vitest suite `SpotlightCard.tones.test.tsx` already locks the in-app
+ * `SPOTLIGHT_TONES` map against this exact palette, so any drift fails
+ * there before this file is reached.
+ */
+type SpotlightTone = "gold" | "gold-strong" | "ink" | "blue" | "paper";
+const SPOTLIGHT_TONES: Record<SpotlightTone, string> = {
+  gold: "rgba(197, 160, 89, 0.16)",
+  "gold-strong": "rgba(197, 160, 89, 0.26)",
+  ink: "rgba(10, 10, 11, 0.08)",
+  blue: "rgba(26, 61, 92, 0.14)",
+  paper: "rgba(197, 160, 89, 0.10)",
+};
 
 /**
  * Visual regression for SpotlightCard tones - real browser, real CSS.
