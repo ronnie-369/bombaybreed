@@ -288,7 +288,7 @@ const ValueLadder = () => {
                       key={tier.id}
                       className="p-5 align-top border-l border-b border-bb-border h-full bg-bb-paper"
                     >
-                      <div className="flex flex-col h-full min-h-full">
+                      <div className="flex flex-col h-full min-h-full min-w-0 gap-1">
                         <span
                           className={`inline-block self-start text-[10px] uppercase tracking-[0.18em] px-2 py-0.5 rounded ${ladderBadgeClass[tier.ladder]}`}
                         >
@@ -297,17 +297,17 @@ const ValueLadder = () => {
                         <a
                           href={`#tier-${tier.id}`}
                           onClick={(e) => smoothScrollToTier(e, tier.id)}
-                          className="mt-3 font-serif text-[20px] tracking-tight text-bb-near-black leading-tight hover:underline decoration-bb-border underline-offset-4"
+                          className="mt-3 font-serif text-[20px] tracking-tight text-bb-near-black leading-tight hover:underline decoration-bb-border underline-offset-4 break-words hyphens-auto"
                         >
                           {tier.name}
                         </a>
-                        <div className="mt-2 text-[13px] text-bb-near-black/85 font-medium">
+                        <div className="mt-2 text-[13px] text-bb-near-black/85 font-medium break-words">
                           <TierPriceText tier={tier} currency={currency} />
                         </div>
-                        <p className="mt-2 text-[12px] text-bb-gray leading-snug">
+                        <p className="mt-2 text-[12px] text-bb-gray leading-snug break-words">
                           {tier.audience}
                         </p>
-                        <div className="mt-auto pt-4">
+                        <div className="mt-auto pt-6 relative z-10">
                           <TierCta
                             tier={tier}
                             surface="comparison_table"
