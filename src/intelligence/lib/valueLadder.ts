@@ -123,7 +123,7 @@ export const TIERS: LadderTier[] = [
     id: "sponsor",
     name: "Sponsor",
     ladder: "B2B",
-    priceLabel: "Starting INR 35 Lakh plus GST",
+    priceLabel: "Starting INR 35 Lakh",
     audience: "Corporates and institutions underwriting research",
     strategicRole:
       "Underwrite editorial production; credibility and revenue",
@@ -443,13 +443,13 @@ export interface SponsorBand {
 export const SPONSOR_BANDS: SponsorBand[] = [
   {
     engagement: "Sectoral report sponsorship",
-    price: "Starting INR 75,000 plus GST",
+    price: "Starting INR 75,000",
     scope:
       "Underwrites the production of one of the four annual sectoral reports on a CCTS-obligated industrial sector. Range depends on sector complexity, primary research depth, and whether sponsor wants a co-branded executive summary in addition to the published report. Sponsor receives attribution credit and a working-session call.",
   },
   {
     engagement: "Regional analysis sponsorship",
-    price: "Starting INR 5 Lakh plus GST per analysis",
+    price: "Starting INR 5 Lakh per analysis",
     scope:
       "Underwrites the production of one of the four annual regional analyses on an Indian state or geography. Range reflects ground-truth fieldwork costs which vary substantially by geography and accessibility. Sponsor receives attribution credit and a working-session call.",
   },
@@ -461,13 +461,13 @@ export const SPONSOR_BANDS: SponsorBand[] = [
   },
   {
     engagement: "Annual editorial calendar sponsorship",
-    price: "INR 25 Lacs onwards plus GST",
+    price: "INR 25 Lacs onwards",
     scope:
       "Sponsor underwrites multiple reports across the year with first-look access on each, named on every output produced under the sponsorship, with quarterly working-session reviews.",
   },
   {
     engagement: "Research project sponsorship (one-off, non-published)",
-    price: "Starting INR 35 Lacs plus GST",
+    price: "Starting INR 35 Lacs",
     scope:
       "Custom research delivered privately to the sponsor without publication. Higher pricing reflects the loss of subscriber-base distribution. Available only when subject is genuinely sensitive.",
   },
