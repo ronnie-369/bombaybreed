@@ -68,11 +68,18 @@ export interface SponsorProjectDetails {
   effort: string;
 }
 
+export interface SponsorBandDetails {
+  engagement: string;
+  price: string;
+  scope: string;
+}
+
 interface SponsorInquiryDialogProps {
   open: boolean;
   onOpenChange: (open: boolean) => void;
   project: string;
   projectDetails?: SponsorProjectDetails;
+  bandDetails?: SponsorBandDetails;
 }
 
 const generateReferenceId = (): string => {
@@ -85,7 +92,7 @@ const generateReferenceId = (): string => {
   return `BB-${yyyymmdd}-${rand}`;
 };
 
-const SponsorInquiryDialog = ({ open, onOpenChange, project, projectDetails }: SponsorInquiryDialogProps) => {
+const SponsorInquiryDialog = ({ open, onOpenChange, project, projectDetails, bandDetails }: SponsorInquiryDialogProps) => {
   const { toast } = useToast();
   const [submitting, setSubmitting] = useState(false);
   const [referenceId, setReferenceId] = useState<string | null>(null);
@@ -191,6 +198,11 @@ const SponsorInquiryDialog = ({ open, onOpenChange, project, projectDetails }: S
           consent: data.consent,
           consent_text: 'User agreed to be contacted about this inquiry and to our privacy practices.',
           form_type: 'sponsor_open_project_inquiry',
+          ...(bandDetails && {
+            engagement_band: bandDetails.engagement,
+            indicative_price: bandDetails.price,
+            engagement_scope: bandDetails.scope,
+          }),
           _subject: `Sponsor inquiry [${ref}]: ${data.project.trim()}`,
         }),
       });
@@ -349,11 +361,33 @@ const SponsorInquiryDialog = ({ open, onOpenChange, project, projectDetails }: S
                 </dl>
               </div>
             )}
+            {bandDetails && !projectDetails && (
+              <div className="rounded-md border border-border/70 bg-muted/30 p-4 space-y-3">
+                <div>
+                  <p className="text-[10px] font-bold tracking-widest uppercase text-muted-foreground mb-1">
+                    Engagement
+                  </p>
+                  <p className="font-serif text-base text-foreground leading-snug">
+                    {bandDetails.engagement}
+                  </p>
+                </div>
+                <dl className="space-y-2 text-sm">
+                  <div className="grid grid-cols-[88px_1fr] gap-3">
+                    <dt className="text-[10px] font-bold tracking-widest uppercase text-muted-foreground pt-0.5">Indicative</dt>
+                    <dd className="text-foreground/85 leading-relaxed">{bandDetails.price}</dd>
+                  </div>
+                  <div className="grid grid-cols-[88px_1fr] gap-3">
+                    <dt className="text-[10px] font-bold tracking-widest uppercase text-muted-foreground pt-0.5">Scope</dt>
+                    <dd className="text-foreground/85 leading-relaxed">{bandDetails.scope}</dd>
+                  </div>
+                </dl>
+              </div>
+            )}
             <FormField
               control={form.control}
               name="project"
               render={({ field }) => (
-                <FormItem className={projectDetails ? 'sr-only' : ''}>
+                <FormItem className={projectDetails || bandDetails ? 'sr-only' : ''}>
                   <FormLabel className="text-xs uppercase tracking-widest text-muted-foreground">
                     Interested in
                   </FormLabel>
