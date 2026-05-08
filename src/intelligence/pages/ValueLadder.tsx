@@ -248,6 +248,14 @@ const ValueLadder = () => {
       project: project.title,
     });
   };
+  const openBandInquiry = (band: { engagement: string; price: string }) => {
+    setInquiryProject({ title: `${band.engagement} - ${band.price}` });
+    setSponsorOpen(true);
+    trackSponsorEvent("sponsor_open_project_click", {
+      location: "value_ladder_engagement_bands",
+      project: band.engagement,
+    });
+  };
   const [projectsExpanded, setProjectsExpanded] = useState(false);
   const [currency] = useCurrency();
 
@@ -573,6 +581,13 @@ const ValueLadder = () => {
                   <div className="mt-1 text-[14px] text-bb-near-black font-medium">
                     {band.price}
                   </div>
+                  <button
+                    type="button"
+                    onClick={() => openBandInquiry(band)}
+                    className="cta-gold-underline mt-3 inline-flex items-center text-[13px] text-bb-near-black hover:text-bb-slate transition focus-visible:outline-none"
+                  >
+                    Discuss this engagement <span aria-hidden className="ml-1">→</span>
+                  </button>
                 </div>
               </li>
             ))}
