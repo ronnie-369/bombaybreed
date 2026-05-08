@@ -414,6 +414,24 @@ Deno.serve(async (req) => {
     (typeof paymentEntity.contact === 'string' ? paymentEntity.contact : '') ||
     '';
 
+  // Server-side character-set validation. Strip control chars, HTML-injection
+  // characters, and anything outside the expected character set for each
+  // field. We sanitize (rather than reject) so a legitimate payment is never
+  // dropped because of an exotic character in a name/company.
+  const stripControl = (s: string) =>
+    // eslint-disable-next-line no-control-regex
+    s.replace(/[\u0000-\u001F\u007F<>"'`\\]/g, '').replace(/\s+/g, ' ').trim();
+  const sanitizeName = (s: string) =>
+    stripControl(s).replace(/[^\p{L}\p{M}\p{N}\s.,'\-]/gu, '').slice(0, 200);
+  const sanitizeCompany = (s: string) =>
+    stripControl(s).replace(/[^\p{L}\p{M}\p{N}\s.,'\-&/()+]/gu, '').slice(0, 200);
+  const sanitizePhone = (s: string) =>
+    s.replace(/[^\d+\-\s()]/g, '').trim().slice(0, 40);
+
+  const cleanFullName = sanitizeName(String(fullName)) || emailRaw.split('@')[0];
+  const cleanCompany = company ? sanitizeCompany(company) || null : null;
+  const cleanPhone = phone ? sanitizePhone(String(phone)) || null : null;
+
   // 5) Activate / dedupe.
   const admin = createClient(supabaseUrl, serviceRoleKey, {
     auth: { autoRefreshToken: false, persistSession: false },
@@ -427,9 +445,9 @@ Deno.serve(async (req) => {
     paymentId,
     amountPaise: Number(paymentEntity.amount),
     email: emailRaw,
-    fullName: String(fullName).slice(0, 200),
-    company,
-    phone: phone ? String(phone).slice(0, 40) : null,
+    fullName: cleanFullName,
+    company: cleanCompany,
+    phone: cleanPhone,
   });
 
   if (!result.ok) {
