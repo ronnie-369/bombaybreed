@@ -238,20 +238,24 @@ const ValueLadder = () => {
   const [sponsorOpen, setSponsorOpen] = useState(false);
   const [bookingOpen, setBookingOpen] = useState(false);
   const [inquiryProject, setInquiryProject] = useState<SponsorOpenProject | { title: string } | null>(null);
+  const [inquiryBand, setInquiryBand] = useState<{ engagement: string; price: string; scope: string } | null>(null);
   const openSponsor = () => {
     setInquiryProject({ title: "Sponsorship inquiry from value ladder page" });
+    setInquiryBand(null);
     setSponsorOpen(true);
   };
   const openProjectInquiry = (project: SponsorOpenProject) => {
     setInquiryProject(project);
+    setInquiryBand(null);
     setSponsorOpen(true);
     trackSponsorEvent("sponsor_open_project_click", {
       location: "value_ladder_exclusive_projects",
       project: project.title,
     });
   };
-  const openBandInquiry = (band: { engagement: string; price: string }) => {
+  const openBandInquiry = (band: { engagement: string; price: string; scope: string }) => {
     setInquiryProject({ title: `${band.engagement} - ${band.price}` });
+    setInquiryBand(band);
     setSponsorOpen(true);
     trackSponsorEvent("sponsor_open_project_click", {
       location: "value_ladder_engagement_bands",
@@ -653,6 +657,7 @@ const ValueLadder = () => {
         projectDetails={
           inquiryProject && "angle" in inquiryProject ? inquiryProject : undefined
         }
+        bandDetails={inquiryBand ?? undefined}
       />
       <BookingDialog
         open={bookingOpen}
