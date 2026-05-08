@@ -15,6 +15,7 @@ import { cn } from '@/lib/utils';
 import { format } from 'date-fns';
 import { getSlotsForDate, isBookableDate, formatSlotTime } from '@/utils/booking-slots';
 import { toast } from '@/hooks/use-toast';
+import { formatPhoneInput, normalizePhone } from '@/lib/phoneFormat';
 
 const FORMSPREE_URL = 'https://formspree.io/f/myknnoea';
 
@@ -83,7 +84,7 @@ const BookingDialog = ({
         body: JSON.stringify({
           name: form.name.trim(),
           email: form.email.trim().toLowerCase(),
-          phone: form.phone.trim() || null,
+          phone: normalizePhone(form.phone) || null,
           message: form.message.trim() || null,
           preferred_date: format(selectedDate, 'yyyy-MM-dd'),
           preferred_time: selectedSlot,
@@ -186,7 +187,7 @@ const BookingDialog = ({
             <form onSubmit={handleSubmit} className="px-6 pb-6 space-y-3">
               <Input placeholder="Full Name *" value={form.name} onChange={e => setForm(f => ({ ...f, name: e.target.value }))} required />
               <Input type="email" placeholder="Email *" value={form.email} onChange={e => setForm(f => ({ ...f, email: e.target.value }))} required />
-              <Input type="tel" placeholder="Phone (optional)" value={form.phone} onChange={e => setForm(f => ({ ...f, phone: e.target.value }))} />
+              <Input type="tel" inputMode="tel" autoComplete="tel" placeholder="Phone (optional) - +91 98765 43210" value={form.phone} onChange={e => setForm(f => ({ ...f, phone: formatPhoneInput(e.target.value) }))} />
               <Textarea placeholder="Brief message (optional)" value={form.message} onChange={e => setForm(f => ({ ...f, message: e.target.value }))} rows={3} />
               <Button type="submit" className="w-full" disabled={submitting}>
                 {submitting ? 'Booking…' : 'Confirm Booking'}

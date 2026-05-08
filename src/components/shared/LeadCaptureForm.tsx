@@ -6,6 +6,7 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Download, CheckCircle } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
+import { formatPhoneInput, normalizePhone } from '@/lib/phoneFormat';
 
 interface LeadCaptureFormProps {
   reportTitle: string;
@@ -75,7 +76,7 @@ const LeadCaptureForm: React.FC<LeadCaptureFormProps> = ({
           email: formData.email,
           designation: formData.designation || undefined,
           company_name: formData.company_name || undefined,
-          phone: formData.phone || undefined,
+          phone: normalizePhone(formData.phone) || undefined,
           marketing_consent: formData.consent,
           report_requested: reportTitle,
           form_type: 'report_download',
@@ -211,7 +212,7 @@ const LeadCaptureForm: React.FC<LeadCaptureFormProps> = ({
               type="tel"
               placeholder="+91 98765 43210"
               value={formData.phone}
-              onChange={(e) => handleInputChange('phone', e.target.value)}
+              onChange={(e) => handleInputChange('phone', formatPhoneInput(e.target.value))}
               maxLength={20}
             />
           </div>

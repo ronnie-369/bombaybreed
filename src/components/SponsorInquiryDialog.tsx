@@ -25,6 +25,7 @@ import {
 import { Skeleton } from '@/components/ui/skeleton';
 import { useToast } from '@/hooks/use-toast';
 import { trackSponsorEvent } from '@/utils/sponsorAnalytics';
+import { formatPhoneInput, normalizePhone } from '@/lib/phoneFormat';
 
 const inquirySchema = z.object({
   name: z
@@ -203,7 +204,7 @@ const SponsorInquiryDialog = ({ open, onOpenChange, project, projectDetails, ban
           email: data.email.trim().toLowerCase(),
           organisation: data.organisation?.trim() || '',
           role: data.role?.trim() || '',
-          phone: data.phone?.trim() || '',
+          phone: normalizePhone(data.phone || ''),
           project_of_interest: data.project.trim(),
           message: data.message?.trim() || '',
           consent: data.consent,
@@ -492,6 +493,8 @@ const SponsorInquiryDialog = ({ open, onOpenChange, project, projectDetails, ban
                       inputMode="tel"
                       autoComplete="tel"
                       placeholder="+91 98765 43210"
+                      value={formatPhoneInput(field.value || '')}
+                      onChange={(e) => field.onChange(formatPhoneInput(e.target.value))}
                     />
                   </FormControl>
                   <FormMessage />
