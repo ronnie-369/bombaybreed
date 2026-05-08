@@ -436,13 +436,6 @@ const ValueLadder = () => {
             />
           ))}
         </div>
-
-        <p className="mt-6 text-[12px] text-bb-gray max-w-2xl">
-          Sponsor (B2B) is structurally different from the four subscriber
-          tiers. Sponsors underwrite the production of specific reports that
-          are then published to the entire subscriber base. A sponsor can also
-          be (and frequently will be) an Investment Intelligence tier subscriber separately.
-        </p>
       </section>
 
       {/* SPONSOR - EXCLUSIVE PROJECTS (collapsible) + BANDS */}
