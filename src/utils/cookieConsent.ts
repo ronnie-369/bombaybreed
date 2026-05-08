@@ -3,10 +3,13 @@ interface ConsentPreference {
   timestamp: string;
 }
 
+import { getSafeStorage } from '@/lib/safeStorage';
+
 const CONSENT_KEY = 'cookieConsent';
+const localStore = () => getSafeStorage('localStorage');
 
 export const hasUserConsented = (): boolean => {
-  const consent = localStorage.getItem(CONSENT_KEY);
+  const consent = localStore().getItem(CONSENT_KEY);
   return consent !== null;
 };
 
@@ -15,13 +18,17 @@ export const setConsentPreference = (accepted: boolean): void => {
     accepted,
     timestamp: new Date().toISOString(),
   };
-  localStorage.setItem(CONSENT_KEY, JSON.stringify(preference));
+  localStore().setItem(CONSENT_KEY, JSON.stringify(preference));
 };
 
 export const getConsentPreference = (): ConsentPreference | null => {
-  const consent = localStorage.getItem(CONSENT_KEY);
+  const consent = localStore().getItem(CONSENT_KEY);
   if (!consent) return null;
-  return JSON.parse(consent);
+  try {
+    return JSON.parse(consent);
+  } catch {
+    return null;
+  }
 };
 
 export const updateGoogleConsent = (accepted: boolean): void => {
