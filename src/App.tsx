@@ -9,9 +9,9 @@ import CookieBanner from "./components/CookieBanner";
 import Preloader from "./components/ui/Preloader";
 import PageSkeleton from "./components/ui/PageSkeleton";
 import { usePreloader } from "./hooks/use-preloader";
+import Index from "./pages/Index";
 
 // Lazy load all page components for code splitting
-const Index = lazy(() => import("./pages/Index"));
 const PrivacyPolicy = lazy(() => import("./pages/PrivacyPolicy"));
 const NotFound = lazy(() => import("./pages/NotFound"));
 const Auth = lazy(() => import("./pages/Auth"));
