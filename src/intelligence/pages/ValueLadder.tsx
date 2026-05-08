@@ -160,10 +160,10 @@ const TierCard = ({
   const explainerHref = `#tier-${tier.id}`;
   return (
     <div
-      className={`group rounded-xl border p-6 flex flex-col h-full transition hover:border-bb-near-black/40 hover:shadow-sm ${
+      className={`group rounded-none border p-6 flex flex-col h-full transition hover:border-bb-near-black ${
         isSponsor
-          ? "border-bb-copper/40 bg-bb-copper/5"
-          : "border-bb-border bg-bb-off-white"
+          ? "border-bb-near-black/30 bg-bb-paper"
+          : "border-bb-border bg-bb-paper"
       }`}
     >
       <a
@@ -274,11 +274,11 @@ const ValueLadder = () => {
         <SectionLabel>Compare the five tiers</SectionLabel>
 
         {/* Desktop / tablet table */}
-        <div className="mt-8 hidden md:block border border-bb-border rounded-xl bg-bb-off-white">
+        <div className="mt-8 hidden md:block border border-bb-border rounded-none bg-bb-paper">
           <table className="w-full border-collapse text-left">
             <thead>
               <tr className="align-top h-px">
-                <th className="sticky top-16 z-20 w-[220px] p-5 text-[11px] uppercase tracking-[0.18em] text-bb-gray font-medium bg-bb-off-white border-b border-bb-border h-full">
+                <th className="sticky top-16 z-20 w-[220px] p-5 text-[11px] uppercase tracking-[0.18em] text-bb-gray font-medium bg-bb-paper border-b border-bb-border h-full">
                   What you get
                 </th>
                 {TIERS.map((tier) => {
@@ -287,7 +287,7 @@ const ValueLadder = () => {
                     <th
                       key={tier.id}
                       className={`sticky top-16 z-20 p-5 align-top border-l border-b border-bb-border h-full ${
-                        isSponsor ? "bg-bb-copper/5" : "bg-bb-off-white"
+                        isSponsor ? "bg-bb-paper" : "bg-bb-paper"
                       }`}
                     >
                       <div className="flex flex-col h-full min-h-full">
@@ -338,7 +338,7 @@ const ValueLadder = () => {
                       <td
                         key={tier.id}
                         className={`p-5 text-[12px] leading-[1.55] border-l border-bb-border ${
-                          isSponsor ? "bg-bb-copper/5" : ""
+                          isSponsor ? "bg-bb-paper" : ""
                         } ${isNo ? "text-bb-gray/70" : "text-bb-near-black/85"}`}
                       >
                         {cell}
@@ -349,7 +349,7 @@ const ValueLadder = () => {
               ))}
             </tbody>
             <tfoot>
-              <tr className="bg-bb-off-white/60 align-top">
+              <tr className="bg-bb-paper align-top">
                 <td className="p-5 text-[11px] uppercase tracking-[0.18em] text-bb-gray font-medium">
                   Select your plan
                 </td>
@@ -409,10 +409,10 @@ const ValueLadder = () => {
               <article
                 key={tier.id}
                 id={`tier-${tier.id}`}
-                className={`scroll-mt-24 rounded-2xl border p-7 md:p-10 ${
+                className={`scroll-mt-24 rounded-none border p-7 md:p-10 bg-bb-paper ${
                   isSponsor
-                    ? "border-bb-copper/40 bg-bb-copper/5"
-                    : "border-bb-border bg-bb-off-white"
+                    ? "border-bb-near-black/30"
+                    : "border-bb-border"
                 }`}
               >
                 <div className="flex flex-wrap items-center gap-3">
@@ -492,7 +492,7 @@ const ValueLadder = () => {
               {INTERSECTION.ctaLabel}
             </Link>
           </div>
-          <div className="border border-bb-border bg-bb-off-white rounded-xl p-6">
+          <div className="border border-bb-border bg-bb-paper rounded-none p-6">
             <div className="text-[11px] uppercase tracking-[0.18em] text-bb-gray">
               From
             </div>
@@ -535,7 +535,7 @@ const ValueLadder = () => {
           {SPONSOR_BANDS.map((band) => (
             <div
               key={band.engagement}
-              className="rounded-xl border border-bb-border bg-bb-off-white p-6 grid md:grid-cols-[260px_180px_1fr] gap-4 md:gap-6"
+              className="rounded-none border border-bb-border bg-bb-paper p-6 grid md:grid-cols-[260px_180px_1fr] gap-4 md:gap-6"
             >
               <div>
                 <div className="font-serif text-[18px] tracking-tight text-bb-near-black leading-snug">
