@@ -160,10 +160,10 @@ const TierCard = ({
   const explainerHref = `#tier-${tier.id}`;
   return (
     <div
-      className={`group rounded-xl border p-6 flex flex-col h-full transition hover:border-bb-near-black/40 hover:shadow-sm ${
+      className={`group rounded-none border p-6 flex flex-col h-full transition hover:border-bb-near-black ${
         isSponsor
-          ? "border-bb-copper/40 bg-bb-copper/5"
-          : "border-bb-border bg-bb-off-white"
+          ? "border-bb-near-black/30 bg-bb-paper"
+          : "border-bb-border bg-bb-paper"
       }`}
     >
       <a
