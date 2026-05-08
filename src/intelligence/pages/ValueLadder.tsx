@@ -22,6 +22,7 @@ import TierPriceText from "@/components/insights/TierPriceText";
 import SponsorInquiryDialog from "@/components/SponsorInquiryDialog";
 import { trackOutboundClick } from "@/utils/outboundAnalytics";
 import { trackSponsorEvent } from "@/utils/sponsorAnalytics";
+import { prefetchMembershipFunnel, ctaHoverPrefetch } from "../lib/routePrefetch";
 
 // Visual treatment per group. Sponsor (B2B) is tinted to mark it as a
 // structurally different revenue line, not a subscriber tier (per memo).
@@ -106,9 +107,12 @@ const TierCta = ({ tier, surface, variant = "primary", onSponsorClick, currency 
       hashIdx >= 0 &&
       (href.startsWith("#") ||
         href.startsWith("/intelligence/value-ladder#"));
+    const isInternalSignupOrCheckout =
+      !isSamePageHash && href.startsWith("/intelligence/");
     return (
       <Link
         to={href}
+        {...(isInternalSignupOrCheckout ? ctaHoverPrefetch : {})}
         onClick={(e) => {
           trackLadderCta(tier, surface);
           if (isSamePageHash && typeof window !== "undefined") {
@@ -250,6 +254,8 @@ const ValueLadder = () => {
     if (window.location.hash === "#sponsor-projects") setProjectsExpanded(true);
     const handler = () => setProjectsExpanded(true);
     window.addEventListener("bb:open-sponsor-projects", handler);
+    // Warm Signup + Checkout chunks while the visitor reads the ladder.
+    prefetchMembershipFunnel();
     return () => window.removeEventListener("bb:open-sponsor-projects", handler);
   }, []);
 

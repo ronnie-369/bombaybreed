@@ -7,6 +7,7 @@ import { useToast } from "@/hooks/use-toast";
 import IntelligenceLayout from "../components/IntelligenceLayout";
 import SectionLabel from "../components/SectionLabel";
 import { logSubscribeConversion } from "@/lib/abTest";
+import { prefetchCheckout } from "../lib/routePrefetch";
 import {
   logAuthDiagnostic,
   extractErrorMessage,
@@ -51,6 +52,8 @@ const Signup = () => {
     supabase.auth.getSession().then(({ data }) => {
       if (data.session) navigate(redirect || `/intelligence/checkout?tier=${tier}&billing=${billing}`, { replace: true });
     });
+    // Warm Checkout chunk so the post-signup hop is instant.
+    prefetchCheckout();
   }, [navigate, redirect, tier, billing]);
 
   // Tick down the resend cooldown timer.

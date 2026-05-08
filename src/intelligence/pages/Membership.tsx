@@ -5,6 +5,7 @@ import { supabase } from "@/integrations/supabase/client";
 import IntelligenceLayout from "../components/IntelligenceLayout";
 import SectionLabel from "../components/SectionLabel";
 import { formatIntlBracket } from "../lib/currency";
+import { prefetchMembershipFunnel, ctaHoverPrefetch } from "../lib/routePrefetch";
 
 interface Tier {
   id: string;
@@ -84,6 +85,7 @@ const TierCard = ({
       </ul>
       <Link
         to={ctaHref}
+        {...ctaHoverPrefetch}
         className={`mt-8 inline-flex items-center justify-center h-12 px-6 rounded-[10px] text-[14px] font-medium transition ${
           featured
             ? "bg-bb-slate text-bb-off-white hover:opacity-90"
@@ -121,6 +123,8 @@ const Membership = () => {
     supabase.auth.getSession().then(({ data }) => {
       setHasSession(!!data.session);
     });
+    // Warm Signup + Checkout chunks while the user reads the page.
+    prefetchMembershipFunnel();
   }, []);
 
   const focusedTier = useMemo(
