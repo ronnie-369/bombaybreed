@@ -167,7 +167,7 @@ export const SPONSOR_OPEN_PROJECTS: SponsorOpenProject[] = [
       "Pipeline screen of Indian project types, host-country authorisation logic, MRV gaps, comparison with Korean and Singaporean Article 6 deals.",
     output:
       "Position paper with a scored shortlist of project archetypes plus a regulatory timeline.",
-    effort: "8-10 weeks · INR 14-24L + GST",
+    effort: "8-10 weeks · INR 6 lacs + GST",
   },
   {
     title: "Data-centre water and power footprint - the hidden load on the grid",
