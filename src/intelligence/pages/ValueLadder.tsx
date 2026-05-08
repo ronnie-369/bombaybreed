@@ -278,7 +278,7 @@ const ValueLadder = () => {
           <table className="w-full border-collapse text-left">
             <thead>
               <tr className="align-top h-px">
-                <th className="sticky top-16 z-20 w-[220px] p-5 text-[11px] uppercase tracking-[0.18em] text-bb-gray font-medium bg-bb-paper border-b border-bb-border h-full">
+                <th className="w-[220px] p-5 text-[11px] uppercase tracking-[0.18em] text-bb-gray font-medium bg-bb-paper border-b border-bb-border h-full">
                   What you get
                 </th>
                 {TIERS.map((tier) => {
@@ -286,9 +286,7 @@ const ValueLadder = () => {
                   return (
                     <th
                       key={tier.id}
-                      className={`sticky top-16 z-20 p-5 align-top border-l border-b border-bb-border h-full ${
-                        isSponsor ? "bg-bb-paper" : "bg-bb-paper"
-                      }`}
+                      className="p-5 align-top border-l border-b border-bb-border h-full bg-bb-paper"
                     >
                       <div className="flex flex-col h-full min-h-full">
                         <span
