@@ -594,38 +594,9 @@ const Insights = () => {
               </p>
             </header>
 
-            {/* Search + filter bar - sticky below the section nav so readers
+            {/* Filter bar - sticky below the section nav so readers
                 can keep filtering as they scroll the resources below. */}
             <div className="sticky top-[6.75rem] md:top-[7rem] z-20 -mx-6 md:-mx-8 px-6 md:px-8 py-3 mb-6 bg-background/90 backdrop-blur-md border-y border-border/40 space-y-3">
-              <div className="relative">
-                <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
-                <Input
-                  id="insights-search"
-                  aria-label="Search intelligence briefs"
-                  placeholder="Search the library - title, topic, or theme..."
-                  value={searchQuery}
-                  onChange={(e) => setSearchQuery(e.target.value)}
-                  className="pl-10 bg-background h-9"
-                />
-              </div>
-
-              <div className="flex flex-wrap items-center gap-1.5 text-[11px]">
-                <span className="text-muted-foreground tracking-wider uppercase mr-1">Quick search:</span>
-                {['NDC', 'Article 6', 'CBAM', 'CCTS', 'Energy', 'Steel', 'Cement', 'Removal', 'CDR'].map((kw) => (
-                  <button
-                    key={kw}
-                    type="button"
-                    onClick={() => setSearchQuery(kw)}
-                    className={`px-2 py-0.5 rounded-full border transition-colors ${
-                      searchQuery.toLowerCase() === kw.toLowerCase()
-                        ? 'bg-foreground text-background border-foreground'
-                        : 'border-border text-foreground/80 hover:bg-secondary'
-                    }`}
-                  >
-                    {kw}
-                  </button>
-                ))}
-              </div>
 
               <div className="flex flex-wrap items-center gap-x-4 gap-y-2">
                 <div className="flex gap-1.5 flex-wrap">
