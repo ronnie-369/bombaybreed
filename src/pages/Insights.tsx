@@ -460,6 +460,38 @@ const Insights = () => {
         </section>
 
 
+        {/* Reader testimonials - social proof before the tier finder */}
+        <section id="industry" aria-labelledby="readers-testimonials-heading" className="px-6 md:px-8 py-12 md:py-14 bg-secondary/30 scroll-mt-32 border-t border-border/40">
+          <div className="container mx-auto max-w-[900px]">
+            <SectionLabel label="What readers say" />
+            <h2 id="readers-testimonials-heading" className="text-section font-serif tracking-tight mt-6 mb-8 md:mb-10 [text-wrap:balance]">
+              Quotes from readers
+            </h2>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-5 md:gap-6">
+              {[
+                { quote: 'Brilliantly insightful.', name: 'Chris Sherwood', title: 'Chairman', org: 'Negative Emissions Platform', orgHref: 'https://www.negative-emissions.org/' },
+                { quote: 'Wonderful writing. Deep analysis. Highly insightful.', name: 'Mitchell Beer', title: 'Founder', org: 'The Energy Mix', orgHref: 'https://www.theenergymix.com' },
+                { quote: 'Excellent reporting from India.', name: 'Christian Haberli', title: 'Climate lawyer', org: 'EU' },
+              ].map((q, i) => (
+                <figure key={i} className="bg-background border border-border rounded-xl p-5 sm:p-6 flex flex-col">
+                  <blockquote className="font-serif text-[15px] sm:text-base text-foreground leading-relaxed mb-5 sm:mb-6 flex-1 [text-wrap:pretty]">
+                    &ldquo;{q.quote}&rdquo;
+                  </blockquote>
+                  <figcaption className="text-xs text-muted-foreground border-t border-border/60 pt-4 leading-snug">
+                    <div className="font-semibold text-foreground [text-wrap:balance]">{q.name}</div>
+                    <div className="[text-wrap:balance]">{q.title}</div>
+                    <div className="text-muted-foreground/70 [text-wrap:balance]">
+                      {q.orgHref ? (
+                        <a href={q.orgHref} target="_blank" rel="noopener noreferrer" className="text-foreground/80 no-underline hover:text-foreground hover:underline decoration-foreground/30 decoration-[0.5px] underline-offset-[5px] transition-colors duration-200">{q.org}</a>
+                      ) : q.org}
+                    </div>
+                  </figcaption>
+                </figure>
+              ))}
+            </div>
+          </div>
+        </section>
+
         {/* Guided tier selector - 3 questions to a recommended plan with
             direct routing to signup. Sits between the ladder strip and the
             sticky section nav so visitors can self-qualify before browsing. */}
