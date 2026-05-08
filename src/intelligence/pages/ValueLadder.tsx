@@ -7,8 +7,6 @@ import SectionLabel from "../components/SectionLabel";
 import {
   TIERS,
   JOBS,
-  SPONSOR_BANDS,
-  SPONSOR_TERMS,
   INTERSECTION,
   TIER_BY_ID,
   formatTierPrice,
@@ -401,76 +399,6 @@ const ValueLadder = () => {
         </p>
       </section>
 
-      {/* PER-TIER EXPLAINERS - anchor targets for the hero hyperlinks and the cards above */}
-      <section className="max-w-[1200px] mx-auto px-6 md:px-10 pb-4">
-        <div className="space-y-12">
-          {TIERS.map((tier) => {
-            const jobsForTier = JOBS
-              .map((j) => ({ n: j.n, title: j.title, body: j.byTier[tier.id] }))
-              .filter((j) => j.body && !/^no$/i.test(j.body.trim()));
-            const isSponsor = tier.ladder === "B2B";
-            return (
-              <article
-                key={tier.id}
-                id={`tier-${tier.id}`}
-                className={`scroll-mt-24 rounded-none border p-7 md:p-10 bg-bb-paper ${
-                  isSponsor
-                    ? "border-bb-near-black/30"
-                    : "border-bb-border"
-                }`}
-              >
-                <div className="flex flex-wrap items-center gap-3">
-                  <span className={`text-[10px] uppercase tracking-[0.18em] px-2 py-0.5 rounded ${ladderBadgeClass[tier.ladder]}`}>
-                    {ladderLabel[tier.ladder]}
-                  </span>
-                  <span className="text-[11px] uppercase tracking-[0.18em] text-bb-gray">
-                    Tier explainer
-                  </span>
-                </div>
-                <h3 className="mt-4 font-serif font-normal tracking-[-0.02em] text-[28px] md:text-[36px] leading-[1.1] text-bb-near-black">
-                  {tier.name}
-                </h3>
-                <div className="mt-2 text-[15px] text-bb-near-black/85 font-medium">
-                  <TierPriceText tier={tier} currency={currency} />
-                </div>
-                <div className="mt-6 grid md:grid-cols-[1.4fr_1fr] gap-10">
-                  <div>
-                    <p className="text-[11px] uppercase tracking-[0.18em] text-bb-gray">Who it is for</p>
-                    <p className="mt-2 text-[15px] leading-[1.7] text-bb-near-black/90">
-                      {tier.audience}
-                    </p>
-                    <p className="mt-6 text-[11px] uppercase tracking-[0.18em] text-bb-gray">Why it exists</p>
-                    <p className="mt-2 text-[15px] leading-[1.7] text-bb-near-black/90">
-                      {tier.strategicRole}
-                    </p>
-                    <div className="mt-7 max-w-xs">
-                      <TierCta
-                        tier={tier}
-                        surface="tier_explainer"
-                        onSponsorClick={openSponsor}
-                        currency={currency}
-                      />
-                    </div>
-                  </div>
-                  <div>
-                    <p className="text-[11px] uppercase tracking-[0.18em] text-bb-gray">What you get</p>
-                    <ul className="mt-3 space-y-3">
-                      {jobsForTier.map((j) => (
-                        <li key={j.n} className="text-[13px] leading-[1.6] text-bb-gray">
-                          <span className="text-bb-gold mr-2 font-medium">{j.n}.</span>
-                          <span className="text-bb-near-black/90">{j.title}.</span>{" "}
-                          {j.body}
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                </div>
-              </article>
-            );
-          })}
-        </div>
-      </section>
-
       {/* INTERSECTION */}
       <section className="max-w-[1200px] mx-auto px-6 md:px-10 py-16 border-t border-bb-border">
         <SectionLabel>The intersection</SectionLabel>
@@ -516,78 +444,6 @@ const ValueLadder = () => {
               {formatIntersectionIntro(currency)}
             </div>
           </div>
-        </div>
-      </section>
-
-      {/* SPONSORSHIP */}
-      <section
-        id="sponsor"
-        className="max-w-[1200px] mx-auto px-6 md:px-10 py-16 border-t border-bb-border scroll-mt-24"
-      >
-        <SectionLabel>Sponsorship (B2B)</SectionLabel>
-        <h2 className="mt-6 font-serif font-normal tracking-[-0.02em] text-[32px] md:text-[40px] leading-[1.1] text-bb-near-black max-w-3xl">
-          Underwrite a report. Reach the whole subscriber base.
-        </h2>
-        <p className="mt-4 text-[15px] leading-[1.7] text-bb-gray max-w-2xl">
-          Sponsors do not subscribe. They commission specific research outputs
-          that get published to the Market Makers and Investment Intelligence tiers with attribution
-          credit. The deliverable is a published report, not private
-          intelligence. Editorial independence is non-negotiable.
-        </p>
-
-        <div className="mt-10 grid gap-4">
-          {SPONSOR_BANDS.map((band) => (
-            <div
-              key={band.engagement}
-              className="rounded-none border border-bb-border bg-bb-paper p-6 grid md:grid-cols-[260px_180px_1fr] gap-4 md:gap-6"
-            >
-              <div>
-                <div className="font-serif text-[18px] tracking-tight text-bb-near-black leading-snug">
-                  {band.engagement}
-                </div>
-              </div>
-              <div className="text-[14px] font-medium text-bb-gold">
-                {band.price}
-              </div>
-              <p className="text-[13px] text-bb-gray leading-[1.65]">
-                {band.scope}
-              </p>
-            </div>
-          ))}
-        </div>
-
-        <div className="mt-10">
-          <h3 className="text-[11px] font-semibold uppercase tracking-[0.36em] text-bb-gold">
-            Standard sponsor terms
-          </h3>
-          <ol className="mt-5 grid md:grid-cols-2 gap-x-10 gap-y-4">
-            {SPONSOR_TERMS.map((term, i) => (
-              <li key={i} className="text-[13px] text-bb-near-black/85 leading-[1.65] flex gap-3">
-                <span className="text-bb-gold font-medium shrink-0">{i + 1}.</span>
-                <span>{term}</span>
-              </li>
-            ))}
-          </ol>
-        </div>
-
-        <div className="mt-10">
-          <button
-            type="button"
-            onClick={openSponsor}
-            className="inline-flex items-center justify-center h-12 px-7 rounded-none border border-bb-near-black bg-transparent text-bb-near-black text-[14px] font-medium tracking-wide hover:bg-bb-near-black hover:text-bb-paper transition"
-          >
-            Inquire about sponsorship
-          </button>
-          <p className="mt-3 text-[12px] text-bb-gray">
-            Or write directly to{" "}
-            <a
-              href="mailto:theresa.ronnie@bombaybreed.com"
-              className="underline underline-offset-2 hover:text-bb-near-black"
-            >
-              theresa.ronnie@bombaybreed.com
-            </a>
-            .
-          </p>
         </div>
       </section>
 
