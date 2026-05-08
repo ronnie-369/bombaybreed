@@ -203,14 +203,13 @@ const PremiumAccessLounge: React.FC = () => {
   const [inquiryOpen, setInquiryOpen] = useState(false);
   const [inquiryProject, setInquiryProject] = useState<SponsorProject | { title: string } | null>(null);
   const [currency] = useCurrency();
-  // Lounge launch-discount prices (30% off year one). Discount math is local
-  // to this surface; the canonical Value Ladder uses regular pricing.
-  const tier1Strike = currency === 'USD' ? 'USD 100 / month (INR 8,500)' : 'INR 8,500 / month (USD 100)';
-  const tier1Price = currency === 'USD' ? 'USD 70' : 'INR 6,000';
-  const tier1Secondary = currency === 'USD' ? 'INR 6,000' : 'USD 70';
-  const tier2Strike = currency === 'USD' ? 'USD 500 / month (INR 42,500)' : 'INR 42,500 / month (USD 500)';
-  const tier2Price = currency === 'USD' ? 'USD 350' : 'INR 30,000';
-  const tier2Secondary = currency === 'USD' ? 'INR 30,000' : 'USD 350';
+  // Canonical Value Ladder pricing (USD 10 / USD 20 per month, FX 85 INR/USD).
+  // Single source of truth lives in src/intelligence/lib/valueLadder.ts and
+  // the create-razorpay-order edge function. Keep numbers in lock-step.
+  const tier1Price = currency === 'USD' ? 'USD 10' : 'INR 850';
+  const tier1Secondary = currency === 'USD' ? 'INR 850' : 'USD 10';
+  const tier2Price = currency === 'USD' ? 'USD 20' : 'INR 1,700';
+  const tier2Secondary = currency === 'USD' ? 'INR 1,700' : 'USD 20';
 
   const openInquiry = (project: SponsorProject) => {
     setInquiryProject(project);
@@ -818,18 +817,12 @@ const PremiumAccessLounge: React.FC = () => {
               </div>
 
               <div className="mb-6">
-                <span className="inline-flex items-center px-2.5 py-1 rounded-full text-[10px] font-semibold tracking-widest uppercase bg-accent/15 text-accent border border-accent/30 mb-3 leading-snug">
-                  Inaugural offer - 30% off year one
-                </span>
-                <div className="text-xs text-muted-foreground/70 font-sans line-through mb-1 leading-snug">
-                  {tier1Strike}
-                </div>
                 <div className="font-serif text-2xl sm:text-3xl text-foreground whitespace-nowrap leading-tight">
                   {tier1Price}<span className="text-sm sm:text-base text-muted-foreground font-sans"> / month</span>
                   <span className="text-xs sm:text-sm text-muted-foreground font-sans ml-2">({tier1Secondary})</span>
                 </div>
                 <div className="text-xs text-muted-foreground tracking-wide mt-1 leading-snug">
-                  Annual plan locks the inaugural price for three years - protected against inflation, no renewal hike.
+                  Billed monthly. Cancel anytime.
                 </div>
               </div>
 
@@ -890,18 +883,12 @@ const PremiumAccessLounge: React.FC = () => {
               </div>
 
               <div className="mb-6">
-                <span className="inline-flex items-center px-2.5 py-1 rounded-full text-[10px] font-semibold tracking-widest uppercase bg-accent/20 text-accent border border-accent/40 mb-3 leading-snug">
-                  Inaugural offer - 30% off year one
-                </span>
-                <div className="text-xs text-background/45 font-sans line-through mb-1 leading-snug">
-                  {tier2Strike}
-                </div>
                 <div className="font-serif text-2xl sm:text-3xl whitespace-nowrap leading-tight">
                   {tier2Price}<span className="text-sm sm:text-base text-background/60 font-sans"> / month</span>
                   <span className="text-xs sm:text-sm text-background/60 font-sans ml-2">({tier2Secondary})</span>
                 </div>
                 <div className="text-xs text-background/60 tracking-wide mt-1 leading-snug">
-                  Annual plan locks the inaugural price for three years - protected against inflation, no renewal hike.
+                  Billed monthly. Cancel anytime.
                 </div>
               </div>
 

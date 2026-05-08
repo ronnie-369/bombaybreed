@@ -47,18 +47,18 @@ type BillingCycle = 'monthly' | 'annual';
 const PLANS: Record<PlanId, { tierSlug: string; monthly_paise: number; annual_paise: number }> = {
   enthusiasts: {
     tierSlug: 'enthusiasts',
-    monthly_paise: 425 * 100,
-    annual_paise: 425 * 12 * 100, // unused; create-razorpay-order rejects annual for this plan
+    monthly_paise: 85 * 100,
+    annual_paise: 85 * 12 * 100, // unused; all paid plans are monthly-only
   },
   industry_reader: {
     tierSlug: 'foundational',
-    monthly_paise: 10_000 * 100,
-    annual_paise: 7_000 * 12 * 100,
+    monthly_paise: 850 * 100,
+    annual_paise: 850 * 12 * 100, // unused
   },
   analyst_lens: {
     tierSlug: 'professional',
-    monthly_paise: 50_000 * 100,
-    annual_paise: 35_000 * 12 * 100,
+    monthly_paise: 1_700 * 100,
+    annual_paise: 1_700 * 12 * 100, // unused
   },
 };
 

@@ -77,7 +77,7 @@ export const TIERS: LadderTier[] = [
     name: "Enthusiasts",
     ladder: "TCD",
     priceLabel: "USD 1 / mo",
-    pricing: { usd: 1, inr: 100, period: "mo" },
+    pricing: { usd: 1, inr: 85, period: "mo" },
     audience:
       "Professional readers, sustainability teams, journalists who want deeper reports than the free Substack",
     strategicRole:

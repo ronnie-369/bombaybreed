@@ -22,19 +22,24 @@
 
 import { createClient } from 'jsr:@supabase/supabase-js@2';
 
-type PlanId = 'industry_reader' | 'analyst_lens';
+type PlanId = 'enthusiasts' | 'industry_reader' | 'analyst_lens';
 type BillingCycle = 'monthly' | 'annual';
 
 const PLANS: Record<PlanId, { tierSlug: string; monthly_paise: number; annual_paise: number }> = {
+  enthusiasts: {
+    tierSlug: 'enthusiasts',
+    monthly_paise: 85 * 100,
+    annual_paise: 85 * 12 * 100, // unused; monthly-only
+  },
   industry_reader: {
     tierSlug: 'foundational',
-    monthly_paise: 10_000 * 100,
-    annual_paise: 7_000 * 12 * 100,
+    monthly_paise: 850 * 100,
+    annual_paise: 850 * 12 * 100, // unused
   },
   analyst_lens: {
     tierSlug: 'professional',
-    monthly_paise: 50_000 * 100,
-    annual_paise: 35_000 * 12 * 100,
+    monthly_paise: 1_700 * 100,
+    annual_paise: 1_700 * 12 * 100, // unused
   },
 };
 
@@ -369,7 +374,7 @@ Deno.serve(async (req) => {
   const planId = orderJson?.notes?.plan_id as PlanId | undefined;
   const billingCycle = orderJson?.notes?.billing_cycle as BillingCycle | undefined;
   const planLabel = (orderJson?.notes?.plan_label as string | undefined) ?? '';
-  if (planId !== 'industry_reader' && planId !== 'analyst_lens') {
+  if (planId !== 'enthusiasts' && planId !== 'industry_reader' && planId !== 'analyst_lens') {
     console.warn('razorpay-webhook: unrecognised plan on order', { orderId, planId });
     // Not our order shape - ack so we don't get retried forever.
     return jsonResponse({ ok: true, ignored: 'unknown_plan' });

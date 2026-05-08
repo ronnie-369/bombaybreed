@@ -54,9 +54,13 @@ const TIER_TO_PLAN: Record<string, LoungePlanId> = {
   professional: "analyst_lens",
 };
 
-// Some plans (Enthusiasts) are monthly-only - annual cycle is rejected by
-// the edge function. The UI hides the annual toggle for these plans.
-const MONTHLY_ONLY_PLANS: ReadonlySet<LoungePlanId> = new Set(["enthusiasts"]);
+// All paid plans are monthly-only. The annual cycle was retired when pricing
+// was aligned to the canonical Value Ladder ($1 / $10 / $20 per month).
+const MONTHLY_ONLY_PLANS: ReadonlySet<LoungePlanId> = new Set([
+  "enthusiasts",
+  "industry_reader",
+  "analyst_lens",
+]);
 
 const formatPrice = (n: number) =>
   new Intl.NumberFormat("en-IN", {
@@ -71,9 +75,9 @@ const PLAN_PRICING: Record<
   LoungePlanId,
   { monthly: number; annualPerMonth: number; annualTotal: number; monthlyOnly?: boolean }
 > = {
-  enthusiasts: { monthly: 425, annualPerMonth: 425, annualTotal: 5100, monthlyOnly: true },
-  industry_reader: { monthly: 10000, annualPerMonth: 7000, annualTotal: 84000 },
-  analyst_lens: { monthly: 50000, annualPerMonth: 35000, annualTotal: 420000 },
+  enthusiasts: { monthly: 85, annualPerMonth: 85, annualTotal: 1020, monthlyOnly: true },
+  industry_reader: { monthly: 850, annualPerMonth: 850, annualTotal: 10200, monthlyOnly: true },
+  analyst_lens: { monthly: 1700, annualPerMonth: 1700, annualTotal: 20400, monthlyOnly: true },
 };
 
 // Map low-level error strings from the edge function / network to a friendly,
@@ -163,7 +167,7 @@ const Checkout = () => {
   const initialBilling: "monthly" | "annual" =
     billingParam === "monthly" || billingParam === "annual"
       ? billingParam
-      : "annual";
+      : "monthly";
   const navigate = useNavigate();
   const { toast } = useToast();
 
