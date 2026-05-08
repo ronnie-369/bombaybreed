@@ -467,7 +467,7 @@ export const SPONSOR_BANDS: SponsorBand[] = [
   },
   {
     engagement: "Research project sponsorship (one-off, non-published)",
-    price: "INR 35 Lakh+ starting figure",
+    price: "Starting INR 35 Lacs plus GST",
     scope:
       "Custom research delivered privately to the sponsor without publication. Higher pricing reflects the loss of subscriber-base distribution. Available only when subject is genuinely sensitive.",
   },
