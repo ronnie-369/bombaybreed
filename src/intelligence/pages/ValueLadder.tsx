@@ -559,6 +559,9 @@ const ValueLadder = () => {
           <div className="text-[11px] uppercase tracking-[0.18em] text-bb-gray">
             Standing engagement bands
           </div>
+          <p className="mt-3 text-[13px] leading-[1.6] text-bb-gray max-w-2xl">
+            Indicative figures. Final scope and price set per engagement - book a call to discuss fit.
+          </p>
           <ol className="mt-4 border-t border-bb-border">
             {SPONSOR_BANDS.map((band, i) => (
               <li
