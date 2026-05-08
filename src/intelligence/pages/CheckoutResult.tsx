@@ -56,7 +56,6 @@ const billingLabel = (cycle?: string) => {
 
 export default function CheckoutResult() {
   const [params] = useSearchParams();
-  const navigate = useNavigate();
   const orderId = params.get("order") ?? "";
 
   const [payload, setPayload] = useState<StatusPayload | null>(null);
