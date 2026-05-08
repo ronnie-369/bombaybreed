@@ -1,7 +1,8 @@
 import { useState } from "react";
 import { Helmet } from "react-helmet-async";
 import { Link } from "react-router-dom";
-import IntelligenceLayout from "../components/IntelligenceLayout";
+import Header from "@/components/Header";
+import Footer from "@/components/Footer";
 import SectionLabel from "../components/SectionLabel";
 import {
   TIERS,
@@ -207,7 +208,9 @@ const ValueLadder = () => {
   const toTier = TIER_BY_ID[INTERSECTION.toTierId];
 
   return (
-    <IntelligenceLayout>
+    <>
+      <Header />
+      <main className="bg-bb-paper text-bb-near-black">
       <Helmet>
         <title>Membership tiers - TCD Intelligence and Bombay Breed</title>
         <meta
@@ -636,7 +639,9 @@ const ValueLadder = () => {
         onOpenChange={setSponsorOpen}
         project="Sponsorship inquiry from value ladder page"
       />
-    </IntelligenceLayout>
+      </main>
+      <Footer />
+    </>
   );
 };
 
