@@ -130,8 +130,8 @@ export const TIERS: LadderTier[] = [
       "Underwrite editorial production; credibility and revenue",
     cta: {
       kind: "internal",
-      label: "See current and bespoke projects",
-      href: "/intelligence/value-ladder#sponsor",
+      label: "See current projects",
+      href: "/intelligence/value-ladder#sponsor-projects",
     },
   },
 ];
