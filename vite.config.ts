@@ -64,8 +64,10 @@ export default defineConfig(({ mode }) => ({
           if (id.includes('/dompurify/') || id.includes('/marked/')) {
             return 'vendor-content';
           }
-
-          return 'vendor';
+          // No catch-all 'vendor' chunk: bundling unrelated packages together
+          // can introduce cross-chunk circular imports that surface as
+          // "Cannot access 'X' before initialization" at runtime. Let Rollup
+          // place remaining deps with their importers.
         },
       },
     },
