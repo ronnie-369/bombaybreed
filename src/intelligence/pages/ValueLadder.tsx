@@ -20,6 +20,7 @@ import { useCurrency } from "../lib/useCurrency";
 import CurrencyToggle from "@/components/insights/CurrencyToggle";
 import TierPriceText from "@/components/insights/TierPriceText";
 import SponsorInquiryDialog from "@/components/SponsorInquiryDialog";
+import BookingDialog from "@/components/BookingDialog";
 import { trackOutboundClick } from "@/utils/outboundAnalytics";
 import { trackSponsorEvent } from "@/utils/sponsorAnalytics";
 import { prefetchMembershipFunnel, ctaHoverPrefetch } from "../lib/routePrefetch";
@@ -235,6 +236,7 @@ const TierCard = ({
 
 const ValueLadder = () => {
   const [sponsorOpen, setSponsorOpen] = useState(false);
+  const [bookingOpen, setBookingOpen] = useState(false);
   const [inquiryProject, setInquiryProject] = useState<SponsorOpenProject | { title: string } | null>(null);
   const openSponsor = () => {
     setInquiryProject({ title: "Sponsorship inquiry from value ladder page" });
@@ -592,6 +594,18 @@ const ValueLadder = () => {
               </li>
             ))}
           </ol>
+          <div className="mt-10">
+            <button
+              type="button"
+              onClick={() => setBookingOpen(true)}
+              className="cta-gold-underline inline-flex items-center justify-center h-12 px-6 rounded-[10px] text-[14px] font-medium bg-bb-slate text-bb-off-white hover:opacity-90 transition focus-visible:outline-none"
+            >
+              Book a 30-min sponsorship call <span aria-hidden className="ml-2">→</span>
+            </button>
+            <p className="mt-3 text-[12px] text-bb-gray">
+              Not sure which band fits? Use the call to scope.
+            </p>
+          </div>
         </div>
       </section>
 
@@ -636,6 +650,11 @@ const ValueLadder = () => {
         projectDetails={
           inquiryProject && "angle" in inquiryProject ? inquiryProject : undefined
         }
+      />
+      <BookingDialog
+        open={bookingOpen}
+        onOpenChange={setBookingOpen}
+        subject="Sponsorship - standing engagement bands"
       />
       </main>
       <Footer />

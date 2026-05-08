@@ -23,6 +23,7 @@ interface BookingDialogProps {
   triggerText?: string;
   open?: boolean;
   onOpenChange?: (open: boolean) => void;
+  subject?: string;
 }
 
 type Step = 'calendar' | 'form' | 'confirmed';
@@ -31,7 +32,8 @@ const BookingDialog = ({
   trigger, 
   triggerText = "Book a Consultation",
   open,
-  onOpenChange 
+  onOpenChange,
+  subject,
 }: BookingDialogProps) => {
   const [isOpen, setIsOpen] = useState(false);
   const [step, setStep] = useState<Step>('calendar');
@@ -86,6 +88,7 @@ const BookingDialog = ({
           preferred_date: format(selectedDate, 'yyyy-MM-dd'),
           preferred_time: selectedSlot,
           form_type: 'booking',
+          subject: subject || null,
         }),
       });
 
