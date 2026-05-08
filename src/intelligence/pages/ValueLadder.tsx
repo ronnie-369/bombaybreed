@@ -499,16 +499,16 @@ const ValueLadder = () => {
                   key={proj.title}
                   type="button"
                   onClick={() => openProjectInquiry(proj)}
-                  className="block w-full h-full p-3 text-left bg-transparent focus:outline-none focus-visible:ring-2 focus-visible:ring-bb-slate/40"
+                  className="block w-full h-full px-1.5 py-2 text-left bg-transparent focus:outline-none focus-visible:ring-2 focus-visible:ring-bb-slate/40"
                   aria-label={`Register interest in: ${proj.title}`}
                 >
-                  <div className="text-bb-gold font-serif text-[7.25px] leading-[1.1]">
+                  <div className="text-bb-gold font-serif text-[7px] leading-[1.1]">
                     {String(i + 1).padStart(2, "0")}
                   </div>
-                  <div className="mt-2 font-serif text-[6.5px] leading-[1.35] tracking-[0.005em] text-bb-near-black line-clamp-4">
+                  <div className="mt-1.5 font-serif text-[6px] leading-[1.3] text-bb-near-black line-clamp-4 break-words hyphens-auto">
                     {proj.title}
                   </div>
-                  <div className="mt-2 text-[4.75px] leading-[1.25] uppercase tracking-[0.14em] text-bb-gray font-mono">
+                  <div className="mt-1.5 text-[4.5px] leading-[1.25] uppercase tracking-[0.1em] text-bb-gray font-mono break-words">
                     {proj.effort.split("·")[0]?.trim()}
                   </div>
                 </button>
