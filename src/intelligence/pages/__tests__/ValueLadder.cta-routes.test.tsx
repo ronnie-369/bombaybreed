@@ -156,11 +156,11 @@ const findTableCta = (tierName: string): HTMLAnchorElement | HTMLButtonElement =
   // CTA label resolution mirrors formatTierCtaLabel: ctaLabelTemplate wins
   // when present (Enthusiasts), else cta.label.
   const labelMatchers: Record<string, RegExp> = {
-    'Free Substack': /^Subscribe free$/,
-    Enthusiasts: /^Upgrade -/,
-    'Market Makers': /^Join Market Makers$/,
-    'Investment Intelligence': /^Join Investment Intelligence$/,
-    Sponsor: /^Exclusive projects$/,
+    'Free Substack': /^Get started$/,
+    Enthusiasts: /^Contribute$/,
+    'Market Makers': /^Join the club$/,
+    'Investment Intelligence': /^Get the edge$/,
+    Sponsor: /^Be the change$/,
   };
 
   const matcher = labelMatchers[tierName];
