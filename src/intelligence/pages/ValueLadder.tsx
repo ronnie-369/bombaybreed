@@ -254,6 +254,8 @@ const ValueLadder = () => {
     if (window.location.hash === "#sponsor-projects") setProjectsExpanded(true);
     const handler = () => setProjectsExpanded(true);
     window.addEventListener("bb:open-sponsor-projects", handler);
+    // Warm Signup + Checkout chunks while the visitor reads the ladder.
+    prefetchMembershipFunnel();
     return () => window.removeEventListener("bb:open-sponsor-projects", handler);
   }, []);
 
