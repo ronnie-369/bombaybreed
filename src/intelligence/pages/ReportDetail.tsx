@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Helmet } from "react-helmet-async";
 import { Link, useParams } from "react-router-dom";
+import DOMPurify from "dompurify";
 import { supabase } from "@/integrations/supabase/client";
 import IntelligenceLayout from "../components/IntelligenceLayout";
 import SectionLabel from "../components/SectionLabel";
@@ -10,16 +11,23 @@ interface Report {
   slug: string;
   title: string;
   summary: string | null;
-  body_html: string | null;
   category: string | null;
   required_tier_rank: number;
   published_at: string | null;
   reading_minutes: number | null;
 }
 
+const ALLOWED_TAGS = [
+  "h1","h2","h3","h4","h5","h6","p","br","hr","strong","em","b","i","u","s",
+  "ul","ol","li","blockquote","pre","code","a","img","figure","figcaption",
+  "table","thead","tbody","tfoot","tr","th","td","span","div"
+];
+const ALLOWED_ATTR = ["href","title","alt","src","colspan","rowspan","class"];
+
 const ReportDetail = () => {
   const { slug } = useParams<{ slug: string }>();
   const [report, setReport] = useState<Report | null>(null);
+  const [bodyHtml, setBodyHtml] = useState<string>("");
   const [hasAccess, setHasAccess] = useState<boolean | null>(null);
   const [loading, setLoading] = useState(true);
 
@@ -29,7 +37,7 @@ const ReportDetail = () => {
       const [{ data: r }, { data: access }] = await Promise.all([
         supabase
           .from("tcd_reports")
-          .select("*")
+          .select("id,slug,title,summary,category,required_tier_rank,published_at,reading_minutes")
           .eq("slug", slug)
           .eq("is_published", true)
           .maybeSingle(),
@@ -39,6 +47,8 @@ const ReportDetail = () => {
       setHasAccess(!!access);
       if (access) {
         supabase.rpc("tcd_log_report_view", { _report_slug: slug });
+        const { data: body } = await supabase.rpc("tcd_get_report_body", { _slug: slug });
+        setBodyHtml(typeof body === "string" ? body : "");
       }
       setLoading(false);
     })();
@@ -99,7 +109,7 @@ const ReportDetail = () => {
         {hasAccess ? (
           <div
             className="prose prose-lg max-w-none font-serif text-bb-near-black"
-            dangerouslySetInnerHTML={{ __html: report.body_html ?? "" }}
+            dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(bodyHtml, { ALLOWED_TAGS, ALLOWED_ATTR, FORBID_ATTR: ["style","onerror","onload","onclick"] }) }}
           />
         ) : (
           <div className="bg-white border border-bb-border rounded-xl p-8 text-center">

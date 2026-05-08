@@ -12,17 +12,53 @@ serve(async (req) => {
   }
 
   try {
-    const { pageId } = await req.json();
-    
     const supabaseUrl = Deno.env.get("SUPABASE_URL")!;
-    const supabaseKey = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!;
-    const supabase = createClient(supabaseUrl, supabaseKey);
+    const serviceKey = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!;
+    const anonKey = Deno.env.get("SUPABASE_ANON_KEY")!;
 
-    // Get the current page
+    // Authenticate caller via JWT
+    const authHeader = req.headers.get("Authorization") ?? "";
+    const token = authHeader.replace("Bearer ", "");
+    if (!token) {
+      return new Response(JSON.stringify({ error: "Unauthorized" }), {
+        status: 401,
+        headers: { ...corsHeaders, "Content-Type": "application/json" },
+      });
+    }
+
+    const authClient = createClient(supabaseUrl, anonKey, {
+      global: { headers: { Authorization: `Bearer ${token}` } },
+    });
+    const { data: userData, error: userError } = await authClient.auth.getUser(token);
+    if (userError || !userData?.user) {
+      return new Response(JSON.stringify({ error: "Unauthorized" }), {
+        status: 401,
+        headers: { ...corsHeaders, "Content-Type": "application/json" },
+      });
+    }
+
+    const supabase = createClient(supabaseUrl, serviceKey);
+
+    // Require admin role
+    const { data: isAdmin } = await supabase.rpc("has_role", {
+      _user_id: userData.user.id,
+      _role: "admin",
+    });
+    if (!isAdmin) {
+      return new Response(JSON.stringify({ error: "Forbidden" }), {
+        status: 403,
+        headers: { ...corsHeaders, "Content-Type": "application/json" },
+      });
+    }
+
+    const { pageId } = await req.json();
+
+    // Get the current page (published only)
     const { data: currentPage, error: pageError } = await supabase
       .from("seo_pages")
       .select("*, seo_capabilities(*), seo_industries(*), seo_geographies(*), seo_regulations(*)")
       .eq("id", pageId)
+      .eq("is_published", true)
       .single();
 
     if (pageError || !currentPage) {

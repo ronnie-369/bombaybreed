@@ -1,0 +1,1 @@
+DROP FUNCTION IF EXISTS public.tcd_mock_activate_subscription(uuid);

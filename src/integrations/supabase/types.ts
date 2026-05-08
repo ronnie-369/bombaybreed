@@ -1026,10 +1026,6 @@ export type Database = {
       tcd_current_tier_rank: { Args: never; Returns: number }
       tcd_get_report_body: { Args: { _slug: string }; Returns: string }
       tcd_log_report_view: { Args: { _report_slug: string }; Returns: string }
-      tcd_mock_activate_subscription: {
-        Args: { _tier_id: string }
-        Returns: string
-      }
       tcd_user_has_report_access: {
         Args: { _report_slug: string }
         Returns: boolean
