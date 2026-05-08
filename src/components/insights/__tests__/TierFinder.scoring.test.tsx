@@ -103,7 +103,7 @@ describe("TierFinder scoring", () => {
     await pick(user, "USD 1 / month");
 
     expect(recommendedName()).toBe("Enthusiasts");
-    expect(screen.getByText(/if your budget allowed/i)).toBeInTheDocument();
+    expect(screen.getByText(/if your budget allows/i)).toBeInTheDocument();
     expect(screen.getByRole("link", { name: /investment intelligence/i })).toBeInTheDocument();
   });
 });
