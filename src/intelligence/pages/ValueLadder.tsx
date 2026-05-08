@@ -629,6 +629,7 @@ const ValueLadder = () => {
           {[
             { quote: 'Brilliantly insightful.', name: 'Chris Sherwood', title: 'Chairman', org: 'Negative Emissions Platform', orgHref: 'https://www.negative-emissions.org/' },
             { quote: 'Wonderful writing. Deep analysis. Highly insightful.', name: 'Mitchell Beer', title: 'Founder', org: 'The Energy Mix', orgHref: 'https://www.theenergymix.com' },
+            { quote: 'Very methodical and deep analysis.', name: 'Rohit Jhunjhunwala', title: 'Founder', org: 'In44 Capital' },
             { quote: 'Excellent reporting from India.', name: 'Christian Haberli', title: 'Climate lawyer', org: 'EU' },
           ].map((q, i) => (
             <figure key={i} className="border border-bb-border bg-bb-paper p-6 flex flex-col">
