@@ -165,6 +165,7 @@ const TierFinder = () => {
       sponsor: 0,
     };
     let allowed: TierId[] = ALL_TIERS;
+    let budgetScores: Partial<Record<TierId, number>> = {};
     for (const q of QUESTIONS) {
       const idx = answers[q.id];
       const opt = q.options[idx];
@@ -172,15 +173,36 @@ const TierFinder = () => {
       for (const [tid, val] of Object.entries(opt.scores)) {
         scores[tid as TierId] += val ?? 0;
       }
-      // Budget option carries the hard ceiling.
-      if (q.id === "budget" && opt.allowedTiers) {
-        allowed = opt.allowedTiers;
+      // Budget option carries the hard ceiling AND a tie-break signal.
+      if (q.id === "budget") {
+        if (opt.allowedTiers) allowed = opt.allowedTiers;
+        budgetScores = opt.scores;
       }
     }
 
-    // 2. Unconstrained winner (best fit ignoring budget).
+    // Tier order from cheapest to richest - used for deterministic
+    // tie-breaks that prefer the higher tier when the visitor's stated
+    // budget explicitly allows it. Without this, ties fall back to JS
+    // object insertion order and we end up recommending the $1/mo plan
+    // to someone who told us they would spend $20/mo.
+    const tierRank: Record<TierId, number> = {
+      "tcd-free": 0,
+      "tcd-paid": 1,
+      "bb-reader": 2,
+      "bb-analyst": 3,
+      sponsor: 4,
+    };
+
+    // 2. Rank tiers by total score, then by budget signal, then by
+    //    ladder height. All deterministic.
     const ranked = (Object.entries(scores) as [TierId, number][]).sort(
-      (a, b) => b[1] - a[1]
+      (a, b) => {
+        if (b[1] !== a[1]) return b[1] - a[1];
+        const ba = budgetScores[a[0]] ?? 0;
+        const bb = budgetScores[b[0]] ?? 0;
+        if (bb !== ba) return bb - ba;
+        return tierRank[b[0]] - tierRank[a[0]];
+      }
     );
     const idealId = ranked[0][0];
 
