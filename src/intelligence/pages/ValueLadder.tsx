@@ -25,6 +25,7 @@ import BookingDialog from "@/components/LazyBookingDialog";
 import { trackOutboundClick } from "@/utils/outboundAnalytics";
 import { trackSponsorEvent } from "@/utils/sponsorAnalytics";
 import { prefetchMembershipFunnel, ctaHoverPrefetch } from "../lib/routePrefetch";
+import SpotlightCard from "@/components/ui/SpotlightCard";
 
 // Visual treatment per group. Sponsor (B2B) is tinted to mark it as a
 // structurally different revenue line, not a subscriber tier (per memo).
@@ -195,12 +196,13 @@ const TierCard = ({
   const isSponsor = tier.ladder === "B2B";
   const explainerHref = `#tier-${tier.id}`;
   return (
-    <div
+    <SpotlightCard
       className={`group rounded-none border p-6 flex flex-col h-full transition hover:border-bb-near-black ${
         isSponsor
           ? "border-bb-near-black/30 bg-bb-paper"
           : "border-bb-border bg-bb-paper"
       }`}
+      spotlightColor={isSponsor ? "rgba(197, 160, 89, 0.28)" : "rgba(197, 160, 89, 0.18)"}
     >
       <a
         href={explainerHref}
@@ -231,7 +233,7 @@ const TierCard = ({
       <div className="mt-5">
         <TierCta tier={tier} surface={surface} onSponsorClick={onSponsorClick} currency={currency} />
       </div>
-    </div>
+    </SpotlightCard>
   );
 };
 

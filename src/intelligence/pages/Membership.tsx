@@ -6,6 +6,7 @@ import IntelligenceLayout from "../components/IntelligenceLayout";
 import SectionLabel from "../components/SectionLabel";
 import { formatIntlBracket } from "../lib/currency";
 import { prefetchMembershipFunnel, ctaHoverPrefetch } from "../lib/routePrefetch";
+import SpotlightCard from "@/components/ui/SpotlightCard";
 
 interface Tier {
   id: string;
@@ -46,10 +47,11 @@ const TierCard = ({
 }) => {
   const features = Array.isArray(tier.features) ? (tier.features as string[]) : [];
   return (
-    <div
-      className={`bg-white rounded-xl border p-8 flex flex-col ${
+    <SpotlightCard
+      className={`bg-white rounded-xl border p-8 flex flex-col transition-all duration-300 hover:-translate-y-0.5 hover:shadow-sm ${
         featured ? "border-bb-slate" : "border-bb-border"
       }`}
+      spotlightColor={featured ? "rgba(197, 160, 89, 0.28)" : "rgba(197, 160, 89, 0.18)"}
     >
       {featured && (
         <div className="self-start mb-4 px-2 py-1 rounded text-[10px] uppercase tracking-[0.2em] text-bb-off-white bg-bb-slate">
@@ -91,7 +93,7 @@ const TierCard = ({
       >
         {ctaLabel}
       </Link>
-    </div>
+    </SpotlightCard>
   );
 };
 
