@@ -260,7 +260,7 @@ const SponsorInquiryDialog = ({ open, onOpenChange, project, projectDetails, ban
   return (
     <Dialog open={open} onOpenChange={handleOpenChange}>
       <DialogContent
-        className="max-w-lg relative max-h-[90vh] overflow-y-auto !top-[5vh] !translate-y-0"
+        className="max-w-lg max-h-[90vh] overflow-y-auto !top-[5vh] !translate-y-0"
         onOpenAutoFocus={(e) => { e.preventDefault(); }}
         onInteractOutside={(e) => { if (submitting) e.preventDefault(); }}
         onEscapeKeyDown={(e) => { if (submitting) e.preventDefault(); }}
