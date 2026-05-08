@@ -1,9 +1,9 @@
+import { getSafeStorage } from '@/lib/safeStorage';
+
 interface ConsentPreference {
   accepted: boolean;
   timestamp: string;
 }
-
-import { getSafeStorage } from '@/lib/safeStorage';
 
 const CONSENT_KEY = 'cookieConsent';
 const localStore = () => getSafeStorage('localStorage');
