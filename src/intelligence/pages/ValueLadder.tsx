@@ -10,6 +10,8 @@ import {
   INTERSECTION,
   TIER_BY_ID,
   SPONSOR_BANDS,
+  SPONSOR_OPEN_PROJECTS,
+  type SponsorOpenProject,
   formatTierPrice,
   formatTierCtaLabel,
   formatIntersectionBody,
@@ -21,6 +23,7 @@ import CurrencyToggle from "@/components/insights/CurrencyToggle";
 import TierPriceText from "@/components/insights/TierPriceText";
 import SponsorInquiryDialog from "@/components/SponsorInquiryDialog";
 import { trackOutboundClick } from "@/utils/outboundAnalytics";
+import { trackSponsorEvent } from "@/utils/sponsorAnalytics";
 
 // Visual treatment per group. Sponsor (B2B) is tinted to mark it as a
 // structurally different revenue line, not a subscriber tier (per memo).
