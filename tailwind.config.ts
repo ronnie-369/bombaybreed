@@ -61,6 +61,7 @@ export default {
 				'bb-near-black': 'hsl(var(--bb-near-black))',
 				'bb-slate': 'hsl(var(--bb-slate))',
 				'bb-copper': 'hsl(var(--bb-copper))',
+				'bb-gold': 'hsl(var(--bb-copper))',
 				'bb-gray': 'hsl(var(--bb-gray))',
 				'bb-border': 'hsl(var(--bb-border))',
 				sidebar: {
