@@ -449,25 +449,25 @@ export const SPONSOR_BANDS: SponsorBand[] = [
   },
   {
     engagement: "Regional analysis sponsorship",
-    price: "Starting INR 5 Lakh per analysis",
+    price: "INR 6 Lacs + GST",
     scope:
       "Underwrites the production of one of the four annual regional analyses on an Indian state or geography. Range reflects ground-truth fieldwork costs which vary substantially by geography and accessibility. Sponsor receives attribution credit and a working-session call.",
   },
   {
     engagement: "Custom commissioned report",
-    price: "Call for pricing",
+    price: "INR 6 Lacs + GST",
     scope:
       "A research output not part of the standing editorial calendar, commissioned to sponsor specifications. Final pricing scoped per engagement. Deliverable is published to the subscriber base with attribution.",
   },
   {
     engagement: "Annual editorial calendar sponsorship",
-    price: "INR 25 Lacs onwards",
+    price: "INR 6 Lacs + GST",
     scope:
       "Sponsor underwrites multiple reports across the year with first-look access on each, named on every output produced under the sponsorship, with quarterly working-session reviews.",
   },
   {
     engagement: "Research project sponsorship (one-off, non-published)",
-    price: "Starting INR 35 Lacs",
+    price: "INR 6 Lacs + GST",
     scope:
       "Custom research delivered privately to the sponsor without publication. Higher pricing reflects the loss of subscriber-base distribution. Available only when subject is genuinely sensitive.",
   },
