@@ -490,7 +490,7 @@ const TierFinder = () => {
                 </p>
                 {stretchTier && (
                   <p className="mt-3 text-[12px] text-muted-foreground leading-snug max-w-xl border-t border-border/60 pt-3">
-                    <span className="font-medium text-foreground">If your budget allowed,</span>{" "}
+                    <span className="font-medium text-foreground">If your budget allows,</span>{" "}
                     <Link
                       to="/intelligence/value-ladder"
                       className="text-primary hover:text-primary/80 underline underline-offset-2"
