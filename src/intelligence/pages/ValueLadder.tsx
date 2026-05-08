@@ -28,7 +28,7 @@ import { trackOutboundClick } from "@/utils/outboundAnalytics";
 const ladderBadgeClass: Record<LadderTier["ladder"], string> = {
   TCD: "bg-bb-near-black/5 text-bb-near-black",
   BB: "bg-bb-slate/10 text-bb-slate",
-  B2B: "bg-bb-copper/10 text-bb-copper",
+  B2B: "bg-bb-gold/10 text-bb-gold",
 };
 
 const ladderLabel: Record<LadderTier["ladder"], string> = {
@@ -327,7 +327,7 @@ const ValueLadder = () => {
               {JOBS.map((job) => (
                 <tr key={job.n} className="border-b border-bb-border/70 last:border-0 align-top">
                   <td className="p-5 text-[13px] leading-[1.5] text-bb-near-black">
-                    <span className="text-bb-copper font-medium mr-1">{job.n}.</span>
+                    <span className="text-bb-gold font-medium mr-1">{job.n}.</span>
                     {job.title}
                   </td>
                   {TIERS.map((tier) => {
@@ -359,7 +359,7 @@ const ValueLadder = () => {
                     <td
                       key={tier.id}
                       className={`p-5 border-l border-bb-border ${
-                        isSponsor ? "bg-bb-copper/10" : ""
+                        isSponsor ? "bg-bb-gold/10" : ""
                       }`}
                     >
                       <TierCta
@@ -453,7 +453,7 @@ const ValueLadder = () => {
                     <ul className="mt-3 space-y-3">
                       {jobsForTier.map((j) => (
                         <li key={j.n} className="text-[13px] leading-[1.6] text-bb-gray">
-                          <span className="text-bb-copper mr-2 font-medium">{j.n}.</span>
+                          <span className="text-bb-gold mr-2 font-medium">{j.n}.</span>
                           <span className="text-bb-near-black/90">{j.title}.</span>{" "}
                           {j.body}
                         </li>
@@ -508,7 +508,7 @@ const ValueLadder = () => {
               {toTier.name}
             </div>
             <TierPriceText tier={toTier} currency={currency} className="text-[13px] text-bb-gray" />
-            <div className="mt-5 text-[12px] text-bb-near-black bg-bb-copper/10 border border-bb-copper/30 rounded px-3 py-2">
+            <div className="mt-5 text-[12px] text-bb-near-black bg-bb-gold/10 border border-bb-gold/30 rounded px-3 py-2">
               {formatIntersectionIntro(currency)}
             </div>
           </div>
@@ -542,7 +542,7 @@ const ValueLadder = () => {
                   {band.engagement}
                 </div>
               </div>
-              <div className="text-[14px] font-medium text-bb-copper">
+              <div className="text-[14px] font-medium text-bb-gold">
                 {band.price}
               </div>
               <p className="text-[13px] text-bb-gray leading-[1.65]">
@@ -553,13 +553,13 @@ const ValueLadder = () => {
         </div>
 
         <div className="mt-10">
-          <h3 className="text-[11px] font-semibold uppercase tracking-[0.36em] text-bb-copper">
+          <h3 className="text-[11px] font-semibold uppercase tracking-[0.36em] text-bb-gold">
             Standard sponsor terms
           </h3>
           <ol className="mt-5 grid md:grid-cols-2 gap-x-10 gap-y-4">
             {SPONSOR_TERMS.map((term, i) => (
               <li key={i} className="text-[13px] text-bb-near-black/85 leading-[1.65] flex gap-3">
-                <span className="text-bb-copper font-medium shrink-0">{i + 1}.</span>
+                <span className="text-bb-gold font-medium shrink-0">{i + 1}.</span>
                 <span>{term}</span>
               </li>
             ))}
