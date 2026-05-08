@@ -6,6 +6,7 @@ import TierPriceText from "@/components/insights/TierPriceText";
 import CurrencyToggle from "@/components/insights/CurrencyToggle";
 import SponsorInquiryDialog from "@/components/SponsorInquiryDialog";
 import { trackOutboundClick } from "@/utils/outboundAnalytics";
+import SpotlightCard from "@/components/ui/SpotlightCard";
 
 /**
  * TierFinder - guided 3-question selector that recommends one of the
@@ -424,7 +425,7 @@ const TierFinder = () => {
         {/* Questions */}
         <div className="grid md:grid-cols-3 gap-5">
           {QUESTIONS.map((q, qi) => (
-            <div
+            <SpotlightCard
               key={q.id}
               className="rounded-lg border border-border bg-card p-4 flex flex-col"
             >
@@ -454,13 +455,16 @@ const TierFinder = () => {
                   );
                 })}
               </div>
-            </div>
+            </SpotlightCard>
           ))}
         </div>
 
         {/* Recommendation */}
         {recommendedTier && (
-          <div className="mt-8 rounded-lg border border-primary/40 bg-primary/5 p-5 md:p-6">
+          <SpotlightCard
+            className="mt-8 rounded-lg border border-primary/40 bg-primary/5 p-5 md:p-6"
+            spotlightColor="rgba(197, 160, 89, 0.22)"
+          >
             <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-5">
               <div className="min-w-0 flex-1">
                 <p className="text-[11px] font-semibold uppercase tracking-[0.32em] text-primary">
