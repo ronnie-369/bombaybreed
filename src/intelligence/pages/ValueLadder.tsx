@@ -90,11 +90,11 @@ interface TierCtaProps {
 
 const TierCta = ({ tier, surface, variant = "primary", onSponsorClick, currency }: TierCtaProps) => {
   const baseClass =
-    "inline-flex items-center justify-center h-11 px-5 rounded-none text-[13px] font-semibold tracking-wide transition w-full border";
+    "inline-flex items-center justify-center h-11 px-5 rounded-md text-[13px] font-medium tracking-wide w-full border transition-all duration-200 ease-out shadow-button hover:shadow-button-hover hover:-translate-y-px focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40 focus-visible:ring-offset-2";
   const styleClass =
     variant === "primary"
-      ? "border-bb-near-black bg-bb-near-black text-white hover:bg-bb-paper hover:text-bb-near-black"
-      : "border-bb-near-black bg-bb-paper text-bb-near-black hover:bg-bb-near-black hover:text-white";
+      ? "border-primary bg-primary text-primary-foreground hover:bg-primary/90"
+      : "border-primary bg-transparent text-primary hover:bg-primary/5";
   const label = formatTierCtaLabel(tier, currency);
 
   if (tier.cta.kind === "internal") {
