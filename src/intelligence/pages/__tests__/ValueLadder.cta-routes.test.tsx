@@ -23,6 +23,7 @@ import {
   MemoryRouter,
   Routes,
   Route,
+  Link,
   useLocation,
   useSearchParams,
 } from 'react-router-dom';
@@ -119,12 +120,12 @@ const SignupStub = () => {
       <p data-testid="signup-billing">{billing}</p>
       {/* The real page issues navigate(`/intelligence/checkout?...`). We
           render a same-mechanism Link so the test can click through. */}
-      <a
+      <Link
         data-testid="signup-continue"
-        href={`/intelligence/checkout?tier=${tier}&billing=${billing}`}
+        to={`/intelligence/checkout?tier=${tier}&billing=${billing}`}
       >
         Continue to checkout
-      </a>
+      </Link>
     </div>
   );
 };
