@@ -23,6 +23,7 @@ import {
   SPONSOR_OPEN_PROJECTS,
   type SponsorOpenProject,
   formatTierCtaLabel,
+  formatCurrencyAmount,
   type LadderTier,
 } from '@/intelligence/lib/valueLadder';
 import TierPriceText from '@/components/insights/TierPriceText';
