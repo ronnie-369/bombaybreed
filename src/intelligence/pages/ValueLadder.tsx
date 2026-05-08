@@ -483,7 +483,7 @@ const ValueLadder = () => {
           <div className="relative h-[420px] w-full max-w-[640px] flex items-center justify-center">
             <Folder
               size={2.4}
-              color="#1A3D5C"
+              color="#C5A059"
               paperColor="#FDFCFB"
               ariaLabel={`Browse ${SPONSOR_OPEN_PROJECTS.length} exclusive sponsor projects`}
               items={SPONSOR_OPEN_PROJECTS.map((proj, i) => (
@@ -494,13 +494,13 @@ const ValueLadder = () => {
                   className="block w-full h-full p-3 text-left bg-transparent focus:outline-none focus-visible:ring-2 focus-visible:ring-bb-slate/40"
                   aria-label={`Register interest in: ${proj.title}`}
                 >
-                  <div className="text-bb-gold font-serif text-[10px] leading-none">
+                  <div className="text-bb-gold font-serif text-[8.5px] leading-none">
                     {String(i + 1).padStart(2, "0")}
                   </div>
-                  <div className="mt-1.5 font-serif text-[9px] leading-tight text-bb-near-black line-clamp-4">
+                  <div className="mt-1.5 font-serif text-[7.5px] leading-tight text-bb-near-black line-clamp-4">
                     {proj.title}
                   </div>
-                  <div className="mt-1.5 text-[6.5px] uppercase tracking-[0.12em] text-bb-gray font-mono">
+                  <div className="mt-1.5 text-[5.5px] uppercase tracking-[0.12em] text-bb-gray font-mono">
                     {proj.effort.split("·")[0]?.trim()}
                   </div>
                 </button>
