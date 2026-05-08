@@ -5,6 +5,7 @@ import { supabase } from "@/integrations/supabase/client";
 import IntelligenceLayout from "../components/IntelligenceLayout";
 import SectionLabel from "../components/SectionLabel";
 import { formatIntlBracket } from "../lib/currency";
+import { prefetchMembershipFunnel, ctaHoverPrefetch } from "../lib/routePrefetch";
 
 interface Tier {
   id: string;
