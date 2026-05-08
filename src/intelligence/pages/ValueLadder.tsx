@@ -587,6 +587,39 @@ const ValueLadder = () => {
         </div>
       </section>
 
+      {/* READER TESTIMONIALS - social proof before sponsorship CTA */}
+      <section
+        aria-labelledby="ladder-testimonials-heading"
+        className="max-w-[1200px] mx-auto px-6 md:px-10 py-16 border-t border-bb-border"
+      >
+        <SectionLabel>What readers say</SectionLabel>
+        <h2 id="ladder-testimonials-heading" className="mt-6 font-serif font-normal tracking-[-0.02em] text-[28px] md:text-[36px] leading-[1.15] text-bb-near-black max-w-3xl">
+          Quotes from readers
+        </h2>
+        <div className="mt-10 grid grid-cols-1 md:grid-cols-3 gap-5 md:gap-6">
+          {[
+            { quote: 'Brilliantly insightful.', name: 'Chris Sherwood', title: 'Chairman', org: 'Negative Emissions Platform', orgHref: 'https://www.negative-emissions.org/' },
+            { quote: 'Wonderful writing. Deep analysis. Highly insightful.', name: 'Mitchell Beer', title: 'Founder', org: 'The Energy Mix', orgHref: 'https://www.theenergymix.com' },
+            { quote: 'Excellent reporting from India.', name: 'Christian Haberli', title: 'Climate lawyer', org: 'EU' },
+          ].map((q, i) => (
+            <figure key={i} className="border border-bb-border bg-bb-paper p-6 flex flex-col">
+              <blockquote className="font-serif text-[15px] text-bb-near-black leading-relaxed mb-5 flex-1 [text-wrap:pretty]">
+                &ldquo;{q.quote}&rdquo;
+              </blockquote>
+              <figcaption className="text-[12px] text-bb-gray border-t border-bb-border pt-4 leading-snug">
+                <div className="font-semibold text-bb-near-black">{q.name}</div>
+                <div>{q.title}</div>
+                <div className="text-bb-gray">
+                  {q.orgHref ? (
+                    <a href={q.orgHref} target="_blank" rel="noopener noreferrer" className="hover:text-bb-near-black underline decoration-bb-border underline-offset-2">{q.org}</a>
+                  ) : q.org}
+                </div>
+              </figcaption>
+            </figure>
+          ))}
+        </div>
+      </section>
+
 
       <SponsorInquiryDialog
         open={sponsorOpen}
