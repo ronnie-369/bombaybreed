@@ -4,11 +4,11 @@
 // Request body: { planId: 'industry_reader' | 'analyst_lens', billingCycle: 'monthly' | 'annual' }
 // Response: { order_id, amount, currency, key_id, plan: { id, label, billingCycle, amount_inr } }
 //
-// Server-side pricing (in INR), so the client cannot tamper with amounts:
-//   industry_reader · monthly = INR 10,000           (no discount)
-//   industry_reader · annual  = INR  7,000 x 12 = 84,000 upfront
-//   analyst_lens    · monthly = INR 50,000           (no discount)
-//   analyst_lens    · annual  = INR 35,000 x 12 = 420,000 upfront
+// Server-side pricing (in INR), so the client cannot tamper with amounts.
+// All paid plans are billed monthly. FX anchor: 85 INR/USD.
+//   enthusiasts     · monthly = INR    85   (USD 1)
+//   industry_reader · monthly = INR   850   (USD 10)
+//   analyst_lens    · monthly = INR 1,700   (USD 20)
 //
 // Razorpay expects amounts in the smallest currency unit (paise for INR),
 // so we multiply by 100 before calling the orders API.
@@ -79,19 +79,21 @@ interface PlanConfig {
 const PLANS: Record<PlanId, PlanConfig> = {
   enthusiasts: {
     label: 'Enthusiasts',
-    monthly_inr: 425,
-    annual_monthly_inr: 425, // unused; this tier is monthly-only
+    monthly_inr: 85,
+    annual_monthly_inr: 85,
     monthly_only: true,
   },
   industry_reader: {
-    label: 'Industry Reader',
-    monthly_inr: 10_000,
-    annual_monthly_inr: 7_000,
+    label: 'Market Makers',
+    monthly_inr: 850,
+    annual_monthly_inr: 850,
+    monthly_only: true,
   },
   analyst_lens: {
-    label: 'Analyst Lens',
-    monthly_inr: 50_000,
-    annual_monthly_inr: 35_000,
+    label: 'Investment Intelligence',
+    monthly_inr: 1_700,
+    annual_monthly_inr: 1_700,
+    monthly_only: true,
   },
 };
 
