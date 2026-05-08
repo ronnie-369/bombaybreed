@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import SectionLabel from "../components/SectionLabel";
+import Folder from "@/components/folder/Folder";
 import {
   TIERS,
   JOBS,
