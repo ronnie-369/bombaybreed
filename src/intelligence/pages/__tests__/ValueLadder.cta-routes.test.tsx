@@ -157,10 +157,10 @@ const findTableCta = (tierName: string): HTMLAnchorElement | HTMLButtonElement =
   // when present (Enthusiasts), else cta.label.
   const labelMatchers: Record<string, RegExp> = {
     'Free Substack': /^Get started$/,
-    Enthusiasts: /^Contribute$/,
-    'Market Makers': /^Join the club$/,
+    Enthusiasts: /^Back the desk$/,
+    'Market Makers': /^Enter the room$/,
     'Investment Intelligence': /^Get the edge$/,
-    Sponsor: /^Be the change$/,
+    Sponsor: /^Commission work$/,
   };
 
   const matcher = labelMatchers[tierName];

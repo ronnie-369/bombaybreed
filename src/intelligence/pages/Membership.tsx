@@ -86,7 +86,7 @@ const TierCard = ({
       <Link
         to={ctaHref}
         {...ctaHoverPrefetch}
-        className={`mt-8 inline-flex items-center justify-center h-12 px-6 rounded-[10px] text-[14px] font-medium transition ${
+        className={`cta-gold-underline mt-8 inline-flex items-center justify-center h-12 px-6 rounded-[10px] text-[14px] font-medium transition ${
           featured
             ? "bg-bb-slate text-bb-off-white hover:opacity-90"
             : "bg-bb-off-white border border-bb-slate text-bb-slate hover:bg-bb-slate/5"

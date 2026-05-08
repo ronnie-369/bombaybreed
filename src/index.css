@@ -206,7 +206,35 @@
   .content-auto {
     content-visibility: auto;
   }
-  
+
+  /* === CTA gold-underline hover ===
+     Thin Warm Gold (#C5A059) rule that animates left-to-right under the
+     button label on hover/focus. Pure CSS, no layout shift. */
+  .cta-gold-underline {
+    position: relative;
+    overflow: hidden;
+  }
+  .cta-gold-underline::after {
+    content: "";
+    position: absolute;
+    left: 12px;
+    right: 12px;
+    bottom: 8px;
+    height: 1px;
+    background-color: #C5A059;
+    transform: scaleX(0);
+    transform-origin: left center;
+    transition: transform 280ms ease-out;
+    pointer-events: none;
+  }
+  .cta-gold-underline:hover::after,
+  .cta-gold-underline:focus-visible::after {
+    transform: scaleX(1);
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .cta-gold-underline::after { transition: none; }
+  }
+
   /* === Preloader Animations === */
   .preloader-logo-entrance {
     animation: preloader-logo-entrance 0.6s ease-out forwards;

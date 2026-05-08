@@ -84,7 +84,7 @@ export const TIERS: LadderTier[] = [
       "Capture professional reader willingness-to-pay; funnel to BB",
     cta: {
       kind: "internal",
-      label: "Contribute",
+      label: "Back the desk",
       href: "/intelligence/signup?tier=enthusiasts&billing=monthly&ref=ladder",
     },
   },
@@ -99,7 +99,7 @@ export const TIERS: LadderTier[] = [
     strategicRole: "Editorial intelligence at research-grade discipline",
     cta: {
       kind: "internal",
-      label: "Join the club",
+      label: "Enter the room",
       href: "/intelligence/signup?tier=foundational&ref=ladder",
     },
   },
@@ -129,7 +129,7 @@ export const TIERS: LadderTier[] = [
       "Underwrite editorial production; credibility and revenue",
     cta: {
       kind: "internal",
-      label: "Be the change",
+      label: "Commission work",
       href: "/intelligence/value-ladder#sponsor-projects",
     },
   },
