@@ -218,8 +218,9 @@ const Checkout = () => {
     const { data: sessionData } = await supabase.auth.getSession();
     const session = sessionData.session;
     if (!session) {
+      const redirectTarget = `/intelligence/checkout?tier=${tierSlug}&billing=${billingCycle}`;
       navigate(
-        `/intelligence/signup?redirect=/intelligence/checkout?tier=${tierSlug}`
+        `/intelligence/signup?redirect=${encodeURIComponent(redirectTarget)}`
       );
       return;
     }
