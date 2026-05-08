@@ -94,6 +94,7 @@ const AnimatedLogo: React.FC<AnimatedLogoProps> = ({
         src={fallbackSrc}
         alt={alt}
         className={className}
+        decoding="async"
       />
     );
   }
