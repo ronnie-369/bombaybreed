@@ -47,6 +47,14 @@ const inquirySchema = z.object({
     .trim()
     .max(100, { message: 'Role must be 100 characters or fewer' })
     .optional(),
+  phone: z
+    .string()
+    .trim()
+    .max(30, { message: 'Phone must be 30 characters or fewer' })
+    .refine((v) => !v || /^[+\d][\d\s().-]{6,}$/.test(v), {
+      message: 'Please enter a valid phone number',
+    })
+    .optional(),
   project: z.string().trim().min(1).max(300),
   message: z
     .string()
