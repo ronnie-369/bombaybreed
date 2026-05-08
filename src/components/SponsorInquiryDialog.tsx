@@ -361,11 +361,33 @@ const SponsorInquiryDialog = ({ open, onOpenChange, project, projectDetails, ban
                 </dl>
               </div>
             )}
+            {bandDetails && !projectDetails && (
+              <div className="rounded-md border border-border/70 bg-muted/30 p-4 space-y-3">
+                <div>
+                  <p className="text-[10px] font-bold tracking-widest uppercase text-muted-foreground mb-1">
+                    Engagement
+                  </p>
+                  <p className="font-serif text-base text-foreground leading-snug">
+                    {bandDetails.engagement}
+                  </p>
+                </div>
+                <dl className="space-y-2 text-sm">
+                  <div className="grid grid-cols-[88px_1fr] gap-3">
+                    <dt className="text-[10px] font-bold tracking-widest uppercase text-muted-foreground pt-0.5">Indicative</dt>
+                    <dd className="text-foreground/85 leading-relaxed">{bandDetails.price}</dd>
+                  </div>
+                  <div className="grid grid-cols-[88px_1fr] gap-3">
+                    <dt className="text-[10px] font-bold tracking-widest uppercase text-muted-foreground pt-0.5">Scope</dt>
+                    <dd className="text-foreground/85 leading-relaxed">{bandDetails.scope}</dd>
+                  </div>
+                </dl>
+              </div>
+            )}
             <FormField
               control={form.control}
               name="project"
               render={({ field }) => (
-                <FormItem className={projectDetails ? 'sr-only' : ''}>
+                <FormItem className={projectDetails || bandDetails ? 'sr-only' : ''}>
                   <FormLabel className="text-xs uppercase tracking-widest text-muted-foreground">
                     Interested in
                   </FormLabel>
