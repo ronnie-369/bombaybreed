@@ -157,7 +157,7 @@ export const SPONSOR_OPEN_PROJECTS: SponsorOpenProject[] = [
       "Methodology audit of announced projects, fieldwork at 2-3 candidate sites, capex/opex teardown, comparison with EU-ETS and US 45Q-anchored economics.",
     output:
       "One published investigation (~5,000 words) plus a private methodology annexe for the sponsor.",
-    effort: "10-14 weeks · INR 6-10L + GST",
+    effort: "10-14 weeks · INR 6 Lacs + GST",
   },
   {
     title: "Carbon projects for JCM and Article 6.2 readiness",
@@ -167,7 +167,7 @@ export const SPONSOR_OPEN_PROJECTS: SponsorOpenProject[] = [
       "Pipeline screen of Indian project types, host-country authorisation logic, MRV gaps, comparison with Korean and Singaporean Article 6 deals.",
     output:
       "Position paper with a scored shortlist of project archetypes plus a regulatory timeline.",
-    effort: "8-10 weeks · INR 6 lacs + GST",
+    effort: "8-10 weeks · INR 6 Lacs + GST",
   },
   {
     title: "Data-centre water and power footprint - the hidden load on the grid",
@@ -177,7 +177,7 @@ export const SPONSOR_OPEN_PROJECTS: SponsorOpenProject[] = [
       "Cluster-level demand modelling (Mumbai, Hyderabad, Chennai, NCR), PPA and renewable wheeling assumptions, water draw vs municipal allocations.",
     output:
       "Investigative brief with maps, demand curves and a stress-test of stated net-zero claims.",
-    effort: "10-12 weeks · INR 6-10L + GST",
+    effort: "10-12 weeks · INR 6 Lacs + GST",
   },
   {
     title: "CBAM exposure for Indian exporters - steel, aluminium, cement, fertiliser",
@@ -187,7 +187,7 @@ export const SPONSOR_OPEN_PROJECTS: SponsorOpenProject[] = [
       "Embedded-emissions estimation by mill/plant, default vs verified value gap, EU-ETS price scenarios, India-EU FTA interaction.",
     output:
       "Sector report with company-level exposure bands and a board-ready risk matrix.",
-    effort: "8-12 weeks · INR 6-12L + GST",
+    effort: "8-12 weeks · INR 6 Lacs + GST",
   },
   {
     title: "Wetlands conservation and waste management at Chandrataal Lake, Himachal Pradesh",
@@ -196,7 +196,7 @@ export const SPONSOR_OPEN_PROJECTS: SponsorOpenProject[] = [
     scope:
       "Ground-truthing visit, interviews with HP Forest Dept and local panchayat, baseline waste audit, review of existing CSR and ecotourism flows.",
     output: "Field report with an intervention design and a costed three-year plan.",
-    effort: "12-16 weeks · INR 30-45L + GST",
+    effort: "12-16 weeks · INR 6 Lacs + GST",
   },
 ];
 
