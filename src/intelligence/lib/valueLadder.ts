@@ -206,10 +206,25 @@ export const SPONSOR_OPEN_PROJECTS: SponsorOpenProject[] = [
 
 export type Currency = "USD" | "INR";
 
-const fmtINR = (n: number) =>
+/**
+ * Locale-correct number formatters. INR uses the Indian grouping system
+ * (lakh / crore: 1,00,000) and USD uses Western grouping (1,000). These
+ * are the ONLY way to print monetary amounts anywhere in the app - never
+ * hand-write `INR 1,700` in JSX.
+ */
+export const fmtINR = (n: number) =>
   new Intl.NumberFormat("en-IN", { maximumFractionDigits: 0 }).format(n);
-const fmtUSD = (n: number) =>
+export const fmtUSD = (n: number) =>
   new Intl.NumberFormat("en-US", { maximumFractionDigits: 0 }).format(n);
+
+/**
+ * Canonical "currency + amount" label - e.g. `USD 10`, `INR 1,70,000`.
+ * Use this anywhere a tier price needs to be rendered standalone (Lounge
+ * cards, Checkout summary, sticky pill) so commas and the `USD `/`INR `
+ * prefix never drift between surfaces.
+ */
+export const formatCurrencyAmount = (currency: Currency, amount: number) =>
+  currency === "USD" ? `USD ${fmtUSD(amount)}` : `INR ${fmtINR(amount)}`;
 
 /**
  * Primary formatter used by every currency-toggle surface.
