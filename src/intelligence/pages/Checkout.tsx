@@ -167,7 +167,7 @@ const Checkout = () => {
   const initialBilling: "monthly" | "annual" =
     billingParam === "monthly" || billingParam === "annual"
       ? billingParam
-      : "annual";
+      : "monthly";
   const navigate = useNavigate();
   const { toast } = useToast();
 
