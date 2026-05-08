@@ -187,6 +187,7 @@ const SponsorInquiryDialog = ({ open, onOpenChange, project, projectDetails, ban
       email: 'email',
       organisation: 'organisation',
       role: 'role',
+      phone: 'phone',
       project_of_interest: 'project',
       message: 'message',
       consent: 'consent',
