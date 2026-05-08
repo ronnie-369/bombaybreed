@@ -134,7 +134,7 @@ const ReadAnalysisPage: React.FC<ReadAnalysisPageProps> = ({ data }) => {
               {/* Perspective: larger author attribution */}
               {isPerspective ? (
                 <div className="flex items-center justify-center gap-3 mt-6">
-                  <img src={theresaPortrait} alt="Theresa Ronnie" className="w-10 h-10 rounded-full grayscale saturate-[0.85] border border-primary-foreground/20" />
+                  <img src={theresaPortrait} alt="Theresa Ronnie" loading="lazy" decoding="async" className="w-10 h-10 rounded-full grayscale saturate-[0.85] border border-primary-foreground/20" />
                   <span className="text-[15px] font-medium text-primary-foreground/90">By Theresa Ronnie</span>
                 </div>
               ) : (

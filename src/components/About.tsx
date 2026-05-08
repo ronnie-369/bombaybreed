@@ -84,6 +84,8 @@ const About = () => {
                     src={portraitUrl}
                     alt="Theresa Ronnie - Sustainability Communications Expert"
                     className="w-full h-full object-cover object-center"
+                    loading="lazy"
+                    decoding="async"
                     onError={(e) => {
                       // Fallback to a placeholder if image fails to load
                       e.currentTarget.src = "/public/lovable-uploads/placeholder-portrait.jpg";
@@ -123,6 +125,8 @@ const About = () => {
                       src="https://zjiwmdrtuhsrymsuvpfb.supabase.co/storage/v1/object/public/brand%20assets/466784065_10159926171046216_7796875165911313074_n.jpg"
                       alt="Bombay Breed Consulting"
                       className="w-full h-full object-cover"
+                      loading="lazy"
+                      decoding="async"
                     />
                     
                     {/* Overlay gradient for depth */}

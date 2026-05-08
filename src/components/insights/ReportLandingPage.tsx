@@ -108,6 +108,9 @@ const ReportLandingPage: React.FC<ReportLandingPageProps> = ({ data }) => {
                       alt={`${data.title}: Report Cover`}
                       className="w-full aspect-[5/7] object-cover rounded-lg border border-primary-foreground/10"
                       style={{ boxShadow: '0 8px 32px rgba(0,0,0,0.3)' }}
+                      loading="eager"
+                      decoding="async"
+                      fetchPriority="high"
                     />
                   </div>
                 </div>

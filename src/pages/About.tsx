@@ -109,6 +109,9 @@ const About = () => {
                     src={theresaPortrait}
                     alt="Theresa Ronnie, Strategic Carbon Communications Advisor"
                     className="w-full h-full object-cover object-top saturate-[0.85]"
+                    loading="eager"
+                    decoding="async"
+                    fetchPriority="high"
                   />
                 </div>
               </div>
@@ -213,6 +216,7 @@ const About = () => {
                     alt={logo.alt}
                     className="h-8 md:h-10 object-contain grayscale opacity-30 hover:grayscale-0 hover:opacity-80 transition-all duration-300"
                     loading="lazy"
+                    decoding="async"
                   />
                 ))}
               </div>

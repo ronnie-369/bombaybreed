@@ -100,6 +100,7 @@ const CaseStudies = () => {
                   alt={`${activeCase.name} case study`} 
                   className="w-full h-full object-cover"
                   loading="lazy"
+                  decoding="async"
                 />
               </div>
               <div className="p-8 md:p-12 flex flex-col justify-center">

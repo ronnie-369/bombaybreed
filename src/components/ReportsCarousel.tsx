@@ -144,6 +144,7 @@ const ReportsCarousel = () => {
                           className="w-full h-full object-cover object-center scale-90" 
                           src={item.image}
                           loading="lazy"
+                          decoding="async"
                         />
                       </div>
                     </div>

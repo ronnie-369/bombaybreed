@@ -37,6 +37,9 @@ const Hero = () => {
                   alt="Sustainability Communications" 
                   className="w-full h-full object-cover object-center scale-90" 
                   src="/lovable-uploads/44d63597-9200-4941-8375-9a5a0aa338fe.png" 
+                  loading="eager"
+                  decoding="async"
+                  fetchPriority="high"
                 />
               </div>
               <div className="absolute -bottom-6 -right-6 bg-white/90 backdrop-blur-sm p-4 rounded-2xl shadow-lg max-w-xs">

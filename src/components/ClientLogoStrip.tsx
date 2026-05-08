@@ -32,6 +32,7 @@ const ClientLogoStrip = () => {
                 alt={logo.alt}
                 className="h-8 md:h-10 object-contain grayscale opacity-30 hover:grayscale-0 hover:opacity-80 transition-all duration-300"
                 loading="lazy"
+                decoding="async"
               />
             ))}
           </div>
