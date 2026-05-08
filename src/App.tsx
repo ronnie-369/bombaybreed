@@ -106,8 +106,15 @@ const AppContent = () => {
               <Route path="/brsr-reporting-advisory-india" element={<BRSRReportingAdvisory />} />
               <Route path="/carbon-credit-trading-scheme-india" element={<CarbonCreditTradingScheme />} />
 
-              {/* Internal QA - Razorpay end-to-end test page (noindex) */}
-              <Route path="/razorpay-test" element={<RazorpayTest />} />
+              {/* Internal QA - Razorpay end-to-end test page (admin-only, noindex) */}
+              <Route
+                path="/razorpay-test"
+                element={
+                  <TcdAuthGate requireAdmin>
+                    <RazorpayTest />
+                  </TcdAuthGate>
+                }
+              />
 
               {/* TCD Intelligence — subscription platform */}
               <Route path="/intelligence" element={<IntelligenceLanding />} />
