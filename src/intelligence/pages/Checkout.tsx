@@ -345,10 +345,25 @@ const Checkout = () => {
   };
 
   return (
-    <IntelligenceLayout>
+    <div className="min-h-screen bg-bb-off-white text-bb-near-black font-sans antialiased">
       <Helmet>
         <title>Checkout — TCD Intelligence</title>
       </Helmet>
+
+      <header className="border-b border-bb-border">
+        <div className="max-w-2xl mx-auto px-6 h-16 flex items-center justify-between">
+          <Link
+            to="/"
+            className="text-[13px] font-medium text-bb-gray hover:text-bb-near-black inline-flex items-center gap-1.5"
+            aria-label="Back to Bombay Breed home"
+          >
+            <span aria-hidden>←</span> Home
+          </Link>
+          <Link to="/intelligence" className="font-serif text-[16px] tracking-tight text-bb-near-black">
+            TCD Intelligence
+          </Link>
+        </div>
+      </header>
 
       <section className="max-w-2xl mx-auto px-6 pt-20 pb-24">
         <SectionLabel>Checkout</SectionLabel>
