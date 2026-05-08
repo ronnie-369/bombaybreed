@@ -31,44 +31,10 @@ export default defineConfig(({ mode }) => ({
         assetFileNames: 'assets/[name]-[hash][extname]',
         // Stable vendor chunks - libraries change far less often than app code,
         // so isolating them lets browsers reuse cached bundles across deploys.
-        manualChunks(id) {
-          if (!id.includes('node_modules')) return;
-
-          if (id.includes('/react-dom/') || id.includes('/react/') || id.includes('/scheduler/')) {
-            return 'vendor-react';
-          }
-          if (id.includes('/react-router') || id.includes('/@remix-run/router') || id.includes('/history/')) {
-            return 'vendor-router';
-          }
-          if (id.includes('/@supabase/')) {
-            return 'vendor-supabase';
-          }
-          if (id.includes('/@radix-ui/')) {
-            return 'vendor-radix';
-          }
-          if (id.includes('/recharts/') || id.includes('/d3-') || id.includes('/victory-vendor/')) {
-            return 'vendor-charts';
-          }
-          if (id.includes('/react-day-picker/') || id.includes('/date-fns/')) {
-            return 'vendor-calendar';
-          }
-          if (id.includes('/framer-motion/')) {
-            return 'vendor-motion';
-          }
-          if (id.includes('/lucide-react/')) {
-            return 'vendor-icons';
-          }
-          if (id.includes('/@tanstack/')) {
-            return 'vendor-tanstack';
-          }
-          if (id.includes('/dompurify/') || id.includes('/marked/')) {
-            return 'vendor-content';
-          }
-          // No catch-all 'vendor' chunk: bundling unrelated packages together
-          // can introduce cross-chunk circular imports that surface as
-          // "Cannot access 'X' before initialization" at runtime. Let Rollup
-          // place remaining deps with their importers.
-        },
+        // Intentionally NO manualChunks: hand-grouping libraries like recharts
+        // + d3 + victory-vendor causes cross-chunk circular imports that throw
+        // "Cannot access 'X' before initialization" in production. Let Rollup
+        // perform automatic code-splitting based on dynamic imports instead.
       },
     },
   },
