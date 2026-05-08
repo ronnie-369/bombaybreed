@@ -570,7 +570,7 @@ const ValueLadder = () => {
           <button
             type="button"
             onClick={openSponsor}
-            className="inline-flex items-center justify-center h-12 px-7 rounded-[10px] bg-bb-slate text-bb-off-white text-[14px] font-medium hover:opacity-90 transition"
+            className="inline-flex items-center justify-center h-12 px-7 rounded-none border border-bb-near-black bg-transparent text-bb-near-black text-[14px] font-medium tracking-wide hover:bg-bb-near-black hover:text-bb-paper transition"
           >
             Inquire about sponsorship
           </button>
