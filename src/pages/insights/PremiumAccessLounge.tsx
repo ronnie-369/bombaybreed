@@ -708,7 +708,7 @@ const PremiumAccessLounge: React.FC = () => {
                 Easiest way to start
               </span>
               <h3 className="font-serif text-2xl md:text-3xl tracking-tight text-foreground mb-2">
-                Not ready for the research tier? Read the analysis for USD 5.
+                Not ready for the research tier? Read the analysis for USD 1.
               </h3>
               <p className="text-sm text-muted-foreground leading-relaxed max-w-[520px]">
                 When Substack gives you the first 500 words, Enthusiasts gets
@@ -720,14 +720,14 @@ const PremiumAccessLounge: React.FC = () => {
             </div>
             <div className="flex flex-col gap-3">
               <div className="text-foreground">
-                <span className="font-serif text-3xl">USD 5</span>
-                <span className="text-sm text-muted-foreground"> / month (INR 425)</span>
+                <span className="font-serif text-3xl">USD 1</span>
+                <span className="text-sm text-muted-foreground"> / month (INR 85)</span>
               </div>
               <Link
                 to="/intelligence/signup?tier=enthusiasts&billing=monthly&ref=insights_tiers"
                 className="inline-flex items-center justify-center gap-2 h-12 px-5 rounded-md bg-foreground text-background text-sm font-medium hover:bg-foreground/90 transition"
               >
-                Start Enthusiasts - USD 5 / mo <ArrowRight className="w-4 h-4" />
+                Start Enthusiasts - USD 1 / mo <ArrowRight className="w-4 h-4" />
               </Link>
               <a
                 href={TIER_BY_ID['tcd-free'].cta.kind === 'outbound' ? TIER_BY_ID['tcd-free'].cta.href : '#'}
