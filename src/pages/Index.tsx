@@ -18,8 +18,8 @@ const Index = () => {
   return (
     <div className="min-h-screen bg-background flex flex-col">
       <PageHead
-        title="Bombay Breed: Strategic Carbon Advisory for Indian Boards"
-        description="I ensure climate transition strategy is credible, compliant, and investable in India. Strategic advisor to CEOs & boards including Microsoft, KPMG India, Ford & Volkswagen."
+        title="Bombay Breed: Carbon & Energy Transition Communications"
+        description="Carbon and energy transition communications as your strategic advantage. Board-level advisory helping Indian enterprises navigate climate complexity with credibility."
         path="/"
         ogImage="og-home"
       />
