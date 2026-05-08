@@ -8,9 +8,9 @@
  * Premium Access Lounge tier cards, Insights ladder hero - renders the
  * bracketed currency identically.
  *
- * Example output (with INR primary):
- *   INR 8,500 / mo  (USD 100)
- *                   ^^^^^^^^^^ smaller, muted, never breaks across lines
+ * Example output (with USD primary):
+ *   USD 10 / mo  (INR 850)
+ *                ^^^^^^^^^ smaller, muted, never breaks across lines
  */
 import {
   getTierPriceParts,
