@@ -522,7 +522,7 @@ const TierFinder = () => {
                 </div>
               </div>
             </div>
-          </div>
+          </SpotlightCard>
         )}
       </div>
 
