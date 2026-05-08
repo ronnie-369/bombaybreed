@@ -20,6 +20,8 @@ import {
   TIERS,
   JOBS,
   TIER_BY_ID,
+  SPONSOR_OPEN_PROJECTS,
+  type SponsorOpenProject,
   formatTierCtaLabel,
   type LadderTier,
 } from '@/intelligence/lib/valueLadder';
