@@ -535,7 +535,7 @@ const ValueLadder = () => {
               trackLadderCta(TIER_BY_ID.sponsor, "sponsor_projects_bespoke");
               openSponsor();
             }}
-            className="shrink-0 inline-flex items-center justify-center h-12 px-6 rounded-[10px] text-[14px] font-medium bg-bb-slate text-bb-off-white hover:opacity-90 transition"
+            className="cta-gold-underline cta-sponsor-shimmer shrink-0 inline-flex items-center justify-center h-12 px-6 rounded-[10px] text-[14px] font-medium bg-bb-slate text-bb-off-white hover:opacity-90 transition"
           >
             Commission a bespoke project
           </button>
