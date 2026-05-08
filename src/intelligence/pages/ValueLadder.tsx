@@ -409,10 +409,10 @@ const ValueLadder = () => {
               <article
                 key={tier.id}
                 id={`tier-${tier.id}`}
-                className={`scroll-mt-24 rounded-2xl border p-7 md:p-10 ${
+                className={`scroll-mt-24 rounded-none border p-7 md:p-10 bg-bb-paper ${
                   isSponsor
-                    ? "border-bb-copper/40 bg-bb-copper/5"
-                    : "border-bb-border bg-bb-off-white"
+                    ? "border-bb-near-black/30"
+                    : "border-bb-border"
                 }`}
               >
                 <div className="flex flex-wrap items-center gap-3">
