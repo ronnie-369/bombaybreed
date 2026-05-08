@@ -1,8 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { Helmet } from "react-helmet-async";
-import { Link, useNavigate, useSearchParams } from "react-router-dom";
+import { Link, useSearchParams } from "react-router-dom";
 import { supabase } from "@/integrations/supabase/client";
-import IntelligenceLayout from "../components/IntelligenceLayout";
 import SectionLabel from "../components/SectionLabel";
 
 // /intelligence/checkout/result?order=order_XXXXXXXXXXXX
@@ -57,7 +56,6 @@ const billingLabel = (cycle?: string) => {
 
 export default function CheckoutResult() {
   const [params] = useSearchParams();
-  const navigate = useNavigate();
   const orderId = params.get("order") ?? "";
 
   const [payload, setPayload] = useState<StatusPayload | null>(null);
@@ -123,19 +121,35 @@ export default function CheckoutResult() {
 
   const status: Status = payload?.status ?? (orderIdLooksValid ? "pending" : "unknown");
 
-  // Auto-redirect to onboarding 4s after a confirmed success.
-  useEffect(() => {
-    if (status !== "success") return;
-    const t = window.setTimeout(() => navigate("/intelligence/onboarding"), 4_000);
-    return () => window.clearTimeout(t);
-  }, [status, navigate]);
+  // No auto-redirect - this dedicated success page IS the destination.
+  // Visitor decides whether to head to onboarding, the dashboard, or
+  // their account from the actions below.
 
   return (
-    <IntelligenceLayout>
+    <div className="min-h-screen bg-bb-off-white text-bb-near-black font-sans antialiased">
       <Helmet>
-        <title>Payment status - TCD Intelligence</title>
+        <title>
+          {status === "success"
+            ? "Subscription confirmed - TCD Intelligence"
+            : "Payment status - TCD Intelligence"}
+        </title>
         <meta name="robots" content="noindex,nofollow" />
       </Helmet>
+
+      <header className="border-b border-bb-border">
+        <div className="max-w-2xl mx-auto px-6 h-16 flex items-center justify-between">
+          <Link
+            to="/"
+            className="text-[13px] font-medium text-bb-gray hover:text-bb-near-black inline-flex items-center gap-1.5"
+            aria-label="Back to Bombay Breed home"
+          >
+            <span aria-hidden>←</span> Home
+          </Link>
+          <Link to="/intelligence" className="font-serif text-[16px] tracking-tight text-bb-near-black">
+            TCD Intelligence
+          </Link>
+        </div>
+      </header>
 
       <section className="max-w-2xl mx-auto px-6 pt-20 pb-24">
         <SectionLabel>Checkout</SectionLabel>
@@ -215,17 +229,42 @@ export default function CheckoutResult() {
             {/* State-specific copy + actions */}
             <div className="mt-6 text-[14px] leading-relaxed text-bb-gray">
               {status === "success" && (
-                <p>
-                  Your membership is active. You will be redirected to onboarding
-                  in a moment, or{" "}
-                  <Link
-                    to="/intelligence/onboarding"
-                    className="text-bb-near-black underline underline-offset-4 hover:text-bb-copper"
-                  >
-                    continue now
-                  </Link>
-                  .
-                </p>
+                <div className="space-y-5">
+                  <p>
+                    Your membership is active. A receipt and welcome email
+                    are on their way to your inbox.
+                  </p>
+                  <div className="border-t border-bb-border pt-5">
+                    <div className="text-[11px] font-semibold uppercase tracking-[0.32em] text-bb-copper mb-3">
+                      What happens next
+                    </div>
+                    <ul className="space-y-1.5 text-bb-near-black list-disc pl-5 marker:text-bb-gray">
+                      <li>Set your reading preferences in onboarding (one minute).</li>
+                      <li>Your dashboard unlocks every report at this tier.</li>
+                      <li>Manage billing or cancel anytime from Account.</li>
+                    </ul>
+                  </div>
+                  <div className="flex flex-wrap gap-3 pt-2">
+                    <Link
+                      to="/intelligence/onboarding"
+                      className="inline-flex items-center justify-center h-11 px-5 rounded-[10px] bg-bb-slate text-bb-off-white text-[13px] font-medium hover:opacity-90 transition"
+                    >
+                      Continue to onboarding
+                    </Link>
+                    <Link
+                      to="/intelligence/dashboard"
+                      className="inline-flex items-center justify-center h-11 px-5 rounded-[10px] border border-bb-border text-bb-near-black text-[13px] font-medium hover:bg-bb-near-black hover:text-bb-off-white transition"
+                    >
+                      Go to dashboard
+                    </Link>
+                    <Link
+                      to="/intelligence/account"
+                      className="inline-flex items-center justify-center h-11 px-5 text-[13px] font-medium text-bb-gray hover:text-bb-near-black transition"
+                    >
+                      View account
+                    </Link>
+                  </div>
+                </div>
               )}
 
               {status === "pending" && !pollingStopped && (
@@ -311,7 +350,7 @@ export default function CheckoutResult() {
           </div>
         )}
       </section>
-    </IntelligenceLayout>
+    </div>
   );
 }
 
