@@ -350,7 +350,7 @@ export default function CheckoutResult() {
           </div>
         )}
       </section>
-    </IntelligenceLayout>
+    </div>
   );
 }
 
