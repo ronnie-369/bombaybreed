@@ -1,10 +1,11 @@
 import { useEffect, useState } from "react";
-import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
+
 import { Helmet } from "react-helmet-async";
 import { Link } from "react-router-dom";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import SectionLabel from "../components/SectionLabel";
+import Folder from "@/components/folder/Folder";
 import {
   TIERS,
   JOBS,
@@ -262,17 +263,18 @@ const ValueLadder = () => {
       project: band.engagement,
     });
   };
-  const [projectsExpanded, setProjectsExpanded] = useState(false);
   const [currency] = useCurrency();
 
   useEffect(() => {
     if (typeof window === "undefined") return;
-    if (window.location.hash === "#sponsor-projects") setProjectsExpanded(true);
-    const handler = () => setProjectsExpanded(true);
-    window.addEventListener("bb:open-sponsor-projects", handler);
+    const scrollToProjects = () => {
+      document.getElementById("sponsor-projects")?.scrollIntoView({ behavior: "smooth", block: "start" });
+    };
+    if (window.location.hash === "#sponsor-projects") scrollToProjects();
+    window.addEventListener("bb:open-sponsor-projects", scrollToProjects);
     // Warm Signup + Checkout chunks while the visitor reads the ladder.
     prefetchMembershipFunnel();
-    return () => window.removeEventListener("bb:open-sponsor-projects", handler);
+    return () => window.removeEventListener("bb:open-sponsor-projects", scrollToProjects);
   }, []);
 
 
@@ -474,89 +476,70 @@ const ValueLadder = () => {
           non-negotiable.
         </p>
 
-        <Collapsible open={projectsExpanded} onOpenChange={setProjectsExpanded} className="mt-8">
-          <CollapsibleTrigger asChild>
-            <button
-              type="button"
-              className="inline-flex items-center justify-between gap-4 w-full md:w-auto h-12 px-6 rounded-[10px] text-[14px] font-medium bg-bb-slate text-bb-off-white hover:opacity-90 transition"
-              aria-expanded={projectsExpanded}
-              aria-controls="sponsor-projects-panel"
-            >
-              <span>
-                {projectsExpanded
-                  ? "Hide exclusive projects"
-                  : `Browse ${SPONSOR_OPEN_PROJECTS.length} exclusive projects`}
-              </span>
-              <span aria-hidden className="text-[14px] leading-none">
-                {projectsExpanded ? "−" : "+"}
-              </span>
-            </button>
-          </CollapsibleTrigger>
-
-          <CollapsibleContent id="sponsor-projects-panel" className="mt-8 data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              {SPONSOR_OPEN_PROJECTS.map((proj, i) => (
+        {/* Folder of 5 currently-open sponsor projects. Click the folder to
+            fan out the documents; click any document to open the inquiry
+            dialog for that project. */}
+        <div className="mt-12 mb-10 flex justify-center">
+          <div className="relative h-[420px] w-full max-w-[640px] flex items-center justify-center">
+            <Folder
+              size={2.4}
+              color="#1A3D5C"
+              paperColor="#FDFCFB"
+              ariaLabel={`Browse ${SPONSOR_OPEN_PROJECTS.length} exclusive sponsor projects`}
+              items={SPONSOR_OPEN_PROJECTS.map((proj, i) => (
                 <button
                   key={proj.title}
                   type="button"
                   onClick={() => openProjectInquiry(proj)}
-                  className="group text-left border border-bb-border bg-bb-paper p-5 transition-colors hover:border-bb-near-black focus:outline-none focus-visible:ring-2 focus-visible:ring-bb-slate/40"
+                  className="block w-full h-full p-3 text-left bg-transparent focus:outline-none focus-visible:ring-2 focus-visible:ring-bb-slate/40"
                   aria-label={`Register interest in: ${proj.title}`}
                 >
-                  <div className="flex items-start gap-3">
-                    <span className="text-bb-gold font-serif text-[18px] leading-none pt-1 shrink-0">
-                      {String(i + 1).padStart(2, "0")}
-                    </span>
-                    <div className="min-w-0 flex-1">
-                      <div className="font-serif text-[18px] leading-snug text-bb-near-black mb-2">
-                        {proj.title}
-                      </div>
-                      <p className="text-[12.5px] text-bb-gray leading-relaxed mb-3">
-                        {proj.angle}
-                      </p>
-                      <div className="flex items-center justify-between gap-3 text-[11px]">
-                        <span className="text-bb-gray font-mono">
-                          {proj.effort}
-                        </span>
-                        <span className="text-bb-near-black/70 group-hover:text-bb-near-black transition-colors uppercase tracking-[0.14em]">
-                          Register interest →
-                        </span>
-                      </div>
-                    </div>
+                  <div className="text-bb-gold font-serif text-[10px] leading-none">
+                    {String(i + 1).padStart(2, "0")}
+                  </div>
+                  <div className="mt-1.5 font-serif text-[9px] leading-tight text-bb-near-black line-clamp-4">
+                    {proj.title}
+                  </div>
+                  <div className="mt-1.5 text-[6.5px] uppercase tracking-[0.12em] text-bb-gray font-mono">
+                    {proj.effort.split("·")[0]?.trim()}
                   </div>
                 </button>
               ))}
-            </div>
+            />
+          </div>
+        </div>
 
-            {/* Bespoke - short, sharp note + inquiry CTA */}
-            <div className="mt-8 border border-bb-gold/40 bg-bb-gold/5 p-6 md:p-8 flex flex-col md:flex-row md:items-center md:justify-between gap-6">
-              <div className="max-w-2xl">
-                <div className="text-[11px] uppercase tracking-[0.18em] text-bb-gold">
-                  Bespoke
-                </div>
-                <p className="mt-3 font-serif text-[20px] md:text-[22px] leading-snug text-bb-near-black">
-                  Need something not on this list?
-                </p>
-                <p className="mt-2 text-[13.5px] text-bb-gray leading-relaxed">
-                  We commission custom research outside the standing calendar -
-                  private to you, or published with attribution. Tell us the
-                  question; we will come back with a shape and a number within
-                  two working days.
-                </p>
-              </div>
-              <button
-                type="button"
-                onClick={() => {
-                  trackLadderCta(TIER_BY_ID.sponsor, "sponsor_projects_bespoke");
-                  openSponsor();
-                }}
-                className="shrink-0 inline-flex items-center justify-center h-12 px-6 rounded-[10px] text-[14px] font-medium bg-bb-slate text-bb-off-white hover:opacity-90 transition"
-              >
-                Commission a bespoke project
-              </button>
+        <p className="text-center text-[12px] uppercase tracking-[0.18em] text-bb-gray mb-12">
+          Tap the folder, then tap any project to register interest
+        </p>
+
+        {/* Bespoke - short, sharp note + inquiry CTA */}
+        <div className="mt-8 border border-bb-gold/40 bg-bb-gold/5 p-6 md:p-8 flex flex-col md:flex-row md:items-center md:justify-between gap-6">
+          <div className="max-w-2xl">
+            <div className="text-[11px] uppercase tracking-[0.18em] text-bb-gold">
+              Bespoke
             </div>
-          </CollapsibleContent>
-        </Collapsible>
+            <p className="mt-3 font-serif text-[20px] md:text-[22px] leading-snug text-bb-near-black">
+              Need something not on this list?
+            </p>
+            <p className="mt-2 text-[13.5px] text-bb-gray leading-relaxed">
+              We commission custom research outside the standing calendar -
+              private to you, or published with attribution. Tell us the
+              question; we will come back with a shape and a number within
+              two working days.
+            </p>
+          </div>
+          <button
+            type="button"
+            onClick={() => {
+              trackLadderCta(TIER_BY_ID.sponsor, "sponsor_projects_bespoke");
+              openSponsor();
+            }}
+            className="shrink-0 inline-flex items-center justify-center h-12 px-6 rounded-[10px] text-[14px] font-medium bg-bb-slate text-bb-off-white hover:opacity-90 transition"
+          >
+            Commission a bespoke project
+          </button>
+        </div>
 
         {/* Standing engagement bands - always visible reference */}
         <div className="mt-14">

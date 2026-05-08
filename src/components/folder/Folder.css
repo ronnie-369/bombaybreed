@@ -1,0 +1,142 @@
+/*
+ * Folder - editorial adaptation of the React Bits "Folder" component.
+ *
+ * Brand alignment:
+ *   - --folder-color defaults to Bombay Breed Deep Blue (#1A3D5C)
+ *   - --folder-back-color is a darker shade derived in the component
+ *   - paper backgrounds stay on the Paper (#FDFCFB) family so editorial
+ *     blockquotes inside the papers remain readable
+ *
+ * Capacity:
+ *   The original component clamps to 3 papers. We extend to 5 with two
+ *   additional fanned-out positions on open (papers 4 and 5) so we can
+ *   render the 5 currently-open sponsor projects in a single folder.
+ */
+
+.folder {
+  transition: all 0.2s ease-in;
+  cursor: pointer;
+}
+
+.folder:not(.folder--click):hover {
+  transform: translateY(-8px);
+}
+
+.folder:not(.folder--click):hover .paper {
+  transform: translate(-50%, 0%);
+}
+
+.folder:not(.folder--click):hover .folder__front {
+  transform: skew(15deg) scaleY(0.6);
+}
+
+.folder:not(.folder--click):hover .right {
+  transform: skew(-15deg) scaleY(0.6);
+}
+
+.folder.open {
+  transform: translateY(-8px);
+}
+
+/* When open, fan out up to 5 papers around the folder. */
+.folder.open .paper:nth-child(1) {
+  transform: translate(calc(-150% + var(--magnet-x, 0px)), calc(-90% + var(--magnet-y, 0px))) rotateZ(-18deg);
+}
+.folder.open .paper:nth-child(1):hover {
+  transform: translate(calc(-150% + var(--magnet-x, 0px)), calc(-90% + var(--magnet-y, 0px))) rotateZ(-18deg) scale(1.05);
+}
+
+.folder.open .paper:nth-child(2) {
+  transform: translate(calc(-90% + var(--magnet-x, 0px)), calc(-115% + var(--magnet-y, 0px))) rotateZ(-6deg);
+}
+.folder.open .paper:nth-child(2):hover {
+  transform: translate(calc(-90% + var(--magnet-x, 0px)), calc(-115% + var(--magnet-y, 0px))) rotateZ(-6deg) scale(1.05);
+}
+
+.folder.open .paper:nth-child(3) {
+  transform: translate(calc(-30% + var(--magnet-x, 0px)), calc(-125% + var(--magnet-y, 0px))) rotateZ(4deg);
+}
+.folder.open .paper:nth-child(3):hover {
+  transform: translate(calc(-30% + var(--magnet-x, 0px)), calc(-125% + var(--magnet-y, 0px))) rotateZ(4deg) scale(1.05);
+}
+
+.folder.open .paper:nth-child(4) {
+  transform: translate(calc(30% + var(--magnet-x, 0px)), calc(-115% + var(--magnet-y, 0px))) rotateZ(12deg);
+}
+.folder.open .paper:nth-child(4):hover {
+  transform: translate(calc(30% + var(--magnet-x, 0px)), calc(-115% + var(--magnet-y, 0px))) rotateZ(12deg) scale(1.05);
+}
+
+.folder.open .paper:nth-child(5) {
+  transform: translate(calc(80% + var(--magnet-x, 0px)), calc(-90% + var(--magnet-y, 0px))) rotateZ(20deg);
+}
+.folder.open .paper:nth-child(5):hover {
+  transform: translate(calc(80% + var(--magnet-x, 0px)), calc(-90% + var(--magnet-y, 0px))) rotateZ(20deg) scale(1.05);
+}
+
+.folder.open .folder__front {
+  transform: skew(15deg) scaleY(0.6);
+}
+
+.folder.open .right {
+  transform: skew(-15deg) scaleY(0.6);
+}
+
+.folder__back {
+  position: relative;
+  width: 100px;
+  height: 80px;
+  background: var(--folder-back-color);
+  border-radius: 0px 10px 10px 10px;
+}
+
+.folder__back::after {
+  position: absolute;
+  z-index: 0;
+  bottom: 98%;
+  left: 0;
+  content: '';
+  width: 30px;
+  height: 10px;
+  background: var(--folder-back-color);
+  border-radius: 5px 5px 0 0;
+}
+
+.paper {
+  position: absolute;
+  z-index: 2;
+  bottom: 10%;
+  left: 50%;
+  transform: translate(-50%, 10%);
+  width: 80%;
+  height: 85%;
+  background: var(--paper-1);
+  border: 1px solid rgba(10, 10, 11, 0.08);
+  border-radius: 4px;
+  transition: all 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+  overflow: hidden;
+}
+
+.paper:nth-child(2) {
+  background: var(--paper-2);
+}
+.paper:nth-child(3) {
+  background: var(--paper-3);
+}
+.paper:nth-child(4) {
+  background: var(--paper-2);
+}
+.paper:nth-child(5) {
+  background: var(--paper-1);
+}
+
+.folder__front {
+  position: absolute;
+  z-index: 3;
+  width: 100%;
+  height: 100%;
+  background: var(--folder-color);
+  border-radius: 5px 10px 10px 10px;
+  transform-origin: bottom;
+  transition: all 0.3s ease-in-out;
+}
