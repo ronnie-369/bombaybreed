@@ -232,8 +232,29 @@ const TierCard = ({
 
 const ValueLadder = () => {
   const [sponsorOpen, setSponsorOpen] = useState(false);
-  const openSponsor = () => setSponsorOpen(true);
+  const [inquiryProject, setInquiryProject] = useState<SponsorOpenProject | { title: string } | null>(null);
+  const openSponsor = () => {
+    setInquiryProject({ title: "Sponsorship inquiry from value ladder page" });
+    setSponsorOpen(true);
+  };
+  const openProjectInquiry = (project: SponsorOpenProject) => {
+    setInquiryProject(project);
+    setSponsorOpen(true);
+    trackSponsorEvent("sponsor_open_project_click", {
+      location: "value_ladder_exclusive_projects",
+      project: project.title,
+    });
+  };
+  const [projectsExpanded, setProjectsExpanded] = useState(false);
   const [currency] = useCurrency();
+
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    if (window.location.hash === "#sponsor-projects") setProjectsExpanded(true);
+    const handler = () => setProjectsExpanded(true);
+    window.addEventListener("bb:open-sponsor-projects", handler);
+    return () => window.removeEventListener("bb:open-sponsor-projects", handler);
+  }, []);
 
   const fromTier = TIER_BY_ID[INTERSECTION.fromTierId];
   const toTier = TIER_BY_ID[INTERSECTION.toTierId];
