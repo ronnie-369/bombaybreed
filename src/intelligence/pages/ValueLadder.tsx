@@ -432,6 +432,99 @@ const ValueLadder = () => {
         </p>
       </section>
 
+      {/* SPONSOR - CURRENT PROJECTS + BESPOKE CTA */}
+      <section
+        id="sponsor-projects"
+        aria-labelledby="sponsor-projects-heading"
+        className="max-w-[1200px] mx-auto px-6 md:px-10 py-16 border-t border-bb-border scroll-mt-24"
+      >
+        <SectionLabel>Sponsor a project</SectionLabel>
+        <div className="mt-6 grid md:grid-cols-[1.4fr_1fr] gap-10 items-start">
+          <div>
+            <h2
+              id="sponsor-projects-heading"
+              className="font-serif font-normal tracking-[-0.02em] text-[28px] md:text-[40px] leading-[1.1] text-bb-near-black"
+            >
+              Current projects open for sponsorship
+            </h2>
+            <p className="mt-5 text-[15px] leading-[1.7] text-bb-gray max-w-xl">
+              These are the standing engagement bands. Sponsors underwrite the
+              production of a specific report; the deliverable is then
+              published to the full subscriber base with attribution.
+            </p>
+          </div>
+          <div className="border border-bb-gold/40 bg-bb-gold/5 rounded-none p-6">
+            <div className="text-[11px] uppercase tracking-[0.18em] text-bb-gold">
+              Bespoke
+            </div>
+            <p className="mt-3 font-serif text-[20px] leading-snug text-bb-near-black">
+              Have a specific question, sector or geography in mind?
+            </p>
+            <p className="mt-3 text-[13px] text-bb-gray leading-relaxed">
+              We commission custom research outside the standing calendar -
+              private to you, or published with attribution. Tell us what you
+              need.
+            </p>
+            <button
+              type="button"
+              onClick={() => {
+                trackLadderCta(TIER_BY_ID.sponsor, "sponsor_projects_bespoke");
+                setSponsorOpen(true);
+              }}
+              className="mt-6 inline-flex items-center justify-center h-12 px-6 rounded-[10px] text-[14px] font-medium bg-bb-slate text-bb-off-white hover:opacity-90 transition w-full"
+            >
+              Commission a bespoke project
+            </button>
+          </div>
+        </div>
+
+        <ol className="mt-10 border-t border-bb-border">
+          {SPONSOR_BANDS.map((band, i) => (
+            <li
+              key={band.engagement}
+              className="grid grid-cols-1 md:grid-cols-[80px_1fr_220px] gap-4 md:gap-8 py-6 border-b border-bb-border"
+            >
+              <div className="text-bb-gold font-serif text-[20px] leading-none">
+                {String(i + 1).padStart(2, "0")}
+              </div>
+              <div>
+                <div className="font-serif text-[20px] leading-tight text-bb-near-black">
+                  {band.engagement}
+                </div>
+                <p className="mt-2 text-[13px] leading-[1.6] text-bb-gray max-w-2xl">
+                  {band.scope}
+                </p>
+              </div>
+              <div className="md:text-right">
+                <div className="text-[11px] uppercase tracking-[0.18em] text-bb-gray">
+                  Indicative
+                </div>
+                <div className="mt-1 text-[14px] text-bb-near-black font-medium">
+                  {band.price}
+                </div>
+              </div>
+            </li>
+          ))}
+        </ol>
+
+        <div className="mt-10 flex flex-col sm:flex-row gap-4 sm:items-center">
+          <button
+            type="button"
+            onClick={() => {
+              trackLadderCta(TIER_BY_ID.sponsor, "sponsor_projects_primary");
+              setSponsorOpen(true);
+            }}
+            className="inline-flex items-center justify-center h-12 px-6 rounded-[10px] text-[14px] font-medium bg-bb-slate text-bb-off-white hover:opacity-90 transition"
+          >
+            Sponsor or commission a project
+          </button>
+          <p className="text-[12px] text-bb-gray max-w-md">
+            We respond personally within two working days. Editorial
+            independence is non-negotiable.
+          </p>
+        </div>
+      </section>
+
       {/* INTERSECTION */}
       <section className="max-w-[1200px] mx-auto px-6 md:px-10 py-16 border-t border-bb-border">
         <SectionLabel>The intersection</SectionLabel>
