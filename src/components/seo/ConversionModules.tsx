@@ -1,7 +1,7 @@
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { ArrowRight } from 'lucide-react';
-import BookingDialog from '@/components/BookingDialog';
+import BookingDialog from '@/components/LazyBookingDialog';
 
 interface WhoHiresUsProps {
   roles?: string[];

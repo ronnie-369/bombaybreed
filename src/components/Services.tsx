@@ -1,5 +1,5 @@
 import React from 'react';
-import BookingDialog from './BookingDialog';
+import BookingDialog from './LazyBookingDialog';
 
 const ServiceCard = ({
   num,
