@@ -159,6 +159,7 @@ const BlogCarousel = () => {
                           className="w-full h-full object-cover transition-transform duration-300 hover:scale-[1.02]" 
                           src={post.image}
                           loading="lazy"
+                          decoding="async"
                         />
                       </div>
                     </div>
