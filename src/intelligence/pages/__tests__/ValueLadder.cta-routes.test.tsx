@@ -337,18 +337,14 @@ describe('Value Ladder click-through: every CTA produces the expected effect', (
     expect(screen.getByTestId('signup-tier').textContent).toBe(expectedParams.tier);
   });
 
-  it('clicking Sponsor stays on the value-ladder and expands the Exclusive projects panel', async () => {
+  it('clicking Sponsor stays on the value-ladder and scrolls to the Exclusive projects panel', async () => {
     const user = userEvent.setup();
     renderLadderApp();
 
-    // Before the click the open-projects list is collapsed - none of the
-    // five SPONSOR_OPEN_PROJECTS title cards should be in the DOM yet.
-    expect(
-      screen.queryByRole('button', {
-        name: /Register interest in: CCUS technologies investigation in India/i,
-      }),
-    ).not.toBeInTheDocument();
-
+    // The Folder UX renders the five SPONSOR_OPEN_PROJECTS buttons up
+    // front (they live inside the folder paper "documents") so they are
+    // present in the DOM before the click. The behavioural assertion is
+    // that clicking Sponsor never leaves the value-ladder route.
     const cta = findTableCta('Sponsor') as HTMLAnchorElement;
     await user.click(cta);
 
@@ -356,16 +352,11 @@ describe('Value Ladder click-through: every CTA produces the expected effect', (
     const loc = getLocation();
     expect(loc.pathname).toBe('/intelligence/value-ladder');
 
-    // The Collapsible should now be open and the project cards rendered.
+    // The Exclusive projects section is rendered with the project buttons.
     expect(
       await screen.findByRole('button', {
         name: /Register interest in: CCUS technologies investigation in India/i,
       }),
-    ).toBeInTheDocument();
-
-    // Trigger label flips to "Hide".
-    expect(
-      screen.getByRole('button', { name: /Hide exclusive projects/i }),
     ).toBeInTheDocument();
   });
 
