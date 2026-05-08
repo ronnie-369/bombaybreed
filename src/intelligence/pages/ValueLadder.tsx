@@ -9,6 +9,7 @@ import {
   JOBS,
   INTERSECTION,
   TIER_BY_ID,
+  SPONSOR_BANDS,
   formatTierPrice,
   formatTierCtaLabel,
   formatIntersectionBody,
