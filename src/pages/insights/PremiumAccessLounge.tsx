@@ -203,14 +203,13 @@ const PremiumAccessLounge: React.FC = () => {
   const [inquiryOpen, setInquiryOpen] = useState(false);
   const [inquiryProject, setInquiryProject] = useState<SponsorProject | { title: string } | null>(null);
   const [currency] = useCurrency();
-  // Lounge launch-discount prices (30% off year one). Discount math is local
-  // to this surface; the canonical Value Ladder uses regular pricing.
-  const tier1Strike = currency === 'USD' ? 'USD 100 / month (INR 8,500)' : 'INR 8,500 / month (USD 100)';
-  const tier1Price = currency === 'USD' ? 'USD 70' : 'INR 6,000';
-  const tier1Secondary = currency === 'USD' ? 'INR 6,000' : 'USD 70';
-  const tier2Strike = currency === 'USD' ? 'USD 500 / month (INR 42,500)' : 'INR 42,500 / month (USD 500)';
-  const tier2Price = currency === 'USD' ? 'USD 350' : 'INR 30,000';
-  const tier2Secondary = currency === 'USD' ? 'INR 30,000' : 'USD 350';
+  // Canonical Value Ladder pricing (USD 10 / USD 20 per month, FX 85 INR/USD).
+  // Single source of truth lives in src/intelligence/lib/valueLadder.ts and
+  // the create-razorpay-order edge function. Keep numbers in lock-step.
+  const tier1Price = currency === 'USD' ? 'USD 10' : 'INR 850';
+  const tier1Secondary = currency === 'USD' ? 'INR 850' : 'USD 10';
+  const tier2Price = currency === 'USD' ? 'USD 20' : 'INR 1,700';
+  const tier2Secondary = currency === 'USD' ? 'INR 1,700' : 'USD 20';
 
   const openInquiry = (project: SponsorProject) => {
     setInquiryProject(project);
