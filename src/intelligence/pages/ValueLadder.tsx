@@ -487,7 +487,7 @@ const ValueLadder = () => {
             <Link
               to={INTERSECTION.ctaHref}
               onClick={() => trackLadderCta(toTier, "intersection")}
-              className="mt-7 inline-flex items-center justify-center h-12 px-6 rounded-[10px] bg-bb-slate text-bb-off-white text-[14px] font-medium hover:opacity-90 transition"
+              className="mt-7 inline-flex items-center justify-center h-12 px-6 rounded-none border border-bb-near-black bg-bb-near-black text-bb-paper text-[14px] font-medium tracking-wide hover:bg-bb-paper hover:text-bb-near-black transition"
             >
               {INTERSECTION.ctaLabel}
             </Link>
