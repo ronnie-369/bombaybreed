@@ -463,7 +463,7 @@ const TierFinder = () => {
         {recommendedTier && (
           <SpotlightCard
             className="mt-8 rounded-lg border border-primary/40 bg-primary/5 p-5 md:p-6"
-            spotlightColor="rgba(197, 160, 89, 0.22)"
+            tone="gold-strong"
           >
             <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-5">
               <div className="min-w-0 flex-1">
