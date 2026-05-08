@@ -150,11 +150,14 @@ const Services = () => {
                     <p className="text-foreground/80">{pillar.audience}</p>
                   </div>
 
-                  <Link to={pillar.link}>
-                    <Button variant="ghost" className="gap-2 text-primary hover:text-primary/80 p-0">
-                      Book a Focused Conversation <ArrowRight className="h-4 w-4" />
-                    </Button>
-                  </Link>
+                  <BookingDialog
+                    subject={`Focused Conversation: ${pillar.label}`}
+                    trigger={
+                      <Button variant="ghost" className="gap-2 text-primary hover:text-primary/80 p-0 h-auto">
+                        Book a Focused Conversation <ArrowRight className="h-4 w-4" />
+                      </Button>
+                    }
+                  />
                 </div>
               </ScrollReveal>
             </div>
