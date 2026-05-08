@@ -229,17 +229,42 @@ export default function CheckoutResult() {
             {/* State-specific copy + actions */}
             <div className="mt-6 text-[14px] leading-relaxed text-bb-gray">
               {status === "success" && (
-                <p>
-                  Your membership is active. You will be redirected to onboarding
-                  in a moment, or{" "}
-                  <Link
-                    to="/intelligence/onboarding"
-                    className="text-bb-near-black underline underline-offset-4 hover:text-bb-copper"
-                  >
-                    continue now
-                  </Link>
-                  .
-                </p>
+                <div className="space-y-5">
+                  <p>
+                    Your membership is active. A receipt and welcome email
+                    are on their way to your inbox.
+                  </p>
+                  <div className="border-t border-bb-border pt-5">
+                    <div className="text-[11px] font-semibold uppercase tracking-[0.32em] text-bb-copper mb-3">
+                      What happens next
+                    </div>
+                    <ul className="space-y-1.5 text-bb-near-black list-disc pl-5 marker:text-bb-gray">
+                      <li>Set your reading preferences in onboarding (one minute).</li>
+                      <li>Your dashboard unlocks every report at this tier.</li>
+                      <li>Manage billing or cancel anytime from Account.</li>
+                    </ul>
+                  </div>
+                  <div className="flex flex-wrap gap-3 pt-2">
+                    <Link
+                      to="/intelligence/onboarding"
+                      className="inline-flex items-center justify-center h-11 px-5 rounded-[10px] bg-bb-slate text-bb-off-white text-[13px] font-medium hover:opacity-90 transition"
+                    >
+                      Continue to onboarding
+                    </Link>
+                    <Link
+                      to="/intelligence/dashboard"
+                      className="inline-flex items-center justify-center h-11 px-5 rounded-[10px] border border-bb-border text-bb-near-black text-[13px] font-medium hover:bg-bb-near-black hover:text-bb-off-white transition"
+                    >
+                      Go to dashboard
+                    </Link>
+                    <Link
+                      to="/intelligence/account"
+                      className="inline-flex items-center justify-center h-11 px-5 text-[13px] font-medium text-bb-gray hover:text-bb-near-black transition"
+                    >
+                      View account
+                    </Link>
+                  </div>
+                </div>
               )}
 
               {status === "pending" && !pollingStopped && (
