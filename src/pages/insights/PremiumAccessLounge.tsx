@@ -25,6 +25,7 @@ import {
   formatTierCtaLabel,
   formatCurrencyAmount,
   type LadderTier,
+  type Currency,
 } from '@/intelligence/lib/valueLadder';
 import TierPriceText from '@/components/insights/TierPriceText';
 
