@@ -817,18 +817,12 @@ const PremiumAccessLounge: React.FC = () => {
               </div>
 
               <div className="mb-6">
-                <span className="inline-flex items-center px-2.5 py-1 rounded-full text-[10px] font-semibold tracking-widest uppercase bg-accent/15 text-accent border border-accent/30 mb-3 leading-snug">
-                  Inaugural offer - 30% off year one
-                </span>
-                <div className="text-xs text-muted-foreground/70 font-sans line-through mb-1 leading-snug">
-                  {tier1Strike}
-                </div>
                 <div className="font-serif text-2xl sm:text-3xl text-foreground whitespace-nowrap leading-tight">
                   {tier1Price}<span className="text-sm sm:text-base text-muted-foreground font-sans"> / month</span>
                   <span className="text-xs sm:text-sm text-muted-foreground font-sans ml-2">({tier1Secondary})</span>
                 </div>
                 <div className="text-xs text-muted-foreground tracking-wide mt-1 leading-snug">
-                  Annual plan locks the inaugural price for three years - protected against inflation, no renewal hike.
+                  Billed monthly. Cancel anytime.
                 </div>
               </div>
 
@@ -889,18 +883,12 @@ const PremiumAccessLounge: React.FC = () => {
               </div>
 
               <div className="mb-6">
-                <span className="inline-flex items-center px-2.5 py-1 rounded-full text-[10px] font-semibold tracking-widest uppercase bg-accent/20 text-accent border border-accent/40 mb-3 leading-snug">
-                  Inaugural offer - 30% off year one
-                </span>
-                <div className="text-xs text-background/45 font-sans line-through mb-1 leading-snug">
-                  {tier2Strike}
-                </div>
                 <div className="font-serif text-2xl sm:text-3xl whitespace-nowrap leading-tight">
                   {tier2Price}<span className="text-sm sm:text-base text-background/60 font-sans"> / month</span>
                   <span className="text-xs sm:text-sm text-background/60 font-sans ml-2">({tier2Secondary})</span>
                 </div>
                 <div className="text-xs text-background/60 tracking-wide mt-1 leading-snug">
-                  Annual plan locks the inaugural price for three years - protected against inflation, no renewal hike.
+                  Billed monthly. Cancel anytime.
                 </div>
               </div>
 
