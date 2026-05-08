@@ -203,6 +203,7 @@ const SponsorInquiryDialog = ({ open, onOpenChange, project, projectDetails, ban
           email: data.email.trim().toLowerCase(),
           organisation: data.organisation?.trim() || '',
           role: data.role?.trim() || '',
+          phone: data.phone?.trim() || '',
           project_of_interest: data.project.trim(),
           message: data.message?.trim() || '',
           consent: data.consent,
