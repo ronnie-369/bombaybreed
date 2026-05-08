@@ -34,13 +34,47 @@ interface Question {
   options: Option[];
 }
 
-const ALL_TIERS: TierId[] = [
-  "tcd-free",
-  "tcd-paid",
-  "bb-reader",
-  "bb-analyst",
-  "sponsor",
-];
+/**
+ * Canonical tier ordering, derived directly from the value-ladder source
+ * of truth so any reordering / addition / removal of tiers in
+ * `valueLadder.ts` flows through here automatically. Order is cheapest →
+ * richest, which doubles as the deterministic tie-break ranking.
+ */
+export const ALL_TIERS: TierId[] = TIERS.map((t) => t.id);
+
+/** Map of tier id → ladder rank (0 = cheapest). Derived, not declared. */
+export const TIER_RANK: Record<TierId, number> = ALL_TIERS.reduce(
+  (acc, id, i) => {
+    acc[id] = i;
+    return acc;
+  },
+  {} as Record<TierId, number>
+);
+
+/**
+ * Return every tier whose monthly USD price sits at or below `maxUsd`.
+ * `maxUsd === null` means no ceiling (institutional budget). Tiers with no
+ * `pricing` (Sponsor) are only included when there is no ceiling.
+ */
+export const tiersUnderBudget = (maxUsd: number | null): TierId[] => {
+  if (maxUsd === null) return ALL_TIERS;
+  return TIERS
+    .filter((t) => (t.pricing ? t.pricing.usd <= maxUsd : false))
+    .map((t) => t.id);
+};
+
+/**
+ * Budget option ceilings in USD/month. The `allowedTiers` array on each
+ * budget option below is derived from these so it cannot drift from the
+ * real pricing in `valueLadder.ts`.
+ */
+export const BUDGET_CEILINGS_USD: Record<string, number | null> = {
+  free: 0,
+  usd1: 1,
+  usd10: 10,
+  usd20: 20,
+  institutional: null,
+};
 
 const QUESTIONS: Question[] = [
   {
@@ -96,38 +130,34 @@ const QUESTIONS: Question[] = [
     prompt: "What budget range fits?",
     options: [
       {
-        // Free only - hard cap.
         label: "Free",
         scores: { "tcd-free": 2 },
-        allowedTiers: ["tcd-free"],
+        allowedTiers: tiersUnderBudget(BUDGET_CEILINGS_USD.free),
       },
       {
-        // USD 1/mo - Free or Enthusiasts only.
         label: "USD 1 / month",
         scores: { "tcd-paid": 2, "tcd-free": 1 },
-        allowedTiers: ["tcd-free", "tcd-paid"],
+        allowedTiers: tiersUnderBudget(BUDGET_CEILINGS_USD.usd1),
       },
       {
-        // Up to USD 10/mo - Market Makers and below.
         label: "USD 10 / month (research-grade editorial)",
         scores: { "bb-reader": 2, "tcd-paid": 1 },
-        allowedTiers: ["tcd-free", "tcd-paid", "bb-reader"],
+        allowedTiers: tiersUnderBudget(BUDGET_CEILINGS_USD.usd10),
       },
       {
-        // Up to USD 20/mo - Investment Intelligence and below.
         label: "USD 20 / month (research + advisory)",
         scores: { "bb-analyst": 2, "bb-reader": 1 },
-        allowedTiers: ["tcd-free", "tcd-paid", "bb-reader", "bb-analyst"],
+        allowedTiers: tiersUnderBudget(BUDGET_CEILINGS_USD.usd20),
       },
       {
-        // Institutional - everything is on the table.
         label: "Institutional / project-scale",
         scores: { sponsor: 2, "bb-analyst": 1 },
-        allowedTiers: ALL_TIERS,
+        allowedTiers: tiersUnderBudget(BUDGET_CEILINGS_USD.institutional),
       },
     ],
   },
 ];
+
 
 const trackEvent = (name: string, payload: Record<string, unknown>) => {
   if (typeof window === "undefined") return;
