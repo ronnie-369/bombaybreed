@@ -16,7 +16,9 @@
     "check:insights": "node scripts/check-static-insights-links.mjs",
     "check:insights:preview": "node scripts/check-static-insights-links.mjs --preview",
     "check:insights:custom": "node scripts/check-static-insights-links.mjs --custom",
-    "postpublish:check": "node scripts/check-static-insights-links.mjs"
+    "postpublish:check": "node scripts/check-static-insights-links.mjs",
+    "test:visual": "playwright test",
+    "test:visual:update": "playwright test --update-snapshots"
   },
   "dependencies": {
     "@carbon/icons-react": "^11.79.0",
