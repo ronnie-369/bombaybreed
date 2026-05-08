@@ -20,6 +20,7 @@ const formSchema = z.object({
     message: 'Please enter a valid email address'
   }),
   company: z.string().optional(),
+  phone: z.string().trim().max(30).optional().or(z.literal('')),
   message: z.string().min(5, {
     message: 'Message must be at least 5 characters'
   })
@@ -37,6 +38,7 @@ const Contact = () => {
       name: '',
       email: '',
       company: '',
+      phone: '',
       message: ''
     }
   });
@@ -50,6 +52,7 @@ const Contact = () => {
           name: data.name.trim(),
           email: data.email.trim().toLowerCase(),
           company: data.company?.trim() || '',
+          phone: data.phone?.trim() || '',
           message: data.message.trim(),
           form_type: 'contact',
         }),
@@ -160,15 +163,26 @@ const Contact = () => {
                         <FormMessage className="text-note text-red-300" />
                       </FormItem>} />
                 </div>
-                <FormField control={form.control} name="company" render={({
-                field
-              }) => <FormItem>
-                      <FormLabel className="text-note mb-1">Company</FormLabel>
-                      <FormControl>
-                        <Input placeholder="Your company" className="bg-white/10 border-white/30 placeholder:text-white/60 focus:border-white focus:bg-white/20" {...field} />
-                      </FormControl>
-                      <FormMessage className="text-note text-red-300" />
-                    </FormItem>} />
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <FormField control={form.control} name="company" render={({
+                  field
+                }) => <FormItem>
+                        <FormLabel className="text-note mb-1">Company</FormLabel>
+                        <FormControl>
+                          <Input placeholder="Your company" className="bg-white/10 border-white/30 placeholder:text-white/60 focus:border-white focus:bg-white/20" {...field} />
+                        </FormControl>
+                        <FormMessage className="text-note text-red-300" />
+                      </FormItem>} />
+                  <FormField control={form.control} name="phone" render={({
+                  field
+                }) => <FormItem>
+                        <FormLabel className="text-note mb-1">Phone</FormLabel>
+                        <FormControl>
+                          <Input type="tel" inputMode="tel" autoComplete="tel" placeholder="+91 98765 43210" className="bg-white/10 border-white/30 placeholder:text-white/60 focus:border-white focus:bg-white/20" {...field} />
+                        </FormControl>
+                        <FormMessage className="text-note text-red-300" />
+                      </FormItem>} />
+                </div>
                 <FormField control={form.control} name="message" render={({
                 field
               }) => <FormItem>
