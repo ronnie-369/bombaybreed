@@ -370,22 +370,6 @@ const ValueLadder = () => {
                   );
                 })}
               </tr>
-              <tr className="align-top">
-                <th className="p-5 bg-bb-paper border-b border-bb-border" />
-                {TIERS.map((tier) => (
-                  <th
-                    key={tier.id}
-                    className="p-5 align-top border-l border-b border-bb-border bg-bb-paper"
-                  >
-                    <TierCta
-                      tier={tier}
-                      surface="comparison_table"
-                      onSponsorClick={openSponsor}
-                      currency={currency}
-                    />
-                  </th>
-                ))}
-              </tr>
             </thead>
             <tbody>
               {JOBS.map((job) => (
