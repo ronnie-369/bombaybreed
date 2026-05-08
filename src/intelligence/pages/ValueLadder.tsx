@@ -95,10 +95,8 @@ interface TierCtaProps {
 }
 
 const TierCta = ({ tier, surface, variant = "primary", onSponsorClick, currency }: TierCtaProps) => {
-  const sponsorShimmer = tier.id === "sponsor" ? " cta-sponsor-shimmer" : "";
   const baseClass =
-    "cta-gold-underline inline-flex items-center justify-center h-12 px-6 rounded-[10px] text-[14px] font-medium w-full transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-bb-slate/40 focus-visible:ring-offset-2" +
-    sponsorShimmer;
+    "cta-gold-underline cta-sponsor-shimmer inline-flex items-center justify-center h-12 px-6 rounded-[10px] text-[14px] font-medium w-full transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-bb-slate/40 focus-visible:ring-offset-2";
   const styleClass =
     variant === "primary"
       ? "bg-bb-slate text-bb-off-white hover:opacity-90"
@@ -537,7 +535,7 @@ const ValueLadder = () => {
               trackLadderCta(TIER_BY_ID.sponsor, "sponsor_projects_bespoke");
               openSponsor();
             }}
-            className="shrink-0 inline-flex items-center justify-center h-12 px-6 rounded-[10px] text-[14px] font-medium bg-bb-slate text-bb-off-white hover:opacity-90 transition"
+            className="cta-gold-underline cta-sponsor-shimmer shrink-0 inline-flex items-center justify-center h-12 px-6 rounded-[10px] text-[14px] font-medium bg-bb-slate text-bb-off-white hover:opacity-90 transition"
           >
             Commission a bespoke project
           </button>
@@ -578,7 +576,7 @@ const ValueLadder = () => {
                   <button
                     type="button"
                     onClick={() => openBandInquiry(band)}
-                    className="cta-gold-underline mt-3 inline-flex items-center text-[13px] text-bb-near-black hover:text-bb-slate transition focus-visible:outline-none"
+                    className="cta-gold-underline cta-sponsor-shimmer mt-3 inline-flex items-center text-[13px] text-bb-near-black hover:text-bb-slate transition focus-visible:outline-none"
                   >
                     Discuss this engagement <span aria-hidden className="ml-1">→</span>
                   </button>
@@ -590,7 +588,7 @@ const ValueLadder = () => {
             <button
               type="button"
               onClick={() => setBookingOpen(true)}
-              className="cta-gold-underline inline-flex items-center justify-center h-12 px-6 rounded-[10px] text-[14px] font-medium bg-bb-slate text-bb-off-white hover:opacity-90 transition focus-visible:outline-none"
+              className="cta-gold-underline cta-sponsor-shimmer inline-flex items-center justify-center h-12 px-6 rounded-[10px] text-[14px] font-medium bg-bb-slate text-bb-off-white hover:opacity-90 transition focus-visible:outline-none"
             >
               Book a 30-min sponsorship call <span aria-hidden className="ml-2">→</span>
             </button>
