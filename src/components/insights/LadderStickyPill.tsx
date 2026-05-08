@@ -170,7 +170,7 @@ const LadderStickyPill = () => {
           }}
           className="bg-foreground text-background rounded-full shadow-lg px-4 py-2.5 text-[12px] font-medium flex items-center gap-2 hover:opacity-90 transition-opacity"
         >
-          <span>Free · $5 · ₹10k+ · Sponsor</span>
+          <span>Free · $1 · $10 · $20 · Sponsor</span>
           <span className="text-[11px] opacity-80">Choose ▴</span>
         </button>
       )}
