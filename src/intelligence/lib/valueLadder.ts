@@ -449,7 +449,7 @@ export const SPONSOR_BANDS: SponsorBand[] = [
   },
   {
     engagement: "Regional analysis sponsorship",
-    price: "INR 20-35 Lakh per analysis",
+    price: "Starting INR 5 Lakh plus GST per analysis",
     scope:
       "Underwrites the production of one of the four annual regional analyses on an Indian state or geography. Range reflects ground-truth fieldwork costs which vary substantially by geography and accessibility. Sponsor receives attribution credit and a working-session call.",
   },
