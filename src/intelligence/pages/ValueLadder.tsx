@@ -8,15 +8,12 @@ import SectionLabel from "../components/SectionLabel";
 import {
   TIERS,
   JOBS,
-  INTERSECTION,
   TIER_BY_ID,
   SPONSOR_BANDS,
   SPONSOR_OPEN_PROJECTS,
   type SponsorOpenProject,
   formatTierPrice,
   formatTierCtaLabel,
-  formatIntersectionBody,
-  formatIntersectionIntro,
   type LadderTier,
 } from "../lib/valueLadder";
 import { useCurrency } from "../lib/useCurrency";
