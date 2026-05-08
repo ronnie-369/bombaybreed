@@ -533,7 +533,7 @@ const Insights = () => {
                 The full library, open to all
               </h2>
               <p className="text-[15px] text-muted-foreground leading-relaxed [text-wrap:pretty]">
-                Every brief and report. Search or filter by topic and format.
+                Every brief and report.
               </p>
             </header>
 
