@@ -22,6 +22,7 @@ import TierPriceText from "@/components/insights/TierPriceText";
 import SponsorInquiryDialog from "@/components/SponsorInquiryDialog";
 import { trackOutboundClick } from "@/utils/outboundAnalytics";
 import { trackSponsorEvent } from "@/utils/sponsorAnalytics";
+import { prefetchMembershipFunnel, ctaHoverPrefetch } from "../lib/routePrefetch";
 
 // Visual treatment per group. Sponsor (B2B) is tinted to mark it as a
 // structurally different revenue line, not a subscriber tier (per memo).
