@@ -461,7 +461,7 @@ export const SPONSOR_BANDS: SponsorBand[] = [
   },
   {
     engagement: "Annual editorial calendar sponsorship",
-    price: "INR 1 Crore+ per year",
+    price: "INR 25 Lacs onwards plus GST",
     scope:
       "Sponsor underwrites multiple reports across the year with first-look access on each, named on every output produced under the sponsorship, with quarterly working-session reviews.",
   },
