@@ -17,6 +17,7 @@ const NotFound = lazy(() => import("./pages/NotFound"));
 const Auth = lazy(() => import("./pages/Auth"));
 const Admin = lazy(() => import("./pages/Admin"));
 const AdminSEO = lazy(() => import("./pages/AdminSEO"));
+const AdminSecurity = lazy(() => import("./pages/AdminSecurity"));
 const ServicePage = lazy(() => import("./pages/ServicePage"));
 const Services = lazy(() => import("./pages/Services"));
 const About = lazy(() => import("./pages/About"));
@@ -78,6 +79,7 @@ const AppContent = () => {
               <Route path="/auth" element={<Auth />} />
               <Route path="/admin" element={<Admin />} />
               <Route path="/admin/seo" element={<AdminSEO />} />
+              <Route path="/admin/security" element={<AdminSecurity />} />
               
               {/* Insight detail pages (template-driven) */}
               <Route path="/insights/:slug" element={<InsightDetail />} />
