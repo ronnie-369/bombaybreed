@@ -479,16 +479,8 @@ const ValueLadder = () => {
         {/* Folder of 5 currently-open sponsor projects. Click the folder to
             fan out the documents; click any document to open the inquiry
             dialog for that project. */}
-        <div className="mt-12 mb-10 flex justify-center">
+        <div className="mt-24 md:mt-32 mb-10 flex justify-center">
           <div className="relative h-[420px] w-full max-w-[640px] flex items-center justify-center">
-            {/* Label sits in the parent container - outside .folder - so the
-                folder's open/close skew + scale transforms never distort it. */}
-            <div
-              aria-hidden="true"
-              className="pointer-events-none absolute bottom-4 left-1/2 -translate-x-1/2 font-serif text-[15px] md:text-[17px] tracking-[0.02em] text-bb-slate text-center whitespace-nowrap"
-            >
-              New Projects Vault
-            </div>
             <Folder
               size={2.4}
               color="#C5A059"
