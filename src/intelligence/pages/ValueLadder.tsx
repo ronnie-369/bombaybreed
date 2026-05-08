@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
 import { Helmet } from "react-helmet-async";
 import { Link } from "react-router-dom";
 import Header from "@/components/Header";
@@ -10,6 +11,8 @@ import {
   INTERSECTION,
   TIER_BY_ID,
   SPONSOR_BANDS,
+  SPONSOR_OPEN_PROJECTS,
+  type SponsorOpenProject,
   formatTierPrice,
   formatTierCtaLabel,
   formatIntersectionBody,
@@ -21,6 +24,7 @@ import CurrencyToggle from "@/components/insights/CurrencyToggle";
 import TierPriceText from "@/components/insights/TierPriceText";
 import SponsorInquiryDialog from "@/components/SponsorInquiryDialog";
 import { trackOutboundClick } from "@/utils/outboundAnalytics";
+import { trackSponsorEvent } from "@/utils/sponsorAnalytics";
 
 // Visual treatment per group. Sponsor (B2B) is tinted to mark it as a
 // structurally different revenue line, not a subscriber tier (per memo).
@@ -112,6 +116,9 @@ const TierCta = ({ tier, surface, variant = "primary", onSponsorClick, currency 
           trackLadderCta(tier, surface);
           if (isSamePageHash && typeof window !== "undefined") {
             const id = href.slice(hashIdx + 1);
+            if (id === "sponsor-projects") {
+              window.dispatchEvent(new CustomEvent("bb:open-sponsor-projects"));
+            }
             const el = document.getElementById(id);
             if (el) {
               e.preventDefault();
@@ -225,8 +232,29 @@ const TierCard = ({
 
 const ValueLadder = () => {
   const [sponsorOpen, setSponsorOpen] = useState(false);
-  const openSponsor = () => setSponsorOpen(true);
+  const [inquiryProject, setInquiryProject] = useState<SponsorOpenProject | { title: string } | null>(null);
+  const openSponsor = () => {
+    setInquiryProject({ title: "Sponsorship inquiry from value ladder page" });
+    setSponsorOpen(true);
+  };
+  const openProjectInquiry = (project: SponsorOpenProject) => {
+    setInquiryProject(project);
+    setSponsorOpen(true);
+    trackSponsorEvent("sponsor_open_project_click", {
+      location: "value_ladder_exclusive_projects",
+      project: project.title,
+    });
+  };
+  const [projectsExpanded, setProjectsExpanded] = useState(false);
   const [currency] = useCurrency();
+
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    if (window.location.hash === "#sponsor-projects") setProjectsExpanded(true);
+    const handler = () => setProjectsExpanded(true);
+    window.addEventListener("bb:open-sponsor-projects", handler);
+    return () => window.removeEventListener("bb:open-sponsor-projects", handler);
+  }, []);
 
   const fromTier = TIER_BY_ID[INTERSECTION.fromTierId];
   const toTier = TIER_BY_ID[INTERSECTION.toTierId];
@@ -432,96 +460,143 @@ const ValueLadder = () => {
         </p>
       </section>
 
-      {/* SPONSOR - CURRENT PROJECTS + BESPOKE CTA */}
+      {/* SPONSOR - EXCLUSIVE PROJECTS (collapsible) + BANDS */}
       <section
         id="sponsor-projects"
         aria-labelledby="sponsor-projects-heading"
         className="max-w-[1200px] mx-auto px-6 md:px-10 py-16 border-t border-bb-border scroll-mt-24"
       >
-        <SectionLabel>Sponsor a project</SectionLabel>
-        <div className="mt-6 grid md:grid-cols-[1.4fr_1fr] gap-10 items-start">
-          <div>
-            <h2
-              id="sponsor-projects-heading"
-              className="font-serif font-normal tracking-[-0.02em] text-[28px] md:text-[40px] leading-[1.1] text-bb-near-black"
-            >
-              Current projects open for sponsorship
-            </h2>
-            <p className="mt-5 text-[15px] leading-[1.7] text-bb-gray max-w-xl">
-              These are the standing engagement bands. Sponsors underwrite the
-              production of a specific report; the deliverable is then
-              published to the full subscriber base with attribution.
-            </p>
-          </div>
-          <div className="border border-bb-gold/40 bg-bb-gold/5 rounded-none p-6">
-            <div className="text-[11px] uppercase tracking-[0.18em] text-bb-gold">
-              Bespoke
-            </div>
-            <p className="mt-3 font-serif text-[20px] leading-snug text-bb-near-black">
-              Have a specific question, sector or geography in mind?
-            </p>
-            <p className="mt-3 text-[13px] text-bb-gray leading-relaxed">
-              We commission custom research outside the standing calendar -
-              private to you, or published with attribution. Tell us what you
-              need.
-            </p>
+        <SectionLabel>Exclusive projects</SectionLabel>
+        <h2
+          id="sponsor-projects-heading"
+          className="mt-6 font-serif font-normal tracking-[-0.02em] text-[28px] md:text-[40px] leading-[1.1] text-bb-near-black max-w-3xl"
+        >
+          Currently open for sponsorship
+        </h2>
+        <p className="mt-5 text-[15px] leading-[1.7] text-bb-gray max-w-2xl">
+          A live shortlist of investigations we are commissioning now. Sponsors
+          underwrite production; the deliverable is published to the full
+          subscriber base with attribution. Editorial independence is
+          non-negotiable.
+        </p>
+
+        <Collapsible open={projectsExpanded} onOpenChange={setProjectsExpanded} className="mt-8">
+          <CollapsibleTrigger asChild>
             <button
               type="button"
-              onClick={() => {
-                trackLadderCta(TIER_BY_ID.sponsor, "sponsor_projects_bespoke");
-                setSponsorOpen(true);
-              }}
-              className="mt-6 inline-flex items-center justify-center h-12 px-6 rounded-[10px] text-[14px] font-medium bg-bb-slate text-bb-off-white hover:opacity-90 transition w-full"
+              className="inline-flex items-center justify-between gap-4 w-full md:w-auto h-12 px-6 rounded-[10px] text-[14px] font-medium bg-bb-slate text-bb-off-white hover:opacity-90 transition"
+              aria-expanded={projectsExpanded}
+              aria-controls="sponsor-projects-panel"
             >
-              Commission a bespoke project
+              <span>
+                {projectsExpanded
+                  ? "Hide exclusive projects"
+                  : `Browse ${SPONSOR_OPEN_PROJECTS.length} exclusive projects`}
+              </span>
+              <span aria-hidden className="text-[14px] leading-none">
+                {projectsExpanded ? "−" : "+"}
+              </span>
             </button>
-          </div>
-        </div>
+          </CollapsibleTrigger>
 
-        <ol className="mt-10 border-t border-bb-border">
-          {SPONSOR_BANDS.map((band, i) => (
-            <li
-              key={band.engagement}
-              className="grid grid-cols-1 md:grid-cols-[80px_1fr_220px] gap-4 md:gap-8 py-6 border-b border-bb-border"
-            >
-              <div className="text-bb-gold font-serif text-[20px] leading-none">
-                {String(i + 1).padStart(2, "0")}
-              </div>
-              <div>
-                <div className="font-serif text-[20px] leading-tight text-bb-near-black">
-                  {band.engagement}
+          <CollapsibleContent id="sponsor-projects-panel" className="mt-8 data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              {SPONSOR_OPEN_PROJECTS.map((proj, i) => (
+                <button
+                  key={proj.title}
+                  type="button"
+                  onClick={() => openProjectInquiry(proj)}
+                  className="group text-left border border-bb-border bg-bb-paper p-5 transition-colors hover:border-bb-near-black focus:outline-none focus-visible:ring-2 focus-visible:ring-bb-slate/40"
+                  aria-label={`Register interest in: ${proj.title}`}
+                >
+                  <div className="flex items-start gap-3">
+                    <span className="text-bb-gold font-serif text-[18px] leading-none pt-1 shrink-0">
+                      {String(i + 1).padStart(2, "0")}
+                    </span>
+                    <div className="min-w-0 flex-1">
+                      <div className="font-serif text-[18px] leading-snug text-bb-near-black mb-2">
+                        {proj.title}
+                      </div>
+                      <p className="text-[12.5px] text-bb-gray leading-relaxed mb-3">
+                        {proj.angle}
+                      </p>
+                      <div className="flex items-center justify-between gap-3 text-[11px]">
+                        <span className="text-bb-gray font-mono">
+                          {proj.effort}
+                        </span>
+                        <span className="text-bb-near-black/70 group-hover:text-bb-near-black transition-colors uppercase tracking-[0.14em]">
+                          Register interest →
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </button>
+              ))}
+            </div>
+
+            {/* Bespoke - short, sharp note + inquiry CTA */}
+            <div className="mt-8 border border-bb-gold/40 bg-bb-gold/5 p-6 md:p-8 flex flex-col md:flex-row md:items-center md:justify-between gap-6">
+              <div className="max-w-2xl">
+                <div className="text-[11px] uppercase tracking-[0.18em] text-bb-gold">
+                  Bespoke
                 </div>
-                <p className="mt-2 text-[13px] leading-[1.6] text-bb-gray max-w-2xl">
-                  {band.scope}
+                <p className="mt-3 font-serif text-[20px] md:text-[22px] leading-snug text-bb-near-black">
+                  Need something not on this list?
+                </p>
+                <p className="mt-2 text-[13.5px] text-bb-gray leading-relaxed">
+                  We commission custom research outside the standing calendar -
+                  private to you, or published with attribution. Tell us the
+                  question; we will come back with a shape and a number within
+                  two working days.
                 </p>
               </div>
-              <div className="md:text-right">
-                <div className="text-[11px] uppercase tracking-[0.18em] text-bb-gray">
-                  Indicative
-                </div>
-                <div className="mt-1 text-[14px] text-bb-near-black font-medium">
-                  {band.price}
-                </div>
-              </div>
-            </li>
-          ))}
-        </ol>
+              <button
+                type="button"
+                onClick={() => {
+                  trackLadderCta(TIER_BY_ID.sponsor, "sponsor_projects_bespoke");
+                  openSponsor();
+                }}
+                className="shrink-0 inline-flex items-center justify-center h-12 px-6 rounded-[10px] text-[14px] font-medium bg-bb-slate text-bb-off-white hover:opacity-90 transition"
+              >
+                Commission a bespoke project
+              </button>
+            </div>
+          </CollapsibleContent>
+        </Collapsible>
 
-        <div className="mt-10 flex flex-col sm:flex-row gap-4 sm:items-center">
-          <button
-            type="button"
-            onClick={() => {
-              trackLadderCta(TIER_BY_ID.sponsor, "sponsor_projects_primary");
-              setSponsorOpen(true);
-            }}
-            className="inline-flex items-center justify-center h-12 px-6 rounded-[10px] text-[14px] font-medium bg-bb-slate text-bb-off-white hover:opacity-90 transition"
-          >
-            Sponsor or commission a project
-          </button>
-          <p className="text-[12px] text-bb-gray max-w-md">
-            We respond personally within two working days. Editorial
-            independence is non-negotiable.
-          </p>
+        {/* Standing engagement bands - always visible reference */}
+        <div className="mt-14">
+          <div className="text-[11px] uppercase tracking-[0.18em] text-bb-gray">
+            Standing engagement bands
+          </div>
+          <ol className="mt-4 border-t border-bb-border">
+            {SPONSOR_BANDS.map((band, i) => (
+              <li
+                key={band.engagement}
+                className="grid grid-cols-1 md:grid-cols-[80px_1fr_220px] gap-4 md:gap-8 py-6 border-b border-bb-border"
+              >
+                <div className="text-bb-gold font-serif text-[20px] leading-none">
+                  {String(i + 1).padStart(2, "0")}
+                </div>
+                <div>
+                  <div className="font-serif text-[20px] leading-tight text-bb-near-black">
+                    {band.engagement}
+                  </div>
+                  <p className="mt-2 text-[13px] leading-[1.6] text-bb-gray max-w-2xl">
+                    {band.scope}
+                  </p>
+                </div>
+                <div className="md:text-right">
+                  <div className="text-[11px] uppercase tracking-[0.18em] text-bb-gray">
+                    Indicative
+                  </div>
+                  <div className="mt-1 text-[14px] text-bb-near-black font-medium">
+                    {band.price}
+                  </div>
+                </div>
+              </li>
+            ))}
+          </ol>
         </div>
       </section>
 
@@ -610,7 +685,10 @@ const ValueLadder = () => {
       <SponsorInquiryDialog
         open={sponsorOpen}
         onOpenChange={setSponsorOpen}
-        project="Sponsorship inquiry from value ladder page"
+        project={inquiryProject?.title ?? "Sponsorship inquiry from value ladder page"}
+        projectDetails={
+          inquiryProject && "angle" in inquiryProject ? inquiryProject : undefined
+        }
       />
       </main>
       <Footer />
