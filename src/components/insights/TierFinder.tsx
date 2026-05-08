@@ -223,18 +223,12 @@ const TierFinder = () => {
       }
     }
 
-    // Tier order from cheapest to richest - used for deterministic
-    // tie-breaks that prefer the higher tier when the visitor's stated
-    // budget explicitly allows it. Without this, ties fall back to JS
-    // object insertion order and we end up recommending the $1/mo plan
-    // to someone who told us they would spend $20/mo.
-    const tierRank: Record<TierId, number> = {
-      "tcd-free": 0,
-      "tcd-paid": 1,
-      "bb-reader": 2,
-      "bb-analyst": 3,
-      sponsor: 4,
-    };
+    // Tie-break ordering uses TIER_RANK (derived from valueLadder.ts) so
+    // the cheapest → richest order can never drift out of sync with the
+    // canonical pricing ladder. Higher rank = higher (richer) tier wins
+    // when the visitor's budget allows it. Without this, ties fall back to
+    // JS object insertion order and we'd recommend a cheap plan to
+    // someone whose stated budget explicitly allows the richer one.
 
     // 2. Rank tiers by total score, then by budget signal, then by
     //    ladder height. All deterministic.
@@ -244,7 +238,7 @@ const TierFinder = () => {
         const ba = budgetScores[a[0]] ?? 0;
         const bb = budgetScores[b[0]] ?? 0;
         if (bb !== ba) return bb - ba;
-        return tierRank[b[0]] - tierRank[a[0]];
+        return TIER_RANK[b[0]] - TIER_RANK[a[0]];
       }
     );
     const idealId = ranked[0][0];
