@@ -578,15 +578,9 @@ const ValueLadder = () => {
                   <div className="text-[11px] uppercase tracking-[0.18em] text-bb-gray">
                     Indicative
                   </div>
-                  <div
-                    className="mt-1 text-[14px] text-bb-near-black font-medium cursor-help"
-                    title="Starting figure. Final scope and price set per engagement. GST applicable on all sponsorship invoices."
-                  >
+                  <div className="mt-1 text-[14px] text-bb-near-black font-medium">
                     {band.price}
                   </div>
-                  <p className="mt-1 text-[11px] italic text-bb-gray leading-snug">
-                    Starting figure - GST applicable
-                  </p>
                   <button
                     type="button"
                     onClick={() => openBandInquiry(band)}
