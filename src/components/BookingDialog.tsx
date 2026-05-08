@@ -89,7 +89,7 @@ const BookingDialog = ({
           preferred_time: selectedSlot,
           form_type: 'booking',
           subject: subject || null,
-
+        }),
       });
 
       if (!response.ok) throw new Error('Booking failed');
