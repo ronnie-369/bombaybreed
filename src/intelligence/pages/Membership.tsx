@@ -122,6 +122,8 @@ const Membership = () => {
     supabase.auth.getSession().then(({ data }) => {
       setHasSession(!!data.session);
     });
+    // Warm Signup + Checkout chunks while the user reads the page.
+    prefetchMembershipFunnel();
   }, []);
 
   const focusedTier = useMemo(
