@@ -587,52 +587,6 @@ const ValueLadder = () => {
         </div>
       </section>
 
-      {/* DATA TRANSPARENCY */}
-      <section className="max-w-[1200px] mx-auto px-6 md:px-10 py-16 border-t border-bb-border">
-        <details className="group">
-          <summary className="cursor-pointer flex items-baseline justify-between gap-6 list-none">
-            <div>
-              <SectionLabel>How we source the intelligence</SectionLabel>
-              <h2 className="mt-4 font-serif font-normal tracking-[-0.02em] text-[26px] md:text-[32px] leading-[1.15] text-bb-near-black max-w-3xl">
-                Realistic-now data sources, plus the wishlist for scale.
-              </h2>
-            </div>
-            <span className="text-[12px] text-bb-gray group-open:hidden">Show</span>
-            <span className="text-[12px] text-bb-gray hidden group-open:inline">Hide</span>
-          </summary>
-          <div className="mt-8 grid md:grid-cols-2 gap-8 text-[13px] leading-[1.7] text-bb-gray">
-            <div>
-              <div className="text-[11px] uppercase tracking-[0.18em] text-bb-near-black mb-3">
-                Realistic-now (months 0-12)
-              </div>
-              <p>
-                Public government sources (BEE, MoEFCC, the Indian Carbon Market
-                Portal launched March 2026, CEA grid data, SEBI BRSR filings,
-                PIB), specialty India and global newsletters (Carbon Pulse,
-                ClimateWire, Argus India), the proprietary{" "}
-                <em>indiacarbon.climatewise.today</em> database of CCTS-obligated
-                entities, voluntary registry data (Verra, Gold Standard,
-                Puro.earth), and curated outputs from CEEW, TERI, and Climate
-                Action Tracker. Total cost approximately USD 8K to 15K per year.
-              </p>
-            </div>
-            <div>
-              <div className="text-[11px] uppercase tracking-[0.18em] text-bb-near-black mb-3">
-                Wishlist (200+ paid subscribers)
-              </div>
-              <p>
-                S&amp;P Global Platts Carbon, Bloomberg NEF, Refinitiv Carbon,
-                ICIS Carbon and Energy Transition, Wood Mackenzie Energy
-                Transition Service, MSCI Climate Action, S&amp;P Global
-                Sustainable1. Institutional pricing only, individually USD 15K
-                to 150K per seat per year. The platform grows into this layer
-                as the paid subscriber base supports it; it is not what the
-                product begins with.
-              </p>
-            </div>
-          </div>
-        </details>
-      </section>
 
       <SponsorInquiryDialog
         open={sponsorOpen}
