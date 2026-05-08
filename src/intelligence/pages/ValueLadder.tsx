@@ -8,15 +8,12 @@ import SectionLabel from "../components/SectionLabel";
 import {
   TIERS,
   JOBS,
-  INTERSECTION,
   TIER_BY_ID,
   SPONSOR_BANDS,
   SPONSOR_OPEN_PROJECTS,
   type SponsorOpenProject,
   formatTierPrice,
   formatTierCtaLabel,
-  formatIntersectionBody,
-  formatIntersectionIntro,
   type LadderTier,
 } from "../lib/valueLadder";
 import { useCurrency } from "../lib/useCurrency";
@@ -256,8 +253,6 @@ const ValueLadder = () => {
     return () => window.removeEventListener("bb:open-sponsor-projects", handler);
   }, []);
 
-  const fromTier = TIER_BY_ID[INTERSECTION.fromTierId];
-  const toTier = TIER_BY_ID[INTERSECTION.toTierId];
 
   return (
     <>
@@ -597,54 +592,6 @@ const ValueLadder = () => {
               </li>
             ))}
           </ol>
-        </div>
-      </section>
-
-      {/* INTERSECTION */}
-      <section className="max-w-[1200px] mx-auto px-6 md:px-10 py-16 border-t border-bb-border">
-        <SectionLabel>The intersection</SectionLabel>
-        <div className="mt-6 grid md:grid-cols-[1.4fr_1fr] gap-10 items-start">
-          <div>
-            <h2 className="font-serif font-normal tracking-[-0.02em] text-[28px] md:text-[36px] leading-[1.1] text-bb-near-black">
-              {INTERSECTION.headline}
-            </h2>
-            <p className="mt-5 text-[15px] leading-[1.7] text-bb-gray max-w-xl">
-              {formatIntersectionBody(currency)}
-            </p>
-            <p className="mt-4 text-[13px] text-bb-gray italic max-w-xl">
-              Beyond this intersection, the tiers run on parallel tracks.
-              Market Makers to Investment Intelligence is not a natural progression - it is a
-              decision made on professional context (am I deploying capital? do
-              I need named diligence?).
-            </p>
-            <Link
-              to={INTERSECTION.ctaHref}
-              onClick={() => trackLadderCta(toTier, "intersection")}
-              className="mt-7 inline-flex items-center justify-center h-12 px-6 rounded-md border border-primary bg-primary text-primary-foreground text-[14px] font-medium tracking-wide shadow-button hover:bg-primary/90 hover:shadow-button-hover hover:-translate-y-px transition-all duration-200 ease-out"
-            >
-              {INTERSECTION.ctaLabel}
-            </Link>
-          </div>
-          <div className="border border-bb-border bg-bb-paper rounded-none p-6">
-            <div className="text-[11px] uppercase tracking-[0.18em] text-bb-gray">
-              From
-            </div>
-            <div className="mt-1 font-serif text-[20px] tracking-tight text-bb-near-black">
-              {fromTier.name}
-            </div>
-            <TierPriceText tier={fromTier} currency={currency} className="text-[13px] text-bb-gray" />
-            <div className="my-4 h-px bg-bb-border" />
-            <div className="text-[11px] uppercase tracking-[0.18em] text-bb-gray">
-              To
-            </div>
-            <div className="mt-1 font-serif text-[20px] tracking-tight text-bb-near-black">
-              {toTier.name}
-            </div>
-            <TierPriceText tier={toTier} currency={currency} className="text-[13px] text-bb-gray" />
-            <div className="mt-5 text-[12px] text-bb-near-black bg-bb-gold/10 border border-bb-gold/30 rounded px-3 py-2">
-              {formatIntersectionIntro(currency)}
-            </div>
-          </div>
         </div>
       </section>
 
