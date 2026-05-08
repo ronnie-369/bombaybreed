@@ -253,8 +253,6 @@ const ValueLadder = () => {
     return () => window.removeEventListener("bb:open-sponsor-projects", handler);
   }, []);
 
-  const fromTier = TIER_BY_ID[INTERSECTION.fromTierId];
-  const toTier = TIER_BY_ID[INTERSECTION.toTierId];
 
   return (
     <>
