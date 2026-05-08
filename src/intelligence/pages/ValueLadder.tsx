@@ -576,7 +576,7 @@ const ValueLadder = () => {
                   <button
                     type="button"
                     onClick={() => openBandInquiry(band)}
-                    className="cta-gold-underline mt-3 inline-flex items-center text-[13px] text-bb-near-black hover:text-bb-slate transition focus-visible:outline-none"
+                    className="cta-gold-underline cta-sponsor-shimmer mt-3 inline-flex items-center text-[13px] text-bb-near-black hover:text-bb-slate transition focus-visible:outline-none"
                   >
                     Discuss this engagement <span aria-hidden className="ml-1">→</span>
                   </button>
