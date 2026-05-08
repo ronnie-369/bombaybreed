@@ -20,8 +20,15 @@ export default defineConfig(({ mode }) => ({
     },
   },
   build: {
+    // Content-hashed filenames let us serve /assets/* with a 1-year
+    // immutable Cache-Control header (see public/_headers). Any code change
+    // produces a new hash, busting the cache automatically.
+    assetsDir: 'assets',
     rollupOptions: {
       output: {
+        entryFileNames: 'assets/[name]-[hash].js',
+        chunkFileNames: 'assets/[name]-[hash].js',
+        assetFileNames: 'assets/[name]-[hash][extname]',
         // Stable vendor chunks - libraries change far less often than app code,
         // so isolating them lets browsers reuse cached bundles across deploys.
         manualChunks(id) {
