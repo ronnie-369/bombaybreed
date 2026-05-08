@@ -120,6 +120,7 @@ const SponsorInquiryDialog = ({ open, onOpenChange, project, projectDetails, ban
       email: '',
       organisation: '',
       role: '',
+      phone: '',
       project,
       message: '',
       consent: false,
