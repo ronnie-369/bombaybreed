@@ -116,6 +116,9 @@ const TierCta = ({ tier, surface, variant = "primary", onSponsorClick, currency 
           trackLadderCta(tier, surface);
           if (isSamePageHash && typeof window !== "undefined") {
             const id = href.slice(hashIdx + 1);
+            if (id === "sponsor-projects") {
+              window.dispatchEvent(new CustomEvent("bb:open-sponsor-projects"));
+            }
             const el = document.getElementById(id);
             if (el) {
               e.preventDefault();
