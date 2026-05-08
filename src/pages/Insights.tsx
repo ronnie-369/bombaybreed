@@ -664,16 +664,14 @@ const Insights = () => {
                   Nothing in the library matches that combination.
                 </h2>
                 <p className="text-sm text-muted-foreground max-w-[52ch] mx-auto mb-6">
-                  {searchQuery
-                    ? <>We could not find a brief for <span className="text-foreground">"{searchQuery}"</span>{(selectedTopic !== 'All' || selectedType !== 'All Types') && ' under the current filters'}. Try a broader keyword, or reset to browse the full archive.</>
-                    : <>The current topic and type combination has no published briefs yet. Reset filters to see the full archive, or pick a different topic.</>}
+                  The current topic and type combination has no published briefs yet. Reset filters to see the full archive, or pick a different topic.
                 </p>
                 <div className="flex flex-wrap items-center justify-center gap-3">
                   <button
-                    onClick={() => { setSearchQuery(''); setSelectedTopic('All'); setSelectedType('All Types'); }}
+                    onClick={() => { setSelectedTopic('All'); setSelectedType('All Types'); }}
                     className="inline-flex items-center px-4 py-2 text-[12px] font-medium tracking-wide bg-foreground text-background hover:bg-foreground/90 transition-colors rounded-full"
                   >
-                    Reset search & filters
+                    Reset filters
                   </button>
                   <a
                     href="#tier-finder"
