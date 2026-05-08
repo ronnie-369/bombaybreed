@@ -52,15 +52,26 @@ export const TIER_RANK: Record<TierId, number> = ALL_TIERS.reduce(
 );
 
 /**
- * Return every tier whose monthly USD price sits at or below `maxUsd`.
- * `maxUsd === null` means no ceiling (institutional budget). Tiers with no
- * `pricing` (Sponsor) are only included when there is no ceiling.
+ * Effective monthly USD price for budget comparisons. Tiers without a
+ * `pricing` field are classified explicitly: `tcd-free` is 0, `sponsor` is
+ * institutional-only (Infinity). Anything else missing pricing is treated
+ * as institutional so it never accidentally lands inside a consumer
+ * budget bucket.
+ */
+const effectiveUsd = (tierId: TierId): number => {
+  const tier = TIERS.find((t) => t.id === tierId);
+  if (tier?.pricing) return tier.pricing.usd;
+  if (tierId === "tcd-free") return 0;
+  return Number.POSITIVE_INFINITY;
+};
+
+/**
+ * Return every tier whose effective monthly USD price sits at or below
+ * `maxUsd`. `maxUsd === null` means no ceiling (institutional budget).
  */
 export const tiersUnderBudget = (maxUsd: number | null): TierId[] => {
   if (maxUsd === null) return ALL_TIERS;
-  return TIERS
-    .filter((t) => (t.pricing ? t.pricing.usd <= maxUsd : false))
-    .map((t) => t.id);
+  return ALL_TIERS.filter((id) => effectiveUsd(id) <= maxUsd);
 };
 
 /**
