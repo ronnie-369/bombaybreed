@@ -10,6 +10,7 @@ import BookingDialog from './LazyBookingDialog';
 import { Mail } from 'lucide-react';
 import ScrollReveal from '@/components/ui/ScrollReveal';
 import SectionLabel from '@/components/ui/SectionLabel';
+import { formatPhoneInput, normalizePhone } from '@/lib/phoneFormat';
 
 const formSchema = z.object({
   name: z.string().trim().min(2, { message: "Name must be at least 2 characters" }).max(100),

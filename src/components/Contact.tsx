@@ -11,6 +11,7 @@ import * as z from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useInView } from '@/hooks/use-in-view';
 import BookingDialog from './LazyBookingDialog';
+import { formatPhoneInput, normalizePhone } from '@/lib/phoneFormat';
 
 const formSchema = z.object({
   name: z.string().min(2, {
@@ -52,7 +53,7 @@ const Contact = () => {
           name: data.name.trim(),
           email: data.email.trim().toLowerCase(),
           company: data.company?.trim() || '',
-          phone: data.phone?.trim() || '',
+          phone: normalizePhone(data.phone || ''),
           message: data.message.trim(),
           form_type: 'contact',
         }),
@@ -178,7 +179,7 @@ const Contact = () => {
                 }) => <FormItem>
                         <FormLabel className="text-note mb-1">Phone</FormLabel>
                         <FormControl>
-                          <Input type="tel" inputMode="tel" autoComplete="tel" placeholder="+91 98765 43210" className="bg-white/10 border-white/30 placeholder:text-white/60 focus:border-white focus:bg-white/20" {...field} />
+                          <Input type="tel" inputMode="tel" autoComplete="tel" placeholder="+91 98765 43210" className="bg-white/10 border-white/30 placeholder:text-white/60 focus:border-white focus:bg-white/20" {...field} value={formatPhoneInput(field.value || '')} onChange={(e) => field.onChange(formatPhoneInput(e.target.value))} />
                         </FormControl>
                         <FormMessage className="text-note text-red-300" />
                       </FormItem>} />
