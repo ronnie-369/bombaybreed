@@ -123,7 +123,7 @@ export const TIERS: LadderTier[] = [
     id: "sponsor",
     name: "Sponsor",
     ladder: "B2B",
-    priceLabel: "Starting INR 35 Lakh",
+    priceLabel: "Starting INR 75,000",
     audience: "Corporates and institutions underwriting research",
     strategicRole:
       "Underwrite editorial production; credibility and revenue",
