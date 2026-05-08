@@ -533,7 +533,7 @@ const Checkout = () => {
           <p className="mt-10 text-[13px] text-bb-gray">Loading tier...</p>
         )}
       </section>
-    </IntelligenceLayout>
+    </div>
   );
 };
 
