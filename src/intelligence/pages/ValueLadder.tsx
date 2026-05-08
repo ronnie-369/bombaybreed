@@ -263,17 +263,18 @@ const ValueLadder = () => {
       project: band.engagement,
     });
   };
-  const [projectsExpanded, setProjectsExpanded] = useState(false);
   const [currency] = useCurrency();
 
   useEffect(() => {
     if (typeof window === "undefined") return;
-    if (window.location.hash === "#sponsor-projects") setProjectsExpanded(true);
-    const handler = () => setProjectsExpanded(true);
-    window.addEventListener("bb:open-sponsor-projects", handler);
+    const scrollToProjects = () => {
+      document.getElementById("sponsor-projects")?.scrollIntoView({ behavior: "smooth", block: "start" });
+    };
+    if (window.location.hash === "#sponsor-projects") scrollToProjects();
+    window.addEventListener("bb:open-sponsor-projects", scrollToProjects);
     // Warm Signup + Checkout chunks while the visitor reads the ladder.
     prefetchMembershipFunnel();
-    return () => window.removeEventListener("bb:open-sponsor-projects", handler);
+    return () => window.removeEventListener("bb:open-sponsor-projects", scrollToProjects);
   }, []);
 
 
