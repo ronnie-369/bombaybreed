@@ -208,7 +208,9 @@ const ValueLadder = () => {
   const toTier = TIER_BY_ID[INTERSECTION.toTierId];
 
   return (
-    <IntelligenceLayout>
+    <>
+      <Header />
+      <main className="bg-bb-paper text-bb-near-black">
       <Helmet>
         <title>Membership tiers - TCD Intelligence and Bombay Breed</title>
         <meta
