@@ -5,7 +5,7 @@
  * - Editorial styling: 1px border, no SaaS-style fills. Active option is the
  *   ink colour, inactive is muted. Matches the broader minimalist brand.
  * - Two surface tones: 'paper' (default, light contexts) and 'ink' (dark
- *   tier card on the Lounge Investment Intelligence card).
+ *   tier card on the Lounge Investor Intel card).
  * - Emits an analytics event on every toggle so we can see whether
  *   visitors actually use it.
  */

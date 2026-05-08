@@ -90,7 +90,7 @@ const PLANS: Record<PlanId, PlanConfig> = {
     monthly_only: true,
   },
   analyst_lens: {
-    label: 'Investment Intelligence',
+    label: 'Investor Intel',
     monthly_inr: 1_700,
     annual_monthly_inr: 1_700,
     monthly_only: true,

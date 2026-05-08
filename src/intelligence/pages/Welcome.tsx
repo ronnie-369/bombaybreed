@@ -16,7 +16,7 @@ const TIER_ALIAS: Record<string, string> = {
 
 const TIER_LABEL: Record<string, string> = {
   foundational: "Market Makers",
-  professional: "Investment Intelligence",
+  professional: "Investor Intel",
 };
 
 type Billing = "monthly" | "annual";

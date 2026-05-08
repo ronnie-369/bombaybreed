@@ -173,7 +173,7 @@ const Membership = () => {
         ) : (
           <>
             <p className="mt-6 text-[16px] leading-[1.7] text-bb-gray max-w-xl">
-              Tier 1 Market Makers and Tier 2 Investment Intelligence share the same
+              Tier 1 Market Makers and Tier 2 Investor Intel share the same
               editorial spine. Pricing is shown in INR with the USD equivalent
               alongside; billed monthly, cancel anytime. For a side-by-side
               comparison against the Substack tiers and Sponsorship, see the{" "}

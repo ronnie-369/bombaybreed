@@ -1,7 +1,7 @@
 /**
  * Per-card access badge for /insights publication cards.
  * Communicates upfront whether a piece is free to read, paid TCD,
- * or member-only (Market Makers / Investment Intelligence). No surprises at the paywall.
+ * or member-only (Market Makers / Investor Intel). No surprises at the paywall.
  */
 
 import type { LadderTier } from "@/intelligence/lib/valueLadder";
@@ -20,7 +20,7 @@ const META: Record<
   free: { label: "Free", tone: "neutral", tier: "tcd-free" },
   "paid-tcd": { label: "Paid TCD", tone: "tcd", tier: "tcd-paid" },
   "bb-reader": { label: "Market Makers", tone: "reader", tier: "bb-reader" },
-  "bb-analyst": { label: "Investment Intelligence", tone: "analyst", tier: "bb-analyst" },
+  "bb-analyst": { label: "Investor Intel", tone: "analyst", tier: "bb-analyst" },
 };
 
 const TONE_CLASS: Record<string, string> = {

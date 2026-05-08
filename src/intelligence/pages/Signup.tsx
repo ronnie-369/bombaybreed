@@ -284,7 +284,7 @@ const Signup = () => {
                   Tier on hold
                 </div>
                 <div className="mt-2 text-[15px] text-bb-near-black">
-                  {tier === "professional" ? "Investment Intelligence" : "Market Makers"}
+                  {tier === "professional" ? "Investor Intel" : "Market Makers"}
                   <span className="text-bb-gray"> - {billing === "annual" ? "Annual" : "Monthly"} billing</span>
                 </div>
               </div>
