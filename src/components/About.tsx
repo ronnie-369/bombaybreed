@@ -84,6 +84,8 @@ const About = () => {
                     src={portraitUrl}
                     alt="Theresa Ronnie - Sustainability Communications Expert"
                     className="w-full h-full object-cover object-center"
+                    loading="lazy"
+                    decoding="async"
                     onError={(e) => {
                       // Fallback to a placeholder if image fails to load
                       e.currentTarget.src = "/public/lovable-uploads/placeholder-portrait.jpg";
