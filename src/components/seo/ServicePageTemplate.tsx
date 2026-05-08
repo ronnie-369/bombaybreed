@@ -17,7 +17,7 @@ import {
 } from '@/utils/schema-generators';
 import { Link } from 'react-router-dom';
 import SectionLabel from '@/components/ui/SectionLabel';
-import BookingDialog from '@/components/BookingDialog';
+import BookingDialog from '@/components/LazyBookingDialog';
 import ScrollReveal from '@/components/ui/ScrollReveal';
 import LeadCaptureForm from '@/components/shared/LeadCaptureForm';
 

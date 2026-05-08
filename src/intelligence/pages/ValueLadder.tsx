@@ -20,7 +20,7 @@ import { useCurrency } from "../lib/useCurrency";
 import CurrencyToggle from "@/components/insights/CurrencyToggle";
 import TierPriceText from "@/components/insights/TierPriceText";
 import SponsorInquiryDialog from "@/components/SponsorInquiryDialog";
-import BookingDialog from "@/components/BookingDialog";
+import BookingDialog from "@/components/LazyBookingDialog";
 import { trackOutboundClick } from "@/utils/outboundAnalytics";
 import { trackSponsorEvent } from "@/utils/sponsorAnalytics";
 import { prefetchMembershipFunnel, ctaHoverPrefetch } from "../lib/routePrefetch";

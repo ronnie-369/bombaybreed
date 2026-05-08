@@ -1,6 +1,6 @@
 import React from 'react';
 import { Button } from '@/components/ui/button';
-import BookingDialog from './BookingDialog';
+import BookingDialog from './LazyBookingDialog';
 import { ArrowDown } from 'lucide-react';
 import ScrollReveal from '@/components/ui/ScrollReveal';
 import SectionLabel from '@/components/ui/SectionLabel';

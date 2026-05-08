@@ -10,7 +10,7 @@ import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '
 import * as z from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useInView } from '@/hooks/use-in-view';
-import BookingDialog from './BookingDialog';
+import BookingDialog from './LazyBookingDialog';
 
 const formSchema = z.object({
   name: z.string().min(2, {

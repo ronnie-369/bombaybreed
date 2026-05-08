@@ -10,7 +10,7 @@ import { Badge } from '@/components/ui/badge';
 import { ArrowRight } from 'lucide-react';
 import ScrollReveal from '@/components/ui/ScrollReveal';
 import SectionLabel from '@/components/ui/SectionLabel';
-import BookingDialog from '@/components/BookingDialog';
+import BookingDialog from '@/components/LazyBookingDialog';
 
 const servicePillars = [
   {

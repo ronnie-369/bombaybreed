@@ -6,7 +6,7 @@ import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { ArrowRight, CheckCircle2 } from 'lucide-react';
 import { Link } from 'react-router-dom';
-import BookingDialog from '@/components/BookingDialog';
+import BookingDialog from '@/components/LazyBookingDialog';
 
 // Map keywords to internal SEO/service pages for link equity
 const keywordLinks: Record<string, string> = {

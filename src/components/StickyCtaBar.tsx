@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import BookingDialog from './BookingDialog';
+import BookingDialog from './LazyBookingDialog';
 
 const StickyCtaBar = () => {
   const [visible, setVisible] = useState(false);
