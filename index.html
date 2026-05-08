@@ -136,6 +136,87 @@
 
   <body>
     <div id="root"></div>
+
+    <!-- Pre-React runtime error capture: shows a friendly fallback if the
+         JS bundle fails to initialize (e.g. TDZ errors in vendor chunks)
+         before React itself can mount. -->
+    <script>
+      (function () {
+        window.__APP_ERRORS__ = window.__APP_ERRORS__ || [];
+
+        function record(source, payload) {
+          try {
+            window.__APP_ERRORS__.push(Object.assign({ source: source, time: new Date().toISOString() }, payload));
+          } catch (_) {}
+        }
+
+        function showFallback() {
+          // Don't replace UI if React already rendered something visible.
+          var root = document.getElementById('root');
+          if (root && root.children && root.children.length > 0) return;
+
+          var errs = window.__APP_ERRORS__ || [];
+          var details = errs.map(function (e) {
+            return '[' + e.source + '] ' + (e.message || '') + (e.stack ? '\n' + e.stack : '');
+          }).join('\n\n') || 'No additional details available.';
+
+          var html = ''
+            + '<div style="min-height:100vh;background:#FDFCFB;color:#0A0A0B;font-family:Inter,system-ui,sans-serif;padding:64px 24px;display:flex;align-items:center;justify-content:center;">'
+            + '<div style="max-width:720px;width:100%;">'
+            + '<p style="font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:#1A3D5C;margin:0 0 24px;">Bombay Breed - Notice</p>'
+            + '<h1 style="font-family:Playfair Display,Georgia,serif;font-size:clamp(32px,5vw,48px);line-height:1.1;letter-spacing:-.01em;margin:0 0 24px;">The site failed to load.</h1>'
+            + '<p style="font-size:16px;line-height:1.6;color:#3a3a3c;margin:0 0 32px;">A script error prevented the page from initializing. Please reload. If the issue persists, email <a href="mailto:hello@bombaybreed.com" style="color:#1A3D5C;">hello@bombaybreed.com</a>.</p>'
+            + '<div style="display:flex;gap:12px;margin-bottom:32px;">'
+            + '<button id="bb-reload" type="button" style="background:#0A0A0B;color:#FDFCFB;border:1px solid #0A0A0B;padding:12px 24px;font-size:13px;letter-spacing:.08em;text-transform:uppercase;cursor:pointer;">Reload page</button>'
+            + '<button id="bb-copy" type="button" style="background:transparent;color:#0A0A0B;border:1px solid #0A0A0B;padding:12px 24px;font-size:13px;letter-spacing:.08em;text-transform:uppercase;cursor:pointer;">Copy error details</button>'
+            + '</div>'
+            + '<details style="border-top:1px solid #e5e5e5;padding-top:16px;">'
+            + '<summary style="cursor:pointer;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:#666;">Technical details</summary>'
+            + '<pre id="bb-details" style="margin-top:12px;font-size:12px;line-height:1.5;background:#f5f4f2;padding:16px;overflow:auto;max-height:320px;white-space:pre-wrap;word-break:break-word;"></pre>'
+            + '</details>'
+            + '</div></div>';
+
+          if (root) root.innerHTML = html;
+          else document.body.insertAdjacentHTML('beforeend', html);
+
+          var pre = document.getElementById('bb-details');
+          if (pre) pre.textContent = details;
+          var rl = document.getElementById('bb-reload');
+          if (rl) rl.addEventListener('click', function () { window.location.reload(); });
+          var cp = document.getElementById('bb-copy');
+          if (cp) cp.addEventListener('click', function () {
+            try { navigator.clipboard.writeText(details); cp.textContent = 'Copied'; } catch (_) {}
+          });
+        }
+
+        window.addEventListener('error', function (e) {
+          record('window.error', {
+            message: e && e.message,
+            filename: e && e.filename,
+            lineno: e && e.lineno,
+            colno: e && e.colno,
+            stack: e && e.error && e.error.stack,
+          });
+          // Defer fallback so React still gets a chance if it can recover.
+          setTimeout(showFallback, 1500);
+        });
+
+        window.addEventListener('unhandledrejection', function (e) {
+          var reason = e && e.reason;
+          record('unhandledrejection', {
+            message: reason && (reason.message || String(reason)),
+            stack: reason && reason.stack,
+          });
+          setTimeout(showFallback, 1500);
+        });
+
+        // Safety net: if nothing rendered after 8s, show fallback with whatever we have.
+        setTimeout(function () {
+          if ((window.__APP_ERRORS__ || []).length > 0) showFallback();
+        }, 8000);
+      })();
+    </script>
+
     <!-- IMPORTANT: DO NOT REMOVE THIS SCRIPT TAG OR THIS VERY COMMENT! -->
     <script src="https://cdn.gpteng.co/gptengineer.js" type="module"></script>
     <script type="module" src="/src/main.tsx"></script>
