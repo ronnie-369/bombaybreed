@@ -29,10 +29,19 @@ const notifyUser = (): void => {
 };
 
 const triggerReload = (): void => {
-  // Show the banner so the user can recover with a single click. We no longer
-  // auto-reload silently - that masked legitimate failures and caused surprise
-  // page jumps. The banner's Reload button performs the cache-busted reload.
-  notifyUser();
+  try {
+    if (sessionStorage.getItem(RELOAD_FLAG) === 'true') {
+      notifyUser();
+      return;
+    }
+
+    sessionStorage.setItem(RELOAD_FLAG, 'true');
+    const url = new URL(window.location.href);
+    url.searchParams.set('_r', Date.now().toString(36));
+    window.location.replace(url.toString());
+  } catch {
+    notifyUser();
+  }
 };
 
 export const installChunkReload = (): void => {
