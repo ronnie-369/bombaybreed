@@ -553,7 +553,7 @@ const ValueLadder = () => {
             {SPONSOR_BANDS.map((band, i) => (
               <li
                 key={band.engagement}
-                className="grid grid-cols-1 md:grid-cols-[80px_1fr_220px] gap-4 md:gap-8 py-6 border-b border-bb-border"
+                className="grid grid-cols-1 md:grid-cols-[80px_1fr_220px] gap-4 md:gap-8 py-6 border-b border-bb-border last:border-b-0"
               >
                 <div className="text-bb-gold font-serif text-[20px] leading-none">
                   {String(i + 1).padStart(2, "0")}
