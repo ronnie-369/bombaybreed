@@ -443,19 +443,26 @@ Deno.serve(async (req) => {
     if (resendKey) {
       const amountInr = (Number(paymentEntity.amount) || 0) / 100;
       const inrFmt = new Intl.NumberFormat('en-IN', { maximumFractionDigits: 0 }).format(amountInr);
-      const subject = `New subscription: ${planLabel || planId} (${billingCycle}) - INR ${inrFmt}`;
+      const esc = (s: unknown) =>
+        String(s ?? '')
+          .replace(/&/g, '&amp;')
+          .replace(/</g, '&lt;')
+          .replace(/>/g, '&gt;')
+          .replace(/"/g, '&quot;')
+          .replace(/'/g, '&#39;');
+      const subject = `New subscription: ${esc(planLabel || planId)} (${esc(billingCycle)}) - INR ${inrFmt}`;
       const html = `
         <h2>New paid subscription</h2>
         <table style="font-family:sans-serif;font-size:14px;border-collapse:collapse">
-          <tr><td><b>Plan</b></td><td>${planLabel || planId}</td></tr>
-          <tr><td><b>Billing</b></td><td>${billingCycle}</td></tr>
+          <tr><td><b>Plan</b></td><td>${esc(planLabel || planId)}</td></tr>
+          <tr><td><b>Billing</b></td><td>${esc(billingCycle)}</td></tr>
           <tr><td><b>Amount</b></td><td>INR ${inrFmt}</td></tr>
-          <tr><td><b>Email</b></td><td>${emailRaw}</td></tr>
-          <tr><td><b>Name</b></td><td>${String(fullName).slice(0, 200)}</td></tr>
-          <tr><td><b>Company</b></td><td>${company ?? '-'}</td></tr>
-          <tr><td><b>Phone</b></td><td>${phone ? String(phone).slice(0, 40) : '-'}</td></tr>
-          <tr><td><b>Razorpay order</b></td><td>${orderId}</td></tr>
-          <tr><td><b>Razorpay payment</b></td><td>${paymentId}</td></tr>
+          <tr><td><b>Email</b></td><td>${esc(emailRaw)}</td></tr>
+          <tr><td><b>Name</b></td><td>${esc(String(fullName).slice(0, 200))}</td></tr>
+          <tr><td><b>Company</b></td><td>${company ? esc(company) : '-'}</td></tr>
+          <tr><td><b>Phone</b></td><td>${phone ? esc(String(phone).slice(0, 40)) : '-'}</td></tr>
+          <tr><td><b>Razorpay order</b></td><td>${esc(orderId)}</td></tr>
+          <tr><td><b>Razorpay payment</b></td><td>${esc(paymentId)}</td></tr>
         </table>`;
       try {
         const r = await fetch('https://api.resend.com/emails', {
