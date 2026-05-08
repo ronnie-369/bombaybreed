@@ -194,7 +194,6 @@ const publications: Publication[] = [
 const ITEMS_PER_PAGE = 6;
 
 const Insights = () => {
-  const [searchQuery, setSearchQuery] = useState('');
   const [selectedTopic, setSelectedTopic] = useState<Topic | 'All'>('All');
   const [selectedType, setSelectedType] = useState<ContentType | 'All Types'>('All Types');
   const [currentPage, setCurrentPage] = useState(1);
@@ -203,72 +202,17 @@ const Insights = () => {
   // Reset page when filters change
   useEffect(() => {
     setCurrentPage(1);
-  }, [searchQuery, selectedTopic, selectedType]);
-
-  /**
-   * Search-query intelligence: when the user types a meaningful query (>= 3 chars)
-   * and stops for 1.2s, log the query + active filters + result count to Formspree.
-   * This gives Theresa a feed of what readers are actually trying to find -
-   * surfacing demand for new briefs and content gaps - without storing PII or
-   * spamming an event per keystroke.
-   *
-   * Re-fires only when the (query, topic, type) tuple changes.
-   */
-  const FORMSPREE_ENDPOINT = 'https://formspree.io/f/myknnoea';
-  const lastLoggedRef = React.useRef<string>('');
-  useEffect(() => {
-    const trimmed = searchQuery.trim();
-    if (trimmed.length < 3) return;
-
-    const signature = `${trimmed.toLowerCase()}|${selectedTopic}|${selectedType}`;
-    if (signature === lastLoggedRef.current) return;
-
-    const timer = window.setTimeout(() => {
-      // Recompute result count locally to avoid coupling to render order
-      const q = trimmed.toLowerCase();
-      const matches = publications.filter(pub => {
-        if (!pub.title.toLowerCase().includes(q) && !pub.description.toLowerCase().includes(q)) return false;
-        if (selectedTopic !== 'All' && pub.topic !== selectedTopic) return false;
-        if (selectedType !== 'All Types' && pub.contentType !== selectedType) return false;
-        return true;
-      }).length;
-
-      lastLoggedRef.current = signature;
-
-      // Fire-and-forget; failures are silent (this is observability, not UX).
-      fetch(FORMSPREE_ENDPOINT, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
-        body: JSON.stringify({
-          _subject: `Insights search: "${trimmed}" (${matches} results)`,
-          form_type: 'insights_search_query',
-          query: trimmed,
-          topic: selectedTopic,
-          content_type: selectedType,
-          result_count: matches,
-          page_path: typeof window !== 'undefined' ? window.location.pathname : '/insights',
-          referrer: typeof document !== 'undefined' ? document.referrer || '(direct)' : '',
-          logged_at: new Date().toISOString(),
-        }),
-      }).catch(() => { /* silent */ });
-    }, 1200);
-
-    return () => window.clearTimeout(timer);
-  }, [searchQuery, selectedTopic, selectedType]);
+  }, [selectedTopic, selectedType]);
 
   const flagshipReports = publications.filter(p => p.contentType === 'Flagship Report');
 
   const filteredPublications = useMemo(() => {
     return publications.filter(pub => {
-      if (searchQuery) {
-        const q = searchQuery.toLowerCase();
-        if (!pub.title.toLowerCase().includes(q) && !pub.description.toLowerCase().includes(q)) return false;
-      }
       if (selectedTopic !== 'All' && pub.topic !== selectedTopic) return false;
       if (selectedType !== 'All Types' && pub.contentType !== selectedType) return false;
       return true;
     });
-  }, [searchQuery, selectedTopic, selectedType]);
+  }, [selectedTopic, selectedType]);
 
   const totalPages = Math.ceil(filteredPublications.length / ITEMS_PER_PAGE);
   const paginatedItems = filteredPublications.slice(
@@ -277,9 +221,9 @@ const Insights = () => {
   );
 
   // Section-level navigation: define IDs and labels.
-  // "flagship" is conditionally rendered (only when no filters/search active),
+  // "flagship" is conditionally rendered (only when no filters active),
   // so the nav adapts to whichever sections are currently in the DOM.
-  const showFlagship = selectedTopic === 'All' && selectedType === 'All Types' && !searchQuery;
+  const showFlagship = selectedTopic === 'All' && selectedType === 'All Types';
   const sections = useMemo(() => {
     const s: { id: string; label: string }[] = [];
     // Premium Access Lounge — paid funnel sits at the top of the page.
@@ -654,9 +598,9 @@ const Insights = () => {
                   ))}
                 </div>
 
-                {(searchQuery || selectedTopic !== 'All' || selectedType !== 'All Types') && (
+                {(selectedTopic !== 'All' || selectedType !== 'All Types') && (
                   <button
-                    onClick={() => { setSearchQuery(''); setSelectedTopic('All'); setSelectedType('All Types'); }}
+                    onClick={() => { setSelectedTopic('All'); setSelectedType('All Types'); }}
                     className="ml-auto text-[11px] tracking-wider uppercase text-muted-foreground hover:text-foreground transition-colors"
                   >
                     Clear filters
@@ -720,16 +664,14 @@ const Insights = () => {
                   Nothing in the library matches that combination.
                 </h2>
                 <p className="text-sm text-muted-foreground max-w-[52ch] mx-auto mb-6">
-                  {searchQuery
-                    ? <>We could not find a brief for <span className="text-foreground">"{searchQuery}"</span>{(selectedTopic !== 'All' || selectedType !== 'All Types') && ' under the current filters'}. Try a broader keyword, or reset to browse the full archive.</>
-                    : <>The current topic and type combination has no published briefs yet. Reset filters to see the full archive, or pick a different topic.</>}
+                  The current topic and type combination has no published briefs yet. Reset filters to see the full archive, or pick a different topic.
                 </p>
                 <div className="flex flex-wrap items-center justify-center gap-3">
                   <button
-                    onClick={() => { setSearchQuery(''); setSelectedTopic('All'); setSelectedType('All Types'); }}
+                    onClick={() => { setSelectedTopic('All'); setSelectedType('All Types'); }}
                     className="inline-flex items-center px-4 py-2 text-[12px] font-medium tracking-wide bg-foreground text-background hover:bg-foreground/90 transition-colors rounded-full"
                   >
-                    Reset search & filters
+                    Reset filters
                   </button>
                   <a
                     href="#tier-finder"
