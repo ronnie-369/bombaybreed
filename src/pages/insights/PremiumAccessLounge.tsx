@@ -725,14 +725,18 @@ const PremiumAccessLounge: React.FC = () => {
             </div>
             <div className="flex flex-col gap-3">
               <div className="text-foreground">
-                <span className="font-serif text-3xl">USD 1</span>
-                <span className="text-sm text-muted-foreground"> / month (INR 85)</span>
+                <span className="font-serif text-3xl">
+                  {formatCurrencyAmount(currency, currency === 'USD' ? TIER_BY_ID['tcd-paid'].pricing!.usd : TIER_BY_ID['tcd-paid'].pricing!.inr)}
+                </span>
+                <span className="text-sm text-muted-foreground">
+                  {' '}/ month ({formatCurrencyAmount(currency === 'USD' ? 'INR' : 'USD', currency === 'USD' ? TIER_BY_ID['tcd-paid'].pricing!.inr : TIER_BY_ID['tcd-paid'].pricing!.usd)})
+                </span>
               </div>
               <Link
                 to="/intelligence/signup?tier=enthusiasts&billing=monthly&ref=insights_tiers"
                 className="inline-flex items-center justify-center gap-2 h-12 px-5 rounded-md bg-foreground text-background text-sm font-medium hover:bg-foreground/90 transition"
               >
-                Start Enthusiasts - USD 1 / mo <ArrowRight className="w-4 h-4" />
+                Start Enthusiasts - {formatCurrencyAmount(currency, currency === 'USD' ? TIER_BY_ID['tcd-paid'].pricing!.usd : TIER_BY_ID['tcd-paid'].pricing!.inr)} / mo <ArrowRight className="w-4 h-4" />
               </Link>
               <a
                 href={TIER_BY_ID['tcd-free'].cta.kind === 'outbound' ? TIER_BY_ID['tcd-free'].cta.href : '#'}
