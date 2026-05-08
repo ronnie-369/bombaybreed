@@ -159,13 +159,18 @@ function classifyOrderError(args: {
 const Checkout = () => {
   const [params] = useSearchParams();
   const tierSlug = params.get("tier") ?? "foundational";
+  const billingParam = params.get("billing");
+  const initialBilling: "monthly" | "annual" =
+    billingParam === "monthly" || billingParam === "annual"
+      ? billingParam
+      : "annual";
   const navigate = useNavigate();
   const { toast } = useToast();
 
   const [tier, setTier] = useState<Tier | null>(null);
   const [processing, setProcessing] = useState(false);
   const [billingCycle, setBillingCycle] = useState<"monthly" | "annual">(
-    "annual"
+    initialBilling
   );
   const [checkoutError, setCheckoutError] = useState<CheckoutError | null>(null);
 
