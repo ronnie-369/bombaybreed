@@ -479,6 +479,28 @@ const SponsorInquiryDialog = ({ open, onOpenChange, project, projectDetails, ban
 
             <FormField
               control={form.control}
+              name="phone"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel className="text-xs uppercase tracking-widest text-muted-foreground">
+                    Mobile <span className="normal-case tracking-normal text-muted-foreground/70">(optional, include country code)</span>
+                  </FormLabel>
+                  <FormControl>
+                    <Input
+                      {...field}
+                      type="tel"
+                      inputMode="tel"
+                      autoComplete="tel"
+                      placeholder="+91 98765 43210"
+                    />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+
+            <FormField
+              control={form.control}
               name="message"
               render={({ field }) => (
                 <FormItem>
