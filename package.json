@@ -16,7 +16,9 @@
     "check:insights": "node scripts/check-static-insights-links.mjs",
     "check:insights:preview": "node scripts/check-static-insights-links.mjs --preview",
     "check:insights:custom": "node scripts/check-static-insights-links.mjs --custom",
-    "postpublish:check": "node scripts/check-static-insights-links.mjs"
+    "postpublish:check": "node scripts/check-static-insights-links.mjs",
+    "test:visual": "playwright test",
+    "test:visual:update": "playwright test --update-snapshots"
   },
   "dependencies": {
     "@carbon/icons-react": "^11.79.0",
@@ -77,6 +79,7 @@
   },
   "devDependencies": {
     "@eslint/js": "^9.9.0",
+    "@playwright/test": "^1.59.1",
     "@tailwindcss/typography": "^0.5.15",
     "@testing-library/jest-dom": "^6.9.1",
     "@testing-library/react": "^16.3.2",
