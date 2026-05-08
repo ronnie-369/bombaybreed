@@ -505,7 +505,7 @@ const ValueLadder = () => {
                   <div className="text-bb-gold font-serif text-[7.25px] leading-[1.1]">
                     {String(i + 1).padStart(2, "0")}
                   </div>
-                  <div className="mt-2 font-serif text-[6.5px] leading-[1.35] tracking-[0.005em] text-bb-near-black line-clamp-4">
+                  <div className="mt-2 font-serif text-[6.5px] leading-[1.35] tracking-[0.005em] text-bb-near-black line-clamp-4 break-words hyphens-auto">
                     {proj.title}
                   </div>
                   <div className="mt-2 text-[4.75px] leading-[1.25] uppercase tracking-[0.14em] text-bb-gray font-mono">
