@@ -442,7 +442,7 @@ export const SPONSOR_BANDS: SponsorBand[] = [
     engagement: "Custom commissioned report",
     price: "INR 25 Lakh starting figure",
     scope:
-      "A research output not part of the standing editorial calendar, commissioned to sponsor specifications. Final pricing scoped per engagement. Closest to traditional consulting; deliverable is published to the subscriber base with attribution.",
+      "A research output not part of the standing editorial calendar, commissioned to sponsor specifications. Final pricing scoped per engagement. Deliverable is published to the subscriber base with attribution.",
   },
   {
     engagement: "Annual editorial calendar sponsorship",
