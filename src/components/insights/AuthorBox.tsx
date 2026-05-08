@@ -11,6 +11,8 @@ const AuthorBox: React.FC = () => {
             src={theresaPortrait}
             alt="Theresa Ronnie, Strategic Carbon Communications Advisor"
             className="w-14 h-14 rounded-full object-cover grayscale saturate-[0.85] flex-shrink-0"
+            loading="lazy"
+            decoding="async"
           />
           <div>
             <h3 className="text-base font-semibold text-foreground">Theresa Ronnie</h3>
