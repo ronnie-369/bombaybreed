@@ -537,77 +537,7 @@ const Insights = () => {
               </p>
             </header>
 
-            {/* Filter bar - sticky below the section nav so readers
-                can keep filtering as they scroll the resources below. */}
-            <div className="sticky top-[6.75rem] md:top-[7rem] z-20 -mx-6 md:-mx-8 px-6 md:px-8 py-3 mb-6 bg-background/90 backdrop-blur-md border-y border-border/40 space-y-3">
-
-              <div className="flex flex-wrap items-center gap-x-4 gap-y-2">
-                <div className="flex gap-1.5 flex-wrap">
-                  <button
-                    onClick={() => setSelectedTopic('All')}
-                    className={`px-3 py-1 rounded-full text-[12px] font-medium transition-colors ${
-                      selectedTopic === 'All'
-                        ? 'bg-foreground text-background'
-                        : 'border border-border text-foreground hover:bg-secondary'
-                    }`}
-                  >
-                    All topics
-                  </button>
-                  {allTopics.map(topic => (
-                    <button
-                      key={topic}
-                      onClick={() => setSelectedTopic(topic)}
-                      className={`px-3 py-1 rounded-full text-[12px] font-medium transition-colors ${
-                        selectedTopic === topic
-                          ? 'bg-foreground text-background'
-                          : 'border border-border text-foreground hover:bg-secondary'
-                      }`}
-                    >
-                      {topic}
-                    </button>
-                  ))}
-                </div>
-
-                <span className="hidden md:inline text-border" aria-hidden>·</span>
-
-                <div className="flex gap-1.5 flex-wrap">
-                  <button
-                    onClick={() => setSelectedType('All Types')}
-                    className={`px-3 py-1 rounded-full text-[12px] font-medium transition-colors ${
-                      selectedType === 'All Types'
-                        ? 'bg-foreground text-background'
-                        : 'border border-border text-foreground hover:bg-secondary'
-                    }`}
-                  >
-                    All types
-                  </button>
-                  {allContentTypes.map(type => (
-                    <button
-                      key={type}
-                      onClick={() => setSelectedType(type)}
-                      className={`px-3 py-1 rounded-full text-[12px] font-medium transition-colors ${
-                        selectedType === type
-                          ? 'bg-foreground text-background'
-                          : `border border-border hover:bg-secondary ${contentTypeColors[type]}`
-                      }`}
-                    >
-                      {type === 'Flagship Report' ? 'Flagship' :
-                       type === 'Intelligence Brief' ? 'Brief' :
-                       type === 'Regulatory Alert' ? 'Alert' : 'Perspective'}
-                    </button>
-                  ))}
-                </div>
-
-                {(selectedTopic !== 'All' || selectedType !== 'All Types') && (
-                  <button
-                    onClick={() => { setSelectedTopic('All'); setSelectedType('All Types'); }}
-                    className="ml-auto text-[11px] tracking-wider uppercase text-muted-foreground hover:text-foreground transition-colors"
-                  >
-                    Clear filters
-                  </button>
-                )}
-              </div>
-            </div>
+            {/* Filter bar removed per editorial direction. */}
 
             {/* In the clustered (unfiltered) view, flagships live exclusively in
                 the Flagship band above. The cluster shelves below show only the
