@@ -502,13 +502,13 @@ const ValueLadder = () => {
                   className="block w-full h-full p-3 text-left bg-transparent focus:outline-none focus-visible:ring-2 focus-visible:ring-bb-slate/40"
                   aria-label={`Register interest in: ${proj.title}`}
                 >
-                  <div className="text-bb-gold font-serif text-[8.5px] leading-none">
+                  <div className="text-bb-gold font-serif text-[7.25px] leading-none">
                     {String(i + 1).padStart(2, "0")}
                   </div>
-                  <div className="mt-1.5 font-serif text-[7.5px] leading-tight text-bb-near-black line-clamp-4">
+                  <div className="mt-1.5 font-serif text-[6.5px] leading-tight text-bb-near-black line-clamp-4">
                     {proj.title}
                   </div>
-                  <div className="mt-1.5 text-[5.5px] uppercase tracking-[0.12em] text-bb-gray font-mono">
+                  <div className="mt-1.5 text-[4.75px] uppercase tracking-[0.12em] text-bb-gray font-mono">
                     {proj.effort.split("·")[0]?.trim()}
                   </div>
                 </button>
