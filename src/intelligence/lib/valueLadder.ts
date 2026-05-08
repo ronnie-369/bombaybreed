@@ -68,7 +68,7 @@ export const TIERS: LadderTier[] = [
     strategicRole: "Top of funnel; brand and discovery",
     cta: {
       kind: "outbound",
-      label: "Subscribe free",
+      label: "Get started",
       href: SUBSTACK_FREE_URL,
     },
   },
@@ -84,10 +84,9 @@ export const TIERS: LadderTier[] = [
       "Capture professional reader willingness-to-pay; funnel to BB",
     cta: {
       kind: "internal",
-      label: "Upgrade - USD 1 / mo",
+      label: "Contribute",
       href: "/intelligence/signup?tier=enthusiasts&billing=monthly&ref=ladder",
     },
-    ctaLabelTemplate: "Upgrade - {price}",
   },
   {
     id: "bb-reader",
@@ -100,7 +99,7 @@ export const TIERS: LadderTier[] = [
     strategicRole: "Editorial intelligence at research-grade discipline",
     cta: {
       kind: "internal",
-      label: "Join Market Makers",
+      label: "Join the club",
       href: "/intelligence/signup?tier=foundational&ref=ladder",
     },
   },
@@ -116,7 +115,7 @@ export const TIERS: LadderTier[] = [
       "Research and advisory product for capital deployers",
     cta: {
       kind: "internal",
-      label: "Join Investment Intelligence",
+      label: "Get the edge",
       href: "/intelligence/signup?tier=professional&ref=ladder",
     },
   },
@@ -130,7 +129,7 @@ export const TIERS: LadderTier[] = [
       "Underwrite editorial production; credibility and revenue",
     cta: {
       kind: "internal",
-      label: "Exclusive projects",
+      label: "Be the change",
       href: "/intelligence/value-ladder#sponsor-projects",
     },
   },
