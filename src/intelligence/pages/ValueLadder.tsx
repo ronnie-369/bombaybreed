@@ -685,7 +685,10 @@ const ValueLadder = () => {
       <SponsorInquiryDialog
         open={sponsorOpen}
         onOpenChange={setSponsorOpen}
-        project="Sponsorship inquiry from value ladder page"
+        project={inquiryProject?.title ?? "Sponsorship inquiry from value ladder page"}
+        projectDetails={
+          inquiryProject && "angle" in inquiryProject ? inquiryProject : undefined
+        }
       />
       </main>
       <Footer />
