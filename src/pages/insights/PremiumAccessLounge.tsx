@@ -204,13 +204,16 @@ const PremiumAccessLounge: React.FC = () => {
   const [inquiryOpen, setInquiryOpen] = useState(false);
   const [inquiryProject, setInquiryProject] = useState<SponsorProject | { title: string } | null>(null);
   const [currency] = useCurrency();
-  // Canonical Value Ladder pricing (USD 10 / USD 20 per month, FX 85 INR/USD).
-  // Single source of truth lives in src/intelligence/lib/valueLadder.ts and
-  // the create-razorpay-order edge function. Keep numbers in lock-step.
-  const tier1Price = currency === 'USD' ? 'USD 10' : 'INR 850';
-  const tier1Secondary = currency === 'USD' ? 'INR 850' : 'USD 10';
-  const tier2Price = currency === 'USD' ? 'USD 20' : 'INR 1,700';
-  const tier2Secondary = currency === 'USD' ? 'INR 1,700' : 'USD 20';
+  // Canonical Value Ladder pricing - read from valueLadder.ts so the
+  // numbers, locale grouping (INR uses 1,00,000 not 100,000) and the
+  // `USD `/`INR ` prefix stay in lock-step with every other surface.
+  const tier1 = TIER_BY_ID['bb-reader'].pricing!;
+  const tier2 = TIER_BY_ID['bb-analyst'].pricing!;
+  const alt: Currency = currency === 'USD' ? 'INR' : 'USD';
+  const tier1Price = formatCurrencyAmount(currency, currency === 'USD' ? tier1.usd : tier1.inr);
+  const tier1Secondary = formatCurrencyAmount(alt, alt === 'USD' ? tier1.usd : tier1.inr);
+  const tier2Price = formatCurrencyAmount(currency, currency === 'USD' ? tier2.usd : tier2.inr);
+  const tier2Secondary = formatCurrencyAmount(alt, alt === 'USD' ? tier2.usd : tier2.inr);
 
   const openInquiry = (project: SponsorProject) => {
     setInquiryProject(project);
