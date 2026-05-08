@@ -598,9 +598,9 @@ const Insights = () => {
                   ))}
                 </div>
 
-                {(searchQuery || selectedTopic !== 'All' || selectedType !== 'All Types') && (
+                {(selectedTopic !== 'All' || selectedType !== 'All Types') && (
                   <button
-                    onClick={() => { setSearchQuery(''); setSelectedTopic('All'); setSelectedType('All Types'); }}
+                    onClick={() => { setSelectedTopic('All'); setSelectedType('All Types'); }}
                     className="ml-auto text-[11px] tracking-wider uppercase text-muted-foreground hover:text-foreground transition-colors"
                   >
                     Clear filters
