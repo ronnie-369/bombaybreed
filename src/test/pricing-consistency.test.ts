@@ -1,7 +1,7 @@
 import { describe, it, expect } from 'vitest';
 import { readFileSync } from 'node:fs';
 import { resolve } from 'node:path';
-import { TIERS, getTierById } from '@/intelligence/lib/valueLadder';
+import { TIERS, TIER_BY_ID } from '@/intelligence/lib/valueLadder';
 
 /**
  * Single source of truth for canonical Value Ladder pricing.
@@ -36,7 +36,7 @@ describe('Value Ladder constants', () => {
   it.each(Object.values(CANONICAL))(
     'tier $tierId is USD $usd / INR $inr monthly',
     ({ tierId, usd, inr }) => {
-      const tier = getTierById(tierId);
+      const tier = TIER_BY_ID[tierId as keyof typeof TIER_BY_ID];
       expect(tier, `Missing tier ${tierId}`).toBeDefined();
       expect(tier!.pricing).toEqual({ usd, inr, period: 'mo' });
     }
