@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { getSafeStorage } from '@/lib/safeStorage';
 
 interface UsePreloaderOptions {
   minimumDuration?: number;
@@ -24,14 +25,15 @@ export const usePreloader = (options: UsePreloaderOptions = {}) => {
     }
 
     // Check if this is a return visit in the same session
-    const hasSeenPreloader = sessionStorage.getItem('preloader-shown');
+    const sessionStore = getSafeStorage('sessionStorage');
+    const hasSeenPreloader = sessionStore.getItem('preloader-shown');
     
     // Use shorter duration for return visitors (300ms vs 800ms)
     const actualDuration = hasSeenPreloader ? 300 : minimumDuration;
 
     const timer = setTimeout(() => {
       setIsLoading(false);
-      sessionStorage.setItem('preloader-shown', 'true');
+      sessionStore.setItem('preloader-shown', 'true');
     }, actualDuration);
 
     return () => clearTimeout(timer);
