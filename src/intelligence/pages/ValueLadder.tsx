@@ -329,7 +329,7 @@ const ValueLadder = () => {
           </p>
           <p>
             If you are an investor who needs to be sure about where to put
-            your investments, the <a href="#tier-bb-analyst" onClick={(e) => smoothScrollToTier(e, "bb-analyst")} className="text-bb-near-black font-medium underline decoration-bb-border underline-offset-4 hover:decoration-bb-near-black">Investment Intelligence</a> tier is just for you.
+            your investments, the <a href="#tier-bb-analyst" onClick={(e) => smoothScrollToTier(e, "bb-analyst")} className="text-bb-near-black font-medium underline decoration-bb-border underline-offset-4 hover:decoration-bb-near-black">Investor Intel</a> tier is just for you.
           </p>
           <p>
             The <a href="#tier-sponsor" onClick={(e) => smoothScrollToTier(e, "sponsor")} className="text-bb-near-black font-medium underline decoration-bb-border underline-offset-4 hover:decoration-bb-near-black">Sponsor</a> tier exists for anyone looking to sponsor a study, validate a hypothesis or commission research.

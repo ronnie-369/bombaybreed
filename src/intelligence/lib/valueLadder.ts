@@ -105,7 +105,7 @@ export const TIERS: LadderTier[] = [
   },
   {
     id: "bb-analyst",
-    name: "Investment Intelligence",
+    name: "Investor Intel",
     ladder: "BB",
     priceLabel: "USD 20 / mo (INR 1,700)",
     pricing: { usd: 20, inr: 1700, period: "mo" },
@@ -478,7 +478,7 @@ export const SPONSOR_TERMS: string[] = [
   "Editorial independence. Sponsor pays for production; sponsor does not direct editorial conclusions. This is non-negotiable.",
   "Attribution. Sponsor receives non-promotional credit on the published output: 'This report was produced with research support from [Sponsor Name].'",
   "Working-session call. Sponsor receives one working-session call before publication to discuss findings, plus one team briefing after publication.",
-  "Distribution. The deliverable is published to the entire subscriber base (Market Makers and Investment Intelligence tiers). Sponsor does not receive exclusivity.",
+  "Distribution. The deliverable is published to the entire subscriber base (Market Makers and Investor Intel tiers). Sponsor does not receive exclusivity.",
   "Timeline. Sectoral and regional reports run on a 10-12 week production cycle; custom reports on a 12-16 week cycle.",
   "Payment. 50 percent on commission, 50 percent on delivery. Payments via direct invoice, GST-compliant.",
   "Cancellation. Either party may cancel in writing; sponsor pays for work completed to that point at standard rates.",

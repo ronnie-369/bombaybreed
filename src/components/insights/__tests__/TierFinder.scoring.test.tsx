@@ -43,7 +43,7 @@ describe("TierFinder scoring", () => {
     const user = userEvent.setup();
     renderFinder();
 
-    // Answers that point to Investment Intelligence on goal+role,
+    // Answers that point to Investor Intel on goal+role,
     // but the visitor only has Free budget.
     await pick(user, "Run diligence or deploy capital in Indian climate");
     await pick(user, "Investor, fund analyst, family office, DFI");
@@ -73,12 +73,12 @@ describe("TierFinder scoring", () => {
     // goal: bb-reader 3, bb-analyst 2
     // role (investor): bb-analyst 4, bb-reader 1
     // budget institutional: sponsor 2, bb-analyst 1
-    // Totals: bb-analyst = 7, bb-reader = 4, sponsor = 2 → Investment Intelligence.
+    // Totals: bb-analyst = 7, bb-reader = 4, sponsor = 2 → Investor Intel.
     await pick(user, "Track CCTS, sectoral and regional intelligence");
     await pick(user, "Investor, fund analyst, family office, DFI");
     await pick(user, "Institutional / project-scale");
 
-    expect(recommendedName()).toBe("Investment Intelligence");
+    expect(recommendedName()).toBe("Investor Intel");
   });
 
   it("recommends Sponsor when goal + role + institutional budget align", async () => {

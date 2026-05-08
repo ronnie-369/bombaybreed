@@ -43,7 +43,7 @@ const CTA_COPY: Record<
     B: 'Read the market with us',
   },
   analyst_lens: {
-    A: 'Join Investment Intelligence',
+    A: 'Join Investor Intel',
     B: 'Exclusive access awaits',
   },
 };
@@ -749,7 +749,7 @@ const PremiumAccessLounge: React.FC = () => {
             </div>
           </div>
 
-          {/* ── DETAILED RESEARCH TIERS — Market Makers / Investment Intelligence ── */}
+          {/* ── DETAILED RESEARCH TIERS — Market Makers / Investor Intel ── */}
           <SectionLabel label="Research-grade tiers" />
           <h3 className="font-serif text-2xl md:text-3xl tracking-tight mt-4 mb-4">
             Bombay Breed Intelligence
@@ -865,7 +865,7 @@ const PremiumAccessLounge: React.FC = () => {
               </Button>
             </div>
 
-            {/* Tier 2 — Investment Intelligence (demand side / money) */}
+            {/* Tier 2 — Investor Intel (demand side / money) */}
             <div
               ref={analystCardRef}
               data-active={activeTier === 'analyst-lens'}
@@ -882,7 +882,7 @@ const PremiumAccessLounge: React.FC = () => {
                   Tier 02
                 </span>
                 <h3 className="font-serif text-2xl mt-3 mb-1">
-                  Investment Intelligence
+                  Investor Intel
                 </h3>
                 <p className="text-sm text-background/70 italic leading-snug">
                   Built for the people pricing the risk - investors, family

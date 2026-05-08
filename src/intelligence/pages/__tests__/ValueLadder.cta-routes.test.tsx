@@ -159,7 +159,7 @@ const findTableCta = (tierName: string): HTMLAnchorElement | HTMLButtonElement =
     'Free Substack': /^Get started$/,
     Enthusiasts: /^Back the desk$/,
     'Market Makers': /^Enter the room$/,
-    'Investment Intelligence': /^Get the edge$/,
+    'Investor Intel': /^Get the edge$/,
     Sponsor: /^Commission work$/,
   };
 
@@ -216,7 +216,7 @@ describe('Value Ladder data: TIERS encode the documented CTA routes', () => {
     expect(url.searchParams.get('tier')).toBe('foundational');
   });
 
-  it('Investment Intelligence -> /intelligence/signup?tier=professional', () => {
+  it('Investor Intel -> /intelligence/signup?tier=professional', () => {
     const t = TIERS.find((x) => x.id === 'bb-analyst')!;
     expect(t.cta.kind).toBe('internal');
     if (t.cta.kind !== 'internal') return;
@@ -252,7 +252,7 @@ describe('Value Ladder render: each tier CTA renders the documented href / targe
   it.each([
     ['Enthusiasts',              '/intelligence/signup?tier=enthusiasts&billing=monthly&ref=ladder'],
     ['Market Makers',            '/intelligence/signup?tier=foundational&ref=ladder'],
-    ['Investment Intelligence',  '/intelligence/signup?tier=professional&ref=ladder'],
+    ['Investor Intel',  '/intelligence/signup?tier=professional&ref=ladder'],
   ])('%s renders as a SPA <a href="%s">', (tierName, expectedHref) => {
     renderLadderApp();
     const cta = findTableCta(tierName) as HTMLAnchorElement;
@@ -313,7 +313,7 @@ describe('Value Ladder click-through: every CTA produces the expected effect', (
       { tier: 'foundational', ref: 'ladder' },
     ],
     [
-      'Investment Intelligence',
+      'Investor Intel',
       '/intelligence/signup',
       { tier: 'professional', ref: 'ladder' },
     ],
@@ -388,7 +388,7 @@ describe('Value Ladder terminal route: Signup -> Checkout preserves tier+billing
   it.each([
     ['Enthusiasts',             'enthusiasts',  'monthly'],
     ['Market Makers',           'foundational', 'annual'],
-    ['Investment Intelligence', 'professional', 'annual'],
+    ['Investor Intel', 'professional', 'annual'],
   ])('%s click eventually renders Checkout with tier=%s billing=%s', async (tierName, expectedTier, expectedBilling) => {
     const user = userEvent.setup();
     renderLadderApp();
