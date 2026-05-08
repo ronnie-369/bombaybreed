@@ -499,7 +499,7 @@ const ValueLadder = () => {
                   key={proj.title}
                   type="button"
                   onClick={() => openProjectInquiry(proj)}
-                  className="block w-full h-full p-3 text-left bg-transparent focus:outline-none focus-visible:ring-2 focus-visible:ring-bb-slate/40"
+                  className="block w-full h-full px-2 py-2.5 text-left bg-transparent focus:outline-none focus-visible:ring-2 focus-visible:ring-bb-slate/40"
                   aria-label={`Register interest in: ${proj.title}`}
                 >
                   <div className="text-bb-gold font-serif text-[7.25px] leading-[1.1]">
