@@ -68,11 +68,18 @@ export interface SponsorProjectDetails {
   effort: string;
 }
 
+export interface SponsorBandDetails {
+  engagement: string;
+  price: string;
+  scope: string;
+}
+
 interface SponsorInquiryDialogProps {
   open: boolean;
   onOpenChange: (open: boolean) => void;
   project: string;
   projectDetails?: SponsorProjectDetails;
+  bandDetails?: SponsorBandDetails;
 }
 
 const generateReferenceId = (): string => {
@@ -85,7 +92,7 @@ const generateReferenceId = (): string => {
   return `BB-${yyyymmdd}-${rand}`;
 };
 
-const SponsorInquiryDialog = ({ open, onOpenChange, project, projectDetails }: SponsorInquiryDialogProps) => {
+const SponsorInquiryDialog = ({ open, onOpenChange, project, projectDetails, bandDetails }: SponsorInquiryDialogProps) => {
   const { toast } = useToast();
   const [submitting, setSubmitting] = useState(false);
   const [referenceId, setReferenceId] = useState<string | null>(null);
