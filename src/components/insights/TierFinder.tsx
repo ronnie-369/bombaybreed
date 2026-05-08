@@ -427,6 +427,7 @@ const TierFinder = () => {
           {QUESTIONS.map((q, qi) => (
             <SpotlightCard
               key={q.id}
+              tone="paper"
               className="rounded-lg border border-border bg-card p-4 flex flex-col"
             >
               <div className="text-[10px] uppercase tracking-[0.18em] text-muted-foreground">
