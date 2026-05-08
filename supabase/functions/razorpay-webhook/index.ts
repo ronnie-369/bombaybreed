@@ -431,6 +431,52 @@ Deno.serve(async (req) => {
     return jsonResponse({ error: result.error }, result.status);
   }
 
+  // Fire-and-forget admin notification on a NEW activation (skip duplicates).
+  if (!result.alreadyProcessed) {
+    const resendKey = Deno.env.get('RESEND_API_KEY');
+    const notifyTo = Deno.env.get('SUBSCRIPTION_NOTIFY_TO') || 'ronnie@bombaybreed.com';
+    if (resendKey) {
+      const amountInr = (Number(paymentEntity.amount) || 0) / 100;
+      const inrFmt = new Intl.NumberFormat('en-IN', { maximumFractionDigits: 0 }).format(amountInr);
+      const subject = `New subscription: ${planLabel || planId} (${billingCycle}) - INR ${inrFmt}`;
+      const html = `
+        <h2>New paid subscription</h2>
+        <table style="font-family:sans-serif;font-size:14px;border-collapse:collapse">
+          <tr><td><b>Plan</b></td><td>${planLabel || planId}</td></tr>
+          <tr><td><b>Billing</b></td><td>${billingCycle}</td></tr>
+          <tr><td><b>Amount</b></td><td>INR ${inrFmt}</td></tr>
+          <tr><td><b>Email</b></td><td>${emailRaw}</td></tr>
+          <tr><td><b>Name</b></td><td>${String(fullName).slice(0, 200)}</td></tr>
+          <tr><td><b>Company</b></td><td>${company ?? '-'}</td></tr>
+          <tr><td><b>Phone</b></td><td>${phone ? String(phone).slice(0, 40) : '-'}</td></tr>
+          <tr><td><b>Razorpay order</b></td><td>${orderId}</td></tr>
+          <tr><td><b>Razorpay payment</b></td><td>${paymentId}</td></tr>
+        </table>`;
+      try {
+        const r = await fetch('https://api.resend.com/emails', {
+          method: 'POST',
+          headers: {
+            Authorization: `Bearer ${resendKey}`,
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            from: 'Bombay Breed <onboarding@resend.dev>',
+            to: [notifyTo],
+            subject,
+            html,
+          }),
+        });
+        if (!r.ok) {
+          console.error('razorpay-webhook: notify email failed', r.status, await r.text());
+        }
+      } catch (err) {
+        console.error('razorpay-webhook: notify email exception', err);
+      }
+    } else {
+      console.warn('razorpay-webhook: RESEND_API_KEY not set, skipping notification');
+    }
+  }
+
   return jsonResponse({
     ok: true,
     event,
