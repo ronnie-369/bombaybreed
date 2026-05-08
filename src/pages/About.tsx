@@ -109,6 +109,9 @@ const About = () => {
                     src={theresaPortrait}
                     alt="Theresa Ronnie, Strategic Carbon Communications Advisor"
                     className="w-full h-full object-cover object-top saturate-[0.85]"
+                    loading="eager"
+                    decoding="async"
+                    fetchPriority="high"
                   />
                 </div>
               </div>
