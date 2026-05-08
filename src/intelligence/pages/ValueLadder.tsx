@@ -92,11 +92,11 @@ interface TierCtaProps {
 
 const TierCta = ({ tier, surface, variant = "primary", onSponsorClick, currency }: TierCtaProps) => {
   const baseClass =
-    "inline-flex items-center justify-center h-11 px-5 rounded-[10px] text-[13px] font-medium transition w-full";
+    "inline-flex items-center justify-center h-11 px-5 rounded-none text-[13px] font-medium tracking-wide transition w-full border";
   const styleClass =
     variant === "primary"
-      ? "bg-bb-slate text-bb-off-white hover:opacity-90"
-      : "bg-bb-off-white border border-bb-slate text-bb-slate hover:bg-bb-slate/5";
+      ? "border-bb-near-black bg-bb-near-black text-bb-paper hover:bg-bb-paper hover:text-bb-near-black"
+      : "border-bb-near-black bg-transparent text-bb-near-black hover:bg-bb-near-black hover:text-bb-paper";
   const label = formatTierCtaLabel(tier, currency);
 
   if (tier.cta.kind === "internal") {
@@ -487,7 +487,7 @@ const ValueLadder = () => {
             <Link
               to={INTERSECTION.ctaHref}
               onClick={() => trackLadderCta(toTier, "intersection")}
-              className="mt-7 inline-flex items-center justify-center h-12 px-6 rounded-[10px] bg-bb-slate text-bb-off-white text-[14px] font-medium hover:opacity-90 transition"
+              className="mt-7 inline-flex items-center justify-center h-12 px-6 rounded-none border border-bb-near-black bg-bb-near-black text-bb-paper text-[14px] font-medium tracking-wide hover:bg-bb-paper hover:text-bb-near-black transition"
             >
               {INTERSECTION.ctaLabel}
             </Link>
@@ -570,7 +570,7 @@ const ValueLadder = () => {
           <button
             type="button"
             onClick={openSponsor}
-            className="inline-flex items-center justify-center h-12 px-7 rounded-[10px] bg-bb-slate text-bb-off-white text-[14px] font-medium hover:opacity-90 transition"
+            className="inline-flex items-center justify-center h-12 px-7 rounded-none border border-bb-near-black bg-transparent text-bb-near-black text-[14px] font-medium tracking-wide hover:bg-bb-near-black hover:text-bb-paper transition"
           >
             Inquire about sponsorship
           </button>
