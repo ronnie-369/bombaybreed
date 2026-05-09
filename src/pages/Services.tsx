@@ -1,12 +1,9 @@
 import React from 'react';
 import PageHead from '@/components/PageHead';
 import { Link } from 'react-router-dom';
-import { useQuery } from '@tanstack/react-query';
-import { supabase } from '@/integrations/supabase/client';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import { Button } from '@/components/ui/button';
-import { Badge } from '@/components/ui/badge';
 import { ArrowRight } from 'lucide-react';
 import ScrollReveal from '@/components/ui/ScrollReveal';
 import SectionLabel from '@/components/ui/SectionLabel';
@@ -25,7 +22,8 @@ const servicePillars = [
     ],
     outcome: "A top-10 cement manufacturer achieved 11% energy cost reduction within 14 months of engagement.",
     audience: "Publicly listed companies navigating SEBI's BRSR framework.",
-    link: "/carbon-communications-strategy-india",
+    engage: "8-16 week project, or quarterly retainer",
+    deepDive: "/carbon-communications-strategy-india",
   },
   {
     number: "02",
@@ -39,7 +37,8 @@ const servicePillars = [
     ],
     outcome: "Board engagement on climate risk increased from reactive to proactive within two quarters.",
     audience: "Boards and CXOs seeking strategic oversight on sustainability.",
-    link: "/esg-communications-consultant",
+    engage: "Non-executive board advisory seat, annual",
+    deepDive: "/esg-communications-consultant",
   },
   {
     number: "03",
@@ -53,53 +52,22 @@ const servicePillars = [
     ],
     outcome: "Transformed compliance-first ESG reporting into investor-grade strategic narrative for a Fortune 500 client.",
     audience: "Companies that need their climate story to resonate with investors and regulators.",
-    link: "/sustainability-reporting-india",
-  },
-];
-
-const engagementModels = [
-  {
-    number: "01",
-    title: "Retainer Advisory",
-    description: "Ongoing strategic counsel. Quarterly board briefings.",
-  },
-  {
-    number: "02",
-    title: "Project Engagement",
-    description: "Scoped deliverable. 8–16 week timeline.",
-  },
-  {
-    number: "03",
-    title: "Board Advisory Seat",
-    description: "Non-executive advisory role. Annual commitment.",
+    engage: "Scoped project or ongoing retainer counsel",
+    deepDive: "/sustainability-reporting-india",
   },
 ];
 
 const Services = () => {
-
-  const { data: seoPages } = useQuery({
-    queryKey: ['seo-pages-all'],
-    queryFn: async () => {
-      const { data, error } = await supabase
-        .from('seo_pages')
-        .select('slug, h1_headline, meta_description, page_type')
-        .eq('is_published', true)
-        .order('priority', { ascending: false });
-      if (error) throw error;
-      return data;
-    },
-  });
-
   return (
     <div className="min-h-screen bg-background flex flex-col">
       <PageHead
         title="Bombay Breed: Advisory Services"
-        description="Strategic carbon market advisory, ESG communications, and board governance services for Indian enterprises. Expert climate strategy consulting."
+        description="Three pillars of board-level advisory: Carbon Strategy, Board Governance, ESG Communications. Engage by project, retainer, or board seat."
         path="/services"
         ogImage="og-services"
       />
       <Header />
-      
+
       <main className="flex-1 pt-24 pb-16">
         {/* Hero */}
         <section className="pt-16 pb-20 md:pt-20 md:pb-28 px-6 md:px-8">
@@ -107,11 +75,11 @@ const Services = () => {
             <ScrollReveal direction="up">
               <SectionLabel number="00" label="Advisory Services" />
               <h1 className="text-display font-serif tracking-tight mt-6 mb-6">
-                Strategic Advisory Services
+                Three pillars. One conversation.
               </h1>
               <p className="text-lede text-muted-foreground">
-                Comprehensive climate strategy, carbon markets advisory, and ESG governance 
-                tailored for boards, CXOs, and investors navigating India's energy transition.
+                Board-level advisory across Carbon Strategy, Governance, and ESG Communications -
+                delivered as scoped projects, ongoing retainers, or non-executive board seats.
               </p>
             </ScrollReveal>
           </div>
@@ -119,7 +87,7 @@ const Services = () => {
 
         {/* Three Service Pillars */}
         {servicePillars.map((pillar) => (
-          <section key={pillar.number} className="py-16 md:py-24 px-6 md:px-8 border-t border-border/50">
+          <section key={pillar.number} id={pillar.label.toLowerCase().split(' ')[0]} className="py-16 md:py-24 px-6 md:px-8 border-t border-border/50 scroll-mt-24">
             <div className="container mx-auto max-w-[680px]">
               <ScrollReveal direction="up">
                 <SectionLabel number={pillar.number} label={pillar.label} />
@@ -145,77 +113,38 @@ const Services = () => {
                     <p className="text-foreground/80 italic">"{pillar.outcome}"</p>
                   </div>
 
-                  <div>
-                    <h3 className="text-xs font-semibold uppercase tracking-[1.5px] text-muted-foreground mb-2">Who this is for</h3>
-                    <p className="text-foreground/80">{pillar.audience}</p>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                      <h3 className="text-xs font-semibold uppercase tracking-[1.5px] text-muted-foreground mb-2">Who this is for</h3>
+                      <p className="text-foreground/80">{pillar.audience}</p>
+                    </div>
+                    <div>
+                      <h3 className="text-xs font-semibold uppercase tracking-[1.5px] text-muted-foreground mb-2">How to engage</h3>
+                      <p className="text-foreground/80">{pillar.engage}</p>
+                    </div>
                   </div>
 
-                  <BookingDialog
-                    subject={`Focused Conversation: ${pillar.label}`}
-                    trigger={
-                      <Button variant="ghost" className="gap-2 text-primary hover:text-primary/80 p-0 h-auto">
-                        Book a Focused Conversation <ArrowRight className="h-4 w-4" />
-                      </Button>
-                    }
-                  />
+                  <div className="flex flex-wrap items-center gap-x-6 gap-y-3 pt-2">
+                    <BookingDialog
+                      subject={`Focused Conversation: ${pillar.label}`}
+                      trigger={
+                        <Button variant="ghost" className="gap-2 text-primary hover:text-primary/80 p-0 h-auto">
+                          Book a Focused Conversation <ArrowRight className="h-4 w-4" />
+                        </Button>
+                      }
+                    />
+                    <Link
+                      to={pillar.deepDive}
+                      className="inline-flex items-center gap-1.5 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
+                    >
+                      Deep dive <ArrowRight className="h-3.5 w-3.5" />
+                    </Link>
+                  </div>
                 </div>
               </ScrollReveal>
             </div>
           </section>
         ))}
-
-        {/* Engagement Model */}
-        <section className="py-20 md:py-28 px-6 md:px-8 border-t border-border/50">
-          <div className="container mx-auto max-w-[680px]">
-            <ScrollReveal direction="up">
-              <SectionLabel number="04" label="How We Work" />
-              <h2 className="text-section font-serif tracking-tight mt-6 mb-10">
-                Engagement Models
-              </h2>
-              <div className="space-y-8">
-                {engagementModels.map((model) => (
-                  <div key={model.number} className="flex gap-6 items-start">
-                    <span className="text-sm font-semibold text-accent tracking-wider mt-1">{model.number}</span>
-                    <div>
-                      <h3 className="font-semibold text-foreground mb-1">{model.title}</h3>
-                      <p className="text-sm text-muted-foreground">{model.description}</p>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </ScrollReveal>
-          </div>
-        </section>
-
-        {/* All SEO Pages Browser */}
-        {seoPages && seoPages.length > 0 && (
-          <section className="py-16 px-6 md:px-8 border-t border-border/50">
-            <div className="container mx-auto max-w-4xl">
-              <ScrollReveal direction="up">
-                <SectionLabel number="05" label="All Services" className="text-center block" />
-                <h2 className="text-section font-serif tracking-tight text-center mt-6 mb-10">
-                  Browse All Service Pages
-                </h2>
-                <div className="space-y-1">
-                  {seoPages.map((page) => (
-                    <Link 
-                      key={page.slug} 
-                      to={`/${page.slug}`}
-                      className="flex items-center justify-between py-3 px-4 rounded-lg hover:bg-secondary/50 transition-colors group"
-                    >
-                      <div className="min-w-0">
-                        <h3 className="font-medium text-foreground group-hover:text-primary transition-colors truncate">
-                          {page.h1_headline}
-                        </h3>
-                      </div>
-                      <ArrowRight className="w-4 h-4 text-muted-foreground group-hover:text-primary shrink-0 ml-4" />
-                    </Link>
-                  ))}
-                </div>
-              </ScrollReveal>
-            </div>
-          </section>
-        )}
 
         {/* CTA */}
         <section className="py-20 md:py-28 px-6 md:px-8 border-t border-border/50">
