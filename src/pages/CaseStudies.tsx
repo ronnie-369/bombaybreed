@@ -219,7 +219,8 @@ const CaseStudies = () => {
                     <ShinyText
                       text={study.title}
                       speed={3}
-                      delay={index * 0.6}
+                      delay={1.5}
+                      startOffset={index * 0.6}
                       color="hsl(var(--foreground))"
                       shineColor="hsl(var(--primary))"
                       spread={120}
