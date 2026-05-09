@@ -1,8 +1,10 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight } from 'lucide-react';
+import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion';
 import ScrollReveal from '@/components/ui/ScrollReveal';
 import SectionLabel from '@/components/ui/SectionLabel';
+import SpotlightCard from '@/components/ui/SpotlightCard';
 
 const pillars = [
   {
@@ -25,6 +27,64 @@ const pillars = [
   },
 ];
 
+// Subtle magnetic tilt - kept low to stay on-brand (editorial, restrained).
+const TILT_MAX = 4;
+const TILT_SPRING = { stiffness: 300, damping: 28 } as const;
+
+interface PillarCardProps {
+  pillar: typeof pillars[number];
+}
+
+const PillarCard: React.FC<PillarCardProps> = ({ pillar }) => {
+  const ref = useRef<HTMLDivElement>(null);
+  const nx = useMotionValue(0.5);
+  const ny = useMotionValue(0.5);
+  const rx = useSpring(useTransform(ny, [0, 1], [TILT_MAX, -TILT_MAX]), TILT_SPRING);
+  const ry = useSpring(useTransform(nx, [0, 1], [-TILT_MAX, TILT_MAX]), TILT_SPRING);
+
+  const onMove = (e: React.MouseEvent) => {
+    const el = ref.current;
+    if (!el) return;
+    const r = el.getBoundingClientRect();
+    nx.set((e.clientX - r.left) / r.width);
+    ny.set((e.clientY - r.top) / r.height);
+  };
+  const onLeave = () => {
+    nx.set(0.5);
+    ny.set(0.5);
+  };
+
+  return (
+    <motion.div
+      ref={ref}
+      onMouseMove={onMove}
+      onMouseLeave={onLeave}
+      style={{ rotateX: rx, rotateY: ry, transformPerspective: 1000 }}
+      className="h-full [transform-style:preserve-3d]"
+    >
+      <SpotlightCard tone="gold" className="rounded-xl h-full">
+        <div className="bg-card border border-border rounded-xl p-8 h-full flex flex-col transition-colors duration-200 hover:border-muted-foreground/30">
+          <span className="text-xs font-semibold tracking-widest text-accent mb-5">
+            {pillar.num}
+          </span>
+          <h3 className="font-serif text-xl font-normal leading-snug text-foreground mb-4">
+            {pillar.title}
+          </h3>
+          <p className="text-sm leading-relaxed text-muted-foreground mb-6 flex-1">
+            {pillar.description}
+          </p>
+          <Link
+            to={pillar.link}
+            className="inline-flex items-center gap-1.5 text-sm font-semibold text-primary hover:gap-2.5 transition-all"
+          >
+            Learn more <ArrowRight className="w-4 h-4" />
+          </Link>
+        </div>
+      </SpotlightCard>
+    </motion.div>
+  );
+};
+
 const ServicePillars = () => {
   return (
     <section className="py-20 md:py-28 px-6 md:px-8 border-t border-border/50">
@@ -36,26 +96,10 @@ const ServicePillars = () => {
           </h2>
         </ScrollReveal>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 [perspective:1000px]">
           {pillars.map((pillar, i) => (
             <ScrollReveal key={pillar.num} direction="up" delay={i as 0 | 1 | 2 | 3 | 4 | 5}>
-              <div className="bg-card border border-border rounded-xl p-8 h-full flex flex-col transition-colors duration-200 hover:border-muted-foreground/30">
-                <span className="text-xs font-semibold tracking-widest text-accent mb-5">
-                  {pillar.num}
-                </span>
-                <h3 className="font-serif text-xl font-normal leading-snug text-foreground mb-4">
-                  {pillar.title}
-                </h3>
-                <p className="text-sm leading-relaxed text-muted-foreground mb-6 flex-1">
-                  {pillar.description}
-                </p>
-                <Link
-                  to={pillar.link}
-                  className="inline-flex items-center gap-1.5 text-sm font-semibold text-primary hover:gap-2.5 transition-all"
-                >
-                  Learn more <ArrowRight className="w-4 h-4" />
-                </Link>
-              </div>
+              <PillarCard pillar={pillar} />
             </ScrollReveal>
           ))}
         </div>
