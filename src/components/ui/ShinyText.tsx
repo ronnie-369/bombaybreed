@@ -14,6 +14,7 @@ interface ShinyTextProps {
   pauseOnHover?: boolean;
   direction?: 'left' | 'right';
   delay?: number;
+  startOffset?: number;
 }
 
 const ShinyText = ({
@@ -28,10 +29,11 @@ const ShinyText = ({
   pauseOnHover = false,
   direction = 'left',
   delay = 0,
+  startOffset = 0,
 }: ShinyTextProps) => {
   const [isPaused, setIsPaused] = useState(false);
   const progress = useMotionValue(0);
-  const elapsedRef = useRef(0);
+  const elapsedRef = useRef(startOffset * 1000);
   const lastTimeRef = useRef<number | null>(null);
   const directionRef = useRef(direction === 'left' ? 1 : -1);
 
