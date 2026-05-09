@@ -7,6 +7,7 @@ import { Button } from '@/components/ui/button';
 import { ArrowRight, CheckCircle2 } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import BookingDialog from '@/components/LazyBookingDialog';
+import ShinyText from '@/components/ui/ShinyText';
 
 // Map keywords to internal SEO/service pages for link equity
 const keywordLinks: Record<string, string> = {
@@ -214,8 +215,14 @@ const CaseStudies = () => {
                       {study.sector}
                     </span>
                   </div>
-                  <h2 className="text-section font-display font-bold text-foreground tracking-tight mb-3">
-                    {study.title}
+                  <h2 className="text-section font-display font-bold tracking-tight mb-3">
+                    <ShinyText
+                      text={study.title}
+                      speed={3}
+                      color="hsl(var(--foreground))"
+                      shineColor="hsl(var(--primary))"
+                      spread={120}
+                    />
                   </h2>
                   <p className="text-lg text-muted-foreground max-w-3xl">
                     {study.subtitle}
