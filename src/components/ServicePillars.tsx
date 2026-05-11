@@ -3,25 +3,31 @@ import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion';
 import ScrollReveal from '@/components/ui/ScrollReveal';
 import SectionLabel from '@/components/ui/SectionLabel';
 import SpotlightCard from '@/components/ui/SpotlightCard';
+import BookingDialog from '@/components/LazyBookingDialog';
+import { Button } from '@/components/ui/button';
+import { ArrowRight } from 'lucide-react';
 
 const pillars = [
   {
     num: '01',
     title: 'Carbon Strategy',
     description: 'Carbon transition roadmapping, BRSR & CCTS compliance frameworks, decarbonisation pathway design, and carbon credit monetisation strategy.',
-    link: '/services#carbon',
+    cta: 'Start a project',
+    subject: 'Start a project: Carbon Strategy',
   },
   {
     num: '02',
     title: 'Board Governance',
     description: 'ESG board readiness, climate risk oversight frameworks, SEBI compliance preparation, and non-executive advisory for listed companies.',
-    link: '/services#governance',
+    cta: 'Book a call',
+    subject: 'Book a call: Board Governance',
   },
   {
     num: '03',
     title: 'ESG Communications',
     description: 'Sustainability narrative strategy, investor-grade ESG reporting, stakeholder communications, and climate transition storytelling.',
-    link: '/services#comms',
+    cta: 'Start a project',
+    subject: 'Start a project: ESG Communications',
   },
 ];
 
