@@ -1,6 +1,4 @@
 import React, { useRef } from 'react';
-import { Link } from 'react-router-dom';
-import { ArrowRight } from 'lucide-react';
 import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion';
 import ScrollReveal from '@/components/ui/ScrollReveal';
 import SectionLabel from '@/components/ui/SectionLabel';
@@ -70,15 +68,9 @@ const PillarCard: React.FC<PillarCardProps> = ({ pillar }) => {
           <h3 className="font-serif text-xl font-normal leading-snug text-foreground mb-4">
             {pillar.title}
           </h3>
-          <p className="text-sm leading-relaxed text-muted-foreground mb-6 flex-1">
+          <p className="text-sm leading-relaxed text-muted-foreground flex-1">
             {pillar.description}
           </p>
-          <Link
-            to={pillar.link}
-            className="inline-flex items-center gap-1.5 text-sm font-semibold text-primary hover:gap-2.5 transition-all"
-          >
-            Learn more <ArrowRight className="w-4 h-4" />
-          </Link>
         </div>
       </SpotlightCard>
     </motion.div>
