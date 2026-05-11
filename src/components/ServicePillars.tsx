@@ -74,9 +74,21 @@ const PillarCard: React.FC<PillarCardProps> = ({ pillar }) => {
           <h3 className="font-serif text-xl font-normal leading-snug text-foreground mb-4">
             {pillar.title}
           </h3>
-          <p className="text-sm leading-relaxed text-muted-foreground flex-1">
+          <p className="text-sm leading-relaxed text-muted-foreground mb-6 flex-1">
             {pillar.description}
           </p>
+          <BookingDialog
+            subject={pillar.subject}
+            trigger={
+              <Button
+                variant="outline"
+                className="w-full justify-between border-foreground/20 hover:border-foreground hover:bg-foreground hover:text-background transition-colors group"
+              >
+                <span>{pillar.cta}</span>
+                <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-0.5" />
+              </Button>
+            }
+          />
         </div>
       </SpotlightCard>
     </motion.div>
