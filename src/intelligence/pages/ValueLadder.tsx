@@ -337,6 +337,20 @@ const ValueLadder = () => {
         </div>
         <div className="mt-8">
           <CurrencyToggle surface="value_ladder_hero" />
+          <p className="mt-3 text-[12px] text-bb-gray max-w-2xl leading-relaxed">
+            All subscription prices are exclusive of GST (18% added at checkout
+            for Indian subscribers; zero-rated for international subscribers as
+            export of services). International cards are charged in INR via
+            Razorpay&apos;s RBI-authorised cross-border settlement. See our{" "}
+            <Link to="/refund-policy" className="underline decoration-bb-border underline-offset-4 hover:text-bb-near-black">
+              refund policy
+            </Link>{" "}
+            and{" "}
+            <Link to="/terms" className="underline decoration-bb-border underline-offset-4 hover:text-bb-near-black">
+              terms
+            </Link>
+            .
+          </p>
         </div>
       </section>
 
