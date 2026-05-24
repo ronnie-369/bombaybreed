@@ -177,6 +177,7 @@ const Checkout = () => {
     initialBilling
   );
   const [checkoutError, setCheckoutError] = useState<CheckoutError | null>(null);
+  const [termsAccepted, setTermsAccepted] = useState(false);
 
   useEffect(() => {
     (async () => {
@@ -207,6 +208,16 @@ const Checkout = () => {
 
     // Clear any previous error so the panel disappears as soon as the user retries.
     setCheckoutError(null);
+
+    if (!termsAccepted) {
+      setCheckoutError({
+        title: "Please accept the Terms and Refund Policy",
+        description:
+          "Tick the consent box below to confirm you have read and accepted our Terms of Service and Refund & Cancellation Policy.",
+        retryable: false,
+      });
+      return;
+    }
 
     if (!planId) {
       setCheckoutError({
