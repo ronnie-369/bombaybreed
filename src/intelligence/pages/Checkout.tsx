@@ -177,6 +177,7 @@ const Checkout = () => {
     initialBilling
   );
   const [checkoutError, setCheckoutError] = useState<CheckoutError | null>(null);
+  const [termsAccepted, setTermsAccepted] = useState(false);
 
   useEffect(() => {
     (async () => {
@@ -207,6 +208,16 @@ const Checkout = () => {
 
     // Clear any previous error so the panel disappears as soon as the user retries.
     setCheckoutError(null);
+
+    if (!termsAccepted) {
+      setCheckoutError({
+        title: "Please accept the Terms and Refund Policy",
+        description:
+          "Tick the consent box below to confirm you have read and accepted our Terms of Service and Refund & Cancellation Policy.",
+        retryable: false,
+      });
+      return;
+    }
 
     if (!planId) {
       setCheckoutError({
@@ -491,13 +502,52 @@ const Checkout = () => {
               );
             })()}
 
-            <div className="mt-6 rounded-[10px] bg-bb-off-white border border-bb-border p-5">
-              <p className="text-[13px] text-bb-gray leading-relaxed">
-                You will be redirected to Razorpay's secure checkout to complete
+            <div className="mt-6 rounded-[10px] bg-bb-off-white border border-bb-border p-5 space-y-3 text-[12px] text-bb-gray leading-relaxed">
+              <p>
+                <strong className="text-bb-near-black">Tax:</strong> Prices
+                shown are exclusive of GST. Indian subscribers will see 18%
+                GST added at Razorpay checkout. International subscribers
+                paying from outside India are exempt (export of services under
+                IGST, zero-rated). A GST-compliant invoice with our SAC code
+                (998431) is emailed automatically after each successful
+                payment.
+              </p>
+              <p>
+                <strong className="text-bb-near-black">International cards:</strong>{" "}
+                Charged in INR via Razorpay&apos;s RBI-authorised cross-border
+                (PA-CB) settlement. Your card issuer applies its own FX rate;
+                the equivalent shown above is indicative.
+              </p>
+              <p>
+                <strong className="text-bb-near-black">Secure payments:</strong>{" "}
+                Payment processing is handled by Razorpay (PCI DSS Level 1).
+                We do not see or store your card or UPI credentials. You will
+                be redirected to Razorpay&apos;s secure checkout to complete
                 payment. Your membership activates automatically once the
                 payment is verified.
               </p>
             </div>
+
+            <label className="mt-5 flex items-start gap-3 cursor-pointer">
+              <input
+                type="checkbox"
+                checked={termsAccepted}
+                onChange={(e) => setTermsAccepted(e.target.checked)}
+                className="mt-1 h-4 w-4 rounded border-bb-border accent-bb-slate"
+              />
+              <span className="text-[13px] text-bb-near-black leading-relaxed">
+                I have read and agree to the{" "}
+                <Link to="/terms" target="_blank" className="underline decoration-bb-border underline-offset-4 hover:text-bb-slate">
+                  Terms of Service
+                </Link>{" "}
+                and the{" "}
+                <Link to="/refund-policy" target="_blank" className="underline decoration-bb-border underline-offset-4 hover:text-bb-slate">
+                  Refund &amp; Cancellation Policy
+                </Link>
+                . I authorise auto-renewal at the price shown above until I
+                cancel.
+              </span>
+            </label>
 
             {checkoutError && (
               <div
@@ -534,8 +584,8 @@ const Checkout = () => {
 
             <button
               onClick={handlePay}
-              disabled={processing}
-              className="mt-8 w-full h-12 rounded-[10px] bg-bb-slate text-bb-off-white text-[14px] font-medium hover:opacity-90 transition disabled:opacity-50"
+              disabled={processing || !termsAccepted}
+              className="mt-8 w-full h-12 rounded-[10px] bg-bb-slate text-bb-off-white text-[14px] font-medium hover:opacity-90 transition disabled:opacity-50 disabled:cursor-not-allowed"
             >
               {processing
                 ? "Opening checkout..."

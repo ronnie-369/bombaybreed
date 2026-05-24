@@ -13,6 +13,9 @@ import Index from "./pages/Index";
 
 // Lazy load all page components for code splitting
 const PrivacyPolicy = lazy(() => import("./pages/PrivacyPolicy"));
+const TermsOfService = lazy(() => import("./pages/TermsOfService"));
+const RefundPolicy = lazy(() => import("./pages/RefundPolicy"));
+const GrievanceRedressal = lazy(() => import("./pages/GrievanceRedressal"));
 const NotFound = lazy(() => import("./pages/NotFound"));
 const Auth = lazy(() => import("./pages/Auth"));
 const Admin = lazy(() => import("./pages/Admin"));
@@ -73,6 +76,11 @@ const AppContent = () => {
               <Route path="/about" element={<About />} />
               <Route path="/insights" element={<Insights />} />
               <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+              <Route path="/terms" element={<TermsOfService />} />
+              <Route path="/terms-of-service" element={<Navigate to="/terms" replace />} />
+              <Route path="/refund-policy" element={<RefundPolicy />} />
+              <Route path="/cancellation-policy" element={<Navigate to="/refund-policy" replace />} />
+              <Route path="/grievance-redressal" element={<GrievanceRedressal />} />
               <Route path="/services" element={<Services />} />
               
               {/* Auth & Admin */}

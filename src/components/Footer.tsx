@@ -123,7 +123,25 @@ const Footer = () => {
                 <Link to="/case-studies" className="text-sm text-background/50 hover:text-background transition-colors">Case Studies</Link>
               </li>
               <li>
+                <Link to="/intelligence/value-ladder" className="text-sm text-background/50 hover:text-background transition-colors">Membership</Link>
+              </li>
+            </ul>
+
+            <h4 className="text-sm font-medium text-background/80 mt-6 mb-3 uppercase tracking-wider">
+              Legal
+            </h4>
+            <ul className="space-y-2">
+              <li>
                 <Link to="/privacy-policy" className="text-sm text-background/50 hover:text-background transition-colors">Privacy Policy</Link>
+              </li>
+              <li>
+                <Link to="/terms" className="text-sm text-background/50 hover:text-background transition-colors">Terms of Service</Link>
+              </li>
+              <li>
+                <Link to="/refund-policy" className="text-sm text-background/50 hover:text-background transition-colors">Refund &amp; Cancellation</Link>
+              </li>
+              <li>
+                <Link to="/grievance-redressal" className="text-sm text-background/50 hover:text-background transition-colors">Grievance Redressal</Link>
               </li>
             </ul>
           </div>
