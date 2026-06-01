@@ -55,6 +55,15 @@ const allContentTypes: ContentType[] = ['Flagship Report', 'Intelligence Brief',
 
 const publications: Publication[] = [
   {
+    title: "India's Narrative Hiring Gap: A 32-Listing Audit",
+    description: "32 live LinkedIn job postings. 96% had 100+ applicants. 0 hired the right person. A data-led audit of India's communications talent market, the failure modes, and a 7-question diagnostic before your next hire.",
+    contentType: 'Flagship Report',
+    topic: 'ESG Communications',
+    publishedDate: "2026-06-01",
+    readTimeMinutes: 14,
+    link: "/insights/narrative-hiring-gap",
+  },
+  {
     title: "Mitigation and Adaptation, Working as One: An Investor's View of Himachal Pradesh",
     description: "Why Himachal Pradesh's climate exposure is India's exposure. A restoration-economy thesis linking produce, tourism, and capital - the umbrella synthesis to The Climate Desk's Himachal investigation.",
     contentType: 'Flagship Report',
