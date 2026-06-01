@@ -53,7 +53,7 @@ Deno.test("anon: public metadata columns are readable", async () => {
 
 Deno.test("authenticated user without active tier: RPC returns null", async () => {
   const sb = anonClient();
-  const email = `e2e_${crypto.randomUUID()}@example.com`;
+  const email = `e2e+${crypto.randomUUID()}@bombaybreed-tests.com`;
   const password = `Test-${crypto.randomUUID()}-Aa1!`;
   const signup = await sb.auth.signUp({ email, password });
 
