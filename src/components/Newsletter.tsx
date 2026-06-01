@@ -30,7 +30,12 @@ const Newsletter = () => {
       const response = await fetch(FORMSPREE_URL, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email: sanitizedEmail, form_type: 'newsletter' }),
+        body: JSON.stringify({
+          email: sanitizedEmail,
+          form_type: 'newsletter',
+          _subject: `Newsletter signup - ${sanitizedEmail}`,
+          _replyto: sanitizedEmail,
+        }),
       });
 
       if (!response.ok) throw new Error('Subscription failed');
