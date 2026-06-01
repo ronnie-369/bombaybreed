@@ -53,7 +53,8 @@ const Gate: React.FC<{ onUnlock: () => void }> = ({ onUnlock }) => {
           role: form.role.trim(),
           form_type: 'report_download',
           report: 'India\'s Narrative Hiring Gap',
-          subject: 'Report download: Narrative Hiring Gap',
+          _subject: `Report download - Narrative Hiring Gap (${form.name.trim()})`,
+          _replyto: form.email.trim().toLowerCase(),
           timestamp: new Date().toISOString(),
         }),
       });
