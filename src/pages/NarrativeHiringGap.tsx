@@ -597,7 +597,7 @@ const Study: React.FC = () => {
         <button type="button" className="nhg-cta-btn" onClick={() => setBookingOpen(true)}>
           Write to Theresa - book a 30-min working session
         </button>
-        <p className="nhg-cta-subnote">Private. No pitch deck. You bring the brief, I bring the diagnosis.</p>
+        <p className="nhg-cta-subnote">"Theresa is the best investment you will make for your team" - Paritosh Srivatsava, CEO, Publicis India</p>
       </div>
 
       <NarrativeInquiryDialog
