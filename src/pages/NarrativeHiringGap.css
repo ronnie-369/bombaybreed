@@ -242,6 +242,10 @@
   font-family: 'Inter', sans-serif;
 }
 .nhg-cta-btn:hover { opacity: 0.9; }
+.nhg-cta-subnote {
+  margin-top: 16px !important; font-size: 12px !important; letter-spacing: 0.3px;
+  color: var(--nhg-text-50); font-style: italic;
+}
 
 .nhg-footer {
   text-align: center; padding: 40px; font-size: 11px;
