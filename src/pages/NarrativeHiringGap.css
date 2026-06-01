@@ -42,13 +42,33 @@
   z-index: 10;
 }
 .nhg-topbar-logo {
-  font-weight: 700;
-  font-size: 14px;
-  letter-spacing: 2px;
-  text-transform: uppercase;
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
   color: var(--nhg-text);
   text-decoration: none;
 }
+.nhg-topbar-logo-mark {
+  height: 36px;
+  width: auto;
+  display: block;
+  background: transparent;
+  object-fit: contain;
+}
+.nhg-topbar-logo-wordmark {
+  font-family: 'Inter', system-ui, sans-serif;
+  font-weight: 500;
+  font-size: 18px;
+  letter-spacing: -0.01em;
+  line-height: 1;
+  color: var(--nhg-text);
+  white-space: nowrap;
+}
+@media (max-width: 600px) {
+  .nhg-topbar-logo-wordmark { display: none; }
+  .nhg-topbar-logo-mark { height: 32px; }
+}
+
 .nhg-topbar-tag {
   font-size: 11px;
   color: var(--nhg-gray);
