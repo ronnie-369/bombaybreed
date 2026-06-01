@@ -370,7 +370,95 @@ const Study: React.FC = () => {
         </section>
       </div>
 
+      {/* 07 - The Sprint */}
+      <div className="nhg-container">
+        <section className="nhg-content-block">
+          <div className="nhg-section-num">07 / The Solution</div>
+          <h2 className="nhg-section-title">The Creative Effectiveness Sprint</h2>
+          <p className="nhg-section-lead">3 weeks. 7 working days. Your team goes from executing briefs to owning narratives. Here is what each week delivers.</p>
+
+          <div className="nhg-sprint-week">
+            <div className="nhg-sprint-week-num">01</div>
+            <div className="nhg-sprint-week-body">
+              <div className="nhg-sprint-week-title">Discovery and Creative Audit</div>
+              <div className="nhg-sprint-week-desc">We map your current narrative capability across 8 pillars: creative thinking, problem solving, pushing beyond first ideas, craft cohesion, business impact, strategic thinking, knowing the why, and stakeholder alignment. Each pillar is scored before and after with proof examples. This is not a survey. It is an audit of live work.</div>
+              <div className="nhg-sprint-week-output">Output: Capability baseline + opportunity map</div>
+            </div>
+          </div>
+
+          <div className="nhg-sprint-week">
+            <div className="nhg-sprint-week-num">02</div>
+            <div className="nhg-sprint-week-body">
+              <div className="nhg-sprint-week-title">2-Day Creative Power Workshop</div>
+              <div className="nhg-sprint-week-desc">Your team cracks live briefs, pushes past obvious ideas, runs a Craft Dojo on copy and design cohesion, pitches with business impact front and centre, and navigates a stakeholder simulation under real-world pressure. This is not a lecture. It is a forcing function.</div>
+              <div className="nhg-sprint-week-output">Output: 2 campaigns uplifted in real time + 3 briefs sharpened in real time</div>
+            </div>
+          </div>
+
+          <div className="nhg-sprint-week">
+            <div className="nhg-sprint-week-num">03</div>
+            <div className="nhg-sprint-week-body">
+              <div className="nhg-sprint-week-title">Campaign Action Cycle</div>
+              <div className="nhg-sprint-week-desc">Live feedback on active campaigns. Presentation polish for stakeholder communications. Success metrics tracked across all 8 pillars. Leadership showcase at the end of the cycle: your team presents the transformation proof to senior stakeholders.</div>
+              <div className="nhg-sprint-week-output">Output: Measurable improvement inside your own systems + leadership showcase</div>
+            </div>
+          </div>
+
+          <div className="nhg-callout" style={{ marginTop: 36 }}>
+            <strong>What changes:</strong> your team stops producing assets and starts producing outcomes. They stop waiting for external agencies to define the narrative and start owning it. The Sprint gives them the frameworks and the confidence. The result is less external dependence, faster alignment, and campaigns that move the business.
+          </div>
+
+          <div className="nhg-kpi-row" style={{ marginTop: 32 }}>
+            <div className="nhg-kpi-card"><div className="nhg-kpi-num">8</div><div className="nhg-kpi-label">Creative capability pillars scored before and after</div></div>
+            <div className="nhg-kpi-card"><div className="nhg-kpi-num">7</div><div className="nhg-kpi-label">Working days of engagement</div></div>
+            <div className="nhg-kpi-card"><div className="nhg-kpi-num">2</div><div className="nhg-kpi-label">Live campaigns uplifted in real time</div></div>
+            <div className="nhg-kpi-card"><div className="nhg-kpi-num">3</div><div className="nhg-kpi-label">Briefs sharpened in real time</div></div>
+          </div>
+        </section>
+
+        {/* 08 - The Proof */}
+        <section className="nhg-content-block">
+          <div className="nhg-section-num">08 / The Proof</div>
+          <h2 className="nhg-section-title">Organisations That Have Done This</h2>
+          <p className="nhg-section-lead">The Sprint has been delivered across corporates, agencies and climate organisations. The pattern holds: teams already have the talent. They need the architecture.</p>
+
+          <div className="nhg-proof-card">
+            <div className="nhg-proof-org">WeWork India</div>
+            <div className="nhg-proof-result">Creative Effectiveness Sprint delivered to WeWork India's in-house creative team. Moved the team from execution-focused campaign delivery to strategy-led, business-aligned output. 8 capability pillars scored before and after with proof examples.</div>
+            <div className="nhg-proof-quote">
+              "Your team already has the talent. They need capability frameworks and strategic thinking muscles to move from execution to ownership."
+              <span className="nhg-proof-attribution">- Sprint programme brief, WeWork India engagement</span>
+            </div>
+          </div>
+
+          <div className="nhg-proof-card">
+            <div className="nhg-proof-org">GH2 India (Green Hydrogen Organisation)</div>
+            <div className="nhg-proof-result">Strategic carbon communications advisory for GH2 India's operations. Defined the narrative architecture for India's green hydrogen economy positioning at CETFiS.</div>
+          </div>
+
+          <div className="nhg-proof-card">
+            <div className="nhg-proof-org">ProClime</div>
+            <div className="nhg-proof-result">Strategic advisory for ProClime's positioning as GH2's Carbon Partner in India. Narrative architecture for the intersection of carbon markets and the green hydrogen economy.</div>
+          </div>
+
+          <div className="nhg-proof-card">
+            <div className="nhg-proof-org">FCB Ulka</div>
+            <div className="nhg-proof-result">Under Theresa Ronnie's leadership as Head of Office, Bengaluru, the team won ITC Foods' business and delivered work recognised at the IMA Awards 2019. Brands shaped: Ford, Volkswagen, Citibank, Heineken, Kingfisher.</div>
+            <div className="nhg-proof-quote">
+              "Absolutely delighted to have Theresa on board. She has the right attitude and aptitude for her role. I am sure our clients and our people will benefit a lot from her experience."
+              <span className="nhg-proof-attribution">- Nitin Karkare, CEO, FCB Ulka</span>
+            </div>
+          </div>
+
+          <div className="nhg-proof-card">
+            <div className="nhg-proof-org">Publicis Worldwide</div>
+            <div className="nhg-proof-result">Theresa Ronnie led Publicis Bengaluru operations, delivering Effies-winning work across FMCG, automotive and premium lifestyle brands including PETRONAS, Heineken, Amstel and MontBlanc.</div>
+          </div>
+        </section>
+      </div>
+
       {/* CTA */}
+
       <div className="nhg-cta-section">
         <h2>Don't hire without the architecture.</h2>
         <p>A 3-week Creative Effectiveness Sprint defines the narrative your new hire builds from. Not a retainer. A foundation.</p>
