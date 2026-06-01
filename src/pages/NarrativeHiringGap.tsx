@@ -513,7 +513,7 @@ const Study: React.FC = () => {
 
           <div className="nhg-proof-card">
             <div className="nhg-proof-org">ProClime</div>
-            <div className="nhg-proof-result">Strategic advisory for ProClime's positioning as GH2's Carbon Partner in India. Narrative architecture for the intersection of carbon markets and the green hydrogen economy.</div>
+            <div className="nhg-proof-result">Runs the brand and marketing department for ProClime, a full stack Climate company headquartered in Singapore. Managing 7 stakeholders, over 39 different project communications, industry and policy narrative, community outreach and internal employee communications streamlining.</div>
           </div>
 
           <div className="nhg-proof-card">
