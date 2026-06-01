@@ -70,7 +70,7 @@ const Gate: React.FC<{ onUnlock: () => void }> = ({ onUnlock }) => {
   return (
     <div className="nhg-main">
       <div className="nhg-hero">
-        <div className="nhg-hero-eyebrow">A 32-Listing Audit</div>
+        <div className="nhg-hero-eyebrow">Special Report</div>
         <h1>India Has a Communications Talent Surplus <em>and a Narrative Talent Deficit</em></h1>
         <p className="nhg-hero-sub">
           We audited 32 live LinkedIn job postings across India's top organisations hiring for
@@ -191,7 +191,7 @@ const Study: React.FC = () => {
   return (
     <>
       <div className="nhg-study-header">
-        <div className="nhg-study-eyebrow">A 32-Listing Audit</div>
+        <div className="nhg-study-eyebrow">Special Report</div>
         <h1>India Has a Communications Talent Surplus <em>and a Narrative Talent Deficit</em></h1>
         <p className="nhg-study-sub">
           We audited 32 live LinkedIn job postings across India's top organisations hiring for
