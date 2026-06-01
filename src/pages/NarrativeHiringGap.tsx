@@ -73,7 +73,7 @@ const Gate: React.FC<{ onUnlock: () => void }> = ({ onUnlock }) => {
   return (
     <div className="nhg-main">
       <div className="nhg-hero">
-        <div className="nhg-hero-eyebrow">A 32-Listing Audit</div>
+        <div className="nhg-hero-eyebrow">Special Report</div>
         <h1>Business storytelling is a skill the market does not have. <em>We can prove it.</em></h1>
         <p className="nhg-hero-sub">
           Narrative architecture for business is a nuanced, experience-based discipline. We audited
@@ -194,7 +194,7 @@ const Study: React.FC = () => {
   return (
     <>
       <div className="nhg-study-header">
-        <div className="nhg-study-eyebrow">A 32-Listing Audit</div>
+        <div className="nhg-study-eyebrow">Special Report</div>
         <h1>Business storytelling is a skill the market does not have. <em>We can prove it.</em></h1>
         <p className="nhg-study-sub">
           Narrative architecture for business is a nuanced, experience-based discipline. India's
