@@ -138,7 +138,7 @@ const Study: React.FC = () => {
       if (refStatus.current) charts.push(new Chart(refStatus.current, {
         type: 'bar',
         data: {
-          labels: ['Active / Promoted', 'Freshly Posted', 'Reposted (failed hire)', 'Zombie (2+ months)'],
+          labels: ['Active / Promoted', 'Freshly Posted', 'Reposted (failed hire)', 'Unfulfilled (2+ months)'],
           datasets: [{ data: [18, 5, 5, 4], backgroundColor: ['#1A3D5C', 'rgba(26,61,92,0.5)', '#C5A059', '#9B2C2C'], borderRadius: 1, barThickness: 24 }],
         },
         options: { indexAxis: 'y', responsive: true, plugins: { legend: { display: false }, tooltip: { callbacks: { label: (c: any) => c.raw + ' listings' } } }, scales: { x: { grid, ticks: { stepSize: 5 } }, y: { grid: { display: false } } } },
@@ -212,7 +212,7 @@ const Study: React.FC = () => {
           </p>
           <div className="nhg-kpi-row">
             <div className="nhg-kpi-card"><div className="nhg-kpi-num">3,200+</div><div className="nhg-kpi-label">Total applicants across 32 listings</div></div>
-            <div className="nhg-kpi-card"><div className="nhg-kpi-num">19%</div><div className="nhg-kpi-label">Zombie or reposted (failed hire)</div></div>
+            <div className="nhg-kpi-card"><div className="nhg-kpi-num">19%</div><div className="nhg-kpi-label">Unfulfilled or reposted (failed hire)</div></div>
             <div className="nhg-kpi-card"><div className="nhg-kpi-num">21</div><div className="nhg-kpi-label">Unique organisations</div></div>
             <div className="nhg-kpi-card"><div className="nhg-kpi-num">6</div><div className="nhg-kpi-label">Sectors represented</div></div>
           </div>
@@ -238,8 +238,8 @@ const Study: React.FC = () => {
           <table className="nhg-data-table">
             <thead><tr><th>Organisation</th><th>Role</th><th>Applicants</th><th>Status</th></tr></thead>
             <tbody>
-              <tr><td>Social Alpha</td><td>Communications Lead</td><td>100+</td><td><span className="nhg-status-chip nhg-status-zombie">Zombie (113d)</span></td></tr>
-              <tr><td>Kuku FM</td><td>Head of Content</td><td>100+</td><td><span className="nhg-status-chip nhg-status-zombie">Zombie (4mo)</span></td></tr>
+              <tr><td>Social Alpha</td><td>Communications Lead</td><td>100+</td><td><span className="nhg-status-chip nhg-status-unfulfilled">Unfulfilled (113d)</span></td></tr>
+              <tr><td>Kuku FM</td><td>Head of Content</td><td>100+</td><td><span className="nhg-status-chip nhg-status-unfulfilled">Unfulfilled (4mo)</span></td></tr>
               <tr><td>Edelman India</td><td>SVP Communications</td><td>100+</td><td><span className="nhg-status-chip nhg-status-reposted">Reposted</span></td></tr>
               <tr><td>Crossing Hurdles</td><td>Journalist + Lang. Specialist</td><td>100+</td><td><span className="nhg-status-chip nhg-status-reposted">Reposted</span></td></tr>
               <tr><td>Deloitte India</td><td>Growth & Purpose Comms</td><td>100+</td><td><span className="nhg-status-chip nhg-status-reposted">Reposted</span></td></tr>
@@ -269,7 +269,7 @@ const Study: React.FC = () => {
           </div>
           <div className="nhg-mode-row">
             <div className="nhg-mode-card">
-              <div className="nhg-mode-label" style={{ color: 'var(--nhg-red)' }}>Zombie</div>
+              <div className="nhg-mode-label" style={{ color: 'var(--nhg-red)' }}>Unfulfilled</div>
               <div className="nhg-mode-desc">Open 2+ months. The brief attracted the wrong pool. Hiring manager keeps searching.</div>
             </div>
             <div className="nhg-mode-card">
