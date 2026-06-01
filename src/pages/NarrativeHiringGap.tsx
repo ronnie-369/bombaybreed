@@ -71,11 +71,11 @@ const Gate: React.FC<{ onUnlock: () => void }> = ({ onUnlock }) => {
   return (
     <div className="nhg-main">
       <div className="nhg-hero">
-        <div className="nhg-hero-eyebrow">Special Report</div>
-        <h1>India Has a Communications Talent Surplus <em>and a Narrative Talent Deficit</em></h1>
+        <div className="nhg-hero-eyebrow">A 32-Listing Audit</div>
+        <h1>Business storytelling is a skill the market does not have. <em>We can prove it.</em></h1>
         <p className="nhg-hero-sub">
-          We audited 32 live LinkedIn job postings across India's top organisations hiring for
-          communications, content and storytelling roles. The data tells one story.
+          Narrative architecture for business is a nuanced, experience-based discipline. We audited
+          32 live LinkedIn job postings across India to prove the market cannot supply it.
         </p>
         <div className="nhg-hero-stat-row">
           <div className="nhg-hero-stat">
@@ -192,24 +192,54 @@ const Study: React.FC = () => {
   return (
     <>
       <div className="nhg-study-header">
-        <div className="nhg-study-eyebrow">Special Report</div>
-        <h1>India Has a Communications Talent Surplus <em>and a Narrative Talent Deficit</em></h1>
+        <div className="nhg-study-eyebrow">A 32-Listing Audit</div>
+        <h1>Business storytelling is a skill the market does not have. <em>We can prove it.</em></h1>
         <p className="nhg-study-sub">
-          We audited 32 live LinkedIn job postings across India's top organisations hiring for
-          communications, content and storytelling roles. The data tells one story.
+          Narrative architecture for business is a nuanced, experience-based discipline. India's
+          talent market has communicators. It does not have narrative architects. We audited 32
+          live LinkedIn job postings to prove it.
         </p>
         <div className="nhg-study-line" />
       </div>
 
       <div className="nhg-container">
+        {/* 00 - The Thesis */}
+        <section className="nhg-content-block">
+          <div className="nhg-section-num">The Thesis</div>
+          <h2 className="nhg-section-title">Storytelling for business is not a communications skill. It is a strategic discipline. And almost nobody in India's talent market can do it.</h2>
+          <p className="nhg-section-lead" style={{ maxWidth: 640 }}>
+            Every company in this study knows it needs narrative depth. Their job descriptions say
+            so. Their applicant pools are enormous. And yet the roles stay open for months, or get
+            filled and fail. The reason is structural: business narrative architecture requires the
+            ability to excavate an organisation's underlying truth and build a story system from
+            it. That is not copywriting. It is not content marketing. It is not "brand
+            communications." It is a distinct, experience-based discipline that sits at the
+            intersection of strategy, storytelling and business acumen. The market has plenty of
+            people who can write. It has almost nobody who can think this way.
+          </p>
+          <div className="nhg-callout">
+            <strong>What this study proves:</strong> across 32 live job postings, 21 organisations,
+            and 6 sectors, India's hiring market is signalling a single, structural gap. The talent
+            pool can execute communications. It cannot architect narratives. And generative AI is
+            making this worse, not better, by flooding the market with content that sounds right
+            but means nothing.
+          </div>
+          <p style={{ fontSize: 14, color: 'var(--nhg-gray)', lineHeight: 1.6, marginTop: 24 }}>
+            <strong style={{ color: 'var(--nhg-text)' }}>The payoff for reading this:</strong> a
+            data-backed diagnostic of why your communications hire is stuck, a 7-point checklist to
+            audit your own brief, and a proven 3-week programme that trains your existing team to
+            do the work the market cannot supply.
+          </p>
+        </section>
+
         {/* 01 */}
         <section className="nhg-content-block">
-          <div className="nhg-section-num">01 / The Paradox</div>
-          <h2 className="nhg-section-title">Plenty of Applicants. No Hires.</h2>
+          <div className="nhg-section-num">01 / The Evidence</div>
+          <h2 className="nhg-section-title">3,200 Applicants. Zero Narrative Architects.</h2>
           <p className="nhg-section-lead">
-            Every listing attracted massive applicant volume. Yet roles stay open for weeks, months,
-            or get reposted after a failed hire. The supply of communicators is high. The supply of
-            narrative talent is near zero.
+            Every listing attracted massive volume. Yet roles stay open for weeks, months, or get
+            reposted after a failed hire. The data confirms the thesis: the supply of communicators
+            is high. The supply of narrative talent is near zero.
           </p>
           <div className="nhg-kpi-row">
             <div className="nhg-kpi-card"><div className="nhg-kpi-num">3,200+</div><div className="nhg-kpi-label">Total applicants across 32 listings</div></div>
@@ -225,12 +255,12 @@ const Study: React.FC = () => {
 
         {/* 02 */}
         <section className="nhg-content-block">
-          <div className="nhg-section-num">02 / Who Is Hiring</div>
-          <h2 className="nhg-section-title">This Isn't a Startup Problem. It's Structural.</h2>
+          <div className="nhg-section-num">02 / The Breadth</div>
+          <h2 className="nhg-section-title">Every Type of Organisation. The Same Gap.</h2>
           <p className="nhg-section-lead">
-            The gap spans unicorns, MNCs, consulting firms, government bodies and social-impact
-            foundations. When Edelman India reposts an SVP communications role, the signal is
-            sector-wide.
+            This is not a startup problem or an NGO problem. Unicorns, MNCs, consulting firms,
+            government bodies and foundations are all failing to fill the same type of role. The
+            skill does not exist at scale in the market.
           </p>
           <div className="nhg-chart-container">
             <div className="nhg-chart-label">Exhibit 2 / Listings by organisation type</div>
@@ -256,9 +286,14 @@ const Study: React.FC = () => {
 
         {/* 03 */}
         <section className="nhg-content-block">
-          <div className="nhg-section-num">03 / The Pattern</div>
-          <h2 className="nhg-section-title">Three Failure Modes. One Root Cause.</h2>
-          <p className="nhg-section-lead">Across all 32 listings, the same structural problem repeats.</p>
+          <div className="nhg-section-num">03 / Why Hiring Fails</div>
+          <h2 className="nhg-section-title">The Market Cannot Supply What You Actually Need.</h2>
+          <p className="nhg-section-lead">
+            Three failure modes, one root cause: organisations are hiring for communications but
+            expecting narrative architecture. That skill does not come from a degree, a portfolio
+            of campaigns, or fluency in AI tools. It comes from experience in excavating structural
+            business truths.
+          </p>
           <div className="nhg-chart-container">
             <div className="nhg-chart-label">Exhibit 3 / Listing age at time of audit</div>
             <canvas ref={refAge} />
@@ -286,11 +321,13 @@ const Study: React.FC = () => {
 
         {/* 04 */}
         <section className="nhg-content-block">
-          <div className="nhg-section-num">04 / The Accelerant</div>
-          <h2 className="nhg-section-title">GenAI Made This Worse, Not Better.</h2>
+          <div className="nhg-section-num">04 / The AI Complication</div>
+          <h2 className="nhg-section-title">AI Gave Every Team a Voice. It Did Not Give Them a Story.</h2>
           <p className="nhg-section-lead">
-            Generative AI was supposed to close the communications talent gap. Instead, it widened
-            the narrative one. Here is what the data shows.
+            Generative AI was supposed to close the communications gap. Instead, it made narrative
+            architecture the only skill that matters. Every team can now produce content at speed.
+            Almost no team can ensure that content says something structurally true about the
+            business. That is the new competitive divide.
           </p>
           <div className="nhg-kpi-row">
             <div className="nhg-kpi-card"><div className="nhg-kpi-num">74%</div><div className="nhg-kpi-label">Of new web pages contain detectable AI-generated content</div></div>
@@ -322,12 +359,14 @@ const Study: React.FC = () => {
             <div className="nhg-chart-label">Exhibit 4 / Where marketers report the greatest performance decline</div>
             <canvas ref={refAIDamage} />
           </div>
-          <p style={{ fontSize: 14, color: 'var(--nhg-gray)', lineHeight: 1.6, marginTop: 24 }}>
-            The organisations that will stand out in 2026 are not the ones with better AI. They are
-            the ones with a narrative architecture that AI cannot replicate, because it was
-            excavated from institutional truth, not generated from a prompt. That is the work that
-            needs to happen before the hire, not after.
-          </p>
+          <div className="nhg-callout" style={{ marginTop: 24 }}>
+            <strong>The implication is urgent:</strong> you cannot hire your way out of this gap,
+            and AI will not fill it for you. The only viable path is to train your existing teams
+            to think in narrative architecture. To give them the frameworks, the strategic muscles,
+            and the practice of excavating business truth, so that every piece of content your
+            organisation produces is structurally sound, not just competently written. This is the
+            new baseline for business communications in the age of AI.
+          </div>
         </section>
 
         {/* Field note - visual relief */}
@@ -354,9 +393,9 @@ const Study: React.FC = () => {
 
         {/* 05 */}
         <section className="nhg-content-block">
-          <div className="nhg-section-num">05 / The Diagnostic</div>
-          <h2 className="nhg-section-title">Before You Hire: 7 Questions</h2>
-          <p className="nhg-section-lead">If you answer "no" to three or more, the hire will underperform regardless of the candidate.</p>
+          <div className="nhg-section-num">05 / Your Readiness</div>
+          <h2 className="nhg-section-title">Is Your Organisation Ready for Narrative-Led Communications?</h2>
+          <p className="nhg-section-lead">Seven questions. If you answer "no" to three or more, no hire will fix this. Your team needs the architecture first.</p>
           <ol className="nhg-checklist">
             <li>Do you have a narrative architecture, or just a brand platform?<span className="nhg-check-sub">A brand platform says what you stand for. A narrative architecture defines the structural truth your organisation owns that no competitor can credibly claim.</span></li>
             <li>Can you articulate that truth in one sentence?<span className="nhg-check-sub">If the CEO, CMO and Head of Comms would each say something different, your new hire has no foundation to build from.</span></li>
@@ -398,9 +437,9 @@ const Study: React.FC = () => {
       {/* 07 - The Sprint */}
       <div className="nhg-container">
         <section className="nhg-content-block">
-          <div className="nhg-section-num">07 / The Solution</div>
-          <h2 className="nhg-section-title">The Creative Effectiveness Sprint</h2>
-          <p className="nhg-section-lead">3 weeks. 7 working days. Your team goes from executing briefs to owning narratives. Here is what each week delivers.</p>
+          <div className="nhg-section-num">07 / Train Your Team</div>
+          <h2 className="nhg-section-title">You Cannot Hire This Skill. You Can Build It.</h2>
+          <p className="nhg-section-lead">The Creative Effectiveness Sprint is a 3-week, 7-day programme that trains your existing team to think in narrative architecture. Not a workshop about storytelling. A forcing function that moves your team from producing content to owning the business narrative.</p>
 
           <div className="nhg-sprint-week">
             <div className="nhg-sprint-week-num">01</div>
@@ -494,10 +533,10 @@ const Study: React.FC = () => {
       {/* CTA */}
 
       <div className="nhg-cta-section">
-        <h2>Don't hire without the architecture.</h2>
-        <p>A 3-week Creative Effectiveness Sprint defines the narrative your new hire builds from. Not a retainer. A foundation.</p>
+        <h2>The market cannot supply this skill. But your team can learn it.</h2>
+        <p>3 weeks. 7 working days. Your team goes from executing communications to owning your business narrative. In the age of AI, that is the only advantage that compounds.</p>
         <button type="button" className="nhg-cta-btn" onClick={() => setBookingOpen(true)}>
-          Train my team!
+          Transform my team
         </button>
       </div>
 
