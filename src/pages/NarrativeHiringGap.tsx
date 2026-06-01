@@ -532,6 +532,10 @@ const Study: React.FC = () => {
           <div className="nhg-proof-card">
             <div className="nhg-proof-org">Publicis Worldwide</div>
             <div className="nhg-proof-result">Theresa Ronnie led Publicis Bengaluru operations, delivering Effies-winning work across FMCG, automotive and premium lifestyle brands including PETRONAS, Heineken, Amstel and MontBlanc.</div>
+            <div className="nhg-proof-quote">
+              "A razor sharp mind, an insatiable appetite for learning, deep knowledge of diverse fields including business, strategy, marketing, communication, technology and consumers - an asset to whichever team she belongs."
+              <span className="nhg-proof-attribution">- CMO, United Breweries</span>
+            </div>
           </div>
 
           {/* Video testimonials - balanced two-up, stacks on mobile */}
