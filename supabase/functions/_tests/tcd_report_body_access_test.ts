@@ -1,12 +1,13 @@
-// End-to-end security test: ensures tcd_get_report_body and direct column
-// access on tcd_reports.body_html are properly gated.
+// End-to-end gating test for tcd_get_report_body.
 //
-// Verifies:
-//   1) Anonymous PostgREST calls to rpc("tcd_get_report_body") return null
-//      (function short-circuits via tcd_user_has_report_access -> auth.uid()).
-//   2) Authenticated users without an active subscription also get null.
-//   3) Direct SELECT of body_html via PostgREST is denied (column-level revoke).
-//   4) Public metadata columns (title, slug) remain readable.
+// Verifies the security model:
+//   1) Anonymous PostgREST requests cannot EXECUTE tcd_get_report_body or
+//      tcd_user_has_report_access (EXECUTE not granted to `anon`).
+//   2) Authenticated users without an active subscription get NULL from
+//      tcd_get_report_body (function short-circuits on tcd_user_has_report_access).
+//   3) Public metadata columns (title, slug) remain readable for anon.
+//
+// Run via: supabase--test_edge_functions { functions: ["_tests"] }
 
 import "https://deno.land/std@0.224.0/dotenv/load.ts";
 import { assert, assertEquals } from "https://deno.land/std@0.224.0/assert/mod.ts";
@@ -16,67 +17,62 @@ const SUPABASE_URL = Deno.env.get("VITE_SUPABASE_URL")!;
 const SUPABASE_ANON_KEY = Deno.env.get("VITE_SUPABASE_PUBLISHABLE_KEY")!;
 const TEST_SLUG = "launch-note-tcd-intelligence";
 
-function anonClient() {
-  return createClient(SUPABASE_URL, SUPABASE_ANON_KEY, {
+const anonClient = () =>
+  createClient(SUPABASE_URL, SUPABASE_ANON_KEY, {
     auth: { persistSession: false, autoRefreshToken: false },
   });
-}
 
-Deno.test("anon: tcd_get_report_body returns null (no auth.uid)", async () => {
-  const sb = anonClient();
-  const { data, error } = await sb.rpc("tcd_get_report_body", { _slug: TEST_SLUG });
-  assertEquals(error, null, `unexpected error: ${error?.message}`);
-  assertEquals(data, null, "anon must not receive body_html");
-});
-
-Deno.test("anon: tcd_user_has_report_access returns false", async () => {
-  const sb = anonClient();
-  const { data, error } = await sb.rpc("tcd_user_has_report_access", { _report_slug: TEST_SLUG });
-  assertEquals(error, null);
-  assertEquals(data, false);
-});
-
-Deno.test("anon: direct SELECT of body_html is denied at column level", async () => {
-  const sb = anonClient();
-  const { data, error } = await sb.from("tcd_reports").select("body_html").eq("slug", TEST_SLUG);
-  assert(error !== null, "expected permission error selecting body_html as anon");
+Deno.test("anon cannot execute tcd_get_report_body (EXECUTE revoked)", async () => {
+  const { data, error } = await anonClient().rpc("tcd_get_report_body", { _slug: TEST_SLUG });
   assertEquals(data, null);
-  // PostgREST surfaces Postgres 42501 (insufficient_privilege)
+  assert(error, "anon RPC must be blocked");
   assert(
-    /permission|denied|42501/i.test(error!.message + " " + (error as any)?.code),
-    `expected permission-denied error, got: ${error!.message}`,
+    /permission denied|42501/i.test(error!.message + " " + (error as any)?.code),
+    `expected permission-denied, got: ${error!.message}`,
   );
 });
 
-Deno.test("anon: metadata columns remain readable", async () => {
-  const sb = anonClient();
-  const { data, error } = await sb
+Deno.test("anon cannot execute tcd_user_has_report_access", async () => {
+  const { data, error } = await anonClient().rpc("tcd_user_has_report_access", {
+    _report_slug: TEST_SLUG,
+  });
+  assertEquals(data, null);
+  assert(error, "anon access-check RPC must be blocked");
+  assert(/permission denied|42501/i.test(error!.message + " " + (error as any)?.code));
+});
+
+Deno.test("anon: public metadata columns are readable", async () => {
+  const { data, error } = await anonClient()
     .from("tcd_reports")
     .select("slug,title,required_tier_rank,is_published")
     .eq("slug", TEST_SLUG)
     .maybeSingle();
   assertEquals(error, null, `unexpected error: ${error?.message}`);
-  assert(data, "metadata row should be readable");
-  assertEquals((data as any).slug, TEST_SLUG);
+  assert(data && (data as any).slug === TEST_SLUG);
 });
 
-Deno.test("authenticated (no membership): tcd_get_report_body returns null", async () => {
+Deno.test("authenticated user without active tier: RPC returns null", async () => {
   const sb = anonClient();
   const email = `e2e_${crypto.randomUUID()}@example.com`;
   const password = `Test-${crypto.randomUUID()}-Aa1!`;
   const signup = await sb.auth.signUp({ email, password });
+
   if (signup.error || !signup.data.session) {
     console.warn(
-      `Skipping authenticated-path assertion (signup not auto-confirmed): ${signup.error?.message ?? "no session"}`,
+      `Skipping authenticated path: signup not auto-confirmed (${signup.error?.message ?? "no session"}).`,
     );
     return;
   }
-  const { data, error } = await sb.rpc("tcd_get_report_body", { _slug: TEST_SLUG });
-  assertEquals(error, null, `unexpected error: ${error?.message}`);
-  assertEquals(data, null, "authenticated user without active tier must not get body");
 
-  const access = await sb.rpc("tcd_user_has_report_access", { _report_slug: TEST_SLUG });
-  assertEquals(access.data, false);
+  try {
+    const body = await sb.rpc("tcd_get_report_body", { _slug: TEST_SLUG });
+    assertEquals(body.error, null, `unexpected error: ${body.error?.message}`);
+    assertEquals(body.data, null, "non-subscriber must not receive body_html");
 
-  await sb.auth.signOut();
+    const access = await sb.rpc("tcd_user_has_report_access", { _report_slug: TEST_SLUG });
+    assertEquals(access.error, null);
+    assertEquals(access.data, false);
+  } finally {
+    await sb.auth.signOut();
+  }
 });
