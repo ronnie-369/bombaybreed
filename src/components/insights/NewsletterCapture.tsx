@@ -19,7 +19,12 @@ const NewsletterCapture: React.FC = () => {
       const response = await fetch(FORMSPREE_URL, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email: email.trim().toLowerCase(), form_type: 'newsletter' }),
+        body: JSON.stringify({
+          email: email.trim().toLowerCase(),
+          form_type: 'newsletter',
+          _subject: `Newsletter signup (insights) - ${email.trim().toLowerCase()}`,
+          _replyto: email.trim().toLowerCase(),
+        }),
       });
       if (!response.ok) throw new Error('Failed');
       setIsSuccess(true);
