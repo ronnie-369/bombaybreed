@@ -56,6 +56,8 @@ const Contact = () => {
           phone: normalizePhone(data.phone || ''),
           message: data.message.trim(),
           form_type: 'contact',
+          _subject: `General enquiry - ${data.name.trim()}${data.company?.trim() ? ` (${data.company.trim()})` : ''}`,
+          _replyto: data.email.trim().toLowerCase(),
         }),
       });
 
