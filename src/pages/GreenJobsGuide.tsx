@@ -365,6 +365,8 @@ export default function GreenJobsGuide() {
           personality: personalityName,
           report_requested: `green-jobs-personality-${activePersonality}`,
           marketing_consent: false,
+          _subject: `Green Jobs quiz - ${personalityName} (${leadForm.name.trim()})`,
+          _replyto: leadForm.email.trim(),
         }),
       });
 
