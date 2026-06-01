@@ -137,7 +137,7 @@ const Study: React.FC = () => {
         type: 'bar',
         data: {
           labels: ['Active / Promoted', 'Freshly Posted', 'Reposted (failed hire)', 'Zombie (2+ months)'],
-          datasets: [{ data: [18, 5, 5, 4], backgroundColor: ['#1A3C5B', 'rgba(26,60,91,0.5)', '#C0946D', '#9B2C2C'], borderRadius: 1, barThickness: 24 }],
+          datasets: [{ data: [18, 5, 5, 4], backgroundColor: ['#1A3D5C', 'rgba(26,61,92,0.5)', '#C5A059', '#9B2C2C'], borderRadius: 1, barThickness: 24 }],
         },
         options: { indexAxis: 'y', responsive: true, plugins: { legend: { display: false }, tooltip: { callbacks: { label: (c: any) => c.raw + ' listings' } } }, scales: { x: { grid, ticks: { stepSize: 5 } }, y: { grid: { display: false } } } },
       }));
@@ -146,7 +146,7 @@ const Study: React.FC = () => {
         type: 'doughnut',
         data: {
           labels: ['Unicorn / Scale-up', 'Startup / Early-stage', 'Foundation / NGO', 'MNC / Consulting', 'Government'],
-          datasets: [{ data: [8, 6, 7, 5, 1], backgroundColor: ['#1A3C5B', '#C0946D', '#6B7280', 'rgba(26,60,91,0.4)', 'rgba(192,148,109,0.4)'], borderWidth: 2, borderColor: '#FBFBF9' }],
+          datasets: [{ data: [8, 6, 7, 5, 1], backgroundColor: ['#1A3D5C', '#C5A059', '#6B7280', 'rgba(26,61,92,0.4)', 'rgba(197,160,89,0.4)'], borderWidth: 2, borderColor: '#FDFCFB' }],
         },
         options: { responsive: true, cutout: '60%', plugins: { legend: { position: 'bottom', labels: { padding: 20, usePointStyle: true, pointStyle: 'rect', font: { size: 11 } } }, tooltip: { callbacks: { label: (c: any) => c.label + ': ' + c.raw + ' listings' } } } },
       }));
@@ -155,7 +155,7 @@ const Study: React.FC = () => {
         type: 'bar',
         data: {
           labels: ['< 1 week', '1-2 weeks', '2-4 weeks', '1-2 months', '2-4 months', '4+ months'],
-          datasets: [{ data: [10, 9, 4, 3, 4, 2], backgroundColor: (ctx: any) => ['#276749','#276749','#C0946D','#C0946D','#9B2C2C','#9B2C2C'][ctx.dataIndex], borderRadius: 1, barThickness: 32 }],
+          datasets: [{ data: [10, 9, 4, 3, 4, 2], backgroundColor: (ctx: any) => ['#276749','#276749','#C5A059','#C5A059','#9B2C2C','#9B2C2C'][ctx.dataIndex], borderRadius: 1, barThickness: 32 }],
         },
         options: { responsive: true, plugins: { legend: { display: false }, tooltip: { callbacks: { label: (c: any) => c.raw + ' listings' } } }, scales: { x: { grid: { display: false } }, y: { grid, ticks: { stepSize: 2 }, beginAtZero: true } } },
       }));
@@ -173,10 +173,11 @@ const Study: React.FC = () => {
         type: 'bar',
         data: {
           labels: ['Media & Entertainment', 'Social Impact', 'Technology', 'Consulting', 'Agency', 'Government'],
-          datasets: [{ data: [9, 7, 5, 4, 3, 1], backgroundColor: '#1A3C5B', borderRadius: 1, barThickness: 20 }],
+          datasets: [{ data: [9, 7, 5, 4, 3, 1], backgroundColor: '#1A3D5C', borderRadius: 1, barThickness: 20 }],
         },
         options: { indexAxis: 'y', responsive: true, plugins: { legend: { display: false }, tooltip: { callbacks: { label: (c: any) => c.raw + ' listings' } } }, scales: { x: { grid, ticks: { stepSize: 2 }, beginAtZero: true }, y: { grid: { display: false } } } },
       }));
+
     }).catch(() => {/* Chart.js failed; charts simply won't render */});
 
     return () => {
