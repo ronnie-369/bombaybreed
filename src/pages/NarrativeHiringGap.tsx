@@ -331,12 +331,14 @@ const Study: React.FC = () => {
 
         {/* Field note - visual relief */}
         <figure className="nhg-field-note" aria-labelledby="nhg-field-note-label">
-          <img
-            src={climatePartyWorkshop.url}
-            alt="Theresa Ronnie facilitating a workshop for The Climate Party from ProClime, standing before participants in a session room in Chennai"
-            loading="lazy"
-            aria-describedby="nhg-field-note-caption"
-          />
+          <div className="nhg-field-note-media">
+            <img
+              src={climatePartyWorkshop.url}
+              alt="Theresa Ronnie facilitating a workshop for The Climate Party from ProClime, standing before participants in a session room in Chennai"
+              loading="lazy"
+              aria-describedby="nhg-field-note-caption"
+            />
+          </div>
           <figcaption>
             <span id="nhg-field-note-label" className="nhg-field-note-label">Field Note</span>
             <p id="nhg-field-note-caption">
