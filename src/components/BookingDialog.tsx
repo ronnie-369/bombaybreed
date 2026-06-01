@@ -90,6 +90,8 @@ const BookingDialog = ({
           preferred_time: selectedSlot,
           form_type: 'booking',
           subject: subject || null,
+          _subject: `Consultation booking - ${form.name.trim()} (${format(selectedDate, 'd MMM yyyy')} ${selectedSlot})`,
+          _replyto: form.email.trim().toLowerCase(),
         }),
       });
 
