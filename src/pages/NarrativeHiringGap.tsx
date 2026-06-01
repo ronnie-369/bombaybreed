@@ -409,13 +409,12 @@ const Study: React.FC = () => {
             <strong>What changes:</strong> your team stops producing assets and starts producing outcomes. They stop waiting for external agencies to define the narrative and start owning it. The Sprint gives them the frameworks and the confidence. The result is less external dependence, faster alignment, and campaigns that move the business.
           </div>
 
-          <figure style={{ marginTop: 32 }}>
+          <figure className="nhg-video-container">
             <video
               src={narrativeChangeVideo.url}
               controls
               playsInline
               preload="metadata"
-              style={{ width: '100%', height: 'auto', display: 'block', borderRadius: 4, background: '#000' }}
             />
           </figure>
 

@@ -232,6 +232,18 @@
 .nhg-methodology { font-size: 12px; color: var(--nhg-text-30); padding: 24px 0; line-height: 1.6; }
 .nhg-table-note { font-size: 11px; color: var(--nhg-text-30); margin-top: 8px; }
 
+/* ---------- VIDEO ---------- */
+.nhg-video-container {
+  margin: 36px 0;
+  border: 1px solid var(--nhg-border);
+  background: var(--nhg-text);
+}
+.nhg-video-container video {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
 @media (max-width: 600px) {
   .nhg-topbar { padding: 16px 24px; }
   .nhg-main { padding: 40px 24px; }
