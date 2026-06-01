@@ -494,7 +494,7 @@ const Study: React.FC = () => {
         <h2>Don't hire without the architecture.</h2>
         <p>A 3-week Creative Effectiveness Sprint defines the narrative your new hire builds from. Not a retainer. A foundation.</p>
         <button type="button" className="nhg-cta-btn" onClick={() => setBookingOpen(true)}>
-          Talk to Bombay Breed
+          Train my team!
         </button>
       </div>
 
