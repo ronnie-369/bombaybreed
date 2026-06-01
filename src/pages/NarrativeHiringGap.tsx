@@ -531,7 +531,7 @@ const Study: React.FC = () => {
           </div>
 
           {/* Video testimonials - balanced two-up, stacks on mobile */}
-          <div className="nhg-video-testimonials" aria-label="Video testimonials from Theresa Ronnie">
+          <div className="nhg-video-testimonials" aria-label="Video testimonials from WeWork India team">
             <figure className="nhg-vt-card">
               <div className="nhg-vt-media">
                 <video
