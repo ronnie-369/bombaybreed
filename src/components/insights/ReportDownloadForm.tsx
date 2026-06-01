@@ -50,6 +50,8 @@ const ReportDownloadForm: React.FC<ReportDownloadFormProps> = ({ reportTitle }) 
           phone: normalizePhone(formData.phone) || undefined,
           report_requested: reportTitle,
           form_type: 'report_download',
+          _subject: `Report download - ${reportTitle} (${formData.name.trim()})`,
+          _replyto: formData.email.trim().toLowerCase(),
         }),
       });
 
