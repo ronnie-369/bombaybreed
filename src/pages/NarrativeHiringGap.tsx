@@ -330,11 +330,16 @@ const Study: React.FC = () => {
         </section>
 
         {/* Field note - visual relief */}
-        <figure className="nhg-field-note">
-          <img src={climatePartyWorkshop.url} alt="Theresa Ronnie leading a workshop session for The Climate Party from ProClime in Chennai" loading="lazy" />
+        <figure className="nhg-field-note" aria-labelledby="nhg-field-note-label">
+          <img
+            src={climatePartyWorkshop.url}
+            alt="Theresa Ronnie facilitating a workshop for The Climate Party from ProClime, standing before participants in a session room in Chennai"
+            loading="lazy"
+            aria-describedby="nhg-field-note-caption"
+          />
           <figcaption>
-            <span className="nhg-field-note-label">Field Note</span>
-            <p>
+            <span id="nhg-field-note-label" className="nhg-field-note-label">Field Note</span>
+            <p id="nhg-field-note-caption">
               The difference between being authentic and being real in climate action - leading
               the workshop session for The Climate Party from ProClime. The room kept returning
               to one question: when does a climate story stop being a brand exercise and start
