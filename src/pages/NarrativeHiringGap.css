@@ -245,3 +245,42 @@
   .nhg-data-table { font-size: 11px; }
   .nhg-data-table th, .nhg-data-table td { padding: 10px 8px; }
 }
+
+/* ---------- SPRINT SECTION (07) ---------- */
+.nhg-sprint-week {
+  display: grid; grid-template-columns: 80px 1fr; gap: 0;
+  margin: 28px 0; border: 1px solid var(--nhg-border);
+}
+.nhg-sprint-week-num {
+  background: var(--nhg-navy); color: var(--nhg-white);
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 20px; font-weight: 400; padding: 24px 16px;
+}
+.nhg-sprint-week-body { padding: 24px; background: var(--nhg-white); }
+.nhg-sprint-week-title { font-size: 15px; font-weight: 500; margin-bottom: 6px; }
+.nhg-sprint-week-desc { font-size: 13px; color: var(--nhg-gray); line-height: 1.5; }
+.nhg-sprint-week-output {
+  font-size: 12px; color: var(--nhg-bronze); font-weight: 500;
+  margin-top: 8px; text-transform: uppercase; letter-spacing: 1px;
+}
+
+/* ---------- PROOF CARDS (08) ---------- */
+.nhg-proof-card {
+  padding: 24px; background: var(--nhg-white);
+  border: 1px solid var(--nhg-border); margin-bottom: 12px;
+}
+.nhg-proof-org {
+  font-size: 10px; text-transform: uppercase; letter-spacing: 2px;
+  color: var(--nhg-bronze); font-weight: 600; margin-bottom: 6px;
+}
+.nhg-proof-result { font-size: 14px; line-height: 1.5; margin-bottom: 8px; }
+.nhg-proof-quote {
+  font-family: 'Playfair Display', Georgia, serif; font-style: italic;
+  font-size: 15px; line-height: 1.5; color: var(--nhg-text-80);
+  padding-left: 16px; border-left: 2px solid var(--nhg-bronze); margin-top: 12px;
+}
+.nhg-proof-attribution {
+  font-family: 'Inter', sans-serif; font-style: normal;
+  font-size: 12px; color: var(--nhg-gray); margin-top: 6px; display: block;
+}
