@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 import BookingDialog from '@/components/BookingDialog';
 import './NarrativeHiringGap.css';
+import narrativeChangeVideo from '@/assets/narrative-hiring-change.mp4.asset.json';
 
 // Same Formspree endpoint used elsewhere in the project — delivers to
 // theresa.ronnie@bombaybreed.com. Lead-capture and booking both route here.
@@ -407,6 +408,16 @@ const Study: React.FC = () => {
           <div className="nhg-callout" style={{ marginTop: 36 }}>
             <strong>What changes:</strong> your team stops producing assets and starts producing outcomes. They stop waiting for external agencies to define the narrative and start owning it. The Sprint gives them the frameworks and the confidence. The result is less external dependence, faster alignment, and campaigns that move the business.
           </div>
+
+          <figure style={{ marginTop: 32 }}>
+            <video
+              src={narrativeChangeVideo.url}
+              controls
+              playsInline
+              preload="metadata"
+              style={{ width: '100%', height: 'auto', display: 'block', borderRadius: 4, background: '#000' }}
+            />
+          </figure>
 
           <div className="nhg-kpi-row" style={{ marginTop: 32 }}>
             <div className="nhg-kpi-card"><div className="nhg-kpi-num">8</div><div className="nhg-kpi-label">Creative capability pillars scored before and after</div></div>
