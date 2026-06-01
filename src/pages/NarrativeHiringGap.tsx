@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { Helmet } from 'react-helmet-async';
-import BookingDialog from '@/components/BookingDialog';
+import NarrativeInquiryDialog from '@/components/NarrativeInquiryDialog';
 import './NarrativeHiringGap.css';
 import narrativeChangeVideo from '@/assets/narrative-hiring-change.mp4.asset.json';
 import climatePartyWorkshop from '@/assets/climate-party-workshop.jpg.asset.json';
