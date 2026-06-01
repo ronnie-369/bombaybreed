@@ -560,7 +560,8 @@ const Study: React.FC = () => {
               </div>
               <figcaption className="nhg-vt-caption">
                 <span className="nhg-vt-label">In her words / 02</span>
-                <span className="nhg-vt-attribution">Theresa Ronnie, Bombay Breed Consulting</span>
+                <span className="nhg-vt-attribution">Art Director Lead, WeWork India</span>
+
               </figcaption>
             </figure>
           </div>
