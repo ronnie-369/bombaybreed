@@ -80,6 +80,8 @@ const LeadCaptureForm: React.FC<LeadCaptureFormProps> = ({
           marketing_consent: formData.consent,
           report_requested: reportTitle,
           form_type: 'report_download',
+          _subject: `Report download - ${reportTitle} (${formData.name})`,
+          _replyto: formData.email,
         }),
       });
 
