@@ -3,6 +3,7 @@ import { Helmet } from 'react-helmet-async';
 import BookingDialog from '@/components/BookingDialog';
 import './NarrativeHiringGap.css';
 import narrativeChangeVideo from '@/assets/narrative-hiring-change.mp4.asset.json';
+import climatePartyWorkshop from '@/assets/climate-party-workshop.jpg.asset.json';
 
 // Same Formspree endpoint used elsewhere in the project — delivers to
 // theresa.ronnie@bombaybreed.com. Lead-capture and booking both route here.
@@ -327,6 +328,21 @@ const Study: React.FC = () => {
             needs to happen before the hire, not after.
           </p>
         </section>
+
+        {/* Field note - visual relief */}
+        <figure className="nhg-field-note">
+          <img src={climatePartyWorkshop.url} alt="Theresa Ronnie leading a workshop session for The Climate Party from ProClime in Chennai" loading="lazy" />
+          <figcaption>
+            <span className="nhg-field-note-label">Field Note</span>
+            <p>
+              The difference between being authentic and being real in climate action - leading
+              the workshop session for The Climate Party from ProClime. The room kept returning
+              to one question: when does a climate story stop being a brand exercise and start
+              being institutional truth? That distinction is the same one a comms hire is asked
+              to navigate on Day 1.
+            </p>
+          </figcaption>
+        </figure>
 
         {/* 05 */}
         <section className="nhg-content-block">
