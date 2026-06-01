@@ -13,9 +13,10 @@
   --nhg-gray: hsl(var(--bb-gray));             /* #6B7280 */
   --nhg-border: hsl(var(--bb-border));         /* #E5E5E1 */
   --nhg-white: hsl(var(--card));
-  --nhg-red: hsl(var(--destructive));
-  --nhg-amber: 39 47% 35%;
-  --nhg-green: 158 45% 28%;
+  --nhg-red: #9B2C2C;
+  --nhg-amber: #92640D;
+  --nhg-green: #276749;
+
 
 
   font-family: 'Inter', system-ui, sans-serif;
