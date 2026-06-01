@@ -256,6 +256,7 @@
   .nhg-mode-row { grid-template-columns: 1fr; }
   .nhg-data-table { font-size: 11px; }
   .nhg-data-table th, .nhg-data-table td { padding: 10px 8px; }
+  .nhg-video-container { margin: 24px 0; }
 }
 
 /* ---------- SPRINT SECTION (07) ---------- */
