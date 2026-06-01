@@ -21,6 +21,7 @@ const Auth = lazy(() => import("./pages/Auth"));
 const Admin = lazy(() => import("./pages/Admin"));
 const AdminSEO = lazy(() => import("./pages/AdminSEO"));
 const AdminSecurity = lazy(() => import("./pages/AdminSecurity"));
+const AdminInquiries = lazy(() => import("./pages/AdminInquiries"));
 const ServicePage = lazy(() => import("./pages/ServicePage"));
 const Services = lazy(() => import("./pages/Services"));
 const About = lazy(() => import("./pages/About"));
