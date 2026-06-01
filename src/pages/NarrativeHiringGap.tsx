@@ -4,6 +4,8 @@ import BookingDialog from '@/components/BookingDialog';
 import './NarrativeHiringGap.css';
 import narrativeChangeVideo from '@/assets/narrative-hiring-change.mp4.asset.json';
 import climatePartyWorkshop from '@/assets/climate-party-workshop.jpg.asset.json';
+import testimonial1 from '@/assets/testimonial-1.mp4.asset.json';
+import testimonial2 from '@/assets/testimonial-2.mp4.asset.json';
 
 // Same Formspree endpoint used elsewhere in the project — delivers to
 // theresa.ronnie@bombaybreed.com. Lead-capture and booking both route here.
@@ -526,6 +528,40 @@ const Study: React.FC = () => {
           <div className="nhg-proof-card">
             <div className="nhg-proof-org">Publicis Worldwide</div>
             <div className="nhg-proof-result">Theresa Ronnie led Publicis Bengaluru operations, delivering Effies-winning work across FMCG, automotive and premium lifestyle brands including PETRONAS, Heineken, Amstel and MontBlanc.</div>
+          </div>
+
+          {/* Video testimonials - balanced two-up, stacks on mobile */}
+          <div className="nhg-video-testimonials" aria-label="Video testimonials from Theresa Ronnie">
+            <figure className="nhg-vt-card">
+              <div className="nhg-vt-media">
+                <video
+                  src={testimonial1.url}
+                  controls
+                  playsInline
+                  preload="metadata"
+                  controlsList="nodownload"
+                />
+              </div>
+              <figcaption className="nhg-vt-caption">
+                <span className="nhg-vt-label">In her words / 01</span>
+                <span className="nhg-vt-attribution">Theresa Ronnie, Bombay Breed Consulting</span>
+              </figcaption>
+            </figure>
+            <figure className="nhg-vt-card">
+              <div className="nhg-vt-media">
+                <video
+                  src={testimonial2.url}
+                  controls
+                  playsInline
+                  preload="metadata"
+                  controlsList="nodownload"
+                />
+              </div>
+              <figcaption className="nhg-vt-caption">
+                <span className="nhg-vt-label">In her words / 02</span>
+                <span className="nhg-vt-attribution">Theresa Ronnie, Bombay Breed Consulting</span>
+              </figcaption>
+            </figure>
           </div>
         </section>
       </div>
