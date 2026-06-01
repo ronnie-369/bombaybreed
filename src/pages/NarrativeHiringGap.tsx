@@ -593,7 +593,7 @@ const Study: React.FC = () => {
 
       <div className="nhg-cta-section">
         <h2>The market cannot supply this skill. But your team can learn it.</h2>
-        <p>21 days. 7 working sessions. Your team stops executing other people's briefs and starts authoring the narrative your board, your category and your customers respond to. In the age of AI, the only durable advantage left is the story only you can tell - and the people inside your building who know how to tell it.</p>
+        <p>Your team starts authoring the narrative your board, your category and your customers respond to. Setting up whoever joins as your head of communications/ narrative/ storytelling for a success runway.</p>
         <button type="button" className="nhg-cta-btn" onClick={() => setBookingOpen(true)}>
           Write to Theresa - book a 30-min working session
         </button>
