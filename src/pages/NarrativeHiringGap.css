@@ -2,19 +2,22 @@
    All rules are scoped under .nhg-root so they cannot leak into the rest of the app. */
 
 .nhg-root {
-  --nhg-bg: #FBFBF9;
-  --nhg-text: #0A0A0A;
-  --nhg-text-80: rgba(10, 10, 10, 0.8);
-  --nhg-text-50: rgba(10, 10, 10, 0.5);
-  --nhg-text-30: rgba(10, 10, 10, 0.3);
-  --nhg-navy: #1A3C5B;
-  --nhg-bronze: #C0946D;
-  --nhg-gray: #6B7280;
-  --nhg-border: rgba(10, 10, 10, 0.08);
-  --nhg-white: #FFFFFF;
+  /* Mapped to Bombay Breed brand tokens (HSL from index.css) */
+  --nhg-bg: hsl(var(--bb-off-white));          /* Paper #FDFCFB */
+  --nhg-text: hsl(var(--bb-near-black));       /* Ink #0A0A0B */
+  --nhg-text-80: hsl(var(--bb-near-black) / 0.8);
+  --nhg-text-50: hsl(var(--bb-near-black) / 0.5);
+  --nhg-text-30: hsl(var(--bb-near-black) / 0.3);
+  --nhg-navy: hsl(var(--bb-slate));            /* Deep Blue #1A3D5C */
+  --nhg-bronze: hsl(var(--bb-copper));         /* Warm Gold #C5A059 */
+  --nhg-gray: hsl(var(--bb-gray));             /* #6B7280 */
+  --nhg-border: hsl(var(--bb-border));         /* #E5E5E1 */
+  --nhg-white: hsl(var(--card));
   --nhg-red: #9B2C2C;
   --nhg-amber: #92640D;
   --nhg-green: #276749;
+
+
 
   font-family: 'Inter', system-ui, sans-serif;
   background: var(--nhg-bg);
@@ -241,4 +244,43 @@
   .nhg-mode-row { grid-template-columns: 1fr; }
   .nhg-data-table { font-size: 11px; }
   .nhg-data-table th, .nhg-data-table td { padding: 10px 8px; }
+}
+
+/* ---------- SPRINT SECTION (07) ---------- */
+.nhg-sprint-week {
+  display: grid; grid-template-columns: 80px 1fr; gap: 0;
+  margin: 28px 0; border: 1px solid var(--nhg-border);
+}
+.nhg-sprint-week-num {
+  background: var(--nhg-navy); color: var(--nhg-white);
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 20px; font-weight: 400; padding: 24px 16px;
+}
+.nhg-sprint-week-body { padding: 24px; background: var(--nhg-white); }
+.nhg-sprint-week-title { font-size: 15px; font-weight: 500; margin-bottom: 6px; }
+.nhg-sprint-week-desc { font-size: 13px; color: var(--nhg-gray); line-height: 1.5; }
+.nhg-sprint-week-output {
+  font-size: 12px; color: var(--nhg-bronze); font-weight: 500;
+  margin-top: 8px; text-transform: uppercase; letter-spacing: 1px;
+}
+
+/* ---------- PROOF CARDS (08) ---------- */
+.nhg-proof-card {
+  padding: 24px; background: var(--nhg-white);
+  border: 1px solid var(--nhg-border); margin-bottom: 12px;
+}
+.nhg-proof-org {
+  font-size: 10px; text-transform: uppercase; letter-spacing: 2px;
+  color: var(--nhg-bronze); font-weight: 600; margin-bottom: 6px;
+}
+.nhg-proof-result { font-size: 14px; line-height: 1.5; margin-bottom: 8px; }
+.nhg-proof-quote {
+  font-family: 'Playfair Display', Georgia, serif; font-style: italic;
+  font-size: 15px; line-height: 1.5; color: var(--nhg-text-80);
+  padding-left: 16px; border-left: 2px solid var(--nhg-bronze); margin-top: 12px;
+}
+.nhg-proof-attribution {
+  font-family: 'Inter', sans-serif; font-style: normal;
+  font-size: 12px; color: var(--nhg-gray); margin-top: 6px; display: block;
 }
