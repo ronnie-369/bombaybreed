@@ -41,6 +41,8 @@ const DirectContact = () => {
           phone: normalizePhone(values.phone || ''),
           message: 'Consultation request from contact section',
           form_type: 'contact_quick',
+          _subject: `Consultation request (quick form) - ${values.name.trim()}`,
+          _replyto: values.email.trim().toLowerCase(),
         }),
       });
       if (!response.ok) throw new Error('Failed');
