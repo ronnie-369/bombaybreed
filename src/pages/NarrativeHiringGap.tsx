@@ -619,8 +619,17 @@ const NarrativeHiringGap: React.FC = () => {
 
       <div className="nhg-root">
         <div className="nhg-topbar">
-          <a href="/" className="nhg-topbar-logo">Bombay Breed</a>
+          <a href="/" className="nhg-topbar-logo" aria-label="Bombay Breed home">
+            <img
+              src="/lovable-uploads/d154fe5b-5dc7-48e1-ae7b-30fb4291f03c.png"
+              alt="Bombay Breed"
+              className="nhg-topbar-logo-mark"
+              decoding="async"
+            />
+            <span className="nhg-topbar-logo-wordmark">BOMBAY BREED</span>
+          </a>
           <span className="nhg-topbar-tag">Research / June 2026</span>
+
         </div>
 
         {unlocked ? <Study /> : <Gate onUnlock={() => setUnlocked(true)} />}
