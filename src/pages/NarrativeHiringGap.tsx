@@ -509,6 +509,10 @@ const Study: React.FC = () => {
           <div className="nhg-proof-card">
             <div className="nhg-proof-org">GH2 India (Green Hydrogen Organisation)</div>
             <div className="nhg-proof-result">Strategic carbon communications advisory for GH2 India's operations. Defined the narrative architecture for India's green hydrogen economy positioning at CETFiS.</div>
+            <div className="nhg-proof-quote">
+              "Theresa is a calm, experienced hand that steers the working team gently in the right direction. She is all about results"
+              <span className="nhg-proof-attribution">- Sanmit Ahuja</span>
+            </div>
           </div>
 
           <div className="nhg-proof-card">
