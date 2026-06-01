@@ -61,7 +61,16 @@ const Gate: React.FC<{ onUnlock: () => void }> = ({ onUnlock }) => {
         }),
       });
       if (!res.ok) throw new Error('Submission failed. Please try again.');
-      try { localStorage.setItem(STORAGE_KEY, '1'); } catch {}
+      try {
+        localStorage.setItem(STORAGE_KEY, '1');
+        localStorage.setItem('nhg_lead_v1', JSON.stringify({
+          name: form.name.trim(),
+          email: form.email.trim().toLowerCase(),
+          company: form.company.trim(),
+          role: form.role.trim(),
+          unlocked_at: new Date().toISOString(),
+        }));
+      } catch {}
       onUnlock();
     } catch (err: any) {
       setError(err?.message || 'Something went wrong. Please try again.');
