@@ -2,19 +2,21 @@
    All rules are scoped under .nhg-root so they cannot leak into the rest of the app. */
 
 .nhg-root {
-  --nhg-bg: #FBFBF9;
-  --nhg-text: #0A0A0A;
-  --nhg-text-80: rgba(10, 10, 10, 0.8);
-  --nhg-text-50: rgba(10, 10, 10, 0.5);
-  --nhg-text-30: rgba(10, 10, 10, 0.3);
-  --nhg-navy: #1A3C5B;
-  --nhg-bronze: #C0946D;
-  --nhg-gray: #6B7280;
-  --nhg-border: rgba(10, 10, 10, 0.08);
-  --nhg-white: #FFFFFF;
-  --nhg-red: #9B2C2C;
-  --nhg-amber: #92640D;
-  --nhg-green: #276749;
+  /* Mapped to Bombay Breed brand tokens (HSL from index.css) */
+  --nhg-bg: hsl(var(--bb-off-white));          /* Paper #FDFCFB */
+  --nhg-text: hsl(var(--bb-near-black));       /* Ink #0A0A0B */
+  --nhg-text-80: hsl(var(--bb-near-black) / 0.8);
+  --nhg-text-50: hsl(var(--bb-near-black) / 0.5);
+  --nhg-text-30: hsl(var(--bb-near-black) / 0.3);
+  --nhg-navy: hsl(var(--bb-slate));            /* Deep Blue #1A3D5C */
+  --nhg-bronze: hsl(var(--bb-copper));         /* Warm Gold #C5A059 */
+  --nhg-gray: hsl(var(--bb-gray));             /* #6B7280 */
+  --nhg-border: hsl(var(--bb-border));         /* #E5E5E1 */
+  --nhg-white: hsl(var(--card));
+  --nhg-red: hsl(var(--destructive));
+  --nhg-amber: 39 47% 35%;
+  --nhg-green: 158 45% 28%;
+
 
   font-family: 'Inter', system-ui, sans-serif;
   background: var(--nhg-bg);
