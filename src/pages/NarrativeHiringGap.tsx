@@ -584,16 +584,17 @@ const Study: React.FC = () => {
 
       <div className="nhg-cta-section">
         <h2>The market cannot supply this skill. But your team can learn it.</h2>
-        <p>3 weeks. 7 working days. Your team goes from executing communications to owning your business narrative. In the age of AI, that is the only advantage that compounds.</p>
+        <p>21 days. 7 working sessions. Your team stops executing other people's briefs and starts authoring the narrative your board, your category and your customers respond to. In the age of AI, the only durable advantage left is the story only you can tell - and the people inside your building who know how to tell it.</p>
         <button type="button" className="nhg-cta-btn" onClick={() => setBookingOpen(true)}>
-          Transform my team
+          Write to Theresa - book a 30-min working session
         </button>
+        <p className="nhg-cta-subnote">Private. No pitch deck. You bring the brief, I bring the diagnosis.</p>
       </div>
 
-      <BookingDialog
+      <NarrativeInquiryDialog
         open={bookingOpen}
         onOpenChange={setBookingOpen}
-        subject="Creative Effectiveness Sprint - Narrative Hiring Gap"
+        source="Narrative Hiring Gap"
       />
     </>
   );
