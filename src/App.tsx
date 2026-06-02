@@ -58,7 +58,7 @@ const TcdAuthGate = lazy(() => import("./intelligence/components/TcdAuthGate"));
 const queryClient = new QueryClient();
 
 const AppContent = () => {
-  const { isLoading } = usePreloader({ minimumDuration: 800 });
+  const { isLoading } = usePreloader({ minimumDuration: 200 });
 
   return (
     <>
