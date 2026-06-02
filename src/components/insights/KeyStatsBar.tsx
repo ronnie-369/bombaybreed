@@ -20,7 +20,7 @@ const KeyStatsBar: React.FC<KeyStatsBarProps> = ({ stats, source }) => {
           ))}
         </div>
         {source && (
-          <p className="text-[11px] text-muted-foreground/50 text-center mt-8">Source: {source}</p>
+          <p className="text-[11px] text-muted-foreground text-center mt-8">Source: {source}</p>
         )}
       </div>
     </section>

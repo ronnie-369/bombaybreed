@@ -24,33 +24,36 @@ const Index = () => {
         ogImage="og-home"
       />
       <Header />
-      <ExecutiveHero />
-      <ClientLogoStrip />
-      <ProofStat />
-      <TrackRecord />
-      <ServicePillars />
-      <SpecialFeatureHighlight />
-      <FeaturedInsight />
+      <main className="flex-1">
+        <ExecutiveHero />
+        <ClientLogoStrip />
+        <ProofStat />
+        <TrackRecord />
+        <ServicePillars />
+        <SpecialFeatureHighlight />
+        <FeaturedInsight />
 
-      {/* Testimonial */}
-      <section className="py-20 md:py-28 px-6 md:px-8 border-t border-border/50">
-        <div className="container mx-auto max-w-[640px] text-center">
-          <ScrollReveal direction="up">
-            <blockquote className="font-serif text-xl md:text-2xl italic text-foreground leading-relaxed mb-8">
-              "Theresa brings a rare combination of deep carbon market expertise and the ability to translate complexity into board-ready strategy. She changed how we think about climate risk."
-            </blockquote>
-            <div className="text-sm text-muted-foreground">
-              <strong className="text-foreground font-semibold">Senior Partner</strong>
-              <br />
-              Leading Management Consultancy, India
-            </div>
-          </ScrollReveal>
-        </div>
-      </section>
+        {/* Testimonial */}
+        <section className="py-20 md:py-28 px-6 md:px-8 border-t border-border/50">
+          <div className="container mx-auto max-w-[640px] text-center">
+            <ScrollReveal direction="up">
+              <blockquote className="font-serif text-xl md:text-2xl italic text-foreground leading-relaxed mb-8">
+                "Theresa brings a rare combination of deep carbon market expertise and the ability to translate complexity into board-ready strategy. She changed how we think about climate risk."
+              </blockquote>
+              <div className="text-sm text-muted-foreground">
+                <strong className="text-foreground font-semibold">Senior Partner</strong>
+                <br />
+                Leading Management Consultancy, India
+              </div>
+            </ScrollReveal>
+          </div>
+        </section>
 
-      <DirectContact />
+        <DirectContact />
+      </main>
       <Footer />
       <StickyCtaBar />
+
     </div>
   );
 };

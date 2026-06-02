@@ -295,7 +295,7 @@ const JobCard = ({ job, color }: { job: Job; color: string }) => {
           </div>
         </div>
       )}
-      <div className="text-center mt-2 text-[10px] text-muted-foreground/50">
+      <div className="text-center mt-2 text-[10px] text-muted-foreground">
         {expanded ? 'tap to collapse' : 'tap to explore →'}
       </div>
     </div>
