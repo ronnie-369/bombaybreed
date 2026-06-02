@@ -22,6 +22,5 @@ Disallow: /services?
 Disallow: /admin
 Disallow: /auth
 
-# Sitemaps
-Sitemap: https://zjiwmdrtuhsrymsuvpfb.supabase.co/functions/v1/generate-sitemap?type=index
-Sitemap: https://zjiwmdrtuhsrymsuvpfb.supabase.co/functions/v1/generate-sitemap?type=all
+# Sitemap
+Sitemap: https://bombaybreed.com/sitemap.xml
