@@ -37,6 +37,33 @@
     <changefreq>monthly</changefreq>
     <priority>0.70</priority>
   </url>
+
+  <!-- Legal / Policy Pages -->
+  <url>
+    <loc>https://bombaybreed.com/privacy-policy</loc>
+    <lastmod>2026-01-23</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.30</priority>
+  </url>
+  <url>
+    <loc>https://bombaybreed.com/terms</loc>
+    <lastmod>2026-01-23</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.30</priority>
+  </url>
+  <url>
+    <loc>https://bombaybreed.com/refund-policy</loc>
+    <lastmod>2026-01-23</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.30</priority>
+  </url>
+  <url>
+    <loc>https://bombaybreed.com/grievance-redressal</loc>
+    <lastmod>2026-01-23</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.30</priority>
+  </url>
+
   
   <!-- Primary Services (Tier 1 Money Keywords) -->
   <url>
