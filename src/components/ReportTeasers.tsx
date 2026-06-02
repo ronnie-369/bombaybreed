@@ -91,7 +91,7 @@ const ReportTeasers = () => {
                     variant="gradient" 
                     className="w-full"
                   >
-                    Learn More
+                    View {report.title}
                     <ArrowRight className="ml-2 h-4 w-4" />
                   </Button>
                 </CardContent>

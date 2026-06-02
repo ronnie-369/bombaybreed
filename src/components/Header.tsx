@@ -73,9 +73,9 @@ const Header = () => {
               fallbackSrc="/lovable-uploads/d154fe5b-5dc7-48e1-ae7b-30fb4291f03c.png"
             />
             <div className="hidden sm:block">
-              <h1 className="text-lg md:text-xl font-medium text-foreground tracking-tight leading-none whitespace-nowrap">
+              <div className="text-lg md:text-xl font-medium text-foreground tracking-tight leading-none whitespace-nowrap">
                 BOMBAY BREED
-              </h1>
+              </div>
             </div>
           </Link>
         </div>

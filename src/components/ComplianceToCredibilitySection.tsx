@@ -52,7 +52,7 @@ const ComplianceToCredibilitySection = () => {
                   variant="outline" 
                   className="flex-1"
                 >
-                  Learn More
+                  View Guide
                   <ArrowRight className="ml-2 h-4 w-4" />
                 </Button>
                 <Button 
