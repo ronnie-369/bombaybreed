@@ -10,13 +10,13 @@ import itc from '@/assets/client-logos/itc.jpg';
 import apollo from '@/assets/client-logos/apollo-hospitals.png';
 
 const logos = [
-  { src: microsoft, alt: 'Microsoft' },
-  { src: kpmg, alt: 'KPMG' },
-  { src: ford, alt: 'Ford' },
-  { src: volkswagen, alt: 'Volkswagen' },
-  { src: heineken, alt: 'Heineken' },
-  { src: itc, alt: 'ITC' },
-  { src: apollo, alt: 'Apollo Hospitals' },
+  { src: microsoft, alt: 'Microsoft company logo' },
+  { src: kpmg, alt: 'KPMG company logo' },
+  { src: ford, alt: 'Ford company logo' },
+  { src: volkswagen, alt: 'Volkswagen company logo' },
+  { src: heineken, alt: 'Heineken company logo' },
+  { src: itc, alt: 'ITC company logo' },
+  { src: apollo, alt: 'Apollo Hospitals company logo' },
 ];
 
 const ClientLogoStrip = () => {

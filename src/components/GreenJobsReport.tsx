@@ -119,7 +119,7 @@ const GreenJobsReport = () => {
               onClick={() => setShowFullReport(true)}
             >
               <Download className="mr-2 h-5 w-5" />
-              Learn More
+              Preview Report
             </Button>
             <Dialog open={showFullReport} onOpenChange={setShowFullReport}>
               <DialogTrigger asChild>
