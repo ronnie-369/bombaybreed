@@ -982,7 +982,7 @@ const PremiumAccessLounge: React.FC = () => {
                       {idx > 0 && (
                         <span
                           aria-hidden="true"
-                          className="mx-2 text-muted-foreground/50 select-none"
+                          className="mx-2 text-muted-foreground select-none"
                         >
                           ·
                         </span>

@@ -477,7 +477,7 @@
     @apply text-sm text-muted-foreground max-w-md mx-auto mb-3;
   }
   .insight-prose .big-stat-source {
-    @apply text-[10px] text-muted-foreground/50 font-mono tracking-wide uppercase;
+    @apply text-[10px] text-muted-foreground font-mono tracking-wide uppercase;
   }
   .insight-prose .what-others-miss {
     @apply bg-primary/5 border border-primary/10 rounded-xl p-6 md:p-8 my-10;
@@ -489,7 +489,7 @@
     @apply text-[14px] text-foreground/80;
   }
   .insight-prose .what-others-miss-sources {
-    @apply text-[11px] text-muted-foreground/50 italic mt-4;
+    @apply text-[11px] text-muted-foreground italic mt-4;
   }
   .insight-prose .article-footer-note {
     @apply border-t border-border/50 pt-8 mt-12;

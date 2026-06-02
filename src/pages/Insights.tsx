@@ -479,7 +479,7 @@ const Insights = () => {
                         </h3>
                         <p className="text-xs text-muted-foreground">{report.description}</p>
                       </div>
-                      <div className="text-[11px] text-muted-foreground/50 mt-4">
+                      <div className="text-[11px] text-muted-foreground mt-4">
                         {report.readTimeMinutes} min read
                       </div>
                     </div>
