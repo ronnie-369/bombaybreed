@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Mail } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
+import { persistFormSubmissionAsync } from '@/lib/formPersistence';
 
 const FORMSPREE_URL = 'https://formspree.io/f/myknnoea';
 
@@ -27,18 +28,20 @@ const Newsletter = () => {
         return;
       }
 
+      const payload = {
+        email: sanitizedEmail,
+        form_type: 'newsletter',
+        _subject: `Newsletter signup - ${sanitizedEmail}`,
+        _replyto: sanitizedEmail,
+      };
       const response = await fetch(FORMSPREE_URL, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          email: sanitizedEmail,
-          form_type: 'newsletter',
-          _subject: `Newsletter signup - ${sanitizedEmail}`,
-          _replyto: sanitizedEmail,
-        }),
+        body: JSON.stringify(payload),
       });
 
       if (!response.ok) throw new Error('Subscription failed');
+      persistFormSubmissionAsync(payload);
 
       toast({ title: "Subscription successful!", description: "You'll receive updates from The Climate Desk." });
       setEmail('');

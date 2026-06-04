@@ -7,6 +7,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Download, CheckCircle } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 import { formatPhoneInput, normalizePhone } from '@/lib/phoneFormat';
+import { persistFormSubmissionAsync } from '@/lib/formPersistence';
 
 interface LeadCaptureFormProps {
   reportTitle: string;
@@ -68,26 +69,28 @@ const LeadCaptureForm: React.FC<LeadCaptureFormProps> = ({
     setIsLoading(true);
 
     try {
+      const payload = {
+        name: formData.name,
+        email: formData.email,
+        designation: formData.designation || undefined,
+        company_name: formData.company_name || undefined,
+        phone: normalizePhone(formData.phone) || undefined,
+        marketing_consent: formData.consent,
+        report_requested: reportTitle,
+        form_type: 'report_download',
+        _subject: `Report download - ${reportTitle} (${formData.name})`,
+        _replyto: formData.email,
+      };
       const response = await fetch(FORMSPREE_URL, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          name: formData.name,
-          email: formData.email,
-          designation: formData.designation || undefined,
-          company_name: formData.company_name || undefined,
-          phone: normalizePhone(formData.phone) || undefined,
-          marketing_consent: formData.consent,
-          report_requested: reportTitle,
-          form_type: 'report_download',
-          _subject: `Report download - ${reportTitle} (${formData.name})`,
-          _replyto: formData.email,
-        }),
+        body: JSON.stringify(payload),
       });
 
       if (!response.ok) {
         throw new Error('Submission failed. Please try again.');
       }
+      persistFormSubmissionAsync(payload);
 
       setIsSubmitted(true);
 

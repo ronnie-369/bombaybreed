@@ -6,6 +6,7 @@ import { Button } from '@/components/ui/button';
 import { supabase } from '@/integrations/supabase/client';
 import { useToast } from '@/hooks/use-toast';
 import { formatPhoneInput, normalizePhone } from '@/lib/phoneFormat';
+import { persistFormSubmissionAsync } from '@/lib/formPersistence';
 
 // ── Color palette ──
 const COLORS = {
@@ -354,23 +355,30 @@ export default function GreenJobsGuide() {
     try {
       const personalityName = PERSONALITIES.find(p => p.id === activePersonality)?.name || activePersonality || '';
       
+      const payload = {
+        name: leadForm.name.trim(),
+        email: leadForm.email.trim(),
+        phone: normalizePhone(leadForm.phone),
+        form_type: 'green-jobs-quiz',
+        personality: personalityName,
+        report_requested: `green-jobs-personality-${activePersonality}`,
+        marketing_consent: false,
+        _subject: `Green Jobs quiz - ${personalityName} (${leadForm.name.trim()})`,
+        _replyto: leadForm.email.trim(),
+      };
       const response = await fetch('https://formspree.io/f/myknnoea', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          name: leadForm.name.trim(),
-          email: leadForm.email.trim(),
-          phone: normalizePhone(leadForm.phone),
-          form_type: 'green-jobs-quiz',
-          personality: personalityName,
-          report_requested: `green-jobs-personality-${activePersonality}`,
-          marketing_consent: false,
-          _subject: `Green Jobs quiz - ${personalityName} (${leadForm.name.trim()})`,
-          _replyto: leadForm.email.trim(),
-        }),
+        body: JSON.stringify(payload),
       });
 
       if (!response.ok) throw new Error('Submission failed');
+      persistFormSubmissionAsync(payload);
+      // Also mark the quiz interaction as completed
+      supabase.from('quiz_interactions').insert({
+        personality_selected: activePersonality || 'unknown',
+        form_completed: true,
+      }).then(() => {});
 
       setLeadCaptured(true);
       setShowGate(false);

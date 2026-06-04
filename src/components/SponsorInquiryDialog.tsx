@@ -26,6 +26,7 @@ import { Skeleton } from '@/components/ui/skeleton';
 import { useToast } from '@/hooks/use-toast';
 import { trackSponsorEvent } from '@/utils/sponsorAnalytics';
 import { formatPhoneInput, normalizePhone } from '@/lib/phoneFormat';
+import { persistFormSubmissionAsync } from '@/lib/formPersistence';
 
 const inquirySchema = z.object({
   name: z
@@ -195,28 +196,29 @@ const SponsorInquiryDialog = ({ open, onOpenChange, project, projectDetails, ban
     };
 
     try {
+      const payload = {
+        reference_id: ref,
+        name: data.name.trim(),
+        email: data.email.trim().toLowerCase(),
+        organisation: data.organisation?.trim() || '',
+        role: data.role?.trim() || '',
+        phone: normalizePhone(data.phone || ''),
+        project_of_interest: data.project.trim(),
+        message: data.message?.trim() || '',
+        consent: data.consent,
+        consent_text: 'User agreed to be contacted about this inquiry and to our privacy practices.',
+        form_type: 'sponsor_open_project_inquiry',
+        ...(bandDetails && {
+          engagement_band: bandDetails.engagement,
+          indicative_price: bandDetails.price,
+          engagement_scope: bandDetails.scope,
+        }),
+        _subject: `Sponsor inquiry [${ref}]: ${data.project.trim()}`,
+      };
       const response = await fetch('https://formspree.io/f/myknnoea', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
-        body: JSON.stringify({
-          reference_id: ref,
-          name: data.name.trim(),
-          email: data.email.trim().toLowerCase(),
-          organisation: data.organisation?.trim() || '',
-          role: data.role?.trim() || '',
-          phone: normalizePhone(data.phone || ''),
-          project_of_interest: data.project.trim(),
-          message: data.message?.trim() || '',
-          consent: data.consent,
-          consent_text: 'User agreed to be contacted about this inquiry and to our privacy practices.',
-          form_type: 'sponsor_open_project_inquiry',
-          ...(bandDetails && {
-            engagement_band: bandDetails.engagement,
-            indicative_price: bandDetails.price,
-            engagement_scope: bandDetails.scope,
-          }),
-          _subject: `Sponsor inquiry [${ref}]: ${data.project.trim()}`,
-        }),
+        body: JSON.stringify(payload),
       });
 
       if (!response.ok) {
@@ -248,6 +250,8 @@ const SponsorInquiryDialog = ({ open, onOpenChange, project, projectDetails, ban
         }
         return;
       }
+
+      persistFormSubmissionAsync(payload);
 
       trackSponsorEvent('sponsor_inquiry_submitted', {
         location: 'premium_access_lounge_open_projects',

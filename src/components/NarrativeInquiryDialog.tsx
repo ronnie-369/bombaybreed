@@ -14,6 +14,7 @@ import { cn } from '@/lib/utils';
 import { format } from 'date-fns';
 import { getSlotsForDate, isBookableDate, formatSlotTime } from '@/utils/booking-slots';
 import { toast } from '@/hooks/use-toast';
+import { persistFormSubmissionAsync } from '@/lib/formPersistence';
 
 const FORMSPREE_URL = 'https://formspree.io/f/myknnoea';
 const LEAD_KEY = 'nhg_lead_v1';
@@ -94,27 +95,29 @@ const NarrativeInquiryDialog: React.FC<Props> = ({ open, onOpenChange, source = 
     setSubmitting(true);
     try {
       const bookedFor = `${format(selectedDate, 'EEEE, d MMM yyyy')} at ${formatSlotTime(selectedSlot)}`;
+      const payload = {
+        name: form.name.trim(),
+        email: form.email.trim().toLowerCase(),
+        company: form.company.trim(),
+        designation: form.designation.trim(),
+        issue_at_hand: form.issue.trim(),
+        source_report: source,
+        report_read_at: readAt || 'unknown',
+        inquiry_submitted_at: new Date().toISOString(),
+        preferred_date: format(selectedDate, 'yyyy-MM-dd'),
+        preferred_time: selectedSlot,
+        booked_for_human: bookedFor,
+        form_type: 'narrative_inquiry_booking',
+        _subject: `[${source}] ${form.name.trim()}, ${form.designation.trim()} at ${form.company.trim()} - booked ${bookedFor}`,
+        _replyto: form.email.trim().toLowerCase(),
+      };
       const res = await fetch(FORMSPREE_URL, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
-        body: JSON.stringify({
-          name: form.name.trim(),
-          email: form.email.trim().toLowerCase(),
-          company: form.company.trim(),
-          designation: form.designation.trim(),
-          issue_at_hand: form.issue.trim(),
-          source_report: source,
-          report_read_at: readAt || 'unknown',
-          inquiry_submitted_at: new Date().toISOString(),
-          preferred_date: format(selectedDate, 'yyyy-MM-dd'),
-          preferred_time: selectedSlot,
-          booked_for_human: bookedFor,
-          form_type: 'narrative_inquiry_booking',
-          _subject: `[${source}] ${form.name.trim()}, ${form.designation.trim()} at ${form.company.trim()} - booked ${bookedFor}`,
-          _replyto: form.email.trim().toLowerCase(),
-        }),
+        body: JSON.stringify(payload),
       });
       if (!res.ok) throw new Error('Submission failed');
+      persistFormSubmissionAsync(payload);
       setStep('confirmed');
     } catch (err: any) {
       toast({ title: 'Could not confirm', description: err?.message || 'Please try again.', variant: 'destructive' });

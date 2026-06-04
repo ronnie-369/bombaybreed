@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { useToast } from '@/hooks/use-toast';
+import { persistFormSubmissionAsync } from '@/lib/formPersistence';
 
 const FORMSPREE_URL = 'https://formspree.io/f/myknnoea';
 
@@ -16,17 +17,19 @@ const NewsletterCapture: React.FC = () => {
     if (!email) return;
     setIsLoading(true);
     try {
+      const payload = {
+        email: email.trim().toLowerCase(),
+        form_type: 'newsletter',
+        _subject: `Newsletter signup (insights) - ${email.trim().toLowerCase()}`,
+        _replyto: email.trim().toLowerCase(),
+      };
       const response = await fetch(FORMSPREE_URL, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          email: email.trim().toLowerCase(),
-          form_type: 'newsletter',
-          _subject: `Newsletter signup (insights) - ${email.trim().toLowerCase()}`,
-          _replyto: email.trim().toLowerCase(),
-        }),
+        body: JSON.stringify(payload),
       });
       if (!response.ok) throw new Error('Failed');
+      persistFormSubmissionAsync(payload);
       setIsSuccess(true);
       toast({ title: 'Subscribed', description: "You'll hear from us when it matters." });
     } catch {
