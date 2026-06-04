@@ -114,7 +114,7 @@ const AdminAnalytics = () => {
         const s = SOURCES[idx];
         if (!res.data) return;
         tot[s.key] = res.data.length;
-        for (const row of res.data as Array<Record<string, string>>) {
+        for (const row of res.data as unknown as Array<Record<string, string>>) {
           const iso = row[s.dateCol];
           if (!iso) continue;
           const k = dayKey(iso);
