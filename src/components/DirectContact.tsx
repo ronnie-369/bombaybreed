@@ -11,6 +11,7 @@ import { Mail } from 'lucide-react';
 import ScrollReveal from '@/components/ui/ScrollReveal';
 import SectionLabel from '@/components/ui/SectionLabel';
 import { formatPhoneInput, normalizePhone } from '@/lib/phoneFormat';
+import { persistFormSubmissionAsync } from '@/lib/formPersistence';
 
 const formSchema = z.object({
   name: z.string().trim().min(2, { message: "Name must be at least 2 characters" }).max(100),
@@ -32,20 +33,22 @@ const DirectContact = () => {
   const onSubmit = async (values: FormValues) => {
     setIsSubmitting(true);
     try {
+      const payload = {
+        name: values.name.trim(),
+        email: values.email.trim().toLowerCase(),
+        phone: normalizePhone(values.phone || ''),
+        message: 'Consultation request from contact section',
+        form_type: 'contact_quick',
+        _subject: `Consultation request (quick form) - ${values.name.trim()}`,
+        _replyto: values.email.trim().toLowerCase(),
+      };
       const response = await fetch('https://formspree.io/f/myknnoea', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          name: values.name.trim(),
-          email: values.email.trim().toLowerCase(),
-          phone: normalizePhone(values.phone || ''),
-          message: 'Consultation request from contact section',
-          form_type: 'contact_quick',
-          _subject: `Consultation request (quick form) - ${values.name.trim()}`,
-          _replyto: values.email.trim().toLowerCase(),
-        }),
+        body: JSON.stringify(payload),
       });
       if (!response.ok) throw new Error('Failed');
+      persistFormSubmissionAsync(payload);
 
       toast({
         title: "Request sent!",

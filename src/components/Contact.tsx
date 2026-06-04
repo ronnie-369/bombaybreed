@@ -12,6 +12,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { useInView } from '@/hooks/use-in-view';
 import BookingDialog from './LazyBookingDialog';
 import { formatPhoneInput, normalizePhone } from '@/lib/phoneFormat';
+import { persistFormSubmissionAsync } from '@/lib/formPersistence';
 
 const formSchema = z.object({
   name: z.string().min(2, {
@@ -46,22 +47,24 @@ const Contact = () => {
 
   const onSubmit = async (data: FormValues) => {
     try {
+      const payload = {
+        name: data.name.trim(),
+        email: data.email.trim().toLowerCase(),
+        company: data.company?.trim() || '',
+        phone: normalizePhone(data.phone || ''),
+        message: data.message.trim(),
+        form_type: 'contact',
+        _subject: `General enquiry - ${data.name.trim()}${data.company?.trim() ? ` (${data.company.trim()})` : ''}`,
+        _replyto: data.email.trim().toLowerCase(),
+      };
       const response = await fetch('https://formspree.io/f/myknnoea', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          name: data.name.trim(),
-          email: data.email.trim().toLowerCase(),
-          company: data.company?.trim() || '',
-          phone: normalizePhone(data.phone || ''),
-          message: data.message.trim(),
-          form_type: 'contact',
-          _subject: `General enquiry - ${data.name.trim()}${data.company?.trim() ? ` (${data.company.trim()})` : ''}`,
-          _replyto: data.email.trim().toLowerCase(),
-        }),
+        body: JSON.stringify(payload),
       });
 
       if (!response.ok) throw new Error('Failed');
+      persistFormSubmissionAsync(payload);
 
       toast({
         title: "Message sent successfully!",

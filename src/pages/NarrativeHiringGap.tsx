@@ -6,6 +6,7 @@ import narrativeChangeVideo from '@/assets/narrative-hiring-change.mp4.asset.jso
 import climatePartyWorkshop from '@/assets/climate-party-workshop.jpg.asset.json';
 import testimonial1 from '@/assets/testimonial-1.mp4.asset.json';
 import testimonial2 from '@/assets/testimonial-2.mp4.asset.json';
+import { persistFormSubmissionAsync } from '@/lib/formPersistence';
 
 // Same Formspree endpoint used elsewhere in the project — delivers to
 // theresa.ronnie@bombaybreed.com. Lead-capture and booking both route here.
@@ -45,22 +46,26 @@ const Gate: React.FC<{ onUnlock: () => void }> = ({ onUnlock }) => {
     setError(null);
     setSubmitting(true);
     try {
+      const payload = {
+        name: form.name.trim(),
+        email: form.email.trim().toLowerCase(),
+        company: form.company.trim(),
+        role: form.role.trim(),
+        form_type: 'report_download',
+        report: 'India\'s Narrative Hiring Gap',
+        report_requested: "India's Narrative Hiring Gap",
+        marketing_consent: false,
+        _subject: `Report download - Narrative Hiring Gap (${form.name.trim()})`,
+        _replyto: form.email.trim().toLowerCase(),
+        timestamp: new Date().toISOString(),
+      };
       const res = await fetch(FORMSPREE_URL, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
-        body: JSON.stringify({
-          name: form.name.trim(),
-          email: form.email.trim().toLowerCase(),
-          company: form.company.trim(),
-          role: form.role.trim(),
-          form_type: 'report_download',
-          report: 'India\'s Narrative Hiring Gap',
-          _subject: `Report download - Narrative Hiring Gap (${form.name.trim()})`,
-          _replyto: form.email.trim().toLowerCase(),
-          timestamp: new Date().toISOString(),
-        }),
+        body: JSON.stringify(payload),
       });
       if (!res.ok) throw new Error('Submission failed. Please try again.');
+      persistFormSubmissionAsync(payload);
       try {
         localStorage.setItem(STORAGE_KEY, '1');
         localStorage.setItem('nhg_lead_v1', JSON.stringify({

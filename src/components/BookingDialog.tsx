@@ -16,6 +16,7 @@ import { format } from 'date-fns';
 import { getSlotsForDate, isBookableDate, formatSlotTime } from '@/utils/booking-slots';
 import { toast } from '@/hooks/use-toast';
 import { formatPhoneInput, normalizePhone } from '@/lib/phoneFormat';
+import { persistFormSubmissionAsync } from '@/lib/formPersistence';
 
 const FORMSPREE_URL = 'https://formspree.io/f/myknnoea';
 
@@ -78,24 +79,26 @@ const BookingDialog = ({
 
     setSubmitting(true);
     try {
+      const payload = {
+        name: form.name.trim(),
+        email: form.email.trim().toLowerCase(),
+        phone: normalizePhone(form.phone) || null,
+        message: form.message.trim() || null,
+        preferred_date: format(selectedDate, 'yyyy-MM-dd'),
+        preferred_time: selectedSlot,
+        form_type: 'booking',
+        subject: subject || null,
+        _subject: `Consultation booking - ${form.name.trim()} (${format(selectedDate, 'd MMM yyyy')} ${selectedSlot})`,
+        _replyto: form.email.trim().toLowerCase(),
+      };
       const response = await fetch(FORMSPREE_URL, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          name: form.name.trim(),
-          email: form.email.trim().toLowerCase(),
-          phone: normalizePhone(form.phone) || null,
-          message: form.message.trim() || null,
-          preferred_date: format(selectedDate, 'yyyy-MM-dd'),
-          preferred_time: selectedSlot,
-          form_type: 'booking',
-          subject: subject || null,
-          _subject: `Consultation booking - ${form.name.trim()} (${format(selectedDate, 'd MMM yyyy')} ${selectedSlot})`,
-          _replyto: form.email.trim().toLowerCase(),
-        }),
+        body: JSON.stringify(payload),
       });
 
       if (!response.ok) throw new Error('Booking failed');
+      persistFormSubmissionAsync(payload);
       setStep('confirmed');
     } catch (err: any) {
       toast({

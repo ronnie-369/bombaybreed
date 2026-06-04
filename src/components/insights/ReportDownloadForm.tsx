@@ -5,6 +5,7 @@ import { Label } from '@/components/ui/label';
 import { Check, Download } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 import { formatPhoneInput, normalizePhone } from '@/lib/phoneFormat';
+import { persistFormSubmissionAsync } from '@/lib/formPersistence';
 
 const FORMSPREE_URL = 'https://formspree.io/f/myknnoea';
 
@@ -40,22 +41,24 @@ const ReportDownloadForm: React.FC<ReportDownloadFormProps> = ({ reportTitle }) 
 
     setIsLoading(true);
     try {
+      const payload = {
+        name: formData.name.trim(),
+        email: formData.email.trim().toLowerCase(),
+        organisation: formData.org.trim(),
+        phone: normalizePhone(formData.phone) || undefined,
+        report_requested: reportTitle,
+        form_type: 'report_download',
+        _subject: `Report download - ${reportTitle} (${formData.name.trim()})`,
+        _replyto: formData.email.trim().toLowerCase(),
+      };
       const response = await fetch(FORMSPREE_URL, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          name: formData.name.trim(),
-          email: formData.email.trim().toLowerCase(),
-          organisation: formData.org.trim(),
-          phone: normalizePhone(formData.phone) || undefined,
-          report_requested: reportTitle,
-          form_type: 'report_download',
-          _subject: `Report download - ${reportTitle} (${formData.name.trim()})`,
-          _replyto: formData.email.trim().toLowerCase(),
-        }),
+        body: JSON.stringify(payload),
       });
 
       if (!response.ok) throw new Error('Submission failed');
+      persistFormSubmissionAsync(payload);
 
       setIsSuccess(true);
 
