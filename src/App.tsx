@@ -92,6 +92,7 @@ const AppContent = () => {
               <Route path="/admin/seo" element={<AdminSEO />} />
               <Route path="/admin/security" element={<AdminSecurity />} />
               <Route path="/admin/inquiries" element={<AdminInquiries />} />
+              <Route path="/admin/analytics" element={<AdminAnalytics />} />
               
               {/* Insight detail pages (template-driven) */}
               <Route path="/insights/:slug" element={<InsightDetail />} />
