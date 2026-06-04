@@ -173,6 +173,7 @@ const AdminInquiries = () => {
             </p>
           </div>
           <div className="flex gap-2">
+            <Link to="/admin/analytics"><Button variant="outline">Analytics</Button></Link>
             <Link to="/admin"><Button variant="outline">Back to Admin</Button></Link>
           </div>
         </div>
