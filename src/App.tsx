@@ -22,6 +22,7 @@ const Admin = lazy(() => import("./pages/Admin"));
 const AdminSEO = lazy(() => import("./pages/AdminSEO"));
 const AdminSecurity = lazy(() => import("./pages/AdminSecurity"));
 const AdminInquiries = lazy(() => import("./pages/AdminInquiries"));
+const AdminAnalytics = lazy(() => import("./pages/AdminAnalytics"));
 const ServicePage = lazy(() => import("./pages/ServicePage"));
 const Services = lazy(() => import("./pages/Services"));
 const About = lazy(() => import("./pages/About"));
@@ -91,6 +92,7 @@ const AppContent = () => {
               <Route path="/admin/seo" element={<AdminSEO />} />
               <Route path="/admin/security" element={<AdminSecurity />} />
               <Route path="/admin/inquiries" element={<AdminInquiries />} />
+              <Route path="/admin/analytics" element={<AdminAnalytics />} />
               
               {/* Insight detail pages (template-driven) */}
               <Route path="/insights/:slug" element={<InsightDetail />} />
