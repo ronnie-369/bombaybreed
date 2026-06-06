@@ -116,19 +116,8 @@ const BeforeThePeak: React.FC = () => {
               policymakers can take now.
             </p>
 
-            <div className="mt-10 flex flex-col items-start gap-3">
-              <a
-                href={REPORT_URL}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 h-12 px-8 bg-accent text-accent-foreground text-[13px] font-semibold uppercase tracking-wider rounded-lg hover:bg-accent/90 transition-colors"
-              >
-                <Download className="w-4 h-4" />
-                Download the full report
-              </a>
-              <p className="text-xs text-muted-foreground">
-                Opens the full briefing in a new tab.
-              </p>
+            <div className="mt-12">
+              <ReportDownloadForm reportTitle={REPORT_TITLE} />
             </div>
           </div>
         </section>
