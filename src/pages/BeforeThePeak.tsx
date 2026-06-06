@@ -6,8 +6,9 @@ import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import AuthorBox from '@/components/insights/AuthorBox';
 import NewsletterCapture from '@/components/insights/NewsletterCapture';
+import ReportDownloadForm from '@/components/insights/ReportDownloadForm';
 
-const REPORT_URL = '/reports/before-the-peak.html';
+const REPORT_TITLE = 'Before the Peak: a super El Nino is forming';
 
 const BeforeThePeak: React.FC = () => {
   const articleSchema = {
