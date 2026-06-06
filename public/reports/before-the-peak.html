@@ -1,0 +1,662 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Before the Peak / Super El Nino 2026-27</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<style>
+  :root{
+    --offwhite:#FBFBF9;--black:#0A0A0A;--slate:#1A3C5B;--copper:#C0946D;
+    --gray:#6B7280;--border:#E5E5E1;--rust:#9C4A2E;--ink2:#243B4A;--card:#FFFFFF;--steel:#9CB0BE;--green:#3f6b51;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  body{background:var(--offwhite);color:var(--black);font-family:'Inter',-apple-system,sans-serif;line-height:1.6;font-size:17px;-webkit-font-smoothing:antialiased;}
+  #progress{position:fixed;top:0;left:0;height:3px;background:var(--copper);width:0;z-index:200;}
+  nav{position:fixed;top:0;left:0;right:0;height:52px;background:rgba(251,251,249,0.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--border);z-index:150;display:flex;align-items:center;justify-content:space-between;padding:0 26px;}
+  nav .brand{font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:2px;text-transform:uppercase;font-weight:500;}
+  nav .brand span{color:var(--copper);}
+  nav .links{display:flex;gap:20px;}
+  nav .links a{font-size:12px;color:var(--gray);text-decoration:none;transition:color .2s;}
+  nav .links a:hover{color:var(--slate);}
+  @media(max-width:860px){nav .links{display:none;}}
+
+  .wrap{max-width:1060px;margin:0 auto;padding:0 26px;}
+  .narrow{max-width:730px;margin:0 auto;padding:0 26px;}
+  .label{font-weight:600;font-size:11px;letter-spacing:4px;text-transform:uppercase;color:var(--copper);}
+  a.cite{color:var(--slate);text-decoration:none;border-bottom:1px solid #c9d3da;transition:border-color .15s;}
+  a.cite:hover{border-color:var(--slate);}
+
+  header.hero{min-height:92vh;display:flex;flex-direction:column;justify-content:center;padding:110px 0 70px;position:relative;overflow:hidden;}
+  .hero-ring{position:absolute;right:-200px;top:50%;transform:translateY(-50%);width:680px;height:680px;opacity:0.5;pointer-events:none;}
+  @media(max-width:900px){.hero-ring{opacity:0.15;right:-300px;}}
+  .kicker{margin-bottom:24px;}
+  h1.title{font-family:'Playfair Display',serif;font-weight:500;font-size:clamp(46px,8.4vw,98px);line-height:0.96;letter-spacing:-1.5px;max-width:13ch;}
+  .subtitle{font-family:'Playfair Display',serif;font-style:italic;font-weight:400;font-size:clamp(21px,3vw,29px);color:var(--slate);margin-top:24px;max-width:28ch;line-height:1.28;}
+  .deck{margin-top:30px;max-width:54ch;color:var(--gray);font-size:18px;line-height:1.55;}
+  .meta-row{margin-top:40px;display:flex;gap:30px;flex-wrap:wrap;font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--gray);}
+  .meta-row b{color:var(--black);font-weight:500;}
+
+  section{padding:78px 0;border-top:1px solid var(--border);position:relative;}
+  .chapnum{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--copper);letter-spacing:2px;}
+  h2{font-family:'Playfair Display',serif;font-weight:500;font-size:clamp(30px,4.8vw,50px);line-height:1.04;letter-spacing:-0.5px;margin:12px 0 0;max-width:19ch;}
+  h3{font-weight:600;font-size:20px;letter-spacing:-0.2px;margin:40px 0 10px;}
+  .lede{font-size:20px;line-height:1.5;margin-top:22px;max-width:58ch;color:var(--ink2);}
+  p{margin-top:16px;max-width:62ch;color:#1c1c1c;}
+  p.sub{color:var(--gray);font-size:15px;}
+  strong{font-weight:600;}
+
+  .stat-band{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--border);border:1px solid var(--border);border-radius:12px;overflow:hidden;margin:40px 0;}
+  @media(max-width:760px){.stat-band{grid-template-columns:repeat(2,1fr);}}
+  .stat{background:var(--card);padding:24px 20px;}
+  .stat .n{font-family:'Playfair Display',serif;font-size:40px;line-height:1;color:var(--slate);font-weight:500;}
+  .stat .n.warn{color:var(--rust);}
+  .stat .n.good{color:var(--green);}
+  .stat .u{font-size:12px;color:var(--gray);margin-top:9px;line-height:1.4;}
+
+  .chart-card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:28px 26px 20px;margin:36px 0;}
+  .chart-card .ct{font-weight:600;font-size:16px;}
+  .chart-card .cs{font-size:13px;color:var(--gray);margin-top:5px;margin-bottom:16px;max-width:72ch;}
+  .chart-wrap{position:relative;height:330px;}
+  .chart-wrap.tall{height:400px;}
+  .source-line{font-family:'JetBrains Mono',monospace;font-size:10.5px;color:var(--gray);margin-top:14px;}
+
+  .pull{margin:46px 0;padding:0 0 0 28px;border-left:3px solid var(--copper);}
+  .pull q{font-family:'Playfair Display',serif;font-style:italic;font-size:clamp(22px,3.2vw,31px);line-height:1.3;display:block;}
+  .pull q:before{content:none;}
+  .pull .attr{margin-top:16px;font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--gray);}
+  .pull .attr b{color:var(--slate);font-weight:500;}
+
+  .tbl{width:100%;border-collapse:collapse;margin:30px 0;font-size:14.5px;}
+  .tbl th{text-align:left;font-weight:600;font-size:11px;letter-spacing:1px;text-transform:uppercase;color:var(--gray);padding:11px 13px;border-bottom:2px solid var(--border);}
+  .tbl td{padding:12px 13px;border-bottom:1px solid var(--border);color:#1c1c1c;}
+  .tbl tr td:first-child{font-weight:600;color:var(--slate);}
+  .tag{display:inline-block;font-size:10.5px;font-family:'JetBrains Mono',monospace;padding:2px 8px;border-radius:4px;}
+  .tag.dry{background:#F4ECE4;color:var(--rust);}
+  .tag.wet{background:#E8EEF3;color:var(--slate);}
+  .tag.win{background:#E7F0EA;color:var(--green);}
+
+  .two{display:grid;grid-template-columns:1fr 1fr;gap:34px;margin-top:24px;}
+  @media(max-width:780px){.two{grid-template-columns:1fr;gap:6px;}}
+
+  .callout{background:#F4ECE4;border:1px solid #E7D9C9;border-radius:12px;padding:22px 24px;margin:32px 0;}
+  .callout .label{color:var(--rust);}
+  .callout p{margin-top:9px;color:#3a2a1e;}
+  .note{font-size:13px;color:var(--gray);background:var(--card);border:1px dashed var(--border);border-radius:10px;padding:16px 18px;margin:28px 0;}
+
+  /* explainer + enso diagram */
+  .explainer{background:#EEF2F5;border:1px solid #DDE6EC;border-left:4px solid var(--slate);border-radius:12px;padding:26px 28px;margin:36px 0;}
+  .explainer .label{color:var(--slate);}
+  .explainer h4{font-family:'Playfair Display',serif;font-weight:600;font-size:23px;margin:9px 0 0;color:var(--black);max-width:none;}
+  .explainer p{margin-top:12px;max-width:66ch;font-size:15.5px;color:#243B4A;line-height:1.58;}
+  .explainer .trad{margin-top:15px;padding-top:15px;border-top:1px solid #DDE6EC;}
+  .explainer .trad b{color:var(--slate);font-weight:600;}
+  .enso{margin:30px 0 4px;}
+  .enso-head{font-weight:600;font-size:15px;color:var(--black);margin-bottom:4px;}
+  .enso-sub{font-size:13px;color:var(--gray);margin-bottom:14px;}
+  .enso-tabs{display:flex;gap:8px;margin-bottom:14px;flex-wrap:wrap;}
+  .enso-tab{font-family:'Inter',sans-serif;font-size:13px;font-weight:600;padding:8px 16px;border-radius:8px;border:1px solid var(--border);background:#fff;color:var(--gray);cursor:pointer;transition:all .15s;}
+  .enso-tab:hover{border-color:var(--slate);color:var(--slate);}
+  .enso-tab.active{background:var(--slate);color:#fff;border-color:var(--slate);}
+  .enso-stage{background:#fff;border:1px solid var(--border);border-radius:12px;padding:16px 16px 10px;}
+  .enso-stage svg{width:100%;height:auto;display:block;}
+  .enso-cap{font-size:13.5px;color:#243B4A;margin-top:12px;line-height:1.55;min-height:60px;}
+  .enso-cap b{color:var(--slate);font-weight:600;}
+  .enso-src{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--gray);margin-top:6px;}
+
+  /* timeline */
+  .tl-head{font-weight:600;font-size:20px;letter-spacing:-0.2px;margin:48px 0 4px;}
+  .tl-sub{font-size:13.5px;color:var(--gray);margin-bottom:26px;}
+  .timeline{margin:0 0 4px;padding-left:4px;}
+  .tl-item{position:relative;padding:0 0 26px 32px;border-left:2px solid var(--border);}
+  .tl-item:last-child{border-left-color:transparent;padding-bottom:0;}
+  .tl-dot{position:absolute;left:-9px;top:3px;width:16px;height:16px;border-radius:50%;background:var(--slate);border:3px solid var(--offwhite);}
+  .tl-year{font-family:'JetBrains Mono',monospace;font-weight:500;font-size:13px;color:var(--copper);letter-spacing:1px;}
+  .tl-title{font-weight:600;font-size:15.5px;margin-top:1px;color:var(--black);}
+  .tl-ppp{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:10px;}
+  @media(max-width:600px){.tl-ppp{grid-template-columns:1fr;gap:8px;}}
+  .ppp{font-size:12.5px;line-height:1.42;}
+  .ppp .k{font-family:'JetBrains Mono',monospace;font-size:9.5px;letter-spacing:1px;text-transform:uppercase;display:block;margin-bottom:3px;font-weight:500;}
+  .ppp.people .k{color:var(--rust);}
+  .ppp.planet .k{color:var(--slate);}
+  .ppp.profits .k{color:#a9763f;}
+  .ppp .v{color:#444;}
+  .tl-tag{display:inline-block;margin-top:10px;font-family:'JetBrains Mono',monospace;font-size:10px;padding:2px 9px;border-radius:4px;background:#EEF2F5;color:var(--slate);letter-spacing:0.5px;}
+  .tl-tag.recon{background:#f1ece5;color:#7a6a55;}
+  .tl-tag.fore{background:#F4ECE4;color:var(--rust);}
+
+  /* playbook cards */
+  .play{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:32px 0;}
+  @media(max-width:780px){.play{grid-template-columns:1fr;}}
+  .pcard{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:22px 22px;}
+  .pcard .pk{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:1px;text-transform:uppercase;color:var(--copper);}
+  .pcard h4{font-size:16.5px;font-weight:600;margin:6px 0 0;}
+  .pcard p{font-size:13.5px;color:#444;margin-top:8px;line-height:1.5;max-width:none;}
+  .pcard .ev{font-size:12px;color:var(--gray);margin-top:9px;font-style:italic;}
+  .pdir{display:inline-block;margin-top:11px;font-size:11px;font-weight:600;font-family:'JetBrains Mono',monospace;padding:3px 9px;border-radius:4px;letter-spacing:0.5px;}
+  .pdir.up{background:#E7F0EA;color:var(--green);}
+  .pdir.down{background:#F4ECE4;color:var(--rust);}
+  .pdir.mix{background:#EEF2F5;color:var(--slate);}
+  /* cocoa feature */
+  .feat-imgs{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:30px 0;}
+  @media(max-width:680px){.feat-imgs{grid-template-columns:1fr;}}
+  .feat-imgs figure{margin:0;}
+  .feat-imgs img{width:100%;height:240px;object-fit:cover;border-radius:10px;border:1px solid var(--border);display:block;background:#eee;}
+  .feat-imgs figcaption{font-size:11.5px;color:var(--gray);margin-top:7px;line-height:1.4;}
+  .vidlist{display:grid;grid-template-columns:repeat(2,1fr);gap:18px;margin:26px 0 8px;}
+  @media(max-width:680px){.vidlist{grid-template-columns:1fr;}}
+  .vidlink{display:block;border:1px solid var(--border);border-radius:12px;background:var(--card);text-decoration:none;overflow:hidden;transition:border-color .15s,box-shadow .15s;}
+  .vidlink:hover{border-color:var(--rust);box-shadow:0 5px 16px rgba(0,0,0,0.07);}
+  .vidthumb{position:relative;width:100%;aspect-ratio:16/9;background:#0a0a0a;overflow:hidden;}
+  .vidthumb img{width:100%;height:100%;object-fit:cover;display:block;}
+  .vidthumb .pl{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:48px;height:48px;border-radius:50%;background:rgba(156,74,46,0.94);color:#fff;display:flex;align-items:center;justify-content:center;font-size:16px;padding-left:3px;transition:transform .15s;}
+  .vidlink:hover .pl{transform:translate(-50%,-50%) scale(1.08);}
+  .vidmeta{padding:14px 16px 16px;}
+  .vidmeta .vt{font-size:14px;color:var(--black);font-weight:600;line-height:1.35;display:block;}
+  .vidmeta .vc{font-size:11px;color:var(--gray);margin-top:8px;font-family:'JetBrains Mono',monospace;letter-spacing:0.5px;display:block;}
+  /* levers */
+  .levers{margin:28px 0 8px;display:flex;flex-direction:column;gap:13px;}
+  .lever{display:flex;gap:16px;align-items:flex-start;background:var(--card);border:1px solid var(--border);border-left:3px solid var(--copper);border-radius:12px;padding:18px 22px;}
+  .lever .ln{flex:none;width:30px;height:30px;border-radius:8px;background:var(--slate);color:#fff;display:flex;align-items:center;justify-content:center;font-family:'JetBrains Mono',monospace;font-size:13px;font-weight:600;margin-top:1px;}
+  .lever .lc h4{font-size:15.5px;font-weight:600;margin:3px 0 0;}
+  .lever .lc p{font-size:13.5px;color:#444;margin-top:6px;max-width:none;line-height:1.5;}
+
+  #sources{background:var(--black);color:#cfcfca;}
+  #sources h2{color:var(--offwhite);}#sources .label{color:var(--copper);}
+  .src-grid{margin-top:30px;display:grid;grid-template-columns:1fr 1fr;gap:26px 40px;}
+  @media(max-width:760px){.src-grid{grid-template-columns:1fr;}}
+  .src-grid h4{font-size:12px;letter-spacing:1px;text-transform:uppercase;color:var(--copper);margin-bottom:10px;font-weight:600;}
+  .src-grid ol{list-style:none;counter-reset:s;}
+  .src-grid li{counter-increment:s;font-size:12.5px;line-height:1.5;padding:6px 0;border-bottom:1px solid #1e1e1e;color:#b5b5b0;}
+  .src-grid li:before{content:counter(s);font-family:'JetBrains Mono',monospace;color:var(--copper);margin-right:9px;font-size:11px;}
+  .src-grid a{color:#9fb6c9;text-decoration:none;word-break:break-word;}
+  .src-grid a:hover{color:#fff;}
+  footer.end{background:var(--black);color:#8a8a85;padding:36px 0 56px;font-family:'JetBrains Mono',monospace;font-size:11px;text-align:center;line-height:1.7;}
+</style>
+</head>
+<body>
+<div id="progress"></div>
+<nav>
+  <div class="brand">THE CLIMATE DESK <span>/</span> BRIEFING</div>
+  <div class="links">
+    <a href="#warning">The Warning</a>
+    <a href="#scale">The Scale</a>
+    <a href="#exposure">Exposure</a>
+    <a href="#prepare">The Window</a>
+    <a href="#invest">The Playbook</a>
+    <a href="#cocoa">Cocoa</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<header class="hero">
+  <svg class="hero-ring" viewBox="0 0 600 600" fill="none" aria-hidden="true">
+    <circle cx="300" cy="300" r="250" stroke="#C0946D" stroke-width="1.2" opacity="0.7"/>
+    <circle cx="300" cy="300" r="195" stroke="#1A3C5B" stroke-width="1" opacity="0.5"/>
+    <circle cx="300" cy="300" r="140" stroke="#9C4A2E" stroke-width="1" opacity="0.4"/>
+    <path d="M300 50 A250 250 0 0 1 550 300" stroke="#9C4A2E" stroke-width="3" fill="none"/>
+    <circle cx="550" cy="300" r="6" fill="#9C4A2E"/>
+  </svg>
+  <div class="wrap">
+    <div class="kicker label">The Climate Desk &nbsp;·&nbsp; ENSO and Markets &nbsp;·&nbsp; 6 June 2026</div>
+    <h1 class="title">Before the Peak</h1>
+    <div class="subtitle">A super El Niño is forming. What it means for richer economies, and the window to act.</div>
+    <p class="deck">The United Nations put the odds at 90 per cent this week. For wealthy economies this is not a humanitarian story; it is a financial one, arriving through food prices, supply chains and insurance. It is also the most predictable major climate event on Earth, and there are eight months to prepare.</p>
+  </div>
+</header>
+
+<!-- 1 THE WARNING -->
+<section id="warning">
+  <div class="narrow">
+    <div class="chapnum">THE WARNING</div>
+    <h2>"Arriving on our doorstep."</h2>
+    <div class="pull" style="margin-top:30px;">
+      <q>El Niño is arriving on our doorstep in the coming months with 90 per cent certainty. Impacts will hit even harder, travel even farther, and cross borders with devastating speed.</q>
+      <div class="attr"><b>António Guterres</b>, UN Secretary-General &nbsp;·&nbsp; 2 June 2026</div>
+    </div>
+    <p>The <a class="cite" href="https://wmo.int/news/media-centre/wmo-prepare-el-nino" target="_blank" rel="noopener">World Meteorological Organization (WMO)</a> confirmed the onset on 2 June. It puts the chance of El Niño at 80 per cent for June to August and at or above 90 per cent after. Beneath the surface, the tropical Pacific is already running 6°C above average, a reservoir of heat waiting to rise. The United States agency <a class="cite" href="https://www.cpc.ncep.noaa.gov/products/analysis_monitoring/enso/roni/probabilities.php" target="_blank" rel="noopener">NOAA</a> gives a roughly 60 per cent chance the event reaches strong by autumn, and around one in three that it becomes a super El Niño, the rarest and most disruptive class. The peak is expected between November 2026 and February 2027.</p>
+
+    <div class="explainer">
+      <div class="label">What is El Niño?</div>
+      <h4>A warm patch of Pacific that moves the whole world's weather.</h4>
+      <p>El Niño is the warm phase of the El Niño-Southern Oscillation (ENSO), the most powerful natural climate cycle on the planet. In a normal year, Pacific trade winds push warm surface water westward towards Asia and let cold, nutrient-rich water rise off South America. During an El Niño those winds slacken, the warm water slides back east, and the heat it releases reorders rainfall and temperature far beyond the Pacific. It recurs every two to seven years, lasts around nine to twelve months, and peaks between November and February. Its cool opposite is La Niña.</p>
+      <div class="trad"><p><b>Traditionally.</b> Peruvian fishermen named it centuries ago. A warm current that arrived around Christmas and drove the anchovies away was christened El Niño, Spanish for "the boy", after the Christ child. For most of its history it was treated as a local Pacific quirk. Only in the 1960s did the meteorologist Jacob Bjerknes connect the warm ocean to the atmospheric Southern Oscillation and reveal it as a planet-scale engine of weather.</p></div>
+      <div class="enso">
+        <div class="enso-head">The two phases over North America</div>
+        <div class="enso-sub">How each phase reshapes the winter jet stream and weather across the United States and Canada.</div>
+        <div class="two" style="margin-top:14px;">
+          <figure style="margin:0;">
+            <img src="https://oceanservice.noaa.gov/facts/elnino.jpg" alt="NOAA graphic showing the El Nino winter weather pattern over North America" loading="lazy" style="width:100%;border-radius:10px;border:1px solid var(--border);display:block;">
+            <figcaption style="font-size:12.5px;color:#243B4A;margin-top:9px;line-height:1.45;"><b style="color:var(--slate);">El Niño.</b> The Pacific jet stream shifts south, bringing wetter conditions to the southern United States and warmer, drier weather to the north.</figcaption>
+          </figure>
+          <figure style="margin:0;">
+            <img src="https://oceanservice.noaa.gov/facts/lanina.jpg" alt="NOAA graphic showing the La Nina winter weather pattern over North America" loading="lazy" style="width:100%;border-radius:10px;border:1px solid var(--border);display:block;">
+            <figcaption style="font-size:12.5px;color:#243B4A;margin-top:9px;line-height:1.45;"><b style="color:var(--slate);">La Niña.</b> The jet stream moves north, drying the southern United States while the north and Canada turn wetter and colder.</figcaption>
+          </figure>
+        </div>
+        <div class="enso-src">Source: NOAA Ocean Service, "What are El Niño and La Niña?", oceanservice.noaa.gov/facts/ninonina.html. Public domain.</div>
+      </div>
+    </div>
+  </div>
+  <div class="wrap">
+    <div class="stat-band">
+      <div class="stat"><div class="n warn">90%</div><div class="u">Certainty El Niño arrives in the coming months (UN, WMO)</div></div>
+      <div class="stat"><div class="n">80%</div><div class="u">Probability for June to August 2026</div></div>
+      <div class="stat"><div class="n warn">60%</div><div class="u">Chance it reaches strong by autumn (NOAA)</div></div>
+      <div class="stat"><div class="n warn">1 in 3</div><div class="u">Chance it becomes a super event (NOAA)</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- 2 THE SCALE -->
+<section id="scale">
+  <div class="narrow">
+    <div class="chapnum">THE SCALE</div>
+    <h2>Four times in seventy years, and it moves markets.</h2>
+    <p class="lede">A super El Niño is the top of the scale: a sea-surface anomaly of 2.0°C or more in the central Pacific. Since 1950, only four events have reached it, and every one left a mark on people, the planet and prices.</p>
+    <p>Strength is read off the <a class="cite" href="https://www.climate.gov/news-features/understanding-climate/climate-variability-oceanic-nino-index" target="_blank" rel="noopener">Oceanic Niño Index</a>, the three-month temperature anomaly in the Niño 3.4 region. The 2015 to 2016 event set the record at 2.6°C. Model runs collected by <a class="cite" href="https://www.carbonbrief.org/state-of-the-climate-strong-el-nino-puts-2026-on-track-for-second-warmest-year/" target="_blank" rel="noopener">Carbon Brief</a> now place the 2026 median near 2.2°C, inside super territory, though the true peak will not be settled until the autumn.</p>
+  </div>
+  <div class="wrap">
+    <div class="two">
+      <div class="chart-card">
+        <div class="ct">The super club, and a new candidate</div>
+        <div class="cs">Peak Oceanic Niño Index of every super event since 1950, with the 2026 to 2027 model median. The dashed line at 2.0°C marks the super threshold.</div>
+        <div class="chart-wrap" style="height:330px;"><canvas id="oniChart"></canvas></div>
+        <div class="source-line">SOURCE: NOAA Climate.gov ONI; Carbon Brief model synthesis (21 Apr 2026). 2026 to 2027 is a forecast median.</div>
+      </div>
+      <div class="chart-card">
+        <div class="ct">How the odds stack up</div>
+        <div class="cs">NOAA probabilities for the 2026 to 2027 event by strength, at peak season.</div>
+        <div class="chart-wrap" style="height:330px;"><canvas id="probChart"></canvas></div>
+        <div class="source-line">SOURCE: NOAA Climate Prediction Center; WMO Update (2 Jun 2026). WMO uses "very strong", not "super".</div>
+      </div>
+    </div>
+    <div class="chart-card">
+      <div class="ct">El Niño years break the temperature record</div>
+      <div class="cs">Global mean surface temperature above the 1850 to 1900 baseline. The biggest El Niño push lands the year after the Pacific peak, which is why 2027 is the year to watch.</div>
+      <div class="chart-wrap"><canvas id="tempChart"></canvas></div>
+      <div class="source-line">SOURCE: Copernicus / ECMWF (2023 to 2025 observed); Carbon Brief best estimate for 2026 (1.47°C). 2027 carries the peak El Niño signal.</div>
+    </div>
+  </div>
+
+  <div class="narrow">
+    <div class="tl-head">The great events: people, planet, profits</div>
+    <div class="tl-sub">Each super El Niño judged on three ledgers: people, planet and profits. The Oceanic Niño Index (ONI) is the standard gauge of strength, the central Pacific's temperature above normal, with a peak of 2.0°C or more marking a super event. "Reconstructed" means estimated from proxies such as coral and historical records, because direct measurement only begins in 1950, so the 1877 event is inferred, not recorded.</div>
+    <div class="timeline">
+      <div class="tl-item"><span class="tl-dot" style="background:#9C4A2E;"></span>
+        <div class="tl-year">1877 to 1878</div>
+        <div class="tl-title">The deadliest on record</div>
+        <div class="tl-ppp">
+          <div class="ppp people"><span class="k">People</span><span class="v">Global famines; many millions dead across India, China and Brazil.</span></div>
+          <div class="ppp planet"><span class="k">Planet</span><span class="v">Failed monsoon and synchronised drought across three continents.</span></div>
+          <div class="ppp profits"><span class="k">Profits</span><span class="v">Indian grain exports to Britain rose as people starved; merchants profited (Davis).</span></div>
+        </div>
+        <span class="tl-tag recon">reconstructed · strongest in 150 years</span>
+      </div>
+      <div class="tl-item"><span class="tl-dot" style="background:#1A3C5B;"></span>
+        <div class="tl-year">1972 to 1973</div>
+        <div class="tl-title">The world grain crisis</div>
+        <div class="tl-ppp">
+          <div class="ppp people"><span class="k">People</span><span class="v">Global food-price shock and hunger as supplies tightened.</span></div>
+          <div class="ppp planet"><span class="k">Planet</span><span class="v">Collapse of the Peruvian anchovy fishery, the world's largest.</span></div>
+          <div class="ppp profits"><span class="k">Profits</span><span class="v">Soybean prices tripled; US grain traders gained in the Soviet "grain robbery".</span></div>
+        </div>
+        <span class="tl-tag">ONI peak 2.1°C</span>
+      </div>
+      <div class="tl-item"><span class="tl-dot" style="background:#1A3C5B;"></span>
+        <div class="tl-year">1982 to 1983</div>
+        <div class="tl-title">One of the strongest of the century</div>
+        <div class="tl-ppp">
+          <div class="ppp people"><span class="k">People</span><span class="v">Between 1,300 and 2,000 deaths worldwide.</span></div>
+          <div class="ppp planet"><span class="k">Planet</span><span class="v">Australian drought and bushfire, Andean floods.</span></div>
+          <div class="ppp profits"><span class="k">Profits</span><span class="v">Around 8 to 13 billion US dollars in immediate damage; few clear winners.</span></div>
+        </div>
+        <span class="tl-tag">ONI peak 2.2°C</span>
+      </div>
+      <div class="tl-item"><span class="tl-dot" style="background:#1A3C5B;"></span>
+        <div class="tl-year">1997 to 1998</div>
+        <div class="tl-title">Devastating abroad, a windfall at home</div>
+        <div class="tl-ppp">
+          <div class="ppp people"><span class="k">People</span><span class="v">More than 20,000 deaths worldwide (UN).</span></div>
+          <div class="ppp planet"><span class="k">Planet</span><span class="v">Floods in East Africa, Peru and California; Indonesian fires.</span></div>
+          <div class="ppp profits"><span class="k">Profits</span><span class="v">The US gained on net: around 19 billion in benefits versus 4 billion in losses (Changnon).</span></div>
+        </div>
+        <span class="tl-tag">ONI peak 2.4°C</span>
+      </div>
+      <div class="tl-item"><span class="tl-dot" style="background:#9C4A2E;"></span>
+        <div class="tl-year">2015 to 2016</div>
+        <div class="tl-title">The modern record</div>
+        <div class="tl-ppp">
+          <div class="ppp people"><span class="k">People</span><span class="v">10.2 million Ethiopians needed food aid; smoke deaths across Southeast Asia.</span></div>
+          <div class="ppp planet"><span class="k">Planet</span><span class="v">Southern Africa's worst drought in 35 years; mass coral bleaching.</span></div>
+          <div class="ppp profits"><span class="k">Profits</span><span class="v">Indonesia's fires cost around 16 billion US dollars; palm oil and sugar prices firmed.</span></div>
+        </div>
+        <span class="tl-tag">ONI peak 2.6°C</span>
+      </div>
+      <div class="tl-item"><span class="tl-dot" style="background:#1A3C5B;"></span>
+        <div class="tl-year">2023 to 2024</div>
+        <div class="tl-title">The commodity shock</div>
+        <div class="tl-ppp">
+          <div class="ppp people"><span class="k">People</span><span class="v">Food inflation worldwide; Peru's anchovy season cancelled.</span></div>
+          <div class="ppp planet"><span class="k">Planet</span><span class="v">Drought from the Amazon to the Panama Canal; record global heat in 2024.</span></div>
+          <div class="ppp profits"><span class="k">Profits</span><span class="v">Cocoa smashed records above 12,000 US dollars a tonne; coffee and sugar hit multi-year highs.</span></div>
+        </div>
+        <span class="tl-tag">among the five strongest</span>
+      </div>
+      <div class="tl-item"><span class="tl-dot" style="background:#C0946D;"></span>
+        <div class="tl-year">2026 to 2027</div>
+        <div class="tl-title">The next candidate</div>
+        <div class="tl-ppp">
+          <div class="ppp people"><span class="k">People</span><span class="v">Heat, drought and flood risk concentrated in exposed producing regions.</span></div>
+          <div class="ppp planet"><span class="k">Planet</span><span class="v">Above-average temperatures forecast nearly everywhere; peak Nov to Feb.</span></div>
+          <div class="ppp profits"><span class="k">Profits</span><span class="v">Analysts flag renewed cocoa, coffee, sugar and rice spikes, and a fresh inflation risk.</span></div>
+        </div>
+        <span class="tl-tag fore">forecast</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 3 EXPOSURE -->
+<section id="exposure">
+  <div class="narrow">
+    <div class="chapnum">EXPOSURE</div>
+    <h2>For a richer economy, this is a financial event.</h2>
+    <p class="lede">The direct physical hit to the United States and Europe from El Niño is real but mixed, and sometimes even favourable. The exposure that matters lands on portfolios and price indices, through three channels: <strong>food inflation</strong>, <strong>supply chains</strong> and <strong>insurance</strong>.</p>
+    <p>Start with the surprise. In 1997 to 1998, one of the strongest events on record, the United States came out ahead. A milder winter cut heating bills and a quiet Atlantic hurricane season spared the coasts, for an estimated <a class="cite" href="https://journals.ametsoc.org/view/journals/bams/80/9/1520-0477_1999_080_1819_ioenog_2_0_co_2.pdf" target="_blank" rel="noopener">net benefit of around 19 billion US dollars</a> against 4 billion in losses. A super El Niño does not flatten a large, diversified economy. The <a class="cite" href="https://www.sciencedirect.com/science/article/pii/S0022199617300120" target="_blank" rel="noopener">peer-reviewed evidence</a> finds that big economies can roughly net out while small, agriculture-heavy ones bear concentrated, lasting losses.</p>
+    <p>That is the cushion. The bite is elsewhere, and it is growing. The United States has logged <a class="cite" href="https://www.ncei.noaa.gov/access/billions/time-series" target="_blank" rel="noopener">403 billion-dollar weather disasters since 1980</a>, costing more than 2.9 trillion dollars, and the annual count has tripled from nine to 23 over the last five years. Insurers including State Farm have retreated from California and Florida; modelling puts 6.76 million American homes beyond the reach of any insurer, and the January 2025 Los Angeles fires alone cost between 40 and 53 billion dollars. None of that is El Niño specifically, but it is the loss-and-repricing backdrop a super event lands on.</p>
+  </div>
+  <div class="wrap">
+    <div class="two">
+      <div class="chart-card">
+        <div class="ct">The loss backdrop is already steep</div>
+        <div class="cs">Billion-dollar weather and climate disasters in the United States, average per year by decade. Costs are inflation-adjusted.</div>
+        <div class="chart-wrap" style="height:320px;"><canvas id="usDisastersChart"></canvas></div>
+        <div class="source-line">SOURCE: NOAA National Centers for Environmental Information (1980 to 2024). 2020s covers 2020 to 2024.</div>
+      </div>
+      <div class="chart-card">
+        <div class="ct">Hit less hard, but not unhit</div>
+        <div class="cs">Projected loss of gross domestic product by 2050 in a severe warming path of around 3.2°C. Rich economies lose around a tenth; the hardest-hit lose more.</div>
+        <div class="chart-wrap" style="height:320px;"><canvas id="gdpRegionChart"></canvas></div>
+        <div class="source-line">SOURCE: Swiss Re Institute, Climate Economics Index (2021), severe scenario.</div>
+      </div>
+    </div>
+  </div>
+  <div class="narrow">
+    <p>The clearest transmission is inflation. The <a class="cite" href="https://www.ecb.europa.eu/press/economic-bulletin/focus/2023/html/ecb.ebbox202306_01~36e78cc75e.en.html" target="_blank" rel="noopener">European Central Bank</a> estimates that a strong El Niño can raise global food commodity prices by up to 9 per cent, peaking around 16 months after onset. <a class="cite" href="https://www.bloomberg.com/graphics/2023-el-nino-climate-change-extreme-weather/" target="_blank" rel="noopener">Bloomberg Economics</a> finds past events added around 3.9 percentage points to non-energy commodity prices. That lands on Western shelves and in headline inflation just as central banks are trying to bring it down, which is why an El Niño is most damaging when it arrives at the wrong moment in the rate cycle.</p>
+    <p>The second channel is logistics. The 2023 to 2024 El Niño drought cut transits through the <a class="cite" href="https://www.carbonbrief.org/drought-behind-panama-canals-2023-shipping-disruption-unlikely-without-el-nino/" target="_blank" rel="noopener">Panama Canal by around a third</a>, lifting shipping costs into American ports. The third is insurance: catastrophe losses harden the reinsurance market and reprice premiums everywhere. For a richer-economy reader, the question is less "will I be flooded" than "what does this do to prices, cover and rates", and the answer is: enough to plan for.</p>
+  </div>
+</section>
+
+<!-- 4 THE WINDOW -->
+<section id="prepare">
+  <div class="narrow">
+    <div class="chapnum">THE WINDOW</div>
+    <h2>Eight months is enough to cut the damage.</h2>
+    <p class="lede">A super El Niño is the rare disaster that announces itself. The peak is still around six to eight months away, and the evidence is that acting on the forecast now, rather than reacting to the impact later, is the highest-return move available.</p>
+    <p>The numbers are stark. The <a class="cite" href="https://gca.org/reports/adapt-now-a-global-call-for-leadership-on-climate-resilience/" target="_blank" rel="noopener">Global Commission on Adaptation</a> found early warning systems return more than tenfold, the best of any adaptation measure it assessed, and that 24 hours of warning can cut the resulting damage by around 30 per cent. The <a class="cite" href="https://www.fao.org/3/cc7900en/online/impact-of-disasters-on-agriculture-and-food-2023/anticipatory-action-interventions.html" target="_blank" rel="noopener">Food and Agriculture Organization</a> found every dollar spent on anticipatory action returned more than seven in its best cases. A seasonal forecast extends that logic from hours to months, and unlocks the slow levers a short warning cannot touch.</p>
+  </div>
+  <div class="wrap">
+    <div class="chart-card">
+      <div class="ct">Acting early pays back, heavily</div>
+      <div class="cs">Return per US dollar invested in forecast-based preparedness, from two leading assessments.</div>
+      <div class="chart-wrap" style="height:260px;"><canvas id="prepChart"></canvas></div>
+      <div class="source-line">SOURCE: Global Commission on Adaptation, Adapt Now (2019); FAO, Impact of Disasters on Agriculture and Food Security (2023), best-case returns.</div>
+    </div>
+  </div>
+  <div class="narrow">
+    <h3>The levers, ranked by what eight months buys</h3>
+    <div class="levers">
+      <div class="lever"><span class="ln">1</span><div class="lc"><h4>Lock in cover before it reprices</h4><p>Insurance and reinsurance are placed and priced ahead of events. Parametric policies and catastrophe bonds, which pay out automatically on a rainfall or water-level trigger, can be arranged now, while capacity is available and before the market hardens into the peak. Stress-testing exposure today sizes that cover correctly.</p></div></div>
+      <div class="lever"><span class="ln">2</span><div class="lc"><h4>Build storage and inventory before the spike</h4><p>Pre-positioning food, grain and at-risk soft-commodity inventory, and front-loading European gas storage (which entered 2026 at its lowest since 2018) turns a forecast into a buffer rather than a scramble.</p></div></div>
+      <div class="lever"><span class="ln">3</span><div class="lc"><h4>Pre-book supply-chain alternatives</h4><p>The Panama Canal lesson is to reserve rerouting capacity and diversify sourcing away from drought-exposed producers before a draft restriction repeats.</p></div></div>
+      <div class="lever"><span class="ln">4</span><div class="lc"><h4>Resource heat and health systems before summer</h4><p>Europe's heat plans were activated but only partly effective in the 60,000-death summer of 2022. Standing up week-ahead heat-health warnings and disease surveillance is an eight-month job, not an eight-day one.</p></div></div>
+    </div>
+    <div class="callout">
+      <div class="label">The honest limit</div>
+      <p>Eight months cannot retrofit a grid, build early-warning coverage where none exists, or change the rainfall outcome itself. It can only ready the response. Acting on a probabilistic forecast means some preparation will, in hindsight, prove unnecessary. That is the price of insurance, not a failure of it.</p>
+    </div>
+  </div>
+</section>
+
+<!-- 5 THE PLAYBOOK -->
+<section id="invest">
+  <div class="narrow">
+    <div class="chapnum">THE PLAYBOOK</div>
+    <h2>Where the money moves.</h2>
+    <p class="lede">El Niño creates winners and losers, and markets have learned the pattern. The cleanest relationship is with soft commodities and food inflation; the equity and asset-allocation reads are more circumstantial. Below is how markets and the research describe the map, not a recommendation.</p>
+    <div class="note"><b>Not investment advice.</b> This section describes how markets and analysts have historically responded to El Niño, drawn from the cited research. It is not a recommendation to buy or sell any asset, and past patterns do not guarantee future moves.</div>
+  </div>
+  <div class="wrap">
+    <div class="chart-card">
+      <div class="ct">El Niño's price signature</div>
+      <div class="cs">Estimated upward price impact of a strong El Niño, from central-bank and market research. Food is the strongest and most reliable channel; oil the weakest.</div>
+      <div class="chart-wrap" style="height:280px;"><canvas id="priceChart"></canvas></div>
+      <div class="source-line">SOURCE: European Central Bank (2023), food commodity prices; Bloomberg Economics (2023), non-energy commodities and oil.</div>
+    </div>
+    <div class="play">
+      <div class="pcard">
+        <div class="pk">The clearest trade</div>
+        <h4>Soft and agricultural commodities</h4>
+        <p>Drought in West Africa, South and Southeast Asia and Australia tightens cocoa, sugar, coffee, palm oil and rice. Tight stocks turn supply losses into sharp price moves.</p>
+        <div class="ev">In 2023 to 2024 cocoa passed 12,000 US dollars a tonne and coffee and sugar hit multi-year highs.</div>
+        <span class="pdir up">Prices up</span>
+      </div>
+      <div class="pcard">
+        <div class="pk">Counter-intuitive</div>
+        <h4>Energy, and natural gas</h4>
+        <p>A milder northern-hemisphere winter cuts heating demand, historically bearish for natural gas, while raising cooling and hydropower-drought risk elsewhere. The oil effect is small.</p>
+        <div class="ev">The 2015 to 2016 winter ran 15 per cent warmer year on year; US heating demand fell sharply (<a class="cite" href="https://www.eia.gov/todayinenergy/detail.php?id=25952" target="_blank" rel="noopener">EIA</a>).</div>
+        <span class="pdir down">Gas softer</span>
+      </div>
+      <div class="pcard">
+        <div class="pk">Double-edged</div>
+        <h4>Insurance and catastrophe bonds</h4>
+        <p>Catastrophe losses hurt primary insurers, but the resulting hard market and rising premiums lift reinsurers and insurance-linked securities.</p>
+        <div class="ev">The <a class="cite" href="https://www.artemis.bm/catastrophe-bond-ils-market-reports/" target="_blank" rel="noopener">Swiss Re Cat Bond Index</a> returned a record 19.7 per cent in 2023.</div>
+        <span class="pdir up">Yields up</span>
+      </div>
+      <div class="pcard">
+        <div class="pk">Structural theme</div>
+        <h4>Water and adaptation</h4>
+        <p>Drought and flood stress spotlight water utilities, irrigation and resilience infrastructure. A long-horizon theme that El Niño episodes periodically illuminate, not a clean seasonal trade.</p>
+        <div class="ev">Water indices track around 100 listed water firms; the thesis is structural, not cyclical.</div>
+        <span class="pdir mix">Long-term</span>
+      </div>
+      <div class="pcard">
+        <div class="pk">Exposed</div>
+        <h4>Food and beverage makers</h4>
+        <p>Manufacturers reliant on cocoa, coffee, sugar and palm oil are squeezed when they cannot pass higher input costs through to consumers.</p>
+        <div class="ev">The 2023 to 2024 softs surge compressed chocolate and coffee margins.</div>
+        <span class="pdir down">Margins down</span>
+      </div>
+      <div class="pcard">
+        <div class="pk">The macro tell</div>
+        <h4>Inflation and rates</h4>
+        <p>A food-price shock lifts headline inflation, complicating rate decisions and feeding into bond-market expectations. Most painful when policy is already tight.</p>
+        <div class="ev">The ECB puts the potential food-price uplift at up to 9 per cent in a strong event.</div>
+        <span class="pdir mix">Rate risk</span>
+      </div>
+    </div>
+  </div>
+  <div class="narrow">
+    <h3>The supply map that drives the trades</h3>
+    <p class="sub">Which producing regions a strong El Niño tends to hit, and the commodity each one moves.</p>
+    <table class="tbl">
+      <thead><tr><th>Region</th><th>El Niño signal</th><th>Commodity in play</th></tr></thead>
+      <tbody>
+        <tr><td>West Africa (Ivory Coast, Ghana)</td><td><span class="tag dry">Drier</span></td><td>Cocoa</td></tr>
+        <tr><td>India and Thailand</td><td><span class="tag dry">Drier</span></td><td>Sugar, rice</td></tr>
+        <tr><td>Indonesia and Malaysia</td><td><span class="tag dry">Drier</span></td><td>Palm oil</td></tr>
+        <tr><td>Vietnam and Brazil</td><td><span class="tag dry">Erratic</span></td><td>Coffee</td></tr>
+        <tr><td>Australia</td><td><span class="tag dry">Drier</span></td><td>Wheat</td></tr>
+        <tr><td>Peru coast</td><td><span class="tag wet">Warm seas</span></td><td>Anchovy, fishmeal</td></tr>
+        <tr><td>US corn belt</td><td><span class="tag win">Favourable</span></td><td>Corn, soybeans (a likely gainer)</td></tr>
+      </tbody>
+    </table>
+    <div class="pull">
+      <q>Global food commodity prices could rise by up to 9 per cent if current El Niño conditions develop into a strong El Niño.</q>
+      <div class="attr"><b><a class="cite" href="https://www.ecb.europa.eu/press/economic-bulletin/focus/2023/html/ecb.ebbox202306_01~36e78cc75e.en.html" target="_blank" rel="noopener" style="color:inherit;border-color:#aab;">European Central Bank</a></b>, Economic Bulletin &nbsp;·&nbsp; 2023</div>
+    </div>
+  </div>
+</section>
+
+<!-- COCOA FEATURE -->
+<section id="cocoa">
+  <div class="narrow">
+    <div class="chapnum">FEATURE · THE COCOA WARNING</div>
+    <h2>The taste being engineered out of chocolate.</h2>
+    <p class="lede">The same drought and disease that drove cocoa to a record price are also shrinking the land where it can grow. The industry's answer is to make chocolate with less real cocoa, or none at all. A simple pleasure is quietly being reformulated for the next generation.</p>
+  </div>
+  <div class="wrap">
+    <div class="feat-imgs">
+      <figure>
+        <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Shade_Cacao_Plantation%2C_Ixcacao_Mayan_Chocolate%2C_Belize.JPG?width=900" alt="A shade-grown cacao plantation" loading="lazy">
+        <figcaption>A shade-grown cacao plantation. Mvfarrell, CC BY-SA 4.0, via Wikimedia Commons.</figcaption>
+      </figure>
+      <figure>
+        <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Semillas_de_cacao.jpg?width=900" alt="Cocoa beans" loading="lazy">
+        <figcaption>Cocoa beans, the raw material under threat. Wilfredor, CC BY-SA 3.0, via Wikimedia Commons.</figcaption>
+      </figure>
+    </div>
+  </div>
+  <div class="narrow">
+    <p>West Africa grows around 70 per cent of the world's cocoa, and production there fell by up to 40 per cent between 2023 and 2025 under El Niño-linked heat, drought and the spread of swollen-shoot virus. Cocoa peaked at a <a class="cite" href="https://www.bloomberg.com/news/articles/2024-12-18/cocoa-soars-above-12-000-to-reach-fresh-record-on-supply-fears" target="_blank" rel="noopener">record 12,646 US dollars a tonne</a> in December 2024, more than double the previous high that had stood since 1977. Bean prices have since fallen, but retail chocolate has not: Mondelez says chocolate-category prices rose 30 to 50 per cent in two years.</p>
+    <p>The deeper problem is the land itself. A <a class="cite" href="https://link.springer.com/article/10.1007/s10584-013-0774-8" target="_blank" rel="noopener">2013 study in Climatic Change</a> first projected that warming of around 2°C would push cocoa-growing zones uphill and render many lowland areas unsuitable by 2050. A <a class="cite" href="https://www.downtoearth.org.in/africa/climate-impact-west-central-africa-may-lose-50-of-cocoa-suitable-area-by-2050-finds-study" target="_blank" rel="noopener">2025 study</a> goes further, projecting that West and Central Africa could lose around half of their climatically suitable cocoa area by mid-century. <a class="cite" href="https://www.climatecentral.org/climate-matters/climate-and-cocoa-2025" target="_blank" rel="noopener">Climate Central</a> finds warming has already added around 40 extra days a year above 32°C in the cacao belts of Ivory Coast and Ghana, beyond the heat the trees tolerate well. This is the part that reaches the next generation: the crop may simply have nowhere cool enough to grow.</p>
+    <h3>The response is to engineer around the bean</h3>
+    <p>Two technologies are racing the shortage. The first is cell-cultured cocoa, grown from cocoa cells in bioreactors rather than on trees. In April 2026 <a class="cite" href="https://www.foodnavigator.com/Article/2026/04/21/worlds-first-cell-based-chocolate-bar-developed-with-mondelez/" target="_blank" rel="noopener">Celleste Bio, backed by Mondelez,</a> unveiled the first chocolate bars made with cell-cultivated cocoa butter, and aims to be market-ready by 2027; California Cultured is doing the same with cocoa powder. The second is "cocoa-free" chocolate, made with no cocoa at all from roasted sunflower seeds or oats. Planet A Foods' ChoViva now features in more than 120 products, and both Nestlé and Mars have run cocoa-free pilots, mostly in Germany.</p>
+    <div class="pull">
+      <q>Cocoa butter determines the texture, the melt and mouthfeel. There is nothing else in food that behaves quite like it.</q>
+      <div class="attr"><b>Michal Beressi Golomb</b>, CEO, Celleste Bio &nbsp;·&nbsp; 2026</div>
+    </div>
+    <div class="callout">
+      <div class="label">What is true, and what is not</div>
+      <p>The claim that all chocolate makers have already switched to lab-made cocoa is not accurate. No cell-cultured cocoa has regulatory approval anywhere as of 2026, and cocoa-free products remain limited pilots; mainstream chocolate is still made from real beans. But the trajectory is set. In Britain, McVitie's has already relabelled some bars "chocolate flavoured" after cutting their cocoa content, and analysts now speak of real chocolate becoming a luxury. The pleasure that defined childhoods may, for the next generation, increasingly come from a bioreactor, or from no cocoa at all.</p>
+    </div>
+    <h3>Watch</h3>
+    <p class="sub">Reputable coverage of the cocoa crisis and the lab-grown response.</p>
+    <div class="vidlist">
+      <a class="vidlink" href="https://www.youtube.com/watch?v=8MBg8BbxgGA" target="_blank" rel="noopener">
+        <div class="vidthumb"><img src="https://img.youtube.com/vi/8MBg8BbxgGA/hqdefault.jpg" alt="" loading="lazy"><span class="pl">&#9654;</span></div>
+        <div class="vidmeta"><span class="vt">Climate change blamed as cocoa prices soar</span><span class="vc">FRANCE 24 English</span></div>
+      </a>
+      <a class="vidlink" href="https://www.youtube.com/watch?v=-yLhIy6Myp8" target="_blank" rel="noopener">
+        <div class="vidthumb"><img src="https://img.youtube.com/vi/-yLhIy6Myp8/hqdefault.jpg" alt="" loading="lazy"><span class="pl">&#9654;</span></div>
+        <div class="vidmeta"><span class="vt">Why chocolate is pricier: from climate to gold prices</span><span class="vc">University of Oxford</span></div>
+      </a>
+      <a class="vidlink" href="https://www.youtube.com/shorts/bq3MNCAS9yo" target="_blank" rel="noopener">
+        <div class="vidthumb"><img src="https://img.youtube.com/vi/bq3MNCAS9yo/hqdefault.jpg" alt="" loading="lazy"><span class="pl">&#9654;</span></div>
+        <div class="vidmeta"><span class="vt">What if your chocolate was grown in a lab?</span><span class="vc">Financial Times</span></div>
+      </a>
+      <a class="vidlink" href="https://www.youtube.com/watch?v=SBTxbiBCuIw" target="_blank" rel="noopener">
+        <div class="vidthumb"><img src="https://img.youtube.com/vi/SBTxbiBCuIw/hqdefault.jpg" alt="" loading="lazy"><span class="pl">&#9654;</span></div>
+        <div class="vidmeta"><span class="vt">Cocoa crisis drives up chocolate prices</span><span class="vc">WION</span></div>
+      </a>
+    </div>
+    <div class="source-line">SOURCES: Bloomberg and CNBC (cocoa price record, Dec 2024); Läderach et al., Climatic Change (2013); Agricultural and Forest Meteorology (2025) via Down To Earth; Climate Central (2025); FoodNavigator (industry pilots, 2024 to 2026). Lab-grown cocoa is pre-market; cocoa-free adoption remains limited.</div>
+  </div>
+</section>
+
+<!-- CLOSE -->
+<section id="close">
+  <div class="narrow">
+    <div class="chapnum">THE WINDOW CLOSES</div>
+    <h2>From sporadic to scheduled.</h2>
+    <p class="lede">For most of history a super El Niño was a shock that arrived without warning. It is now the most predictable major climate event on Earth.</p>
+    <p>The 2026 to 2027 event has been flagged eight months out, and the channels it will travel are already mapped: food prices, supply chains, insurance, energy. That foresight is the whole opportunity. The difference between a disruption and a managed risk is simply what gets done between now and the peak. The forecast is in. The window is open. It does not stay open.</p>
+    <div class="callout" style="background:#0A0A0A;border-color:#0A0A0A;">
+      <div class="label" style="color:var(--copper);">The briefing in one line</div>
+      <p style="color:#e8e8e3;font-family:'Playfair Display',serif;font-style:italic;font-size:23px;line-height:1.4;">A super El Niño is forming. For richer economies it is a price shock, not a flood, and the eight months before the peak are when it is cheapest to cut.</p>
+    </div>
+  </div>
+</section>
+
+<footer class="end">
+  THE CLIMATE DESK &nbsp;·&nbsp; BEFORE THE PEAK &nbsp;·&nbsp; 6 JUNE 2026<br>
+  Forecast figures reflect official agency positions and carry stated uncertainty. This is an emerging event, not a confirmed record. Not investment advice.
+</footer>
+
+<script>
+const prog=document.getElementById('progress');
+window.addEventListener('scroll',()=>{const h=document.documentElement.scrollHeight-window.innerHeight;prog.style.width=(window.scrollY/h*100)+'%';});
+Chart.defaults.font.family="'Inter', sans-serif";Chart.defaults.font.size=12;Chart.defaults.color='#6B7280';
+const COL={slate:'#1A3C5B',copper:'#C0946D',rust:'#9C4A2E',black:'#0A0A0A',gray:'#6B7280',steel:'#9CB0BE',green:'#3f6b51'};
+const gridX={grid:{display:false},ticks:{color:'#6B7280'}};
+const gridY={grid:{color:'#EEEEEA'},ticks:{color:'#6B7280'},border:{display:false}};
+const made={};
+function whenVisible(id,fn){const el=document.getElementById(id);if(!el)return;const io=new IntersectionObserver((es)=>{es.forEach(e=>{if(e.isIntersecting&&!made[id]){made[id]=true;fn();io.disconnect();}});},{threshold:0.2});io.observe(el);}
+const thresholdLine={id:'thresholdLine',afterDraw(chart){const cfg=chart.options.plugins.threshold;if(!cfg)return;const{ctx,chartArea:{left,right,top},scales:{y}}=chart;const yy=y.getPixelForValue(cfg.value);ctx.save();ctx.strokeStyle=cfg.color;ctx.setLineDash([6,4]);ctx.lineWidth=1.3;ctx.beginPath();ctx.moveTo(left,yy);ctx.lineTo(right,yy);ctx.stroke();ctx.setLineDash([]);ctx.fillStyle=cfg.color;ctx.font="600 11px Inter";var ly=cfg.labelTop?top+12:yy-7;ctx.fillText(cfg.label,left+8,ly);ctx.restore();}};
+Chart.register(thresholdLine);
+
+// ONI
+whenVisible('oniChart',()=>new Chart(document.getElementById('oniChart'),{
+  type:'bar',
+  data:{labels:['1972–73','1982–83','1997–98','2015–16','2026–27\nforecast'],
+    datasets:[{data:[2.1,2.2,2.4,2.6,2.2],backgroundColor:[COL.slate,COL.slate,COL.slate,COL.rust,COL.copper],borderRadius:5,barThickness:44}]},
+  options:{plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>'ONI peak +'+c.parsed.y+'°C'+(c.dataIndex===4?' (forecast median)':'')}},
+    threshold:{value:2.0,color:'#9C4A2E',label:'Super threshold (2.0°C)',labelTop:true}},
+    scales:{x:gridX,y:{...gridY,suggestedMin:1.5,suggestedMax:3.1,title:{display:true,text:'Peak Oceanic Niño Index (°C)',color:'#6B7280'}}}}
+}));
+
+// probability
+whenVisible('probChart',()=>new Chart(document.getElementById('probChart'),{
+  type:'bar',
+  data:{labels:['El Niño\n(any strength)','Strong\nby autumn','Super /\nvery strong'],
+    datasets:[{data:[92,60,33],backgroundColor:[COL.slate,COL.copper,COL.rust],borderRadius:6,barThickness:60}]},
+  options:{indexAxis:'y',plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>'Around '+c.parsed.x+'% probability'}}},
+    scales:{x:{...gridY,suggestedMax:100,title:{display:true,text:'Probability at peak season (%)',color:'#6B7280'}},y:gridX}}
+}));
+
+// temperature
+whenVisible('tempChart',()=>new Chart(document.getElementById('tempChart'),{
+  type:'bar',
+  data:{labels:['2023','2024','2025','2026 f','2027 f'],
+    datasets:[{data:[1.48,1.60,1.47,1.47,null],backgroundColor:[COL.steel,COL.rust,COL.steel,COL.copper,COL.copper],borderRadius:5,barThickness:50}]},
+  options:{plugins:{legend:{display:false},
+    tooltip:{callbacks:{label:c=>c.raw==null?'2027: peak El Niño signal (forecast)':'+'+c.parsed.y.toFixed(2)+'°C vs 1850–1900'+(c.dataIndex===3?' (forecast)':'')}},
+    threshold:{value:1.5,color:'#9C4A2E',label:'1.5°C Paris threshold'}},
+    scales:{x:gridX,y:{...gridY,min:0.9,suggestedMax:1.8,title:{display:true,text:'°C above pre-industrial',color:'#6B7280'}}}}
+}));
+
+// US disasters
+whenVisible('usDisastersChart',()=>new Chart(document.getElementById('usDisastersChart'),{
+  type:'bar',
+  data:{labels:['1980s','1990s','2000s','2010s','2020s'],
+    datasets:[{data:[3.3,5.5,6.7,13.1,23.0],backgroundColor:[COL.steel,COL.steel,COL.copper,COL.rust,COL.rust],borderRadius:5,barThickness:50}]},
+  options:{plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>c.parsed.y+' disasters per year (avg)'}}},
+    scales:{x:gridX,y:{...gridY,title:{display:true,text:'Billion-dollar disasters per year',color:'#6B7280'}}}}
+}));
+
+// GDP by region
+whenVisible('gdpRegionChart',()=>new Chart(document.getElementById('gdpRegionChart'),{
+  type:'bar',
+  data:{labels:['World','US, Canada,\nUK','Europe','China'],
+    datasets:[{data:[18,10,11,24],backgroundColor:[COL.copper,COL.slate,COL.slate,COL.rust],borderRadius:5,barThickness:52}]},
+  options:{plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>'Around '+c.parsed.y+'% GDP lost by 2050'}}},
+    scales:{x:gridX,y:{...gridY,suggestedMax:28,title:{display:true,text:'Projected GDP loss by 2050 (%)',color:'#6B7280'}}}}
+}));
+
+// prep returns
+whenVisible('prepChart',()=>new Chart(document.getElementById('prepChart'),{
+  type:'bar',
+  data:{labels:['Early warning\nsystems','Anticipatory action\n(best cases)'],
+    datasets:[{data:[10,7],backgroundColor:[COL.green,COL.slate],borderRadius:6,barThickness:54}]},
+  options:{indexAxis:'y',plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>'Around '+c.parsed.x+'x return per US$1'}}},
+    scales:{x:{...gridY,suggestedMax:12,title:{display:true,text:'Return per US$1 invested (x)',color:'#6B7280'}},y:gridX}}
+}));
+
+// price signature
+whenVisible('priceChart',()=>new Chart(document.getElementById('priceChart'),{
+  type:'bar',
+  data:{labels:['Global food prices\n(ECB, strong El Niño)','Non-energy commodities\n(Bloomberg Economics)','Oil\n(Bloomberg Economics)'],
+    datasets:[{data:[9,3.9,3.5],backgroundColor:[COL.rust,COL.copper,COL.steel],borderRadius:6,barThickness:46}]},
+  options:{indexAxis:'y',plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>'Up to '+c.parsed.x+'% / percentage points'}}},
+    scales:{x:{...gridY,suggestedMax:10,title:{display:true,text:'Estimated upward price impact',color:'#6B7280'}},y:gridX}}
+}));
+</script>
+</body>
+</html>
