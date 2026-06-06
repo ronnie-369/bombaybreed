@@ -55,6 +55,15 @@ const allContentTypes: ContentType[] = ['Flagship Report', 'Intelligence Brief',
 
 const publications: Publication[] = [
   {
+    title: "Before the Peak: a super El Nino is forming",
+    description: "A super El Nino is forming with 90% certainty per the UN. For richer economies it is a financial event - food inflation, supply chains and insurance - with an eight-month window to act before the peak.",
+    contentType: 'Flagship Report',
+    topic: 'Board Governance',
+    publishedDate: "2026-06-06",
+    readTimeMinutes: 18,
+    link: "/insights/before-the-peak",
+  },
+  {
     title: "India's Narrative Hiring Gap: A 32-Listing Audit",
     description: "32 live LinkedIn job postings. 96% had 100+ applicants. 0 hired the right person. A data-led audit of India's communications talent market, the failure modes, and a 7-question diagnostic before your next hire.",
     contentType: 'Flagship Report',

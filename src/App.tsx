@@ -40,6 +40,7 @@ const BRSRReportingAdvisory = lazy(() => import("./pages/BRSRReportingAdvisory")
 const CarbonCreditTradingScheme = lazy(() => import("./pages/CarbonCreditTradingScheme"));
 const RazorpayTest = lazy(() => import("./pages/RazorpayTest"));
 const NarrativeHiringGap = lazy(() => import("./pages/NarrativeHiringGap"));
+const BeforeThePeak = lazy(() => import("./pages/BeforeThePeak"));
 
 // TCD Intelligence routes
 const IntelligenceLanding = lazy(() => import("./intelligence/pages/IntelligenceLanding"));
@@ -119,6 +120,7 @@ const AppContent = () => {
               <Route path="/brsr-reporting-advisory-india" element={<BRSRReportingAdvisory />} />
               <Route path="/carbon-credit-trading-scheme-india" element={<CarbonCreditTradingScheme />} />
               <Route path="/insights/narrative-hiring-gap" element={<NarrativeHiringGap />} />
+              <Route path="/insights/before-the-peak" element={<BeforeThePeak />} />
 
               {/* Internal QA - Razorpay end-to-end test page (admin-only, noindex) */}
               <Route
