@@ -64,6 +64,15 @@ const publications: Publication[] = [
     link: "/insights/before-the-peak",
   },
   {
+    title: "Raising the Renaissance Child",
+    description: "A reading curriculum of twenty-four books for the 21st century Indian family. A white paper circulated as part of a study for NIAS, Bangalore.",
+    contentType: 'Perspective',
+    topic: 'ESG Communications',
+    publishedDate: "2026-06-20",
+    readTimeMinutes: 20,
+    link: "/insights/raising-the-renaissance-child",
+  },
+  {
     title: "India's Narrative Hiring Gap: A 32-Listing Audit",
     description: "32 live LinkedIn job postings. 96% had 100+ applicants. 0 hired the right person. A data-led audit of India's communications talent market, the failure modes, and a 7-question diagnostic before your next hire.",
     contentType: 'Flagship Report',
