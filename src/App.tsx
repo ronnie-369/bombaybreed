@@ -42,6 +42,8 @@ const RazorpayTest = lazy(() => import("./pages/RazorpayTest"));
 const NarrativeHiringGap = lazy(() => import("./pages/NarrativeHiringGap"));
 const BeforeThePeak = lazy(() => import("./pages/BeforeThePeak"));
 const RaisingRenaissanceChild = lazy(() => import("./pages/RaisingRenaissanceChild"));
+const WhyEuropeMelts = lazy(() => import("./pages/series/WhyEuropeMelts"));
+const WhyEuropeMeltsRead = lazy(() => import("./pages/series/WhyEuropeMeltsRead"));
 
 // TCD Intelligence routes
 const IntelligenceLanding = lazy(() => import("./intelligence/pages/IntelligenceLanding"));
@@ -123,6 +125,8 @@ const AppContent = () => {
               <Route path="/insights/narrative-hiring-gap" element={<NarrativeHiringGap />} />
               <Route path="/insights/before-the-peak" element={<BeforeThePeak />} />
               <Route path="/insights/raising-the-renaissance-child" element={<RaisingRenaissanceChild />} />
+              <Route path="/series/europe-india/why-europe-melts" element={<WhyEuropeMelts />} />
+              <Route path="/series/europe-india/why-europe-melts/read" element={<WhyEuropeMeltsRead />} />
 
               {/* Internal QA - Razorpay end-to-end test page (admin-only, noindex) */}
               <Route
