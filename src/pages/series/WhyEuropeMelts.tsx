@@ -72,8 +72,8 @@ const WhyEuropeMelts: React.FC = () => {
       <PageHead
         title="Why Europe Melts at 41°C When the Gulf Works at 50°C | Bombay Breed"
         description="Europe is failing at temperatures the Gulf treats as routine. A Bombay Breed climate brief on what is breaking in Europe this fortnight and why."
-        ogImage={heroImg}
-        canonical="https://bombaybreed.com/series/europe-india/why-europe-melts"
+        path="/series/europe-india/why-europe-melts"
+        ogType="article"
       />
       <div className="bb-eu">
         <div className="col">
