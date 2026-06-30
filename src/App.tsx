@@ -42,6 +42,8 @@ const RazorpayTest = lazy(() => import("./pages/RazorpayTest"));
 const NarrativeHiringGap = lazy(() => import("./pages/NarrativeHiringGap"));
 const BeforeThePeak = lazy(() => import("./pages/BeforeThePeak"));
 const RaisingRenaissanceChild = lazy(() => import("./pages/RaisingRenaissanceChild"));
+const WhyEuropeMelts = lazy(() => import("./pages/series/WhyEuropeMelts"));
+const WhyEuropeMeltsRead = lazy(() => import("./pages/series/WhyEuropeMeltsRead"));
 
 // TCD Intelligence routes
 const IntelligenceLanding = lazy(() => import("./intelligence/pages/IntelligenceLanding"));
