@@ -55,6 +55,15 @@ const allContentTypes: ContentType[] = ['Flagship Report', 'Intelligence Brief',
 
 const publications: Publication[] = [
   {
+    title: "Why Europe melts at 41°C when the Gulf works at 50°C",
+    description: "Article 01 of the Europe-India Climate Series. A 1,200-word brief on why European infrastructure and bodies are failing in heat that the Gulf and South Asia absorb routinely, and what that means for Indian boards, insurers and investors over the next decade.",
+    contentType: 'Intelligence Brief',
+    topic: 'Board Governance',
+    publishedDate: "2026-06-30",
+    readTimeMinutes: 6,
+    link: "/series/europe-india/why-europe-melts",
+  },
+  {
     title: "Before the Peak: a super El Nino is forming",
     description: "A super El Nino is forming with 90% certainty per the UN. For richer economies it is a financial event - food inflation, supply chains and insurance - with an eight-month window to act before the peak.",
     contentType: 'Flagship Report',
