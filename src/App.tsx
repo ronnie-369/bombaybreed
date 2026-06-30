@@ -125,6 +125,8 @@ const AppContent = () => {
               <Route path="/insights/narrative-hiring-gap" element={<NarrativeHiringGap />} />
               <Route path="/insights/before-the-peak" element={<BeforeThePeak />} />
               <Route path="/insights/raising-the-renaissance-child" element={<RaisingRenaissanceChild />} />
+              <Route path="/series/europe-india/why-europe-melts" element={<WhyEuropeMelts />} />
+              <Route path="/series/europe-india/why-europe-melts/read" element={<WhyEuropeMeltsRead />} />
 
               {/* Internal QA - Razorpay end-to-end test page (admin-only, noindex) */}
               <Route
