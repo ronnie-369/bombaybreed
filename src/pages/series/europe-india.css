@@ -1,0 +1,290 @@
+/* Bombay Breed / Europe-India series — scoped tokens */
+.bb-eu {
+  --bb-paper: #FBFBF9;
+  --bb-ink: #0A0A0A;
+  --bb-slate: #1A3C5B;
+  --bb-copper: #C0946D;
+  --bb-gray: #6B7280;
+  --bb-border: #E5E5E1;
+  --bb-cream: #F5F2EC;
+
+  background: var(--bb-paper);
+  color: var(--bb-ink);
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  min-height: 100vh;
+  padding: 72px 24px 96px;
+}
+
+.bb-eu * { box-sizing: border-box; }
+
+.bb-eu .col {
+  max-width: 760px;
+  margin: 0 auto;
+}
+
+.bb-eu .crumb {
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  font-size: 11px;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: var(--bb-copper);
+  margin-bottom: 28px;
+}
+
+.bb-eu h1.bb-head {
+  font-family: 'Playfair Display', serif;
+  font-weight: 700;
+  font-size: 48px;
+  line-height: 1.1;
+  letter-spacing: -0.6px;
+  color: var(--bb-ink);
+  margin: 0 0 20px;
+}
+@media (max-width: 640px) { .bb-eu h1.bb-head { font-size: 32px; } }
+
+.bb-eu .dek {
+  font-family: 'Playfair Display', serif;
+  font-weight: 400;
+  font-style: italic;
+  font-size: 22px;
+  line-height: 1.5;
+  color: var(--bb-gray);
+  max-width: 680px;
+  margin: 0 0 32px;
+}
+
+.bb-eu .meta {
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 11px;
+  letter-spacing: 0.5px;
+  color: var(--bb-gray);
+  border-top: 1px solid var(--bb-border);
+  border-bottom: 1px solid var(--bb-border);
+  padding: 16px 0;
+  display: flex;
+  gap: 36px;
+  flex-wrap: wrap;
+  margin-bottom: 40px;
+}
+.bb-eu .meta b { color: var(--bb-ink); font-weight: 600; margin-right: 6px; }
+
+.bb-eu .hero-img {
+  width: 100%;
+  display: block;
+  height: auto;
+  margin: 8px 0 14px;
+}
+.bb-eu .caption {
+  font-size: 13px;
+  line-height: 1.6;
+  color: var(--bb-ink);
+  margin: 0 0 48px;
+}
+
+.bb-eu .body p {
+  font-size: 17px;
+  line-height: 1.75;
+  color: var(--bb-ink);
+  margin: 0 0 20px;
+}
+.bb-eu .body p strong { font-weight: 700; color: var(--bb-ink); }
+
+.bb-eu .body .lead::first-letter {
+  font-family: 'Playfair Display', serif;
+  font-weight: 700;
+  font-size: 78px;
+  line-height: 1;
+  color: var(--bb-copper);
+  float: left;
+  padding: 6px 12px 0 0;
+}
+
+.bb-eu ul.preview {
+  list-style: none;
+  padding: 0;
+  margin: 32px 0 0;
+}
+.bb-eu ul.preview li {
+  font-size: 17px;
+  line-height: 1.75;
+  color: var(--bb-ink);
+  position: relative;
+  padding-left: 22px;
+  margin-bottom: 18px;
+}
+.bb-eu ul.preview li::before {
+  content: "•";
+  color: var(--bb-slate);
+  position: absolute;
+  left: 0;
+  top: 0;
+  font-size: 22px;
+  line-height: 1.4;
+}
+
+.bb-eu hr.div {
+  border: 0;
+  border-top: 1px solid var(--bb-border);
+  margin: 48px 0;
+}
+
+.bb-eu h2.bb-sec {
+  font-family: 'Playfair Display', serif;
+  font-weight: 700;
+  font-size: 28px;
+  color: var(--bb-ink);
+  margin: 64px 0 14px;
+}
+
+.bb-eu .sub {
+  font-family: 'Inter', sans-serif;
+  font-size: 15px;
+  line-height: 1.55;
+  color: var(--bb-gray);
+  max-width: 600px;
+  margin: 0 0 24px;
+}
+
+.bb-eu .form-card {
+  background: var(--bb-cream);
+  border-radius: 12px;
+  padding: 28px;
+}
+.bb-eu .form-row { margin-bottom: 16px; }
+.bb-eu .form-row label {
+  display: block;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--bb-ink);
+  margin-bottom: 6px;
+  letter-spacing: 0.2px;
+}
+.bb-eu .form-row input,
+.bb-eu .form-row select,
+.bb-eu .form-row textarea {
+  width: 100%;
+  padding: 12px 14px;
+  border: 1px solid var(--bb-border);
+  border-radius: 8px;
+  font-family: 'Inter', sans-serif;
+  font-size: 15px;
+  color: var(--bb-ink);
+  background: #fff;
+  outline: none;
+}
+.bb-eu .form-row input:focus,
+.bb-eu .form-row select:focus,
+.bb-eu .form-row textarea:focus { border-color: var(--bb-slate); }
+
+.bb-eu button.bb-submit {
+  background: var(--bb-slate);
+  color: #fff;
+  font-family: 'Inter', sans-serif;
+  font-weight: 500;
+  font-size: 16px;
+  border: 0;
+  border-radius: 10px;
+  padding: 14px 28px;
+  cursor: pointer;
+  width: 100%;
+  transition: opacity 0.15s;
+}
+.bb-eu button.bb-submit:hover { opacity: 0.92; }
+.bb-eu button.bb-submit:disabled { opacity: 0.6; cursor: wait; }
+@media (min-width: 640px) { .bb-eu button.bb-submit { width: auto; } }
+
+.bb-eu .privacy {
+  font-size: 12px;
+  line-height: 1.5;
+  color: var(--bb-gray);
+  margin: 12px 0 0;
+}
+
+/* Read page extras */
+.bb-eu .banner {
+  background: var(--bb-copper);
+  color: var(--bb-paper);
+  font-family: 'Inter', sans-serif;
+  font-weight: 500;
+  font-size: 12px;
+  text-align: center;
+  padding: 10px 24px;
+  margin: -72px -24px 56px;
+}
+
+.bb-eu .source {
+  border-left: 4px solid var(--bb-copper);
+  padding: 4px 0 4px 24px;
+  font-style: italic;
+  color: var(--bb-ink);
+  margin: 40px 0;
+}
+
+.bb-eu .next-card {
+  background: var(--bb-slate);
+  color: var(--bb-paper);
+  border-radius: 12px;
+  padding: 28px;
+  border: 1px solid var(--bb-border);
+  margin-top: 48px;
+}
+.bb-eu .next-card .nc-head {
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  color: var(--bb-copper);
+  margin-bottom: 14px;
+}
+.bb-eu .next-card .nc-title {
+  font-family: 'Playfair Display', serif;
+  font-weight: 700;
+  font-size: 22px;
+  color: var(--bb-paper);
+  margin: 0 0 12px;
+  line-height: 1.25;
+}
+.bb-eu .next-card .nc-sub {
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--bb-paper);
+  opacity: 0.92;
+  margin: 0 0 20px;
+}
+.bb-eu .next-card .nc-form {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+.bb-eu .next-card .nc-form input {
+  flex: 1 1 220px;
+  padding: 12px 14px;
+  border-radius: 8px;
+  border: 1px solid rgba(255,255,255,0.2);
+  background: rgba(255,255,255,0.08);
+  color: var(--bb-paper);
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  outline: none;
+}
+.bb-eu .next-card .nc-form input::placeholder { color: rgba(251,251,249,0.6); }
+.bb-eu .next-card .nc-form button {
+  background: var(--bb-ink);
+  color: var(--bb-paper);
+  border: 0;
+  border-radius: 8px;
+  font-family: 'Inter', sans-serif;
+  font-weight: 500;
+  font-size: 14px;
+  padding: 12px 20px;
+  cursor: pointer;
+}
+.bb-eu .next-card .nc-confirm {
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  color: var(--bb-copper);
+  margin: 16px 0 0;
+}
