@@ -5,7 +5,7 @@ const Footer = () => {
   const socialLinks = [
     {
       name: 'The Climate Desk',
-      description: 'Weekly insights on climate strategy',
+      description: 'Weekly insights onclimate strategy',
       url: 'https://theclimatedesk.substack.com/',
       icon: Mail,
     },
@@ -92,7 +92,7 @@ const Footer = () => {
                       {link.name}
                       <ExternalLink className="w-3 h-3 opacity-0 group-hover:opacity-100 transition-opacity" />
                     </span>
-                    <p className="text-xs text-background/40 mt-0.5">
+                    <p className="text-xs text-background/70 mt-0.5">
                       {link.description}
                     </p>
                   </div>
@@ -149,7 +149,7 @@ const Footer = () => {
 
         {/* Copyright */}
         <div className="mt-10 pt-6 border-t border-background/10 text-center">
-          <p className="text-xs text-background/40">
+          <p className="text-xs text-background/70">
             © {new Date().getFullYear()} Bombay Breed Consulting. All rights reserved.
           </p>
         </div>
