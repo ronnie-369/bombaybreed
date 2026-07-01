@@ -462,55 +462,119 @@ const Insights = () => {
         </section>
 
 
-        {/* Flagship Research */}
+        {/* Featured spotlight — the newest flagship as a single large card.
+            Modelled on how Bain and McKinsey open their Insights hubs with a
+            hero piece rather than a grid. */}
+        {showFlagship && flagshipReports[0] && (() => {
+          const spotlight = flagshipReports[0];
+          const fresh = isNewPublication(spotlight.publishedDate);
+          const inner = (
+            <article className="group relative bg-secondary/40 border border-border rounded-2xl p-8 md:p-12 hover:border-primary/40 transition-colors">
+              <div className="flex items-center gap-3 mb-5 flex-wrap">
+                <span className="text-[10px] font-bold tracking-widest uppercase text-accent">
+                  Featured  ·  {spotlight.contentType}
+                </span>
+                {fresh && (
+                  <span className="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full text-[10px] font-semibold tracking-widest uppercase bg-accent text-accent-foreground">
+                    New
+                  </span>
+                )}
+                <span className="text-[10px] font-mono tracking-wider uppercase text-muted-foreground">
+                  {spotlight.topic}
+                </span>
+              </div>
+              <h2 className="font-serif text-3xl md:text-4xl leading-[1.1] tracking-tight text-foreground mb-4 group-hover:text-primary transition-colors [text-wrap:balance]">
+                {spotlight.title}
+              </h2>
+              <p className="text-base md:text-lg text-muted-foreground leading-relaxed max-w-[70ch] mb-6 [text-wrap:pretty]">
+                {spotlight.description}
+              </p>
+              <div className="flex items-center gap-4 text-xs text-muted-foreground font-mono uppercase tracking-wider">
+                <span>{spotlight.readTimeMinutes} minute read</span>
+                <span className="text-border">/</span>
+                <span>Read the brief →</span>
+              </div>
+            </article>
+          );
+          if (!spotlight.link) return null;
+          const wrapped = isStaticAssetLink(spotlight) ? (
+            <a href={spotlight.link} target="_blank" rel="noopener noreferrer" className="block">{inner}</a>
+          ) : (
+            <Link to={spotlight.link} className="block">{inner}</Link>
+          );
+          return (
+            <section id="featured" className="px-6 md:px-8 py-10 md:py-14 border-t border-border/50">
+              <div className="container mx-auto max-w-[900px]">
+                {wrapped}
+              </div>
+            </section>
+          );
+        })()}
+
+        {/* Explore by theme — thematic buckets. Each pillar shows 3 top pieces
+            and a "View all in [topic]" link that scrolls to the full library
+            filtered to that topic. Modelled on how KPMG and Bain group by
+            Capability/Industry so a visitor can browse editorially. */}
         {showFlagship && (
-          <section id="flagship" className="px-6 md:px-8 pb-8 pt-8 scroll-mt-32 border-t border-border/50">
-            <div className="container mx-auto max-w-[900px]">
-              <span className="text-[10px] font-bold tracking-widest uppercase text-accent mb-3 block pl-1">
-                Flagship Research
-              </span>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-                {flagshipReports.map((report, i) => {
-                  const fresh = isNewPublication(report.publishedDate);
-                  const content = (
-                    <div className={`relative bg-secondary/30 border rounded-xl p-8 h-full flex flex-col justify-between transition-colors ${fresh ? 'border-accent ring-1 ring-accent/30 shadow-[0_8px_24px_-12px_hsl(var(--accent)/0.4)] group-hover:border-accent group-hover:ring-accent/50' : 'border-border group-hover:border-primary/30'}`}>
-                      {fresh && (
-                        <span className="absolute -top-2.5 right-5 inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[10px] font-semibold tracking-widest uppercase bg-accent text-accent-foreground shadow-md">
-                          <span className="relative flex h-1.5 w-1.5">
-                            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-accent-foreground opacity-60"></span>
-                            <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-accent-foreground"></span>
-                          </span>
-                          New
-                        </span>
-                      )}
-                      <div>
-                        <h3 className="font-serif text-lg text-foreground mb-2 group-hover:text-primary transition-colors">
-                          {report.title}
-                        </h3>
-                        <p className="text-xs text-muted-foreground">{report.description}</p>
+          <section id="by-theme" className="px-6 md:px-8 py-14 md:py-20 border-t border-border/50 bg-secondary/20">
+            <div className="container mx-auto max-w-[1200px]">
+              <div className="max-w-[720px] mb-10 md:mb-14">
+                <SectionLabel label="Explore by theme" />
+                <h2 className="mt-5 font-serif text-3xl md:text-4xl tracking-tight leading-tight text-foreground [text-wrap:balance]">
+                  Four ways to read the year.
+                </h2>
+                <p className="mt-4 text-base md:text-lg text-muted-foreground leading-relaxed [text-wrap:pretty]">
+                  Every brief here lives in one of four themes. Pick the one that maps to the decision on your desk.
+                </p>
+              </div>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
+                {allTopics.map(topic => {
+                  const themeCopy: Record<Topic, string> = {
+                    'Carbon Markets': "How Indian enterprises price, trade and disclose carbon. Compliance mechanisms and international opportunity, from CCTS to Article 6.",
+                    'Board Governance': "Climate risk as a board-level decision. Fiduciary duty, transition planning, and the compound risks the C-suite is still under-pricing.",
+                    'ESG Communications': "Making sustainability strategy legible to investors, employees, regulators and the public without greenwashing.",
+                    'Regulatory Intel': "What Indian and international regulators are about to require. BRSR, EPBD, CBAM, and the policy signals that shape corporate plans.",
+                  };
+                  const pieces = publications.filter(p => p.topic === topic).slice(0, 3);
+                  const clusterAnchor = `cluster-${topic.toLowerCase().replace(/\s+/g, '-')}`;
+                  return (
+                    <div key={topic} className="bg-background border border-border rounded-2xl p-6 md:p-8 flex flex-col">
+                      <div className="mb-6 pb-6 border-b border-border/60">
+                        <div className="text-[10px] font-bold tracking-widest uppercase text-accent mb-3">
+                          {topic}
+                        </div>
+                        <p className="text-sm md:text-[15px] text-muted-foreground leading-relaxed [text-wrap:pretty]">
+                          {themeCopy[topic]}
+                        </p>
                       </div>
-                      <div className="text-[11px] text-muted-foreground mt-4">
-                        {report.readTimeMinutes} min read
-                      </div>
+                      <ul className="space-y-4 flex-1">
+                        {pieces.map((p, i) => (
+                          <li key={i}>
+                            <Link
+                              to={p.external ? '#' : (p.link || '#')}
+                              {...(p.external && p.link ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
+                              className="group block"
+                            >
+                              <div className="font-serif text-base md:text-lg text-foreground leading-snug group-hover:text-primary transition-colors [text-wrap:balance]">
+                                {p.title}
+                              </div>
+                              <div className="mt-1 text-[11px] font-mono uppercase tracking-wider text-muted-foreground">
+                                {p.contentType}  ·  {p.readTimeMinutes} min
+                              </div>
+                            </Link>
+                          </li>
+                        ))}
+                      </ul>
+                      <a
+                        href={`#${clusterAnchor}`}
+                        onClick={() => setSelectedTopic(topic)}
+                        className="mt-6 pt-6 border-t border-border/60 inline-flex items-center gap-2 text-sm font-medium text-primary group hover:gap-3 transition-all"
+                      >
+                        View all in {topic}
+                        <ArrowRight className="h-4 w-4" aria-hidden="true" />
+                      </a>
                     </div>
                   );
-                  if (!report.link) {
-                    return <div key={i} className="group">{content}</div>;
-                  }
-                  if (isStaticAssetLink(report)) {
-                    return (
-                      <a
-                        key={i}
-                        href={report.link}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="block group"
-                      >
-                        {content}
-                      </a>
-                    );
-                  }
-                  return <Link key={i} to={report.link} className="block group">{content}</Link>;
                 })}
               </div>
             </div>
@@ -542,17 +606,16 @@ const Insights = () => {
               }}
             />
 
-            {/* Section header - this is the scroll target for the
-                "Free library" CTA, so readers need a clear anchor on arrival. */}
-            <header className="mb-8 max-w-[640px]">
-              <p className="text-[11px] font-semibold tracking-[0.18em] uppercase text-muted-foreground mb-3">
-                Free library
-              </p>
-              <h2 className="font-serif text-3xl md:text-4xl tracking-tight leading-[1.1] text-foreground mb-3 [text-wrap:balance]">
-                The full library, open to all
+            {/* Full library — the scroll target for "View all in [topic]" jumps
+                from the Explore by theme grid above. Clustered by topic so a
+                visitor lands directly on the theme they want. */}
+            <header className="mb-8 max-w-[640px] pt-4">
+              <SectionLabel label="Full library" />
+              <h2 className="mt-5 font-serif text-3xl md:text-4xl tracking-tight leading-[1.1] text-foreground mb-3 [text-wrap:balance]">
+                Every brief, indexed by theme.
               </h2>
               <p className="text-[15px] text-muted-foreground leading-relaxed [text-wrap:pretty]">
-                Read past reports and articles.
+                Use the theme jumps above, or scroll the archive. Each brief carries its topic, publication date and read time.
               </p>
             </header>
 
