@@ -71,7 +71,7 @@ const NewsletterCapture: React.FC = () => {
           </form>
         )}
 
-        <p className="text-[12px] text-background/40 mt-4">No spam. Unsubscribe anytime.</p>
+        <p className="text-[12px] text-background/70 mt-4">No spam. Unsubscribe anytime.</p>
       </div>
     </section>
   );
