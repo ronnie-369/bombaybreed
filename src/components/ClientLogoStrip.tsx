@@ -20,31 +20,31 @@ const logos = [
   { src: heineken, alt: 'Heineken company logo', width: 142, height: 80 },
   { src: itc, alt: 'ITC company logo', width: 120, height: 80 },
   { src: apollo, alt: 'Apollo Hospitals company logo', width: 178, height: 80 },
-  ];
+];
 
 const ClientLogoStrip = () => {
-    return (
-          <section className="py-12 md:py-16 px-6 md:px-8 bg-background border-y border-border/50">
-                <div className="container mx-auto max-w-4xl">
-                        <ScrollReveal direction="up">
-                                  <div className="flex items-center justify-center gap-8 md:gap-12 flex-wrap">
-                                    {logos.map((logo) => (
-                          <img
-                                            key={logo.alt}
-                                            src={logo.src}
-                                            alt={logo.alt}
-                                            width={logo.width}
-                                            height={logo.height}
-                                            className="h-8 md:h-10 object-contain grayscale opacity-30 hover:grayscale-0 hover:opacity-80 transition-all duration-300"
-                                            loading="lazy"
-                                            decoding="async"
-                                          />
-                        ))}
-                                  </div>div>
-                        </ScrollReveal>ScrollReveal>
-                </div>div>
-          </section>section>
-        );
+  return (
+    <section className="py-12 md:py-16 px-6 md:px-8 bg-background border-y border-border/50">
+      <div className="container mx-auto max-w-4xl">
+        <ScrollReveal direction="up">
+          <div className="flex items-center justify-center gap-8 md:gap-12 flex-wrap">
+            {logos.map((logo) => (
+              <img
+                key={logo.alt}
+                src={logo.src}
+                alt={logo.alt}
+                width={logo.width}
+                height={logo.height}
+                className="h-8 md:h-10 object-contain grayscale opacity-30 hover:grayscale-0 hover:opacity-80 transition-all duration-300"
+                loading="lazy"
+                decoding="async"
+              />
+            ))}
+          </div>
+        </ScrollReveal>
+      </div>
+    </section>
+  );
 };
 
-export default ClientLogoStrip;</section>
+export default ClientLogoStrip;
