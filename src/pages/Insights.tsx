@@ -8,10 +8,9 @@ import { ArrowRight } from 'lucide-react';
 import ScrollReveal from '@/components/ui/ScrollReveal';
 import SectionLabel from '@/components/ui/SectionLabel';
 
-import { trackSponsorEvent } from '@/utils/sponsorAnalytics';
-
-import LadderStickyPill from '@/components/insights/LadderStickyPill';
-import TierFinder from '@/components/insights/TierFinder';
+// Paid-tier components (LadderStickyPill, TierFinder, sponsor analytics) removed
+// from the editorial hub. They remain in the repo under /src/components/insights/
+// and can be restored when the subscription product goes live.
 
 
 type ContentType = 'Flagship Report' | 'Intelligence Brief' | 'Regulatory Alert' | 'Perspective';
@@ -411,72 +410,56 @@ const Insights = () => {
   return (
     <div className="min-h-screen bg-background flex flex-col">
       <PageHead
-        title="TCD Intelligence — Premium Access Lounge & Briefs"
-        description="Membership and corporate sponsorship for original India-focused research on carbon markets, regulation, and climate exposure. Plus the full library of intelligence briefs."
+        title="Insights: India research on carbon markets, governance and regulation | Bombay Breed"
+        description="Editorial briefs and long-form research from Bombay Breed on India's carbon markets, board governance, ESG communications, and regulatory intelligence. Curated by Theresa Ronnie."
         path="/insights"
         ogImage="og-insights"
       />
       <Header />
 
       <main className="flex-1 pt-24 pb-16">
-        {/* Hero - H1 only. Search + filters now sit directly above the
-            "All Intelligence" library, where readers actually scan resources. */}
-        <section className="pt-12 pb-6 md:pt-16 md:pb-8 px-6 md:px-8">
-          <div className="container mx-auto max-w-[900px]">
+        {/* Editor's note. Personal, first-person, framing the hub. Follows the
+            About page voice: measured, specific, no marketing filler. */}
+        <section className="pt-12 pb-8 md:pt-16 md:pb-10 px-6 md:px-8">
+          <div className="container mx-auto max-w-[720px]">
             <ScrollReveal direction="up">
-              <h1 className="text-display font-serif tracking-tight mb-2">
-                Intelligence Briefs
+              <SectionLabel label="Editor's note  ·  Theresa Ronnie" />
+              <h1 className="mt-6 font-serif text-4xl md:text-6xl tracking-tight leading-[1.05] text-foreground [text-wrap:balance]">
+                Insights from Bombay Breed.
               </h1>
-              <p className="text-sm text-muted-foreground max-w-[60ch]">
-                India research on carbon markets, governance, and regulation.
+              <p className="mt-6 text-lg md:text-xl text-muted-foreground leading-relaxed [text-wrap:pretty]">
+                India research on carbon markets, board governance, ESG communications, and regulatory
+                intelligence. Every brief here is written to be useful to a board that has to make a decision
+                this quarter, not next year. Sourced, dated, and short enough to read on a plane.
               </p>
-              <p className="mt-3 text-[12px] sm:text-[13px] leading-snug text-foreground/80 max-w-[36ch] sm:max-w-[60ch]">
-                <span className="sm:hidden">Browse reports below, or take the 3-question quiz to find your tier.</span>
-                <span className="hidden sm:inline">Browse the full library of reports and briefs below, or take the 3-question quiz to find the membership tier that fits.</span>
-              </p>
+              <div className="mt-6 h-px w-16 bg-accent" aria-hidden="true" />
             </ScrollReveal>
           </div>
         </section>
 
-
-        {/* Reader testimonials - social proof before the tier finder */}
-        <section id="industry" aria-labelledby="readers-testimonials-heading" className="px-6 md:px-8 py-12 md:py-14 bg-secondary/30 scroll-mt-32 border-t border-border/40">
-          <div className="container mx-auto max-w-[900px]">
-            <SectionLabel label="What readers say" />
-            <h2 id="readers-testimonials-heading" className="text-section font-serif tracking-tight mt-6 mb-8 md:mb-10 [text-wrap:balance]">
-              Quotes from readers
-            </h2>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-5 md:gap-6">
-              {[
-                { quote: 'Brilliantly insightful.', name: 'Chris Sherwood', title: 'Chairman', org: 'Negative Emissions Platform', orgHref: 'https://www.negative-emissions.org/' },
-                { quote: 'Wonderful writing. Deep analysis. Highly insightful.', name: 'Mitchell Beer', title: 'Founder', org: 'The Energy Mix', orgHref: 'https://www.theenergymix.com' },
-                { quote: 'Excellent reporting from India.', name: 'Christian Haberli', title: 'Climate lawyer', org: 'EU' },
-              ].map((q, i) => (
-                <figure key={i} className="bg-background border border-border rounded-xl p-5 sm:p-6 flex flex-col">
-                  <blockquote className="font-serif text-[15px] sm:text-base text-foreground leading-relaxed mb-5 sm:mb-6 flex-1 [text-wrap:pretty]">
-                    &ldquo;{q.quote}&rdquo;
-                  </blockquote>
-                  <figcaption className="text-xs text-muted-foreground border-t border-border/60 pt-4 leading-snug">
-                    <div className="font-semibold text-foreground [text-wrap:balance]">{q.name}</div>
-                    <div className="[text-wrap:balance]">{q.title}</div>
-                    <div className="text-muted-foreground/70 [text-wrap:balance]">
-                      {q.orgHref ? (
-                        <a href={q.orgHref} target="_blank" rel="noopener noreferrer" className="text-foreground/80 no-underline hover:text-foreground hover:underline decoration-foreground/30 decoration-[0.5px] underline-offset-[5px] transition-colors duration-200">{q.org}</a>
-                      ) : q.org}
-                    </div>
-                  </figcaption>
-                </figure>
-              ))}
+        {/* Climate Series highlight — surfaces the 5-piece Europe-India series
+            as a dedicated set so readers see it as a series, not scattered pieces. */}
+        <section className="px-6 md:px-8 py-10 md:py-14 border-t border-border/60 bg-secondary/30">
+          <div className="container mx-auto max-w-[900px] flex flex-col md:flex-row md:items-center md:justify-between gap-6">
+            <div className="max-w-[560px]">
+              <SectionLabel label="Climate Series  ·  Article 01 of 05 live" />
+              <h2 className="mt-4 font-serif text-2xl md:text-3xl tracking-tight leading-tight text-foreground [text-wrap:balance]">
+                What Europe got wrong that India must not repeat.
+              </h2>
+              <p className="mt-3 text-base text-muted-foreground leading-relaxed [text-wrap:pretty]">
+                A five-piece investor and policy brief on why European infrastructure and bodies are failing at
+                temperatures the Gulf and South Asia absorb routinely. Published fortnightly through mid-September.
+              </p>
             </div>
+            <Link
+              to="/series/europe-india"
+              className="inline-flex items-center gap-2 rounded-md bg-primary text-primary-foreground px-6 py-3 font-sans text-sm font-medium hover:opacity-90 transition-opacity whitespace-nowrap"
+            >
+              Open the series
+              <ArrowRight className="h-4 w-4" aria-hidden="true" />
+            </Link>
           </div>
         </section>
-
-        {/* Guided tier selector - 3 questions to a recommended plan with
-            direct routing to signup. Sits between the ladder strip and the
-            sticky section nav so visitors can self-qualify before browsing. */}
-        <TierFinder />
-
-        {/* Section navigation removed - no longer relevant */}
 
 
         {/* Flagship Research */}
@@ -596,31 +579,6 @@ const Insights = () => {
               );
             })()}
 
-            {/* Sponsored research callout — non-duplicating link to the existing #sponsor block */}
-            <a
-              href="#sponsor"
-              onClick={() =>
-                trackSponsorEvent('sponsor_callout_click', {
-                  location: 'insights_grid',
-                  link_url: '#sponsor',
-                  link_text: 'Sponsored research callout',
-                })
-              }
-              className="group flex items-center justify-between gap-4 mb-6 px-4 py-3 border border-border/60 bg-muted/20 hover:bg-muted/40 transition-colors"
-            >
-              <div className="min-w-0">
-                <div className="text-[10px] font-bold tracking-widest uppercase text-muted-foreground mb-0.5">
-                  Sponsored research
-                </div>
-                <div className="text-[13px] text-foreground line-clamp-1">
-                  Underwrite a topic - your name on a year of India research.
-                </div>
-              </div>
-              <span className="flex-shrink-0 text-[12px] text-foreground/80 group-hover:text-foreground transition-colors">
-                See sponsor terms →
-              </span>
-            </a>
-
             {filteredPublications.length === 0 ? (
               <div className="border border-border/60 bg-secondary/20 px-6 py-12 md:py-16 text-center">
                 <div className="text-[10px] font-bold tracking-widest uppercase text-muted-foreground mb-3">
@@ -639,12 +597,6 @@ const Insights = () => {
                   >
                     Reset filters
                   </button>
-                  <a
-                    href="#tier-finder"
-                    className="inline-flex items-center px-4 py-2 text-[12px] font-medium tracking-wide border border-border text-foreground hover:bg-secondary transition-colors rounded-full"
-                  >
-                    Find your plan
-                  </a>
                 </div>
               </div>
             ) : showFlagship ? (
@@ -753,10 +705,32 @@ const Insights = () => {
           </div>
         </section>
 
+        {/* Newsletter — free. Substack. Same door as every other reader. */}
+        <section className="mt-16 md:mt-20 px-6 md:px-8">
+          <div className="container mx-auto max-w-[720px] border-t border-border pt-12 md:pt-16 text-center">
+            <SectionLabel label="Stay close" />
+            <h2 className="mt-5 font-serif text-3xl md:text-4xl tracking-tight leading-tight text-foreground">
+              The Climate Desk newsletter.
+            </h2>
+            <p className="mt-4 text-base md:text-lg text-muted-foreground leading-relaxed [text-wrap:balance]">
+              Free. Every brief here lands in your inbox on the morning it goes live. Read by climate investors,
+              policy leads, and sustainability heads across India, the UK, and the Gulf.
+            </p>
+            <a
+              href="https://www.theclimatedesk.earth"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mt-8 inline-flex items-center gap-2 rounded-md bg-primary text-primary-foreground px-6 py-3 font-sans text-sm font-medium hover:opacity-90 transition-opacity"
+            >
+              Subscribe on Substack
+              <ArrowRight className="h-4 w-4" aria-hidden="true" />
+            </a>
+          </div>
+        </section>
+
       </main>
 
       <Footer />
-      <LadderStickyPill />
     </div>
   );
 };

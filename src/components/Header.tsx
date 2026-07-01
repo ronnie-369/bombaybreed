@@ -177,8 +177,8 @@ const Header = () => {
           <Link to="/insights" className="text-sm text-muted-foreground hover:text-foreground transition-colors story-link">
             Insights
           </Link>
-          <Link to="/intelligence/value-ladder" className="text-sm text-muted-foreground hover:text-foreground transition-colors story-link">
-            Pricing
+          <Link to="/series/europe-india" className="text-sm text-muted-foreground hover:text-foreground transition-colors story-link">
+            Climate Series
           </Link>
           {location.pathname === '/' ? (
             <Button variant="default" size="sm" onClick={scrollToContact}>
@@ -261,8 +261,8 @@ const Header = () => {
             <Link to="/insights" className="text-sm text-muted-foreground hover:text-foreground transition-colors py-2" onClick={toggleMenu}>
               Insights
             </Link>
-            <Link to="/intelligence/value-ladder" className="text-sm text-muted-foreground hover:text-foreground transition-colors py-2" onClick={toggleMenu}>
-              Pricing
+            <Link to="/series/europe-india" className="text-sm text-muted-foreground hover:text-foreground transition-colors py-2" onClick={toggleMenu}>
+              Climate Series
             </Link>
             {location.pathname === '/' ? (
               <Button variant="default" className="w-full" onClick={scrollToContact}>

@@ -27,10 +27,12 @@ const Index = () => {
       />
       <Header />
       <main className="flex-1">
-        {/* Launch announcement: Article 01 of the Europe-India Climate Series */}
+        {/* Launch announcement: Article 01 of the Europe-India Climate Series.
+            Header is position:fixed at z-50, so we push this strip below it
+            with pt-[73px] (matches header height). */}
         <Link
           to="/series/europe-india/why-europe-melts"
-          className="block border-b border-border bg-secondary/40 hover:bg-secondary/70 transition-colors"
+          className="block border-b border-border bg-secondary/40 hover:bg-secondary/70 transition-colors mt-[73px]"
           aria-label="Read Article 01 of the Europe-India Climate Series"
         >
           <div className="container mx-auto max-w-[1200px] px-6 md:px-8 py-4 flex flex-col md:flex-row md:items-center md:justify-between gap-3">

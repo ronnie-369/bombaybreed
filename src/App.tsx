@@ -38,27 +38,18 @@ const NewsletterArchive = lazy(() => import("./pages/NewsletterArchive"));
 const CarbonMarketTracker = lazy(() => import("./pages/CarbonMarketTracker"));
 const BRSRReportingAdvisory = lazy(() => import("./pages/BRSRReportingAdvisory"));
 const CarbonCreditTradingScheme = lazy(() => import("./pages/CarbonCreditTradingScheme"));
-const RazorpayTest = lazy(() => import("./pages/RazorpayTest"));
+// RazorpayTest lazy import removed: route disabled in production. Restore when payments launch.
 const NarrativeHiringGap = lazy(() => import("./pages/NarrativeHiringGap"));
 const BeforeThePeak = lazy(() => import("./pages/BeforeThePeak"));
 const RaisingRenaissanceChild = lazy(() => import("./pages/RaisingRenaissanceChild"));
 const WhyEuropeMelts = lazy(() => import("./pages/series/WhyEuropeMelts"));
 const WhyEuropeMeltsRead = lazy(() => import("./pages/series/WhyEuropeMeltsRead"));
+const EuropeIndiaSeriesIndex = lazy(() => import("./pages/series/EuropeIndiaSeriesIndex"));
 
-// TCD Intelligence routes
-const IntelligenceLanding = lazy(() => import("./intelligence/pages/IntelligenceLanding"));
-const TcdValueLadder = lazy(() => import("./intelligence/pages/ValueLadder"));
-const TcdMembership = lazy(() => import("./intelligence/pages/Membership"));
-const TcdSignup = lazy(() => import("./intelligence/pages/Signup"));
-const TcdWelcome = lazy(() => import("./intelligence/pages/Welcome"));
-const TcdCheckout = lazy(() => import("./intelligence/pages/Checkout"));
-const TcdCheckoutResult = lazy(() => import("./intelligence/pages/CheckoutResult"));
-const TcdOnboarding = lazy(() => import("./intelligence/pages/Onboarding"));
-const TcdDashboard = lazy(() => import("./intelligence/pages/Dashboard"));
-const TcdReportDetail = lazy(() => import("./intelligence/pages/ReportDetail"));
-const TcdAccount = lazy(() => import("./intelligence/pages/Account"));
-const TcdAdmin = lazy(() => import("./intelligence/pages/Admin"));
-const TcdAuthGate = lazy(() => import("./intelligence/components/TcdAuthGate"));
+// TCD Intelligence routes are disabled in production until payments launch.
+// All code remains in /src/intelligence/ and can be re-wired with the block below:
+//   const IntelligenceLanding = lazy(() => import("./intelligence/pages/IntelligenceLanding"));
+//   ... (see git history for the full set)
 
 const queryClient = new QueryClient();
 
@@ -125,54 +116,16 @@ const AppContent = () => {
               <Route path="/insights/narrative-hiring-gap" element={<NarrativeHiringGap />} />
               <Route path="/insights/before-the-peak" element={<BeforeThePeak />} />
               <Route path="/insights/raising-the-renaissance-child" element={<RaisingRenaissanceChild />} />
+              <Route path="/series/europe-india" element={<EuropeIndiaSeriesIndex />} />
               <Route path="/series/europe-india/why-europe-melts" element={<WhyEuropeMelts />} />
               <Route path="/series/europe-india/why-europe-melts/read" element={<WhyEuropeMeltsRead />} />
 
-              {/* Internal QA - Razorpay end-to-end test page (admin-only, noindex) */}
-              <Route
-                path="/razorpay-test"
-                element={
-                  <TcdAuthGate requireAdmin>
-                    <RazorpayTest />
-                  </TcdAuthGate>
-                }
-              />
-
-              {/* TCD Intelligence — subscription platform */}
-              <Route path="/intelligence" element={<IntelligenceLanding />} />
-              <Route path="/intelligence/value-ladder" element={<TcdValueLadder />} />
-              <Route path="/pricing" element={<Navigate to="/intelligence/value-ladder" replace />} />
-              <Route path="/intelligence/membership" element={<TcdMembership />} />
-              <Route path="/intelligence/signup" element={<TcdSignup />} />
-              <Route path="/intelligence/welcome" element={<TcdWelcome />} />
-              <Route
-                path="/intelligence/checkout"
-                element={<TcdAuthGate><TcdCheckout /></TcdAuthGate>}
-              />
-              <Route
-                path="/intelligence/checkout/result"
-                element={<TcdCheckoutResult />}
-              />
-              <Route
-                path="/intelligence/onboarding"
-                element={<TcdAuthGate><TcdOnboarding /></TcdAuthGate>}
-              />
-              <Route
-                path="/intelligence/dashboard"
-                element={<TcdAuthGate requireActiveMembership><TcdDashboard /></TcdAuthGate>}
-              />
-              <Route
-                path="/intelligence/reports/:slug"
-                element={<TcdAuthGate requireActiveMembership><TcdReportDetail /></TcdAuthGate>}
-              />
-              <Route
-                path="/intelligence/account"
-                element={<TcdAuthGate><TcdAccount /></TcdAuthGate>}
-              />
-              <Route
-                path="/intelligence/admin"
-                element={<TcdAuthGate requireAdmin><TcdAdmin /></TcdAuthGate>}
-              />
+              {/* Paid tier redirects — payments not live in production. Code lives in /src/intelligence/*
+                  and can be restored in one commit when we launch subscriptions. Until then all paid URLs
+                  redirect to the free editorial hub. */}
+              <Route path="/pricing" element={<Navigate to="/services" replace />} />
+              <Route path="/intelligence" element={<Navigate to="/insights" replace />} />
+              <Route path="/intelligence/*" element={<Navigate to="/insights" replace />} />
 
               {/* Redirect /index.html to root to prevent Soft 404 */}
               <Route path="/index.html" element={<Navigate to="/" replace />} />
