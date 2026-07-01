@@ -9,7 +9,7 @@ interface SectionLabelProps {
 const SectionLabel = ({ label, className = '' }: SectionLabelProps) => {
   return (
     <span 
-      className={`inline-block text-[11px] font-semibold tracking-[4px] uppercase text-accent mb-4 ${className}`}
+      className={`inline-block text-[11px] font-semibold tracking-[4px] uppercase text-foreground/80 mb-4 ${className}`}
     >
       {label}
     </span>
