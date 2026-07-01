@@ -21,8 +21,6 @@ const CookieBanner = () => {
   };
 
   const handleClose = () => {
-    setConsentPreference(false);
-    updateGoogleConsent(false);
     setIsVisible(false);
   };
 
@@ -35,11 +33,11 @@ const CookieBanner = () => {
           <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
             <div className="flex-1">
               <p className="text-sm text-foreground mb-2">
-                We use cookies to enhance your experience and analyze site usage. 
+                We use cookies to enhance your experience and analyze site usage.
                 By continuing to browse, you agree to our use of cookies.
               </p>
-              <Link 
-                to="/privacy-policy" 
+              <Link
+                to="/privacy-policy"
                 className="text-sm text-primary hover:underline"
               >
                 Learn more in our Privacy Policy
@@ -58,6 +56,7 @@ const CookieBanner = () => {
                 variant="ghost"
                 size="icon"
                 className="h-8 w-8"
+                aria-label="Dismiss cookie notice"
               >
                 <X className="h-4 w-4" />
               </Button>
