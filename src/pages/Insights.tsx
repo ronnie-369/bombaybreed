@@ -438,11 +438,24 @@ const Insights = () => {
         </section>
 
         {/* Climate Series highlight — surfaces the 5-piece Europe-India series
-            as a dedicated set so readers see it as a series, not scattered pieces. */}
+            as a dedicated set so readers see it as a series, not scattered pieces.
+            Carries a NEW pulsing badge while the anchor piece is within the
+            14-day freshness window. */}
         <section className="px-6 md:px-8 py-10 md:py-14 border-t border-border/60 bg-secondary/30">
           <div className="container mx-auto max-w-[900px] flex flex-col md:flex-row md:items-center md:justify-between gap-6">
             <div className="max-w-[560px]">
-              <SectionLabel label="Climate Series  ·  Article 01 of 05 live" />
+              <div className="flex items-center gap-3 flex-wrap">
+                <SectionLabel label="Climate Series  ·  Article 01 of 05" />
+                {isNewPublication('2026-06-30') && (
+                  <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[10px] font-bold tracking-widest uppercase bg-accent text-accent-foreground shadow-sm">
+                    <span className="relative flex h-1.5 w-1.5" aria-hidden="true">
+                      <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-accent-foreground opacity-60"></span>
+                      <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-accent-foreground"></span>
+                    </span>
+                    New
+                  </span>
+                )}
+              </div>
               <h2 className="mt-4 font-serif text-2xl md:text-3xl tracking-tight leading-tight text-foreground [text-wrap:balance]">
                 What Europe got wrong that India must not repeat.
               </h2>
