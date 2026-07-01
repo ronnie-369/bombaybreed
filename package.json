@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
+    "build": "npm run build:og && vite build",
     "build:dev": "vite build --mode development",
     "lint": "eslint .",
     "preview": "vite preview",
@@ -18,7 +18,8 @@
     "check:insights:custom": "node scripts/check-static-insights-links.mjs --custom",
     "postpublish:check": "node scripts/check-static-insights-links.mjs",
     "test:visual": "playwright test",
-    "test:visual:update": "playwright test --update-snapshots"
+    "test:visual:update": "playwright test --update-snapshots",
+    "build:og": "node scripts/build-og-cards.mjs"
   },
   "dependencies": {
     "@carbon/icons-react": "^11.79.0",
@@ -101,6 +102,11 @@
     "typescript": "^5.5.3",
     "typescript-eslint": "^8.0.1",
     "vite": "^5.4.1",
-    "vitest": "^4.1.5"
+    "vitest": "^4.1.5",
+    "satori": "^0.12.1",
+    "satori-html": "^0.3.2",
+    "@resvg/resvg-js": "^2.6.2",
+    "@fontsource/inter": "^5.1.0",
+    "@fontsource/playfair-display": "^5.1.0"
   }
 }

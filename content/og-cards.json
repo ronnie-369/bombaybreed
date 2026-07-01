@@ -1,0 +1,13 @@
+{
+  "$schema": "./og-cards.schema.json",
+  "notes": "Single source of truth for social share cards. Add one row per article. The build script scripts/build-og-cards.mjs reads this at build time and writes /public/og/og-{slug}.png. Reference by slug in PageHead: ogImage={slug}.",
+  "cards": [
+    {
+      "slug": "og-europe-melts",
+      "title": "Why Europe melts at 41°C when the Gulf works at 50°C.",
+      "series": "Climate Series",
+      "articleNumber": "01",
+      "totalArticles": "05"
+    }
+  ]
+}

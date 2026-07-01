@@ -1,4 +1,6 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
+import { ArrowRight } from 'lucide-react';
 import PageHead from '@/components/PageHead';
 import Header from '@/components/Header';
 import ExecutiveHero from '@/components/ExecutiveHero';
@@ -25,6 +27,28 @@ const Index = () => {
       />
       <Header />
       <main className="flex-1">
+        {/* Launch announcement: Article 01 of the Europe-India Climate Series */}
+        <Link
+          to="/series/europe-india/why-europe-melts"
+          className="block border-b border-border bg-secondary/40 hover:bg-secondary/70 transition-colors"
+          aria-label="Read Article 01 of the Europe-India Climate Series"
+        >
+          <div className="container mx-auto max-w-[1200px] px-6 md:px-8 py-4 flex flex-col md:flex-row md:items-center md:justify-between gap-3">
+            <div className="flex flex-col md:flex-row md:items-baseline gap-x-4 gap-y-1">
+              <span className="font-sans uppercase tracking-[0.36em] text-[11px] font-semibold text-accent">
+                Just published  /  Climate Series  /  Article 01 of 05
+              </span>
+              <span className="font-serif text-base md:text-lg text-foreground leading-snug">
+                Why Europe melts at 41°C when the Gulf works at 50°C.
+              </span>
+            </div>
+            <span className="inline-flex items-center gap-2 font-sans text-sm font-medium text-primary whitespace-nowrap">
+              Read the brief
+              <ArrowRight className="h-4 w-4" aria-hidden="true" />
+            </span>
+          </div>
+        </Link>
+
         <ExecutiveHero />
         <ClientLogoStrip />
         <ProofStat />
